@@ -1,11 +1,3 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
-
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
-
----
-
 # Project: GDPR AI Directory
 
 A neutral, multi-vendor directory of AI inference providers tagged by GDPR compliance status. Helps EU businesses make defensible model selection decisions.
@@ -23,6 +15,7 @@ A neutral, multi-vendor directory of AI inference providers tagged by GDPR compl
 ## Current phase
 
 **Phase 0 — Data Foundation** (see `docs/PLAN.md` for full phase breakdown):
+
 1. Project setup (Next.js, TypeScript, Tailwind, Zod)
 2. JSON schema + TypeScript types in `data/schema.ts`
 3. Import script `scripts/import-models-dev.ts` — seeds stubs from models.dev repo
@@ -43,7 +36,10 @@ Use conventional commit types: `feat`, `fix`, `chore`, `docs`, `refactor`, `data
 
 ## What NOT to do
 
-- No automated compliance scoring (liability risk)
 - No legal advice framing — present facts, cite sources
 - Do not build the gateway (Phase 3) until the directory has traction
 - Do not deviate from the flat-file data model for MVP
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
