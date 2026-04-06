@@ -11,6 +11,7 @@ Helps EU businesses make defensible model selection decisions — without paying
 EU companies building AI features face a recurring, expensive question: **can we legally use this provider?**
 
 The current options are bad:
+
 - Default to IBM/SAP/Azure enterprise tiers because procurement knows the name — and pay a premium not for better models, but for a compliance shortcut.
 - Manually review each provider's privacy policy, DPA, sub-processor list, and data processing terms — inconsistently, rarely thoroughly, and again every time something changes.
 
@@ -22,16 +23,16 @@ There is no neutral, structured, up-to-date reference. This directory is that re
 
 For each AI inference provider, the directory tracks:
 
-| Field | What it answers |
-|---|---|
-| **Data residency** | Where is my data processed? Is EU-only routing available? |
-| **DPA availability** | Is there a Data Processing Addendum? How is it signed? |
-| **Training on customer data** | Does the provider train models on API traffic? |
-| **Sub-processors** | Are sub-processors disclosed? Are any EU-based? |
-| **Certifications** | SOC 2, ISO 27001, ISO 27701, C5, HDS, etc. |
-| **EU AI Act status** | Has the provider addressed GPAI obligations? |
-| **SCCs / adequacy** | Standard Contractual Clauses? Adequacy decision for HQ country? |
-| **Last verified** | When was this entry last checked against source documents? |
+| Field                         | What it answers                                                 |
+| ----------------------------- | --------------------------------------------------------------- |
+| **Data residency**            | Where is my data processed? Is EU-only routing available?       |
+| **DPA availability**          | Is there a Data Processing Addendum? How is it signed?          |
+| **Training on customer data** | Does the provider train models on API traffic?                  |
+| **Sub-processors**            | Are sub-processors disclosed? Are any EU-based?                 |
+| **Certifications**            | SOC 2, ISO 27001, ISO 27701, C5, HDS, etc.                      |
+| **EU AI Act status**          | Has the provider addressed GPAI obligations?                    |
+| **SCCs / adequacy**           | Standard Contractual Clauses? Adequacy decision for HQ country? |
+| **Last verified**             | When was this entry last checked against source documents?      |
 
 Every claim links to a source document. No automated scoring, no legal judgments — structured facts with an evidence trail.
 
@@ -51,7 +52,7 @@ EU-native providers (Mistral, Scaleway, Berget, Stackit, Aleph Alpha, evroc, Clo
 
 ## Stack
 
-- **Framework:** Next.js 15 (App Router)
+- **Framework:** Next.js 16 (App Router)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS 4
 - **Validation:** Zod
@@ -138,12 +139,12 @@ All entries require source URLs. Compliance claims without an evidence trail wil
 
 ## Roadmap
 
-| Phase | Status | Description |
-|---|---|---|
-| **Phase 0** | In progress | Data foundation — schema, import scripts, ~20–25 verified providers |
-| **Phase 1** | Planned | Filterable homepage, provider detail pages, report-a-change form, SEO, Vercel deploy |
-| **Phase 2** | Future | Side-by-side comparison, email alerts, provider verification badge program |
-| **Phase 3** | Contingent | EU-routing proxy API (only if directory demonstrates clear demand) |
+| Phase       | Status      | Description                                                                          |
+| ----------- | ----------- | ------------------------------------------------------------------------------------ |
+| **Phase 0** | In progress | Data foundation — schema, import scripts, ~20–25 verified providers                  |
+| **Phase 1** | Planned     | Filterable homepage, provider detail pages, report-a-change form, SEO, Vercel deploy |
+| **Phase 2** | Future      | Side-by-side comparison, email alerts, provider verification badge program           |
+| **Phase 3** | Contingent  | EU-routing proxy API (only if directory demonstrates clear demand)                   |
 
 ---
 
