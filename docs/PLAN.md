@@ -231,22 +231,18 @@ gdpr-ai-directory/
 │       ├── provider/
 │       │   └── [slug]/
 │       │       └── page.tsx        # Provider compliance profile page
-│       ├── compare/
-│       │   └── page.tsx            # Side-by-side comparison (v1.1)
-│       ├── report/
-│       │   └── page.tsx            # "Report a change" form page
-│       └── api/
-│           └── report/
-│               └── route.ts        # POST: create GitHub Issue from report
+│       └── compare/
+│           └── page.tsx            # Side-by-side comparison (v1.1)
 ├── components/
 │   ├── ProviderTable.tsx           # Filterable/sortable directory table
 │   ├── ComplianceBadges.tsx        # Visual compliance indicators
 │   ├── FilterBar.tsx               # Filter controls (type, residency, DPA, etc.)
-│   ├── ProviderCard.tsx            # Detail card for profile page
-│   └── ReportChangeForm.tsx        # User feedback form
+│   └── ProviderCard.tsx            # Detail card for profile page
 ├── lib/
-│   ├── providers.ts                # Data loading utilities
-│   └── github.ts                   # GitHub Issues API client for reports
+│   └── providers.ts                # Data loading utilities
+├── .github/
+│   └── ISSUE_TEMPLATE/
+│       └── report-change.yml       # Structured GitHub issue form for reports
 ├── docs/
 │   ├── IDEA.md                     # Original idea document
 │   └── PLAN.md                     # Copy of this plan (for easy reference)
@@ -276,20 +272,25 @@ gdpr-ai-directory/
 
 ### User Flow
 
-1. User clicks "Something changed?" on a provider page
-2. Form pre-fills provider name
-3. User selects change category: DPA terms, data residency, pricing, certifications, other
-4. User adds details (textarea) and optional source URL
-5. User optionally provides email for follow-up
-6. Submit -> API route creates a GitHub Issue with structured labels
+1. User clicks "Report a change" on a provider page
+2. Link opens the GitHub issue form at `https://github.com/codeattack-io/gdpr-ai-directory/issues/new?template=report-change.yml` with the provider slug pre-filled via query params
+3. User fills in the structured form: provider (dropdown), change type (dropdown), details (textarea), source URL (required)
+4. User submits — creates a labeled GitHub Issue directly
 
 ### Technical Implementation
 
-- Form component: `ReportChangeForm.tsx`
-- API route: `src/app/api/report/route.ts`
-- Uses GitHub API to create an issue in the repo
-- Issue is labeled: `provider:{slug}`, `report`, `unverified`
-- Rate limiting: basic (IP-based or honeypot) to prevent spam
+- **No backend code required.** The report-a-change flow is handled entirely by GitHub Issue Forms.
+- Issue template: `.github/ISSUE_TEMPLATE/report-change.yml`
+- Issues are automatically labeled: `report`, `unverified`
+- GitHub account required to submit — natural spam filter, accountable submitters
+- "Report a change" button on provider pages is a plain `<a href="...">` link to the GitHub issue form with `?title=[Report]+{slug}:+` pre-filled
+
+### What this replaces from the original plan
+
+- ~~`ReportChangeForm.tsx`~~ — not needed; GitHub form handles UI
+- ~~`src/app/api/report/route.ts`~~ — not needed; no API route required
+- ~~`lib/github.ts`~~ — not needed; no Octokit integration required
+- ~~Rate limiting logic~~ — not needed; GitHub account requirement filters noise
 
 ---
 

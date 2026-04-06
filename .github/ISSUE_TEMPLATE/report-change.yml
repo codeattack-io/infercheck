@@ -1,0 +1,188 @@
+name: Report a Change
+description: Report outdated or incorrect compliance information for a provider.
+title: "[Report] <provider>: <brief description>"
+labels: ["report", "unverified"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping keep this directory accurate. All submissions are reviewed before the data is updated.
+
+        **This is not a place to request legal advice.** If you have a general question, open a Discussion instead.
+
+  - type: dropdown
+    id: provider
+    attributes:
+      label: Provider
+      description: Which provider does this report concern?
+      options:
+        - 302-ai
+        - abacus
+        - aihubmix
+        - aleph-alpha
+        - alibaba
+        - alibaba-china
+        - alibaba-coding-plan
+        - alibaba-coding-plan-china
+        - amazon-bedrock
+        - anthropic
+        - azure
+        - azure-cognitive-services
+        - bailing
+        - baseten
+        - berget-ai
+        - cerebras
+        - chutes
+        - clarifai
+        - cloudferro-sherlock
+        - cloudflare-ai-gateway
+        - cloudflare-workers-ai
+        - cohere
+        - cortecs
+        - d-run-china
+        - deep-infra
+        - deepseek
+        - dinference
+        - evroc
+        - fastrouter
+        - fireworks-ai
+        - firmware
+        - friendli
+        - github-copilot
+        - github-models
+        - gitlab-duo
+        - google
+        - groq
+        - helicone
+        - hugging-face
+        - iflow
+        - inception
+        - inference
+        - io-net
+        - jiekou-ai
+        - kilo-gateway
+        - kimi-for-coding
+        - kuae-cloud-coding-plan
+        - llama
+        - llm-gateway
+        - lmstudio
+        - lucidquery-ai
+        - meganova
+        - minimax-minimax-io
+        - minimax-minimaxi-com
+        - minimax-coding-plan-minimax-io
+        - minimax-coding-plan-minimaxi-com
+        - mistral
+        - moark
+        - modelscope
+        - moonshot-ai
+        - moonshot-ai-china
+        - morph
+        - nanogpt
+        - nebius-token-factory
+        - nova
+        - novitaai
+        - nvidia
+        - ollama-cloud
+        - openai
+        - opencode-go
+        - opencode-zen
+        - openrouter
+        - ovhcloud-ai-endpoints
+        - perplexity
+        - perplexity-agent
+        - poe
+        - privatemode-ai
+        - qihang
+        - qiniu
+        - requesty
+        - sap-ai-core
+        - scaleway
+        - siliconflow
+        - siliconflow-china
+        - stackit
+        - stepfun
+        - submodel
+        - synthetic
+        - tencent-coding-plan-china
+        - the-grid-ai
+        - together-ai
+        - upstage
+        - v0
+        - venice-ai
+        - vercel-ai-gateway
+        - vertex
+        - vertex-anthropic
+        - vivgrid
+        - vultr
+        - weights-biases
+        - xai
+        - xiaomi
+        - xiaomi-token-plan-china
+        - xiaomi-token-plan-europe
+        - xiaomi-token-plan-singapore
+        - z-ai
+        - z-ai-coding-plan
+        - zenmux
+        - zhipu-ai
+        - zhipu-ai-coding-plan
+    validations:
+      required: true
+
+  - type: dropdown
+    id: change_type
+    attributes:
+      label: What changed?
+      description: Select the category that best describes the change.
+      options:
+        - DPA / data processing addendum
+        - Data residency or EU-only routing
+        - Training on customer data
+        - Data retention policy
+        - Sub-processors
+        - Certifications
+        - EU AI Act status
+        - SCCs / adequacy decision
+        - Models available
+        - Pricing tier
+        - Provider website or docs URL
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Describe what has changed and what the correct information is.
+      placeholder: "Example: The DPA URL has moved to https://... and now requires a custom contract rather than online acceptance."
+    validations:
+      required: true
+
+  - type: input
+    id: source_url
+    attributes:
+      label: Source URL
+      description: Link to the official document or page that supports this change (privacy policy, DPA, trust center, etc.).
+      placeholder: "https://provider.com/legal/dpa"
+    validations:
+      required: true
+
+  - type: input
+    id: verified_date
+    attributes:
+      label: Date verified
+      description: When did you verify this against the source? (YYYY-MM-DD)
+      placeholder: "2026-04-07"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: confirmation
+    attributes:
+      label: Confirmation
+      options:
+        - label: I have verified this information against the linked source document.
+          required: true
+        - label: I understand this is not legal advice and the maintainer will do their own review before updating the directory.
+          required: true
