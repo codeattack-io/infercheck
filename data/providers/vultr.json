@@ -6,13 +6,7 @@
   "apiDocsUrl": "https://api.vultrinference.com/",
   "logoPath": "/logos/vultr.svg",
   "compliance": null,
-  "models": [
-    "DeepSeek V3.2",
-    "GLM 5 FP8",
-    "Kimi K2 Instruct",
-    "MiniMax M2.5",
-    "GPT OSS 120B"
-  ],
+  "models": ["DeepSeek V3.2", "GLM 5 FP8", "Kimi K2 Instruct", "MiniMax M2.5", "GPT OSS 120B"],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

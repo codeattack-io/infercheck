@@ -16,15 +16,15 @@ A neutral, multi-vendor directory of AI inference providers tagged by GDPR compl
 
 ## Decisions Made
 
-| Decision | Choice | Rationale |
-|---|---|---|
-| Provider scope | API providers + cloud platforms, tagged separately | Cloud platforms (Azure, Bedrock, Vertex) are where EU enterprise AI runs; excluding them leaves a visible gap |
-| Hosting | Vercel | Fastest to ship for MVP; can migrate to EU hosting later if brand signal matters |
-| Data sourcing | Hybrid: models.dev import + AI-assisted research + manual verification | Balances speed with accuracy |
-| Compliance scoring | No automated scores | Avoids liability; present structured facts, not judgments |
-| Report-a-change backend | GitHub Issues (auto-created from form) | Free, transparent, auditable |
-| Licensing | Split: MIT for code, CC BY-NC-SA 4.0 for data | Transparency + credibility without giving away the curated dataset commercially |
-| Database | None — flat JSON files in repo | Sufficient for MVP, easy to audit and version-track |
+| Decision                | Choice                                                                 | Rationale                                                                                                     |
+| ----------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Provider scope          | API providers + cloud platforms, tagged separately                     | Cloud platforms (Azure, Bedrock, Vertex) are where EU enterprise AI runs; excluding them leaves a visible gap |
+| Hosting                 | Vercel                                                                 | Fastest to ship for MVP; can migrate to EU hosting later if brand signal matters                              |
+| Data sourcing           | Hybrid: models.dev import + AI-assisted research + manual verification | Balances speed with accuracy                                                                                  |
+| Compliance scoring      | No automated scores                                                    | Avoids liability; present structured facts, not judgments                                                     |
+| Report-a-change backend | GitHub Issues (auto-created from form)                                 | Free, transparent, auditable                                                                                  |
+| Licensing               | Split: MIT for code, CC BY-NC-SA 4.0 for data                          | Transparency + credibility without giving away the curated dataset commercially                               |
+| Database                | None — flat JSON files in repo                                         | Sufficient for MVP, easy to audit and version-track                                                           |
 
 ---
 
@@ -77,49 +77,46 @@ Each provider is a JSON file at `data/providers/{slug}.json`.
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-06",
   "verifiedBy": "carlo",
-  "sourceUrls": [
-    "https://openai.com/policies/data-processing-addendum",
-    "https://openai.com/policies/privacy-policy"
-  ],
+  "sourceUrls": ["https://openai.com/policies/data-processing-addendum", "https://openai.com/policies/privacy-policy"],
   "notes": "EU data residency only available through Azure OpenAI, not direct API."
 }
 ```
 
 ### Field Reference
 
-| Field | Type | Description |
-|---|---|---|
-| `slug` | string | URL-safe identifier, matches filename |
-| `name` | string | Display name |
-| `type` | enum | `"api_provider"` \| `"cloud_platform"` \| `"gateway"` |
-| `website` | string | Provider homepage URL |
-| `apiDocsUrl` | string | API documentation URL |
-| `logoPath` | string | Path to SVG logo in `/public/logos/` |
-| `compliance.headquarters` | string | ISO 3166-1 alpha-2 country code |
-| `compliance.dataResidency.regions` | string[] | ISO country/region codes where data can be processed |
-| `compliance.dataResidency.euOnly` | boolean | Can the provider guarantee EU-only data processing? |
-| `compliance.dataResidency.euRegionDetails` | string | Plain-language explanation of EU routing options |
-| `compliance.dpa.available` | boolean | Is a DPA available? |
-| `compliance.dpa.url` | string \| null | Link to DPA document |
-| `compliance.dpa.signedVia` | enum | `"online_acceptance"` \| `"custom_contract"` \| `"not_available"` |
-| `compliance.dataUsage.trainsOnCustomerData` | boolean | Does provider train on API customer data? |
-| `compliance.dataUsage.optOutAvailable` | boolean | Can customers opt out of data usage? |
-| `compliance.dataUsage.retentionPolicy` | string | Plain-language retention summary |
-| `compliance.dataUsage.details` | string | Additional context |
-| `compliance.subProcessors.disclosed` | boolean | Is the sub-processor list public? |
-| `compliance.subProcessors.url` | string \| null | Link to sub-processor list |
-| `compliance.subProcessors.includesEuEntities` | boolean | Are any sub-processors EU-based? |
-| `compliance.certifications` | string[] | `"SOC2"` \| `"ISO27001"` \| `"ISO27701"` \| `"C5"` \| `"HDS"` etc. |
-| `compliance.euAiAct.status` | enum | `"compliant"` \| `"monitoring"` \| `"unknown"` \| `"not_applicable"` |
-| `compliance.euAiAct.details` | string | Plain-language summary |
-| `compliance.sccs` | boolean | Standard Contractual Clauses in place? |
-| `compliance.adequacyDecision` | boolean | Provider HQ country has EU adequacy decision? |
-| `models` | string[] | Key models available (not exhaustive) |
-| `pricingTier` | enum | `"free_tier"` \| `"pay_per_use"` \| `"enterprise_only"` |
-| `lastVerified` | string | ISO date of last verification |
-| `verifiedBy` | string | Who verified this entry |
-| `sourceUrls` | string[] | Evidence trail: links to source documents |
-| `notes` | string | Plain-language editorial notes |
+| Field                                         | Type           | Description                                                          |
+| --------------------------------------------- | -------------- | -------------------------------------------------------------------- |
+| `slug`                                        | string         | URL-safe identifier, matches filename                                |
+| `name`                                        | string         | Display name                                                         |
+| `type`                                        | enum           | `"api_provider"` \| `"cloud_platform"` \| `"gateway"`                |
+| `website`                                     | string         | Provider homepage URL                                                |
+| `apiDocsUrl`                                  | string         | API documentation URL                                                |
+| `logoPath`                                    | string         | Path to SVG logo in `/public/logos/`                                 |
+| `compliance.headquarters`                     | string         | ISO 3166-1 alpha-2 country code                                      |
+| `compliance.dataResidency.regions`            | string[]       | ISO country/region codes where data can be processed                 |
+| `compliance.dataResidency.euOnly`             | boolean        | Can the provider guarantee EU-only data processing?                  |
+| `compliance.dataResidency.euRegionDetails`    | string         | Plain-language explanation of EU routing options                     |
+| `compliance.dpa.available`                    | boolean        | Is a DPA available?                                                  |
+| `compliance.dpa.url`                          | string \| null | Link to DPA document                                                 |
+| `compliance.dpa.signedVia`                    | enum           | `"online_acceptance"` \| `"custom_contract"` \| `"not_available"`    |
+| `compliance.dataUsage.trainsOnCustomerData`   | boolean        | Does provider train on API customer data?                            |
+| `compliance.dataUsage.optOutAvailable`        | boolean        | Can customers opt out of data usage?                                 |
+| `compliance.dataUsage.retentionPolicy`        | string         | Plain-language retention summary                                     |
+| `compliance.dataUsage.details`                | string         | Additional context                                                   |
+| `compliance.subProcessors.disclosed`          | boolean        | Is the sub-processor list public?                                    |
+| `compliance.subProcessors.url`                | string \| null | Link to sub-processor list                                           |
+| `compliance.subProcessors.includesEuEntities` | boolean        | Are any sub-processors EU-based?                                     |
+| `compliance.certifications`                   | string[]       | `"SOC2"` \| `"ISO27001"` \| `"ISO27701"` \| `"C5"` \| `"HDS"` etc.   |
+| `compliance.euAiAct.status`                   | enum           | `"compliant"` \| `"monitoring"` \| `"unknown"` \| `"not_applicable"` |
+| `compliance.euAiAct.details`                  | string         | Plain-language summary                                               |
+| `compliance.sccs`                             | boolean        | Standard Contractual Clauses in place?                               |
+| `compliance.adequacyDecision`                 | boolean        | Provider HQ country has EU adequacy decision?                        |
+| `models`                                      | string[]       | Key models available (not exhaustive)                                |
+| `pricingTier`                                 | enum           | `"free_tier"` \| `"pay_per_use"` \| `"enterprise_only"`              |
+| `lastVerified`                                | string         | ISO date of last verification                                        |
+| `verifiedBy`                                  | string         | Who verified this entry                                              |
+| `sourceUrls`                                  | string[]       | Evidence trail: links to source documents                            |
+| `notes`                                       | string         | Plain-language editorial notes                                       |
 
 ---
 
@@ -128,11 +125,13 @@ Each provider is a JSON file at `data/providers/{slug}.json`.
 ### Layer 1: Import from models.dev
 
 The [models.dev GitHub repo](https://github.com/anomalyco/models.dev/tree/dev/providers) contains ~90 provider directories, each with:
+
 - `provider.toml` — fields: `name`, `env`, `npm`, `api`, `doc`
 - `logo.svg` — provider logo
 - `models/` — individual model TOML files
 
 **Import script** (`scripts/import-models-dev.ts`):
+
 1. Clone or fetch the `providers/` directory from the models.dev repo (dev branch)
 2. Parse each `provider.toml` to extract: name, API URL, docs URL
 3. Copy logos to `public/logos/`
@@ -144,6 +143,7 @@ This gives us the seed list. No compliance data yet — just identity + logos + 
 ### Layer 2: AI-Assisted Research
 
 For each provider in the MVP priority list:
+
 1. Use the `apiDocsUrl` and known privacy/legal page patterns to locate:
    - Privacy policy
    - DPA / data processing addendum
@@ -156,6 +156,7 @@ For each provider in the MVP priority list:
 ### Layer 3: Manual Verification
 
 For each AI-drafted profile:
+
 1. Review against the actual source documents
 2. Verify all claims, fix inaccuracies
 3. Add `sourceUrls` with direct links to evidence
@@ -174,40 +175,40 @@ For each AI-drafted profile:
 
 ### API Providers
 
-| Provider | HQ | Why include |
-|---|---|---|
-| OpenAI | US | Most widely used, complex GDPR story |
-| Anthropic | US | Major alternative, growing EU adoption |
-| Mistral | France | EU-native, strong GDPR positioning |
-| Cohere | Canada | Enterprise focus, DPA available |
-| Groq | US | Fast inference, popular with devs |
-| Together AI | US | Open-model inference, popular |
-| Scaleway | France | EU-native cloud + generative APIs |
-| Nebius | Netherlands | EU infrastructure, growing fast |
-| Aleph Alpha | Germany | German sovereign AI, B2G |
-| OVHcloud | France | EU cloud with AI APIs |
-| Fireworks AI | US | Popular for open models |
-| DeepInfra | US | Open-model hosting |
-| DeepSeek | China | Important for completeness, complex compliance |
-| Hugging Face | US/France | Inference endpoints, dual presence |
-| Perplexity | US | Growing usage as search + inference |
-| Berget | Sweden | EU-native, privacy-focused |
-| Stackit | Germany | Schwarz Group (Lidl), sovereign cloud |
+| Provider     | HQ          | Why include                                    |
+| ------------ | ----------- | ---------------------------------------------- |
+| OpenAI       | US          | Most widely used, complex GDPR story           |
+| Anthropic    | US          | Major alternative, growing EU adoption         |
+| Mistral      | France      | EU-native, strong GDPR positioning             |
+| Cohere       | Canada      | Enterprise focus, DPA available                |
+| Groq         | US          | Fast inference, popular with devs              |
+| Together AI  | US          | Open-model inference, popular                  |
+| Scaleway     | France      | EU-native cloud + generative APIs              |
+| Nebius       | Netherlands | EU infrastructure, growing fast                |
+| Aleph Alpha  | Germany     | German sovereign AI, B2G                       |
+| OVHcloud     | France      | EU cloud with AI APIs                          |
+| Fireworks AI | US          | Popular for open models                        |
+| DeepInfra    | US          | Open-model hosting                             |
+| DeepSeek     | China       | Important for completeness, complex compliance |
+| Hugging Face | US/France   | Inference endpoints, dual presence             |
+| Perplexity   | US          | Growing usage as search + inference            |
+| Berget       | Sweden      | EU-native, privacy-focused                     |
+| Stackit      | Germany     | Schwarz Group (Lidl), sovereign cloud          |
 
 ### Cloud Platforms
 
-| Provider | HQ | Why include |
-|---|---|---|
-| Azure OpenAI | US (Microsoft) | EU region deployments, enterprise standard |
-| AWS Bedrock | US (Amazon) | EU region deployments, major cloud |
-| Google Vertex AI | US (Google) | EU region deployments, major cloud |
-| SAP AI Core | Germany | Enterprise, native EU compliance |
+| Provider         | HQ             | Why include                                |
+| ---------------- | -------------- | ------------------------------------------ |
+| Azure OpenAI     | US (Microsoft) | EU region deployments, enterprise standard |
+| AWS Bedrock      | US (Amazon)    | EU region deployments, major cloud         |
+| Google Vertex AI | US (Google)    | EU region deployments, major cloud         |
+| SAP AI Core      | Germany        | Enterprise, native EU compliance           |
 
 ### Gateways
 
-| Provider | HQ | Why include |
-|---|---|---|
-| OpenRouter | US | Popular gateway, no EU routing — illustrates the gap |
+| Provider   | HQ  | Why include                                          |
+| ---------- | --- | ---------------------------------------------------- |
+| OpenRouter | US  | Popular gateway, no EU routing — illustrates the gap |
 
 ---
 
@@ -372,26 +373,26 @@ gdpr-ai-directory/
 
 ## Monetization Path (Staged)
 
-| Stage | Mechanism | When |
-|---|---|---|
-| Near-term | Lead-gen for freelance consulting | From day 1 |
-| Near-term | Portfolio/authority signal | From day 1 |
-| Medium-term | Provider verification badge program | When directory has traffic |
+| Stage       | Mechanism                                              | When                         |
+| ----------- | ------------------------------------------------------ | ---------------------------- |
+| Near-term   | Lead-gen for freelance consulting                      | From day 1                   |
+| Near-term   | Portfolio/authority signal                             | From day 1                   |
+| Medium-term | Provider verification badge program                    | When directory has traffic   |
 | Medium-term | Consulting upsell ("Need help evaluating AI vendors?") | When inbound interest exists |
-| Long-term | API access to compliance data | When data is comprehensive |
-| Long-term | Newsletter / compliance digest | When audience is built |
+| Long-term   | API access to compliance data                          | When data is comprehensive   |
+| Long-term   | Newsletter / compliance digest                         | When audience is built       |
 
 ---
 
 ## Key Risks and Mitigations
 
-| Risk | Impact | Mitigation |
-|---|---|---|
-| Data staleness | High — undermines core value | "Last verified" dates, report-a-change flow, community corrections |
-| Low organic discovery | Medium — limits growth | SEO-first content structure, share in EU dev communities |
-| Provider claims change silently | High — data becomes wrong | Report-a-change flow, periodic manual review cycle (quarterly) |
-| Liability from compliance claims | High — legal exposure | Present facts, not judgments; no automated scoring; clear disclaimers; source everything |
-| Someone forks the data | Low — CC BY-NC-SA prevents commercial reuse | Split license protects commercial value while maintaining transparency |
+| Risk                             | Impact                                      | Mitigation                                                                               |
+| -------------------------------- | ------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Data staleness                   | High — undermines core value                | "Last verified" dates, report-a-change flow, community corrections                       |
+| Low organic discovery            | Medium — limits growth                      | SEO-first content structure, share in EU dev communities                                 |
+| Provider claims change silently  | High — data becomes wrong                   | Report-a-change flow, periodic manual review cycle (quarterly)                           |
+| Liability from compliance claims | High — legal exposure                       | Present facts, not judgments; no automated scoring; clear disclaimers; source everything |
+| Someone forks the data           | Low — CC BY-NC-SA prevents commercial reuse | Split license protects commercial value while maintaining transparency                   |
 
 ---
 

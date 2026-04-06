@@ -6,11 +6,7 @@
   "apiDocsUrl": "https://developers.upstage.ai/docs/apis/chat",
   "logoPath": null,
   "compliance": null,
-  "models": [
-    "solar-mini",
-    "solar-pro2",
-    "solar-pro3"
-  ],
+  "models": ["solar-mini", "solar-pro2", "solar-pro3"],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

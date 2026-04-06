@@ -32,14 +32,14 @@
 ## Market View
 
 - **Key competitors:**
-  - *Artificial Analysis* — benchmarks model quality/speed/cost across providers; no compliance dimension
-  - *models.dev* — API reference for AI models; no compliance dimension
-  - *OpenRouter* — multi-model API gateway; US-based, no GDPR routing, no compliance filtering
-  - *Portkey* — US-based AI gateway with GDPR/HIPAA as checkbox features; no EU routing enforcement
-  - *Scaleway Generative APIs* — strong EU inference provider (France); single vendor, not a directory
-  - *Mistral AI* — EU-based (France) inference + gateway; single vendor
-  - *Aleph Alpha* — German AI provider, highly enterprise/B2G; not an open API, not a directory
-  - *Nebius AI* — EU-infrastructure inference provider (Amsterdam, Finland/France data centers); not GDPR-branded as a core identity
+  - _Artificial Analysis_ — benchmarks model quality/speed/cost across providers; no compliance dimension
+  - _models.dev_ — API reference for AI models; no compliance dimension
+  - _OpenRouter_ — multi-model API gateway; US-based, no GDPR routing, no compliance filtering
+  - _Portkey_ — US-based AI gateway with GDPR/HIPAA as checkbox features; no EU routing enforcement
+  - _Scaleway Generative APIs_ — strong EU inference provider (France); single vendor, not a directory
+  - _Mistral AI_ — EU-based (France) inference + gateway; single vendor
+  - _Aleph Alpha_ — German AI provider, highly enterprise/B2G; not an open API, not a directory
+  - _Nebius AI_ — EU-infrastructure inference provider (Amsterdam, Finland/France data centers); not GDPR-branded as a core identity
 - **Saturation judgment:** Not crowded at the specific intersection of neutral directory + GDPR compliance metadata. Individual EU providers exist, but no neutral aggregator does.
 - **Gaps or wedges:** Neutral, multi-vendor GDPR compliance lens applied to AI model/provider selection. No one owns this from a trustworthy, independent position.
 

@@ -6,10 +6,7 @@
   "apiDocsUrl": "https://www.kimi.com/coding/docs/en/third-party-agents.html",
   "logoPath": "/logos/kimi-for-coding.svg",
   "compliance": null,
-  "models": [
-    "Kimi K2.5",
-    "Kimi K2 Thinking"
-  ],
+  "models": ["Kimi K2.5", "Kimi K2 Thinking"],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

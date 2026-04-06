@@ -6,10 +6,7 @@
   "apiDocsUrl": "https://lucidquery.com/api/docs",
   "logoPath": "/logos/lucidquery-ai.svg",
   "compliance": null,
-  "models": [
-    "LucidNova RF1 100B",
-    "LucidQuery Nexus Coder"
-  ],
+  "models": ["LucidNova RF1 100B", "LucidQuery Nexus Coder"],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

@@ -6,9 +6,7 @@
   "apiDocsUrl": "https://docs.bigmodel.cn/cn/coding-plan/overview",
   "logoPath": "/logos/zhipu-ai-coding-plan.svg",
   "compliance": null,
-  "models": [
-    "GLM-4.6V-Flash"
-  ],
+  "models": ["GLM-4.6V-Flash"],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

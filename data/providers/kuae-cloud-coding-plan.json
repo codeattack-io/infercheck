@@ -6,9 +6,7 @@
   "apiDocsUrl": "https://docs.mthreads.com/kuaecloud/kuaecloud-doc-online/coding_plan/",
   "logoPath": "/logos/kuae-cloud-coding-plan.svg",
   "compliance": null,
-  "models": [
-    "GLM-4.7"
-  ],
+  "models": ["GLM-4.7"],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

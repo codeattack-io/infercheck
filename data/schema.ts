@@ -2,30 +2,13 @@ import { z } from "zod";
 
 // ─── Enums ──────────────────────────────────────────────────────────────────
 
-export const ProviderTypeSchema = z.enum([
-  "api_provider",
-  "cloud_platform",
-  "gateway",
-]);
+export const ProviderTypeSchema = z.enum(["api_provider", "cloud_platform", "gateway"]);
 
-export const DpaSignedViaSchema = z.enum([
-  "online_acceptance",
-  "custom_contract",
-  "not_available",
-]);
+export const DpaSignedViaSchema = z.enum(["online_acceptance", "custom_contract", "not_available"]);
 
-export const EuAiActStatusSchema = z.enum([
-  "compliant",
-  "monitoring",
-  "unknown",
-  "not_applicable",
-]);
+export const EuAiActStatusSchema = z.enum(["compliant", "monitoring", "unknown", "not_applicable"]);
 
-export const PricingTierSchema = z.enum([
-  "free_tier",
-  "pay_per_use",
-  "enterprise_only",
-]);
+export const PricingTierSchema = z.enum(["free_tier", "pay_per_use", "enterprise_only"]);
 
 // ─── Sub-schemas ─────────────────────────────────────────────────────────────
 

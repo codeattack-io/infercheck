@@ -23,9 +23,7 @@ const VERBOSE = process.argv.includes("--verbose") || process.argv.includes("-v"
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
 function formatZodError(err: ZodError): string {
-  return err.issues
-    .map((issue) => `  - ${issue.path.join(".")}: ${issue.message}`)
-    .join("\n");
+  return err.issues.map((issue) => `  - ${issue.path.join(".")}: ${issue.message}`).join("\n");
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
@@ -40,7 +38,7 @@ function main() {
   }
 
   if (files.length === 0) {
-    console.log("No provider JSON files found. Run \"bun run import\" first.");
+    console.log('No provider JSON files found. Run "bun run import" first.');
     process.exit(0);
   }
 
@@ -64,10 +62,7 @@ function main() {
     }
 
     // Determine which schema to validate against
-    const isStub =
-      raw !== null &&
-      typeof raw === "object" &&
-      (raw as Record<string, unknown>).verifiedBy === "stub";
+    const isStub = raw !== null && typeof raw === "object" && (raw as Record<string, unknown>).verifiedBy === "stub";
 
     const schema = isStub ? ProviderStubSchema : ProviderSchema;
     const result = schema.safeParse(raw);

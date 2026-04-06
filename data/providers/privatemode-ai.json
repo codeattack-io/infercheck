@@ -6,13 +6,7 @@
   "apiDocsUrl": "https://docs.privatemode.ai/api/overview",
   "logoPath": "/logos/privatemode-ai.svg",
   "compliance": null,
-  "models": [
-    "Gemma 3 27B",
-    "gpt-oss-120b",
-    "Qwen3-Coder 30B-A3B",
-    "Qwen3-Embedding 4B",
-    "Whisper large-v3"
-  ],
+  "models": ["Gemma 3 27B", "gpt-oss-120b", "Qwen3-Coder 30B-A3B", "Qwen3-Embedding 4B", "Whisper large-v3"],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

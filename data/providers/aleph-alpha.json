@@ -36,10 +36,7 @@
     "sccs": false,
     "adequacyDecision": true
   },
-  "models": [
-    "Pharia-1-LLM-7B",
-    "Pharia-1-LLM-7B-control"
-  ],
+  "models": ["Pharia-1-LLM-7B", "Pharia-1-LLM-7B-control"],
   "pricingTier": "enterprise_only",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",

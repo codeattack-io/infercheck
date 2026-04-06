@@ -6,10 +6,7 @@
   "apiDocsUrl": "https://moark.com/docs/openapi/v1#tag/%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90",
   "logoPath": "/logos/moark.svg",
   "compliance": null,
-  "models": [
-    "GLM-4.7",
-    "MiniMax-M2.1"
-  ],
+  "models": ["GLM-4.7", "MiniMax-M2.1"],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

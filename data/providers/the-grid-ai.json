@@ -6,11 +6,7 @@
   "apiDocsUrl": "https://thegrid.ai/docs",
   "logoPath": "/logos/the-grid-ai.svg",
   "compliance": null,
-  "models": [
-    "Text Max",
-    "Text Prime",
-    "Text Standard"
-  ],
+  "models": ["Text Max", "Text Prime", "Text Standard"],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

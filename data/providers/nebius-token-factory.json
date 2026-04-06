@@ -40,10 +40,6 @@
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",
-  "sourceUrls": [
-    "https://nebius.com/privacy-policy",
-    "https://nebius.com/",
-    "https://docs.nebius.com/legal/"
-  ],
+  "sourceUrls": ["https://nebius.com/privacy-policy", "https://nebius.com/", "https://docs.nebius.com/legal/"],
   "notes": "IMPORTANT: Nebius Group N.V. is incorporated in the Netherlands but spun off from Yandex NV (2023) and has active US subsidiaries (Nebius Inc., ADC Tech Inc.). The Netherlands is an EU member state — adequacyDecision is true for intra-EU transfers. However, US subsidiary involvement means EU-US transfers are covered by EU-US DPF certification (not SCCs). Privacy policy explicitly mentions fault-tolerance data storage that may not stay in the primary selected region. Lead supervisory authority is the Dutch DPA (Autoriteit Persoonsgegevens). Inference-specific data usage policy not publicly documented — verify via DPA before processing personal data."
 }

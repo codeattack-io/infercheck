@@ -6,11 +6,7 @@
   "apiDocsUrl": "https://sdk.vercel.ai/providers/ai-sdk-providers/vercel",
   "logoPath": "/logos/v0.svg",
   "compliance": null,
-  "models": [
-    "v0-1.0-md",
-    "v0-1.5-lg",
-    "v0-1.5-md"
-  ],
+  "models": ["v0-1.0-md", "v0-1.5-lg", "v0-1.5-md"],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

@@ -35,7 +35,7 @@ const GITHUB_TOKEN = process.env.GITHUB_TOKEN ?? null;
 if (!GITHUB_TOKEN) {
   console.warn(
     "Warning: GITHUB_TOKEN not set. Using unauthenticated GitHub API (60 req/hr).\n" +
-    "         Set GITHUB_TOKEN=ghp_... to avoid rate limits.\n"
+      "         Set GITHUB_TOKEN=ghp_... to avoid rate limits.\n"
   );
 }
 
@@ -54,7 +54,7 @@ const GATEWAY_DIR_NAMES = new Set([
   "fastrouter",
   "vercel-ai-gateway",
   "portkey",
-  "weights-biases",       // W&B Weave is an observability/proxy layer
+  "weights-biases", // W&B Weave is an observability/proxy layer
 ]);
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
@@ -93,7 +93,7 @@ async function fetchJson<T>(url: string): Promise<T | null> {
       const resetTime = reset ? new Date(Number(reset) * 1000).toISOString() : "unknown";
       console.error(
         `\n  [RATE LIMIT] GitHub API rate limit hit. Resets at ${resetTime}.` +
-        "\n  Set GITHUB_TOKEN env var to raise the limit to 5000 req/hr.\n"
+          "\n  Set GITHUB_TOKEN env var to raise the limit to 5000 req/hr.\n"
       );
       process.exit(1);
     }
@@ -131,9 +131,7 @@ async function fetchModelNames(dirName: string, rawBase: string): Promise<string
   const modelNames: string[] = [];
   if (!modelsEntries || !Array.isArray(modelsEntries)) return modelNames;
 
-  const modelFiles = modelsEntries.filter(
-    (e) => e.type === "file" && e.name.endsWith(".toml")
-  );
+  const modelFiles = modelsEntries.filter((e) => e.type === "file" && e.name.endsWith(".toml"));
   // Fetch up to 10 model TOMLs to extract names
   for (const mf of modelFiles.slice(0, 10)) {
     const mToml = await fetchText(`${rawBase}/models/${mf.name}`);
@@ -154,9 +152,7 @@ async function main() {
   mkdirSync(LOGOS_DIR, { recursive: true });
 
   console.log("Fetching provider list from models.dev...");
-  const entries = await fetchJson<GitHubEntry[]>(
-    `${API_BASE}/contents/providers?ref=${REPO_BRANCH}`
-  );
+  const entries = await fetchJson<GitHubEntry[]>(`${API_BASE}/contents/providers?ref=${REPO_BRANCH}`);
 
   if (!entries || !Array.isArray(entries)) {
     console.error("Failed to fetch provider list. Check network or repo access.");
@@ -180,10 +176,17 @@ async function main() {
     if (MODELS_ONLY) {
       // Fetch provider.toml just to get the slug/name
       const tomlText = await fetchText(`${rawBase}/provider.toml`);
-      if (!tomlText) { skipped++; continue; }
+      if (!tomlText) {
+        skipped++;
+        continue;
+      }
       let parsed: ProviderToml;
-      try { parsed = Bun.TOML.parse(tomlText) as ProviderToml; }
-      catch { failed++; continue; }
+      try {
+        parsed = Bun.TOML.parse(tomlText) as ProviderToml;
+      } catch {
+        failed++;
+        continue;
+      }
 
       const name = parsed.name ?? dirName;
       const slug = slugify(name);
@@ -300,9 +303,7 @@ async function main() {
   }
 
   const mode = MODELS_ONLY ? "models-only update" : "import";
-  console.log(
-    `\nDone (${mode}). Created: ${created}, Updated: ${updated}, Skipped: ${skipped}, Failed: ${failed}`
-  );
+  console.log(`\nDone (${mode}). Created: ${created}, Updated: ${updated}, Skipped: ${skipped}, Failed: ${failed}`);
 }
 
 main().catch((e) => {

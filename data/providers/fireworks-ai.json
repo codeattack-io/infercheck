@@ -40,9 +40,6 @@
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",
-  "sourceUrls": [
-    "https://fireworks.ai/privacy-policy",
-    "https://fireworks.ai/terms-of-service"
-  ],
+  "sourceUrls": ["https://fireworks.ai/privacy-policy", "https://fireworks.ai/terms-of-service"],
   "notes": "Headquartered in San Francisco, CA. SCCs explicitly referenced for EEA/UK transfers. Named EU GDPR representative via GDPR Local (fireworksaiinc.gdprlocal.com/eu). ZDR is the default for inference — better data hygiene posture than many US competitors. No EU data residency option."
 }
