@@ -1,0 +1,15 @@
+{
+  "slug": "meganova",
+  "name": "Meganova",
+  "type": "api_provider",
+  "website": "https://docs.meganova.ai",
+  "apiDocsUrl": "https://docs.meganova.ai",
+  "logoPath": "/logos/meganova.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

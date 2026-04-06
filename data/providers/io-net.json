@@ -1,0 +1,15 @@
+{
+  "slug": "io-net",
+  "name": "IO.NET",
+  "type": "api_provider",
+  "website": "https://io.net",
+  "apiDocsUrl": "https://io.net/docs/guides/intelligence/io-intelligence",
+  "logoPath": "/logos/io-net.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

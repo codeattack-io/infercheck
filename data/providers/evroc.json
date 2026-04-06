@@ -1,0 +1,15 @@
+{
+  "slug": "evroc",
+  "name": "evroc",
+  "type": "api_provider",
+  "website": "https://docs.evroc.com",
+  "apiDocsUrl": "https://docs.evroc.com/products/think/overview.html",
+  "logoPath": "/logos/evroc.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

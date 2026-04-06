@@ -1,0 +1,15 @@
+{
+  "slug": "submodel",
+  "name": "submodel",
+  "type": "api_provider",
+  "website": "https://submodel.gitbook.io",
+  "apiDocsUrl": "https://submodel.gitbook.io",
+  "logoPath": "/logos/submodel.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

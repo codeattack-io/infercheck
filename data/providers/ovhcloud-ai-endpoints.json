@@ -1,0 +1,60 @@
+{
+  "slug": "ovhcloud-ai-endpoints",
+  "name": "OVHcloud AI Endpoints",
+  "type": "api_provider",
+  "website": "https://www.ovhcloud.com",
+  "apiDocsUrl": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
+  "logoPath": "/logos/ovhcloud-ai-endpoints.svg",
+  "compliance": {
+    "headquarters": "FR",
+    "dataResidency": {
+      "regions": ["EU"],
+      "euOnly": true,
+      "euRegionDetails": "AI Endpoints inference runs in OVHcloud's European datacentres. EU regions: Gravelines (GRA1–GRA11, France) and Strasbourg (SBG1–SBG5, France). EU-resident customers should select EU regions; Canadian region (BHS) also exists but is not for EU workloads."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.ovhcloud.com/en/personal-data-protection/",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "Prompts and completions not retained beyond request processing per OVHcloud's data protection documentation.",
+      "details": "OVHcloud acts as data processor for customer workloads. No AI-specific training on customer inference data."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://www.ovhcloud.com/en/personal-data-protection/",
+      "includesEuEntities": true
+    },
+    "certifications": ["ISO27001", "HDS", "SOC2"],
+    "euAiAct": {
+      "status": "unknown",
+      "details": "Infrastructure provider and deployer of third-party open-weight models. No specific EU AI Act compliance statement for AI Endpoints published. OVHcloud is engaged in EU AI Act readiness discussions."
+    },
+    "sccs": false,
+    "adequacyDecision": true
+  },
+  "models": [
+    "DeepSeek-R1-Distill-Llama-70B",
+    "gpt-oss-120b",
+    "gpt-oss-20b",
+    "Llama-3.1-8B-Instruct",
+    "Meta-Llama-3_3-70B-Instruct",
+    "Mistral-7B-Instruct-v0.3",
+    "Mistral-Nemo-Instruct-2407",
+    "Mistral-Small-3.2-24B-Instruct-2506",
+    "Mixtral-8x7B-Instruct-v0.1",
+    "Qwen2.5-Coder-32B-Instruct"
+  ],
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-07",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/",
+    "https://www.ovhcloud.com/en/personal-data-protection/",
+    "https://www.ovhcloud.com/en/compliance/"
+  ],
+  "notes": "OVHcloud (OVH SAS, Roubaix, France) is the largest EU-owned cloud provider by infrastructure. France is an EU member state — no cross-border transfer concern for EU customers. SecNumCloud qualification (French ANSSI sovereign cloud standard) applies to OVHcloud Private Cloud and Bare Metal Pod products, NOT to AI Endpoints (public cloud serverless). SOC 1 Type II confirmed for some products. HDS certification for healthcare data hosting."
+}

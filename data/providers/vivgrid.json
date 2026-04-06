@@ -1,0 +1,26 @@
+{
+  "slug": "vivgrid",
+  "name": "Vivgrid",
+  "type": "api_provider",
+  "website": "https://docs.vivgrid.com",
+  "apiDocsUrl": "https://docs.vivgrid.com/models",
+  "logoPath": "/logos/vivgrid.svg",
+  "compliance": null,
+  "models": [
+    "DeepSeek-V3.2",
+    "Gemini 3.1 Flash Lite Preview",
+    "Gemini 3.1 Pro Preview",
+    "GLM-5",
+    "GPT-5 Mini",
+    "GPT-5.1 Codex Max",
+    "GPT-5.1 Codex",
+    "GPT-5.2 Codex",
+    "GPT-5.3 Codex",
+    "GPT-5.4 Mini"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

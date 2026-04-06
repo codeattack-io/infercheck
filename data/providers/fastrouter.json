@@ -1,0 +1,15 @@
+{
+  "slug": "fastrouter",
+  "name": "FastRouter",
+  "type": "gateway",
+  "website": "https://fastrouter.ai",
+  "apiDocsUrl": "https://fastrouter.ai/models",
+  "logoPath": "/logos/fastrouter.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": "Gateway/proxy service — routes to multiple upstream providers."
+}

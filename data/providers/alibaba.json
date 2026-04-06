@@ -1,0 +1,26 @@
+{
+  "slug": "alibaba",
+  "name": "Alibaba",
+  "type": "api_provider",
+  "website": "https://www.alibabacloud.com",
+  "apiDocsUrl": "https://www.alibabacloud.com/help/en/model-studio/models",
+  "logoPath": "/logos/alibaba.svg",
+  "compliance": null,
+  "models": [
+    "QVQ Max",
+    "Qwen Flash",
+    "Qwen Max",
+    "Qwen-MT Plus",
+    "Qwen-MT Turbo",
+    "Qwen-Omni Turbo Realtime",
+    "Qwen-Omni Turbo",
+    "Qwen Plus Character (Japanese)",
+    "Qwen Plus",
+    "Qwen Turbo"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

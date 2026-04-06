@@ -1,0 +1,15 @@
+{
+  "slug": "novitaai",
+  "name": "NovitaAI",
+  "type": "api_provider",
+  "website": "https://novita.ai",
+  "apiDocsUrl": "https://novita.ai/docs/guides/introduction",
+  "logoPath": "/logos/novitaai.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

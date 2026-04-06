@@ -1,0 +1,25 @@
+{
+  "slug": "alibaba-coding-plan-china",
+  "name": "Alibaba Coding Plan (China)",
+  "type": "api_provider",
+  "website": "https://help.aliyun.com",
+  "apiDocsUrl": "https://help.aliyun.com/zh/model-studio/coding-plan",
+  "logoPath": "/logos/alibaba-coding-plan-china.svg",
+  "compliance": null,
+  "models": [
+    "MiniMax-M2.5",
+    "GLM-4.7",
+    "GLM-5",
+    "Kimi K2.5",
+    "Qwen3 Coder Next",
+    "Qwen3 Coder Plus",
+    "Qwen3 Max",
+    "Qwen3.5 Plus",
+    "Qwen3.6 Plus"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

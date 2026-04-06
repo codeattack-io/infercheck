@@ -1,0 +1,15 @@
+{
+  "slug": "modelscope",
+  "name": "ModelScope",
+  "type": "api_provider",
+  "website": "https://modelscope.cn",
+  "apiDocsUrl": "https://modelscope.cn/docs/model-service/API-Inference/intro",
+  "logoPath": "/logos/modelscope.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

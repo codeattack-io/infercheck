@@ -1,0 +1,26 @@
+{
+  "slug": "opencode-zen",
+  "name": "OpenCode Zen",
+  "type": "api_provider",
+  "website": "https://opencode.ai",
+  "apiDocsUrl": "https://opencode.ai/docs/zen",
+  "logoPath": "/logos/opencode-zen.svg",
+  "compliance": null,
+  "models": [
+    "Big Pickle",
+    "Claude Haiku 3.5",
+    "Claude Haiku 4.5",
+    "Claude Opus 4.1",
+    "Claude Opus 4.5",
+    "Claude Opus 4.6",
+    "Claude Sonnet 4.5",
+    "Claude Sonnet 4.6",
+    "Claude Sonnet 4",
+    "Gemini 3 Flash"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

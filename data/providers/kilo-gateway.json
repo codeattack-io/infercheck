@@ -1,0 +1,20 @@
+{
+  "slug": "kilo-gateway",
+  "name": "Kilo Gateway",
+  "type": "api_provider",
+  "website": "https://kilo.ai",
+  "apiDocsUrl": "https://kilo.ai",
+  "logoPath": "/logos/kilo-gateway.svg",
+  "compliance": null,
+  "models": [
+    "CoreThink (free)",
+    "Giga Potato Thinking (free)",
+    "Giga Potato (free)",
+    "Morph: WarpGrep V2"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

@@ -1,0 +1,19 @@
+{
+  "slug": "morph",
+  "name": "Morph",
+  "type": "api_provider",
+  "website": "https://docs.morphllm.com",
+  "apiDocsUrl": "https://docs.morphllm.com/api-reference/introduction",
+  "logoPath": null,
+  "compliance": null,
+  "models": [
+    "Auto",
+    "Morph v3 Fast",
+    "Morph v3 Large"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

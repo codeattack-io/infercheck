@@ -1,0 +1,50 @@
+{
+  "slug": "stackit",
+  "name": "STACKIT",
+  "type": "api_provider",
+  "website": "https://www.stackit.de/en/",
+  "apiDocsUrl": "https://docs.stackit.cloud/products/data-and-ai/ai-model-serving/basics/available-shared-models",
+  "logoPath": "/logos/stackit.svg",
+  "compliance": {
+    "headquarters": "DE",
+    "dataResidency": {
+      "regions": ["EU"],
+      "euOnly": true,
+      "euRegionDetails": "100% EU data residency. STACKIT operates its own datacentres — not hosted on US hyperscalers. Regions: eu01 (Neckarsulm, Germany), eu02 (Ellhofen, Germany), eu03 (Ostermiething, Austria). Fifth DC under construction in Lübbenau, Germany."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.stackit.de/en/gtc",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "No training on customer inference data. Specific AI inference retention terms per GTC and DPA.",
+      "details": "STACKIT's sovereign cloud positioning and DPA framework guarantee customer data stays in EU-owned infrastructure."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://www.stackit.de/en/data-protection-notice",
+      "includesEuEntities": true
+    },
+    "certifications": ["ISO27001", "C5"],
+    "euAiAct": {
+      "status": "unknown",
+      "details": "No specific EU AI Act compliance statement published. As a German company actively targeting public sector, EU AI Act readiness is a stated priority. AI Model Serving is a deployer product."
+    },
+    "sccs": false,
+    "adequacyDecision": true
+  },
+  "models": [],
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-07",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://www.stackit.de/en/",
+    "https://www.stackit.de/en/products/data-ai/stackit-ai-model-serving",
+    "https://www.stackit.de/en/why-stackit/benefits/certificates",
+    "https://www.stackit.de/en/gtc"
+  ],
+  "notes": "STACKIT is the cloud arm of the Schwarz Group (Lidl, Kaufland — Europe's largest retailer group). Germany is an EU member state — no cross-border GDPR transfer concern for EU customers. BSI C5 (German Federal Office for Information Security Cloud Computing Compliance Controls Catalogue) is a key differentiator for German public sector, equivalent in rigour to SOC2 Type II. Partnership with Aleph Alpha. TISAX certification for automotive sector customers. DORA compliance as ICT provider for financial sector."
+}

@@ -1,0 +1,26 @@
+{
+  "slug": "302-ai",
+  "name": "302.AI",
+  "type": "api_provider",
+  "website": "https://doc.302.ai",
+  "apiDocsUrl": "https://doc.302.ai",
+  "logoPath": "/logos/302-ai.svg",
+  "compliance": null,
+  "models": [
+    "MiniMax-M1",
+    "MiniMax-M2.1",
+    "MiniMax-M2",
+    "chatgpt-4o-latest",
+    "claude-haiku-4-5-20251001",
+    "claude-opus-4-1-20250805-thinking",
+    "claude-opus-4-1-20250805",
+    "claude-opus-4-5-20251101-thinking",
+    "claude-opus-4-5-20251101",
+    "claude-sonnet-4-5-20250929-thinking"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

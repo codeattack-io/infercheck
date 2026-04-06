@@ -1,0 +1,62 @@
+{
+  "slug": "groq",
+  "name": "Groq",
+  "type": "api_provider",
+  "website": "https://groq.com",
+  "apiDocsUrl": "https://console.groq.com/docs/models",
+  "logoPath": "/logos/groq.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": ["US"],
+      "euOnly": false,
+      "euRegionDetails": "All customer data retained in Google Cloud Platform (GCP) buckets in the United States. No EU data residency option. Groq has a designated EU GDPR representative (DP-Dock GmbH, Hamburg) but no EU-based infrastructure."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://console.groq.com/docs/legal/customer-data-processing-addendum",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": true,
+      "retentionPolicy": "By default, Groq does not retain customer data for inference requests. Data may be temporarily retained up to 30 days only for reliability troubleshooting or abuse investigation. Zero Data Retention available to all customers via self-service Data Controls settings.",
+      "details": "ZDR is self-service for all customers, not enterprise-only. Batch processing files retained 30 days. Fine-tuning data retained until deleted by customer."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://trust.groq.com/subprocessors",
+      "includesEuEntities": false
+    },
+    "certifications": ["SOC2"],
+    "euAiAct": {
+      "status": "unknown",
+      "details": "No public EU AI Act documentation. Groq hosts third-party open-weight models (Llama, Qwen, Whisper, etc.) rather than developing frontier models. As a deployer of others' models, direct GPAI provider obligations may be limited — but this is unconfirmed."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "models": [
+    "ALLaM-2-7b",
+    "DeepSeek R1 Distill Llama 70B",
+    "Gemma 2 9B",
+    "Llama 3.1 8B Instant",
+    "Llama 3.3 70B Versatile",
+    "Llama Guard 3 8B",
+    "Llama 3 70B",
+    "Llama 3 8B",
+    "Mistral Saba 24B",
+    "Qwen QwQ 32B"
+  ],
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-07",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://groq.com/privacy-policy/",
+    "https://console.groq.com/docs/legal/customer-data-processing-addendum",
+    "https://console.groq.com/docs/your-data",
+    "https://trust.groq.com/subprocessors",
+    "https://trust.groq.com/faq"
+  ],
+  "notes": "Headquartered in Mountain View, CA. DPA is publicly available without NDA and covers GDPR, UK GDPR, Swiss FADP, CCPA, and Saudi PDPL — more transparent than most competitors. ZDR is self-service for all customers. Runs third-party open-weight models on proprietary LPU hardware; does not develop frontier models. No ISO 27001 confirmed as of verification date."
+}

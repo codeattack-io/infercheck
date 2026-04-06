@@ -1,0 +1,15 @@
+{
+  "slug": "nvidia",
+  "name": "Nvidia",
+  "type": "api_provider",
+  "website": "https://docs.api.nvidia.com",
+  "apiDocsUrl": "https://docs.api.nvidia.com/nim/",
+  "logoPath": "/logos/nvidia.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

@@ -1,0 +1,62 @@
+{
+  "slug": "azure",
+  "name": "Azure OpenAI Service",
+  "type": "cloud_platform",
+  "website": "https://azure.microsoft.com",
+  "apiDocsUrl": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models",
+  "logoPath": "/logos/azure.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": ["US", "EU", "DE", "FR", "NO", "SE", "CH", "PL", "IT", "ES", "GB"],
+      "euOnly": true,
+      "euRegionDetails": "EU regions include: Sweden Central, France Central, Germany West Central, Norway East, Poland Central, Italy North, Spain Central, Switzerland North, Switzerland West. DataZone EU deployments keep all data within EU member nations. Microsoft EU Data Boundary product provides an additional contractual guarantee that all EU customer data stays within Europe. EEA-deployed abuse monitoring uses human reviewers located in the EEA."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://aka.ms/DPA",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": true,
+      "retentionPolicy": "Prompts and completions not used to train base models and not shared with OpenAI or other model providers. Abuse monitoring may store flagged prompts temporarily within the customer's designated geography. Fine-tuning data stored until customer deletion.",
+      "details": "Customers can apply for modified abuse monitoring to disable human review. Global deployment types may process (not store) data outside the designated geography."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://www.microsoft.com/en-us/trust-center/privacy/data-access",
+      "includesEuEntities": true
+    },
+    "certifications": ["SOC2", "ISO27001", "ISO27017", "ISO27018", "ISO27701", "C5", "HDS"],
+    "euAiAct": {
+      "status": "compliant",
+      "details": "Microsoft has dedicated EU AI Act working groups combining AI governance, engineering, legal, and public policy experts. Has incorporated prohibited practices into its company-wide Restricted Use Policy. Microsoft Trust Center has a specific EU AI Act compliance page with published governance framework."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "models": [
+    "Claude Haiku 4.5",
+    "Claude Opus 4.1",
+    "Claude Opus 4.5",
+    "Claude Opus 4.6",
+    "Claude Sonnet 4.5",
+    "Codestral 25.01",
+    "Codex Mini",
+    "Command A",
+    "Command R",
+    "Command R+"
+  ],
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-07",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://learn.microsoft.com/en-us/azure/foundry/responsible-ai/openai/data-privacy",
+    "https://aka.ms/DPA",
+    "https://www.microsoft.com/en-us/trust-center/compliance/eu-ai-act",
+    "https://www.microsoft.com/en-us/trust-center/privacy/european-data-boundary-eudb",
+    "https://azure.microsoft.com/en-us/explore/global-infrastructure/geographies/"
+  ],
+  "notes": "Azure OpenAI is now part of Microsoft Azure AI Foundry. Strongest EU AI Act compliance posture of the three cloud platforms — Microsoft has a dedicated Trust Center page and published governance framework. Unique certifications: C5 (German BSI) and HDS (French healthcare data hosting) — neither AWS nor Google hold HDS for their AI products. EU Data Boundary product provides additional contractual guarantee. EEA abuse monitoring uses EEA-located human reviewers."
+}

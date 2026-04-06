@@ -1,0 +1,26 @@
+{
+  "slug": "qiniu",
+  "name": "Qiniu",
+  "type": "api_provider",
+  "website": "https://developer.qiniu.com",
+  "apiDocsUrl": "https://developer.qiniu.com/aitokenapi",
+  "logoPath": "/logos/qiniu.svg",
+  "compliance": null,
+  "models": [
+    "MiniMax M1",
+    "Claude 3.5 Haiku",
+    "Claude 3.5 Sonnet",
+    "Claude 3.7 Sonnet",
+    "Claude 4.0 Opus",
+    "Claude 4.0 Sonnet",
+    "Claude 4.1 Opus",
+    "Claude 4.5 Haiku",
+    "Claude 4.5 Opus",
+    "Claude 4.5 Sonnet"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

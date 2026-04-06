@@ -1,0 +1,22 @@
+{
+  "slug": "minimax-minimaxi-com",
+  "name": "MiniMax (minimaxi.com)",
+  "type": "api_provider",
+  "website": "https://platform.minimaxi.com",
+  "apiDocsUrl": "https://platform.minimaxi.com/docs/guides/quickstart",
+  "logoPath": "/logos/minimax-minimaxi-com.svg",
+  "compliance": null,
+  "models": [
+    "MiniMax-M2.1",
+    "MiniMax-M2.5-highspeed",
+    "MiniMax-M2.5",
+    "MiniMax-M2.7-highspeed",
+    "MiniMax-M2.7",
+    "MiniMax-M2"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

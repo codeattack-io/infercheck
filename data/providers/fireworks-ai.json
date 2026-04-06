@@ -1,0 +1,48 @@
+{
+  "slug": "fireworks-ai",
+  "name": "Fireworks AI",
+  "type": "api_provider",
+  "website": "https://fireworks.ai",
+  "apiDocsUrl": "https://fireworks.ai/docs/",
+  "logoPath": "/logos/fireworks-ai.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": ["US"],
+      "euOnly": false,
+      "euRegionDetails": "US infrastructure only. No EU region generally available."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://fireworks.ai/privacy-policy",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "ZDR by default for all open models — prompt/generation data in volatile memory only, deleted after request. Response API: 30-day retention when store=true (opt-out: store=false). FireOptimizer: opt-in logging only.",
+      "details": "No training on customer inference data. ZDR is the default for open model endpoints."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "models": [],
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-07",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://fireworks.ai/privacy-policy",
+    "https://fireworks.ai/terms-of-service"
+  ],
+  "notes": "Headquartered in San Francisco, CA. SCCs explicitly referenced for EEA/UK transfers. Named EU GDPR representative via GDPR Local (fireworksaiinc.gdprlocal.com/eu). ZDR is the default for inference — better data hygiene posture than many US competitors. No EU data residency option."
+}

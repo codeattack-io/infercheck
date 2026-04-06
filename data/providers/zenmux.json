@@ -1,0 +1,15 @@
+{
+  "slug": "zenmux",
+  "name": "ZenMux",
+  "type": "api_provider",
+  "website": "https://docs.zenmux.ai",
+  "apiDocsUrl": "https://docs.zenmux.ai",
+  "logoPath": "/logos/zenmux.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

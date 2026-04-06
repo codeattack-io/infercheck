@@ -1,0 +1,15 @@
+{
+  "slug": "d-run-china",
+  "name": "D.Run (China)",
+  "type": "api_provider",
+  "website": "https://www.d.run",
+  "apiDocsUrl": "https://www.d.run",
+  "logoPath": "/logos/d-run-china.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

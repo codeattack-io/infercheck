@@ -1,0 +1,19 @@
+{
+  "slug": "the-grid-ai",
+  "name": "The Grid AI",
+  "type": "api_provider",
+  "website": "https://thegrid.ai",
+  "apiDocsUrl": "https://thegrid.ai/docs",
+  "logoPath": "/logos/the-grid-ai.svg",
+  "compliance": null,
+  "models": [
+    "Text Max",
+    "Text Prime",
+    "Text Standard"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

@@ -1,0 +1,15 @@
+{
+  "slug": "xiaomi-token-plan-europe",
+  "name": "Xiaomi Token Plan (Europe)",
+  "type": "api_provider",
+  "website": "https://platform.xiaomimimo.com",
+  "apiDocsUrl": "https://platform.xiaomimimo.com/#/docs",
+  "logoPath": "/logos/xiaomi-token-plan-europe.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

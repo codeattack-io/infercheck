@@ -1,0 +1,15 @@
+{
+  "slug": "cloudflare-ai-gateway",
+  "name": "Cloudflare AI Gateway",
+  "type": "gateway",
+  "website": "https://developers.cloudflare.com",
+  "apiDocsUrl": "https://developers.cloudflare.com/ai-gateway/",
+  "logoPath": "/logos/cloudflare-ai-gateway.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": "Gateway/proxy service — routes to multiple upstream providers."
+}

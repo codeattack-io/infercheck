@@ -1,0 +1,15 @@
+{
+  "slug": "baseten",
+  "name": "Baseten",
+  "type": "api_provider",
+  "website": "https://docs.baseten.co",
+  "apiDocsUrl": "https://docs.baseten.co/development/model-apis/overview",
+  "logoPath": "/logos/baseten.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

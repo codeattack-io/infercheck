@@ -1,0 +1,15 @@
+{
+  "slug": "synthetic",
+  "name": "Synthetic",
+  "type": "api_provider",
+  "website": "https://synthetic.new",
+  "apiDocsUrl": "https://synthetic.new/pricing",
+  "logoPath": null,
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

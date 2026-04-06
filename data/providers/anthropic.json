@@ -1,0 +1,62 @@
+{
+  "slug": "anthropic",
+  "name": "Anthropic",
+  "type": "api_provider",
+  "website": "https://anthropic.com",
+  "apiDocsUrl": "https://docs.anthropic.com/en/docs/about-claude/models",
+  "logoPath": "/logos/anthropic.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": ["US", "EU", "CA", "JP"],
+      "euOnly": false,
+      "euRegionDetails": "EU data residency available via AWS Bedrock (eu-* regions), GCP Vertex AI (europe-* regions), and Microsoft Azure. Regional inference supported via cloud partners. The direct API (api.anthropic.com) does not support region-pinning — EU residency requires routing through a cloud provider."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://anthropic.com/legal/data-processing-addendum",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "Commercial API customers' data is not used for model training. This is a hard contractual guarantee in the Commercial Terms, not just a default. Consumer Claude.ai users may have data used for training unless opted out via Privacy Settings.",
+      "details": "The Commercial Terms explicitly state Anthropic may not train models on Customer Content. Safety-flagged content may be retained for trust and safety purposes regardless of other settings."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://www.anthropic.com/subprocessors",
+      "includesEuEntities": null
+    },
+    "certifications": ["SOC2", "ISO27001", "ISO27017", "ISO27018"],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "No dedicated EU AI Act compliance page. Published Responsible Scaling Policy and Model Cards align with GPAI transparency obligations. As a US-based GPAI model provider serving the EU, EU AI Act obligations apply. No public conformity assessment or EU AI Office registration found as of verification date."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "models": [
+    "Claude Haiku 3.5",
+    "Claude Haiku 3.5 (latest)",
+    "Claude Sonnet 3.5",
+    "Claude Sonnet 3.5 v2",
+    "Claude Sonnet 3.7",
+    "Claude Haiku 3",
+    "Claude Opus 3",
+    "Claude Sonnet 3",
+    "Claude Haiku 4.5",
+    "Claude Haiku 4.5 (latest)"
+  ],
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-07",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://anthropic.com/legal/privacy",
+    "https://anthropic.com/legal/data-processing-addendum",
+    "https://anthropic.com/legal/commercial-terms",
+    "https://www.anthropic.com/subprocessors",
+    "https://trust.anthropic.com"
+  ],
+  "notes": "EU data controller is Anthropic Ireland, Limited (Dublin). Lead supervisory authority is the Irish DPC. The no-training guarantee for API customers is a hard contract clause, stronger than a default opt-out. Security breach notification in DPA is 48 hours — stricter than GDPR's 72-hour requirement. EU data residency requires routing through AWS Bedrock, GCP Vertex, or Azure, not the direct API."
+}

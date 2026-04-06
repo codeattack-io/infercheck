@@ -1,0 +1,26 @@
+{
+  "slug": "github-copilot",
+  "name": "GitHub Copilot",
+  "type": "api_provider",
+  "website": "https://docs.github.com",
+  "apiDocsUrl": "https://docs.github.com/en/copilot",
+  "logoPath": "/logos/github-copilot.svg",
+  "compliance": null,
+  "models": [
+    "Claude Haiku 4.5",
+    "Claude Opus 4.5",
+    "Claude Opus 4.6",
+    "Claude Opus 4.1",
+    "Claude Sonnet 4.5",
+    "Claude Sonnet 4.6",
+    "Claude Sonnet 4",
+    "Gemini 2.5 Pro",
+    "Gemini 3 Flash",
+    "Gemini 3 Pro Preview"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

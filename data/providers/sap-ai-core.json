@@ -1,0 +1,62 @@
+{
+  "slug": "sap-ai-core",
+  "name": "SAP AI Core",
+  "type": "cloud_platform",
+  "website": "https://www.sap.com/products/artificial-intelligence/ai-core.html",
+  "apiDocsUrl": "https://help.sap.com/docs/sap-ai-core",
+  "logoPath": null,
+  "compliance": {
+    "headquarters": "DE",
+    "dataResidency": {
+      "regions": ["EU", "DE", "NL"],
+      "euOnly": false,
+      "euRegionDetails": "EU regions available: eu10/eu11 (AWS Frankfurt, Germany), eu20 (Azure Netherlands), eu30 (GCP Frankfurt). Customer selects subaccount region. For strict EU data residency, select eu10/eu11/eu20/eu30. Note: underlying IaaS is operated by AWS/Azure/GCP (US companies) with EU datacentres."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.sap.com/about/trust-center/data-processing-agreements.html",
+      "signedVia": "custom_contract"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "Customer data in SAP AI Core is the customer's responsibility. Model inputs/outputs handled per service-specific terms. SAP's Generative AI Hub documentation explicitly states customer data is not used to train foundation models.",
+      "details": "SAP acts as processor. Retention follows SAP BTP service terms and customer configuration."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://www.sap.com/about/trust-center/subprocessors.html",
+      "includesEuEntities": false
+    },
+    "certifications": ["SOC2", "ISO27001", "ISO27701", "C5"],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "SAP is actively engaged in EU AI Act compliance. SAP AI solutions are subject to EU AI Act as a provider. SAP has published EU AI Act readiness statements via Trust Center. SAP-ABAP-1 and SAP-RPT-1 (SAP's own foundation models) are subject to provider obligations."
+    },
+    "sccs": true,
+    "adequacyDecision": true
+  },
+  "models": [
+    "anthropic--claude-3-haiku",
+    "anthropic--claude-3-opus",
+    "anthropic--claude-3-sonnet",
+    "anthropic--claude-3.5-sonnet",
+    "anthropic--claude-3.7-sonnet",
+    "anthropic--claude-4-opus",
+    "anthropic--claude-4-sonnet",
+    "anthropic--claude-4.5-haiku",
+    "anthropic--claude-4.5-opus",
+    "anthropic--claude-4.5-sonnet"
+  ],
+  "pricingTier": "enterprise_only",
+  "lastVerified": "2026-04-07",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://www.sap.com/products/artificial-intelligence/ai-core.html",
+    "https://www.sap.com/about/trust-center.html",
+    "https://www.sap.com/about/trust-center/data-processing-agreements.html",
+    "https://www.sap.com/about/trust-center/subprocessors.html",
+    "https://help.sap.com/docs/sap-ai-core"
+  ],
+  "notes": "SAP is headquartered in Walldorf, Germany — an EU member state. SCCs are used for transfers to US hyperscalers (AWS/Azure/GCP) that underpin EU region infrastructure. SAP AI Core is a PaaS layer on top of AWS/Azure/GCP, not own-infrastructure. ISO 27701 (privacy information management) is a strong differentiator. BSI C5 attestation covers SAP BTP and SAP S/4HANA Cloud. Most extensive certification portfolio of all providers in this directory. Pricing via SAP BTP credits/CPEA — enterprise licensing only."
+}

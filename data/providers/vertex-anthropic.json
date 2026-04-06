@@ -1,0 +1,26 @@
+{
+  "slug": "vertex-anthropic",
+  "name": "Vertex (Anthropic)",
+  "type": "api_provider",
+  "website": "https://cloud.google.com",
+  "apiDocsUrl": "https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/claude",
+  "logoPath": null,
+  "compliance": null,
+  "models": [
+    "Claude Haiku 3.5",
+    "Claude Sonnet 3.5 v2",
+    "Claude Sonnet 3.7",
+    "Claude Haiku 4.5",
+    "Claude Opus 4.1",
+    "Claude Opus 4.5",
+    "Claude Opus 4.6",
+    "Claude Opus 4",
+    "Claude Sonnet 4.5",
+    "Claude Sonnet 4.6"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

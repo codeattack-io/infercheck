@@ -1,0 +1,15 @@
+{
+  "slug": "github-models",
+  "name": "GitHub Models",
+  "type": "api_provider",
+  "website": "https://docs.github.com",
+  "apiDocsUrl": "https://docs.github.com/en/github-models",
+  "logoPath": "/logos/github-models.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

@@ -1,0 +1,61 @@
+{
+  "slug": "cohere",
+  "name": "Cohere",
+  "type": "api_provider",
+  "website": "https://cohere.com",
+  "apiDocsUrl": "https://docs.cohere.com/docs/models",
+  "logoPath": "/logos/cohere.svg",
+  "compliance": {
+    "headquarters": "CA",
+    "dataResidency": {
+      "regions": ["US"],
+      "euOnly": false,
+      "euRegionDetails": "SaaS platform infrastructure is US-only (Google Cloud US-Central). Private and third-party cloud deployments (AWS, Azure, GCP, OCI) can be configured for EU regions by the customer — in those cases Cohere never receives customer data."
+    },
+    "dpa": {
+      "available": true,
+      "url": null,
+      "signedVia": "custom_contract"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": true,
+      "optOutAvailable": true,
+      "retentionPolicy": "Enterprise customers can opt out of training via Data Controls toggle in dashboard. Trial users opted in by default. Zero Data Retention available for enterprise customers. Prompts and generations auto-deleted after 30 days unless flagged.",
+      "details": "PII is filtered/stripped from prompts before use in training if opted in. Private and third-party cloud deployments: Cohere never receives any customer prompts or generations."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://trustcenter.cohere.com/subprocessors",
+      "includesEuEntities": false
+    },
+    "certifications": ["SOC2", "ISO27001", "ISO42001"],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "Holds ISO 42001 (AI Management System) certification. No specific EU AI Act compliance declaration found. As a Canadian company placing models on the EU market, EU AI Act GPAI obligations apply."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "models": [
+    "Aya Expanse 32B",
+    "Aya Expanse 8B",
+    "Aya Vision 32B",
+    "Aya Vision 8B",
+    "Command A",
+    "Command A Reasoning",
+    "Command A Translate",
+    "Command A Vision",
+    "Command R",
+    "Command R+"
+  ],
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-07",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://cohere.com/privacy",
+    "https://cohere.com/enterprise-data-commitments",
+    "https://trustcenter.cohere.com/",
+    "https://trustcenter.cohere.com/subprocessors"
+  ],
+  "notes": "Headquartered in Toronto, Canada. DPA requires NDA and is not publicly downloadable — request via privacy@cohere.com. All SaaS infrastructure is US-based; EU-to-US transfers rely on SCCs. All listed sub-processors are US-based. Enterprise customers have strong opt-out controls including ZDR."
+}

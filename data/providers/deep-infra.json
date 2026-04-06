@@ -1,0 +1,48 @@
+{
+  "slug": "deep-infra",
+  "name": "Deep Infra",
+  "type": "api_provider",
+  "website": "https://deepinfra.com",
+  "apiDocsUrl": "https://deepinfra.com/models",
+  "logoPath": "/logos/deep-infra.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": ["US"],
+      "euOnly": false,
+      "euRegionDetails": "AWS and GCP infrastructure, US-based. No EU region publicly available."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "ZDR by default — volatile memory only, deleted post-inference. Exception: image outputs stored briefly; bulk inference API stores encrypted on disk until results are returned. Google/Anthropic passthrough models: those providers' policies apply.",
+      "details": "Named DPO: Nikola Borisov (dpo@deepinfra.com). GDPR compliance listed as 'In Progress' on Trust Center as of verification date."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://deepinfra.com/docs/misc/subprocessors",
+      "includesEuEntities": false
+    },
+    "certifications": ["SOC2", "ISO27001"],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "models": [],
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-07",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://deepinfra.com/docs/misc/subprocessors",
+    "https://deepinfra.com/privacy"
+  ],
+  "notes": "Headquartered in San Francisco, CA. Has the only public sub-processor list and strongest security certifications (SOC2, ISO27001) of the three US inference providers (DeepInfra, Fireworks, Together), but lacks a public DPA and has GDPR formally marked as 'In Progress'. SCCs not confirmed. Sub-processors are all US-based (Stripe, AWS, GCP)."
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "nova",
+  "name": "Nova",
+  "type": "api_provider",
+  "website": "https://nova.amazon.com",
+  "apiDocsUrl": "https://nova.amazon.com/dev/documentation",
+  "logoPath": "/logos/nova.svg",
+  "compliance": null,
+  "models": [
+    "Nova 2 Lite",
+    "Nova 2 Pro"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

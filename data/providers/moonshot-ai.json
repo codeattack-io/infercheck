@@ -1,0 +1,22 @@
+{
+  "slug": "moonshot-ai",
+  "name": "Moonshot AI",
+  "type": "api_provider",
+  "website": "https://platform.moonshot.ai",
+  "apiDocsUrl": "https://platform.moonshot.ai/docs/api/chat",
+  "logoPath": "/logos/moonshot-ai.svg",
+  "compliance": null,
+  "models": [
+    "Kimi K2 0711",
+    "Kimi K2 0905",
+    "Kimi K2 Thinking Turbo",
+    "Kimi K2 Thinking",
+    "Kimi K2 Turbo",
+    "Kimi K2.5"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

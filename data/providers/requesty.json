@@ -1,0 +1,15 @@
+{
+  "slug": "requesty",
+  "name": "Requesty",
+  "type": "gateway",
+  "website": "https://requesty.ai",
+  "apiDocsUrl": "https://requesty.ai/solution/llm-routing/models",
+  "logoPath": null,
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": "Gateway/proxy service — routes to multiple upstream providers."
+}

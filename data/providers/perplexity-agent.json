@@ -1,0 +1,15 @@
+{
+  "slug": "perplexity-agent",
+  "name": "Perplexity Agent",
+  "type": "api_provider",
+  "website": "https://docs.perplexity.ai",
+  "apiDocsUrl": "https://docs.perplexity.ai/docs/agent-api/models",
+  "logoPath": "/logos/perplexity-agent.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

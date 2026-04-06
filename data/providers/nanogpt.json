@@ -1,0 +1,26 @@
+{
+  "slug": "nanogpt",
+  "name": "NanoGPT",
+  "type": "api_provider",
+  "website": "https://docs.nano-gpt.com",
+  "apiDocsUrl": "https://docs.nano-gpt.com",
+  "logoPath": "/logos/nanogpt.svg",
+  "compliance": null,
+  "models": [
+    "Baichuan M2 32B Medical",
+    "Baichuan 4 Air",
+    "Baichuan 4 Turbo",
+    "GLM 4.5 Air Derestricted Iceblink ReExtract",
+    "GLM 4.5 Air Derestricted Iceblink v2 ReExtract",
+    "GLM 4.5 Air Derestricted Iceblink v2",
+    "GLM 4.5 Air Derestricted Iceblink",
+    "GLM 4.5 Air Derestricted Steam ReExtract",
+    "GLM 4.5 Air Derestricted Steam",
+    "GLM 4.5 Air Derestricted"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

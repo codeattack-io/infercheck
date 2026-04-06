@@ -1,0 +1,15 @@
+{
+  "slug": "cloudferro-sherlock",
+  "name": "CloudFerro Sherlock",
+  "type": "api_provider",
+  "website": "https://docs.sherlock.cloudferro.com",
+  "apiDocsUrl": "https://docs.sherlock.cloudferro.com/",
+  "logoPath": "/logos/cloudferro-sherlock.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

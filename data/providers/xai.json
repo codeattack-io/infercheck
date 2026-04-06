@@ -1,0 +1,26 @@
+{
+  "slug": "xai",
+  "name": "xAI",
+  "type": "api_provider",
+  "website": "https://docs.x.ai",
+  "apiDocsUrl": "https://docs.x.ai/docs/models",
+  "logoPath": "/logos/xai.svg",
+  "compliance": null,
+  "models": [
+    "Grok 2 (1212)",
+    "Grok 2 Latest",
+    "Grok 2 Vision (1212)",
+    "Grok 2 Vision Latest",
+    "Grok 2 Vision",
+    "Grok 2",
+    "Grok 3 Fast Latest",
+    "Grok 3 Fast",
+    "Grok 3 Latest",
+    "Grok 3 Mini Fast Latest"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

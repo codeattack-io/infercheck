@@ -1,0 +1,50 @@
+{
+  "slug": "berget-ai",
+  "name": "Berget AI",
+  "type": "api_provider",
+  "website": "https://www.berget.ai",
+  "apiDocsUrl": "https://docs.berget.ai",
+  "logoPath": "/logos/berget-ai.svg",
+  "compliance": {
+    "headquarters": "SE",
+    "dataResidency": {
+      "regions": ["EU"],
+      "euOnly": true,
+      "euRegionDetails": "All inference runs within Berget's secure Sweden-only network. Data never traverses the public internet. Datacenter location in Sweden — specific city not publicly disclosed. Uses circular/reused hardware."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.berget.ai/dpa",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "Zero retention: prompts and completions deleted immediately after processing. No data stored.",
+      "details": "Zero retention is a core product differentiator — explicitly marketed as 'your data is never stored or retained'."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": "https://www.berget.ai/privacy",
+      "includesEuEntities": true
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": "Early-stage company (founded 2024). No published EU AI Act compliance statement. As a deployer of open-weight models, primary AI Act obligations fall on model developers."
+    },
+    "sccs": false,
+    "adequacyDecision": true
+  },
+  "models": [],
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-07",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://www.berget.ai/",
+    "https://www.berget.ai/dpa",
+    "https://www.berget.ai/privacy",
+    "https://www.berget.ai/models"
+  ],
+  "notes": "Founded 2024 in Sweden. Sweden is an EU member state — no cross-border GDPR transfer concern for EU customers. Strong sovereignty positioning targeting Swedish and EU public sector. Zero-retention is a core B2G/GDPR selling point. Unique sustainability angle: 100% fossil-free energy, circular hardware (75% lower hardware CO2e), per-request CO2e tracking in API responses. No formal certifications (ISO 27001, SOC2) as of verification date — startup stage. Sub-processor list not prominently disclosed but company positions itself as EU-only with no US entity involvement."
+}

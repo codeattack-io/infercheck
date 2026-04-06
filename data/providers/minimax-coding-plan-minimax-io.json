@@ -1,0 +1,22 @@
+{
+  "slug": "minimax-coding-plan-minimax-io",
+  "name": "MiniMax Coding Plan (minimax.io)",
+  "type": "api_provider",
+  "website": "https://platform.minimax.io",
+  "apiDocsUrl": "https://platform.minimax.io/docs/coding-plan/intro",
+  "logoPath": null,
+  "compliance": null,
+  "models": [
+    "MiniMax-M2.1",
+    "MiniMax-M2.5-highspeed",
+    "MiniMax-M2.5",
+    "MiniMax-M2.7-highspeed",
+    "MiniMax-M2.7",
+    "MiniMax-M2"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

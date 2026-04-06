@@ -1,0 +1,49 @@
+{
+  "slug": "nebius-token-factory",
+  "name": "Nebius Token Factory",
+  "type": "api_provider",
+  "website": "https://nebius.com",
+  "apiDocsUrl": "https://docs.tokenfactory.nebius.com/",
+  "logoPath": "/logos/nebius-token-factory.svg",
+  "compliance": {
+    "headquarters": "NL",
+    "dataResidency": {
+      "regions": ["EU", "FI"],
+      "euOnly": false,
+      "euRegionDetails": "Primary infrastructure in Finland (eu-north1). Paris region (eu-west1) in development. Nebius Group N.V. has active US subsidiaries (Nebius Inc. and ADC Tech Inc., Massachusetts) covered under EU-US Data Privacy Framework certification. Privacy policy states data may be stored in datacentres that differ from the selected datacentre for fault tolerance — this may include non-primary EU locations. Review DPA carefully for strict EU-only requirements."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://docs.nebius.com/legal/",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "Personal data retained as long as necessary for service delivery. No explicit public statement found on inference prompt/completion data usage for training — confirm via DPA.",
+      "details": "Privacy policy focuses on account/personal data, not inference data. Inference data policy should be confirmed contractually."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://nebius.com/privacy-policy",
+      "includesEuEntities": false
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": "No specific EU AI Act compliance statement published. Netherlands-incorporated entity subject to EU AI Act as provider placing AI services on the EU market."
+    },
+    "sccs": false,
+    "adequacyDecision": true
+  },
+  "models": [],
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-07",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://nebius.com/privacy-policy",
+    "https://nebius.com/",
+    "https://docs.nebius.com/legal/"
+  ],
+  "notes": "IMPORTANT: Nebius Group N.V. is incorporated in the Netherlands but spun off from Yandex NV (2023) and has active US subsidiaries (Nebius Inc., ADC Tech Inc.). The Netherlands is an EU member state — adequacyDecision is true for intra-EU transfers. However, US subsidiary involvement means EU-US transfers are covered by EU-US DPF certification (not SCCs). Privacy policy explicitly mentions fault-tolerance data storage that may not stay in the primary selected region. Lead supervisory authority is the Dutch DPA (Autoriteit Persoonsgegevens). Inference-specific data usage policy not publicly documented — verify via DPA before processing personal data."
+}

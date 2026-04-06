@@ -1,0 +1,15 @@
+{
+  "slug": "moonshot-ai-china",
+  "name": "Moonshot AI (China)",
+  "type": "api_provider",
+  "website": "https://platform.moonshot.cn",
+  "apiDocsUrl": "https://platform.moonshot.cn/docs/api/chat",
+  "logoPath": "/logos/moonshot-ai-china.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

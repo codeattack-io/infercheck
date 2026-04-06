@@ -1,0 +1,19 @@
+{
+  "slug": "dinference",
+  "name": "DInference",
+  "type": "api_provider",
+  "website": "https://dinference.com",
+  "apiDocsUrl": "https://dinference.com",
+  "logoPath": "/logos/dinference.svg",
+  "compliance": null,
+  "models": [
+    "GLM-4.7",
+    "GLM-5",
+    "GPT OSS 120B"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

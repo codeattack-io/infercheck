@@ -1,0 +1,62 @@
+{
+  "slug": "amazon-bedrock",
+  "name": "Amazon Bedrock",
+  "type": "cloud_platform",
+  "website": "https://aws.amazon.com/bedrock/",
+  "apiDocsUrl": "https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html",
+  "logoPath": "/logos/amazon-bedrock.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": ["US", "EU", "DE", "IE", "GB", "FR", "ES", "IT", "SE", "CH"],
+      "euOnly": true,
+      "euRegionDetails": "EU regions: Frankfurt (eu-central-1), Ireland (eu-west-1), London (eu-west-2), Milan (eu-south-1), Paris (eu-west-3), Spain (eu-south-2), Stockholm (eu-north-1), Zurich (eu-central-2). Customer content is encrypted and stored at rest in the AWS Region where it is used — it does NOT move outside the selected region. AWS European Sovereign Cloud (separate product, Germany-based, AWS entities exclusively in EU) available for maximum data sovereignty."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://d1.awsstatic.com/legal/aws-gdpr/AWS_GDPR_DPA.pdf",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "No customer inputs or model outputs stored or used to train models. Data not shared with third-party model providers. This is contractually guaranteed — no opt-out required because no training occurs by default.",
+      "details": "AWS explicitly states: customer inputs to and outputs from Amazon Bedrock are not used to train Amazon Nova, Amazon Titan, or any third-party models. Fine-tuning data remains encrypted in the AWS Region and is not used to improve base models."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://aws.amazon.com/compliance/sub-processors/",
+      "includesEuEntities": true
+    },
+    "certifications": ["SOC2", "ISO27001", "ISO27017", "ISO27018", "ISO27701", "C5"],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "AWS has a general EU AI Act compliance page. No specific published EU AI Act provider-role compliance declaration for Bedrock as of verification date. Monitoring status reflects absence of a published compliance declaration equivalent to Microsoft's."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "models": [
+    "Nova 2 Lite",
+    "Nova Lite",
+    "Nova Micro",
+    "Nova Premier",
+    "Nova Pro",
+    "Claude Haiku 3.5",
+    "Claude Sonnet 3.5",
+    "Claude Sonnet 3.5 v2",
+    "Claude Sonnet 3.7",
+    "Claude Haiku 3"
+  ],
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-07",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://aws.amazon.com/bedrock/security-compliance/",
+    "https://aws.amazon.com/bedrock/faqs/",
+    "https://aws.amazon.com/compliance/gdpr-center/",
+    "https://aws.amazon.com/compliance/sub-processors/",
+    "https://d1.awsstatic.com/legal/aws-gdpr/AWS_GDPR_DPA.pdf"
+  ],
+  "notes": "Broadest model marketplace of the three cloud platforms, offering models from 13+ providers including Anthropic, Meta, Mistral, Cohere, DeepSeek, and Amazon's own Nova series. Customer data never leaves the selected AWS Region and is never shared with model providers — contractually guaranteed without requiring any opt-out. CISPE Code of Conduct adherence provides additional EU-specific cloud privacy certification. AWS European Sovereign Cloud (separate product) provides dedicated EU-only infrastructure with EU-only AWS entities. Sub-processors page lists extensive EU infrastructure entities. SCCs are automatically incorporated into AWS Service Terms."
+}

@@ -1,0 +1,15 @@
+{
+  "slug": "friendli",
+  "name": "Friendli",
+  "type": "api_provider",
+  "website": "https://friendli.ai",
+  "apiDocsUrl": "https://friendli.ai/docs/guides/serverless_endpoints/introduction",
+  "logoPath": "/logos/friendli.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

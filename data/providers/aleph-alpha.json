@@ -1,0 +1,53 @@
+{
+  "slug": "aleph-alpha",
+  "name": "Aleph Alpha",
+  "type": "api_provider",
+  "website": "https://aleph-alpha.com",
+  "apiDocsUrl": "https://docs.aleph-alpha.com/",
+  "logoPath": "/logos/aleph-alpha.svg",
+  "compliance": {
+    "headquarters": "DE",
+    "dataResidency": {
+      "regions": ["EU", "DE"],
+      "euOnly": true,
+      "euRegionDetails": "All infrastructure in Germany. PhariaAI stack is designed for on-premise or sovereign EU cloud deployment, primarily on STACKIT (Schwarz Group) infrastructure. On-premise deployment option provides complete data isolation. No US entity involvement. Air-gapped deployment available for defence and government use cases."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://aleph-alpha.com/data-privacy/",
+      "signedVia": "custom_contract"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "For on-premise/PhariaAI stack: customer fully controls data, nothing leaves customer environment. For cloud API: per service terms. No training on customer data.",
+      "details": "On-premise deployments provide complete data isolation — zero data leaves customer environment. Cloud API follows contractual DPA terms. No training on customer inference data."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": "https://aleph-alpha.com/data-privacy/",
+      "includesEuEntities": true
+    },
+    "certifications": ["ISO27001"],
+    "euAiAct": {
+      "status": "compliant",
+      "details": "One of Europe's most EU AI Act-engaged companies. Provider of foundation models (Pharia-1-LLM-7B) subject to GPAI model provider obligations. Co-founded the Future of European AI initiative. Actively participates in EU AI Office consultations. Pharia-1-LLM-7B model card and technical documentation published per GPAI transparency requirements."
+    },
+    "sccs": false,
+    "adequacyDecision": true
+  },
+  "models": [
+    "Pharia-1-LLM-7B",
+    "Pharia-1-LLM-7B-control"
+  ],
+  "pricingTier": "enterprise_only",
+  "lastVerified": "2026-04-07",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://aleph-alpha.com/en",
+    "https://aleph-alpha.com/data-privacy/",
+    "https://docs.aleph-alpha.com/",
+    "https://aleph-alpha.com/imprint/"
+  ],
+  "notes": "IMPORTANT CONTEXT: Aleph Alpha underwent a strategic pivot in 2024. The original Luminous model API is legacy — current product is PhariaAI, a sovereign AI suite for enterprises and governments. B2G/enterprise-only: no public self-serve pricing or API. Key customers include the German Federal Employment Agency (80,000 users), Baden-Württemberg state government, Deutsche Bank, Bosch, SAP, and Schwarz Group. Germany is an EU member state — no cross-border GDPR transfer concern for EU customers. Most proactive EU AI Act engagement of any provider in this directory alongside Mistral."
+}

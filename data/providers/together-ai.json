@@ -1,0 +1,49 @@
+{
+  "slug": "together-ai",
+  "name": "Together AI",
+  "type": "api_provider",
+  "website": "https://www.together.ai",
+  "apiDocsUrl": "https://docs.together.ai/docs/serverless-models",
+  "logoPath": "/logos/together-ai.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": ["US"],
+      "euOnly": false,
+      "euRegionDetails": "No dedicated EU region for serverless inference. All infrastructure is US-based."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.together.ai/privacy",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": true,
+      "retentionPolicy": "No training without explicit opt-in. Zero Data Retention mode available via Settings > Profile.",
+      "details": "Policy explicitly states no training without explicit opt-in. ZDR available in platform settings."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": ["SOC2"],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "models": [],
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-07",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://www.together.ai/privacy",
+    "https://www.together.ai/terms-of-service",
+    "https://trust.together.ai"
+  ],
+  "notes": "Delaware corp, headquartered in San Francisco, CA. SCCs referenced for EEA/UK transfers. No EU infrastructure. ZDR mode available. Sub-processor list not publicly disclosed."
+}

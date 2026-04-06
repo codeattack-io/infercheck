@@ -1,0 +1,26 @@
+{
+  "slug": "aihubmix",
+  "name": "AIHubMix",
+  "type": "api_provider",
+  "website": "https://docs.aihubmix.com",
+  "apiDocsUrl": "https://docs.aihubmix.com",
+  "logoPath": "/logos/aihubmix.svg",
+  "compliance": null,
+  "models": [
+    "Kimi K2 0905",
+    "Claude Haiku 4.5",
+    "Claude Opus 4.1",
+    "Claude Opus 4.5",
+    "Claude Opus 4.6 Think",
+    "Claude Opus 4.6",
+    "Claude Sonnet 4.5",
+    "Claude Sonnet 4.6 Think",
+    "Claude Sonnet 4.6",
+    "Coding GLM 4.7 Free"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

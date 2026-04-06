@@ -1,0 +1,18 @@
+{
+  "slug": "bailing",
+  "name": "Bailing",
+  "type": "api_provider",
+  "website": "https://alipaytbox.yuque.com",
+  "apiDocsUrl": "https://alipaytbox.yuque.com/sxs0ba/ling/intro",
+  "logoPath": "/logos/bailing.svg",
+  "compliance": null,
+  "models": [
+    "Ling-1T",
+    "Ring-1T"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

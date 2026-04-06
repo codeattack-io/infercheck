@@ -1,0 +1,50 @@
+{
+  "slug": "hugging-face",
+  "name": "Hugging Face",
+  "type": "api_provider",
+  "website": "https://huggingface.co",
+  "apiDocsUrl": "https://huggingface.co/docs/inference-endpoints/en/index",
+  "logoPath": "/logos/hugging-face.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": ["US", "EU"],
+      "euOnly": true,
+      "euRegionDetails": "EU region available on Team and Enterprise plans. Inference Endpoints can be deployed on AWS or GCP EU regions. Models, datasets, and endpoints can be pinned to EU datacentres. Enterprise Hub storage regions feature available."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://huggingface.co/enterprise",
+      "signedVia": "custom_contract"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "Payload data (prompts/tokens) not stored on Inference Endpoints. Logs retained 30 days.",
+      "details": "Security documentation states Hugging Face does not store any customer data in terms of payloads or tokens. No training on inference endpoint data."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://huggingface.co/privacy",
+      "includesEuEntities": true
+    },
+    "certifications": ["SOC2"],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "EU legal entity (HF SAS, Paris) is subject to EU AI Act as a provider. No formal certification published as of verification date."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "models": [],
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-07",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://huggingface.co/docs/inference-endpoints/en/guides/security",
+    "https://huggingface.co/privacy",
+    "https://huggingface.co/enterprise",
+    "https://huggingface.co/docs/hub/storage-regions"
+  ],
+  "notes": "Scope is Inference Endpoints (dedicated), NOT Inference Providers (shared/serverless). HQ: Hugging Face Inc. (New York, US). EU controller: Hugging Face SAS (Paris, France), supervised by CNIL. Sub-processors include OVHcloud (FR), AWS, GCP. EU residency and DPA require Team or Enterprise plan. Any model on the Hub can be deployed via Inference Endpoints."
+}

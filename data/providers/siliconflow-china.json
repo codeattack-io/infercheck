@@ -1,0 +1,15 @@
+{
+  "slug": "siliconflow-china",
+  "name": "SiliconFlow (China)",
+  "type": "api_provider",
+  "website": "https://cloud.siliconflow.com",
+  "apiDocsUrl": "https://cloud.siliconflow.com/models",
+  "logoPath": "/logos/siliconflow-china.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

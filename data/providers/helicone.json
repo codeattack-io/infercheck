@@ -1,0 +1,15 @@
+{
+  "slug": "helicone",
+  "name": "Helicone",
+  "type": "gateway",
+  "website": "https://helicone.ai",
+  "apiDocsUrl": "https://helicone.ai/models",
+  "logoPath": "/logos/helicone.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": "Gateway/proxy service — routes to multiple upstream providers."
+}

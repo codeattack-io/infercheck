@@ -1,0 +1,20 @@
+{
+  "slug": "inception",
+  "name": "Inception",
+  "type": "api_provider",
+  "website": "https://platform.inceptionlabs.ai",
+  "apiDocsUrl": "https://platform.inceptionlabs.ai/docs",
+  "logoPath": "/logos/inception.svg",
+  "compliance": null,
+  "models": [
+    "Mercury 2",
+    "Mercury Coder",
+    "Mercury Edit",
+    "Mercury"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

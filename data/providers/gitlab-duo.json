@@ -1,0 +1,26 @@
+{
+  "slug": "gitlab-duo",
+  "name": "GitLab Duo",
+  "type": "api_provider",
+  "website": "https://docs.gitlab.com",
+  "apiDocsUrl": "https://docs.gitlab.com/user/duo_agent_platform/",
+  "logoPath": "/logos/gitlab-duo.svg",
+  "compliance": null,
+  "models": [
+    "Agentic Chat (GPT-5.1)",
+    "Agentic Chat (GPT-5.2 Codex)",
+    "Agentic Chat (GPT-5.2)",
+    "Agentic Chat (GPT-5.3 Codex)",
+    "Agentic Chat (GPT-5.4 Mini)",
+    "Agentic Chat (GPT-5.4 Nano)",
+    "Agentic Chat (GPT-5.4)",
+    "Agentic Chat (GPT-5 Codex)",
+    "Agentic Chat (GPT-5 Mini)",
+    "Agentic Chat (Claude Haiku 4.5)"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

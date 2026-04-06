@@ -1,0 +1,17 @@
+{
+  "slug": "zhipu-ai-coding-plan",
+  "name": "Zhipu AI Coding Plan",
+  "type": "api_provider",
+  "website": "https://docs.bigmodel.cn",
+  "apiDocsUrl": "https://docs.bigmodel.cn/cn/coding-plan/overview",
+  "logoPath": "/logos/zhipu-ai-coding-plan.svg",
+  "compliance": null,
+  "models": [
+    "GLM-4.6V-Flash"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

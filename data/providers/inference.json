@@ -1,0 +1,15 @@
+{
+  "slug": "inference",
+  "name": "Inference",
+  "type": "api_provider",
+  "website": "https://inference.net",
+  "apiDocsUrl": "https://inference.net/models",
+  "logoPath": "/logos/inference.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

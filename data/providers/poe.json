@@ -1,0 +1,15 @@
+{
+  "slug": "poe",
+  "name": "Poe",
+  "type": "api_provider",
+  "website": "https://creator.poe.com",
+  "apiDocsUrl": "https://creator.poe.com/docs/external-applications/openai-compatible-api",
+  "logoPath": "/logos/poe.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

@@ -1,0 +1,26 @@
+{
+  "slug": "abacus",
+  "name": "Abacus",
+  "type": "api_provider",
+  "website": "https://abacus.ai",
+  "apiDocsUrl": "https://abacus.ai/help/api",
+  "logoPath": "/logos/abacus.svg",
+  "compliance": null,
+  "models": [
+    "Claude Sonnet 3.7",
+    "Claude Haiku 4.5",
+    "Claude Opus 4.1",
+    "Claude Opus 4",
+    "Claude Opus 4.5",
+    "Claude Opus 4.6",
+    "Claude Sonnet 4",
+    "Claude Sonnet 4.5",
+    "Claude Sonnet 4.6",
+    "Gemini 2.5 Flash"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

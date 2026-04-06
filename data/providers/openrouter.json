@@ -1,0 +1,48 @@
+{
+  "slug": "openrouter",
+  "name": "OpenRouter",
+  "type": "gateway",
+  "website": "https://openrouter.ai",
+  "apiDocsUrl": "https://openrouter.ai/models",
+  "logoPath": "/logos/openrouter.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": ["US"],
+      "euOnly": false,
+      "euRegionDetails": "EU in-region routing (eu.openrouter.ai) is enterprise-only and not enabled by default. Standard accounts route globally through US infrastructure with no data-residency guarantee. Even with EU routing enabled, every request passes through OpenRouter's US gateway infrastructure, creating a mandatory cross-border transfer."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://openrouter.ai/terms",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": true,
+      "retentionPolicy": "OpenRouter layer: prompts not logged by default (ZDR mode). Opt-in prompt logging available. Upstream providers each have their own retention policies, which vary widely. ZDR flag restricts routing to zero-retention endpoints only.",
+      "details": "Each of 60+ upstream providers is effectively a sub-processor with its own data handling policy. OpenRouter's own DPA covers only OpenRouter's layer, not upstream providers."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": ["SOC2"],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "models": [],
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-07",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://openrouter.ai/terms",
+    "https://openrouter.ai/privacy"
+  ],
+  "notes": "Gateway routing to 300+ upstream models (GPT-4o, Claude, Gemini, Llama, DeepSeek, Mistral, etc.). Most complex GDPR posture in this directory: the gateway architecture makes every upstream provider a de facto sub-processor, none of which are formally listed. EU routing requires enterprise agreement. Illustrates the compliance gap created by gateway/aggregator services."
+}

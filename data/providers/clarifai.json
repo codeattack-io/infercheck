@@ -1,0 +1,15 @@
+{
+  "slug": "clarifai",
+  "name": "Clarifai",
+  "type": "api_provider",
+  "website": "https://docs.clarifai.com",
+  "apiDocsUrl": "https://docs.clarifai.com/compute/inference/",
+  "logoPath": null,
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

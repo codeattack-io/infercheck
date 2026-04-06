@@ -1,0 +1,62 @@
+{
+  "slug": "mistral",
+  "name": "Mistral",
+  "type": "api_provider",
+  "website": "https://mistral.ai",
+  "apiDocsUrl": "https://docs.mistral.ai/getting-started/models/",
+  "logoPath": "/logos/mistral.svg",
+  "compliance": {
+    "headquarters": "FR",
+    "dataResidency": {
+      "regions": ["EU"],
+      "euOnly": true,
+      "euRegionDetails": "Mistral AI is a French company and infrastructure is EU-hosted. La Plateforme (AI Studio) runs in EU. Models also available via Azure, AWS Bedrock, GCP Vertex, and Outscale (French sovereign cloud) for customers needing specific cloud regions."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://legal.mistral.ai/terms/data-processing-addendum/",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": true,
+      "retentionPolicy": "Paid API and Le Chat Enterprise/Team are opted out of training by default. Free/trial users opted in by default but can opt out. Zero Data Retention available. API inputs/outputs retained up to 30 rolling days for abuse monitoring unless ZDR is active.",
+      "details": "DPA explicitly states Mistral AI acts as Processor for commercial API customers and will not use Customer Data for model training for paid/opted-out plans. Fine-tuning data retained until deleted by customer."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://trust.mistral.ai/subprocessors",
+      "includesEuEntities": true
+    },
+    "certifications": ["ISO27001", "ISO27701"],
+    "euAiAct": {
+      "status": "compliant",
+      "details": "Mistral AI has a dedicated AI Governance hub at legal.mistral.ai. Publishes model documentation per Article 53 GPAI requirements. Has signed the EU AI Act Code of Practice. Operates as a Provider under the AI Act and maintains GPAI model documentation for frontier models."
+    },
+    "sccs": true,
+    "adequacyDecision": true
+  },
+  "models": [
+    "Codestral (latest)",
+    "Devstral 2",
+    "Devstral Medium",
+    "Devstral 2 (latest)",
+    "Devstral Small 2505",
+    "Devstral Small",
+    "Devstral Small 2",
+    "Magistral Medium (latest)",
+    "Magistral Small",
+    "Ministral 3B (latest)"
+  ],
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-07",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://legal.mistral.ai/terms/data-processing-addendum/",
+    "https://legal.mistral.ai/terms/privacy-policy/",
+    "https://trust.mistral.ai/subprocessors",
+    "https://trust.mistral.ai/",
+    "https://legal.mistral.ai/"
+  ],
+  "notes": "EU-native company (French SAS, Paris). France is an EU member state — adequacyDecision is true in the sense that no cross-border transfer concern exists for EU customers; SCCs are still used for any non-EU sub-processors. Paid API customers opted out of training by default. ISO 27701 (privacy information management) confirmed. Most proactive EU AI Act posture of any provider in this directory."
+}

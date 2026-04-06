@@ -1,0 +1,15 @@
+{
+  "slug": "lmstudio",
+  "name": "LMStudio",
+  "type": "api_provider",
+  "website": "https://lmstudio.ai",
+  "apiDocsUrl": "https://lmstudio.ai/models",
+  "logoPath": null,
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

@@ -1,0 +1,22 @@
+{
+  "slug": "opencode-go",
+  "name": "OpenCode Go",
+  "type": "api_provider",
+  "website": "https://opencode.ai",
+  "apiDocsUrl": "https://opencode.ai/docs/zen",
+  "logoPath": "/logos/opencode-go.svg",
+  "compliance": null,
+  "models": [
+    "GLM-5",
+    "Kimi K2.5",
+    "MiMo V2 Omni",
+    "MiMo V2 Pro",
+    "MiniMax M2.5",
+    "MiniMax M2.7"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

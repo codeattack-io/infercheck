@@ -1,0 +1,26 @@
+{
+  "slug": "iflow",
+  "name": "iFlow",
+  "type": "api_provider",
+  "website": "https://platform.iflow.cn",
+  "apiDocsUrl": "https://platform.iflow.cn/en/docs",
+  "logoPath": "/logos/iflow.svg",
+  "compliance": null,
+  "models": [
+    "DeepSeek-R1",
+    "DeepSeek-V3.2-Exp",
+    "DeepSeek-V3",
+    "GLM-4.6",
+    "Kimi-K2-0905",
+    "Kimi-K2",
+    "Qwen3-235B-A22B-Instruct",
+    "Qwen3-235B-A22B-Thinking",
+    "Qwen3-235B-A22B",
+    "Qwen3-32B"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

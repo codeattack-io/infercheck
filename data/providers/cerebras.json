@@ -1,0 +1,20 @@
+{
+  "slug": "cerebras",
+  "name": "Cerebras",
+  "type": "api_provider",
+  "website": "https://inference-docs.cerebras.ai",
+  "apiDocsUrl": "https://inference-docs.cerebras.ai/models/overview",
+  "logoPath": "/logos/cerebras.svg",
+  "compliance": null,
+  "models": [
+    "GPT OSS 120B",
+    "Llama 3.1 8B",
+    "Qwen 3 235B Instruct",
+    "Z.AI GLM-4.7"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

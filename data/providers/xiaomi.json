@@ -1,0 +1,19 @@
+{
+  "slug": "xiaomi",
+  "name": "Xiaomi",
+  "type": "api_provider",
+  "website": "https://platform.xiaomimimo.com",
+  "apiDocsUrl": "https://platform.xiaomimimo.com/#/docs",
+  "logoPath": "/logos/xiaomi.svg",
+  "compliance": null,
+  "models": [
+    "MiMo-V2-Flash",
+    "MiMo-V2-Omni",
+    "MiMo-V2-Pro"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

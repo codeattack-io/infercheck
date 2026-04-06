@@ -1,0 +1,19 @@
+{
+  "slug": "v0",
+  "name": "v0",
+  "type": "api_provider",
+  "website": "https://sdk.vercel.ai",
+  "apiDocsUrl": "https://sdk.vercel.ai/providers/ai-sdk-providers/vercel",
+  "logoPath": "/logos/v0.svg",
+  "compliance": null,
+  "models": [
+    "v0-1.0-md",
+    "v0-1.5-lg",
+    "v0-1.5-md"
+  ],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

@@ -1,0 +1,15 @@
+{
+  "slug": "chutes",
+  "name": "Chutes",
+  "type": "api_provider",
+  "website": "https://llm.chutes.ai",
+  "apiDocsUrl": "https://llm.chutes.ai/v1/models",
+  "logoPath": null,
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}
