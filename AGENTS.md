@@ -31,6 +31,16 @@ A neutral, multi-vendor directory of AI inference providers tagged by GDPR compl
 
 **Phase 1** (after data): filterable homepage, provider detail pages, report-a-change form, SEO, Vercel deploy.
 
+## Git workflow
+
+After completing any task, commit all changes with a descriptive message:
+
+```
+git add -A && git commit -m "<type>: <short description>"
+```
+
+Use conventional commit types: `feat`, `fix`, `chore`, `docs`, `refactor`, `data`.
+
 ## What NOT to do
 
 - No automated compliance scoring (liability risk)
