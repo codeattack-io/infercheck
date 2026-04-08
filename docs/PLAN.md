@@ -1,8 +1,8 @@
 # GDPR AI Directory - Build Plan
 
-> Status: Approved for implementation
-> Date: 2026-04-06
-> Verdict: GO — build the MVP
+> Status: In progress
+> Last updated: 2026-04-09
+> Verdict: GO — MVP frontend is next
 
 ---
 
@@ -12,203 +12,62 @@ A neutral, multi-vendor directory of AI inference providers tagged by GDPR compl
 
 **Core value proposition:** Structured, sourced, filterable compliance metadata for AI inference providers — not a provider's own marketing, not a law firm's checklist, but a developer-friendly reference.
 
+**Primary user journey (model-first):** A user searches for a model name (e.g. "claude-sonnet-4-6") and sees every provider offering it with pricing, latency, and compliance properties — filterable by their GDPR compliance threshold (e.g. "strict EU only", "no training anywhere", "EU with SCCs").
+
 ---
 
 ## Decisions Made
 
-| Decision                | Choice                                                                 | Rationale                                                                                                     |
-| ----------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| Provider scope          | API providers + cloud platforms, tagged separately                     | Cloud platforms (Azure, Bedrock, Vertex) are where EU enterprise AI runs; excluding them leaves a visible gap |
-| Hosting                 | Vercel                                                                 | Fastest to ship for MVP; can migrate to EU hosting later if brand signal matters                              |
-| Data sourcing           | Hybrid: models.dev import + AI-assisted research + manual verification | Balances speed with accuracy                                                                                  |
-| Compliance scoring      | No automated scores                                                    | Avoids liability; present structured facts, not judgments                                                     |
-| Report-a-change backend | GitHub Issues (auto-created from form)                                 | Free, transparent, auditable                                                                                  |
-| Licensing               | Split: MIT for code, CC BY-NC-SA 4.0 for data                          | Transparency + credibility without giving away the curated dataset commercially                               |
-| Database                | None — flat JSON files in repo                                         | Sufficient for MVP, easy to audit and version-track                                                           |
+| Decision                | Choice                                                                      | Rationale                                                                                                     |
+| ----------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| Provider scope          | API providers + cloud platforms, tagged separately                          | Cloud platforms (Azure, Bedrock, Vertex) are where EU enterprise AI runs; excluding them leaves a visible gap |
+| Hosting                 | Vercel                                                                      | Fastest to ship for MVP; can migrate to EU hosting later if brand signal matters                              |
+| Data sourcing           | Hybrid: models.dev import + AI-assisted research + manual verification      | Balances speed with accuracy                                                                                  |
+| Compliance scoring      | No automated scores                                                         | Avoids liability; present structured facts, not judgments                                                     |
+| Report-a-change backend | GitHub Issues (auto-created from form)                                      | Free, transparent, auditable                                                                                  |
+| Licensing               | Split: MIT for code, CC BY-NC-SA 4.0 for data                               | Transparency + credibility without giving away the curated dataset commercially                               |
+| Provider compliance     | Flat JSON files in `data/providers/`                                        | Git-auditable, community PR-able, no DB needed for slow-changing compliance metadata                          |
+| Model catalog           | Neon (Postgres) via Drizzle ORM                                             | Models change too fast for hand-curation; synced nightly from OpenRouter + EU provider APIs                   |
+| Model-first UX          | Search by model name, see all providers offering it with compliance filters | More useful than a raw provider list; mirrors how developers actually think about model selection             |
 
 ---
 
-## Data Schema: Provider Compliance Profile
+## Data Architecture
 
-Each provider is a JSON file at `data/providers/{slug}.json`.
+### Provider compliance data — flat JSON (git)
 
-```json
-{
-  "slug": "openai",
-  "name": "OpenAI",
-  "type": "api_provider",
-  "website": "https://openai.com",
-  "apiDocsUrl": "https://platform.openai.com/docs",
-  "logoPath": "/logos/openai.svg",
+Each provider is a JSON file at `data/providers/{slug}.json`. This is the source of truth for compliance metadata. Changes are community-PR-able with git history as audit trail.
 
-  "compliance": {
-    "headquarters": "US",
-    "dataResidency": {
-      "regions": ["US", "EU"],
-      "euOnly": false,
-      "euRegionDetails": "Available via Azure OpenAI (Sweden Central, Germany West Central)"
-    },
-    "dpa": {
-      "available": true,
-      "url": "https://openai.com/policies/data-processing-addendum",
-      "signedVia": "online_acceptance"
-    },
-    "dataUsage": {
-      "trainsOnCustomerData": false,
-      "optOutAvailable": true,
-      "retentionPolicy": "30 days for abuse monitoring, then deleted",
-      "details": "API data not used for training by default since March 2023"
-    },
-    "subProcessors": {
-      "disclosed": true,
-      "url": "https://openai.com/policies/sub-processors",
-      "includesEuEntities": false
-    },
-    "certifications": ["SOC2"],
-    "euAiAct": {
-      "status": "monitoring",
-      "details": "No public EU AI Act compliance statement yet"
-    },
-    "sccs": true,
-    "adequacyDecision": false
-  },
+**Key fields:** `slug`, `name`, `type`, `compliance.*`, `pricingTier`, `lastVerified`, `verifiedBy`, `sourceUrls`, `notes`
 
-  "models": ["GPT-4o", "GPT-4.1", "o3", "o4-mini"],
-  "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-06",
-  "verifiedBy": "carlo",
-  "sourceUrls": ["https://openai.com/policies/data-processing-addendum", "https://openai.com/policies/privacy-policy"],
-  "notes": "EU data residency only available through Azure OpenAI, not direct API."
-}
-```
+**Note:** The `models` array was removed from provider JSON entirely. Model listings live in the DB to avoid drift.
 
-### Field Reference
+**Schema:** `data/schema.ts` (Zod) — includes `dataLeavesEuAtInference` on `DataResidencySchema` to distinguish "data stored in EU" from "inference compute runs in EU".
 
-| Field                                         | Type           | Description                                                          |
-| --------------------------------------------- | -------------- | -------------------------------------------------------------------- |
-| `slug`                                        | string         | URL-safe identifier, matches filename                                |
-| `name`                                        | string         | Display name                                                         |
-| `type`                                        | enum           | `"api_provider"` \| `"cloud_platform"` \| `"gateway"`                |
-| `website`                                     | string         | Provider homepage URL                                                |
-| `apiDocsUrl`                                  | string         | API documentation URL                                                |
-| `logoPath`                                    | string         | Path to SVG logo in `/public/logos/`                                 |
-| `compliance.headquarters`                     | string         | ISO 3166-1 alpha-2 country code                                      |
-| `compliance.dataResidency.regions`            | string[]       | ISO country/region codes where data can be processed                 |
-| `compliance.dataResidency.euOnly`             | boolean        | Can the provider guarantee EU-only data processing?                  |
-| `compliance.dataResidency.euRegionDetails`    | string         | Plain-language explanation of EU routing options                     |
-| `compliance.dpa.available`                    | boolean        | Is a DPA available?                                                  |
-| `compliance.dpa.url`                          | string \| null | Link to DPA document                                                 |
-| `compliance.dpa.signedVia`                    | enum           | `"online_acceptance"` \| `"custom_contract"` \| `"not_available"`    |
-| `compliance.dataUsage.trainsOnCustomerData`   | boolean        | Does provider train on API customer data?                            |
-| `compliance.dataUsage.optOutAvailable`        | boolean        | Can customers opt out of data usage?                                 |
-| `compliance.dataUsage.retentionPolicy`        | string         | Plain-language retention summary                                     |
-| `compliance.dataUsage.details`                | string         | Additional context                                                   |
-| `compliance.subProcessors.disclosed`          | boolean        | Is the sub-processor list public?                                    |
-| `compliance.subProcessors.url`                | string \| null | Link to sub-processor list                                           |
-| `compliance.subProcessors.includesEuEntities` | boolean        | Are any sub-processors EU-based?                                     |
-| `compliance.certifications`                   | string[]       | `"SOC2"` \| `"ISO27001"` \| `"ISO27701"` \| `"C5"` \| `"HDS"` etc.   |
-| `compliance.euAiAct.status`                   | enum           | `"compliant"` \| `"monitoring"` \| `"unknown"` \| `"not_applicable"` |
-| `compliance.euAiAct.details`                  | string         | Plain-language summary                                               |
-| `compliance.sccs`                             | boolean        | Standard Contractual Clauses in place?                               |
-| `compliance.adequacyDecision`                 | boolean        | Provider HQ country has EU adequacy decision?                        |
-| `models`                                      | string[]       | Key models available (not exhaustive)                                |
-| `pricingTier`                                 | enum           | `"free_tier"` \| `"pay_per_use"` \| `"enterprise_only"`              |
-| `lastVerified`                                | string         | ISO date of last verification                                        |
-| `verifiedBy`                                  | string         | Who verified this entry                                              |
-| `sourceUrls`                                  | string[]       | Evidence trail: links to source documents                            |
-| `notes`                                       | string         | Plain-language editorial notes                                       |
+### Model catalog — Neon (Postgres) via Drizzle
+
+Models change too fast for hand-curated files. The DB is synced nightly.
+
+**Table: `models`**
+- Composite PK: `(id, provider_slug)` — same model at different providers = separate rows
+- Fields: `id`, `provider_slug`, `name`, `modality`, `context_length`, `input_price`, `output_price`, `is_free`, `raw`
+
+**Table: `sync_log`** — tracks nightly sync runs
+
+**Sync strategy:** OpenRouter `/api/v1/models` first (covers ~300 models), then per-provider APIs for EU-native providers not on OpenRouter (Berget, Stackit, Aleph Alpha, OVHcloud, Scaleway, SAP AI Core).
 
 ---
 
-## Data Sourcing Strategy
+## Compliance Filter Profiles
 
-### Layer 1: Import from models.dev
+Client-side, URL params, no account needed:
 
-The [models.dev GitHub repo](https://github.com/anomalyco/models.dev/tree/dev/providers) contains ~90 provider directories, each with:
-
-- `provider.toml` — fields: `name`, `env`, `npm`, `api`, `doc`
-- `logo.svg` — provider logo
-- `models/` — individual model TOML files
-
-**Import script** (`scripts/import-models-dev.ts`):
-
-1. Clone or fetch the `providers/` directory from the models.dev repo (dev branch)
-2. Parse each `provider.toml` to extract: name, API URL, docs URL
-3. Copy logos to `public/logos/`
-4. Generate stub JSON files with identity fields populated, compliance fields set to null/unknown
-5. Output: ~90 stub files in `data/providers/`
-
-This gives us the seed list. No compliance data yet — just identity + logos + documentation links.
-
-### Layer 2: AI-Assisted Research
-
-For each provider in the MVP priority list:
-
-1. Use the `apiDocsUrl` and known privacy/legal page patterns to locate:
-   - Privacy policy
-   - DPA / data processing addendum
-   - Sub-processor list
-   - Trust center / security page
-   - EU AI Act statement (if any)
-2. AI drafts the compliance profile by analyzing these documents
-3. Output: draft JSON files, flagged as `"verifiedBy": "ai_draft"`
-
-### Layer 3: Manual Verification
-
-For each AI-drafted profile:
-
-1. Review against the actual source documents
-2. Verify all claims, fix inaccuracies
-3. Add `sourceUrls` with direct links to evidence
-4. Write plain-language `notes` and `details` fields
-5. Update `verifiedBy` to `"carlo"` and set `lastVerified` date
-
-### Layer 4: Community Corrections (Ongoing)
-
-- "Report a change" form on each provider page
-- Submits create GitHub Issues automatically
-- Review, verify, and update the JSON file
-
----
-
-## MVP Provider List (~20-25)
-
-### API Providers
-
-| Provider     | HQ          | Why include                                    |
-| ------------ | ----------- | ---------------------------------------------- |
-| OpenAI       | US          | Most widely used, complex GDPR story           |
-| Anthropic    | US          | Major alternative, growing EU adoption         |
-| Mistral      | France      | EU-native, strong GDPR positioning             |
-| Cohere       | Canada      | Enterprise focus, DPA available                |
-| Groq         | US          | Fast inference, popular with devs              |
-| Together AI  | US          | Open-model inference, popular                  |
-| Scaleway     | France      | EU-native cloud + generative APIs              |
-| Nebius       | Netherlands | EU infrastructure, growing fast                |
-| Aleph Alpha  | Germany     | German sovereign AI, B2G                       |
-| OVHcloud     | France      | EU cloud with AI APIs                          |
-| Fireworks AI | US          | Popular for open models                        |
-| DeepInfra    | US          | Open-model hosting                             |
-| DeepSeek     | China       | Important for completeness, complex compliance |
-| Hugging Face | US/France   | Inference endpoints, dual presence             |
-| Perplexity   | US          | Growing usage as search + inference            |
-| Berget       | Sweden      | EU-native, privacy-focused                     |
-| Stackit      | Germany     | Schwarz Group (Lidl), sovereign cloud          |
-
-### Cloud Platforms
-
-| Provider         | HQ             | Why include                                |
-| ---------------- | -------------- | ------------------------------------------ |
-| Azure OpenAI     | US (Microsoft) | EU region deployments, enterprise standard |
-| AWS Bedrock      | US (Amazon)    | EU region deployments, major cloud         |
-| Google Vertex AI | US (Google)    | EU region deployments, major cloud         |
-| SAP AI Core      | Germany        | Enterprise, native EU compliance           |
-
-### Gateways
-
-| Provider   | HQ  | Why include                                          |
-| ---------- | --- | ---------------------------------------------------- |
-| OpenRouter | US  | Popular gateway, no EU routing — illustrates the gap |
+| Profile              | Conditions                                                                                  |
+| -------------------- | ------------------------------------------------------------------------------------------- |
+| Strict EU            | `euOnly=true` AND `dataLeavesEuAtInference=false` AND `dpa.available=true`                  |
+| EU with SCCs         | `dpa.available=true` AND `sccs=true` AND `trainsOnCustomerData=false`                       |
+| No training anywhere | `trainsOnCustomerData=false` AND `optOutAvailable=false`                                    |
+| Custom               | User toggles individual boolean fields                                                      |
 
 ---
 
@@ -217,41 +76,49 @@ For each AI-drafted profile:
 ```
 gdpr-ai-directory/
 ├── data/
-│   ├── providers/                  # JSON files per provider (source of truth)
+│   ├── providers/                     # JSON compliance files per provider (111 total)
 │   │   ├── openai.json
 │   │   ├── anthropic.json
 │   │   └── ...
-│   └── schema.ts                   # TypeScript types + Zod validation
+│   └── schema.ts                      # Zod schemas for provider JSON
 ├── scripts/
-│   ├── import-models-dev.ts        # Seed: parse models.dev TOML -> stub JSON
-│   └── validate-data.ts            # CI: validate all JSONs against schema
+│   ├── import-models-dev.ts           # Seeds provider identity stubs from models.dev
+│   ├── sync-models.ts                 # CLI wrapper: run nightly model sync manually
+│   └── validate-data.ts              # CI: validate all provider JSONs against schema
 ├── src/
-│   └── app/                        # Next.js App Router
-│       ├── layout.tsx              # Root layout
-│       ├── page.tsx                # Homepage: filterable directory table
-│       ├── provider/
-│       │   └── [slug]/
-│       │       └── page.tsx        # Provider compliance profile page
-│       └── compare/
-│           └── page.tsx            # Side-by-side comparison (v1.1)
-├── components/
-│   ├── ProviderTable.tsx           # Filterable/sortable directory table
-│   ├── ComplianceBadges.tsx        # Visual compliance indicators
-│   ├── FilterBar.tsx               # Filter controls (type, residency, DPA, etc.)
-│   └── ProviderCard.tsx            # Detail card for profile page
-├── lib/
-│   └── providers.ts                # Data loading utilities
+│   ├── app/                           # Next.js App Router
+│   │   ├── layout.tsx
+│   │   ├── page.tsx                   # Homepage: model search + compliance filter
+│   │   ├── model/
+│   │   │   └── [id]/
+│   │   │       └── page.tsx           # Model detail: all providers, pricing, compliance
+│   │   ├── provider/
+│   │   │   └── [slug]/
+│   │   │       └── page.tsx           # Provider profile: compliance deep-dive
+│   │   └── api/
+│   │       └── cron/
+│   │           └── sync-models/
+│   │               └── route.ts       # Vercel Cron handler (nightly sync)
+│   ├── db/
+│   │   └── schema.ts                  # Drizzle schema (models + sync_log tables)
+│   └── lib/
+│       ├── db.ts                      # Neon/Drizzle client
+│       ├── models.ts                  # DB query helpers
+│       ├── providers.ts               # Provider JSON loading utilities
+│       └── sync/
+│           └── run.ts                 # Sync logic (OpenRouter + EU adapters)
+├── drizzle/                           # Generated migration SQL (do not hand-edit)
 ├── .github/
 │   └── ISSUE_TEMPLATE/
-│       └── report-change.yml       # Structured GitHub issue form for reports
+│       └── report-change.yml          # Structured GitHub issue form for reports
 ├── docs/
-│   ├── IDEA.md                     # Original idea document
-│   └── PLAN.md                     # Copy of this plan (for easy reference)
+│   ├── IDEA.md
+│   └── PLAN.md
 ├── public/
-│   └── logos/                      # Provider SVG logos
-├── LICENSE                         # MIT for code
-├── LICENSE-DATA                    # CC BY-NC-SA 4.0 for data/providers/
-├── next.config.ts
+│   └── logos/                         # Provider SVG logos
+├── drizzle.config.ts
+├── vercel.json                        # Cron schedule (0 2 * * *)
+├── next.config.ts                     # serverExternalPackages for Neon
 ├── tailwind.config.ts
 ├── tsconfig.json
 └── package.json
@@ -259,13 +126,14 @@ gdpr-ai-directory/
 
 ### Tech Stack
 
-- **Framework:** Next.js 15 (App Router)
+- **Framework:** Next.js 16 (App Router)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS
-- **Validation:** Zod (for provider data schema)
-- **Data:** Static JSON files, loaded at build time via `fs` in server components
+- **Validation:** Zod (provider data schema)
+- **Provider data:** Flat JSON files, loaded at build time via `fs` in server components
+- **Model catalog:** Neon (Postgres) via Drizzle ORM
 - **Deployment:** Vercel
-- **Reports:** GitHub Issues API (via `@octokit/rest` or direct fetch)
+- **Reports:** GitHub Issue Forms (no backend required)
 
 ---
 
@@ -274,75 +142,94 @@ gdpr-ai-directory/
 ### User Flow
 
 1. User clicks "Report a change" on a provider page
-2. Link opens the GitHub issue form at `https://github.com/codeattack-io/gdpr-ai-directory/issues/new?template=report-change.yml` with the provider slug pre-filled via query params
-3. User fills in the structured form: provider (dropdown), change type (dropdown), details (textarea), source URL (required)
-4. User submits — creates a labeled GitHub Issue directly
+2. Link opens the GitHub issue form with the provider slug pre-filled
+3. User fills in: provider, change type, details, source URL (required)
+4. Submits — creates a labeled GitHub Issue directly
 
 ### Technical Implementation
 
-- **No backend code required.** The report-a-change flow is handled entirely by GitHub Issue Forms.
+- **No backend required.** Handled entirely by GitHub Issue Forms.
 - Issue template: `.github/ISSUE_TEMPLATE/report-change.yml`
-- Issues are automatically labeled: `report`, `unverified`
-- GitHub account required to submit — natural spam filter, accountable submitters
-- "Report a change" button on provider pages is a plain `<a href="...">` link to the GitHub issue form with `?title=[Report]+{slug}:+` pre-filled
-
-### What this replaces from the original plan
-
-- ~~`ReportChangeForm.tsx`~~ — not needed; GitHub form handles UI
-- ~~`src/app/api/report/route.ts`~~ — not needed; no API route required
-- ~~`lib/github.ts`~~ — not needed; no Octokit integration required
-- ~~Rate limiting logic~~ — not needed; GitHub account requirement filters noise
+- Auto-labeled: `report`, `unverified`
+- GitHub account required — natural spam filter
 
 ---
 
 ## Build Phases
 
-### Phase 0: Data Foundation
+### Phase 0: Data Foundation — COMPLETE ✅
 
-> Goal: Have verified compliance data for 20+ providers before writing any UI
+1. ✅ Project setup (Next.js 16, TypeScript, Tailwind, Zod)
+2. ✅ JSON schema defined (`data/schema.ts`) — removed `models` field, added `dataLeavesEuAtInference`
+3. ✅ `scripts/import-models-dev.ts` — seeds provider identity stubs from models.dev
+4. ✅ `scripts/validate-data.ts` — validates all provider JSONs against schema
+5. ✅ 111 provider JSON files created and updated to current schema
+6. ✅ Flat repo structure (collapsed from earlier monorepo layout)
 
-1. Set up the project (Next.js, TypeScript, Tailwind, Zod)
-2. Define the JSON schema and TypeScript types in `data/schema.ts`
-3. Write `scripts/import-models-dev.ts` — import seed data from models.dev repo
-4. Copy provider logos to `public/logos/`
-5. Write `scripts/validate-data.ts` — validate all provider JSONs against schema
-6. Curate the MVP provider list (~20-25 from the full import)
-7. AI-assisted drafting of compliance profiles for MVP providers
-8. Manual verification pass for all MVP providers
-9. Add LICENSE (MIT) and LICENSE-DATA (CC BY-NC-SA 4.0)
+### Phase 1: Model Catalog + Sync — COMPLETE ✅
 
-### Phase 1: MVP Site
+1. ✅ Drizzle ORM installed and configured (`drizzle.config.ts`)
+2. ✅ DB schema at `src/db/schema.ts` — `models` table (composite PK `id + provider_slug`), `sync_log` table
+3. ✅ Migration SQL generated in `drizzle/`
+4. ✅ Neon/Drizzle client at `src/lib/db.ts`
+5. ✅ Query helpers at `src/lib/models.ts`
+6. ✅ Sync logic at `src/lib/sync/run.ts` (OpenRouter + EU provider adapters)
+7. ✅ Vercel Cron route at `src/app/api/cron/sync-models/route.ts`
+8. ✅ `vercel.json` with cron schedule (`0 2 * * *`)
+9. ✅ `scripts/sync-models.ts` — CLI wrapper for manual sync
+10. ✅ `.env.local.example` with `DATABASE_URL` and `CRON_SECRET`
+11. ✅ Run `bun db:migrate` against Neon — complete
+12. ✅ Run `bun sync:models` — model catalog populated successfully
 
-> Goal: Ship a publicly accessible directory with filterable table and provider profiles
+### Phase 2: MVP Frontend — NEXT ⬅️
 
-1. Homepage: filterable directory table
-   - Columns: provider name, type, HQ, EU-only, DPA, trains on data, certifications, last verified
-   - Filters: type (API/cloud/gateway), EU-only routing, DPA available, data residency region
-   - Sort: by name, by last verified date
-2. Provider detail page (`/provider/[slug]`)
+> Goal: Ship a publicly accessible, model-first directory with compliance filtering
+
+1. **Homepage** (`src/app/page.tsx`)
+   - Model search: text input, filters by compliance profile (preset buttons + custom toggles)
+   - Results: model name, provider, pricing, key compliance signals (EU-only, DPA, trains on data)
+   - Compliance filter profiles as URL params (shareable links)
+   - Sort: by price, by compliance strictness, by provider name
+
+2. **Model detail page** (`src/app/model/[id]/page.tsx`)
+   - List of all providers offering this model
+   - Per-provider: pricing, latency (if available), compliance snapshot
+   - Compliance filter applies inline
+   - Link to full provider profile
+
+3. **Provider profile page** (`src/app/provider/[slug]/page.tsx`)
    - Full compliance profile with all fields
-   - Source URLs for verification
+   - Source URLs for each claim
    - Plain-language notes
    - "Last verified" date prominently displayed
    - "Report a change" button
-3. Report-a-change form + GitHub Issues API integration
-4. SEO fundamentals
+
+4. **Shared components**
+   - `ComplianceBadges.tsx` — visual indicators (EU-only, DPA, SCCs, etc.)
+   - `FilterBar.tsx` — compliance filter preset buttons + custom toggle panel
+   - `ModelTable.tsx` — searchable/filterable model listing
+   - `ProviderCard.tsx` — compliance summary card
+
+5. **SEO fundamentals**
    - Meta titles/descriptions per page
-   - Structured data (JSON-LD) for each provider
+   - JSON-LD structured data (Dataset, Organization per provider)
    - Sitemap generation
-   - Target queries: "GDPR AI provider", "EU AI inference GDPR", "{provider} GDPR compliant", "EU alternative to {provider}"
-5. Deploy to Vercel
+   - Target queries: "GDPR AI provider", "EU AI inference GDPR", "{provider} GDPR compliant", "EU alternative to {provider}", "{model name} GDPR"
 
-### Phase 2: Growth (post-launch, based on traction)
+6. **Deploy to Vercel** — connect `DATABASE_URL` and `CRON_SECRET` env vars
 
-- Side-by-side comparison view (`/compare?providers=openai,mistral`)
+### Phase 3: Growth (post-launch, based on traction)
+
+- Side-by-side provider comparison (`/compare?providers=openai,mistral`)
 - Editorial content: "GDPR guide for {provider}" articles
+- EU-native provider sync adapters (Berget, Stackit, Aleph Alpha, OVHcloud, Scaleway, SAP AI Core)
+- OpenRouter provider slug mapping table (maps OpenRouter IDs → our `provider_slug` values)
 - Email digest: compliance status change notifications
 - Provider self-submission and verification flow
 - Embedded compliance badge widget
 - API access to compliance data (potential monetization)
 
-### Phase 3: Gateway (separate scope, contingent on demand)
+### Phase 4: Gateway (separate scope, contingent on demand)
 
 - EU-routing proxy API
 - Requires: EU infrastructure, signed DPAs with upstream providers, legal review
@@ -358,6 +245,7 @@ gdpr-ai-directory/
 - "EU AI inference GDPR compliant"
 - "GDPR compliant LLM API"
 - "{provider name} GDPR" (per-provider pages)
+- "{model name} GDPR" (per-model pages — new with model-first architecture)
 - "EU alternative to OpenAI / Anthropic / etc."
 - "AI vendor GDPR DPA"
 - "EU AI Act inference provider"
@@ -365,6 +253,7 @@ gdpr-ai-directory/
 ### Content Structure
 
 - Each provider page is a long-tail SEO page
+- Each model page is a long-tail SEO page (new)
 - Homepage targets the broad "GDPR AI directory" query
 - Structured data (JSON-LD: Dataset, Organization per provider)
 - Canonical URLs, proper meta tags, Open Graph images
@@ -393,6 +282,7 @@ gdpr-ai-directory/
 | Provider claims change silently  | High — data becomes wrong                   | Report-a-change flow, periodic manual review cycle (quarterly)                           |
 | Liability from compliance claims | High — legal exposure                       | Present facts, not judgments; no automated scoring; clear disclaimers; source everything |
 | Someone forks the data           | Low — CC BY-NC-SA prevents commercial reuse | Split license protects commercial value while maintaining transparency                   |
+| Model catalog drift              | Medium — DB out of sync with reality        | Nightly cron sync; sync_log table for observability                                      |
 
 ---
 
@@ -406,4 +296,4 @@ Include on every page:
 
 ## Next Step
 
-Start a new session and begin Phase 0: data foundation.
+**Phase 2: MVP Frontend.** Start with the homepage model search UI, then model detail page, then provider profile page.
