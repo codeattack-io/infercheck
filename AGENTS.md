@@ -24,6 +24,20 @@ git add -A && git commit -m "<type>: <short description>"
 
 Use conventional commit types: `feat`, `fix`, `chore`, `docs`, `refactor`, `data`.
 
+## Database migrations
+
+Always use the Drizzle CLI to manage migrations. Never create or edit SQL files in `drizzle/` by hand.
+
+```bash
+# After changing src/db/schema.ts, generate a new migration:
+bun db:generate
+
+# Apply pending migrations to the database:
+bun db:migrate
+```
+
+The generated SQL in `drizzle/` is committed to the repo as an audit trail — but it is always produced by `drizzle-kit generate`, never written manually.
+
 ## This is NOT the Next.js you know
 
 This version (16) has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
