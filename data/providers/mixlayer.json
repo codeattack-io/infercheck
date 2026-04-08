@@ -1,0 +1,15 @@
+{
+  "slug": "mixlayer",
+  "name": "Mixlayer",
+  "type": "api_provider",
+  "website": "https://docs.mixlayer.com",
+  "apiDocsUrl": "https://docs.mixlayer.com",
+  "logoPath": "/logos/mixlayer.svg",
+  "compliance": null,
+  "models": [],
+  "pricingTier": null,
+  "lastVerified": null,
+  "verifiedBy": "stub",
+  "sourceUrls": [],
+  "notes": null
+}

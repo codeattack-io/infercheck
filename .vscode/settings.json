@@ -1,0 +1,4 @@
+{
+  // Use the TypeScript version from the app workspace (where it's installed)
+  "js/ts.tsdk.path": "node_modules/typescript/lib"
+}
