@@ -191,26 +191,33 @@ async function fetchScalewayModels(): Promise<ModelRow[]> {
       headers: { Authorization: `Bearer ${apiKey}` },
     });
     if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+    // Response: OpenAI-compat { object: "list", data: [{ id, object, created, owned_by }] }
     const data = (await res.json()) as {
-      models?: Array<{ id: string; name?: string }>;
-      data?: Array<{ id: string; name?: string }>;
+      data: Array<{ id: string; object?: string }>;
     };
-    // Scaleway may return { models: [...] } or OpenAI-compat { data: [...] }
-    const list = data.models ?? data.data ?? [];
     const now = new Date();
-    return list.map((m) => ({
-      id: `scaleway/${m.id}`,
-      providerSlug: "scaleway",
-      displayName: m.name ?? m.id.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
-      modality: m.id.includes("pixtral") || m.id.includes("vision") ? "multimodal" : "text",
-      contextWindow: null,
-      inputPricePerMTokens: null,
-      outputPricePerMTokens: null,
-      tokensPerSecond: null,
-      syncSource: "provider_api",
-      isActive: true,
-      lastSyncedAt: now,
-    }));
+    return data.data
+      .filter((m) => !m.object || m.object === "model")
+      .map((m) => {
+        const id = m.id;
+        const isAudio = id.includes("whisper") || id.includes("voxtral");
+        const isMultimodal = !isAudio && (id.includes("pixtral") || id.includes("vision"));
+        const isEmbedding = !isAudio && !isMultimodal && (id.includes("embed") || id.includes("bge"));
+        const modality = isAudio ? "audio" : isMultimodal ? "multimodal" : isEmbedding ? "embedding" : "text";
+        return {
+          id: `scaleway/${id}`,
+          providerSlug: "scaleway",
+          displayName: id.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+          modality,
+          contextWindow: null,
+          inputPricePerMTokens: null,
+          outputPricePerMTokens: null,
+          tokensPerSecond: null,
+          syncSource: "provider_api",
+          isActive: true,
+          lastSyncedAt: now,
+        };
+      });
   } catch (e) {
     console.warn(`  Scaleway adapter failed: ${e}`);
     return [];
