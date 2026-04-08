@@ -140,10 +140,23 @@ async function fetchOpenRouterModels(): Promise<ModelRow[]> {
 
 async function fetchMistralModels(): Promise<ModelRow[]> {
   console.log("Fetching Mistral model catalog…");
+  const apiKey = process.env.MISTRAL_API_KEY;
+  if (!apiKey) {
+    console.warn("  Mistral adapter skipped: MISTRAL_API_KEY not set");
+    return [];
+  }
   try {
-    const res = await fetch("https://api.mistral.ai/v1/models");
-    if (!res.ok) throw new Error(`${res.status}`);
-    const data = (await res.json()) as { data: Array<{ id: string; object: string }> };
+    const res = await fetch("https://api.mistral.ai/v1/models", {
+      headers: { Authorization: `Bearer ${apiKey}` },
+    });
+    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+    const data = (await res.json()) as {
+      data: Array<{
+        id: string;
+        object: string;
+        capabilities?: { completion_chat?: boolean; fine_tuning?: boolean };
+      }>;
+    };
     const now = new Date();
     return data.data
       .filter((m) => m.object === "model")
@@ -167,32 +180,41 @@ async function fetchMistralModels(): Promise<ModelRow[]> {
 }
 
 async function fetchScalewayModels(): Promise<ModelRow[]> {
-  console.log("Scaleway: no public pricing API — using manual seed");
-  const now = new Date();
-  // Source: https://www.scaleway.com/en/docs/ai-data/generative-apis/reference-content/supported-models/
-  // Prices: https://www.scaleway.com/en/pricing/generative-apis/
-  const SEED = [
-    { id: "llama-3.3-70b-instruct", name: "Llama 3.3 70B Instruct", i: 0.6, o: 0.6, ctx: 131072 },
-    { id: "llama-3.1-8b-instruct", name: "Llama 3.1 8B Instruct", i: 0.1, o: 0.1, ctx: 131072 },
-    { id: "mistral-nemo-instruct-2407", name: "Mistral Nemo Instruct", i: 0.15, o: 0.15, ctx: 32768 },
-    { id: "mixtral-8x7b-instruct-v0.1", name: "Mixtral 8x7B Instruct", i: 0.4, o: 0.4, ctx: 32768 },
-    { id: "pixtral-12b-2409", name: "Pixtral 12B", i: 0.15, o: 0.15, ctx: 32768 },
-    { id: "qwen2.5-coder-32b-instruct", name: "Qwen 2.5 Coder 32B", i: 0.2, o: 0.2, ctx: 32768 },
-    { id: "deepseek-r1", name: "DeepSeek R1", i: 1.35, o: 5.4, ctx: 65536 },
-  ];
-  return SEED.map((m) => ({
-    id: `scaleway/${m.id}`,
-    providerSlug: "scaleway",
-    displayName: m.name,
-    modality: m.id.includes("pixtral") ? "multimodal" : "text",
-    contextWindow: m.ctx,
-    inputPricePerMTokens: m.i.toFixed(6),
-    outputPricePerMTokens: m.o.toFixed(6),
-    tokensPerSecond: null,
-    syncSource: "manual",
-    isActive: true,
-    lastSyncedAt: now,
-  }));
+  console.log("Fetching Scaleway model catalog…");
+  const apiKey = process.env.SCW_SECRET_KEY;
+  if (!apiKey) {
+    console.warn("  Scaleway adapter skipped: SCW_SECRET_KEY not set");
+    return [];
+  }
+  try {
+    const res = await fetch("https://api.scaleway.ai/v1/models", {
+      headers: { Authorization: `Bearer ${apiKey}` },
+    });
+    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+    const data = (await res.json()) as {
+      models?: Array<{ id: string; name?: string }>;
+      data?: Array<{ id: string; name?: string }>;
+    };
+    // Scaleway may return { models: [...] } or OpenAI-compat { data: [...] }
+    const list = data.models ?? data.data ?? [];
+    const now = new Date();
+    return list.map((m) => ({
+      id: `scaleway/${m.id}`,
+      providerSlug: "scaleway",
+      displayName: m.name ?? m.id.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+      modality: m.id.includes("pixtral") || m.id.includes("vision") ? "multimodal" : "text",
+      contextWindow: null,
+      inputPricePerMTokens: null,
+      outputPricePerMTokens: null,
+      tokensPerSecond: null,
+      syncSource: "provider_api",
+      isActive: true,
+      lastSyncedAt: now,
+    }));
+  } catch (e) {
+    console.warn(`  Scaleway adapter failed: ${e}`);
+    return [];
+  }
 }
 
 async function fetchOVHcloudModels(): Promise<ModelRow[]> {
@@ -224,54 +246,82 @@ async function fetchOVHcloudModels(): Promise<ModelRow[]> {
 }
 
 async function fetchBergetModels(): Promise<ModelRow[]> {
-  console.log("Berget AI: no public pricing API — using manual seed");
-  const now = new Date();
-  // Source: https://docs.berget.ai/models  Prices: https://berget.ai/pricing
-  const SEED = [
-    { id: "llama-3.3-70b-instruct", name: "Llama 3.3 70B Instruct", i: 0.5, o: 0.5, ctx: 131072 },
-    { id: "llama-3.1-8b-instruct", name: "Llama 3.1 8B Instruct", i: 0.06, o: 0.06, ctx: 131072 },
-    { id: "mistral-small-2503", name: "Mistral Small 2503", i: 0.1, o: 0.3, ctx: 32768 },
-    { id: "mistral-nemo-2407", name: "Mistral Nemo", i: 0.1, o: 0.1, ctx: 128000 },
-    { id: "deepseek-r1-distill-llama-70b", name: "DeepSeek R1 Distill Llama 70B", i: 0.5, o: 0.5, ctx: 131072 },
-  ];
-  return SEED.map((m) => ({
-    id: `berget/${m.id}`,
-    providerSlug: "berget-ai",
-    displayName: m.name,
-    modality: "text",
-    contextWindow: m.ctx,
-    inputPricePerMTokens: m.i.toFixed(6),
-    outputPricePerMTokens: m.o.toFixed(6),
-    tokensPerSecond: null,
-    syncSource: "manual",
-    isActive: true,
-    lastSyncedAt: now,
-  }));
+  console.log("Fetching Berget AI model catalog…");
+  try {
+    const res = await fetch("https://api.berget.ai/v1/models");
+    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+    const data = (await res.json()) as {
+      data: Array<{
+        id: string;
+        name?: string;
+        model_type?: string;
+        capabilities?: { vision?: boolean; embeddings?: boolean };
+        pricing?: { input?: number; output?: number };
+      }>;
+    };
+    const now = new Date();
+    return data.data.map((m) => {
+      const isEmbedding = m.capabilities?.embeddings === true;
+      const isVision = m.capabilities?.vision === true;
+      const modality = isEmbedding ? "embedding" : isVision ? "multimodal" : "text";
+      const inputRaw = m.pricing?.input ?? null;
+      const outputRaw = m.pricing?.output ?? null;
+      return {
+        id: `berget/${m.id}`,
+        providerSlug: "berget-ai",
+        displayName: m.name ?? m.id,
+        modality,
+        contextWindow: null,
+        inputPricePerMTokens: inputRaw != null ? (inputRaw * 1_000_000).toFixed(6) : null,
+        outputPricePerMTokens: outputRaw != null ? (outputRaw * 1_000_000).toFixed(6) : null,
+        tokensPerSecond: null,
+        syncSource: "provider_api",
+        isActive: true,
+        lastSyncedAt: now,
+      };
+    });
+  } catch (e) {
+    console.warn(`  Berget AI adapter failed: ${e}`);
+    return [];
+  }
 }
 
 async function fetchStackitModels(): Promise<ModelRow[]> {
-  console.log("Stackit: no public pricing API — using manual seed");
-  const now = new Date();
-  // Source: https://docs.stackit.cloud/stackit/en/models-and-pricing-for-stackit-model-serving-458683.html
-  const SEED = [
-    { id: "llama-3.3-70b-instruct", name: "Llama 3.3 70B Instruct", i: 0.4, o: 0.4, ctx: 131072 },
-    { id: "llama-3.1-8b-instruct", name: "Llama 3.1 8B Instruct", i: 0.05, o: 0.05, ctx: 131072 },
-    { id: "mistral-7b-instruct", name: "Mistral 7B Instruct", i: 0.05, o: 0.05, ctx: 32768 },
-    { id: "mixtral-8x7b-instruct", name: "Mixtral 8x7B Instruct", i: 0.4, o: 0.4, ctx: 32768 },
-  ];
-  return SEED.map((m) => ({
-    id: `stackit/${m.id}`,
-    providerSlug: "stackit",
-    displayName: m.name,
-    modality: "text",
-    contextWindow: m.ctx,
-    inputPricePerMTokens: m.i.toFixed(6),
-    outputPricePerMTokens: m.o.toFixed(6),
-    tokensPerSecond: null,
-    syncSource: "manual",
-    isActive: true,
-    lastSyncedAt: now,
-  }));
+  console.log("Fetching Stackit model catalog…");
+  const apiKey = process.env.STACKIT_API_KEY;
+  if (!apiKey) {
+    console.warn("  Stackit adapter skipped: STACKIT_API_KEY not set");
+    return [];
+  }
+  try {
+    const res = await fetch(
+      "https://api.openai-compat.model-serving.eu01.onstackit.cloud/v1/models",
+      { headers: { Authorization: `Bearer ${apiKey}` } },
+    );
+    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+    const data = (await res.json()) as {
+      data: Array<{ id: string; object?: string }>;
+    };
+    const now = new Date();
+    return data.data
+      .filter((m) => !m.object || m.object === "model")
+      .map((m) => ({
+        id: `stackit/${m.id}`,
+        providerSlug: "stackit",
+        displayName: m.id.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
+        modality: "text",
+        contextWindow: null,
+        inputPricePerMTokens: null,
+        outputPricePerMTokens: null,
+        tokensPerSecond: null,
+        syncSource: "provider_api",
+        isActive: true,
+        lastSyncedAt: now,
+      }));
+  } catch (e) {
+    console.warn(`  Stackit adapter failed: ${e}`);
+    return [];
+  }
 }
 
 async function fetchAlephAlphaModels(): Promise<ModelRow[]> {
