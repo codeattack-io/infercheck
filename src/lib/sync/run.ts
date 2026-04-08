@@ -153,26 +153,53 @@ async function fetchMistralModels(): Promise<ModelRow[]> {
     const data = (await res.json()) as {
       data: Array<{
         id: string;
+        name: string; // canonical versioned model name; aliases have id !== name
         object: string;
-        capabilities?: { completion_chat?: boolean; fine_tuning?: boolean };
+        max_context_length: number | null;
+        deprecation: string | null;
+        capabilities: {
+          vision?: boolean;
+          audio?: boolean;
+          audio_transcription?: boolean;
+          audio_transcription_realtime?: boolean;
+          audio_speech?: boolean;
+          completion_chat?: boolean;
+          fine_tuning?: boolean;
+        };
       }>;
     };
     const now = new Date();
     return data.data
-      .filter((m) => m.object === "model")
-      .map((m) => ({
-        id: `mistralai/${m.id}`,
-        providerSlug: "mistral",
-        displayName: m.id.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
-        modality: "text",
-        contextWindow: null,
-        inputPricePerMTokens: null,
-        outputPricePerMTokens: null,
-        tokensPerSecond: null,
-        syncSource: "provider_api",
-        isActive: true,
-        lastSyncedAt: now,
-      }));
+      .filter((m) => m.object === "model" && m.id === m.name) // deduplicate: skip aliases
+      .map((m) => {
+        const c = m.capabilities;
+        const isAudio =
+          c.audio || c.audio_transcription || c.audio_transcription_realtime || c.audio_speech;
+        const isMultimodal = !isAudio && c.vision;
+        const isEmbedding = !isAudio && !isMultimodal && !c.completion_chat && !c.fine_tuning;
+        const modality = isAudio
+          ? "audio"
+          : isMultimodal
+            ? "multimodal"
+            : isEmbedding
+              ? "embedding"
+              : "text";
+        return {
+          id: `mistralai/${m.id}`,
+          providerSlug: "mistral",
+          displayName: m.id
+            .replace(/-/g, " ")
+            .replace(/\b\w/g, (c) => c.toUpperCase()),
+          modality,
+          contextWindow: m.max_context_length ?? null,
+          inputPricePerMTokens: null,
+          outputPricePerMTokens: null,
+          tokensPerSecond: null,
+          syncSource: "provider_api",
+          isActive: m.deprecation === null, // deprecated models → inactive
+          lastSyncedAt: now,
+        };
+      });
   } catch (e) {
     console.warn(`  Mistral adapter failed: ${e}`);
     return [];
