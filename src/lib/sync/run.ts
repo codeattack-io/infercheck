@@ -394,30 +394,14 @@ async function fetchStackitModels(): Promise<ModelRow[]> {
 }
 
 async function fetchAlephAlphaModels(): Promise<ModelRow[]> {
-  console.log("Aleph Alpha: no public pricing API — using manual seed");
-  const now = new Date();
-  // Source: https://docs.aleph-alpha.com/  Prices: https://aleph-alpha.com/pricing/
-  const SEED = [
-    { id: "luminous-supreme-control", name: "Luminous Supreme Control", i: 87.5, o: 87.5, ctx: 2048 },
-    { id: "luminous-supreme", name: "Luminous Supreme", i: 52.5, o: 52.5, ctx: 2048 },
-    { id: "luminous-extended-control", name: "Luminous Extended Control", i: 27.5, o: 27.5, ctx: 2048 },
-    { id: "luminous-extended", name: "Luminous Extended", i: 17.5, o: 17.5, ctx: 2048 },
-    { id: "luminous-base-control", name: "Luminous Base Control", i: 10.5, o: 10.5, ctx: 2048 },
-    { id: "luminous-base", name: "Luminous Base", i: 7.0, o: 7.0, ctx: 2048 },
-  ];
-  return SEED.map((m) => ({
-    id: `aleph-alpha/${m.id}`,
-    providerSlug: "aleph-alpha",
-    displayName: m.name,
-    modality: "text",
-    contextWindow: m.ctx,
-    inputPricePerMTokens: m.i.toFixed(6),
-    outputPricePerMTokens: m.o.toFixed(6),
-    tokensPerSecond: null,
-    syncSource: "manual",
-    isActive: true,
-    lastSyncedAt: now,
-  }));
+  // Aleph Alpha pivoted in 2024 to bespoke enterprise/government SLLMs (PhariaAI).
+  // The public Luminous inference API has been shut down — /models_available is deprecated
+  // and unreachable. No public model catalog or self-serve pricing exists anymore.
+  // The provider JSON (data/providers/aleph-alpha.json) documents this correctly.
+  // This adapter intentionally returns [] so the upsert skips aleph-alpha entirely
+  // without deactivating any rows (upsertModels guards against empty arrays).
+  console.log("Aleph Alpha: public inference API retired — skipping");
+  return [];
 }
 
 // ─── Adapter registry ─────────────────────────────────────────────────────────
