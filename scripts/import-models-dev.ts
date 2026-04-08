@@ -1,21 +1,23 @@
 /**
  * scripts/import-models-dev.ts
  *
- * Imports seed data from the models.dev GitHub repo (dev branch).
- * Fetches each provider's provider.toml and logo.svg, then generates
- * stub JSON files in data/providers/ and copies logos to public/logos/.
+ * Imports provider identity data from the models.dev GitHub repo (dev branch).
+ * Fetches each provider's provider.toml and logo.svg, then generates stub JSON
+ * files in data/providers/ and copies logos to public/logos/.
+ *
+ * Model catalog is NOT imported here — it is managed separately by the nightly
+ * sync job (scripts/sync-models.ts → src/lib/sync/run.ts → Neon DB).
  *
  * Usage:
- *   bun run import                  # create stubs for new providers only
- *   bun run import -- --force       # overwrite all existing stubs
- *   bun run import -- --models-only # re-fetch model lists for existing stubs
+ *   bun run import                 # create stubs for new providers only
+ *   bun run import -- --force      # overwrite all existing stubs
  *
  * Set GITHUB_TOKEN env var to avoid GitHub API rate limits (60 req/hr anon → 5000/hr auth):
  *   GITHUB_TOKEN=ghp_... bun run import
  */
 
 import { join } from "path";
-import { existsSync, mkdirSync, writeFileSync, readFileSync } from "fs";
+import { existsSync, mkdirSync, writeFileSync } from "fs";
 
 const REPO_OWNER = "anomalyco";
 const REPO_NAME = "models.dev";
@@ -28,7 +30,6 @@ const DATA_DIR = join(ROOT, "data", "providers");
 const LOGOS_DIR = join(ROOT, "public", "logos");
 
 const FORCE = process.argv.includes("--force");
-const MODELS_ONLY = process.argv.includes("--models-only");
 
 // GitHub token — set via env to raise rate limit from 60 to 5000 req/hr
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN ?? null;
@@ -41,8 +42,8 @@ if (!GITHUB_TOKEN) {
 
 /**
  * Provider directory names (from models.dev) that should be classified as
- * gateways. Gateways route to many upstream models — we skip their model
- * list import because it would be exhaustive and goes stale fast.
+ * gateways. Gateways route to many upstream providers — model catalog is
+ * handled by the sync job, not imported here.
  */
 const GATEWAY_DIR_NAMES = new Set([
   "cloudflare-ai-gateway",
@@ -54,10 +55,10 @@ const GATEWAY_DIR_NAMES = new Set([
   "fastrouter",
   "vercel-ai-gateway",
   "portkey",
-  "weights-biases", // W&B Weave is an observability/proxy layer
+  "weights-biases",
 ]);
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
+// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function slugify(name: string): string {
   return name
@@ -118,34 +119,7 @@ interface ProviderToml {
   api?: string;
 }
 
-interface ModelToml {
-  name?: string;
-}
-
 // ─── Main ─────────────────────────────────────────────────────────────────────
-
-async function fetchModelNames(dirName: string, rawBase: string): Promise<string[]> {
-  const modelsEntries = await fetchJson<GitHubEntry[]>(
-    `${API_BASE}/contents/providers/${dirName}/models?ref=${REPO_BRANCH}`
-  );
-  const modelNames: string[] = [];
-  if (!modelsEntries || !Array.isArray(modelsEntries)) return modelNames;
-
-  const modelFiles = modelsEntries.filter((e) => e.type === "file" && e.name.endsWith(".toml"));
-  // Fetch up to 10 model TOMLs to extract names
-  for (const mf of modelFiles.slice(0, 10)) {
-    const mToml = await fetchText(`${rawBase}/models/${mf.name}`);
-    if (mToml) {
-      try {
-        const m = Bun.TOML.parse(mToml) as ModelToml;
-        if (m.name) modelNames.push(m.name);
-      } catch {
-        // ignore malformed TOML
-      }
-    }
-  }
-  return modelNames;
-}
 
 async function main() {
   mkdirSync(DATA_DIR, { recursive: true });
@@ -163,7 +137,6 @@ async function main() {
   console.log(`Found ${providerDirs.length} providers.\n`);
 
   let created = 0;
-  let updated = 0;
   let skipped = 0;
   let failed = 0;
 
@@ -171,58 +144,6 @@ async function main() {
     const dirName = dir.name;
     const rawBase = `${RAW_BASE}/providers/${dirName}`;
     const isGateway = GATEWAY_DIR_NAMES.has(dirName);
-
-    // ── --models-only mode: patch existing files without full re-import ──
-    if (MODELS_ONLY) {
-      // Fetch provider.toml just to get the slug/name
-      const tomlText = await fetchText(`${rawBase}/provider.toml`);
-      if (!tomlText) {
-        skipped++;
-        continue;
-      }
-      let parsed: ProviderToml;
-      try {
-        parsed = Bun.TOML.parse(tomlText) as ProviderToml;
-      } catch {
-        failed++;
-        continue;
-      }
-
-      const name = parsed.name ?? dirName;
-      const slug = slugify(name);
-      const outPath = join(DATA_DIR, `${slug}.json`);
-
-      if (!existsSync(outPath)) {
-        console.log(`  [SKIP] ${slug}: file not found (run without --models-only first)`);
-        skipped++;
-        continue;
-      }
-
-      const existing = JSON.parse(readFileSync(outPath, "utf-8"));
-
-      // Gateways keep an empty model list by design
-      if (isGateway) {
-        if (existing.type !== "gateway") {
-          existing.type = "gateway";
-          writeFileSync(outPath, JSON.stringify(existing, null, 2) + "\n", "utf-8");
-          console.log(`  [OK]   ${slug}: updated type → gateway`);
-          updated++;
-        } else {
-          console.log(`  [SKIP] ${slug}: gateway, no model list needed`);
-          skipped++;
-        }
-        continue;
-      }
-
-      const modelNames = await fetchModelNames(dirName, rawBase);
-      existing.models = modelNames;
-      writeFileSync(outPath, JSON.stringify(existing, null, 2) + "\n", "utf-8");
-      console.log(`  [OK]   ${slug}: updated models (${modelNames.length})`);
-      updated++;
-      continue;
-    }
-
-    // ── Normal import mode ────────────────────────────────────────────────────
 
     // Fetch provider.toml
     const tomlText = await fetchText(`${rawBase}/provider.toml`);
@@ -251,9 +172,6 @@ async function main() {
       continue;
     }
 
-    // Fetch model names — skip for gateways
-    const modelNames = isGateway ? [] : await fetchModelNames(dirName, rawBase);
-
     // Copy logo
     let logoPath: string | null = null;
     const logoContent = await fetchText(`${rawBase}/logo.svg`);
@@ -265,7 +183,7 @@ async function main() {
       logoPath = `/logos/${slug}.svg`;
     }
 
-    // Determine website from doc URL (strip path)
+    // Derive website from doc URL (strip path)
     let website: string | null = null;
     if (parsed.doc) {
       try {
@@ -276,19 +194,15 @@ async function main() {
       }
     }
 
-    // Determine provider type
-    const providerType = isGateway ? "gateway" : "api_provider";
-
-    // Build stub JSON
+    // Build stub — no models field; model catalog is managed by sync-models
     const stub = {
       slug,
       name,
-      type: providerType,
+      type: isGateway ? "gateway" : "api_provider",
       website,
       apiDocsUrl: parsed.doc ?? null,
       logoPath,
       compliance: null,
-      models: modelNames,
       pricingTier: null,
       lastVerified: null,
       verifiedBy: "stub",
@@ -297,13 +211,12 @@ async function main() {
     };
 
     writeFileSync(outPath, JSON.stringify(stub, null, 2) + "\n", "utf-8");
-    const modelNote = isGateway ? "gateway" : `${modelNames.length} models`;
-    console.log(`  [OK]   ${slug} (${name}) — ${modelNote}`);
+    console.log(`  [OK]   ${slug} (${name})`);
     created++;
   }
 
-  const mode = MODELS_ONLY ? "models-only update" : "import";
-  console.log(`\nDone (${mode}). Created: ${created}, Updated: ${updated}, Skipped: ${skipped}, Failed: ${failed}`);
+  console.log(`\nDone. Created: ${created}, Skipped: ${skipped}, Failed: ${failed}`);
+  console.log("Run 'bun run sync:models' to populate the model catalog in Neon.");
 }
 
 main().catch((e) => {
