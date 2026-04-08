@@ -6,7 +6,6 @@
   "apiDocsUrl": "https://platform.inceptionlabs.ai/docs",
   "logoPath": "/logos/inception.svg",
   "compliance": null,
-  "models": ["Mercury 2", "Mercury Coder", "Mercury Edit", "Mercury"],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

@@ -8,8 +8,21 @@
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
-      "regions": ["US", "EU", "DE", "FR", "NO", "SE", "CH", "PL", "IT", "ES", "GB"],
+      "regions": [
+        "US",
+        "EU",
+        "DE",
+        "FR",
+        "NO",
+        "SE",
+        "CH",
+        "PL",
+        "IT",
+        "ES",
+        "GB"
+      ],
       "euOnly": true,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "EU regions include: Sweden Central, France Central, Germany West Central, Norway East, Poland Central, Italy North, Spain Central, Switzerland North, Switzerland West. DataZone EU deployments keep all data within EU member nations. Microsoft EU Data Boundary product provides an additional contractual guarantee that all EU customer data stays within Europe. EEA-deployed abuse monitoring uses human reviewers located in the EEA."
     },
     "dpa": {
@@ -28,7 +41,15 @@
       "url": "https://www.microsoft.com/en-us/trust-center/privacy/data-access",
       "includesEuEntities": true
     },
-    "certifications": ["SOC2", "ISO27001", "ISO27017", "ISO27018", "ISO27701", "C5", "HDS"],
+    "certifications": [
+      "SOC2",
+      "ISO27001",
+      "ISO27017",
+      "ISO27018",
+      "ISO27701",
+      "C5",
+      "HDS"
+    ],
     "euAiAct": {
       "status": "compliant",
       "details": "Microsoft has dedicated EU AI Act working groups combining AI governance, engineering, legal, and public policy experts. Has incorporated prohibited practices into its company-wide Restricted Use Policy. Microsoft Trust Center has a specific EU AI Act compliance page with published governance framework."
@@ -36,18 +57,6 @@
     "sccs": true,
     "adequacyDecision": false
   },
-  "models": [
-    "Claude Haiku 4.5",
-    "Claude Opus 4.1",
-    "Claude Opus 4.5",
-    "Claude Opus 4.6",
-    "Claude Sonnet 4.5",
-    "Codestral 25.01",
-    "Codex Mini",
-    "Command A",
-    "Command R",
-    "Command R+"
-  ],
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",

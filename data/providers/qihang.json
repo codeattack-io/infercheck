@@ -6,17 +6,6 @@
   "apiDocsUrl": "https://www.qhaigc.net/docs",
   "logoPath": "/logos/qihang.svg",
   "compliance": null,
-  "models": [
-    "Claude Haiku 4.5",
-    "Claude Opus 4.5",
-    "Claude Sonnet 4.5",
-    "Gemini 2.5 Flash",
-    "Gemini 3 Flash Preview",
-    "Gemini 3 Pro Preview",
-    "GPT-5-Mini",
-    "GPT-5.2 Codex",
-    "GPT-5.2"
-  ],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

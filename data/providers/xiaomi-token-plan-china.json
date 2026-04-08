@@ -6,7 +6,6 @@
   "apiDocsUrl": "https://platform.xiaomimimo.com/#/docs",
   "logoPath": "/logos/xiaomi-token-plan-china.svg",
   "compliance": null,
-  "models": ["MiMo-V2-Omni", "MiMo-V2-Pro", "MiMo-V2-TTS"],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

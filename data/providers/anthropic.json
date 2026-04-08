@@ -8,8 +8,14 @@
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
-      "regions": ["US", "EU", "CA", "JP"],
+      "regions": [
+        "US",
+        "EU",
+        "CA",
+        "JP"
+      ],
       "euOnly": false,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "EU data residency available via AWS Bedrock (eu-* regions), GCP Vertex AI (europe-* regions), and Microsoft Azure. Regional inference supported via cloud partners. The direct API (api.anthropic.com) does not support region-pinning — EU residency requires routing through a cloud provider."
     },
     "dpa": {
@@ -28,7 +34,12 @@
       "url": "https://www.anthropic.com/subprocessors",
       "includesEuEntities": null
     },
-    "certifications": ["SOC2", "ISO27001", "ISO27017", "ISO27018"],
+    "certifications": [
+      "SOC2",
+      "ISO27001",
+      "ISO27017",
+      "ISO27018"
+    ],
     "euAiAct": {
       "status": "monitoring",
       "details": "No dedicated EU AI Act compliance page. Published Responsible Scaling Policy and Model Cards align with GPAI transparency obligations. As a US-based GPAI model provider serving the EU, EU AI Act obligations apply. No public conformity assessment or EU AI Office registration found as of verification date."
@@ -36,18 +47,6 @@
     "sccs": true,
     "adequacyDecision": false
   },
-  "models": [
-    "Claude Haiku 3.5",
-    "Claude Haiku 3.5 (latest)",
-    "Claude Sonnet 3.5",
-    "Claude Sonnet 3.5 v2",
-    "Claude Sonnet 3.7",
-    "Claude Haiku 3",
-    "Claude Opus 3",
-    "Claude Sonnet 3",
-    "Claude Haiku 4.5",
-    "Claude Haiku 4.5 (latest)"
-  ],
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",

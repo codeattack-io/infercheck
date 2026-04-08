@@ -8,8 +8,22 @@
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
-      "regions": ["US", "EU", "BE", "NL", "DE", "GB", "FI", "PL", "IT", "ES", "FR", "CH"],
+      "regions": [
+        "US",
+        "EU",
+        "BE",
+        "NL",
+        "DE",
+        "GB",
+        "FI",
+        "PL",
+        "IT",
+        "ES",
+        "FR",
+        "CH"
+      ],
       "euOnly": true,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "10 European regions: Belgium (europe-west1), Netherlands (europe-west4), Frankfurt/Germany (europe-west3), London/UK (europe-west2), Finland (europe-north1), Warsaw/Poland (europe-central2), Milan/Italy (europe-west8), Madrid/Spain (europe-southwest1), Paris/France (europe-west9), Zürich/Switzerland (europe-west6). Google stores and processes data only in the specified region. IMPORTANT: the global endpoint does NOT guarantee data residency — use specific regional endpoints for GDPR compliance."
     },
     "dpa": {
@@ -28,7 +42,13 @@
       "url": "https://cloud.google.com/terms/subprocessors",
       "includesEuEntities": true
     },
-    "certifications": ["SOC2", "ISO27001", "ISO27017", "ISO27018", "ISO27701"],
+    "certifications": [
+      "SOC2",
+      "ISO27001",
+      "ISO27017",
+      "ISO27018",
+      "ISO27701"
+    ],
     "euAiAct": {
       "status": "monitoring",
       "details": "Google Cloud maintains ISO 27701 and has a general AI responsibility framework (Secure AI Framework / SAIF). No specific published EU AI Act provider-role compliance declaration for Vertex AI found as of verification date."
@@ -36,18 +56,6 @@
     "sccs": true,
     "adequacyDecision": false
   },
-  "models": [
-    "Gemini 2.0 Flash Lite",
-    "Gemini 2.0 Flash",
-    "Gemini 2.5 Flash Lite Preview 06-17",
-    "Gemini 2.5 Flash Lite Preview 09-25",
-    "Gemini 2.5 Flash Lite",
-    "Gemini 2.5 Flash Preview 04-17",
-    "Gemini 2.5 Flash Preview 05-20",
-    "Gemini 2.5 Flash Preview 09-25",
-    "Gemini 2.5 Flash",
-    "Gemini 2.5 Pro Preview 05-06"
-  ],
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",

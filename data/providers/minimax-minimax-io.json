@@ -6,14 +6,6 @@
   "apiDocsUrl": "https://platform.minimax.io/docs/guides/quickstart",
   "logoPath": "/logos/minimax-minimax-io.svg",
   "compliance": null,
-  "models": [
-    "MiniMax-M2.1",
-    "MiniMax-M2.5-highspeed",
-    "MiniMax-M2.5",
-    "MiniMax-M2.7-highspeed",
-    "MiniMax-M2.7",
-    "MiniMax-M2"
-  ],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

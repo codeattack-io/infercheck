@@ -6,16 +6,6 @@
   "apiDocsUrl": "https://cloud.tencent.com/document/product/1772/128947",
   "logoPath": "/logos/tencent-coding-plan-china.svg",
   "compliance": null,
-  "models": [
-    "GLM-5",
-    "Tencent HY 2.0 Instruct",
-    "Tencent HY 2.0 Think",
-    "Hunyuan-T1",
-    "Hunyuan-TurboS",
-    "Kimi-K2.5",
-    "MiniMax-M2.5",
-    "Auto"
-  ],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

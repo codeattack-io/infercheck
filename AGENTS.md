@@ -7,22 +7,12 @@ A neutral, multi-vendor directory of AI inference providers tagged by GDPR compl
 
 ## Key facts (read before writing any code)
 
-- **Stack:** Next.js 15 (App Router), TypeScript, Tailwind CSS, Zod
-- **Data:** Flat JSON files in `data/providers/{slug}.json` — no database
+- **Stack:** Next.js 16 (App Router), TypeScript, Tailwind CSS, Zod, Drizzle ORM
+- **Structure:** Single Next.js project at repo root — no monorepo, no `app/` subdirectory
+- **Compliance data:** Flat JSON files in `data/providers/{slug}.json` — git-auditable, community PR-able
+- **Model catalog:** Neon (Postgres) via Drizzle ORM — synced nightly by `scripts/sync-models.ts` / Vercel Cron
+- **Key dirs:** `src/app/` (Next.js App Router), `src/lib/` (shared utilities), `src/db/` (Drizzle schema), `data/` (provider JSON), `scripts/` (Bun CLI scripts), `drizzle/` (migrations)
 - **Deployment:** Vercel
-- **Licensing:** MIT for code, CC BY-NC-SA 4.0 for `data/providers/`
-
-## Current phase
-
-**Phase 0 — Data Foundation** (see `docs/PLAN.md` for full phase breakdown):
-
-1. Project setup (Next.js, TypeScript, Tailwind, Zod)
-2. JSON schema + TypeScript types in `data/schema.ts`
-3. Import script `scripts/import-models-dev.ts` — seeds stubs from models.dev repo
-4. Validate script `scripts/validate-data.ts`
-5. AI-assisted compliance drafting → manual verification for ~20–25 MVP providers
-
-**Phase 1** (after data): filterable homepage, provider detail pages, report-a-change form, SEO, Vercel deploy.
 
 ## Git workflow
 
@@ -33,12 +23,6 @@ git add -A && git commit -m "<type>: <short description>"
 ```
 
 Use conventional commit types: `feat`, `fix`, `chore`, `docs`, `refactor`, `data`.
-
-## What NOT to do
-
-- No legal advice framing — present facts, cite sources
-- Do not build the gateway (Phase 3) until the directory has traction
-- Do not deviate from the flat-file data model for MVP
 
 ## This is NOT the Next.js you know
 

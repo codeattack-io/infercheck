@@ -8,8 +8,11 @@
   "compliance": {
     "headquarters": "CA",
     "dataResidency": {
-      "regions": ["US"],
+      "regions": [
+        "US"
+      ],
       "euOnly": false,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "SaaS platform infrastructure is US-only (Google Cloud US-Central). Private and third-party cloud deployments (AWS, Azure, GCP, OCI) can be configured for EU regions by the customer — in those cases Cohere never receives customer data."
     },
     "dpa": {
@@ -28,7 +31,11 @@
       "url": "https://trustcenter.cohere.com/subprocessors",
       "includesEuEntities": false
     },
-    "certifications": ["SOC2", "ISO27001", "ISO42001"],
+    "certifications": [
+      "SOC2",
+      "ISO27001",
+      "ISO42001"
+    ],
     "euAiAct": {
       "status": "monitoring",
       "details": "Holds ISO 42001 (AI Management System) certification. No specific EU AI Act compliance declaration found. As a Canadian company placing models on the EU market, EU AI Act GPAI obligations apply."
@@ -36,18 +43,6 @@
     "sccs": true,
     "adequacyDecision": false
   },
-  "models": [
-    "Aya Expanse 32B",
-    "Aya Expanse 8B",
-    "Aya Vision 32B",
-    "Aya Vision 8B",
-    "Command A",
-    "Command A Reasoning",
-    "Command A Translate",
-    "Command A Vision",
-    "Command R",
-    "Command R+"
-  ],
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",

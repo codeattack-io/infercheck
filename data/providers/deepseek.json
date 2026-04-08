@@ -8,8 +8,11 @@
   "compliance": {
     "headquarters": "CN",
     "dataResidency": {
-      "regions": ["CN"],
+      "regions": [
+        "CN"
+      ],
       "euOnly": false,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "All API data processed and stored in the People's Republic of China. No non-China infrastructure option exists."
     },
     "dpa": {
@@ -36,10 +39,12 @@
     "sccs": false,
     "adequacyDecision": false
   },
-  "models": ["DeepSeek Chat", "DeepSeek Reasoner"],
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",
-  "sourceUrls": ["https://api-docs.deepseek.com", "https://www.deepseek.com/privacy_policy"],
+  "sourceUrls": [
+    "https://api-docs.deepseek.com",
+    "https://www.deepseek.com/privacy_policy"
+  ],
   "notes": "HIGH GDPR RISK. Operated by Hangzhou DeepSeek Artificial Intelligence Co., Ltd. (PRC). All data processed in China. No adequacy decision, no SCCs, no BCRs, no DPA. Italy's Garante issued a provisional access restriction in 2025. PRC security laws (PIPL/DSL/NSL) create an irreconcilable conflict with GDPR Chapter V transfer rules. EU organisations should use DeepSeek models via re-hosting providers (Azure, Bedrock, Groq, Scaleway, etc.) rather than the direct DeepSeek API."
 }

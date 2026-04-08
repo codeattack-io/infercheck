@@ -6,18 +6,6 @@
   "apiDocsUrl": "https://llmgateway.io/docs",
   "logoPath": "/logos/llm-gateway.svg",
   "compliance": null,
-  "models": [
-    "Auto Route",
-    "Claude 3.5 Haiku",
-    "Claude 3.5 Sonnet (2024-10-22)",
-    "Claude 3.5 Sonnet",
-    "Claude 3.7 Sonnet (2025-02-19)",
-    "Claude 3.7 Sonnet",
-    "Claude 3 Haiku (2024-03-07)",
-    "Claude 3 Haiku",
-    "Claude 3 Opus",
-    "Claude Haiku 4.5 (2025-10-01)"
-  ],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

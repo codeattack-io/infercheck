@@ -6,15 +6,6 @@
   "apiDocsUrl": "https://llama.developer.meta.com/docs/models",
   "logoPath": "/logos/llama.svg",
   "compliance": null,
-  "models": [
-    "Cerebras-Llama-4-Maverick-17B-128E-Instruct",
-    "Cerebras-Llama-4-Scout-17B-16E-Instruct",
-    "Groq-Llama-4-Maverick-17B-128E-Instruct",
-    "Llama-3.3-70B-Instruct",
-    "Llama-3.3-8B-Instruct",
-    "Llama-4-Maverick-17B-128E-Instruct-FP8",
-    "Llama-4-Scout-17B-16E-Instruct-FP8"
-  ],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

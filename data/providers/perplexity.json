@@ -8,8 +8,11 @@
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
-      "regions": ["US"],
+      "regions": [
+        "US"
+      ],
       "euOnly": false,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": null
     },
     "dpa": {
@@ -36,10 +39,12 @@
     "sccs": null,
     "adequacyDecision": false
   },
-  "models": ["Perplexity Sonar Deep Research", "Sonar Pro", "Sonar Reasoning Pro", "Sonar"],
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",
-  "sourceUrls": ["https://docs.perplexity.ai", "https://www.perplexity.ai/hub/faq/pplx-api"],
+  "sourceUrls": [
+    "https://docs.perplexity.ai",
+    "https://www.perplexity.ai/hub/faq/pplx-api"
+  ],
   "notes": "GDPR posture materially undocumented. No DPA, no sub-processor list, no certifications found. API offers search-augmented LLM inference with real-time web grounding. EU organisations should conduct independent due diligence before using this API to process personal data. trainsOnCustomerData and optOutAvailable values are conservative defaults pending policy verification."
 }

@@ -17,6 +17,13 @@ export const DataResidencySchema = z.object({
   regions: z.array(z.string()),
   /** Can the provider guarantee EU-only data processing? */
   euOnly: z.boolean(),
+  /**
+   * Does inference compute (GPU processing) leave the EU?
+   * false = full EU data residency including GPU processing
+   * true  = data may be stored in EU but inference runs outside (e.g. CDN routing)
+   * null  = unknown
+   */
+  dataLeavesEuAtInference: z.boolean().nullable(),
   /** Plain-language explanation of EU routing options */
   euRegionDetails: z.string().nullable(),
 });
@@ -79,8 +86,6 @@ export const ProviderSchema = z.object({
   /** Path to SVG logo in /public/logos/, e.g. "/logos/openai.svg" */
   logoPath: z.string().nullable(),
   compliance: ComplianceSchema,
-  /** Key models available (not exhaustive) */
-  models: z.array(z.string()),
   pricingTier: PricingTierSchema,
   /** ISO date of last manual verification */
   lastVerified: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Must be YYYY-MM-DD"),
@@ -103,7 +108,6 @@ export const ProviderStubSchema = z.object({
   apiDocsUrl: z.string().url().nullable(),
   logoPath: z.string().nullable(),
   compliance: z.null(),
-  models: z.array(z.string()),
   pricingTier: PricingTierSchema.nullable(),
   lastVerified: z.string().nullable(),
   verifiedBy: z.literal("stub"),

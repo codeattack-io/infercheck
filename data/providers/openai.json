@@ -8,8 +8,12 @@
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
-      "regions": ["US", "EU"],
+      "regions": [
+        "US",
+        "EU"
+      ],
       "euOnly": false,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "EU data residency available via eu.api.openai.com (EEA + Switzerland). Both regional storage and regional inference (GPU processing in-region) supported. Requires Zero Data Retention amendment and approved abuse monitoring controls. A pricing uplift applies for some models on data residency endpoints."
     },
     "dpa": {
@@ -28,7 +32,14 @@
       "url": "https://platform.openai.com/subprocessors",
       "includesEuEntities": null
     },
-    "certifications": ["SOC2", "ISO27001", "ISO27017", "ISO27018", "ISO27701", "ISO42001"],
+    "certifications": [
+      "SOC2",
+      "ISO27001",
+      "ISO27017",
+      "ISO27018",
+      "ISO27701",
+      "ISO42001"
+    ],
     "euAiAct": {
       "status": "monitoring",
       "details": "Holds ISO 42001 (AI Management System) certification. Actively engaged with the EU AI Office on GPAI model obligations. No formal EU AI Act compliance declaration published as of verification date."
@@ -36,18 +47,6 @@
     "sccs": true,
     "adequacyDecision": false
   },
-  "models": [
-    "chatgpt-image-latest",
-    "Codex Mini",
-    "GPT-3.5-turbo",
-    "GPT-4 Turbo",
-    "GPT-4.1 mini",
-    "GPT-4.1 nano",
-    "GPT-4.1",
-    "GPT-4",
-    "GPT-4o (2024-05-13)",
-    "GPT-4o (2024-08-06)"
-  ],
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",

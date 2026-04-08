@@ -8,8 +8,11 @@
   "compliance": {
     "headquarters": "DE",
     "dataResidency": {
-      "regions": ["EU"],
+      "regions": [
+        "EU"
+      ],
       "euOnly": true,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "100% EU data residency. STACKIT operates its own datacentres — not hosted on US hyperscalers. Regions: eu01 (Neckarsulm, Germany), eu02 (Ellhofen, Germany), eu03 (Ostermiething, Austria). Fifth DC under construction in Lübbenau, Germany."
     },
     "dpa": {
@@ -28,7 +31,10 @@
       "url": "https://www.stackit.de/en/data-protection-notice",
       "includesEuEntities": true
     },
-    "certifications": ["ISO27001", "C5"],
+    "certifications": [
+      "ISO27001",
+      "C5"
+    ],
     "euAiAct": {
       "status": "unknown",
       "details": "No specific EU AI Act compliance statement published. As a German company actively targeting public sector, EU AI Act readiness is a stated priority. AI Model Serving is a deployer product."
@@ -36,7 +42,6 @@
     "sccs": false,
     "adequacyDecision": true
   },
-  "models": [],
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",

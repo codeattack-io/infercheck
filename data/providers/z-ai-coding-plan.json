@@ -6,18 +6,6 @@
   "apiDocsUrl": "https://docs.z.ai/devpack/overview",
   "logoPath": "/logos/z-ai-coding-plan.svg",
   "compliance": null,
-  "models": [
-    "GLM-4.5-Air",
-    "GLM-4.5-Flash",
-    "GLM-4.5",
-    "GLM-4.5V",
-    "GLM-4.6",
-    "GLM-4.6V",
-    "GLM-4.7-Flash",
-    "GLM-4.7-FlashX",
-    "GLM-4.7",
-    "GLM-5-Turbo"
-  ],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

@@ -8,8 +8,12 @@
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
-      "regions": ["US", "EU"],
+      "regions": [
+        "US",
+        "EU"
+      ],
       "euOnly": true,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "EU region available on Team and Enterprise plans. Inference Endpoints can be deployed on AWS or GCP EU regions. Models, datasets, and endpoints can be pinned to EU datacentres. Enterprise Hub storage regions feature available."
     },
     "dpa": {
@@ -28,7 +32,9 @@
       "url": "https://huggingface.co/privacy",
       "includesEuEntities": true
     },
-    "certifications": ["SOC2"],
+    "certifications": [
+      "SOC2"
+    ],
     "euAiAct": {
       "status": "monitoring",
       "details": "EU legal entity (HF SAS, Paris) is subject to EU AI Act as a provider. No formal certification published as of verification date."
@@ -36,7 +42,6 @@
     "sccs": true,
     "adequacyDecision": false
   },
-  "models": [],
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",

@@ -6,7 +6,6 @@
   "apiDocsUrl": "https://nova.amazon.com/dev/documentation",
   "logoPath": "/logos/nova.svg",
   "compliance": null,
-  "models": ["Nova 2 Lite", "Nova 2 Pro"],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

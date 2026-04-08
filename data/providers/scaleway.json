@@ -8,8 +8,11 @@
   "compliance": {
     "headquarters": "FR",
     "dataResidency": {
-      "regions": ["EU"],
+      "regions": [
+        "EU"
+      ],
       "euOnly": true,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "Generative APIs run exclusively in fr-par (Paris). Managed Inference supports fr-par (Paris), nl-ams (Amsterdam), and pl-waw (Warsaw). No data leaves the EU. Datacentres: DC2/DC3/DC5 (Paris), AMS1/AMS2 (Amsterdam), WAW1/WAW2 (Warsaw)."
     },
     "dpa": {
@@ -28,7 +31,10 @@
       "url": "https://www.scaleway.com/en/contracts/",
       "includesEuEntities": true
     },
-    "certifications": ["ISO27001", "HDS"],
+    "certifications": [
+      "ISO27001",
+      "HDS"
+    ],
     "euAiAct": {
       "status": "unknown",
       "details": "Infrastructure provider and deployer of third-party open-weight models. No published EU AI Act compliance statement specific to Generative APIs. As deployer, primary obligations fall on model developers."
@@ -36,18 +42,6 @@
     "sccs": false,
     "adequacyDecision": true
   },
-  "models": [
-    "BGE Multilingual Gemma2",
-    "DeepSeek R1 Distill Llama 70B",
-    "Devstral 2 123B Instruct (2512)",
-    "Gemma-3-27B-IT",
-    "GPT-OSS 120B",
-    "Llama 3.1 8B Instruct",
-    "Llama-3.3-70B-Instruct",
-    "Mistral Nemo Instruct 2407",
-    "Mistral Small 3.2 24B Instruct (2506)",
-    "Pixtral 12B 2409"
-  ],
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",

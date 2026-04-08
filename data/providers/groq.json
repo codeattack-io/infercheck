@@ -8,8 +8,11 @@
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
-      "regions": ["US"],
+      "regions": [
+        "US"
+      ],
       "euOnly": false,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "All customer data retained in Google Cloud Platform (GCP) buckets in the United States. No EU data residency option. Groq has a designated EU GDPR representative (DP-Dock GmbH, Hamburg) but no EU-based infrastructure."
     },
     "dpa": {
@@ -28,7 +31,9 @@
       "url": "https://trust.groq.com/subprocessors",
       "includesEuEntities": false
     },
-    "certifications": ["SOC2"],
+    "certifications": [
+      "SOC2"
+    ],
     "euAiAct": {
       "status": "unknown",
       "details": "No public EU AI Act documentation. Groq hosts third-party open-weight models (Llama, Qwen, Whisper, etc.) rather than developing frontier models. As a deployer of others' models, direct GPAI provider obligations may be limited — but this is unconfirmed."
@@ -36,18 +41,6 @@
     "sccs": true,
     "adequacyDecision": false
   },
-  "models": [
-    "ALLaM-2-7b",
-    "DeepSeek R1 Distill Llama 70B",
-    "Gemma 2 9B",
-    "Llama 3.1 8B Instant",
-    "Llama 3.3 70B Versatile",
-    "Llama Guard 3 8B",
-    "Llama 3 70B",
-    "Llama 3 8B",
-    "Mistral Saba 24B",
-    "Qwen QwQ 32B"
-  ],
   "pricingTier": "free_tier",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",

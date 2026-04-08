@@ -8,8 +8,13 @@
   "compliance": {
     "headquarters": "DE",
     "dataResidency": {
-      "regions": ["EU", "DE", "NL"],
+      "regions": [
+        "EU",
+        "DE",
+        "NL"
+      ],
       "euOnly": false,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "EU regions available: eu10/eu11 (AWS Frankfurt, Germany), eu20 (Azure Netherlands), eu30 (GCP Frankfurt). Customer selects subaccount region. For strict EU data residency, select eu10/eu11/eu20/eu30. Note: underlying IaaS is operated by AWS/Azure/GCP (US companies) with EU datacentres."
     },
     "dpa": {
@@ -28,7 +33,12 @@
       "url": "https://www.sap.com/about/trust-center/subprocessors.html",
       "includesEuEntities": false
     },
-    "certifications": ["SOC2", "ISO27001", "ISO27701", "C5"],
+    "certifications": [
+      "SOC2",
+      "ISO27001",
+      "ISO27701",
+      "C5"
+    ],
     "euAiAct": {
       "status": "monitoring",
       "details": "SAP is actively engaged in EU AI Act compliance. SAP AI solutions are subject to EU AI Act as a provider. SAP has published EU AI Act readiness statements via Trust Center. SAP-ABAP-1 and SAP-RPT-1 (SAP's own foundation models) are subject to provider obligations."
@@ -36,18 +46,6 @@
     "sccs": true,
     "adequacyDecision": true
   },
-  "models": [
-    "anthropic--claude-3-haiku",
-    "anthropic--claude-3-opus",
-    "anthropic--claude-3-sonnet",
-    "anthropic--claude-3.5-sonnet",
-    "anthropic--claude-3.7-sonnet",
-    "anthropic--claude-4-opus",
-    "anthropic--claude-4-sonnet",
-    "anthropic--claude-4.5-haiku",
-    "anthropic--claude-4.5-opus",
-    "anthropic--claude-4.5-sonnet"
-  ],
   "pricingTier": "enterprise_only",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",

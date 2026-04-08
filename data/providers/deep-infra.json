@@ -8,8 +8,11 @@
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
-      "regions": ["US"],
+      "regions": [
+        "US"
+      ],
       "euOnly": false,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "AWS and GCP infrastructure, US-based. No EU region publicly available."
     },
     "dpa": {
@@ -28,7 +31,10 @@
       "url": "https://deepinfra.com/docs/misc/subprocessors",
       "includesEuEntities": false
     },
-    "certifications": ["SOC2", "ISO27001"],
+    "certifications": [
+      "SOC2",
+      "ISO27001"
+    ],
     "euAiAct": {
       "status": "unknown",
       "details": null
@@ -36,10 +42,12 @@
     "sccs": null,
     "adequacyDecision": false
   },
-  "models": [],
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",
-  "sourceUrls": ["https://deepinfra.com/docs/misc/subprocessors", "https://deepinfra.com/privacy"],
+  "sourceUrls": [
+    "https://deepinfra.com/docs/misc/subprocessors",
+    "https://deepinfra.com/privacy"
+  ],
   "notes": "Headquartered in San Francisco, CA. Has the only public sub-processor list and strongest security certifications (SOC2, ISO27001) of the three US inference providers (DeepInfra, Fireworks, Together), but lacks a public DPA and has GDPR formally marked as 'In Progress'. SCCs not confirmed. Sub-processors are all US-based (Stripe, AWS, GCP)."
 }

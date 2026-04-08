@@ -8,8 +8,11 @@
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
-      "regions": ["US"],
+      "regions": [
+        "US"
+      ],
       "euOnly": false,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "EU in-region routing (eu.openrouter.ai) is enterprise-only and not enabled by default. Standard accounts route globally through US infrastructure with no data-residency guarantee. Even with EU routing enabled, every request passes through OpenRouter's US gateway infrastructure, creating a mandatory cross-border transfer."
     },
     "dpa": {
@@ -28,7 +31,9 @@
       "url": null,
       "includesEuEntities": null
     },
-    "certifications": ["SOC2"],
+    "certifications": [
+      "SOC2"
+    ],
     "euAiAct": {
       "status": "unknown",
       "details": null
@@ -36,10 +41,12 @@
     "sccs": true,
     "adequacyDecision": false
   },
-  "models": [],
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",
-  "sourceUrls": ["https://openrouter.ai/terms", "https://openrouter.ai/privacy"],
+  "sourceUrls": [
+    "https://openrouter.ai/terms",
+    "https://openrouter.ai/privacy"
+  ],
   "notes": "Gateway routing to 300+ upstream models (GPT-4o, Claude, Gemini, Llama, DeepSeek, Mistral, etc.). Most complex GDPR posture in this directory: the gateway architecture makes every upstream provider a de facto sub-processor, none of which are formally listed. EU routing requires enterprise agreement. Illustrates the compliance gap created by gateway/aggregator services."
 }

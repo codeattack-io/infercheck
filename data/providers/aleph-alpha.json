@@ -8,8 +8,12 @@
   "compliance": {
     "headquarters": "DE",
     "dataResidency": {
-      "regions": ["EU", "DE"],
+      "regions": [
+        "EU",
+        "DE"
+      ],
       "euOnly": true,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "All infrastructure in Germany. PhariaAI stack is designed for on-premise or sovereign EU cloud deployment, primarily on STACKIT (Schwarz Group) infrastructure. On-premise deployment option provides complete data isolation. No US entity involvement. Air-gapped deployment available for defence and government use cases."
     },
     "dpa": {
@@ -28,7 +32,9 @@
       "url": "https://aleph-alpha.com/data-privacy/",
       "includesEuEntities": true
     },
-    "certifications": ["ISO27001"],
+    "certifications": [
+      "ISO27001"
+    ],
     "euAiAct": {
       "status": "compliant",
       "details": "One of Europe's most EU AI Act-engaged companies. Provider of foundation models (Pharia-1-LLM-7B) subject to GPAI model provider obligations. Co-founded the Future of European AI initiative. Actively participates in EU AI Office consultations. Pharia-1-LLM-7B model card and technical documentation published per GPAI transparency requirements."
@@ -36,7 +42,6 @@
     "sccs": false,
     "adequacyDecision": true
   },
-  "models": ["Pharia-1-LLM-7B", "Pharia-1-LLM-7B-control"],
   "pricingTier": "enterprise_only",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",

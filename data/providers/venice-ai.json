@@ -6,18 +6,6 @@
   "apiDocsUrl": "https://docs.venice.ai",
   "logoPath": "/logos/venice-ai.svg",
   "compliance": null,
-  "models": [
-    "Aion 2.0",
-    "Trinity Large Thinking",
-    "Claude Opus 4.6",
-    "Claude Opus 4.5",
-    "Claude Sonnet 4.6",
-    "Claude Sonnet 4.5",
-    "DeepSeek V3.2",
-    "Gemini 3.1 Pro Preview",
-    "Gemini 3 Flash Preview",
-    "Google Gemma 3 27B Instruct"
-  ],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

@@ -8,8 +8,11 @@
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
-      "regions": ["US"],
+      "regions": [
+        "US"
+      ],
       "euOnly": false,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "No dedicated EU region for serverless inference. All infrastructure is US-based."
     },
     "dpa": {
@@ -28,7 +31,9 @@
       "url": null,
       "includesEuEntities": null
     },
-    "certifications": ["SOC2"],
+    "certifications": [
+      "SOC2"
+    ],
     "euAiAct": {
       "status": "unknown",
       "details": null
@@ -36,7 +41,6 @@
     "sccs": true,
     "adequacyDecision": false
   },
-  "models": [],
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",

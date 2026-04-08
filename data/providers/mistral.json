@@ -8,8 +8,11 @@
   "compliance": {
     "headquarters": "FR",
     "dataResidency": {
-      "regions": ["EU"],
+      "regions": [
+        "EU"
+      ],
       "euOnly": true,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "Mistral AI is a French company and infrastructure is EU-hosted. La Plateforme (AI Studio) runs in EU. Models also available via Azure, AWS Bedrock, GCP Vertex, and Outscale (French sovereign cloud) for customers needing specific cloud regions."
     },
     "dpa": {
@@ -28,7 +31,10 @@
       "url": "https://trust.mistral.ai/subprocessors",
       "includesEuEntities": true
     },
-    "certifications": ["ISO27001", "ISO27701"],
+    "certifications": [
+      "ISO27001",
+      "ISO27701"
+    ],
     "euAiAct": {
       "status": "compliant",
       "details": "Mistral AI has a dedicated AI Governance hub at legal.mistral.ai. Publishes model documentation per Article 53 GPAI requirements. Has signed the EU AI Act Code of Practice. Operates as a Provider under the AI Act and maintains GPAI model documentation for frontier models."
@@ -36,18 +42,6 @@
     "sccs": true,
     "adequacyDecision": true
   },
-  "models": [
-    "Codestral (latest)",
-    "Devstral 2",
-    "Devstral Medium",
-    "Devstral 2 (latest)",
-    "Devstral Small 2505",
-    "Devstral Small",
-    "Devstral Small 2",
-    "Magistral Medium (latest)",
-    "Magistral Small",
-    "Ministral 3B (latest)"
-  ],
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",

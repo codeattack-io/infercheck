@@ -8,8 +8,20 @@
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
-      "regions": ["US", "EU", "DE", "IE", "GB", "FR", "ES", "IT", "SE", "CH"],
+      "regions": [
+        "US",
+        "EU",
+        "DE",
+        "IE",
+        "GB",
+        "FR",
+        "ES",
+        "IT",
+        "SE",
+        "CH"
+      ],
       "euOnly": true,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "EU regions: Frankfurt (eu-central-1), Ireland (eu-west-1), London (eu-west-2), Milan (eu-south-1), Paris (eu-west-3), Spain (eu-south-2), Stockholm (eu-north-1), Zurich (eu-central-2). Customer content is encrypted and stored at rest in the AWS Region where it is used — it does NOT move outside the selected region. AWS European Sovereign Cloud (separate product, Germany-based, AWS entities exclusively in EU) available for maximum data sovereignty."
     },
     "dpa": {
@@ -28,7 +40,14 @@
       "url": "https://aws.amazon.com/compliance/sub-processors/",
       "includesEuEntities": true
     },
-    "certifications": ["SOC2", "ISO27001", "ISO27017", "ISO27018", "ISO27701", "C5"],
+    "certifications": [
+      "SOC2",
+      "ISO27001",
+      "ISO27017",
+      "ISO27018",
+      "ISO27701",
+      "C5"
+    ],
     "euAiAct": {
       "status": "monitoring",
       "details": "AWS has a general EU AI Act compliance page. No specific published EU AI Act provider-role compliance declaration for Bedrock as of verification date. Monitoring status reflects absence of a published compliance declaration equivalent to Microsoft's."
@@ -36,18 +55,6 @@
     "sccs": true,
     "adequacyDecision": false
   },
-  "models": [
-    "Nova 2 Lite",
-    "Nova Lite",
-    "Nova Micro",
-    "Nova Premier",
-    "Nova Pro",
-    "Claude Haiku 3.5",
-    "Claude Sonnet 3.5",
-    "Claude Sonnet 3.5 v2",
-    "Claude Sonnet 3.7",
-    "Claude Haiku 3"
-  ],
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",

@@ -8,8 +8,11 @@
   "compliance": {
     "headquarters": "SE",
     "dataResidency": {
-      "regions": ["EU"],
+      "regions": [
+        "EU"
+      ],
       "euOnly": true,
+      "dataLeavesEuAtInference": null,
       "euRegionDetails": "All inference runs within Berget's secure Sweden-only network. Data never traverses the public internet. Datacenter location in Sweden — specific city not publicly disclosed. Uses circular/reused hardware."
     },
     "dpa": {
@@ -36,7 +39,6 @@
     "sccs": false,
     "adequacyDecision": true
   },
-  "models": [],
   "pricingTier": "free_tier",
   "lastVerified": "2026-04-07",
   "verifiedBy": "ai_draft",

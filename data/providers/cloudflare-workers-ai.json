@@ -6,7 +6,6 @@
   "apiDocsUrl": "https://developers.cloudflare.com/workers-ai/models/",
   "logoPath": "/logos/cloudflare-workers-ai.svg",
   "compliance": null,
-  "models": [],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

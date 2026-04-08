@@ -6,7 +6,6 @@
   "apiDocsUrl": "https://platform.stepfun.com/docs/zh/overview/concept",
   "logoPath": null,
   "compliance": null,
-  "models": ["Step 1 (32K)", "Step 2 (16K)", "Step 3.5 Flash"],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

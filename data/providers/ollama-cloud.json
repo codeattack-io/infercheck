@@ -6,18 +6,6 @@
   "apiDocsUrl": "https://docs.ollama.com/cloud",
   "logoPath": "/logos/ollama-cloud.svg",
   "compliance": null,
-  "models": [
-    "cogito-2.1:671b",
-    "deepseek-v3.1:671b",
-    "deepseek-v3.2",
-    "devstral-2:123b",
-    "devstral-small-2:24b",
-    "gemini-3-flash-preview",
-    "gemma3:12b",
-    "gemma3:27b",
-    "gemma3:4b",
-    "glm-4.6"
-  ],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",

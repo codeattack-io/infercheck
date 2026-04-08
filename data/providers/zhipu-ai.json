@@ -6,7 +6,6 @@
   "apiDocsUrl": "https://docs.z.ai/guides/overview/pricing",
   "logoPath": "/logos/zhipu-ai.svg",
   "compliance": null,
-  "models": ["GLM-5"],
   "pricingTier": null,
   "lastVerified": null,
   "verifiedBy": "stub",
