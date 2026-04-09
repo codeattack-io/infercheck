@@ -186,73 +186,72 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         }}
         className="px-4 sm:px-6 lg:px-10"
       >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "16px",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "16px",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <p
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "0.8125rem",
+                color: "var(--color-text-muted)",
+                margin: 0,
+              }}
+            >
+              Data licensed under{" "}
+              <a
+                href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "var(--color-link)" }}
+              >
+                CC BY-NC-SA 4.0
+              </a>
+              . Code under{" "}
+              <a
+                href="https://github.com/carlonoelle/gdpr-ai-directory/blob/main/LICENSE"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: "var(--color-link)" }}
+              >
+                MIT
+              </a>
+              .
+            </p>
+            <a
+              href="https://github.com/carlonoelle/gdpr-ai-directory"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "0.8125rem",
+                color: "var(--color-text-muted)",
+              }}
+            >
+              GitHub →
+            </a>
+          </div>
           <p
+            role="note"
             style={{
               fontFamily: "var(--font-body)",
-              fontSize: "0.8125rem",
+              fontSize: "0.75rem",
               color: "var(--color-text-muted)",
-              margin: 0,
+              margin: "16px 0 0",
+              lineHeight: 1.5,
+              borderTop: "1px solid var(--color-border)",
+              paddingTop: "16px",
             }}
           >
-            Data licensed under{" "}
-            <a
-              href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "var(--color-link)" }}
-            >
-              CC BY-NC-SA 4.0
-            </a>
-            . Code under{" "}
-            <a
-              href="https://github.com/carlonoelle/gdpr-ai-directory/blob/main/LICENSE"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "var(--color-link)" }}
-            >
-              MIT
-            </a>
-            .
+            This directory provides sourced information about AI providers&apos; data practices. It is not legal advice. Always verify directly with the provider and consult legal counsel for compliance decisions.
           </p>
-          <a
-            href="https://github.com/carlonoelle/gdpr-ai-directory"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.8125rem",
-              color: "var(--color-text-muted)",
-            }}
-          >
-            GitHub →
-          </a>
         </div>
-        <p
-          role="note"
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "0.75rem",
-            color: "var(--color-text-muted)",
-            margin: "16px 0 0",
-            lineHeight: 1.5,
-            borderTop: "1px solid var(--color-border)",
-            paddingTop: "16px",
-            maxWidth: "1200px",
-          }}
-        >
-          This directory provides sourced information about AI providers&apos; data practices. It is not legal advice. Always verify directly with the provider and consult legal counsel for compliance decisions.
-        </p>
       </footer>
     </>
   );
