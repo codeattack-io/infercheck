@@ -1,8 +1,8 @@
 # GDPR AI Directory - Build Plan
 
 > Status: In progress
-> Last updated: 2026-04-09
-> Verdict: GO — MVP frontend is next
+> Last updated: 2026-04-10
+> Verdict: GO — Phase 2 homepage complete, model/provider pages next
 
 ---
 
@@ -181,42 +181,58 @@ gdpr-ai-directory/
 11. ✅ Run `bun db:migrate` against Neon — complete
 12. ✅ Run `bun sync:models` — model catalog populated successfully
 
-### Phase 2: MVP Frontend — NEXT ⬅️
+### Phase 2: MVP Frontend — IN PROGRESS 🔨
 
 > Goal: Ship a publicly accessible, model-first directory with compliance filtering
+> Last updated: 2026-04-10
 
-1. **Homepage** (`src/app/page.tsx`)
-   - Model search: text input, filters by compliance profile (preset buttons + custom toggles)
-   - Results: model name, provider, pricing, key compliance signals (EU-only, DPA, trains on data)
-   - Compliance filter profiles as URL params (shareable links)
-   - Sort: by price, by compliance strictness, by provider name
+1. **Homepage** (`src/app/page.tsx`) ✅
+   - ✅ Model table: model name, provider, compliance badges, data residency, pricing, last verified
+   - ✅ Inline row expand (accordion) — compliance snapshot + EU routing detail, no modal
+   - ✅ Compliance filter presets (Strict EU / EU + SCCs / No Training) + custom toggle panel
+   - ✅ Filter state fully persisted in URL params (shareable links)
+   - ✅ Real-time client-side search (no submit, filters by model name / provider)
+   - ✅ Dim-not-remove for filtered-out rows
+   - ✅ "Full provider profile →" button in expand panel
+   - ⬜ Sort: by price, by compliance strictness, by provider name
 
-2. **Model detail page** (`src/app/model/[id]/page.tsx`)
+2. **Model detail page** (`src/app/model/[id]/page.tsx`) ⬜
    - List of all providers offering this model
    - Per-provider: pricing, latency (if available), compliance snapshot
    - Compliance filter applies inline
    - Link to full provider profile
 
-3. **Provider profile page** (`src/app/provider/[slug]/page.tsx`)
+3. **Provider profile page** (`src/app/provider/[slug]/page.tsx`) ⬜
    - Full compliance profile with all fields
    - Source URLs for each claim
    - Plain-language notes
    - "Last verified" date prominently displayed
    - "Report a change" button
 
-4. **Shared components**
-   - `ComplianceBadges.tsx` — visual indicators (EU-only, DPA, SCCs, etc.)
-   - `FilterBar.tsx` — compliance filter preset buttons + custom toggle panel
-   - `ModelTable.tsx` — searchable/filterable model listing
-   - `ProviderCard.tsx` — compliance summary card
+4. **Shared components** ✅
+   - ✅ `ComplianceBadge.tsx` — atomic compliance signal badge (7 variants)
+   - ✅ `ComplianceBadges.tsx` — badge cluster for a provider
+   - ✅ `FilterBar.tsx` — compliance filter preset buttons + custom toggle panel
+   - ✅ `ModelTable.tsx` — searchable/filterable model listing
+   - ✅ `ModelRow.tsx` — single row with inline expand
+   - ✅ `Nav.tsx` — sticky header, scroll-border, mobile drawer
+   - ✅ `DisclaimerBanner.tsx` — sitewide disclaimer
+   - ⬜ `ProviderCard.tsx` — compliance summary card (needed for provider listing page)
 
-5. **SEO fundamentals**
-   - Meta titles/descriptions per page
-   - JSON-LD structured data (Dataset, Organization per provider)
-   - Sitemap generation
-   - Target queries: "GDPR AI provider", "EU AI inference GDPR", "{provider} GDPR compliant", "EU alternative to {provider}", "{model name} GDPR"
+5. **Infrastructure / design system** ✅
+   - ✅ `src/lib/compliance.ts` — pure filter/tier logic, client+server safe
+   - ✅ `src/lib/providers.ts` — `server-only` file-system JSON loading
+   - ✅ `globals.css` — Tailwind v4 `@theme` block with full design token set
+   - ✅ `layout.tsx` — `next/font/google` (Instrument Serif, DM Sans, IBM Plex Mono)
+   - ✅ i18n comment in layout noting `[locale]` + `NextIntlClientProvider` insertion point
 
-6. **Deploy to Vercel** — connect `DATABASE_URL` and `CRON_SECRET` env vars
+6. **SEO fundamentals** ⬜
+   - ✅ Meta title template (`%s — GDPR AI Directory`) and default description
+   - ⬜ JSON-LD structured data (Dataset on homepage, Organization per provider)
+   - ⬜ Sitemap generation
+   - ⬜ Per-page Open Graph metadata
+
+7. **Deploy to Vercel** ⬜ — connect `DATABASE_URL` and `CRON_SECRET` env vars
 
 ### Phase 3: Growth (post-launch, based on traction)
 
@@ -294,6 +310,6 @@ Include on every page:
 
 ---
 
-## Next Step
+## Next Steps
 
-**Phase 2: MVP Frontend.** Start with the homepage model search UI, then model detail page, then provider profile page.
+**Phase 2 remaining:** Sort controls on the homepage → model detail page → provider profile page → SEO/JSON-LD → Vercel deploy.
