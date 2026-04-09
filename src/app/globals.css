@@ -1,26 +1,64 @@
 @import "tailwindcss";
 
+/* ─── Design Tokens ────────────────────────────────────────────────────────── */
+@theme {
+  /* Base palette */
+  --color-bg: #f5f4ef;
+  --color-surface: #ffffff;
+  --color-surface-alt: #eeeee8;
+  --color-border: #d6d4cc;
+  --color-text-primary: #1a1f2e;
+  --color-text-secondary: #5a6070;
+  --color-text-muted: #9aa0ad;
+  --color-heading: #0f1520;
+  --color-link: #1d4ed8;
+  --color-link-hover: #1e40af;
+
+  /* Semantic compliance colors */
+  --color-compliant: #16a34a;
+  --color-compliant-bg: #f0fdf4;
+  --color-partial: #d97706;
+  --color-partial-bg: #fffbeb;
+  --color-noncompliant: #dc2626;
+  --color-noncompliant-bg: #fef2f2;
+  --color-unverified: #9aa0ad;
+  --color-unverified-bg: #f8f8f7;
+
+  /* Accent */
+  --color-accent: #1d4ed8;
+  --color-accent-hover: #1e3a8a;
+  --color-accent-subtle: #eff6ff;
+
+  /* Typography */
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "Courier New", monospace;
+}
+
+/* ─── Base styles ──────────────────────────────────────────────────────────── */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Utility overrides ────────────────────────────────────────────────────── */
+
+/* Ensure no dark mode color overrides interfere */
+@media (prefers-color-scheme: dark) {
+  :root {
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+  }
 }

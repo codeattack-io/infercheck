@@ -1,52 +1,214 @@
-import Image from "next/image";
+// Homepage: model-first search + compliance filter.
+// React Server Component — data fetched at request time, no client-side loading.
+//
+// Vercel rules applied:
+//   - async-parallel: DB query + provider JSON load run in parallel via Promise.all
+//   - server-hoist-static-io: getAllProviders() result is used once and indexed in Map
+//   - server-serialization: only serializable data passed to client components
+//   - server-cache-react: React.cache wraps DB calls to deduplicate within the request
 
-export default function Home() {
+import { Suspense } from "react";
+import type { Metadata } from "next";
+import { cache } from "react";
+
+import { Nav } from "@/components/Nav";
+import { DisclaimerBanner } from "@/components/DisclaimerBanner";
+import { FilterBar, filterStateFromSearchParams } from "@/components/FilterBar";
+import { ModelTable } from "@/components/ModelTable";
+import { db } from "@/lib/db";
+import { models } from "@/db/schema";
+import { eq, and } from "drizzle-orm";
+import { getAllProviders } from "@/lib/providers";
+import type { ModelWithProvider } from "@/components/types";
+import type { AnyProvider } from "@/lib/compliance";
+
+// ─── Metadata ─────────────────────────────────────────────────────────────────
+
+export const metadata: Metadata = {
+  title: "GDPR AI Directory — EU-compliant AI inference providers",
+  description:
+    "Filter AI inference providers by GDPR compliance status. Compare EU data residency, DPA availability, training policies, and pricing across 100+ providers.",
+};
+
+// ─── Data fetching (React.cache for per-request deduplication) ────────────────
+
+const getActiveModels = cache(async () => {
+  return db.select().from(models).where(and(eq(models.isActive, true))).orderBy(models.displayName);
+});
+
+// ─── Page ──────────────────────────────────────────────────────────────────────
+
+interface HomePageProps {
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
+}
+
+export default async function HomePage({ searchParams }: HomePageProps) {
+  const params = await searchParams;
+  const searchQuery = typeof params.q === "string" ? params.q : "";
+
+  // Parallel fetch: DB + file system — async-parallel rule
+  const [allModels, allProviders] = await Promise.all([
+    getActiveModels(),
+    Promise.resolve(getAllProviders()),
+  ]);
+
+  // Build provider lookup map — js-index-maps rule
+  const providerMap = new Map<string, AnyProvider>(
+    allProviders.map((p) => [p.slug, p]),
+  );
+
+  // Serialize: only pass what client components need — server-serialization rule
+  const items: ModelWithProvider[] = allModels.map((model) => ({
+    model,
+    provider: providerMap.get(model.providerSlug) ?? null,
+  }));
+
+  // Reconstruct URLSearchParams for FilterBar initial state
+  const urlSearchParams = new URLSearchParams(
+    Object.entries(params)
+      .filter(([, v]) => typeof v === "string")
+      .map(([k, v]) => [k, v as string]),
+  );
+  const filterState = filterStateFromSearchParams(urlSearchParams);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image className="dark:invert" src="/next.svg" alt="Next.js logo" width={100} height={20} priority />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <>
+      <Nav />
+
+      {/* Disclaimer — below nav per DESIGN.md */}
+      <DisclaimerBanner />
+
+      <main
+        style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "40px 40px",
+          flex: 1,
+          width: "100%",
+          boxSizing: "border-box",
+        }}
+        className="px-4 sm:px-6 lg:px-10"
+      >
+        {/* Page heading */}
+        <div style={{ marginBottom: "32px" }}>
+          <h1
+            style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "2.5rem",
+              fontWeight: 400,
+              color: "var(--color-heading)",
+              lineHeight: 1.15,
+              margin: "0 0 12px",
+              letterSpacing: "-0.02em",
+            }}
+          >
+            AI inference providers,<br />
+            filtered by GDPR compliance.
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "0.9375rem",
+              color: "var(--color-text-secondary)",
+              margin: 0,
+              maxWidth: "55ch",
+              lineHeight: 1.6,
+            }}
+          >
+            {items.length > 0
+              ? `${allModels.length} models across ${providerMap.size} providers. Filter by compliance profile to find what passes your threshold.`
+              : "Browse providers and their compliance posture. Filter by data residency, DPA availability, and training policy."}
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+
+        {/* Filter bar — client component, gets initial state from server */}
+        <div style={{ marginBottom: "24px" }}>
+          <Suspense fallback={null}>
+            <FilterBar filterState={filterState} />
+          </Suspense>
+        </div>
+
+        {/* Model table — client component, data from server */}
+        <Suspense
+          fallback={
+            <div
+              style={{
+                padding: "64px 0",
+                textAlign: "center",
+                fontFamily: "var(--font-body)",
+                fontSize: "0.9375rem",
+                color: "var(--color-text-muted)",
+              }}
+            >
+              Loading models…
+            </div>
+          }
+        >
+          <ModelTable items={items} searchQuery={searchQuery} />
+        </Suspense>
+      </main>
+
+      <footer
+        style={{
+          borderTop: "1px solid var(--color-border)",
+          padding: "24px 40px",
+          marginTop: "auto",
+        }}
+        className="px-4 sm:px-6 lg:px-10"
+      >
+        <div
+          style={{
+            maxWidth: "1200px",
+            margin: "0 auto",
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "16px",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "0.8125rem",
+              color: "var(--color-text-muted)",
+              margin: 0,
+            }}
+          >
+            Data licensed under{" "}
+            <a
+              href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "var(--color-link)" }}
+            >
+              CC BY-NC-SA 4.0
+            </a>
+            . Code under{" "}
+            <a
+              href="https://github.com/carlonoelle/gdpr-ai-directory/blob/main/LICENSE"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "var(--color-link)" }}
+            >
+              MIT
+            </a>
+            .
+          </p>
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
+            href="https://github.com/carlonoelle/gdpr-ai-directory"
             target="_blank"
             rel="noopener noreferrer"
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "0.8125rem",
+              color: "var(--color-text-muted)",
+            }}
           >
-            <Image className="dark:invert" src="/vercel.svg" alt="Vercel logomark" width={16} height={16} />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+            GitHub →
           </a>
         </div>
-      </main>
-    </div>
+      </footer>
+    </>
   );
 }
