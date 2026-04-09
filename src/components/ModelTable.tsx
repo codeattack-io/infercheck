@@ -5,6 +5,7 @@
 //
 // Data is fetched server-side and passed as props — no client-side fetch.
 // Filter state lives entirely in URL params (shareable links requirement).
+// Search uses Fuse.js with token search for fuzzy multi-word matching.
 // Vercel rules applied:
 //   - rerender-derived-state-no-effect: filtered list derived during render
 //   - rerender-functional-setstate: stable search callback
@@ -13,10 +14,38 @@
 
 import { useMemo, useCallback, useTransition } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import Fuse, { type FuseResultMatch } from "fuse.js";
 import { ModelRow } from "@/components/ModelRow";
 import { providerMatchesFilter, filterStateFromSearchParams } from "@/lib/compliance";
 import type { ModelWithProvider } from "@/components/types";
 import type { AnyProvider } from "@/lib/compliance";
+
+// ─── Fuse config ──────────────────────────────────────────────────────────────
+
+// Keys searched; displayName weighted highest since it's what users type.
+// useTokenSearch splits "claude 4.6" into ["claude", "4.6"] and fuzzy-matches
+// each token independently, then merges scores — fixes the multi-word gap.
+const FUSE_OPTIONS: ConstructorParameters<typeof Fuse<ModelWithProvider>>[1] = {
+  keys: [
+    { name: "model.displayName", weight: 2 },
+    { name: "provider.name", weight: 1 },
+    { name: "model.id", weight: 0.5 },
+  ],
+  threshold: 0.35,       // 0 = exact, 1 = match anything — 0.35 is permissive but still relevant
+  distance: 200,         // allow matches further into long model-id strings
+  useExtendedSearch: false,
+  useTokenSearch: true,  // multi-word: "claude 4.6" matches "Claude Sonnet 4.6"
+  includeMatches: true,  // gives us character-level indices for highlighting
+  minMatchCharLength: 1,
+  ignoreLocation: true,  // don't penalise matches that occur deep in the string
+};
+
+// Per-row match data keyed by `${model.id}::${model.providerSlug}`
+export type MatchMap = Map<string, readonly FuseResultMatch[]>;
+
+function rowKey(item: ModelWithProvider): string {
+  return `${item.model.id}::${item.model.providerSlug}`;
+}
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -49,7 +78,13 @@ export function ModelTable({ items, searchQuery }: ModelTableProps) {
     return profileFilters[filterState.profile] ?? null;
   }, [filterState]);
 
-  // Search: update URL param, debounce not needed (client-side filter)
+  // Build Fuse index once per items change — O(n) on data, not on each keystroke
+  const fuse = useMemo(
+    () => new Fuse(items, FUSE_OPTIONS),
+    [items],
+  );
+
+  // Search: update URL param — client-side filtering means no debounce needed
   const handleSearchChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const q = e.target.value;
@@ -66,23 +101,47 @@ export function ModelTable({ items, searchQuery }: ModelTableProps) {
     [searchParams, pathname, router],
   );
 
-  // Filter + search — derived during render (rerender-derived-state-no-effect)
-  const { matching, nonMatching } = useMemo(() => {
-    const q = searchQuery.toLowerCase().trim();
+  // Clear search — writes empty state to URL
+  const handleClear = useCallback(() => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete("q");
+    startTransition(() =>
+      router.replace(`${pathname}?${params.toString()}`, { scroll: false }),
+    );
+  }, [searchParams, pathname, router]);
+
+  // Search + filter — derived during render (rerender-derived-state-no-effect)
+  //
+  // When a query is present: use Fuse results (ranked by score), build a
+  // matchMap of highlight data keyed by rowKey.
+  // When empty: show all items in original DB order (no Fuse overhead).
+  const { matching, nonMatching, matchMap } = useMemo(() => {
+    const q = searchQuery.trim();
+    const matchMap: MatchMap = new Map();
+
+    // Determine which items pass the text search, and collect match data
+    let searchPassed: Set<ModelWithProvider> | null = null; // null = all pass
+
+    if (q !== "") {
+      const fuseResults = fuse.search(q);
+      searchPassed = new Set();
+      for (const result of fuseResults) {
+        searchPassed.add(result.item);
+        if (result.matches && result.matches.length > 0) {
+          matchMap.set(rowKey(result.item), result.matches);
+        }
+      }
+    }
+
     const matching: ModelWithProvider[] = [];
     const nonMatching: ModelWithProvider[] = [];
 
-    for (const item of items) {
-      // Text search
-      const matchesSearch =
-        q === "" ||
-        item.model.displayName.toLowerCase().includes(q) ||
-        item.model.id.toLowerCase().includes(q) ||
-        (item.provider?.name ?? "").toLowerCase().includes(q);
+    const source = searchPassed !== null
+      ? Array.from(searchPassed)  // Fuse-ranked order preserved
+      : items;                     // original DB order when no query
 
-      if (!matchesSearch) continue; // Hide non-matching search results entirely
-
-      // Compliance filter — dim, not remove (per DESIGN.md)
+    for (const item of source) {
+      // Compliance filter — dim, not remove (per design intent)
       const matchesFilter =
         activeFilter === null ||
         (item.provider !== null && providerMatchesFilter(item.provider, activeFilter));
@@ -94,11 +153,12 @@ export function ModelTable({ items, searchQuery }: ModelTableProps) {
       }
     }
 
-    return { matching, nonMatching };
-  }, [items, searchQuery, activeFilter]);
+    return { matching, nonMatching, matchMap };
+  }, [items, searchQuery, activeFilter, fuse]);
 
   const totalVisible = matching.length + nonMatching.length;
   const hasFilter = activeFilter !== null;
+  const hasQuery = searchQuery.trim() !== "";
 
   return (
     <div>
@@ -108,6 +168,7 @@ export function ModelTable({ items, searchQuery }: ModelTableProps) {
           Search models or providers
         </label>
         <div style={{ position: "relative" }}>
+          {/* Search icon */}
           <svg
             width="16"
             height="16"
@@ -126,9 +187,11 @@ export function ModelTable({ items, searchQuery }: ModelTableProps) {
             <circle cx="7" cy="7" r="4.5" stroke="currentColor" strokeWidth="1.25" />
             <path d="M10.5 10.5L13.5 13.5" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
           </svg>
+
           <input
             id="model-search"
             type="search"
+            key={searchQuery} // reset controlled value when URL changes externally
             defaultValue={searchQuery}
             onChange={handleSearchChange}
             placeholder="Search models or providers…"
@@ -136,7 +199,7 @@ export function ModelTable({ items, searchQuery }: ModelTableProps) {
             spellCheck={false}
             style={{
               width: "100%",
-              padding: "9px 12px 9px 36px",
+              padding: hasQuery ? "9px 36px 9px 36px" : "9px 12px 9px 36px",
               backgroundColor: "var(--color-surface)",
               border: "1px solid var(--color-border)",
               borderRadius: "4px",
@@ -155,6 +218,39 @@ export function ModelTable({ items, searchQuery }: ModelTableProps) {
               e.currentTarget.style.boxShadow = "none";
             }}
           />
+
+          {/* Clear button — only visible when there's a query */}
+          {hasQuery ? (
+            <button
+              type="button"
+              onClick={handleClear}
+              aria-label="Clear search"
+              style={{
+                position: "absolute",
+                right: "10px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "20px",
+                height: "20px",
+                borderRadius: "50%",
+                border: "none",
+                backgroundColor: "var(--color-text-muted)",
+                color: "var(--color-surface)",
+                cursor: "pointer",
+                padding: 0,
+                fontSize: "14px",
+                lineHeight: 1,
+                opacity: 0.65,
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.opacity = "1"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.opacity = "0.65"; }}
+            >
+              ×
+            </button>
+          ) : null}
         </div>
       </div>
 
@@ -167,8 +263,12 @@ export function ModelTable({ items, searchQuery }: ModelTableProps) {
           marginBottom: "12px",
         }}
       >
-        {hasFilter
+        {hasQuery && totalVisible === 0
+          ? `No models found for "${searchQuery}"`
+          : hasFilter
           ? `${matching.length} of ${totalVisible} models match the active filter`
+          : hasQuery
+          ? `${totalVisible} of ${items.length} models`
           : `${totalVisible} models`}
       </div>
 
@@ -281,16 +381,18 @@ export function ModelTable({ items, searchQuery }: ModelTableProps) {
             <tbody>
               {matching.map((item) => (
                 <ModelRow
-                  key={`${item.model.id}-${item.model.providerSlug}`}
+                  key={rowKey(item)}
                   item={item}
                   dimmed={false}
+                  matches={matchMap.get(rowKey(item))}
                 />
               ))}
               {nonMatching.map((item) => (
                 <ModelRow
-                  key={`${item.model.id}-${item.model.providerSlug}`}
+                  key={rowKey(item)}
                   item={item}
                   dimmed={true}
+                  matches={matchMap.get(rowKey(item))}
                 />
               ))}
               {totalVisible === 0 ? (

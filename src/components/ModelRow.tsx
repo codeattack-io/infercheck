@@ -3,12 +3,16 @@
 // ModelRow: a single row in the model table with inline expand.
 // Inline expand per DESIGN.md — no modals, no navigation.
 // Expand state is local; does not affect URL (only filter state does).
+//
+// Wrapped in React.memo so re-renders are skipped when item/dimmed/matches
+// haven't changed — prevents every row re-rendering on each search keystroke.
 
-import { useState } from "react";
+import { useState, memo, type ReactNode } from "react";
 import Link from "next/link";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
 import { isFullProvider, getComplianceTier } from "@/lib/compliance";
 import type { ModelWithProvider } from "@/components/types";
+import type { FuseResultMatch } from "fuse.js";
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -21,6 +25,60 @@ function formatPrice(val: string | null | undefined): string {
   if (n < 0.01) return `$${n.toFixed(4)}`;
   if (n < 1) return `$${n.toFixed(3)}`;
   return `$${n.toFixed(2)}`;
+}
+
+// Renders `text` with character ranges in `indices` wrapped in <mark>.
+// `key` is the Fuse field key to look for in `matches`, e.g. "model.displayName".
+function highlightText(
+  text: string,
+  matches: readonly FuseResultMatch[] | undefined,
+  key: string,
+): ReactNode {
+  if (!matches || matches.length === 0) return text;
+
+  // Find the match entry for this specific field key
+  const fieldMatch = matches.find((m) => m.key === key);
+  if (!fieldMatch || !fieldMatch.indices || fieldMatch.indices.length === 0) return text;
+
+  // Merge overlapping index pairs and sort
+  const sorted = [...fieldMatch.indices].sort((a, b) => a[0] - b[0]);
+  const merged: [number, number][] = [];
+  for (const [start, end] of sorted) {
+    if (merged.length > 0 && start <= merged[merged.length - 1][1] + 1) {
+      merged[merged.length - 1][1] = Math.max(merged[merged.length - 1][1], end);
+    } else {
+      merged.push([start, end]);
+    }
+  }
+
+  const nodes: ReactNode[] = [];
+  let cursor = 0;
+  for (const [start, end] of merged) {
+    if (start > cursor) {
+      nodes.push(text.slice(cursor, start));
+    }
+    nodes.push(
+      <mark
+        key={start}
+        style={{
+          backgroundColor: "var(--color-accent-subtle)",
+          color: "var(--color-accent)",
+          borderRadius: "2px",
+          padding: "0 1px",
+          fontWeight: 700,
+          // inherit surrounding font so mark doesn't reset sizing
+          font: "inherit",
+        }}
+      >
+        {text.slice(start, end + 1)}
+      </mark>,
+    );
+    cursor = end + 1;
+  }
+  if (cursor < text.length) {
+    nodes.push(text.slice(cursor));
+  }
+  return <>{nodes}</>;
 }
 
 // ─── Tier color map ───────────────────────────────────────────────────────────
@@ -37,9 +95,11 @@ const TIER_COLOR: Record<string, string> = {
 interface ModelRowProps {
   item: ModelWithProvider;
   dimmed?: boolean;
+  /** Fuse.js match data from the parent — used to highlight matched characters */
+  matches?: readonly FuseResultMatch[];
 }
 
-export function ModelRow({ item, dimmed = false }: ModelRowProps) {
+function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
   const { model, provider } = item;
   const [expanded, setExpanded] = useState(false);
 
@@ -80,7 +140,7 @@ export function ModelRow({ item, dimmed = false }: ModelRowProps) {
                 lineHeight: 1.3,
               }}
             >
-              {model.displayName}
+              {highlightText(model.displayName, matches, "model.displayName")}
             </span>
           </div>
           <div
@@ -91,7 +151,7 @@ export function ModelRow({ item, dimmed = false }: ModelRowProps) {
               marginTop: "2px",
             }}
           >
-            {providerName}
+            {highlightText(providerName, matches, "provider.name")}
           </div>
         </td>
 
@@ -236,7 +296,7 @@ export function ModelRow({ item, dimmed = false }: ModelRowProps) {
               width: "20px",
               height: "20px",
               borderRadius: "50%",
-              border: `1px solid ${expanded ? "var(--color-border)" : "var(--color-border)"}`,
+              border: `1px solid var(--color-border)`,
               backgroundColor: expanded ? "var(--color-surface-alt)" : "transparent",
               color: "var(--color-text-muted)",
               fontSize: "14px",
@@ -408,6 +468,17 @@ export function ModelRow({ item, dimmed = false }: ModelRowProps) {
     </>
   );
 }
+
+// React.memo: skip re-render when item reference, dimmed flag, and matches
+// array reference haven't changed. This is the common case during filter-only
+// updates — only rows whose data actually changed need to re-render.
+export const ModelRow = memo(ModelRowInner, (prev, next) => {
+  return (
+    prev.item === next.item &&
+    prev.dimmed === next.dimmed &&
+    prev.matches === next.matches
+  );
+});
 
 // ─── ComplianceField helper ───────────────────────────────────────────────────
 
