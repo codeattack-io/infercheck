@@ -20,11 +20,11 @@
 //   - js-index-maps: provider lookup by slug via Map
 //   - rendering-conditional-render: ternary not &&
 
-import { useMemo, useCallback, useTransition, useState, useRef } from "react";
+import { useMemo, useCallback, useTransition, useState } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import Fuse, { type FuseResultMatch, type Expression } from "fuse.js";
 import { ModelRow } from "@/components/ModelRow";
-import { providerMatchesFilter, filterStateFromSearchParams } from "@/lib/compliance";
+import { providerMatchesFilter, filterStateFromSearchParams, getComplianceTier } from "@/lib/compliance";
 import type { ModelWithProvider } from "@/components/types";
 import type { AnyProvider } from "@/lib/compliance";
 
@@ -105,6 +105,47 @@ function buildFuseQuery(raw: string): string | Expression {
   } as Expression;
 }
 
+// ─── Sort ──────────────────────────────────────────────────────────────────────
+
+export type SortKey = "compliance" | "price" | "provider" | "default";
+export type SortDir = "asc" | "desc";
+
+const TIER_RANK: Record<string, number> = {
+  compliant: 0,
+  partial: 1,
+  noncompliant: 2,
+  unverified: 3,
+};
+
+function sortItems(
+  items: ModelWithProvider[],
+  key: SortKey,
+  dir: SortDir,
+): ModelWithProvider[] {
+  if (key === "default") return items;
+
+  const multiplier = dir === "asc" ? 1 : -1;
+
+  return [...items].sort((a, b) => {
+    if (key === "compliance") {
+      const ra = TIER_RANK[getComplianceTier(a.provider as AnyProvider)] ?? 3;
+      const rb = TIER_RANK[getComplianceTier(b.provider as AnyProvider)] ?? 3;
+      return (ra - rb) * multiplier;
+    }
+    if (key === "price") {
+      const pa = a.model.inputPricePerMTokens !== null ? parseFloat(a.model.inputPricePerMTokens) : Infinity;
+      const pb = b.model.inputPricePerMTokens !== null ? parseFloat(b.model.inputPricePerMTokens) : Infinity;
+      return (pa - pb) * multiplier;
+    }
+    if (key === "provider") {
+      const na = (a.provider?.name ?? a.model.providerSlug).toLowerCase();
+      const nb = (b.provider?.name ?? b.model.providerSlug).toLowerCase();
+      return na < nb ? -1 * multiplier : na > nb ? 1 * multiplier : 0;
+    }
+    return 0;
+  });
+}
+
 // Per-row match data keyed by `${model.id}::${model.providerSlug}`
 export type MatchMap = Map<string, readonly FuseResultMatch[]>;
 
@@ -127,9 +168,34 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
   const [, startTransition] = useTransition();
 
   // LOCAL input state — decoupled from URL after mount.
-  // This is the key fix for focus loss: the input value never causes the input
-  // to remount because we don't use key= or re-derive from a changing prop.
   const [inputValue, setInputValue] = useState(initialQuery);
+
+  // Sort state — persisted in URL
+  const sortKey = (searchParams.get("sort") as SortKey) ?? "default";
+  const sortDir = (searchParams.get("dir") as SortDir) ?? "asc";
+
+  const handleSort = useCallback(
+    (key: SortKey) => {
+      const params = new URLSearchParams(searchParams.toString());
+      if (sortKey === key) {
+        // Toggle direction if same key
+        if (sortDir === "asc") {
+          params.set("dir", "desc");
+        } else {
+          // Third click: reset sort
+          params.delete("sort");
+          params.delete("dir");
+        }
+      } else {
+        params.set("sort", key);
+        params.set("dir", "asc");
+      }
+      startTransition(() =>
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false }),
+      );
+    },
+    [searchParams, pathname, router, sortKey, sortDir],
+  );
 
   // Derive filter state from URL params during render — no useEffect
   const filterState = useMemo(
@@ -226,8 +292,14 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
       }
     }
 
-    return { matching, nonMatching, matchMap };
-  }, [items, inputValue, activeFilter, fuse]);
+    // Apply sort — only when no active search query (Fuse rank is more useful then)
+    const shouldSort = sortKey !== "default" && q === "";
+    return {
+      matching: shouldSort ? sortItems(matching, sortKey, sortDir) : matching,
+      nonMatching: shouldSort ? sortItems(nonMatching, sortKey, sortDir) : nonMatching,
+      matchMap,
+    };
+  }, [items, inputValue, activeFilter, fuse, sortKey, sortDir]);
 
   const totalVisible = matching.length + nonMatching.length;
   const hasFilter = activeFilter !== null;
@@ -368,85 +440,52 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   borderBottom: "1px solid var(--color-border)",
                 }}
               >
-                <th
-                  style={{
-                    padding: "10px 16px",
-                    textAlign: "left",
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    color: "var(--color-text-secondary)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    width: "25%",
-                  }}
-                >
-                  Model
-                </th>
-                <th
+                <SortableTh
+                  label="Model"
+                  sortKey="default"
+                  activeSortKey={sortKey}
+                  sortDir={sortDir}
+                  onSort={handleSort}
+                  style={{ width: "25%" }}
+                />
+                <SortableTh
+                  label="Compliance"
+                  sortKey="compliance"
+                  activeSortKey={sortKey}
+                  sortDir={sortDir}
+                  onSort={handleSort}
                   className="hidden sm:table-cell"
-                  style={{
-                    padding: "10px 16px",
-                    textAlign: "left",
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    color: "var(--color-text-secondary)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    width: "30%",
-                  }}
-                >
-                  Compliance
-                </th>
-                <th
+                  style={{ width: "30%" }}
+                />
+                <SortableTh
+                  label="Residency"
+                  sortKey="default"
+                  activeSortKey={sortKey}
+                  sortDir={sortDir}
+                  onSort={handleSort}
                   className="hidden md:table-cell"
-                  style={{
-                    padding: "10px 16px",
-                    textAlign: "left",
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    color: "var(--color-text-secondary)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    width: "15%",
-                  }}
-                >
-                  Residency
-                </th>
-                <th
+                  style={{ width: "15%" }}
+                  nonSortable
+                />
+                <SortableTh
+                  label="Price / 1M tokens"
+                  sortKey="price"
+                  activeSortKey={sortKey}
+                  sortDir={sortDir}
+                  onSort={handleSort}
                   className="hidden lg:table-cell"
-                  style={{
-                    padding: "10px 16px",
-                    textAlign: "left",
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    color: "var(--color-text-secondary)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    width: "15%",
-                  }}
-                >
-                  Price / 1M tokens
-                </th>
-                <th
+                  style={{ width: "15%" }}
+                />
+                <SortableTh
+                  label="Verified"
+                  sortKey="default"
+                  activeSortKey={sortKey}
+                  sortDir={sortDir}
+                  onSort={handleSort}
                   className="hidden xl:table-cell"
-                  style={{
-                    padding: "10px 16px",
-                    textAlign: "left",
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    color: "var(--color-text-secondary)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.05em",
-                    width: "10%",
-                  }}
-                >
-                  Verified
-                </th>
+                  style={{ width: "10%" }}
+                  nonSortable
+                />
                 <th style={{ width: "5%" }} aria-hidden="true" />
               </tr>
             </thead>
@@ -488,5 +527,86 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
         </div>
       </div>
     </div>
+  );
+}
+
+// ─── SortableTh ───────────────────────────────────────────────────────────────
+
+interface SortableThProps {
+  label: string;
+  sortKey: SortKey;
+  activeSortKey: SortKey;
+  sortDir: SortDir;
+  onSort: (key: SortKey) => void;
+  className?: string;
+  style?: React.CSSProperties;
+  nonSortable?: boolean;
+}
+
+function SortableTh({
+  label,
+  sortKey,
+  activeSortKey,
+  sortDir,
+  onSort,
+  className,
+  style,
+  nonSortable = false,
+}: SortableThProps) {
+  const isActive = !nonSortable && activeSortKey === sortKey;
+
+  return (
+    <th
+      className={className}
+      style={{
+        padding: "10px 16px",
+        textAlign: "left",
+        fontFamily: "var(--font-body)",
+        fontSize: "0.75rem",
+        fontWeight: 600,
+        color: isActive ? "var(--color-text-primary)" : "var(--color-text-secondary)",
+        textTransform: "uppercase",
+        letterSpacing: "0.05em",
+        userSelect: "none",
+        ...style,
+      }}
+    >
+      {nonSortable ? (
+        label
+      ) : (
+        <button
+          type="button"
+          onClick={() => onSort(sortKey)}
+          style={{
+            background: "none",
+            border: "none",
+            padding: 0,
+            cursor: "pointer",
+            fontFamily: "inherit",
+            fontSize: "inherit",
+            fontWeight: "inherit",
+            color: "inherit",
+            textTransform: "inherit",
+            letterSpacing: "inherit",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "4px",
+          }}
+          aria-label={`Sort by ${label}`}
+        >
+          {label}
+          <span
+            style={{
+              opacity: isActive ? 1 : 0.35,
+              fontSize: "10px",
+              lineHeight: 1,
+            }}
+            aria-hidden="true"
+          >
+            {isActive && sortDir === "desc" ? "↓" : "↑"}
+          </span>
+        </button>
+      )}
+    </th>
   );
 }

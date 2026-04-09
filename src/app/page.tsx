@@ -29,6 +29,13 @@ export const metadata: Metadata = {
   title: "GDPR AI Directory — EU-compliant AI inference providers",
   description:
     "Filter AI inference providers by GDPR compliance status. Compare EU data residency, DPA availability, training policies, and pricing across 100+ providers.",
+  openGraph: {
+    title: "GDPR AI Directory — EU-compliant AI inference providers",
+    description:
+      "Filter AI inference providers by GDPR compliance. Compare EU data residency, DPA, training opt-out, and pricing across 100+ providers.",
+    type: "website",
+    url: "https://gdpr-ai.directory",
+  },
 };
 
 // ─── Data fetching (React.cache for per-request deduplication) ────────────────
@@ -72,8 +79,34 @@ export default async function HomePage({ searchParams }: HomePageProps) {
   );
   const filterState = filterStateFromSearchParams(urlSearchParams);
 
+  // Homepage JSON-LD: Dataset schema
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Dataset",
+    "name": "GDPR AI Directory",
+    "description":
+      "Structured compliance metadata for AI inference providers — EU data residency, DPA availability, training policy, certifications, and EU AI Act status.",
+    "url": "https://gdpr-ai.directory",
+    "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "creator": {
+      "@type": "Person",
+      "name": "Carlo Noelle",
+    },
+    "keywords": [
+      "GDPR AI",
+      "EU AI compliance",
+      "GDPR compliant LLM",
+      "EU data residency AI",
+      "AI inference GDPR",
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Nav />
 
       {/* Disclaimer — below nav per DESIGN.md */}
