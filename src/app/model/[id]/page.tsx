@@ -11,6 +11,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { cache } from "react";
 import { db } from "@/lib/db";
 import { models } from "@/db/schema";
 import { eq, and, sql } from "drizzle-orm";
@@ -54,16 +55,21 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
+// server-cache-react: wrap DB query so generateMetadata and the page body share
+// a single request-scoped hit. React.cache() deduplicates by argument identity.
+const getModelRows = cache(async (decoded: string) => {
+  return db
+    .select()
+    .from(models)
+    .where(and(eq(models.isActive, true), sql`${models.id} LIKE ${"%" + decoded}`))
+    .orderBy(models.providerSlug);
+});
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
   const decoded = decodeURIComponent(id);
 
-  const rows = await db
-    .select({ displayName: models.displayName })
-    .from(models)
-    .where(and(eq(models.isActive, true), sql`${models.id} LIKE ${"%" + decoded}`))
-    .limit(1);
-
+  const rows = await getModelRows(decoded);
   const name = rows[0]?.displayName ?? decoded;
 
   return {
@@ -83,13 +89,11 @@ export default async function ModelDetailPage({ params }: PageProps) {
   const { id } = await params;
   const decoded = decodeURIComponent(id);
 
-  // Parallel: DB + provider map
+  // Parallel: cached DB query + provider JSON load (async-parallel rule).
+  // getModelRows() is React.cache-wrapped — if generateMetadata already ran it,
+  // this hits the request-scoped cache instead of the DB (server-cache-react rule).
   const [modelRows, allProviders] = await Promise.all([
-    db
-      .select()
-      .from(models)
-      .where(and(eq(models.isActive, true), sql`${models.id} LIKE ${"%" + decoded}`))
-      .orderBy(models.providerSlug),
+    getModelRows(decoded),
     Promise.resolve(getAllProviders()),
   ]);
 

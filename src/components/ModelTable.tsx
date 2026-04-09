@@ -126,7 +126,8 @@ function sortItems(
 
   const multiplier = dir === "asc" ? 1 : -1;
 
-  return [...items].sort((a, b) => {
+  // js-tosorted-immutable: toSorted() creates a new array without mutating props
+  return items.toSorted((a, b) => {
     if (key === "compliance") {
       const ra = TIER_RANK[getComplianceTier(a.provider as AnyProvider)] ?? 3;
       const rb = TIER_RANK[getComplianceTier(b.provider as AnyProvider)] ?? 3;

@@ -62,3 +62,11 @@ body {
     color: var(--color-text-primary);
   }
 }
+
+/* ─── Component helpers ────────────────────────────────────────────────────── */
+
+/* ProviderCard hover shadow — CSS-only so ProviderCard stays a server component.
+   js-batch-dom-css: single class toggle instead of inline style mutation. */
+.provider-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}

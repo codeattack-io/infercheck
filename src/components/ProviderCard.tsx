@@ -1,7 +1,5 @@
 // ProviderCard — compact compliance summary card for the /providers listing page.
-// Client component needed for hover interaction.
-
-"use client";
+// Server component — hover handled via CSS class (no JS event handlers needed).
 
 import Link from "next/link";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
@@ -32,8 +30,11 @@ export function ProviderCard({ provider, modelCount }: ProviderCardProps) {
   const verified = isFullProvider(provider);
 
   return (
+    // provider-card class provides the :hover box-shadow via globals.css —
+    // no JS event handlers needed, no "use client" required.
     <Link
       href={`/provider/${provider.slug}`}
+      className="provider-card"
       style={{
         display: "block",
         backgroundColor: "var(--color-surface)",
@@ -42,14 +43,7 @@ export function ProviderCard({ provider, modelCount }: ProviderCardProps) {
         borderRadius: "4px",
         padding: "16px 20px",
         textDecoration: "none",
-        transition: "box-shadow 120ms ease, border-color 120ms ease",
-      }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLAnchorElement).style.boxShadow =
-          "0 2px 8px rgba(0,0,0,0.08)";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLAnchorElement).style.boxShadow = "none";
+        transition: "box-shadow 120ms ease",
       }}
     >
       {/* Name + tier */}

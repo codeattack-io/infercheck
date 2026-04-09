@@ -11,7 +11,7 @@ import { getComplianceTier } from "@/lib/compliance";
 import type { AnyProvider, ComplianceTier } from "@/lib/compliance";
 import { db } from "@/lib/db";
 import { models } from "@/db/schema";
-import { eq, and, sql } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import Link from "next/link";
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
