@@ -18,6 +18,32 @@ export interface ComplianceFilter {
 
 export type FilterProfile = "strict-eu" | "eu-sccs" | "no-training" | "custom" | null;
 
+// ─── Filter state ─────────────────────────────────────────────────────────────
+
+export interface FilterState {
+  profile: FilterProfile;
+  custom: ComplianceFilter;
+}
+
+const VALID_PROFILES: FilterProfile[] = ["strict-eu", "eu-sccs", "no-training", "custom", null];
+
+/**
+ * Parse filter state from URL search params.
+ * Safe to call on both server and client.
+ */
+export function filterStateFromSearchParams(params: URLSearchParams): FilterState {
+  const raw = params.get("profile") as FilterProfile | null;
+  const profile = VALID_PROFILES.includes(raw) ? raw : null;
+
+  const custom: ComplianceFilter = {};
+  if (params.get("euOnly") === "true") custom.euOnly = true;
+  if (params.get("dpa") === "true") custom.dpa = true;
+  if (params.get("noTraining") === "true") custom.noTraining = true;
+  if (params.get("sccs") === "true") custom.sccs = true;
+
+  return { profile, custom };
+}
+
 // ─── Guards ───────────────────────────────────────────────────────────────────
 
 /**

@@ -14,8 +14,7 @@
 import { useMemo, useCallback, useTransition } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { ModelRow } from "@/components/ModelRow";
-import { providerMatchesFilter } from "@/lib/compliance";
-import { filterStateFromSearchParams } from "@/components/FilterBar";
+import { providerMatchesFilter, filterStateFromSearchParams } from "@/lib/compliance";
 import type { ModelWithProvider } from "@/components/types";
 import type { AnyProvider } from "@/lib/compliance";
 

@@ -13,7 +13,8 @@ import { cache } from "react";
 
 import { Nav } from "@/components/Nav";
 import { DisclaimerBanner } from "@/components/DisclaimerBanner";
-import { FilterBar, filterStateFromSearchParams } from "@/components/FilterBar";
+import { FilterBar } from "@/components/FilterBar";
+import { filterStateFromSearchParams } from "@/lib/compliance";
 import { ModelTable } from "@/components/ModelTable";
 import { db } from "@/lib/db";
 import { models } from "@/db/schema";

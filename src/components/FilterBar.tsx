@@ -2,36 +2,18 @@
 
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useCallback, useState, useTransition } from "react";
-import type { FilterProfile, ComplianceFilter } from "@/lib/compliance";
+import {
+  filterStateFromSearchParams,
+  type FilterProfile,
+  type FilterState,
+  type ComplianceFilter,
+} from "@/lib/compliance";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
-export interface FilterState {
-  profile: FilterProfile;
-  custom: ComplianceFilter;
-}
-
-export function filterStateFromSearchParams(params: URLSearchParams): FilterState {
-  const profile = params.get("profile") as FilterProfile | null;
-  const validProfiles: FilterProfile[] = ["strict-eu", "eu-sccs", "no-training", "custom", null];
-  const resolvedProfile = validProfiles.includes(profile) ? profile : null;
-
-  const custom: ComplianceFilter = {
-    euOnly: params.get("euOnly") === "true" || undefined,
-    dpa: params.get("dpa") === "true" || undefined,
-    noTraining: params.get("noTraining") === "true" || undefined,
-    sccs: params.get("sccs") === "true" || undefined,
-  };
-
-  // Normalize: remove undefined keys
-  Object.keys(custom).forEach((k) => {
-    if (custom[k as keyof ComplianceFilter] === undefined) {
-      delete custom[k as keyof ComplianceFilter];
-    }
-  });
-
-  return { profile: resolvedProfile, custom };
-}
+// Re-export so existing imports of FilterState/filterStateFromSearchParams from
+// this file keep working during the transition. The canonical source is now
+// compliance.ts (no "use client" boundary).
+export type { FilterState };
+export { filterStateFromSearchParams };
 
 // Preset profile definitions (matches PLAN.md)
 const PRESETS: { id: Exclude<FilterProfile, "custom" | null>; label: string; filter: ComplianceFilter }[] = [
