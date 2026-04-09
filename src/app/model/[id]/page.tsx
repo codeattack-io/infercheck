@@ -127,65 +127,26 @@ export default async function ModelDetailPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "40px 40px",
-          flex: 1,
-          width: "100%",
-          boxSizing: "border-box",
-        }}
-        className="px-4 sm:px-6 lg:px-10"
-      >
+      <main className="max-w-[1200px] mx-auto flex-1 w-full box-border px-4 sm:px-6 lg:px-10 py-10">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" style={{ marginBottom: "24px" }}>
-          <ol
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              listStyle: "none",
-              padding: 0,
-              margin: 0,
-              fontFamily: "var(--font-body)",
-              fontSize: "0.8125rem",
-              color: "var(--color-text-muted)",
-            }}
-          >
+        <nav aria-label="Breadcrumb" className="mb-6">
+          <ol className="flex items-center gap-2 list-none p-0 m-0 font-body text-[0.8125rem] text-text-muted">
             <li>
-              <Link href="/" style={{ color: "var(--color-link)", textDecoration: "none" }}>
+              <Link href="/" className="text-link no-underline">
                 Models
               </Link>
             </li>
             <li aria-hidden="true">/</li>
-            <li style={{ color: "var(--color-text-secondary)" }}>{modelName}</li>
+            <li className="text-text-secondary">{modelName}</li>
           </ol>
         </nav>
 
         {/* Heading */}
-        <div style={{ marginBottom: "32px" }}>
-          <h1
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "2rem",
-              fontWeight: 400,
-              color: "var(--color-heading)",
-              lineHeight: 1.2,
-              margin: "0 0 8px",
-              letterSpacing: "-0.02em",
-            }}
-          >
+        <div className="mb-8">
+          <h1 className="font-display text-[2rem] font-normal text-heading leading-[1.2] m-0 mb-2 tracking-[-0.02em]">
             {modelName}
           </h1>
-          <p
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.9375rem",
-              color: "var(--color-text-secondary)",
-              margin: 0,
-            }}
-          >
+          <p className="font-body text-[0.9375rem] text-text-secondary m-0">
             {modelRows.length === 1
               ? "Available from 1 provider"
               : `Available from ${modelRows.length} providers`}
@@ -194,7 +155,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
         </div>
 
         {/* Provider cards */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+        <div className="flex flex-col gap-4">
           {modelRows.map((row) => {
             const provider = providerMap.get(row.providerSlug) ?? null;
             const tier = provider ? getComplianceTier(provider) : "unverified";
@@ -204,9 +165,9 @@ export default async function ModelDetailPage({ params }: PageProps) {
             return (
               <div
                 key={`${row.id}::${row.providerSlug}`}
+                className="bg-surface border border-border rounded"
+                // borderLeft is dynamic (tier color) — kept as style
                 style={{
-                  backgroundColor: "var(--color-surface)",
-                  border: "1px solid var(--color-border)",
                   borderLeft: `3px solid ${
                     tier === "compliant"
                       ? "var(--color-compliant)"
@@ -216,56 +177,27 @@ export default async function ModelDetailPage({ params }: PageProps) {
                       ? "var(--color-noncompliant)"
                       : "var(--color-unverified)"
                   }`,
-                  borderRadius: "4px",
                   padding: "20px 24px",
                 }}
               >
                 {/* Card header */}
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "flex-start",
-                    justifyContent: "space-between",
-                    gap: "16px",
-                    flexWrap: "wrap",
-                    marginBottom: "16px",
-                  }}
-                >
+                <div className="flex items-start justify-between gap-4 flex-wrap mb-4">
                   <div>
-                    <div
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        fontSize: "1rem",
-                        fontWeight: 600,
-                        color: "var(--color-text-primary)",
-                        marginBottom: "4px",
-                      }}
-                    >
+                    <div className="font-body text-base font-semibold text-text-primary mb-1">
                       {provider?.name ?? row.providerSlug}
                     </div>
+                    {/* Tier pill — colors are dynamic from tierCfg */}
                     <div
+                      className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-body text-xs font-medium border"
                       style={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: "6px",
-                        padding: "2px 8px",
                         backgroundColor: tierCfg.bg,
-                        border: `1px solid ${tierCfg.border}`,
-                        borderRadius: "4px",
-                        fontFamily: "var(--font-body)",
-                        fontSize: "0.75rem",
-                        fontWeight: 500,
+                        borderColor: tierCfg.border,
                         color: tierCfg.color,
                       }}
                     >
                       <span
-                        style={{
-                          width: "6px",
-                          height: "6px",
-                          borderRadius: "50%",
-                          backgroundColor: tierCfg.color,
-                          flexShrink: 0,
-                        }}
+                        className="w-1.5 h-1.5 rounded-full shrink-0"
+                        style={{ backgroundColor: tierCfg.color }}
                         aria-hidden="true"
                       />
                       {tierCfg.label}
@@ -274,22 +206,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
 
                   <Link
                     href={`/provider/${row.providerSlug}`}
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      fontSize: "0.8125rem",
-                      fontWeight: 500,
-                      color: "var(--color-accent)",
-                      textDecoration: "none",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: "4px",
-                      padding: "4px 10px",
-                      border: "1px solid var(--color-accent)",
-                      borderRadius: "4px",
-                      backgroundColor: "var(--color-accent-subtle)",
-                      whiteSpace: "nowrap",
-                      flexShrink: 0,
-                    }}
+                    className="font-body text-[0.8125rem] font-medium text-accent no-underline inline-flex items-center gap-1 px-[10px] py-1 border border-accent rounded bg-accent-subtle whitespace-nowrap shrink-0"
                   >
                     Full provider profile →
                   </Link>
@@ -297,11 +214,8 @@ export default async function ModelDetailPage({ params }: PageProps) {
 
                 {/* Detail grid */}
                 <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-                    gap: "16px",
-                  }}
+                  className="grid gap-4"
+                  style={{ gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}
                 >
                   {/* Pricing */}
                   <DetailSection title="Pricing (per 1M tokens)">
@@ -333,15 +247,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
                     </DetailSection>
                   ) : (
                     <DetailSection title="GDPR Compliance">
-                      <p
-                        style={{
-                          fontFamily: "var(--font-body)",
-                          fontSize: "0.8125rem",
-                          color: "var(--color-text-muted)",
-                          margin: 0,
-                          fontStyle: "italic",
-                        }}
-                      >
+                      <p className="font-body text-[0.8125rem] text-text-muted m-0 italic">
                         Not yet verified
                       </p>
                     </DetailSection>
@@ -359,15 +265,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
                         }
                       />
                       {provider.compliance.dataResidency.euRegionDetails ? (
-                        <p
-                          style={{
-                            fontFamily: "var(--font-body)",
-                            fontSize: "0.8125rem",
-                            color: "var(--color-text-secondary)",
-                            margin: "6px 0 0",
-                            lineHeight: 1.5,
-                          }}
-                        >
+                        <p className="font-body text-[0.8125rem] text-text-secondary mt-1.5 leading-[1.5]">
                           {provider.compliance.dataResidency.euRegionDetails}
                         </p>
                       ) : null}
@@ -377,7 +275,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
                   {/* Badges */}
                   {verified && provider !== null && isFullProvider(provider) ? (
                     <DetailSection title="Compliance Badges">
-                      <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
+                      <div className="flex flex-wrap gap-1">
                         {provider.compliance.dataResidency.euOnly ? (
                           <ComplianceBadge variant="eu-only" />
                         ) : provider.compliance.sccs ? (
@@ -393,14 +291,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
                         )}
                       </div>
                       {provider.lastVerified ? (
-                        <p
-                          style={{
-                            fontFamily: "var(--font-mono)",
-                            fontSize: "0.75rem",
-                            color: "var(--color-text-muted)",
-                            margin: "8px 0 0",
-                          }}
-                        >
+                        <p className="font-mono text-xs text-text-muted mt-2">
                           Verified {provider.lastVerified}
                         </p>
                       ) : null}
@@ -413,16 +304,8 @@ export default async function ModelDetailPage({ params }: PageProps) {
         </div>
 
         {/* Back link */}
-        <div style={{ marginTop: "40px" }}>
-          <Link
-            href="/"
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.875rem",
-              color: "var(--color-link)",
-              textDecoration: "none",
-            }}
-          >
+        <div className="mt-10">
+          <Link href="/" className="font-body text-sm text-link no-underline">
             ← Back to all models
           </Link>
         </div>
@@ -442,17 +325,7 @@ function DetailSection({
 }) {
   return (
     <div>
-      <div
-        style={{
-          fontFamily: "var(--font-body)",
-          fontSize: "0.6875rem",
-          fontWeight: 600,
-          color: "var(--color-text-secondary)",
-          textTransform: "uppercase",
-          letterSpacing: "0.06em",
-          marginBottom: "10px",
-        }}
-      >
+      <div className="font-body text-[0.6875rem] font-semibold text-text-secondary uppercase tracking-[0.06em] mb-[10px]">
         {title}
       </div>
       {children}
@@ -470,33 +343,11 @@ function DetailRow({
   mono?: boolean;
 }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "baseline",
-        justifyContent: "space-between",
-        gap: "8px",
-        marginBottom: "4px",
-      }}
-    >
-      <span
-        style={{
-          fontFamily: "var(--font-body)",
-          fontSize: "0.8125rem",
-          color: "var(--color-text-secondary)",
-          flexShrink: 0,
-        }}
-      >
+    <div className="flex items-baseline justify-between gap-2 mb-1">
+      <span className="font-body text-[0.8125rem] text-text-secondary shrink-0">
         {label}
       </span>
-      <span
-        style={{
-          fontFamily: mono ? "var(--font-mono)" : "var(--font-body)",
-          fontSize: "0.8125rem",
-          color: "var(--color-text-primary)",
-          textAlign: "right",
-        }}
-      >
+      <span className={`text-[0.8125rem] text-text-primary text-right ${mono ? "font-mono" : "font-body"}`}>
         {value}
       </span>
     </div>
@@ -521,40 +372,21 @@ function BooleanRow({
     : "var(--color-text-muted)";
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "8px",
-        marginBottom: "4px",
-      }}
-    >
+    <div className="flex items-center gap-2 mb-1">
       <span
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "0.8125rem",
-          color,
-          width: "14px",
-          textAlign: "center",
-          flexShrink: 0,
-        }}
+        className="font-mono text-[0.8125rem] w-3.5 text-center shrink-0"
+        style={{ color }}
         aria-hidden="true"
       >
         {symbol}
       </span>
-      <span
-        style={{
-          fontFamily: "var(--font-body)",
-          fontSize: "0.8125rem",
-          color: "var(--color-text-secondary)",
-        }}
-      >
+      <span className="font-body text-[0.8125rem] text-text-secondary">
         {href ? (
           <a
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: "var(--color-link)", textDecoration: "none" }}
+            className="text-link no-underline"
           >
             {label} ↗
           </a>

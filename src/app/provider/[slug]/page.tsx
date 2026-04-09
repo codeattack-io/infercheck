@@ -83,6 +83,13 @@ function formatPrice(val: string | null | undefined): string {
   return `$${n.toFixed(2)}`;
 }
 
+// EU AI Act status pill — color depends on status string at runtime
+function euAiActStyle(status: string): { color: string; bg: string; border: string } {
+  if (status === "compliant") return { color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" };
+  if (status === "monitoring") return { color: "#92400e", bg: "#fffbeb", border: "#fde68a" };
+  return { color: "#6b7280", bg: "#f8f8f7", border: "#e2e2de" };
+}
+
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function ProviderProfilePage({ params }: PageProps) {
@@ -126,115 +133,44 @@ export default async function ProviderProfilePage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "40px 40px",
-          flex: 1,
-          width: "100%",
-          boxSizing: "border-box",
-        }}
-        className="px-4 sm:px-6 lg:px-10"
-      >
+      <main className="max-w-[1200px] mx-auto flex-1 w-full box-border px-4 sm:px-6 lg:px-10 py-10">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" style={{ marginBottom: "24px" }}>
-          <ol
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-              listStyle: "none",
-              padding: 0,
-              margin: 0,
-              fontFamily: "var(--font-body)",
-              fontSize: "0.8125rem",
-              color: "var(--color-text-muted)",
-            }}
-          >
+        <nav aria-label="Breadcrumb" className="mb-6">
+          <ol className="flex items-center gap-2 list-none p-0 m-0 font-body text-[0.8125rem] text-text-muted">
             <li>
-              <Link href="/" style={{ color: "var(--color-link)", textDecoration: "none" }}>
-                Models
-              </Link>
+              <Link href="/" className="text-link no-underline">Models</Link>
             </li>
             <li aria-hidden="true">/</li>
             <li>
-              <Link href="/providers" style={{ color: "var(--color-link)", textDecoration: "none" }}>
-                Providers
-              </Link>
+              <Link href="/providers" className="text-link no-underline">Providers</Link>
             </li>
             <li aria-hidden="true">/</li>
-            <li style={{ color: "var(--color-text-secondary)" }}>{provider.name}</li>
+            <li className="text-text-secondary">{provider.name}</li>
           </ol>
         </nav>
 
         {/* Header */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-            gap: "16px",
-            marginBottom: "32px",
-          }}
-        >
+        <div className="flex items-start justify-between flex-wrap gap-4 mb-8">
           <div>
-            <h1
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "2rem",
-                fontWeight: 400,
-                color: "var(--color-heading)",
-                lineHeight: 1.2,
-                margin: "0 0 10px",
-                letterSpacing: "-0.02em",
-              }}
-            >
+            <h1 className="font-display text-[2rem] font-normal text-heading leading-[1.2] m-0 mb-[10px] tracking-[-0.02em]">
               {provider.name}
             </h1>
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
-              {/* Tier pill */}
+            <div className="flex items-center gap-[10px] flex-wrap">
+              {/* Tier pill — colors are dynamic from tierCfg */}
               <span
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  padding: "3px 10px",
-                  backgroundColor: tierCfg.bg,
-                  border: `1px solid ${tierCfg.border}`,
-                  borderRadius: "4px",
-                  fontFamily: "var(--font-body)",
-                  fontSize: "0.8125rem",
-                  fontWeight: 500,
-                  color: tierCfg.color,
-                }}
+                className="inline-flex items-center gap-1.5 px-[10px] py-[3px] rounded font-body text-[0.8125rem] font-medium border"
+                style={{ backgroundColor: tierCfg.bg, borderColor: tierCfg.border, color: tierCfg.color }}
               >
                 <span
-                  style={{
-                    width: "7px",
-                    height: "7px",
-                    borderRadius: "50%",
-                    backgroundColor: tierCfg.color,
-                    flexShrink: 0,
-                  }}
+                  className="w-[7px] h-[7px] rounded-full shrink-0"
+                  style={{ backgroundColor: tierCfg.color }}
                   aria-hidden="true"
                 />
                 {tierCfg.label}
               </span>
 
               {/* Provider type */}
-              <span
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: "0.8125rem",
-                  color: "var(--color-text-muted)",
-                  backgroundColor: "var(--color-surface-alt)",
-                  border: "1px solid var(--color-border)",
-                  borderRadius: "4px",
-                  padding: "3px 8px",
-                }}
-              >
+              <span className="font-body text-[0.8125rem] text-text-muted bg-surface-alt border border-border rounded px-2 py-[3px]">
                 {provider.type.replace(/_/g, " ")}
               </span>
 
@@ -244,12 +180,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   href={provider.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.8125rem",
-                    color: "var(--color-link)",
-                    textDecoration: "none",
-                  }}
+                  className="font-body text-[0.8125rem] text-link no-underline"
                 >
                   {provider.website.replace(/^https?:\/\//, "")} ↗
                 </a>
@@ -258,27 +189,13 @@ export default async function ProviderProfilePage({ params }: PageProps) {
           </div>
 
           {/* Action buttons */}
-          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+          <div className="flex gap-2 flex-wrap">
             {provider.apiDocsUrl ? (
               <a
                 href={provider.apiDocsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "4px",
-                  padding: "6px 14px",
-                  fontFamily: "var(--font-body)",
-                  fontSize: "0.8125rem",
-                  fontWeight: 500,
-                  color: "var(--color-text-secondary)",
-                  border: "1px solid var(--color-border)",
-                  borderRadius: "4px",
-                  backgroundColor: "var(--color-surface)",
-                  textDecoration: "none",
-                  whiteSpace: "nowrap",
-                }}
+                className="inline-flex items-center gap-1 px-3.5 py-1.5 font-body text-[0.8125rem] font-medium text-text-secondary border border-border rounded bg-surface no-underline whitespace-nowrap"
               >
                 API Docs ↗
               </a>
@@ -287,21 +204,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
               href={reportUrl}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "4px",
-                padding: "6px 14px",
-                fontFamily: "var(--font-body)",
-                fontSize: "0.8125rem",
-                fontWeight: 500,
-                color: "var(--color-accent)",
-                border: "1px solid var(--color-accent)",
-                borderRadius: "4px",
-                backgroundColor: "var(--color-accent-subtle)",
-                textDecoration: "none",
-                whiteSpace: "nowrap",
-              }}
+              className="inline-flex items-center gap-1 px-3.5 py-1.5 font-body text-[0.8125rem] font-medium text-accent border border-accent rounded bg-accent-subtle no-underline whitespace-nowrap"
             >
               Report a change
             </a>
@@ -309,42 +212,22 @@ export default async function ProviderProfilePage({ params }: PageProps) {
         </div>
 
         {/* Main content grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr",
-            gap: "24px",
-          }}
-          className="lg:grid-cols-2"
-        >
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
           {/* ── Compliance card ── */}
           {verified ? (
             <section
-              style={{
-                backgroundColor: "var(--color-surface)",
-                border: "1px solid var(--color-border)",
-                borderLeft: `3px solid ${tierBorder}`,
-                borderRadius: "4px",
-                padding: "20px 24px",
-              }}
+              className="bg-surface border border-border rounded px-6 py-5"
+              style={{ borderLeft: `3px solid ${tierBorder}` }}
               aria-labelledby="compliance-heading"
             >
               <h2
                 id="compliance-heading"
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: "0.75rem",
-                  fontWeight: 600,
-                  color: "var(--color-text-secondary)",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.06em",
-                  margin: "0 0 16px",
-                }}
+                className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-4"
               >
                 GDPR Compliance
               </h2>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+              <div className="flex flex-col gap-[10px]">
                 <ComplianceRow
                   label="EU-only data residency"
                   value={provider.compliance.dataResidency.euOnly}
@@ -387,8 +270,8 @@ export default async function ProviderProfilePage({ params }: PageProps) {
               </div>
 
               {/* Compliance badges */}
-              <div style={{ marginTop: "16px", paddingTop: "16px", borderTop: "1px solid var(--color-border)" }}>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+              <div className="mt-4 pt-4 border-t border-border">
+                <div className="flex flex-wrap gap-1.5">
                   {provider.compliance.dataResidency.euOnly ? (
                     <ComplianceBadge variant="eu-only" />
                   ) : provider.compliance.sccs ? (
@@ -407,36 +290,13 @@ export default async function ProviderProfilePage({ params }: PageProps) {
             </section>
           ) : (
             <section
-              style={{
-                backgroundColor: "var(--color-surface)",
-                border: "1px solid var(--color-border)",
-                borderLeft: `3px solid ${tierBorder}`,
-                borderRadius: "4px",
-                padding: "20px 24px",
-              }}
+              className="bg-surface border border-border rounded px-6 py-5"
+              style={{ borderLeft: `3px solid ${tierBorder}` }}
             >
-              <h2
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: "0.75rem",
-                  fontWeight: 600,
-                  color: "var(--color-text-secondary)",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.06em",
-                  margin: "0 0 12px",
-                }}
-              >
+              <h2 className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-3">
                 GDPR Compliance
               </h2>
-              <p
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: "0.875rem",
-                  color: "var(--color-text-muted)",
-                  margin: 0,
-                  fontStyle: "italic",
-                }}
-              >
+              <p className="font-body text-[0.875rem] text-text-muted m-0 italic">
                 Compliance data not yet verified for this provider. If you have information, please use &ldquo;Report a change&rdquo; above.
               </p>
             </section>
@@ -445,64 +305,29 @@ export default async function ProviderProfilePage({ params }: PageProps) {
           {/* ── Data handling card ── */}
           {verified ? (
             <section
-              style={{
-                backgroundColor: "var(--color-surface)",
-                border: "1px solid var(--color-border)",
-                borderRadius: "4px",
-                padding: "20px 24px",
-              }}
+              className="bg-surface border border-border rounded px-6 py-5"
               aria-labelledby="data-handling-heading"
             >
               <h2
                 id="data-handling-heading"
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: "0.75rem",
-                  fontWeight: 600,
-                  color: "var(--color-text-secondary)",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.06em",
-                  margin: "0 0 16px",
-                }}
+                className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-4"
               >
                 Data Handling
               </h2>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+              <div className="flex flex-col gap-3.5">
                 {/* Data residency detail */}
                 <div>
-                  <div
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      fontSize: "0.8125rem",
-                      fontWeight: 500,
-                      color: "var(--color-text-secondary)",
-                      marginBottom: "4px",
-                    }}
-                  >
+                  <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1">
                     Regions
                   </div>
-                  <div
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.8125rem",
-                      color: "var(--color-text-primary)",
-                    }}
-                  >
+                  <div className="font-mono text-[0.8125rem] text-text-primary">
                     {provider.compliance.dataResidency.euOnly
                       ? "EU only"
                       : provider.compliance.dataResidency.regions.join(", ") || "—"}
                   </div>
                   {provider.compliance.dataResidency.euRegionDetails ? (
-                    <p
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        fontSize: "0.8125rem",
-                        color: "var(--color-text-secondary)",
-                        margin: "6px 0 0",
-                        lineHeight: 1.6,
-                      }}
-                    >
+                    <p className="font-body text-[0.8125rem] text-text-secondary mt-1.5 leading-[1.6]">
                       {provider.compliance.dataResidency.euRegionDetails}
                     </p>
                   ) : null}
@@ -511,26 +336,10 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 {/* Retention policy */}
                 {provider.compliance.dataUsage.retentionPolicy ? (
                   <div>
-                    <div
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        fontSize: "0.8125rem",
-                        fontWeight: 500,
-                        color: "var(--color-text-secondary)",
-                        marginBottom: "4px",
-                      }}
-                    >
+                    <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1">
                       Retention Policy
                     </div>
-                    <p
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        fontSize: "0.8125rem",
-                        color: "var(--color-text-secondary)",
-                        margin: 0,
-                        lineHeight: 1.6,
-                      }}
-                    >
+                    <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.6]">
                       {provider.compliance.dataUsage.retentionPolicy}
                     </p>
                   </div>
@@ -539,26 +348,10 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 {/* Additional details */}
                 {provider.compliance.dataUsage.details ? (
                   <div>
-                    <div
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        fontSize: "0.8125rem",
-                        fontWeight: 500,
-                        color: "var(--color-text-secondary)",
-                        marginBottom: "4px",
-                      }}
-                    >
+                    <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1">
                       Additional Details
                     </div>
-                    <p
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        fontSize: "0.8125rem",
-                        color: "var(--color-text-secondary)",
-                        margin: 0,
-                        lineHeight: 1.6,
-                      }}
-                    >
+                    <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.6]">
                       {provider.compliance.dataUsage.details}
                     </p>
                   </div>
@@ -566,36 +359,19 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
                 {/* Sub-processors */}
                 <div>
-                  <div
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      fontSize: "0.8125rem",
-                      fontWeight: 500,
-                      color: "var(--color-text-secondary)",
-                      marginBottom: "4px",
-                    }}
-                  >
+                  <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1">
                     Sub-processors
                   </div>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px",
-                      fontFamily: "var(--font-body)",
-                      fontSize: "0.8125rem",
-                      color: "var(--color-text-secondary)",
-                    }}
-                  >
+                  <div className="flex items-center gap-2 font-body text-[0.8125rem] text-text-secondary">
                     {provider.compliance.subProcessors.disclosed ? (
                       <>
-                        <span style={{ color: "var(--color-compliant)" }}>✓</span>
+                        <span className="text-compliant">✓</span>
                         {provider.compliance.subProcessors.url ? (
                           <a
                             href={provider.compliance.subProcessors.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            style={{ color: "var(--color-link)", textDecoration: "none" }}
+                            className="text-link no-underline"
                           >
                             Disclosed ↗
                           </a>
@@ -610,7 +386,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                       </>
                     ) : (
                       <>
-                        <span style={{ color: "var(--color-noncompliant)" }}>✗</span>
+                        <span className="text-noncompliant">✗</span>
                         Not disclosed
                       </>
                     )}
@@ -623,56 +399,26 @@ export default async function ProviderProfilePage({ params }: PageProps) {
           {/* ── Certifications + EU AI Act ── */}
           {verified ? (
             <section
-              style={{
-                backgroundColor: "var(--color-surface)",
-                border: "1px solid var(--color-border)",
-                borderRadius: "4px",
-                padding: "20px 24px",
-              }}
+              className="bg-surface border border-border rounded px-6 py-5"
               aria-labelledby="certs-heading"
             >
               <h2
                 id="certs-heading"
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: "0.75rem",
-                  fontWeight: 600,
-                  color: "var(--color-text-secondary)",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.06em",
-                  margin: "0 0 16px",
-                }}
+                className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-4"
               >
                 Certifications & EU AI Act
               </h2>
 
               {provider.compliance.certifications.length > 0 ? (
-                <div style={{ marginBottom: "16px" }}>
-                  <div
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      fontSize: "0.8125rem",
-                      fontWeight: 500,
-                      color: "var(--color-text-secondary)",
-                      marginBottom: "8px",
-                    }}
-                  >
+                <div className="mb-4">
+                  <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-2">
                     Certifications
                   </div>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+                  <div className="flex flex-wrap gap-1.5">
                     {provider.compliance.certifications.map((cert) => (
                       <span
                         key={cert}
-                        style={{
-                          fontFamily: "var(--font-mono)",
-                          fontSize: "0.75rem",
-                          fontWeight: 500,
-                          color: "var(--color-text-secondary)",
-                          backgroundColor: "var(--color-surface-alt)",
-                          border: "1px solid var(--color-border)",
-                          borderRadius: "3px",
-                          padding: "2px 8px",
-                        }}
+                        className="font-mono text-xs font-medium text-text-secondary bg-surface-alt border border-border rounded-[3px] px-2 py-0.5"
                       >
                         {cert}
                       </span>
@@ -680,73 +426,27 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   </div>
                 </div>
               ) : (
-                <p
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.8125rem",
-                    color: "var(--color-text-muted)",
-                    margin: "0 0 16px",
-                    fontStyle: "italic",
-                  }}
-                >
+                <p className="font-body text-[0.8125rem] text-text-muted m-0 mb-4 italic">
                   No certifications disclosed.
                 </p>
               )}
 
               <div>
-                <div
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.8125rem",
-                    fontWeight: 500,
-                    color: "var(--color-text-secondary)",
-                    marginBottom: "6px",
-                  }}
-                >
+                <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1.5">
                   EU AI Act Status
                 </div>
+                {/* EU AI Act status pill — color depends on status string — kept as style */}
                 <span
-                  style={{
-                    display: "inline-block",
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.8125rem",
-                    fontWeight: 500,
-                    color:
-                      provider.compliance.euAiAct.status === "compliant"
-                        ? "#15803d"
-                        : provider.compliance.euAiAct.status === "monitoring"
-                        ? "#92400e"
-                        : "#6b7280",
-                    backgroundColor:
-                      provider.compliance.euAiAct.status === "compliant"
-                        ? "#f0fdf4"
-                        : provider.compliance.euAiAct.status === "monitoring"
-                        ? "#fffbeb"
-                        : "#f8f8f7",
-                    border: `1px solid ${
-                      provider.compliance.euAiAct.status === "compliant"
-                        ? "#bbf7d0"
-                        : provider.compliance.euAiAct.status === "monitoring"
-                        ? "#fde68a"
-                        : "#e2e2de"
-                    }`,
-                    borderRadius: "4px",
-                    padding: "2px 8px",
-                    marginBottom: "6px",
-                  }}
+                  className="inline-block font-body text-[0.8125rem] font-medium rounded px-2 py-0.5 mb-1.5 border"
+                  style={(() => {
+                    const s = euAiActStyle(provider.compliance.euAiAct.status);
+                    return { color: s.color, backgroundColor: s.bg, borderColor: s.border };
+                  })()}
                 >
                   {provider.compliance.euAiAct.status.replace(/_/g, " ")}
                 </span>
                 {provider.compliance.euAiAct.details ? (
-                  <p
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      fontSize: "0.8125rem",
-                      color: "var(--color-text-secondary)",
-                      margin: 0,
-                      lineHeight: 1.6,
-                    }}
-                  >
+                  <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.6]">
                     {provider.compliance.euAiAct.details}
                   </p>
                 ) : null}
@@ -756,30 +456,17 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
           {/* ── Verification metadata ── */}
           <section
-            style={{
-              backgroundColor: "var(--color-surface)",
-              border: "1px solid var(--color-border)",
-              borderRadius: "4px",
-              padding: "20px 24px",
-            }}
+            className="bg-surface border border-border rounded px-6 py-5"
             aria-labelledby="verification-heading"
           >
             <h2
               id="verification-heading"
-              style={{
-                fontFamily: "var(--font-body)",
-                fontSize: "0.75rem",
-                fontWeight: 600,
-                color: "var(--color-text-secondary)",
-                textTransform: "uppercase",
-                letterSpacing: "0.06em",
-                margin: "0 0 16px",
-              }}
+              className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-4"
             >
               Verification
             </h2>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <div className="flex flex-col gap-[10px]">
               <MetaRow label="Last verified" value={provider.lastVerified ?? "Not verified"} mono />
               <MetaRow
                 label="Verified by"
@@ -803,43 +490,18 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
             {/* Source URLs */}
             {provider.sourceUrls && provider.sourceUrls.length > 0 ? (
-              <div style={{ marginTop: "16px" }}>
-                <div
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    color: "var(--color-text-secondary)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.06em",
-                    marginBottom: "8px",
-                  }}
-                >
+              <div className="mt-4">
+                <div className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] mb-2">
                   Sources
                 </div>
-                <ul
-                  style={{
-                    listStyle: "none",
-                    padding: 0,
-                    margin: 0,
-                    display: "flex",
-                    flexDirection: "column",
-                    gap: "4px",
-                  }}
-                >
+                <ul className="list-none p-0 m-0 flex flex-col gap-1">
                   {provider.sourceUrls.map((url, i) => (
                     <li key={i}>
                       <a
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{
-                          fontFamily: "var(--font-body)",
-                          fontSize: "0.8125rem",
-                          color: "var(--color-link)",
-                          textDecoration: "none",
-                          wordBreak: "break-all",
-                        }}
+                        className="font-body text-[0.8125rem] text-link no-underline break-all"
                       >
                         {url} ↗
                       </a>
@@ -851,29 +513,11 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
             {/* Notes */}
             {provider.notes ? (
-              <div style={{ marginTop: "16px" }}>
-                <div
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    color: "var(--color-text-secondary)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.06em",
-                    marginBottom: "8px",
-                  }}
-                >
+              <div className="mt-4">
+                <div className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] mb-2">
                   Notes
                 </div>
-                <p
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.8125rem",
-                    color: "var(--color-text-secondary)",
-                    margin: 0,
-                    lineHeight: 1.6,
-                  }}
-                >
+                <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.6]">
                   {provider.notes}
                 </p>
               </div>
@@ -883,57 +527,26 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
         {/* ── Models offered section ── */}
         {providerModels.length > 0 ? (
-          <section style={{ marginTop: "32px" }} aria-labelledby="models-heading">
+          <section className="mt-8" aria-labelledby="models-heading">
             <h2
               id="models-heading"
-              style={{
-                fontFamily: "var(--font-body)",
-                fontSize: "1rem",
-                fontWeight: 600,
-                color: "var(--color-text-primary)",
-                margin: "0 0 16px",
-              }}
+              className="font-body text-base font-semibold text-text-primary m-0 mb-4"
             >
               Models ({providerModels.length})
             </h2>
 
-            <div
-              style={{
-                border: "1px solid var(--color-border)",
-                borderRadius: "4px",
-                overflow: "hidden",
-              }}
-            >
-              <div style={{ overflowX: "auto" }}>
+            <div className="border border-border rounded overflow-hidden">
+              <div className="overflow-x-auto">
                 <table
-                  style={{
-                    width: "100%",
-                    borderCollapse: "collapse",
-                    backgroundColor: "var(--color-surface)",
-                  }}
+                  className="w-full border-collapse bg-surface"
                   aria-label={`Models offered by ${provider.name}`}
                 >
                   <thead>
-                    <tr
-                      style={{
-                        backgroundColor: "var(--color-surface-alt)",
-                        borderBottom: "1px solid var(--color-border)",
-                      }}
-                    >
+                    <tr className="bg-surface-alt border-b border-border">
                       {["Model", "Modality", "Context", "Input", "Output"].map((h) => (
                         <th
                           key={h}
-                          style={{
-                            padding: "8px 16px",
-                            textAlign: "left",
-                            fontFamily: "var(--font-body)",
-                            fontSize: "0.75rem",
-                            fontWeight: 600,
-                            color: "var(--color-text-secondary)",
-                            textTransform: "uppercase",
-                            letterSpacing: "0.05em",
-                            whiteSpace: "nowrap",
-                          }}
+                          className="px-4 py-2 text-left font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.05em] whitespace-nowrap"
                         >
                           {h}
                         </th>
@@ -944,50 +557,23 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                     {providerModels.map((m) => (
                       <tr
                         key={`${m.id}::${m.providerSlug}`}
-                        style={{ borderBottom: "1px solid var(--color-border)" }}
+                        className="border-b border-border"
                       >
-                        <td style={{ padding: "10px 16px" }}>
+                        <td className="px-4 py-[10px]">
                           <Link
                             href={`/model/${encodeURIComponent(m.id.split("/").pop() ?? m.id)}`}
-                            style={{
-                              fontFamily: "var(--font-body)",
-                              fontSize: "0.875rem",
-                              fontWeight: 500,
-                              color: "var(--color-text-primary)",
-                              textDecoration: "none",
-                            }}
+                            className="font-body text-[0.875rem] font-medium text-text-primary no-underline"
                           >
                             {m.displayName}
                           </Link>
-                          <div
-                            style={{
-                              fontFamily: "var(--font-mono)",
-                              fontSize: "0.75rem",
-                              color: "var(--color-text-muted)",
-                              marginTop: "2px",
-                            }}
-                          >
+                          <div className="font-mono text-xs text-text-muted mt-0.5">
                             {m.id}
                           </div>
                         </td>
-                        <td
-                          style={{
-                            padding: "10px 16px",
-                            fontFamily: "var(--font-body)",
-                            fontSize: "0.8125rem",
-                            color: "var(--color-text-secondary)",
-                          }}
-                        >
+                        <td className="px-4 py-[10px] font-body text-[0.8125rem] text-text-secondary">
                           {m.modality}
                         </td>
-                        <td
-                          style={{
-                            padding: "10px 16px",
-                            fontFamily: "var(--font-mono)",
-                            fontSize: "0.8125rem",
-                            color: "var(--color-text-secondary)",
-                          }}
-                        >
+                        <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
                           {m.contextWindow
                             ? m.contextWindow >= 1_000_000
                               ? `${(m.contextWindow / 1_000_000).toFixed(1)}M`
@@ -996,24 +582,10 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                               : `${m.contextWindow}`
                             : "—"}
                         </td>
-                        <td
-                          style={{
-                            padding: "10px 16px",
-                            fontFamily: "var(--font-mono)",
-                            fontSize: "0.8125rem",
-                            color: "var(--color-text-secondary)",
-                          }}
-                        >
+                        <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
                           {formatPrice(m.inputPricePerMTokens)}
                         </td>
-                        <td
-                          style={{
-                            padding: "10px 16px",
-                            fontFamily: "var(--font-mono)",
-                            fontSize: "0.8125rem",
-                            color: "var(--color-text-secondary)",
-                          }}
-                        >
+                        <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
                           {formatPrice(m.outputPricePerMTokens)}
                         </td>
                       </tr>
@@ -1026,16 +598,8 @@ export default async function ProviderProfilePage({ params }: PageProps) {
         ) : null}
 
         {/* Back link */}
-        <div style={{ marginTop: "40px" }}>
-          <Link
-            href="/providers"
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.875rem",
-              color: "var(--color-link)",
-              textDecoration: "none",
-            }}
-          >
+        <div className="mt-10">
+          <Link href="/providers" className="font-body text-sm text-link no-underline">
             ← Back to all providers
           </Link>
         </div>
@@ -1068,35 +632,22 @@ function ComplianceRow({
     : "var(--color-text-muted)";
 
   return (
-    <div style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+    <div className="flex items-start gap-[10px]">
       <span
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "0.875rem",
-          color,
-          width: "14px",
-          textAlign: "center",
-          flexShrink: 0,
-          marginTop: "1px",
-        }}
+        className="font-mono text-[0.875rem] w-3.5 text-center shrink-0 mt-px"
+        style={{ color }}
         aria-hidden="true"
       >
         {symbol}
       </span>
       <div>
-        <span
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "0.875rem",
-            color: "var(--color-text-secondary)",
-          }}
-        >
+        <span className="font-body text-[0.875rem] text-text-secondary">
           {href ? (
             <a
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "var(--color-link)", textDecoration: "none" }}
+              className="text-link no-underline"
             >
               {label} ↗
             </a>
@@ -1105,27 +656,12 @@ function ComplianceRow({
           )}
         </span>
         {secondary ? (
-          <span
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.75rem",
-              color: "var(--color-text-muted)",
-              marginLeft: "6px",
-            }}
-          >
+          <span className="font-body text-xs text-text-muted ml-1.5">
             ({secondary})
           </span>
         ) : null}
         {note ? (
-          <span
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.75rem",
-              color: "var(--color-text-muted)",
-              fontStyle: "italic",
-              marginLeft: "6px",
-            }}
-          >
+          <span className="font-body text-xs text-text-muted italic ml-1.5">
             {note}
           </span>
         ) : null}
@@ -1136,24 +672,11 @@ function ComplianceRow({
 
 function MetaRow({ label, value, mono = false }: { label: string; value: string; mono?: boolean }) {
   return (
-    <div style={{ display: "flex", justifyContent: "space-between", gap: "16px", flexWrap: "wrap" }}>
-      <span
-        style={{
-          fontFamily: "var(--font-body)",
-          fontSize: "0.8125rem",
-          color: "var(--color-text-secondary)",
-        }}
-      >
+    <div className="flex justify-between gap-4 flex-wrap">
+      <span className="font-body text-[0.8125rem] text-text-secondary">
         {label}
       </span>
-      <span
-        style={{
-          fontFamily: mono ? "var(--font-mono)" : "var(--font-body)",
-          fontSize: "0.8125rem",
-          color: "var(--color-text-primary)",
-          fontWeight: 500,
-        }}
-      >
+      <span className={`text-[0.8125rem] text-text-primary font-medium ${mono ? "font-mono" : "font-body"}`}>
         {value}
       </span>
     </div>

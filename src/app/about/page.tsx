@@ -28,70 +28,26 @@ const NEW_ISSUE_URL = `${GITHUB_REPO}/issues/new?template=report-change.yml`;
 export default function AboutPage() {
   return (
     <>
-      <main
-        style={{
-          maxWidth: "720px",
-          margin: "0 auto",
-          padding: "56px 24px 96px",
-        }}
-      >
+      <main className="max-w-[720px] mx-auto px-6 pt-14 pb-24">
         {/* ── Page heading ── */}
-        <h1
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(2rem, 5vw, 2.75rem)",
-            fontWeight: 400,
-            color: "var(--color-heading)",
-            lineHeight: 1.15,
-            marginBottom: "12px",
-            letterSpacing: "-0.02em",
-          }}
-        >
+        <h1 className="font-display text-[clamp(2rem,5vw,2.75rem)] font-normal text-heading leading-[1.15] mb-3 tracking-[-0.02em]">
           About this directory
         </h1>
 
-        <p
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "1.0625rem",
-            color: "var(--color-text-secondary)",
-            lineHeight: 1.65,
-            marginBottom: "48px",
-            maxWidth: "600px",
-          }}
-        >
+        <p className="font-body text-[1.0625rem] text-text-secondary leading-[1.65] mb-12 max-w-[600px]">
           A neutral, sourced reference for GDPR compliance across AI inference
           providers — built because no such resource existed.
         </p>
 
         {/* ── Divider ── */}
-        <hr style={{ border: "none", borderTop: "1px solid var(--color-border)", marginBottom: "48px" }} />
+        <hr className="border-none border-t border-border mb-12" />
 
         {/* ── Why this exists ── */}
-        <section style={{ marginBottom: "48px" }}>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "1.5rem",
-              fontWeight: 400,
-              color: "var(--color-heading)",
-              marginBottom: "16px",
-              letterSpacing: "-0.01em",
-            }}
-          >
+        <section className="mb-12">
+          <h2 className="font-display text-2xl font-normal text-heading mb-4 tracking-[-0.01em]">
             Why this exists
           </h2>
-          <div
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.9375rem",
-              color: "var(--color-text-primary)",
-              lineHeight: 1.75,
-              display: "flex",
-              flexDirection: "column",
-              gap: "16px",
-            }}
-          >
+          <div className="font-body text-[0.9375rem] text-text-primary leading-[1.75] flex flex-col gap-4">
             <p>
               I built this for myself. As a developer building SaaS products in Germany, every time I
               evaluated a new AI inference provider I had to answer the same questions: Where does the
@@ -114,49 +70,17 @@ export default function AboutPage() {
         </section>
 
         {/* ── Who built it ── */}
-        <section
-          style={{
-            marginBottom: "48px",
-            backgroundColor: "var(--color-surface)",
-            border: "1px solid var(--color-border)",
-            borderRadius: "8px",
-            padding: "28px 32px",
-          }}
-        >
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "1.5rem",
-              fontWeight: 400,
-              color: "var(--color-heading)",
-              marginBottom: "16px",
-              letterSpacing: "-0.01em",
-            }}
-          >
+        <section className="mb-12 bg-surface border border-border rounded-lg px-8 py-7">
+          <h2 className="font-display text-2xl font-normal text-heading mb-4 tracking-[-0.01em]">
             Who built it
           </h2>
-          <p
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.9375rem",
-              color: "var(--color-text-primary)",
-              lineHeight: 1.75,
-              marginBottom: "16px",
-            }}
-          >
+          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75] mb-4">
             I&apos;m Carlo, a software developer based in{" "}
-            <strong style={{ color: "var(--color-heading)", fontWeight: 600 }}>Germany</strong>.
+            <strong className="text-heading font-semibold">Germany</strong>.
             I work in enterprise IT and build SaaS products on the side — which means I operate
             under GDPR daily, from both the engineering and compliance sides of the table.
           </p>
-          <p
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.9375rem",
-              color: "var(--color-text-primary)",
-              lineHeight: 1.75,
-            }}
-          >
+          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
             I don&apos;t have a financial relationship with any of the providers listed here. The
             directory is independent. Compliance metadata reflects publicly verifiable information
             with source links — if something is wrong or has changed, I want to know.
@@ -164,30 +88,11 @@ export default function AboutPage() {
         </section>
 
         {/* ── How data is maintained ── */}
-        <section style={{ marginBottom: "48px" }}>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "1.5rem",
-              fontWeight: 400,
-              color: "var(--color-heading)",
-              marginBottom: "16px",
-              letterSpacing: "-0.01em",
-            }}
-          >
+        <section className="mb-12">
+          <h2 className="font-display text-2xl font-normal text-heading mb-4 tracking-[-0.01em]">
             How data is maintained
           </h2>
-          <div
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.9375rem",
-              color: "var(--color-text-primary)",
-              lineHeight: 1.75,
-              display: "flex",
-              flexDirection: "column",
-              gap: "16px",
-            }}
-          >
+          <div className="font-body text-[0.9375rem] text-text-primary leading-[1.75] flex flex-col gap-4">
             <p>
               Every provider entry is a flat JSON file stored in the public GitHub repository.
               Each field has a source URL. Every entry shows a &ldquo;last verified&rdquo; date so
@@ -203,36 +108,11 @@ export default function AboutPage() {
         </section>
 
         {/* ── Report a change CTA ── */}
-        <section
-          style={{
-            marginBottom: "48px",
-            backgroundColor: "var(--color-accent-subtle)",
-            border: "1px solid #bfdbfe",
-            borderRadius: "8px",
-            padding: "28px 32px",
-          }}
-        >
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "1.375rem",
-              fontWeight: 400,
-              color: "var(--color-heading)",
-              marginBottom: "10px",
-              letterSpacing: "-0.01em",
-            }}
-          >
+        <section className="mb-12 bg-accent-subtle border border-[#bfdbfe] rounded-lg px-8 py-7">
+          <h2 className="font-display text-[1.375rem] font-normal text-heading mb-2.5 tracking-[-0.01em]">
             Seen something change?
           </h2>
-          <p
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.9375rem",
-              color: "var(--color-text-primary)",
-              lineHeight: 1.7,
-              marginBottom: "20px",
-            }}
-          >
+          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.7] mb-5">
             If a provider has updated their DPA, changed their data residency terms, launched
             EU-only routing, or anything else relevant to GDPR compliance — please file a GitHub
             issue. The structured template takes under two minutes and helps keep this resource
@@ -257,21 +137,13 @@ export default function AboutPage() {
             Open an issue on GitHub
           </a>
 
-          <p
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.8125rem",
-              color: "var(--color-text-secondary)",
-              marginTop: "12px",
-              lineHeight: 1.5,
-            }}
-          >
+          <p className="font-body text-[0.8125rem] text-text-secondary mt-3 leading-[1.5]">
             A GitHub account is required to submit. You can also browse{" "}
             <a
               href={`${GITHUB_REPO}/issues`}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "var(--color-link)" }}
+              className="text-link"
             >
               open issues
             </a>{" "}
@@ -280,7 +152,7 @@ export default function AboutPage() {
               href={`${GITHUB_REPO}/tree/main/data/providers`}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "var(--color-link)" }}
+              className="text-link"
             >
               provider data files
             </a>{" "}
@@ -289,42 +161,22 @@ export default function AboutPage() {
         </section>
 
         {/* ── What this is not ── */}
-        <section style={{ marginBottom: "48px" }}>
-          <h2
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "1.5rem",
-              fontWeight: 400,
-              color: "var(--color-heading)",
-              marginBottom: "16px",
-              letterSpacing: "-0.01em",
-            }}
-          >
+        <section className="mb-12">
+          <h2 className="font-display text-2xl font-normal text-heading mb-4 tracking-[-0.01em]">
             What this is not
           </h2>
-          <ul
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.9375rem",
-              color: "var(--color-text-primary)",
-              lineHeight: 1.75,
-              paddingLeft: "20px",
-              display: "flex",
-              flexDirection: "column",
-              gap: "8px",
-            }}
-          >
+          <ul className="font-body text-[0.9375rem] text-text-primary leading-[1.75] pl-5 flex flex-col gap-2">
             <li>
-              <strong style={{ fontWeight: 600 }}>Not legal advice.</strong> The directory
+              <strong className="font-semibold">Not legal advice.</strong> The directory
               presents facts, not compliance judgments. Always verify with the provider directly
               and consult legal counsel before relying on this for procurement decisions.
             </li>
             <li>
-              <strong style={{ fontWeight: 600 }}>Not a paid placement service.</strong> No
+              <strong className="font-semibold">Not a paid placement service.</strong> No
               provider has paid to appear here or to influence how their data is presented.
             </li>
             <li>
-              <strong style={{ fontWeight: 600 }}>Not guaranteed to be current.</strong> Provider
+              <strong className="font-semibold">Not guaranteed to be current.</strong> Provider
               terms change. The &ldquo;last verified&rdquo; date on each entry tells you when the
               information was last confirmed against source documents.
             </li>
@@ -332,17 +184,10 @@ export default function AboutPage() {
         </section>
 
         {/* ── Back link ── */}
-        <div style={{ paddingTop: "8px" }}>
+        <div className="pt-2">
           <Link
             href="/"
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.875rem",
-              fontWeight: 500,
-              color: "var(--color-link)",
-              textDecoration: "underline",
-              textUnderlineOffset: "3px",
-            }}
+            className="font-body text-sm font-medium text-link underline underline-offset-[3px]"
           >
             ← Browse the directory
           </Link>

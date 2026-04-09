@@ -89,3 +89,16 @@ body {
 .about-gh-btn:hover {
   background-color: var(--color-accent-hover);
 }
+
+/* Search input focus ring — CSS-only so ModelTable can handle focus without
+   per-keystroke style mutations on the element. */
+.search-input:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px var(--color-accent-subtle);
+  outline: none;
+}
+
+/* Clear button hover — CSS-only opacity transition */
+.search-clear-btn:hover {
+  opacity: 1 !important;
+}

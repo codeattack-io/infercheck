@@ -17,91 +17,64 @@ interface ComplianceBadgeProps {
 
 const BADGE_CONFIG: Record<
   BadgeVariant,
-  { label: string; dotColor: string; bg: string; border: string; textColor: string }
+  { label: string; classes: string; dotClasses: string }
 > = {
   "eu-only": {
     label: "EU Only",
-    dotColor: "var(--color-compliant)",
-    bg: "var(--color-compliant-bg)",
-    border: "#bbf7d0",
-    textColor: "#15803d",
+    classes: "bg-compliant-bg border-[#bbf7d0] text-[#15803d]",
+    dotClasses: "bg-compliant",
   },
   dpa: {
     label: "DPA",
-    dotColor: "var(--color-compliant)",
-    bg: "var(--color-compliant-bg)",
-    border: "#bbf7d0",
-    textColor: "#15803d",
+    classes: "bg-compliant-bg border-[#bbf7d0] text-[#15803d]",
+    dotClasses: "bg-compliant",
   },
   "eu-sccs": {
     label: "EU + SCCs",
-    dotColor: "var(--color-partial)",
-    bg: "var(--color-partial-bg)",
-    border: "#fde68a",
-    textColor: "#92400e",
+    classes: "bg-partial-bg border-[#fde68a] text-[#92400e]",
+    dotClasses: "bg-partial",
   },
   "no-training": {
     label: "No Training",
-    dotColor: "var(--color-compliant)",
-    bg: "var(--color-compliant-bg)",
-    border: "#bbf7d0",
-    textColor: "#15803d",
+    classes: "bg-compliant-bg border-[#bbf7d0] text-[#15803d]",
+    dotClasses: "bg-compliant",
   },
   "trains-on-data": {
     label: "Trains on Data",
-    dotColor: "var(--color-noncompliant)",
-    bg: "var(--color-noncompliant-bg)",
-    border: "#fecaca",
-    textColor: "#b91c1c",
+    classes: "bg-noncompliant-bg border-[#fecaca] text-[#b91c1c]",
+    dotClasses: "bg-noncompliant",
   },
   "us-only": {
     label: "US Only",
-    dotColor: "var(--color-noncompliant)",
-    bg: "var(--color-noncompliant-bg)",
-    border: "#fecaca",
-    textColor: "#b91c1c",
+    classes: "bg-noncompliant-bg border-[#fecaca] text-[#b91c1c]",
+    dotClasses: "bg-noncompliant",
   },
   unverified: {
     label: "Unverified",
-    dotColor: "var(--color-unverified)",
-    bg: "var(--color-unverified-bg)",
-    border: "#e2e2de",
-    textColor: "#6b7280",
+    classes: "bg-unverified-bg border-[#e2e2de] text-[#6b7280]",
+    dotClasses: "bg-unverified",
   },
+};
+
+const SIZE_CLASSES = {
+  sm: { badge: "text-[0.6875rem] px-1.5 py-px", dot: "size-[5px]" },
+  md: { badge: "text-xs px-2 py-0.5", dot: "size-[6px]" },
 };
 
 export function ComplianceBadge({ variant, size = "md" }: ComplianceBadgeProps) {
   const cfg = BADGE_CONFIG[variant];
-  const dotSize = size === "sm" ? "5px" : "6px";
-  const fontSize = size === "sm" ? "0.6875rem" : "0.75rem";
-  const padding = size === "sm" ? "1px 6px" : "2px 8px";
+  const sz = SIZE_CLASSES[size];
 
   return (
     <span
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "5px",
-        backgroundColor: cfg.bg,
-        border: `1px solid ${cfg.border}`,
-        borderRadius: "4px",
-        padding,
-        fontSize,
-        fontWeight: 500,
-        fontFamily: "var(--font-body)",
-        color: cfg.textColor,
-        whiteSpace: "nowrap",
-        lineHeight: 1.4,
-      }}
+      className={[
+        "inline-flex items-center gap-[5px] border rounded font-medium font-body whitespace-nowrap leading-[1.4]",
+        cfg.classes,
+        sz.badge,
+      ].join(" ")}
     >
       <span
-        style={{
-          width: dotSize,
-          height: dotSize,
-          borderRadius: "50%",
-          backgroundColor: cfg.dotColor,
-          flexShrink: 0,
-        }}
+        className={["rounded-full shrink-0", cfg.dotClasses, sz.dot].join(" ")}
         aria-hidden="true"
       />
       {cfg.label}

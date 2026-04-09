@@ -127,50 +127,21 @@ export default async function ProvidersPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "40px 40px",
-          flex: 1,
-          width: "100%",
-          boxSizing: "border-box",
-        }}
-        className="px-4 sm:px-6 lg:px-10"
-      >
+      <main className="max-w-[1200px] mx-auto flex-1 w-full box-border px-4 sm:px-6 lg:px-10 py-10">
         {/* Heading */}
-        <div style={{ marginBottom: "32px" }}>
-          <h1
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "2.5rem",
-              fontWeight: 400,
-              color: "var(--color-heading)",
-              lineHeight: 1.15,
-              margin: "0 0 12px",
-              letterSpacing: "-0.02em",
-            }}
-          >
+        <div className="mb-8">
+          <h1 className="font-display text-[2.5rem] font-normal text-heading leading-[1.15] m-0 mb-3 tracking-[-0.02em]">
             AI inference providers,<br />
             by GDPR compliance tier.
           </h1>
-          <p
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.9375rem",
-              color: "var(--color-text-secondary)",
-              margin: 0,
-              maxWidth: "55ch",
-              lineHeight: 1.6,
-            }}
-          >
+          <p className="font-body text-[0.9375rem] text-text-secondary m-0 max-w-[55ch] leading-[1.6]">
             {allProviders.length} providers indexed. {totalVerified} with verified compliance data.
             Click any provider for the full profile.
           </p>
         </div>
 
         {/* Tier sections */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "48px" }}>
+        <div className="flex flex-col gap-12">
           {TIER_ORDER.map((tier) => {
             const group = grouped.get(tier)!;
             if (group.length === 0) return null;
@@ -179,70 +150,31 @@ export default async function ProvidersPage() {
             return (
               <section key={tier} aria-labelledby={`tier-${tier}`}>
                 {/* Tier header */}
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "baseline",
-                    gap: "12px",
-                    marginBottom: "16px",
-                    paddingBottom: "12px",
-                    borderBottom: "1px solid var(--color-border)",
-                  }}
-                >
+                <div className="flex items-baseline gap-3 mb-4 pb-3 border-b border-border">
+                  {/* Dot color is dynamic from meta.color — kept as style */}
                   <span
-                    style={{
-                      display: "inline-block",
-                      width: "8px",
-                      height: "8px",
-                      borderRadius: "50%",
-                      backgroundColor: meta.color,
-                      flexShrink: 0,
-                      position: "relative",
-                      top: "-1px",
-                    }}
+                    className="inline-block w-2 h-2 rounded-full shrink-0 relative top-[-1px]"
+                    style={{ backgroundColor: meta.color }}
                     aria-hidden="true"
                   />
                   <h2
                     id={`tier-${tier}`}
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      fontSize: "1rem",
-                      fontWeight: 600,
-                      color: "var(--color-text-primary)",
-                      margin: 0,
-                    }}
+                    className="font-body text-base font-semibold text-text-primary m-0"
                   >
                     {meta.label}
-                    <span
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        fontSize: "0.875rem",
-                        fontWeight: 400,
-                        color: "var(--color-text-muted)",
-                        marginLeft: "8px",
-                      }}
-                    >
+                    <span className="font-body text-sm font-normal text-text-muted ml-2">
                       ({group.length})
                     </span>
                   </h2>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      fontSize: "0.8125rem",
-                      color: "var(--color-text-muted)",
-                    }}
-                  >
+                  <span className="font-body text-[0.8125rem] text-text-muted">
                     {meta.description}
                   </span>
                 </div>
 
                 {/* Provider grid */}
                 <div
-                  style={{
-                    display: "grid",
-                    gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-                    gap: "12px",
-                  }}
+                  className="grid gap-3"
+                  style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}
                 >
                   {group.map((p) => (
                     <ProviderCard

@@ -139,25 +139,11 @@ export function FilterBar({ filterState }: FilterBarProps) {
     <div>
       {/* Label + preset buttons row */}
       <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "8px",
-          alignItems: "center",
-        }}
+        className="flex flex-wrap gap-2 items-center"
         role="group"
         aria-label="Compliance filter presets"
       >
-        <span
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "0.8125rem",
-            fontWeight: 500,
-            color: "var(--color-text-muted)",
-            marginRight: "4px",
-            whiteSpace: "nowrap",
-          }}
-        >
+        <span className="font-body text-[0.8125rem] font-medium text-text-muted mr-1 whitespace-nowrap">
           Filter:
         </span>
 
@@ -168,21 +154,11 @@ export function FilterBar({ filterState }: FilterBarProps) {
               key={preset.id}
               onClick={() => setProfile(preset.id)}
               aria-pressed={isActive}
+              className="inline-flex items-center gap-[6px] px-3 py-[5px] rounded font-body text-[0.8125rem] font-medium cursor-pointer transition-[border-color,background-color,color] duration-[120ms] ease-in-out whitespace-nowrap"
               style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px",
-                padding: "5px 12px",
-                borderRadius: "4px",
                 border: `1px solid ${isActive ? "var(--color-accent)" : "#b8b5ac"}`,
                 backgroundColor: isActive ? "var(--color-accent-subtle)" : "var(--color-surface)",
                 color: isActive ? "var(--color-accent)" : "var(--color-text-primary)",
-                fontFamily: "var(--font-body)",
-                fontSize: "0.8125rem",
-                fontWeight: 500,
-                cursor: "pointer",
-                transition: "border-color 120ms ease, background-color 120ms ease, color 120ms ease",
-                whiteSpace: "nowrap",
                 boxShadow: isActive ? "none" : "0 1px 2px rgba(0,0,0,0.06)",
               }}
             >
@@ -193,7 +169,8 @@ export function FilterBar({ filterState }: FilterBarProps) {
                 viewBox="0 0 11 11"
                 fill="none"
                 aria-hidden="true"
-                style={{ flexShrink: 0, opacity: isActive ? 1 : 0.5 }}
+                className="shrink-0"
+                style={{ opacity: isActive ? 1 : 0.5 }}
               >
                 <path
                   d="M1 2h9l-3.5 4v3l-2-1V6L1 2z"
@@ -213,20 +190,11 @@ export function FilterBar({ filterState }: FilterBarProps) {
           onClick={toggleCustomPanel}
           aria-pressed={customOpen}
           aria-expanded={customOpen}
+          className="inline-flex items-center gap-[6px] px-3 py-[5px] rounded font-body text-[0.8125rem] font-medium cursor-pointer transition-[border-color,background-color,color] duration-[120ms] ease-in-out"
           style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "6px",
-            padding: "5px 12px",
-            borderRadius: "4px",
             border: `1px solid ${customOpen ? "var(--color-accent)" : "#b8b5ac"}`,
             backgroundColor: customOpen ? "var(--color-accent-subtle)" : "var(--color-surface)",
             color: customOpen ? "var(--color-accent)" : "var(--color-text-primary)",
-            fontFamily: "var(--font-body)",
-            fontSize: "0.8125rem",
-            fontWeight: 500,
-            cursor: "pointer",
-            transition: "border-color 120ms ease, background-color 120ms ease, color 120ms ease",
             boxShadow: customOpen ? "none" : "0 1px 2px rgba(0,0,0,0.06)",
           }}
         >
@@ -236,7 +204,8 @@ export function FilterBar({ filterState }: FilterBarProps) {
             viewBox="0 0 11 11"
             fill="none"
             aria-hidden="true"
-            style={{ flexShrink: 0, opacity: customOpen ? 1 : 0.5 }}
+            className="shrink-0"
+            style={{ opacity: customOpen ? 1 : 0.5 }}
           >
             <path
               d="M1 2h9l-3.5 4v3l-2-1V6L1 2z"
@@ -253,11 +222,8 @@ export function FilterBar({ filterState }: FilterBarProps) {
             viewBox="0 0 10 10"
             fill="none"
             aria-hidden="true"
-            style={{
-              transform: customOpen ? "rotate(180deg)" : "rotate(0deg)",
-              transition: "transform 150ms ease",
-              opacity: 0.6,
-            }}
+            className="opacity-60 transition-transform duration-150 ease-in-out"
+            style={{ transform: customOpen ? "rotate(180deg)" : "rotate(0deg)" }}
           >
             <path
               d="M2 3.5L5 6.5L8 3.5"
@@ -273,16 +239,7 @@ export function FilterBar({ filterState }: FilterBarProps) {
       {/* Custom panel */}
       {customOpen ? (
         <div
-          style={{
-            marginTop: "8px",
-            padding: "16px",
-            backgroundColor: "var(--color-surface)",
-            border: "1px solid var(--color-border)",
-            borderRadius: "4px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "12px",
-          }}
+          className="mt-2 p-4 bg-surface border border-border rounded flex flex-col gap-3"
           role="group"
           aria-label="Custom compliance filters"
         >
@@ -291,52 +248,23 @@ export function FilterBar({ filterState }: FilterBarProps) {
             return (
               <label
                 key={key}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  cursor: "pointer",
-                  gap: "16px",
-                }}
+                className="flex items-center justify-between cursor-pointer gap-4"
               >
-                <span
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.875rem",
-                    color: "var(--color-text-primary)",
-                  }}
-                >
+                <span className="font-body text-[0.875rem] text-text-primary">
                   {label}
                 </span>
+                {/* Toggle track — bg depends on isOn state */}
                 <button
                   role="switch"
                   aria-checked={isOn}
                   onClick={() => toggleCustom(key)}
-                  style={{
-                    width: "32px",
-                    height: "18px",
-                    borderRadius: "9px",
-                    border: "none",
-                    backgroundColor: isOn ? "var(--color-accent)" : "var(--color-border)",
-                    cursor: "pointer",
-                    position: "relative",
-                    transition: "background-color 150ms ease",
-                    flexShrink: 0,
-                    padding: 0,
-                  }}
+                  className="w-8 h-[18px] rounded-[9px] border-none cursor-pointer relative transition-[background-color] duration-150 ease-in-out shrink-0 p-0"
+                  style={{ backgroundColor: isOn ? "var(--color-accent)" : "var(--color-border)" }}
                 >
+                  {/* Toggle thumb — left position depends on isOn state */}
                   <span
-                    style={{
-                      position: "absolute",
-                      top: "2px",
-                      left: isOn ? "16px" : "2px",
-                      width: "14px",
-                      height: "14px",
-                      borderRadius: "50%",
-                      backgroundColor: "white",
-                      transition: "left 150ms ease",
-                      boxShadow: "0 1px 3px rgba(0,0,0,0.2)",
-                    }}
+                    className="absolute top-0.5 w-3.5 h-3.5 rounded-full bg-white transition-[left] duration-150 ease-in-out shadow-[0_1px_3px_rgba(0,0,0,0.2)]"
+                    style={{ left: isOn ? "16px" : "2px" }}
                     aria-hidden="true"
                   />
                 </button>

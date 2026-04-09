@@ -73,15 +73,8 @@ function highlightText(
     nodes.push(
       <mark
         key={start}
-        style={{
-          backgroundColor: "var(--color-accent-subtle)",
-          color: "var(--color-accent)",
-          borderRadius: "2px",
-          padding: "0 1px",
-          fontWeight: 700,
-          // inherit surrounding font so mark doesn't reset sizing
-          font: "inherit",
-        }}
+        className="bg-accent-subtle text-accent rounded-[2px] px-px font-bold"
+        style={{ font: "inherit" }}
       >
         {text.slice(start, end + 1)}
       </mark>,
@@ -124,60 +117,33 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
 
   return (
     <>
-      {/* Main row */}
+      {/* Main row — opacity, borderLeft, backgroundColor are dynamic */}
       <tr
+        className="cursor-pointer transition-opacity duration-150 ease-in-out"
         style={{
           opacity: dimmed ? 0.35 : 1,
-          transition: "opacity 150ms ease",
           borderLeft: `2px solid ${tierColor}`,
-          cursor: "pointer",
           backgroundColor: expanded ? "var(--color-surface-alt)" : "var(--color-surface)",
         }}
         onClick={() => setExpanded((e) => !e)}
         aria-expanded={expanded}
       >
         {/* Model column */}
-        <td
-          style={{
-            padding: "12px 16px",
-            verticalAlign: "middle",
-          }}
-        >
-          <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-            <span
-              style={{
-                fontFamily: "var(--font-body)",
-                fontSize: "0.9375rem",
-                fontWeight: 600,
-                color: "var(--color-text-primary)",
-                lineHeight: 1.3,
-              }}
-            >
+        <td className="p-3 px-4 align-middle">
+          <div className="flex items-center gap-[10px]">
+            <span className="font-body text-[0.9375rem] font-semibold text-text-primary leading-[1.3]">
               {highlightText(model.displayName, matches, "model.displayName")}
             </span>
           </div>
-          <div
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.8125rem",
-              color: "var(--color-text-secondary)",
-              marginTop: "2px",
-            }}
-          >
+          <div className="font-body text-[0.8125rem] text-text-secondary mt-0.5">
             {highlightText(providerName, matches, "provider.name")}
           </div>
         </td>
 
         {/* Compliance column */}
-        <td
-          style={{
-            padding: "12px 16px",
-            verticalAlign: "middle",
-          }}
-          className="hidden sm:table-cell"
-        >
+        <td className="p-3 px-4 align-middle hidden sm:table-cell">
           {isVerified && provider !== null && isFullProvider(provider) ? (
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "4px" }}>
+            <div className="flex flex-wrap gap-1">
               {provider.compliance.dataResidency.euOnly ? (
                 <ComplianceBadge variant="eu-only" size="sm" />
               ) : provider.compliance.sccs ? (
@@ -198,16 +164,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
         </td>
 
         {/* Data residency column */}
-        <td
-          style={{
-            padding: "12px 16px",
-            verticalAlign: "middle",
-            fontFamily: "var(--font-body)",
-            fontSize: "0.875rem",
-            color: "var(--color-text-secondary)",
-          }}
-          className="hidden md:table-cell"
-        >
+        <td className="p-3 px-4 align-middle font-body text-[0.875rem] text-text-secondary hidden md:table-cell">
           {isVerified && provider !== null && isFullProvider(provider)
             ? provider.compliance.dataResidency.euOnly
               ? "EU"
@@ -216,106 +173,42 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
         </td>
 
         {/* Pricing column */}
-        <td
-          style={{
-            padding: "12px 16px",
-            verticalAlign: "middle",
-          }}
-          className="hidden lg:table-cell"
-        >
+        <td className="p-3 px-4 align-middle hidden lg:table-cell">
           {model.inputPricePerMTokens !== null || model.outputPricePerMTokens !== null ? (
-            <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-              <span
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.8125rem",
-                  color: "var(--color-text-secondary)",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                <span style={{ color: "var(--color-text-muted)", fontSize: "0.75rem" }}>in </span>
+            <div className="flex flex-col gap-0.5">
+              <span className="font-mono text-[0.8125rem] text-text-secondary whitespace-nowrap">
+                <span className="text-text-muted text-xs">in </span>
                 {formatPrice(model.inputPricePerMTokens)}
               </span>
-              <span
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.8125rem",
-                  color: "var(--color-text-secondary)",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                <span style={{ color: "var(--color-text-muted)", fontSize: "0.75rem" }}>out </span>
+              <span className="font-mono text-[0.8125rem] text-text-secondary whitespace-nowrap">
+                <span className="text-text-muted text-xs">out </span>
                 {formatPrice(model.outputPricePerMTokens)}
               </span>
             </div>
           ) : (
-            <span
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.8125rem",
-                color: "var(--color-text-muted)",
-              }}
-            >
-              —
-            </span>
+            <span className="font-mono text-[0.8125rem] text-text-muted">—</span>
           )}
         </td>
 
         {/* Last verified column */}
-        <td
-          style={{
-            padding: "12px 16px",
-            verticalAlign: "middle",
-          }}
-          className="hidden xl:table-cell"
-        >
+        <td className="p-3 px-4 align-middle hidden xl:table-cell">
           {provider?.lastVerified ? (
             <time
               dateTime={provider.lastVerified}
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.75rem",
-                color: "var(--color-text-muted)",
-              }}
+              className="font-mono text-xs text-text-muted"
             >
               {provider.lastVerified}
             </time>
           ) : (
-            <span
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.75rem",
-                color: "var(--color-text-muted)",
-              }}
-            >
-              —
-            </span>
+            <span className="font-mono text-xs text-text-muted">—</span>
           )}
         </td>
 
         {/* Expand toggle column */}
-        <td
-          style={{
-            padding: "12px 16px",
-            verticalAlign: "middle",
-            textAlign: "right",
-          }}
-        >
+        <td className="p-3 px-4 align-middle text-right">
           <span
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: "20px",
-              height: "20px",
-              borderRadius: "50%",
-              border: `1px solid var(--color-border)`,
-              backgroundColor: expanded ? "var(--color-surface-alt)" : "transparent",
-              color: "var(--color-text-muted)",
-              fontSize: "14px",
-              lineHeight: 1,
-              transition: "background-color 120ms ease",
-            }}
+            className="inline-flex items-center justify-center w-5 h-5 rounded-full border border-border text-text-muted text-sm leading-none transition-[background-color] duration-[120ms] ease-in-out"
+            style={{ backgroundColor: expanded ? "var(--color-surface-alt)" : "transparent" }}
             aria-hidden="true"
           >
             {expanded ? "−" : "+"}
@@ -331,89 +224,31 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
             borderLeft: `2px solid ${tierColor}`,
           }}
         >
-          <td
-            colSpan={6}
-            style={{
-              padding: "0",
-            }}
-          >
-            <div
-              style={{
-                padding: "14px 16px 18px",
-                borderTop: "1px solid var(--color-border)",
-              }}
-            >
+          <td colSpan={6} className="p-0">
+            <div className="px-4 pt-3.5 pb-[18px] border-t border-border">
               {/* Header row: provider name + profile link prominently together */}
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  marginBottom: "14px",
-                  gap: "16px",
-                  flexWrap: "wrap",
-                }}
-              >
-                <span
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    color: "var(--color-text-secondary)",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.06em",
-                  }}
-                >
+              <div className="flex items-center justify-between mb-3.5 gap-4 flex-wrap">
+                <span className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em]">
                   {providerName}
                 </span>
                 <Link
                   href={`/provider/${model.providerSlug}`}
                   onClick={(e) => e.stopPropagation()}
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.8125rem",
-                    fontWeight: 500,
-                    color: "var(--color-accent)",
-                    textDecoration: "none",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "4px",
-                    padding: "4px 10px",
-                    border: "1px solid var(--color-accent)",
-                    borderRadius: "4px",
-                    backgroundColor: "var(--color-accent-subtle)",
-                    whiteSpace: "nowrap",
-                  }}
+                  className="font-body text-[0.8125rem] font-medium text-accent no-underline inline-flex items-center gap-1 px-[10px] py-1 border border-accent rounded bg-accent-subtle whitespace-nowrap"
                 >
                   Full provider profile →
                 </Link>
               </div>
 
               {/* Compliance detail grid */}
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-                  gap: "16px",
-                }}
-              >
+              <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
                 {isVerified && provider !== null && isFullProvider(provider) ? (
                   <>
                     <div>
-                      <div
-                        style={{
-                          fontFamily: "var(--font-body)",
-                          fontSize: "0.75rem",
-                          fontWeight: 600,
-                          color: "var(--color-text-secondary)",
-                          textTransform: "uppercase",
-                          letterSpacing: "0.06em",
-                          marginBottom: "8px",
-                        }}
-                      >
+                      <div className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] mb-2">
                         Compliance
                       </div>
-                      <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                      <div className="flex flex-col gap-1.5">
                         <ComplianceField
                           label="EU data residency"
                           value={provider.compliance.dataResidency.euOnly}
@@ -433,43 +268,17 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
 
                     {provider.compliance.dataResidency.euRegionDetails ? (
                       <div>
-                        <div
-                          style={{
-                            fontFamily: "var(--font-body)",
-                            fontSize: "0.75rem",
-                            fontWeight: 600,
-                            color: "var(--color-text-secondary)",
-                            textTransform: "uppercase",
-                            letterSpacing: "0.06em",
-                            marginBottom: "8px",
-                          }}
-                        >
+                        <div className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] mb-2">
                           EU Routing
                         </div>
-                        <p
-                          style={{
-                            fontFamily: "var(--font-body)",
-                            fontSize: "0.8125rem",
-                            color: "var(--color-text-secondary)",
-                            margin: 0,
-                            lineHeight: 1.5,
-                            maxWidth: "40ch",
-                          }}
-                        >
+                        <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.5] max-w-[40ch]">
                           {provider.compliance.dataResidency.euRegionDetails}
                         </p>
                       </div>
                     ) : null}
                   </>
                 ) : (
-                  <p
-                    style={{
-                      fontFamily: "var(--font-body)",
-                      fontSize: "0.875rem",
-                      color: "var(--color-text-muted)",
-                      margin: 0,
-                    }}
-                  >
+                  <p className="font-body text-[0.875rem] text-text-muted m-0">
                     Compliance data not yet verified for this provider.
                   </p>
                 )}
@@ -515,34 +324,22 @@ function ComplianceField({
       : "var(--color-text-muted)";
 
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+    <div className="flex items-center gap-2">
       <span
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontSize: "0.8125rem",
-          color,
-          width: "14px",
-          textAlign: "center",
-          flexShrink: 0,
-        }}
+        className="font-mono text-[0.8125rem] w-3.5 text-center shrink-0"
+        style={{ color }}
         aria-hidden="true"
       >
         {symbol}
       </span>
-      <span
-        style={{
-          fontFamily: "var(--font-body)",
-          fontSize: "0.8125rem",
-          color: "var(--color-text-secondary)",
-        }}
-      >
+      <span className="font-body text-[0.8125rem] text-text-secondary">
         {href ? (
           <a
             href={href}
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
-            style={{ color: "var(--color-link)", textDecoration: "none" }}
+            className="text-link no-underline"
           >
             {label} ↗
           </a>

@@ -106,43 +106,14 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "40px 40px",
-          flex: 1,
-          width: "100%",
-          boxSizing: "border-box",
-        }}
-        className="px-4 sm:px-6 lg:px-10"
-      >
+      <main className="max-w-[1200px] mx-auto flex-1 w-full box-border px-4 sm:px-6 lg:px-10 py-10">
         {/* Page heading */}
-        <div style={{ marginBottom: "32px" }}>
-          <h1
-            style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "2.5rem",
-              fontWeight: 400,
-              color: "var(--color-heading)",
-              lineHeight: 1.15,
-              margin: "0 0 12px",
-              letterSpacing: "-0.02em",
-            }}
-          >
+        <div className="mb-8">
+          <h1 className="font-display text-[2.5rem] font-normal text-heading leading-[1.15] m-0 mb-3 tracking-[-0.02em]">
             AI inference providers,<br />
             filtered by GDPR compliance.
           </h1>
-          <p
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.9375rem",
-              color: "var(--color-text-secondary)",
-              margin: 0,
-              maxWidth: "55ch",
-              lineHeight: 1.6,
-            }}
-          >
+          <p className="font-body text-[0.9375rem] text-text-secondary m-0 max-w-[55ch] leading-[1.6]">
             {items.length > 0
               ? `${allModels.length} models across ${providerMap.size} providers. Filter by compliance profile to find what passes your threshold.`
               : "Browse providers and their compliance posture. Filter by data residency, DPA availability, and training policy."}
@@ -150,7 +121,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         </div>
 
         {/* Filter bar — client component, gets initial state from server */}
-        <div style={{ marginBottom: "24px" }}>
+        <div className="mb-6">
           <Suspense fallback={null}>
             <FilterBar filterState={filterState} />
           </Suspense>
@@ -159,15 +130,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         {/* Model table — client component, data from server */}
         <Suspense
           fallback={
-            <div
-              style={{
-                padding: "64px 0",
-                textAlign: "center",
-                fontFamily: "var(--font-body)",
-                fontSize: "0.9375rem",
-                color: "var(--color-text-muted)",
-              }}
-            >
+            <div className="py-16 text-center font-body text-[0.9375rem] text-text-muted">
               Loading models…
             </div>
           }

@@ -10,40 +10,18 @@ const GITHUB_REPO = process.env.NEXT_PUBLIC_GITHUB_REPO_URL ?? "#";
 
 export function Footer() {
   return (
-    <footer
-      style={{
-        borderTop: "1px solid var(--color-border)",
-        padding: "24px 40px",
-        marginTop: "auto",
-      }}
-      className="px-4 sm:px-6 lg:px-10"
-    >
-      <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+    <footer className="border-t border-border mt-auto px-4 sm:px-6 lg:px-10 py-6">
+      <div className="max-w-[1200px] mx-auto">
         {/* ── Top row: license + nav links ── */}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "16px",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
+        <div className="flex flex-wrap gap-4 justify-between items-center">
           {/* Left: licensing */}
-          <p
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.8125rem",
-              color: "var(--color-text-muted)",
-              margin: 0,
-            }}
-          >
+          <p className="font-body text-[0.8125rem] text-text-muted m-0">
             Data licensed under{" "}
             <a
               href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "var(--color-link)" }}
+              className="text-link"
             >
               CC BY-NC-SA 4.0
             </a>
@@ -52,7 +30,7 @@ export function Footer() {
               href={`${GITHUB_REPO}/blob/main/LICENSE`}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ color: "var(--color-link)" }}
+              className="text-link"
             >
               MIT
             </a>
@@ -60,22 +38,10 @@ export function Footer() {
           </p>
 
           {/* Right: nav links */}
-          <nav
-            aria-label="Footer navigation"
-            style={{
-              display: "flex",
-              gap: "20px",
-              alignItems: "center",
-            }}
-          >
+          <nav aria-label="Footer navigation" className="flex gap-5 items-center">
             <Link
               href="/about"
-              style={{
-                fontFamily: "var(--font-body)",
-                fontSize: "0.8125rem",
-                color: "var(--color-text-muted)",
-                textDecoration: "none",
-              }}
+              className="font-body text-[0.8125rem] text-text-muted no-underline"
             >
               About
             </Link>
@@ -84,12 +50,7 @@ export function Footer() {
               href={GITHUB_REPO}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                fontFamily: "var(--font-body)",
-                fontSize: "0.8125rem",
-                color: "var(--color-text-muted)",
-                textDecoration: "none",
-              }}
+              className="font-body text-[0.8125rem] text-text-muted no-underline"
             >
               GitHub →
             </a>
@@ -99,15 +60,7 @@ export function Footer() {
         {/* ── Disclaimer ── */}
         <p
           role="note"
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "0.75rem",
-            color: "var(--color-text-muted)",
-            margin: "16px 0 0",
-            lineHeight: 1.5,
-            borderTop: "1px solid var(--color-border)",
-            paddingTop: "16px",
-          }}
+          className="font-body text-xs text-text-muted mt-4 leading-[1.5] border-t border-border pt-4"
         >
           This directory provides sourced information about AI providers&apos; data
           practices. It is not legal advice. Always verify directly with the provider

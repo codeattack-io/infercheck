@@ -309,11 +309,11 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
   return (
     <div>
       {/* Search input */}
-      <div style={{ marginBottom: "16px" }}>
+      <div className="mb-4">
         <label htmlFor="model-search" className="sr-only">
           Search models or providers
         </label>
-        <div style={{ position: "relative" }}>
+        <div className="relative">
           {/* Search icon */}
           <svg
             width="16"
@@ -321,19 +321,13 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
             viewBox="0 0 16 16"
             fill="none"
             aria-hidden="true"
-            style={{
-              position: "absolute",
-              left: "12px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              color: "var(--color-text-muted)",
-              pointerEvents: "none",
-            }}
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted pointer-events-none"
           >
             <circle cx="7" cy="7" r="4.5" stroke="currentColor" strokeWidth="1.25" />
             <path d="M10.5 10.5L13.5 13.5" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
           </svg>
 
+          {/* search-input class provides :focus ring via globals.css */}
           <input
             id="model-search"
             type="text"
@@ -342,26 +336,8 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
             placeholder="Search models or providers…"
             autoComplete="off"
             spellCheck={false}
-            style={{
-              width: "100%",
-              padding: hasQuery ? "9px 36px 9px 36px" : "9px 12px 9px 36px",
-              backgroundColor: "var(--color-surface)",
-              border: "1px solid var(--color-border)",
-              borderRadius: "4px",
-              fontFamily: "var(--font-body)",
-              fontSize: "0.9375rem",
-              color: "var(--color-text-primary)",
-              outline: "none",
-              boxSizing: "border-box",
-            }}
-            onFocus={(e) => {
-              e.currentTarget.style.borderColor = "var(--color-accent)";
-              e.currentTarget.style.boxShadow = "0 0 0 2px var(--color-accent-subtle)";
-            }}
-            onBlur={(e) => {
-              e.currentTarget.style.borderColor = "var(--color-border)";
-              e.currentTarget.style.boxShadow = "none";
-            }}
+            className="search-input w-full bg-surface border border-border rounded font-body text-[0.9375rem] text-text-primary outline-none box-border pl-9 py-[9px]"
+            style={{ paddingRight: hasQuery ? "36px" : "12px" }}
           />
 
           {/* Clear button — only visible when there's a query */}
@@ -370,28 +346,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
               type="button"
               onClick={handleClear}
               aria-label="Clear search"
-              style={{
-                position: "absolute",
-                right: "10px",
-                top: "50%",
-                transform: "translateY(-50%)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "20px",
-                height: "20px",
-                borderRadius: "50%",
-                border: "none",
-                backgroundColor: "var(--color-text-muted)",
-                color: "var(--color-surface)",
-                cursor: "pointer",
-                padding: 0,
-                fontSize: "14px",
-                lineHeight: 1,
-                opacity: 0.65,
-              }}
-              onMouseEnter={(e) => { e.currentTarget.style.opacity = "1"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.opacity = "0.65"; }}
+              className="search-clear-btn absolute right-[10px] top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 rounded-full border-none bg-text-muted text-surface cursor-pointer p-0 text-sm leading-none opacity-65"
             >
               ×
             </button>
@@ -400,14 +355,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
       </div>
 
       {/* Results summary */}
-      <div
-        style={{
-          fontFamily: "var(--font-body)",
-          fontSize: "0.8125rem",
-          color: "var(--color-text-muted)",
-          marginBottom: "12px",
-        }}
-      >
+      <div className="font-body text-[0.8125rem] text-text-muted mb-3">
         {hasQuery && totalVisible === 0
           ? `No models found for "${inputValue}"`
           : hasFilter
@@ -418,29 +366,14 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
       </div>
 
       {/* Table */}
-      <div
-        style={{
-          border: "1px solid var(--color-border)",
-          borderRadius: "4px",
-          overflow: "hidden",
-        }}
-      >
-        <div style={{ overflowX: "auto" }}>
+      <div className="border border-border rounded overflow-hidden">
+        <div className="overflow-x-auto">
           <table
-            style={{
-              width: "100%",
-              borderCollapse: "collapse",
-              backgroundColor: "var(--color-surface)",
-            }}
+            className="w-full border-collapse bg-surface"
             aria-label="AI models with GDPR compliance data"
           >
             <thead>
-              <tr
-                style={{
-                  backgroundColor: "var(--color-surface-alt)",
-                  borderBottom: "1px solid var(--color-border)",
-                }}
-              >
+              <tr className="bg-surface-alt border-b border-border">
                 <SortableTh
                   label="Model"
                   sortKey="default"
@@ -511,13 +444,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                 <tr>
                   <td
                     colSpan={6}
-                    style={{
-                      padding: "48px 16px",
-                      textAlign: "center",
-                      fontFamily: "var(--font-body)",
-                      fontSize: "0.9375rem",
-                      color: "var(--color-text-muted)",
-                    }}
+                    className="py-12 px-4 text-center font-body text-[0.9375rem] text-text-muted"
                   >
                     No models found for &ldquo;{inputValue}&rdquo;
                   </td>
@@ -558,19 +485,12 @@ function SortableTh({
 
   return (
     <th
-      className={className}
-      style={{
-        padding: "10px 16px",
-        textAlign: "left",
-        fontFamily: "var(--font-body)",
-        fontSize: "0.75rem",
-        fontWeight: 600,
-        color: isActive ? "var(--color-text-primary)" : "var(--color-text-secondary)",
-        textTransform: "uppercase",
-        letterSpacing: "0.05em",
-        userSelect: "none",
-        ...style,
-      }}
+      className={[
+        "px-4 py-[10px] text-left font-body text-xs font-semibold uppercase tracking-[0.05em] select-none",
+        isActive ? "text-text-primary" : "text-text-secondary",
+        className,
+      ].filter(Boolean).join(" ")}
+      style={style}
     >
       {nonSortable ? (
         label
@@ -578,30 +498,13 @@ function SortableTh({
         <button
           type="button"
           onClick={() => onSort(sortKey)}
-          style={{
-            background: "none",
-            border: "none",
-            padding: 0,
-            cursor: "pointer",
-            fontFamily: "inherit",
-            fontSize: "inherit",
-            fontWeight: "inherit",
-            color: "inherit",
-            textTransform: "inherit",
-            letterSpacing: "inherit",
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "4px",
-          }}
+          className="bg-transparent border-none p-0 cursor-pointer font-[inherit] text-[inherit] [text-transform:inherit] [letter-spacing:inherit] inline-flex items-center gap-1"
           aria-label={`Sort by ${label}`}
         >
           {label}
           <span
-            style={{
-              opacity: isActive ? 1 : 0.35,
-              fontSize: "10px",
-              lineHeight: 1,
-            }}
+            className="text-[10px] leading-none"
+            style={{ opacity: isActive ? 1 : 0.35 }}
             aria-hidden="true"
           >
             {isActive && sortDir === "desc" ? "↓" : "↑"}
