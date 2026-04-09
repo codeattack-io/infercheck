@@ -336,7 +336,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
 
           <input
             id="model-search"
-            type="search"
+            type="text"
             value={inputValue}
             onChange={handleSearchChange}
             placeholder="Search models or providers…"

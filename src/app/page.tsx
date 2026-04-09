@@ -12,7 +12,6 @@ import type { Metadata } from "next";
 import { cache } from "react";
 
 import { Nav } from "@/components/Nav";
-import { DisclaimerBanner } from "@/components/DisclaimerBanner";
 import { FilterBar } from "@/components/FilterBar";
 import { filterStateFromSearchParams } from "@/lib/compliance";
 import { ModelTable } from "@/components/ModelTable";
@@ -108,9 +107,6 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Nav />
-
-      {/* Disclaimer — below nav per DESIGN.md */}
-      <DisclaimerBanner />
 
       <main
         style={{
@@ -242,6 +238,21 @@ export default async function HomePage({ searchParams }: HomePageProps) {
             GitHub →
           </a>
         </div>
+        <p
+          role="note"
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "0.75rem",
+            color: "var(--color-text-muted)",
+            margin: "16px 0 0",
+            lineHeight: 1.5,
+            borderTop: "1px solid var(--color-border)",
+            paddingTop: "16px",
+            maxWidth: "1200px",
+          }}
+        >
+          This directory provides sourced information about AI providers&apos; data practices. It is not legal advice. Always verify directly with the provider and consult legal counsel for compliance decisions.
+        </p>
       </footer>
     </>
   );
