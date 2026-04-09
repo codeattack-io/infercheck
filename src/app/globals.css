@@ -70,3 +70,22 @@ body {
 .provider-card:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
+
+/* About page — GitHub issue CTA button. CSS hover so the page stays a server component. */
+.about-gh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--color-accent);
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: background-color 100ms ease;
+}
+.about-gh-btn:hover {
+  background-color: var(--color-accent-hover);
+}
