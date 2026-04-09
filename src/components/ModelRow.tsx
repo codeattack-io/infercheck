@@ -220,7 +220,7 @@ export function ModelRow({ item, dimmed = false }: ModelRowProps) {
           )}
         </td>
 
-        {/* Link column */}
+        {/* Expand toggle column */}
         <td
           style={{
             padding: "12px 16px",
@@ -230,13 +230,22 @@ export function ModelRow({ item, dimmed = false }: ModelRowProps) {
         >
           <span
             style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "0.875rem",
-              color: "var(--color-link)",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "20px",
+              height: "20px",
+              borderRadius: "50%",
+              border: `1px solid ${expanded ? "var(--color-border)" : "var(--color-border)"}`,
+              backgroundColor: expanded ? "var(--color-surface-alt)" : "transparent",
+              color: "var(--color-text-muted)",
+              fontSize: "14px",
+              lineHeight: 1,
+              transition: "background-color 120ms ease",
             }}
             aria-hidden="true"
           >
-            {expanded ? "↑" : "→"}
+            {expanded ? "−" : "+"}
           </span>
         </td>
       </tr>
@@ -257,50 +266,66 @@ export function ModelRow({ item, dimmed = false }: ModelRowProps) {
           >
             <div
               style={{
-                padding: "16px 16px 20px",
+                padding: "14px 16px 18px",
                 borderTop: "1px solid var(--color-border)",
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-                gap: "16px",
               }}
             >
-              {/* Quick compliance snapshot */}
-              {isVerified && provider !== null && isFullProvider(provider) ? (
-                <>
-                  <div>
-                    <div
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        fontSize: "0.75rem",
-                        fontWeight: 600,
-                        color: "var(--color-text-secondary)",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.06em",
-                        marginBottom: "8px",
-                      }}
-                    >
-                      Compliance
-                    </div>
-                    <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
-                      <ComplianceField
-                        label="EU data residency"
-                        value={provider.compliance.dataResidency.euOnly}
-                      />
-                      <ComplianceField
-                        label="DPA available"
-                        value={provider.compliance.dpa.available}
-                        href={provider.compliance.dpa.url ?? undefined}
-                      />
-                      <ComplianceField
-                        label="Trains on data"
-                        value={provider.compliance.dataUsage.trainsOnCustomerData}
-                        invert
-                      />
-                      <ComplianceField label="SCCs" value={provider.compliance.sccs ?? false} />
-                    </div>
-                  </div>
+              {/* Header row: provider name + profile link prominently together */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  marginBottom: "14px",
+                  gap: "16px",
+                  flexWrap: "wrap",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "0.75rem",
+                    fontWeight: 600,
+                    color: "var(--color-text-secondary)",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.06em",
+                  }}
+                >
+                  {providerName}
+                </span>
+                <Link
+                  href={`/provider/${model.providerSlug}`}
+                  onClick={(e) => e.stopPropagation()}
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "0.8125rem",
+                    fontWeight: 500,
+                    color: "var(--color-accent)",
+                    textDecoration: "none",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "4px",
+                    padding: "4px 10px",
+                    border: "1px solid var(--color-accent)",
+                    borderRadius: "4px",
+                    backgroundColor: "var(--color-accent-subtle)",
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  Full provider profile →
+                </Link>
+              </div>
 
-                  {provider.compliance.dataResidency.euRegionDetails ? (
+              {/* Compliance detail grid */}
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+                  gap: "16px",
+                }}
+              >
+                {isVerified && provider !== null && isFullProvider(provider) ? (
+                  <>
                     <div>
                       <div
                         style={{
@@ -313,53 +338,69 @@ export function ModelRow({ item, dimmed = false }: ModelRowProps) {
                           marginBottom: "8px",
                         }}
                       >
-                        EU Routing
+                        Compliance
                       </div>
-                      <p
-                        style={{
-                          fontFamily: "var(--font-body)",
-                          fontSize: "0.8125rem",
-                          color: "var(--color-text-secondary)",
-                          margin: 0,
-                          lineHeight: 1.5,
-                          maxWidth: "40ch",
-                        }}
-                      >
-                        {provider.compliance.dataResidency.euRegionDetails}
-                      </p>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                        <ComplianceField
+                          label="EU data residency"
+                          value={provider.compliance.dataResidency.euOnly}
+                        />
+                        <ComplianceField
+                          label="DPA available"
+                          value={provider.compliance.dpa.available}
+                          href={provider.compliance.dpa.url ?? undefined}
+                        />
+                        <ComplianceField
+                          label="Trains on data"
+                          value={provider.compliance.dataUsage.trainsOnCustomerData}
+                          invert
+                        />
+                        <ComplianceField label="SCCs" value={provider.compliance.sccs ?? false} />
+                      </div>
                     </div>
-                  ) : null}
-                </>
-              ) : (
-                <p
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.875rem",
-                    color: "var(--color-text-muted)",
-                    margin: 0,
-                  }}
-                >
-                  Compliance data not yet verified for this provider.
-                </p>
-              )}
 
-              {/* Full profile link */}
-              <div style={{ display: "flex", alignItems: "flex-end" }}>
-                <Link
-                  href={`/provider/${model.providerSlug}`}
-                  onClick={(e) => e.stopPropagation()}
-                  style={{
-                    fontFamily: "var(--font-body)",
-                    fontSize: "0.875rem",
-                    color: "var(--color-link)",
-                    textDecoration: "none",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "4px",
-                  }}
-                >
-                  Full provider profile →
-                </Link>
+                    {provider.compliance.dataResidency.euRegionDetails ? (
+                      <div>
+                        <div
+                          style={{
+                            fontFamily: "var(--font-body)",
+                            fontSize: "0.75rem",
+                            fontWeight: 600,
+                            color: "var(--color-text-secondary)",
+                            textTransform: "uppercase",
+                            letterSpacing: "0.06em",
+                            marginBottom: "8px",
+                          }}
+                        >
+                          EU Routing
+                        </div>
+                        <p
+                          style={{
+                            fontFamily: "var(--font-body)",
+                            fontSize: "0.8125rem",
+                            color: "var(--color-text-secondary)",
+                            margin: 0,
+                            lineHeight: 1.5,
+                            maxWidth: "40ch",
+                          }}
+                        >
+                          {provider.compliance.dataResidency.euRegionDetails}
+                        </p>
+                      </div>
+                    ) : null}
+                  </>
+                ) : (
+                  <p
+                    style={{
+                      fontFamily: "var(--font-body)",
+                      fontSize: "0.875rem",
+                      color: "var(--color-text-muted)",
+                      margin: 0,
+                    }}
+                  >
+                    Compliance data not yet verified for this provider.
+                  </p>
+                )}
               </div>
             </div>
           </td>
