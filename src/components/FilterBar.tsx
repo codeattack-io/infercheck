@@ -137,7 +137,7 @@ export function FilterBar({ filterState }: FilterBarProps) {
 
   return (
     <div>
-      {/* Preset buttons row */}
+      {/* Label + preset buttons row */}
       <div
         style={{
           display: "flex",
@@ -148,6 +148,19 @@ export function FilterBar({ filterState }: FilterBarProps) {
         role="group"
         aria-label="Compliance filter presets"
       >
+        <span
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "0.8125rem",
+            fontWeight: 500,
+            color: "var(--color-text-muted)",
+            marginRight: "4px",
+            whiteSpace: "nowrap",
+          }}
+        >
+          Filter:
+        </span>
+
         {PRESETS.map((preset) => {
           const isActive = filterState.profile === preset.id;
           return (
@@ -159,19 +172,37 @@ export function FilterBar({ filterState }: FilterBarProps) {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: "6px",
-                padding: "6px 14px",
+                padding: "5px 12px",
                 borderRadius: "4px",
-                border: `1px solid ${isActive ? "var(--color-accent)" : "var(--color-border)"}`,
-                backgroundColor: isActive ? "var(--color-accent-subtle)" : "transparent",
-                color: isActive ? "var(--color-accent)" : "var(--color-text-secondary)",
+                border: `1px solid ${isActive ? "var(--color-accent)" : "#b8b5ac"}`,
+                backgroundColor: isActive ? "var(--color-accent-subtle)" : "var(--color-surface)",
+                color: isActive ? "var(--color-accent)" : "var(--color-text-primary)",
                 fontFamily: "var(--font-body)",
-                fontSize: "0.875rem",
+                fontSize: "0.8125rem",
                 fontWeight: 500,
                 cursor: "pointer",
-                transition: "all 120ms ease",
+                transition: "border-color 120ms ease, background-color 120ms ease, color 120ms ease",
                 whiteSpace: "nowrap",
+                boxShadow: isActive ? "none" : "0 1px 2px rgba(0,0,0,0.06)",
               }}
             >
+              {/* Filter funnel icon */}
+              <svg
+                width="11"
+                height="11"
+                viewBox="0 0 11 11"
+                fill="none"
+                aria-hidden="true"
+                style={{ flexShrink: 0, opacity: isActive ? 1 : 0.5 }}
+              >
+                <path
+                  d="M1 2h9l-3.5 4v3l-2-1V6L1 2z"
+                  stroke="currentColor"
+                  strokeWidth="1.25"
+                  strokeLinejoin="round"
+                  fill={isActive ? "currentColor" : "none"}
+                />
+              </svg>
               {preset.label}
             </button>
           );
@@ -186,32 +217,50 @@ export function FilterBar({ filterState }: FilterBarProps) {
             display: "inline-flex",
             alignItems: "center",
             gap: "6px",
-            padding: "6px 14px",
+            padding: "5px 12px",
             borderRadius: "4px",
-            border: `1px solid ${customOpen ? "var(--color-accent)" : "var(--color-border)"}`,
-            backgroundColor: customOpen ? "var(--color-accent-subtle)" : "transparent",
-            color: customOpen ? "var(--color-accent)" : "var(--color-text-secondary)",
+            border: `1px solid ${customOpen ? "var(--color-accent)" : "#b8b5ac"}`,
+            backgroundColor: customOpen ? "var(--color-accent-subtle)" : "var(--color-surface)",
+            color: customOpen ? "var(--color-accent)" : "var(--color-text-primary)",
             fontFamily: "var(--font-body)",
-            fontSize: "0.875rem",
+            fontSize: "0.8125rem",
             fontWeight: 500,
             cursor: "pointer",
-            transition: "all 120ms ease",
+            transition: "border-color 120ms ease, background-color 120ms ease, color 120ms ease",
+            boxShadow: customOpen ? "none" : "0 1px 2px rgba(0,0,0,0.06)",
           }}
         >
+          <svg
+            width="11"
+            height="11"
+            viewBox="0 0 11 11"
+            fill="none"
+            aria-hidden="true"
+            style={{ flexShrink: 0, opacity: customOpen ? 1 : 0.5 }}
+          >
+            <path
+              d="M1 2h9l-3.5 4v3l-2-1V6L1 2z"
+              stroke="currentColor"
+              strokeWidth="1.25"
+              strokeLinejoin="round"
+              fill={customOpen ? "currentColor" : "none"}
+            />
+          </svg>
           Custom
           <svg
-            width="12"
-            height="12"
-            viewBox="0 0 12 12"
+            width="10"
+            height="10"
+            viewBox="0 0 10 10"
             fill="none"
             aria-hidden="true"
             style={{
               transform: customOpen ? "rotate(180deg)" : "rotate(0deg)",
               transition: "transform 150ms ease",
+              opacity: 0.6,
             }}
           >
             <path
-              d="M2 4L6 8L10 4"
+              d="M2 3.5L5 6.5L8 3.5"
               stroke="currentColor"
               strokeWidth="1.5"
               strokeLinecap="round"
