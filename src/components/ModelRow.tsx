@@ -351,11 +351,10 @@ export function ModelRow({ item, dimmed = false }: ModelRowProps) {
                           href={provider.compliance.dpa.url ?? undefined}
                         />
                         <ComplianceField
-                          label="Trains on data"
-                          value={provider.compliance.dataUsage.trainsOnCustomerData}
-                          invert
+                          label={provider.compliance.dataUsage.trainsOnCustomerData ? "Trains on customer data" : "No training on customer data"}
+                          value={!provider.compliance.dataUsage.trainsOnCustomerData}
                         />
-                        <ComplianceField label="SCCs" value={provider.compliance.sccs ?? false} />
+                        <ComplianceField label="SCCs in place" value={provider.compliance.sccs ?? false} />
                       </div>
                     </div>
 
@@ -416,16 +415,13 @@ function ComplianceField({
   label,
   value,
   href,
-  invert = false,
 }: {
   label: string;
   value: boolean | null;
   href?: string;
-  invert?: boolean;
 }) {
-  // invert: for fields where true = bad (e.g. trains on data)
-  const positive = invert ? value === false : value === true;
-  const negative = invert ? value === true : value === false;
+  const positive = value === true;
+  const negative = value === false;
 
   const symbol = positive ? "✓" : negative ? "✗" : "?";
   const color = positive
