@@ -5,16 +5,24 @@
 //
 // Data is fetched server-side and passed as props — no client-side fetch.
 // Filter state lives entirely in URL params (shareable links requirement).
-// Search uses Fuse.js with token search for fuzzy multi-word matching.
+// Search uses Fuse.js with a manual multi-token $and logical query so that
+// "claude 4.6" matches "Claude Sonnet 4.6" without spuriously matching any
+// model that happens to contain a standalone "4" or "6" elsewhere.
+//
+// Input state is LOCAL (useState) — never re-derived from the URL prop.
+// This prevents the input from remounting and losing focus on every keystroke.
+// The URL is written on change (for shareability) but never read back into the
+// input value after mount.
+//
 // Vercel rules applied:
 //   - rerender-derived-state-no-effect: filtered list derived during render
 //   - rerender-functional-setstate: stable search callback
 //   - js-index-maps: provider lookup by slug via Map
 //   - rendering-conditional-render: ternary not &&
 
-import { useMemo, useCallback, useTransition } from "react";
+import { useMemo, useCallback, useTransition, useState, useRef } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import Fuse, { type FuseResultMatch } from "fuse.js";
+import Fuse, { type FuseResultMatch, type Expression } from "fuse.js";
 import { ModelRow } from "@/components/ModelRow";
 import { providerMatchesFilter, filterStateFromSearchParams } from "@/lib/compliance";
 import type { ModelWithProvider } from "@/components/types";
@@ -23,22 +31,53 @@ import type { AnyProvider } from "@/lib/compliance";
 // ─── Fuse config ──────────────────────────────────────────────────────────────
 
 // Keys searched; displayName weighted highest since it's what users type.
-// useTokenSearch splits "claude 4.6" into ["claude", "4.6"] and fuzzy-matches
-// each token independently, then merges scores — fixes the multi-word gap.
+// We do NOT use useTokenSearch — it splits on whitespace and matches each
+// token independently, so "4" matches any model with a 4 anywhere.
+// Instead we build a manual $and logical query in buildFuseQuery() below.
 const FUSE_OPTIONS: ConstructorParameters<typeof Fuse<ModelWithProvider>>[1] = {
   keys: [
     { name: "model.displayName", weight: 2 },
     { name: "provider.name", weight: 1 },
     { name: "model.id", weight: 0.5 },
   ],
-  threshold: 0.35,       // 0 = exact, 1 = match anything — 0.35 is permissive but still relevant
-  distance: 200,         // allow matches further into long model-id strings
-  useExtendedSearch: false,
-  useTokenSearch: true,  // multi-word: "claude 4.6" matches "Claude Sonnet 4.6"
-  includeMatches: true,  // gives us character-level indices for highlighting
-  minMatchCharLength: 1,
-  ignoreLocation: true,  // don't penalise matches that occur deep in the string
+  threshold: 0.2,            // tight: only close matches; 0 = exact, 1 = anything
+  distance: 200,             // allow matches further into long model-id strings
+  ignoreLocation: true,      // don't penalise matches that occur deep in the string
+  useExtendedSearch: true,   // required for $and / $or logical queries
+  useTokenSearch: false,     // off — we build the token split manually below
+  includeMatches: true,      // character-level indices for highlighting
+  minMatchCharLength: 2,     // never match single characters
 };
+
+// Split the query into tokens on whitespace, drop empties and single chars.
+// Each token becomes an $or across all keys (any field may match it), and the
+// full query is an $and of all tokens — every word must be present somewhere.
+//
+// "claude 4.6" → $and: [ {$or: displayName/provider/id contains "claude"},
+//                         {$or: displayName/provider/id contains "4.6"} ]
+//
+// This means "4.6" is treated as one atomic token, not split into "4" and "6".
+function buildFuseQuery(raw: string): string | Expression {
+  const tokens = raw
+    .trim()
+    .split(/\s+/)
+    .filter((t) => t.length >= 2);
+
+  if (tokens.length === 0) return raw.trim();
+  if (tokens.length === 1) return tokens[0];
+
+  // Multi-token: every token must match at least one field.
+  // Cast each leaf to Record<string,string> to satisfy Fuse's Expression index sig.
+  return {
+    $and: tokens.map((token) => ({
+      $or: [
+        { "model.displayName": token } as Record<string, string>,
+        { "provider.name": token } as Record<string, string>,
+        { "model.id": token } as Record<string, string>,
+      ],
+    })),
+  } as Expression;
+}
 
 // Per-row match data keyed by `${model.id}::${model.providerSlug}`
 export type MatchMap = Map<string, readonly FuseResultMatch[]>;
@@ -51,14 +90,20 @@ function rowKey(item: ModelWithProvider): string {
 
 interface ModelTableProps {
   items: ModelWithProvider[];
+  /** Initial search query from URL — used only at mount, never synced back */
   searchQuery: string;
 }
 
-export function ModelTable({ items, searchQuery }: ModelTableProps) {
+export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [, startTransition] = useTransition();
+
+  // LOCAL input state — decoupled from URL after mount.
+  // This is the key fix for focus loss: the input value never causes the input
+  // to remount because we don't use key= or re-derive from a changing prop.
+  const [inputValue, setInputValue] = useState(initialQuery);
 
   // Derive filter state from URL params during render — no useEffect
   const filterState = useMemo(
@@ -78,16 +123,18 @@ export function ModelTable({ items, searchQuery }: ModelTableProps) {
     return profileFilters[filterState.profile] ?? null;
   }, [filterState]);
 
-  // Build Fuse index once per items change — O(n) on data, not on each keystroke
+  // Build Fuse index once per items change — O(n) cost paid on data change, not per keystroke
   const fuse = useMemo(
     () => new Fuse(items, FUSE_OPTIONS),
     [items],
   );
 
-  // Search: update URL param — client-side filtering means no debounce needed
+  // Search: update local state immediately (keeps input responsive), push URL
+  // in a transition so the RSC navigation doesn't block typing.
   const handleSearchChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const q = e.target.value;
+      setInputValue(q);
       const params = new URLSearchParams(searchParams.toString());
       if (q) {
         params.set("q", q);
@@ -101,8 +148,9 @@ export function ModelTable({ items, searchQuery }: ModelTableProps) {
     [searchParams, pathname, router],
   );
 
-  // Clear search — writes empty state to URL
+  // Clear search
   const handleClear = useCallback(() => {
+    setInputValue("");
     const params = new URLSearchParams(searchParams.toString());
     params.delete("q");
     startTransition(() =>
@@ -112,18 +160,18 @@ export function ModelTable({ items, searchQuery }: ModelTableProps) {
 
   // Search + filter — derived during render (rerender-derived-state-no-effect)
   //
-  // When a query is present: use Fuse results (ranked by score), build a
-  // matchMap of highlight data keyed by rowKey.
-  // When empty: show all items in original DB order (no Fuse overhead).
+  // inputValue drives filtering (local, instant), not the server-prop query.
   const { matching, nonMatching, matchMap } = useMemo(() => {
-    const q = searchQuery.trim();
+    const q = inputValue.trim();
     const matchMap: MatchMap = new Map();
 
-    // Determine which items pass the text search, and collect match data
-    let searchPassed: Set<ModelWithProvider> | null = null; // null = all pass
+    let searchPassed: Set<ModelWithProvider> | null = null;
 
     if (q !== "") {
-      const fuseResults = fuse.search(q);
+      const query = buildFuseQuery(q);
+      // Fuse search accepts string | Expression — cast needed because the
+      // TypeScript overloads don't unify the two signatures cleanly.
+      const fuseResults = fuse.search(query as string);
       searchPassed = new Set();
       for (const result of fuseResults) {
         searchPassed.add(result.item);
@@ -137,11 +185,10 @@ export function ModelTable({ items, searchQuery }: ModelTableProps) {
     const nonMatching: ModelWithProvider[] = [];
 
     const source = searchPassed !== null
-      ? Array.from(searchPassed)  // Fuse-ranked order preserved
+      ? Array.from(searchPassed)  // Fuse-ranked order
       : items;                     // original DB order when no query
 
     for (const item of source) {
-      // Compliance filter — dim, not remove (per design intent)
       const matchesFilter =
         activeFilter === null ||
         (item.provider !== null && providerMatchesFilter(item.provider, activeFilter));
@@ -154,11 +201,11 @@ export function ModelTable({ items, searchQuery }: ModelTableProps) {
     }
 
     return { matching, nonMatching, matchMap };
-  }, [items, searchQuery, activeFilter, fuse]);
+  }, [items, inputValue, activeFilter, fuse]);
 
   const totalVisible = matching.length + nonMatching.length;
   const hasFilter = activeFilter !== null;
-  const hasQuery = searchQuery.trim() !== "";
+  const hasQuery = inputValue.trim() !== "";
 
   return (
     <div>
@@ -191,8 +238,7 @@ export function ModelTable({ items, searchQuery }: ModelTableProps) {
           <input
             id="model-search"
             type="search"
-            key={searchQuery} // reset controlled value when URL changes externally
-            defaultValue={searchQuery}
+            value={inputValue}
             onChange={handleSearchChange}
             placeholder="Search models or providers…"
             autoComplete="off"
@@ -264,7 +310,7 @@ export function ModelTable({ items, searchQuery }: ModelTableProps) {
         }}
       >
         {hasQuery && totalVisible === 0
-          ? `No models found for "${searchQuery}"`
+          ? `No models found for "${inputValue}"`
           : hasFilter
           ? `${matching.length} of ${totalVisible} models match the active filter`
           : hasQuery
@@ -407,7 +453,7 @@ export function ModelTable({ items, searchQuery }: ModelTableProps) {
                       color: "var(--color-text-muted)",
                     }}
                   >
-                    No models found for &ldquo;{searchQuery}&rdquo;
+                    No models found for &ldquo;{inputValue}&rdquo;
                   </td>
                 </tr>
               ) : null}

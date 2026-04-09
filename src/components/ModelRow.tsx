@@ -28,20 +28,33 @@ function formatPrice(val: string | null | undefined): string {
 }
 
 // Renders `text` with character ranges in `indices` wrapped in <mark>.
-// `key` is the Fuse field key to look for in `matches`, e.g. "model.displayName".
+// `fuseKey` is the Fuse field key to look for in `matches`, e.g. "model.displayName".
+//
+// Guards:
+//  - Skips match entries whose stored `value` doesn't match the actual `text`
+//    (Fuse can return stale index values from internal tokenisation passes).
+//  - Skips index pairs that span fewer than 2 characters (single-char matches
+//    from aggressive tokenisation are almost always noise).
 function highlightText(
   text: string,
   matches: readonly FuseResultMatch[] | undefined,
-  key: string,
+  fuseKey: string,
 ): ReactNode {
   if (!matches || matches.length === 0) return text;
 
-  // Find the match entry for this specific field key
-  const fieldMatch = matches.find((m) => m.key === key);
+  // Find the match entry for this specific field key whose stored value
+  // corresponds to the text we're about to render.
+  const fieldMatch = matches.find(
+    (m) => m.key === fuseKey && m.value === text,
+  );
   if (!fieldMatch || !fieldMatch.indices || fieldMatch.indices.length === 0) return text;
 
-  // Merge overlapping index pairs and sort
-  const sorted = [...fieldMatch.indices].sort((a, b) => a[0] - b[0]);
+  // Filter out single-character spans — too noisy to highlight.
+  const meaningful = fieldMatch.indices.filter(([start, end]) => end - start >= 1);
+  if (meaningful.length === 0) return text;
+
+  // Merge overlapping/adjacent index pairs and sort
+  const sorted = [...meaningful].sort((a, b) => a[0] - b[0]);
   const merged: [number, number][] = [];
   for (const [start, end] of sorted) {
     if (merged.length > 0 && start <= merged[merged.length - 1][1] + 1) {
