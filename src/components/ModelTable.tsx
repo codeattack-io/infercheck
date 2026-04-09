@@ -53,29 +53,51 @@ const FUSE_OPTIONS: ConstructorParameters<typeof Fuse<ModelWithProvider>>[1] = {
 // Each token becomes an $or across all keys (any field may match it), and the
 // full query is an $and of all tokens — every word must be present somewhere.
 //
-// "claude 4.6" → $and: [ {$or: displayName/provider/id contains "claude"},
-//                         {$or: displayName/provider/id contains "4.6"} ]
+// "claude 4.6" → $and: [ {$or fuzzy "claude"}, {$or exact "=4.6"} ]
+// "gpt 5"      → $and: [ {$or fuzzy "gpt"},    {$or exact "=5"}   ]
 //
-// This means "4.6" is treated as one atomic token, not split into "4" and "6".
+// Short/numeric tokens use Fuse extended-search exact-match prefix ("=token")
+// so they can ONLY match literally — this prevents "5" fuzzy-matching "12" in
+// a model like "gpt-oss-120b". Long alphabetic tokens stay fuzzy so typos
+// like "claud" still work.
+//
+// A token is treated as exact when it is:
+//  - purely numeric (e.g. "5", "4.6", "120b")
+//  - 3 chars or fewer (short enough that fuzzy has too many false positives)
+function isExactToken(token: string): boolean {
+  // Numeric-ish: only digits, dots, hyphens — version numbers, model suffixes
+  if (/^[\d.\-]+$/.test(token)) return true;
+  // Short: 3 chars or fewer
+  if (token.length <= 3) return true;
+  return false;
+}
+
 function buildFuseQuery(raw: string): string | Expression {
   const tokens = raw
     .trim()
     .split(/\s+/)
-    .filter((t) => t.length >= 2);
+    .filter((t) => t.length >= 1);
 
   if (tokens.length === 0) return raw.trim();
-  if (tokens.length === 1) return tokens[0];
+
+  // For a single token: if it needs exact matching, prefix with =; else fuzzy.
+  if (tokens.length === 1) {
+    return isExactToken(tokens[0]) ? `=${tokens[0]}` : tokens[0];
+  }
 
   // Multi-token: every token must match at least one field.
   // Cast each leaf to Record<string,string> to satisfy Fuse's Expression index sig.
   return {
-    $and: tokens.map((token) => ({
-      $or: [
-        { "model.displayName": token } as Record<string, string>,
-        { "provider.name": token } as Record<string, string>,
-        { "model.id": token } as Record<string, string>,
-      ],
-    })),
+    $and: tokens.map((token) => {
+      const t = isExactToken(token) ? `=${token}` : token;
+      return {
+        $or: [
+          { "model.displayName": t } as Record<string, string>,
+          { "provider.name": t } as Record<string, string>,
+          { "model.id": t } as Record<string, string>,
+        ],
+      };
+    }),
   } as Expression;
 }
 
