@@ -3,8 +3,6 @@
 
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Nav } from "@/components/Nav";
-import { DisclaimerBanner } from "@/components/DisclaimerBanner";
 
 // ─── Metadata ──────────────────────────────────────────────────────────────────
 
@@ -30,9 +28,6 @@ const NEW_ISSUE_URL = `${GITHUB_REPO}/issues/new?template=report-change.yml`;
 export default function AboutPage() {
   return (
     <>
-      <Nav />
-      <DisclaimerBanner />
-
       <main
         style={{
           maxWidth: "720px",

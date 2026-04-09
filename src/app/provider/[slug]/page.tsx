@@ -16,8 +16,6 @@ import { getProvider, getAllProviders } from "@/lib/providers";
 import { getModelsByProvider } from "@/lib/models";
 import { getComplianceTier, isFullProvider } from "@/lib/compliance";
 import type { ComplianceTier } from "@/lib/compliance";
-import { Nav } from "@/components/Nav";
-import { DisclaimerBanner } from "@/components/DisclaimerBanner";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
 
 // ─── Static params (prerender all known providers) ────────────────────────────
@@ -123,9 +121,6 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
   return (
     <>
-      <Nav />
-      <DisclaimerBanner />
-
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -1045,36 +1040,6 @@ export default async function ProviderProfilePage({ params }: PageProps) {
           </Link>
         </div>
       </main>
-
-      <footer
-        style={{
-          borderTop: "1px solid var(--color-border)",
-          padding: "24px 40px",
-          marginTop: "auto",
-        }}
-        className="px-4 sm:px-6 lg:px-10"
-      >
-        <div
-          style={{
-            maxWidth: "1200px",
-            margin: "0 auto",
-            fontFamily: "var(--font-body)",
-            fontSize: "0.8125rem",
-            color: "var(--color-text-muted)",
-          }}
-        >
-          Data licensed under{" "}
-          <a
-            href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: "var(--color-link)" }}
-          >
-            CC BY-NC-SA 4.0
-          </a>
-          . Not legal advice.
-        </div>
-      </footer>
     </>
   );
 }

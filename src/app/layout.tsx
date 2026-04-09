@@ -5,6 +5,8 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, DM_Sans, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
+import { Nav } from "@/components/Nav";
+import { Footer } from "@/components/Footer";
 
 // next/font/google: fonts are self-hosted at build time — no external requests,
 // no layout shift, automatic font-display:swap.
@@ -58,7 +60,9 @@ export default function RootLayout({
         className="min-h-full flex flex-col antialiased"
         suppressHydrationWarning
       >
+        <Nav />
         {children}
+        <Footer />
       </body>
     </html>
   );
