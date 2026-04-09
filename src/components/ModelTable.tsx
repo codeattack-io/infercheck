@@ -49,27 +49,31 @@ const FUSE_OPTIONS: ConstructorParameters<typeof Fuse<ModelWithProvider>>[1] = {
   minMatchCharLength: 2,     // never match single characters
 };
 
-// Split the query into tokens on whitespace, drop empties and single chars.
-// Each token becomes an $or across all keys (any field may match it), and the
-// full query is an $and of all tokens — every word must be present somewhere.
+// Split the query into tokens on whitespace.
+// Each token becomes an $or across all keys, and the full query is an $and —
+// every token must be present somewhere.
 //
-// "claude 4.6" → $and: [ {$or fuzzy "claude"}, {$or exact "=4.6"} ]
-// "gpt 5"      → $and: [ {$or fuzzy "gpt"},    {$or exact "=5"}   ]
+// Token matching strategy (Fuse extended search operators):
 //
-// Short/numeric tokens use Fuse extended-search exact-match prefix ("=token")
-// so they can ONLY match literally — this prevents "5" fuzzy-matching "12" in
-// a model like "gpt-oss-120b". Long alphabetic tokens stay fuzzy so typos
-// like "claud" still work.
+//  - Purely numeric/version tokens (only digits, dots, hyphens): use the
+//    include-match operator "'" (e.g. "'5", "'4.6") which requires a literal
+//    substring match with no fuzzy tolerance. This prevents "5" from fuzzy-
+//    matching "12" inside "gpt-oss-120b".
 //
-// A token is treated as exact when it is:
-//  - purely numeric (e.g. "5", "4.6", "120b")
-//  - 3 chars or fewer (short enough that fuzzy has too many false positives)
-function isExactToken(token: string): boolean {
-  // Numeric-ish: only digits, dots, hyphens — version numbers, model suffixes
-  if (/^[\d.\-]+$/.test(token)) return true;
-  // Short: 3 chars or fewer
-  if (token.length <= 3) return true;
-  return false;
+//  - All other tokens (alphabetic, mixed): plain fuzzy matching so typos
+//    like "claud" → "Claude", "gpt" → "GPT-5" still work. No length cutoff —
+//    short alphabetic tokens like "gpt" need fuzzy, not exact, because Fuse's
+//    "=" operator is a full-field match (whole field must equal the pattern),
+//    not a substring match.
+//
+// Examples:
+//   "gpt"       → fuzzy  "gpt"   → matches "OpenAI: GPT-5", "GPT-OSS-120b"
+//   "gpt 5"     → fuzzy  "gpt"  AND include "'5"  → only models with literal "5"
+//   "claude 4.6"→ fuzzy  "claude" AND include "'4.6"
+//   "claud"     → fuzzy  "claud"  → typo-tolerant, finds Claude models
+function isVersionToken(token: string): boolean {
+  // Only digits, dots, and hyphens — version numbers and numeric model suffixes
+  return /^[\d.\-]+$/.test(token);
 }
 
 function buildFuseQuery(raw: string): string | Expression {
@@ -80,16 +84,16 @@ function buildFuseQuery(raw: string): string | Expression {
 
   if (tokens.length === 0) return raw.trim();
 
-  // For a single token: if it needs exact matching, prefix with =; else fuzzy.
+  // Single token: version → include-match, alphabetic → fuzzy
   if (tokens.length === 1) {
-    return isExactToken(tokens[0]) ? `=${tokens[0]}` : tokens[0];
+    return isVersionToken(tokens[0]) ? `'${tokens[0]}` : tokens[0];
   }
 
   // Multi-token: every token must match at least one field.
   // Cast each leaf to Record<string,string> to satisfy Fuse's Expression index sig.
   return {
     $and: tokens.map((token) => {
-      const t = isExactToken(token) ? `=${token}` : token;
+      const t = isVersionToken(token) ? `'${token}` : token;
       return {
         $or: [
           { "model.displayName": t } as Record<string, string>,
