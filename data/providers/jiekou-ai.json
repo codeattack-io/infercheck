@@ -3,12 +3,48 @@
   "name": "Jiekou.AI",
   "type": "api_provider",
   "website": "https://docs.jiekou.ai",
-  "apiDocsUrl": "https://docs.jiekou.ai/docs/support/quickstart?utm_source=github_models.dev",
+  "apiDocsUrl": "https://docs.jiekou.ai",
   "logoPath": "/logos/jiekou-ai.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": null,
+    "dataResidency": {
+      "regions": [],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "The privacy policy says personal information is retained during the service period and longer where required for legal compliance or risk prevention, after which data is securely destroyed. No specific API prompt/output retention period is stated.",
+      "details": "The terms say user-submitted content is licensed to JieKou.AI and its affiliates on a non-exclusive, worldwide, royalty-free basis for hosting, distribution, modification, or display as needed to provide the service. No primary-source statement was found that explicitly says API customer data is or is not used for model training."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": null
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.jiekou.ai",
+    "https://jiekou.ai/legal/privacy-policy",
+    "https://jiekou.ai/legal/terms-of-service",
+    "https://jiekou.ai/pricing"
+  ],
+  "notes": "Jiekou.AI publishes a privacy policy and terms of service, but no primary-source DPA/AVV, sub-processor list, SCC statement, security certifications, or data residency documentation was found on the consulted official pages. The available legal text is high level and does not clearly address API-data training use, EU-only processing, or inference-location guarantees."
 }

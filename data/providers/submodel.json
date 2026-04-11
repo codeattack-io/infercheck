@@ -3,12 +3,46 @@
   "name": "submodel",
   "type": "api_provider",
   "website": "https://submodel.gitbook.io",
-  "apiDocsUrl": "https://submodel.gitbook.io",
+  "apiDocsUrl": "https://llm.submodel.ai/v1",
   "logoPath": "/logos/submodel.svg",
-  "compliance": null,
+  "compliance": {
+    "headquarters": null,
+    "dataResidency": {
+      "regions": [],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": null,
+      "details": null
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": null
+  },
   "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://voltagent.dev/models-docs/providers/submodel/",
+    "https://status.submodel.ai/"
+  ],
+  "notes": "Very little primary-source compliance information could be located for Submodel from the provided documentation site or related official properties. No primary-source privacy policy, DPA/AVV, sub-processor list, data residency statement, retention policy, or security certification evidence was found, so those fields are left null or marked unavailable."
 }

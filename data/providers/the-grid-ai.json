@@ -5,10 +5,50 @@
   "website": "https://thegrid.ai",
   "apiDocsUrl": "https://thegrid.ai/docs",
   "logoPath": "/logos/the-grid-ai.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "The Grid states that API requests are routed to the lowest-cost qualifying provider/model, and its docs contemplate multiple suppliers plus possible future \"regional privacy constraints,\" but no current primary-source documentation was found that guarantees EU-only processing or identifies EU processing regions."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "The app states that all instruments have zero data retention. Separately, The Grid documents that it records usage/metering data for every inference call, including timestamp, token counts, unit/lot information, trade details, supplier information, and performance metrics; no retention duration for those records was found.",
+      "details": "The Grid routes /chat/completions requests to the lowest-cost provider/model satisfying the instrument requirements, and records routing/metering data for auditing and billing."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://thegrid.ai/",
+    "https://thegrid.ai/docs",
+    "https://app.thegrid.ai/",
+    "https://thegrid.ai/docs/introduction/consumption-delivery-and-metering",
+    "https://thegrid.ai/docs/consumption-delivery-and-metering",
+    "https://thegrid.ai/docs/instruments-and-specifications",
+    "https://thegrid.ai/docs/instruments-and-specifications/evolution-of-specifications",
+    "https://www.linkedin.com/company/the-grid-ai"
+  ],
+  "notes": "Primary-source public compliance documentation appears very limited: no privacy policy, DPA/AVV, SCC statement, or public sub-processor list was found on the provider’s site or docs as of April 11, 2026. The strongest documented privacy-related claims are zero data retention for instruments plus detailed metering/routing records, and the product architecture indicates inference may be routed across competing suppliers rather than being confined to the EU."
 }

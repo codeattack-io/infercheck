@@ -3,12 +3,50 @@
   "name": "Chutes",
   "type": "api_provider",
   "website": "https://llm.chutes.ai",
-  "apiDocsUrl": "https://llm.chutes.ai/v1/models",
-  "logoPath": null,
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "apiDocsUrl": "https://docs.chutes.ai/",
+  "logoPath": "/logos/chutes.svg",
+  "compliance": {
+    "headquarters": null,
+    "dataResidency": {
+      "regions": [],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "Chutes states that it does not log, store, or persist the content of API requests or responses. For its end-to-end encrypted inference offering, it states the API only sees opaque ciphertext plus routing, nonce, and usage metadata for billing.",
+      "details": "The privacy policy says API request and response content is not logged, stored, or persisted. Chutes also documents an E2EE mode in which prompts are decrypted only inside a TEE, while the API handles ciphertext, nonce validation, billing, and rate limiting."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": null
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://chutes.ai/privacy",
+    "https://chutes.ai/terms",
+    "https://chutes.ai/",
+    "https://docs.chutes.ai/",
+    "https://chutes.ai/news/end-to-end-encrypted-ai-inference-with-post-quantum-cryptography",
+    "https://chutes.ai/about"
+  ],
+  "notes": "Chutes publishes a privacy policy and states it does not log, store, or persist API request/response content, including a documented end-to-end encrypted TEE inference mode. However, no primary-source DPA, sub-processor list, SCC statement, HQ country, or formal data residency/EU-only processing commitment was found on the consulted official pages."
 }

@@ -3,12 +3,49 @@
   "name": "FastRouter",
   "type": "gateway",
   "website": "https://fastrouter.ai",
-  "apiDocsUrl": "https://fastrouter.ai/models",
+  "apiDocsUrl": "https://docs.fastrouter.ai/",
   "logoPath": "/logos/fastrouter.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": "Gateway/proxy service — routes to multiple upstream providers."
+  "compliance": {
+    "headquarters": null,
+    "dataResidency": {
+      "regions": [],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "Prompt data is stored temporarily for routing purposes and is typically deleted after 7 days. Usage logs may be retained for up to 90 days for monitoring and debugging purposes. Activity Log request and response data is available only if content logging is not disabled for the corresponding key.",
+      "details": "FastRouter states it shares prompts and related request data with third-party model providers to fulfill requests. Its Terms grant it a limited license to host, store, transfer, display, reproduce, adapt, and distribute input/output to provide services, debugging, improve services and API keys, and meet legal/regulatory compliance."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": null
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://fastrouter.ai/privacy",
+    "https://fastrouter.ai/terms",
+    "https://docs.fastrouter.ai/",
+    "https://docs.fastrouter.ai/explore-features/quickstart",
+    "https://fastrouter.ai/"
+  ],
+  "notes": "FastRouter publishes a privacy policy and terms, but no primary-source DPA/AVV, SCC, public sub-processor list, or data-residency/EU-only processing documentation was found on its official site/docs. Because FastRouter routes prompts to third-party model providers such as OpenAI and Anthropic, inference can leave the EU unless a customer separately constrains provider selection outside of any documented FastRouter EU-only guarantee."
 }

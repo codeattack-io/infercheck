@@ -3,12 +3,56 @@
   "name": "Inference",
   "type": "api_provider",
   "website": "https://inference.net",
-  "apiDocsUrl": "https://inference.net/models",
+  "apiDocsUrl": "https://docs.inference.net/introduction",
   "logoPath": "/logos/inference.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Inference states in its Terms that personal information may be transferred to and/or processed in the United States. Public docs reviewed do not describe an EU-only region or EU-only routing guarantee. The marketing site says deployments can run across public cloud, private cloud, or hybrid environments, but no primary-source EU residency commitment was found."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "Documentation says request data is not used for model training by default; retention should match operational need; customers needing a specific policy or no-retention handling must contact the team. No fixed default retention period was publicly stated in the sources reviewed.",
+      "details": "Privacy Policy says they do not use customer data to train AI models and only use data to provide AI inference services and debug issues. Docs also say request data is not used for model training by default."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "SOC2"
+    ],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "Inference publishes EU AI Act governance content and says its maturity model maps to the EU AI Act, but no explicit statement was found that the provider or service is EU AI Act compliant."
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://inference.net/",
+    "https://inference.net/privacy-policy/",
+    "https://inference.net/terms-of-service/",
+    "https://docs.inference.net/introduction",
+    "https://docs.inference.net/api/data-retention",
+    "https://docs.inference.net/api/overview",
+    "https://inference.net/content/ai-governance-maturity-model",
+    "https://inference.net/blog/seed-round/"
+  ],
+  "notes": "Inference is a US provider (Inference R&D, Inc.) with public privacy policy, terms, API docs, and a documented data-retention page. Public sources reviewed state they do not train on customer data and advertise SOC 2, but no public DPA, sub-processor list, SCC statement, or EU-only processing commitment was found; the Terms expressly say personal information may be transferred to and/or processed in the United States."
 }
