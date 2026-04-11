@@ -157,8 +157,8 @@ Return ONLY a valid JSON object matching this exact schema. No markdown, no comm
       "signedVia": "<one of: online_acceptance | custom_contract | not_available>"
     },
     "dataUsage": {
-      "trainsOnCustomerData": <true if they train on API customer data by default>,
-      "optOutAvailable": <true if training opt-out is available>,
+      "trainsOnCustomerData": <true if they train on API customer data by default, false if explicitly not, null if unknown>,
+      "optOutAvailable": <true if training opt-out is available, false if explicitly not, null if unknown>,
       "retentionPolicy": "<plain-language retention summary, or null>",
       "details": "<additional context about data usage, or null>"
     },

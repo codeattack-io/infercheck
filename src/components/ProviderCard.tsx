@@ -68,10 +68,12 @@ export async function ProviderCard({ provider, modelCount }: ProviderCardProps) 
           {provider.compliance.dpa.available ? (
             <ComplianceBadge variant="dpa" size="sm" />
           ) : null}
-          {provider.compliance.dataUsage.trainsOnCustomerData ? (
+          {provider.compliance.dataUsage.trainsOnCustomerData === true ? (
             <ComplianceBadge variant="trains-on-data" size="sm" />
-          ) : (
+          ) : provider.compliance.dataUsage.trainsOnCustomerData === false ? (
             <ComplianceBadge variant="no-training" size="sm" />
+          ) : (
+            <ComplianceBadge variant="training-unknown" size="sm" />
           )}
         </div>
       ) : (

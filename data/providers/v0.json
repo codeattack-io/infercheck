@@ -3,12 +3,61 @@
   "name": "v0",
   "type": "api_provider",
   "website": "https://sdk.vercel.ai",
-  "apiDocsUrl": "https://sdk.vercel.ai/providers/ai-sdk-providers/vercel",
+  "apiDocsUrl": "https://sdk.vercel.ai/docs",
   "logoPath": "/logos/v0.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "EU",
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Vercel offers EU compute regions for Vercel Functions (including Paris, Frankfurt, Dublin, and Stockholm), but defaults new projects to Washington, D.C. (iad1). Enterprise Secure Compute lets customers choose an AWS region for functions/builds, and Enterprise failover can move functions to another region. Vercel also states no data is stored permanently inside EU regions, only ephemeral caching. For v0 specifically, the public subprocessor updates show model inference services provided by Cerebras, Baseten, and Groq, but no EU-only inference guarantee is stated."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://vercel.com/legal/dpa",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": true,
+      "optOutAvailable": true,
+      "retentionPolicy": "Vercel says it retains information for the minimum necessary period to fulfill legal and contractual obligations, develop services, resolve disputes, enforce rights, and meet business requirements; when no longer needed it deletes or anonymizes the data, and if deletion is not possible (for example backups) it stores it securely. Under the DPA, customers can delete customer data via self-service functionality, and Vercel will delete customer data within a commercially reasonable timeframe after request following termination or expiration unless required by law.",
+      "details": "Vercel's privacy notice says it collects AI product information such as chat prompts, uploaded images, and generations. As of March 17, 2026, optional AI model training defaults vary by plan: Hobby is opted in by default with opt-out, Pro is opted out by default with opt-in, and Enterprise is opted out. Vercel's AI Product Terms additionally state that for Enterprise subscriptions, or other plans entitled to opt out of training, v0 customer content will not be used to train Vercel's or third-party AI providers' models or improve AI products except with customer consent."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://security.vercel.com/",
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "SOC2",
+      "ISO27001"
+    ],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "Vercel's AI Product Terms require customers to comply with applicable AI laws and regulations, but no explicit public statement claiming EU AI Act compliance for v0 was found in the consulted primary sources."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://sdk.vercel.ai/docs",
+    "https://vercel.com/legal/privacy-policy",
+    "https://vercel.com/legal/dpa",
+    "https://vercel.com/legal/terms",
+    "https://vercel.com/legal/ai-product-terms",
+    "https://vercel.com/changelog/updates-to-terms-of-service-march-2026",
+    "https://vercel.com/security",
+    "https://security.vercel.com/",
+    "https://vercel.com/docs/regions/",
+    "https://vercel.com/docs/serverless-functions/regions",
+    "https://vercel.com/docs/connectivity/secure-compute"
+  ],
+  "notes": "v0 appears to inherit Vercel's legal and security framework rather than publishing product-specific GDPR terms. A DPA is publicly available and incorporated by Vercel's terms, subprocessors are publicly disclosed through the Trust Center, and Vercel offers EU regions for some compute, but public materials do not guarantee EU-only processing for v0 and indicate data can leave the EU during inference or failover."
 }

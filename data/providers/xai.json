@@ -3,12 +3,58 @@
   "name": "xAI",
   "type": "api_provider",
   "website": "https://docs.x.ai",
-  "apiDocsUrl": "https://docs.x.ai/docs/models",
+  "apiDocsUrl": "https://docs.x.ai/docs",
   "logoPath": "/logos/xai.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US",
+        "UK"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "xAI’s enterprise/API infrastructure is documented as built primarily on AWS, and current API docs explicitly show at least us-east-1 for available API clusters. The DPA states xAI may transfer and process personal data outside Europe, including the United States and other countries where xAI and its subprocessors operate. No EU-only processing option was found in the primary sources."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://x.ai/legal/data-processing-addendum",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "For enterprise/API services, xAI says User Content is automatically deleted within 30 days unless legally required to retain it or it is flagged for safety, compliance, moderation, or possible Agreement/AUP violations. The DPA also says customers can delete data and that login data, prompt/response pairs, and billing information are typically deleted within 30 days after a deletion request; upon termination xAI deletes personal data except where retention is legally required.",
+      "details": "Enterprise Terms state xAI may use User Content to provide the services and for safety, compliance, abuse prevention, and moderation, but shall not use User Content for internal AI or other training purposes. xAI may continue to use de-identified or aggregated data and Feedback."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://x.ai/legal/subprocessor-list",
+      "includesEuEntities": false
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.x.ai/docs",
+    "https://docs.x.ai/developers/faq/general",
+    "https://docs.x.ai/developers/models",
+    "https://docs.x.ai/developers/rate-limits",
+    "https://x.ai/legal",
+    "https://x.ai/legal/privacy-policy",
+    "https://x.ai/legal/europe-privacy-policy-addendum",
+    "https://x.ai/legal/terms-of-service-enterprise",
+    "https://x.ai/legal/data-processing-addendum",
+    "https://x.ai/legal/subprocessor-list",
+    "https://x.ai/security"
+  ],
+  "notes": "xAI provides a public enterprise DPA, subprocessor list, and SCC-based transfer terms, but the available primary sources point to US-centric processing rather than EU-only residency. For API/enterprise use, xAI states it does not train on customer User Content, while retaining limited rights for service delivery, abuse prevention, safety/compliance, and de-identified/aggregated data use."
 }

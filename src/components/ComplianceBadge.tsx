@@ -13,6 +13,7 @@ export type BadgeVariant =
   | "eu-sccs"
   | "no-training"
   | "trains-on-data"
+  | "training-unknown"
   | "us-only"
   | "unverified";
 
@@ -42,6 +43,10 @@ const BADGE_STYLE: Record<BadgeVariant, { classes: string; dotClasses: string }>
     classes: "bg-noncompliant-bg border-[#fecaca] text-[#b91c1c]",
     dotClasses: "bg-noncompliant",
   },
+  "training-unknown": {
+    classes: "bg-unverified-bg border-[#e2e2de] text-[#6b7280]",
+    dotClasses: "bg-unverified",
+  },
   "us-only": {
     classes: "bg-noncompliant-bg border-[#fecaca] text-[#b91c1c]",
     dotClasses: "bg-noncompliant",
@@ -66,6 +71,7 @@ export function ComplianceBadge({ variant, size = "md" }: ComplianceBadgeProps) 
     "eu-sccs": t("euSccs"),
     "no-training": t("noTraining"),
     "trains-on-data": t("trainsOnData"),
+    "training-unknown": t("trainingUnknown"),
     "us-only": t("usOnly"),
     unverified: t("unverified"),
   };

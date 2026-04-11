@@ -1,0 +1,55 @@
+{
+  "slug": "venice-ai",
+  "name": "Venice AI",
+  "type": "api_provider",
+  "website": "https://docs.venice.ai",
+  "apiDocsUrl": "https://docs.venice.ai/",
+  "logoPath": "/logos/venice-ai.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": false,
+      "retentionPolicy": "Venice says it does not store or log API prompts or model responses on its servers; prompts/responses are transient during execution and are purged from GPUs after processing. For personal information, its privacy policy says it retains data only as long as needed to provide the service or for legitimate business purposes such as dispute resolution, safety/security, and legal compliance.",
+      "details": "Venice states that API calls are forwarded to GPUs across decentralized providers over encrypted HTTPS paths and that it does not store or log prompt or response content on its servers. It also states it logs basic telemetry/event data and may collect account data such as email and IP address."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.venice.ai/",
+    "https://docs.venice.ai/overview/privacy",
+    "https://docs.venice.ai/overview/pricing",
+    "https://venice.ai/legal/privacy-policy",
+    "https://venice.ai/legal/tos",
+    "https://venice.ai/blog/how-venice-handles-your-privacy",
+    "https://venice.ai/about"
+  ],
+  "notes": "Venice presents a privacy-first architecture and says it does not store or log API prompts/responses, but its own privacy policy states personal data is processed on servers in the United States and may be disclosed to service providers in other jurisdictions. No primary-source DPA, public sub-processor list, SCC commitment, EU-only processing option, or security certification disclosure was found in the consulted official materials."
+}

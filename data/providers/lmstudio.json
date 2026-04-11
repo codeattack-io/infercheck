@@ -3,12 +3,52 @@
   "name": "LMStudio",
   "type": "api_provider",
   "website": "https://lmstudio.ai",
-  "apiDocsUrl": "https://lmstudio.ai/models",
-  "logoPath": null,
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "apiDocsUrl": "https://lmstudio.ai/docs/developer",
+  "logoPath": "/logos/lmstudio.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "LM Studio states the desktop app runs locally and that chats, histories, and documents are saved locally on the user's device by default; the privacy policy also states that limited information is transferred to the United States when the app checks for updates, model search/downloads, or support emails. No EU-only hosted processing option is documented in the consulted primary sources."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "LM Studio says it retains information only as long as necessary for legal, operational, or contractual purposes, including support emails and IP address data involved in updates or third-party model downloads, and that it uses brief retention periods by design.",
+      "details": "LM Studio's desktop privacy policy says messages, chat histories, and documents are not transmitted from the system and are saved locally on the device by default. It says the company only receives limited data for update checks, model search/download, and direct emails. For Hub private content, the Hub terms say Element Labs hosts and displays the content as needed to provide the Hub Cloud Services and accesses it only in limited circumstances described in the Hub Privacy Policy."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://lmstudio.ai/",
+    "https://lmstudio.ai/docs/developer",
+    "https://lmstudio.ai/app-privacy",
+    "https://lmstudio.ai/terms",
+    "https://lmstudio.ai/hub-terms",
+    "https://lmstudio.ai/pricing"
+  ],
+  "notes": "LM Studio's primary posture is local/on-device inference: the vendor says chats and documents stay on the user's machine by default and that data never leaves the device for the desktop app's core inference workflow. Element Labs is a U.S. company, and its privacy policy expressly says limited data is transferred to the United States; no public DPA, SCC statement, sub-processor list, or security certification was found in the consulted primary sources."
 }

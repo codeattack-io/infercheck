@@ -269,6 +269,7 @@
     "euSccs": "EU + SCCs",
     "noTraining": "No Training",
     "trainsOnData": "Trains on Data",
+    "trainingUnknown": "Training Unknown",
     "usOnly": "US Only",
     "unverified": "Unverified"
   }

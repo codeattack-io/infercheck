@@ -1,0 +1,58 @@
+{
+  "slug": "io-net",
+  "name": "IO.NET",
+  "type": "api_provider",
+  "website": "https://io.net",
+  "apiDocsUrl": "https://io.net/docs/guides/intelligence/io-intelligence-apis",
+  "logoPath": "/logos/io-net.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "io.net describes its infrastructure as a decentralized GPU network distributed globally and states blockchain-related personal data may be transferred and stored across the globe. Its confidential inference docs say requests are routed to a confidential compute-enabled GPU machine, but no primary-source guarantee of EU-only routing or EU-only inference processing was found."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "The privacy policy says io.net may retain information it collects for as long as the user maintains an account with the service. It also says users can request deletion of information held by io.net, but data written to public blockchains cannot be deleted. For confidential chat/inference, io.net states messages are never saved and confidential inference operates without storing prompt data.",
+      "details": "The general privacy policy says io.net collects account, usage, transaction, device, IP and log data, and lists multiple third parties used with the service. Separate confidential inference materials state prompts can be processed without storage and confidential chat messages are not stored on any server."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://io.net/privacy",
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "SOC2"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://io.net/privacy",
+    "https://io.net/terms",
+    "https://io.net/docs/guides/intelligence/io-intelligence-apis",
+    "https://io.net/docs/reference/vmaas/get-started-with-vmaas-api",
+    "https://io.net/docs/guides/payment/io-credits",
+    "https://io.net/docs/guides/confidential-inference/overview",
+    "https://io.net/docs/guides/confidential-inference/confidential-chat",
+    "https://io.net/docs/guides/faq"
+  ],
+  "notes": "io.net provides a public privacy policy and terms, but no public DPA/AVV, SCC commitment, EU-only processing guarantee, or standalone subprocessor page was found in primary sources. Its public materials emphasize decentralized/global infrastructure and privacy-preserving confidential inference, while the general privacy policy indicates broad third-party service usage and account-based retention."
+}

@@ -3,12 +3,50 @@
   "name": "DInference",
   "type": "api_provider",
   "website": "https://dinference.com",
-  "apiDocsUrl": "https://dinference.com",
+  "apiDocsUrl": null,
   "logoPath": "/logos/dinference.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "DInference describes itself as US hosted, lists US-West and US-East regions, states 'US-Based Nodes' and says data may be transferred, stored, and processed in the United States. No EU-only processing option was found."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "They state they do not store prompts/completions by default and may store inputs/outputs for a limited time for debugging. Personal information is retained as long as services are used, as required by law, or as otherwise communicated; after account deletion, personal information is removed after 30 days.",
+      "details": "Privacy Policy and Terms state they will not store, sell, or train on API submissions unless the customer explicitly consents or explicitly requests model training/fine-tuning. The privacy policy also says certain model usage data may be shared with the relevant API endpoints."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://dinference.com/",
+    "https://dinference.com/privacy-policy",
+    "https://dinference.com/terms-of-service",
+    "https://dinference.com/pricing"
+  ],
+  "notes": "Primary-source materials show a US-based provider with US-hosted inference and no published EU-only processing option, DPA, or public sub-processor list. The privacy policy claims security measures 'comply with SOC 2 and ISO 27001 standards,' but no certification evidence or certificate page was found, so certifications are left empty."
 }

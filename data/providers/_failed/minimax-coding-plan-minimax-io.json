@@ -1,0 +1,56 @@
+{
+  "slug": "minimax-coding-plan-minimax-io",
+  "name": "MiniMax Coding Plan (minimax.io)",
+  "type": "api_provider",
+  "website": "https://platform.minimax.io",
+  "apiDocsUrl": "https://platform.minimax.io/docs",
+  "logoPath": "/logos/minimax-coding-plan-minimax-io.svg",
+  "compliance": {
+    "headquarters": "SG",
+    "dataResidency": {
+      "regions": [
+        "SG"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": "MiniMax's published privacy materials state they generally do not transfer personal data outside Singapore, but they may transfer data to affiliates and/or third parties outside Singapore when needed. No EU-only processing or EU-region routing option was found in primary-source documentation for the API platform."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": false,
+      "retentionPolicy": "The privacy policy says personal data will cease to be retained as soon as it is reasonable that it is no longer required. The API docs also state the text-to-speech interface is stateless and that the model does not store user data; some generated/cloned voice artifacts are described as temporary and must be used within 168 hours (7 days) to be kept permanently.",
+      "details": "I found no primary-source API policy expressly stating whether API customer data is or is not used for model training. The publicly available app/web terms grant MiniMax a broad license over user contributions and generated content, but no API-specific training statement or customer opt-out was found."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://platform.minimax.io/docs",
+    "https://platform.minimax.io/docs/api-reference/api-overview",
+    "https://platform.minimax.io/docs/guides/pricing-coding-plan",
+    "https://platform.minimax.io/docs/pricing/overview",
+    "https://www.minimax.io/audio/doc/privacy-policy.html",
+    "https://www.minimax.io/protocol/cookie-policy",
+    "https://agent.minimax.io/doc/en/privacy-policy.html",
+    "https://www.minimax.io/audio/doc/terms-of-service.html"
+  ],
+  "notes": "MiniMax publishes privacy and cookie policies and identifies Nanonoble Pte. Ltd. in Singapore as operator, with an Article 27 EU representative, but I found no public DPA/AVV, SCC commitment, sub-processor list, EU-only residency option, or verified security certifications in primary-source materials. API/platform docs confirm pay-as-you-go pricing and include some product-level storage behavior, but they do not clearly state whether API customer data is used for training."
+}

@@ -63,9 +63,10 @@ export const DpaSchema = z.object({
 });
 
 export const DataUsageSchema = z.object({
-  /** Does the provider train on API customer data by default? */
-  trainsOnCustomerData: z.boolean(),
-  optOutAvailable: z.boolean(),
+  /** Does the provider train on API customer data by default? null = unknown */
+  trainsOnCustomerData: z.boolean().nullable(),
+  /** Is a training opt-out available? null = unknown */
+  optOutAvailable: z.boolean().nullable(),
   /** Plain-language retention summary */
   retentionPolicy: z.string().nullable(),
   /** Additional context */

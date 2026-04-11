@@ -249,7 +249,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
                       />
                       <BooleanRow
                         label={t("compliance.noTrainingOnData")}
-                        value={!provider.compliance.dataUsage.trainsOnCustomerData}
+                        value={provider.compliance.dataUsage.trainsOnCustomerData === null ? null : !provider.compliance.dataUsage.trainsOnCustomerData}
                       />
                       <BooleanRow
                         label={t("compliance.sccsInPlace")}
@@ -295,10 +295,12 @@ export default async function ModelDetailPage({ params }: PageProps) {
                         {provider.compliance.dpa.available ? (
                           <ComplianceBadge variant="dpa" />
                         ) : null}
-                        {provider.compliance.dataUsage.trainsOnCustomerData ? (
+                        {provider.compliance.dataUsage.trainsOnCustomerData === true ? (
                           <ComplianceBadge variant="trains-on-data" />
-                        ) : (
+                        ) : provider.compliance.dataUsage.trainsOnCustomerData === false ? (
                           <ComplianceBadge variant="no-training" />
+                        ) : (
+                          <ComplianceBadge variant="training-unknown" />
                         )}
                       </div>
                       {provider.lastVerified ? (

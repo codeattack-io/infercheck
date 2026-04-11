@@ -57,14 +57,17 @@ export function isFullProvider(p: AnyProvider): p is Provider {
 
 /**
  * Compute a single compliance tier for display (left-border color, badge).
- *   compliant:    euOnly + dpa + no training on customer data
- *   partial:      dpa + no training, but not EU-only (SCCs route)
- *   noncompliant: no dpa, or trains on customer data
- *   unverified:   stub or null compliance data
+ *   compliant:    euOnly + dpa + confirmed no training on customer data
+ *   partial:      dpa + confirmed no training, but not EU-only (SCCs route)
+ *   noncompliant: no dpa, or confirmed trains on customer data
+ *   unverified:   stub, null compliance data, or training status unknown
  */
 export function getComplianceTier(p: AnyProvider): ComplianceTier {
   if (!isFullProvider(p)) return "unverified";
   const c = p.compliance;
+
+  // null = unknown: cannot claim "no training", so don't elevate tier
+  if (c.dataUsage.trainsOnCustomerData === null) return "unverified";
 
   if (c.dataResidency.euOnly && c.dpa.available && !c.dataUsage.trainsOnCustomerData) {
     return "compliant";
@@ -92,7 +95,7 @@ export function providerMatchesFilter(p: AnyProvider, filter: ComplianceFilter):
 
   if (filter.euOnly && !c.dataResidency.euOnly) return false;
   if (filter.dpa && !c.dpa.available) return false;
-  if (filter.noTraining && c.dataUsage.trainsOnCustomerData) return false;
+  if (filter.noTraining && c.dataUsage.trainsOnCustomerData !== false) return false;
   if (filter.sccs && !c.sccs) return false;
 
   return true;

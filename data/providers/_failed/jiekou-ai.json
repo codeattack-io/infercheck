@@ -1,0 +1,55 @@
+{
+  "slug": "jiekou-ai",
+  "name": "Jiekou.AI",
+  "type": "api_provider",
+  "website": "https://docs.jiekou.ai",
+  "apiDocsUrl": "https://docs.jiekou.ai",
+  "logoPath": "/logos/jiekou-ai.svg",
+  "compliance": {
+    "headquarters": null,
+    "dataResidency": {
+      "regions": [],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": false,
+      "retentionPolicy": "The privacy policy says personal information is kept during the service period and may be retained longer where required for legal compliance or risk prevention; data no longer needed will be securely destroyed.",
+      "details": null
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.jiekou.ai",
+    "https://docs.jiekou.ai/docs/announcement/announcement",
+    "https://jiekou.ai/legal/privacy-policy",
+    "https://jiekou.ai/legal/terms-of-service",
+    "https://jiekou.ai/",
+    "https://jiekou.ai/models/model-detail/minimaxai-minimax-m1-80k",
+    "https://jiekou.ai/models/model-detail/zai-org-glm-4.5v",
+    "https://jiekou.ai/models/model-detail/mistralai-mistral-nemo",
+    "https://jiekou.ai/docs/model/llm-rate-limits"
+  ],
+  "notes": "Primary-source review found a privacy policy and terms of service, but no publicly available DPA/AVV, SCC commitment, sub-processor list, security certification page, EU data-residency statement, or AI Act statement. The service presents itself as a multi-model API gateway and routes requests to many third-party model providers, so EU-only inference processing is not guaranteed from the reviewed sources."
+}

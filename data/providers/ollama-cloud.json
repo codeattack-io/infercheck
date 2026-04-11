@@ -3,12 +3,53 @@
   "name": "Ollama Cloud",
   "type": "api_provider",
   "website": "https://docs.ollama.com",
-  "apiDocsUrl": "https://docs.ollama.com/cloud",
+  "apiDocsUrl": "https://docs.ollama.com/api/introduction",
   "logoPath": "/logos/ollama-cloud.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Ollama states that cloud-hosted model data may be transferred to and processed in the United States, and cloud model inference compute runs on ollama.com. No EU-only region or routing option was found in the provider's primary documentation."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "For cloud-hosted models, prompts and responses are processed transiently to provide the service and are not stored beyond the time required to fulfill the request. Ollama also says its cloud does not retain customer data. It does collect limited device and usage metadata, and users can delete their account via ollama.com.",
+      "details": "Ollama states it does not train on user data and does not retain prompts/responses for cloud inference beyond request fulfillment. The privacy policy also says third parties may help operate the service, including cloud infrastructure providers and model inference providers."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.ollama.com/",
+    "https://docs.ollama.com/api/introduction",
+    "https://docs.ollama.com/api/authentication",
+    "https://ollama.com/privacy",
+    "https://ollama.com/terms",
+    "https://ollama.com/blog/cloud-models",
+    "https://ollama.com/pricing"
+  ],
+  "notes": "Primary-source documentation confirms Ollama Cloud is operated by Ollama Inc. in the United States, offers direct API access, and states that cloud prompts/responses are processed transiently and not used for training. No public DPA/AVV, sub-processor list, EU-only residency option, SCC statement, or security certification page was found in the provider’s primary documentation reviewed on April 11, 2026."
 }

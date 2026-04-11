@@ -30,7 +30,9 @@ export function ComplianceBadges({ provider, size = "md", maxVisible = 0 }: Comp
   }
 
   // Training
-  if (!c.dataUsage.trainsOnCustomerData) {
+  if (c.dataUsage.trainsOnCustomerData === null) {
+    badges.push(<ComplianceBadge key="training-unknown" variant="training-unknown" size={size} />);
+  } else if (!c.dataUsage.trainsOnCustomerData) {
     badges.push(<ComplianceBadge key="no-training" variant="no-training" size={size} />);
   } else {
     badges.push(<ComplianceBadge key="trains-on-data" variant="trains-on-data" size={size} />);

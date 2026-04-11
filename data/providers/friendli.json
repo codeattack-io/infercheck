@@ -3,12 +3,59 @@
   "name": "Friendli",
   "type": "api_provider",
   "website": "https://friendli.ai",
-  "apiDocsUrl": "https://friendli.ai/docs/guides/serverless_endpoints/introduction",
+  "apiDocsUrl": "https://friendli.ai/docs",
   "logoPath": "/logos/friendli.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Friendli's public privacy policy states that site connections go through servers located in the United States and information provided is maintained on web servers and systems within the U.S. Public product pages also describe multi-cloud, multi-region infrastructure, but no primary-source documentation guaranteeing EU-only processing for the managed API was found. Friendli Container can be deployed in the customer's own environment, including private or air-gapped setups."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "Friendli states it does not use inference request/response contents for any purpose other than providing the Dedicated Endpoints or Serverless Endpoints service, including not using those contents for model training. The public privacy policy also states site visitor information is maintained on U.S. systems, and for Korean residents certain log/service-usage data is retained until five days after withdrawal from membership.",
+      "details": "Public docs distinguish managed inference products from self-hosted Container. Friendli Container is marketed as keeping data and models within the customer's infrastructure, including air-gapped environments."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "SOC2",
+      "HIPAA"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://friendli.ai/",
+    "https://friendli.ai/privacypolicy",
+    "https://friendli.ai/docs",
+    "https://friendli.ai/docs/guides/data-handling",
+    "https://friendli.ai/docs/guides/serverless_endpoints/pricing#usage-tiers",
+    "https://friendli.ai/product/serverless-endpoints",
+    "https://friendli.ai/products/dedicated-endpoints/",
+    "https://friendli.ai/products/container",
+    "https://friendli.ai/blog/SOC2-Type-II-HIPAA",
+    "https://friendli.ai/blog/SOC2-Type-II-HIPPA"
+  ],
+  "notes": "Friendli provides a public privacy policy and explicit documentation that managed inference request/response contents are not used for training. Public primary sources did not reveal a downloadable DPA/AVV, SCC commitment, or a public sub-processor list, and no EU-only managed API processing guarantee was found. Managed services appear U.S.-anchored, while Friendli Container offers customer-controlled deployment for stricter residency needs."
 }

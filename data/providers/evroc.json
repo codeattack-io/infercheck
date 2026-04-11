@@ -3,12 +3,58 @@
   "name": "evroc",
   "type": "api_provider",
   "website": "https://docs.evroc.com",
-  "apiDocsUrl": "https://docs.evroc.com/products/think/overview.html",
+  "apiDocsUrl": "https://docs.evroc.com",
   "logoPath": "/logos/evroc.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "SE",
+    "dataResidency": {
+      "regions": [
+        "EU"
+      ],
+      "euOnly": true,
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "evroc states that its infrastructure is exclusively located in Europe, all data is stored in the European Union, and its AI offering runs on European GPU infrastructure. Public materials also mention active regions in Stockholm, Paris, and Frankfurt."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://evroc.com/legal/data-processing-addendum/",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "For evroc Think Models, evroc says it does not use customer prompts, completions, or other customer data to train models unless the customer explicitly opts in in writing. It may log API metadata such as timestamps, request/response sizes, and error codes for operational, security, and billing purposes, and says those logs are retained according to its data retention policies, but it does not publish a specific retention period for API metadata in the sources reviewed.",
+      "details": "The public Service Terms state that customer prompts, completions, and other customer data from evroc Think Models are not used to train, improve, or develop AI models unless the customer has explicitly opted in in writing."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "ISO27001"
+    ],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "evroc states that customers must comply with laws governing the use of artificial intelligence systems, and markets its AI services around European sovereignty and compliance, but no explicit public statement claiming formal EU AI Act compliance was found in the reviewed primary sources."
+    },
+    "sccs": true,
+    "adequacyDecision": true
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.evroc.com",
+    "https://evroc.com/contact/",
+    "https://evroc.com/legal/",
+    "https://evroc.com/legal/privacy-notice/",
+    "https://evroc.com/legal/data-processing-addendum/",
+    "https://evroc.com/legal/service-terms/",
+    "https://evroc.com/security/",
+    "https://evroc.com/sovereignty/",
+    "https://evroc.com/ai-services/roc/",
+    "https://evroc.com/news/evroc-suse-european-sovereign-cloud-partnership"
+  ],
+  "notes": "evroc presents a strongly EU-sovereign posture: headquarters in Sweden, infrastructure and AI GPU operations stated to be in Europe/EU, and a public DPA with SCC language for non-EU/EEA subprocessors. Customer data for Think Models is stated not to be used for training unless the customer opts in in writing, but evroc did not provide a publicly accessible subprocessor list or a specific published retention period for API metadata in the sources reviewed."
 }

@@ -3,12 +3,58 @@
   "name": "Clarifai",
   "type": "api_provider",
   "website": "https://docs.clarifai.com",
-  "apiDocsUrl": "https://docs.clarifai.com/compute/inference/",
-  "logoPath": null,
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "apiDocsUrl": "https://api.clarifai.com",
+  "logoPath": "/logos/clarifai.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US",
+        "EU"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Clarifai states teams can deploy on shared or dedicated cloud, within their own VPC, on-premise, or at the edge. However, its DPA says personal data may be transferred globally, including to Clarifai in the United States and to affiliates and subprocessors in other jurisdictions. No primary-source guarantee of EU-only hosted processing was found."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.clarifai.com/company/data-processing",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "By default, Clarifai securely stores inputs and resulting predictions so users can access prediction history, but the docs say customers remain in complete control of retention. The DPA says Clarifai will delete or return personal data after the term at the customer's choice, subject to legal requirements and copies held by Stripe. The privacy policy also says some personal data may be retained longer for service improvement, legal compliance, dispute resolution, fee collection, or where consent is given, and anonymized/aggregated data may be retained.",
+      "details": "Clarifai docs state private customer data is not used to train Clarifai models or other models on the platform unless the customer explicitly chooses to share inputs and annotations with the Community. Clarifai also logs non-sensitive metadata for billing, monitoring, and service delivery, and may analyze aggregate usage patterns for proprietary model improvement without using private input data."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "SOC2 Type II",
+      "ISO27001"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.clarifai.com/",
+    "https://api.clarifai.com",
+    "https://docs.clarifai.com/resources/privacy-security/",
+    "https://www.clarifai.com/company/privacy-policy",
+    "https://www.clarifai.com/company/data-processing",
+    "https://www.clarifai.com/company/terms",
+    "https://www.clarifai.com/pricing",
+    "https://www.clarifai.com/hubfs/whitepaper-machine-learning-visual-similarity-search.pdf"
+  ],
+  "notes": "Clarifai provides a public DPA with SCC language and states private customer data is not used for training unless shared to the Community. However, no public sub-processor list or EU-only processing guarantee was found, and the DPA expressly allows global transfers including to the United States, so EU inference confinement could not be established."
 }

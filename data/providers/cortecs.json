@@ -3,12 +3,56 @@
   "name": "Cortecs",
   "type": "api_provider",
   "website": "https://api.cortecs.ai",
-  "apiDocsUrl": "https://api.cortecs.ai/v1/models",
-  "logoPath": null,
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "apiDocsUrl": "https://docs.cortecs.ai/",
+  "logoPath": "/logos/cortecs.svg",
+  "compliance": {
+    "headquarters": "AT",
+    "dataResidency": {
+      "regions": [
+        "EU",
+        "EEA",
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Cortecs states that data is processed entirely within Europe and that customers can route only to zero-data-retention endpoints. However, its privacy policy and DPA list inference sub-processors including Microsoft Ireland Operations Limited, Google Cloud EMEA Limited, and Amazon Web Services EMEA SARL with processing location(s) in the EEA and transfer basis listed as the EU-US Data Privacy Framework. The docs also show customers can configure routing to specific providers, including Beta providers, so EU-only inference depends on routing configuration rather than an unconditional platform-wide guarantee."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://cortecs.ai/dpa",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "Cortecs says prompts and completions are processed only in volatile memory and are not written to persistent storage; once the API response is returned, payload data is immediately discarded from Cortecs infrastructure. System logs retain only operational metadata such as timestamps, token counts, and error codes. Upstream provider retention may still apply unless the customer enables Zero Data Retention routing.",
+      "details": "Cortecs states customer data is never used for model training. The customer can configure routing to providers with Zero Data Retention and is responsible for avoiding providers whose retention policies do not meet compliance requirements."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://cortecs.ai/privacyPolicy",
+      "includesEuEntities": true
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "not_applicable",
+      "details": "Cortecs' Code of Conduct states it is not to be qualified as a provider within the meaning of Art. 3 no. 3 AI Act because it offers a routing service and does not develop, market, operate under its own name, or substantially modify general-purpose AI models."
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://cortecs.ai/",
+    "https://cortecs.ai/aboutUs",
+    "https://cortecs.ai/privacyPolicy",
+    "https://cortecs.ai/dpa",
+    "https://cortecs.ai/termsOfUse",
+    "https://cortecs.ai/codeOfConduct",
+    "https://docs.cortecs.ai/",
+    "https://docs.cortecs.ai/security-and-compliance/zero-data-retention-zdr"
+  ],
+  "notes": "Cortecs provides a public privacy policy, public Art. 28 GDPR DPA, and a public sub-processor disclosure. Its own materials strongly emphasize EU residency and no training, but the primary documents show that inference can involve EEA entities using the EU-US Data Privacy Framework and that compliance depends on customer routing choices, especially for zero-retention/EU-constrained operation."
 }

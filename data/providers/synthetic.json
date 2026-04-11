@@ -3,12 +3,55 @@
   "name": "Synthetic",
   "type": "api_provider",
   "website": "https://synthetic.new",
-  "apiDocsUrl": "https://synthetic.new/pricing",
-  "logoPath": null,
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "apiDocsUrl": "https://dev.synthetic.new/docs/api/overview",
+  "logoPath": "/logos/synthetic.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Synthetic says it runs models in private, secure datacenters, but it does not publish any EU region or EU-only processing option in its primary documentation. Its status pages distinguish between Synthetic-hosted models and proxied models; proxied models are served by third-party inference providers, so inference can leave Synthetic's own infrastructure."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "For API data, Synthetic says it may store API inputs and outputs for up to 14 days for debugging, otherwise it does not store API prompts or completions without explicit consent, and it may log metadata such as request ID, inference cost, or sampling parameters. For UI or other usage, it retains personal information for as long as you use the services, as required by law, or as otherwise communicated.",
+      "details": "The homepage states Synthetic never trains on customer data and never stores API prompts or completions. The privacy policy adds that API inputs/outputs may be stored for up to 14 days for debugging and that prompts/completions are otherwise not stored without explicit consent."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://synthetic.new/",
+    "https://synthetic.new/policies/privacy/2024-12-19",
+    "https://synthetic.new/policies/terms-of-service",
+    "https://dev.synthetic.new/docs/api/overview",
+    "https://synthetic.new/pricing",
+    "https://status.synthetic.new/",
+    "https://status-proxied.synthetic.new/",
+    "https://synthetic.new/blog/subscriptions",
+    "https://synthetic.new/blog/billing-launch"
+  ],
+  "notes": "Synthetic publishes a privacy policy and states that it never trains on customer data; for API use it says prompts/completions may be retained for up to 14 days for debugging. No public DPA/AVV, SCC statement, sub-processor list, certifications, or EU-only residency commitment was found in primary sources. Because some models are explicitly proxied via third-party inference providers, EU-only inference cannot be confirmed and inference can leave Synthetic-hosted infrastructure."
 }

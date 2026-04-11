@@ -154,10 +154,12 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
               {provider.compliance.dpa.available ? (
                 <ComplianceBadge variant="dpa" size="sm" />
               ) : null}
-              {provider.compliance.dataUsage.trainsOnCustomerData ? (
+              {provider.compliance.dataUsage.trainsOnCustomerData === true ? (
                 <ComplianceBadge variant="trains-on-data" size="sm" />
-              ) : (
+              ) : provider.compliance.dataUsage.trainsOnCustomerData === false ? (
                 <ComplianceBadge variant="no-training" size="sm" />
+              ) : (
+                <ComplianceBadge variant="training-unknown" size="sm" />
               )}
             </div>
           ) : (
@@ -261,8 +263,8 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                           href={provider.compliance.dpa.url ?? undefined}
                         />
                         <ComplianceField
-                          label={provider.compliance.dataUsage.trainsOnCustomerData ? t("complianceFields.trainsOnCustomerData") : t("complianceFields.noTrainingOnCustomerData")}
-                          value={!provider.compliance.dataUsage.trainsOnCustomerData}
+                          label={provider.compliance.dataUsage.trainsOnCustomerData === true ? t("complianceFields.trainsOnCustomerData") : t("complianceFields.noTrainingOnCustomerData")}
+                          value={provider.compliance.dataUsage.trainsOnCustomerData === null ? null : !provider.compliance.dataUsage.trainsOnCustomerData}
                         />
                         <ComplianceField label={t("complianceFields.sccsInPlace")} value={provider.compliance.sccs ?? false} />
                       </div>

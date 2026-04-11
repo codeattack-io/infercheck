@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const title = `${provider.name} — GDPR Compliance Profile`;
   const description = isFullProvider(provider)
-    ? `${provider.name} GDPR compliance: EU data residency ${provider.compliance.dataResidency.euOnly ? "✓" : "✗"}, DPA ${provider.compliance.dpa.available ? "available" : "not available"}, training on customer data ${provider.compliance.dataUsage.trainsOnCustomerData ? "yes" : "no"}. Verified ${provider.lastVerified}.`
+    ? `${provider.name} GDPR compliance: EU data residency ${provider.compliance.dataResidency.euOnly ? "✓" : "✗"}, DPA ${provider.compliance.dpa.available ? "available" : "not available"}, training on customer data ${provider.compliance.dataUsage.trainsOnCustomerData === null ? "unknown" : provider.compliance.dataUsage.trainsOnCustomerData ? "yes" : "no"}. Verified ${provider.lastVerified}.`
     : `${provider.name} GDPR compliance profile. Compliance data pending verification.`;
 
   return {
@@ -263,7 +263,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 />
                 <ComplianceRow
                   label={t("compliance.noTraining")}
-                  value={!provider.compliance.dataUsage.trainsOnCustomerData}
+                  value={provider.compliance.dataUsage.trainsOnCustomerData === null ? null : !provider.compliance.dataUsage.trainsOnCustomerData}
                 />
                 <ComplianceRow
                   label={t("compliance.optOut")}
@@ -290,10 +290,12 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   {provider.compliance.dpa.available ? (
                     <ComplianceBadge variant="dpa" />
                   ) : null}
-                  {provider.compliance.dataUsage.trainsOnCustomerData ? (
+                  {provider.compliance.dataUsage.trainsOnCustomerData === true ? (
                     <ComplianceBadge variant="trains-on-data" />
-                  ) : (
+                  ) : provider.compliance.dataUsage.trainsOnCustomerData === false ? (
                     <ComplianceBadge variant="no-training" />
+                  ) : (
+                    <ComplianceBadge variant="training-unknown" />
                   )}
                 </div>
               </div>

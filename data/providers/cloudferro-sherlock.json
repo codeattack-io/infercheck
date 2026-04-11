@@ -3,12 +3,63 @@
   "name": "CloudFerro Sherlock",
   "type": "api_provider",
   "website": "https://docs.sherlock.cloudferro.com",
-  "apiDocsUrl": "https://docs.sherlock.cloudferro.com/",
+  "apiDocsUrl": "https://docs.sherlock.cloudferro.com",
   "logoPath": "/logos/cloudferro-sherlock.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "PL",
+    "dataResidency": {
+      "regions": [
+        "EU",
+        "PL",
+        "DE",
+        "IT"
+      ],
+      "euOnly": true,
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "CloudFerro states that all public services are hosted in EU member states, with current data center locations in Poland, Germany, and Italy. CloudFerro also states that all data is processed in European data centers, and Sherlock is presented as part of this European sovereign cloud offering."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "Sherlock states a zero-storage policy with no retention of prompts or outputs, and says only essential billing and performance metrics are logged. A January 26, 2026 CloudFerro announcement for Sherlock additionally states that data processing occurs in zero-retention mode and user data is not stored.",
+      "details": "CloudFerro states that Sherlock has a strict no-training policy and that customer data is never used for model training or improvement."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "ISO9001",
+      "ISO27001",
+      "ISO27017",
+      "ISO27018",
+      "C5"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.sherlock.cloudferro.com",
+    "https://cloudferro.com/ai/sherlock-managed-generative-ai-service/",
+    "https://cloudferro.com/cloudferro-privacy-policy-for-clients/",
+    "https://cloudferro.com/european-company/",
+    "https://cloudferro.com/cloudferro-partner-programme/",
+    "https://cloudferro.com/certificates-insurance/",
+    "https://cloudferro.com/pl/aktualnosci/bielik-3-0-dostepny-na-cloudferro-sherlock/",
+    "https://cloudferro.com/pricing/storage/"
+  ],
+  "notes": "CloudFerro Sherlock is operated by a Polish provider and marketed as a sovereign European AI service. Primary sources support EU-only hosting, no-training, and zero-retention/zero-storage claims, plus ISO and C5-related certifications, but no public DPA/AVV page or public sub-processor list was found on the provider's official sites."
 }

@@ -3,12 +3,69 @@
   "name": "Vertex (Anthropic)",
   "type": "api_provider",
   "website": "https://cloud.google.com",
-  "apiDocsUrl": "https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/claude",
-  "logoPath": null,
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "apiDocsUrl": "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/partner-models/use-claude",
+  "logoPath": "/logos/vertex-anthropic.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "EU",
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Google Cloud documents regional Anthropic partner model endpoints in multiple EU regions (for example europe-west1, europe-west2, europe-west3, europe-west4, europe-west6, europe-west8, europe-west9, europe-central2, europe-north1, europe-southwest1). Generative AI data residency docs state ML processing occurs within the specific region or multi-region where the request is made, but Google also offers a global endpoint for Anthropic models and says global endpoints do not support data residency requirements and you cannot control or know which region ML processing requests are sent to. Therefore EU-only processing is not guaranteed across the service offering."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://cloud.google.com/terms/data-processing-addendum",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "Google states it will not use customer data to train or fine-tune AI/ML models without prior permission or instruction. Under the Cloud Data Processing Addendum, customers can delete data during the term, and remaining customer data is deleted at the end of the term; Google states deletion is performed as soon as reasonably practicable and within a maximum of 180 days where that replacement text applies.",
+      "details": "For Vertex AI, Google documents a training restriction and also offers a zero data retention program for eligible use cases, but that is a separate program rather than an opt-out from training."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://cloud.google.com/terms/subprocessors",
+      "includesEuEntities": true
+    },
+    "certifications": [
+      "SOC2",
+      "ISO27001",
+      "ISO27701",
+      "C5",
+      "HDS"
+    ],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "Google Cloud has a dedicated EU AI Act compliance page stating it will continue to publish information to support customer compliance and demonstrate adherence to the Act, but it does not claim blanket compliance for Vertex/Anthropic specifically."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://cloud.google.com/terms/cloud-privacy-notice",
+    "https://cloud.google.com/terms/data-processing-addendum",
+    "https://cloud.google.com/privacy/gdpr",
+    "https://cloud.google.com/terms/sccs",
+    "https://cloud.google.com/terms/subprocessors",
+    "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/learn/data-residency",
+    "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/learn/locations",
+    "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/vertex-ai-zero-data-retention",
+    "https://cloud.google.com/security/compliance/soc-2",
+    "https://cloud.google.com/security/compliance/iso-27001",
+    "https://cloud.google.com/security/compliance/iso-27701",
+    "https://cloud.google.com/security/compliance/bsi-c5",
+    "https://cloud.google.com/security/compliance/hds",
+    "https://cloud.google.com/security/compliance/eu-ai-act",
+    "https://cloud.google.com/vertex-ai/generative-ai/pricing",
+    "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/partner-models/use-claude"
+  ],
+  "notes": "This offering inherits Google Cloud’s enterprise privacy and contract framework rather than Anthropic’s direct API terms. Google provides a public CDPA, SCCs, subprocessor list, and substantial compliance documentation, but because Anthropic models are available through both EU regional endpoints and a non-residency global endpoint, EU-only inference is not guaranteed across the overall service unless customers strictly constrain endpoint usage."
 }

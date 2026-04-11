@@ -5,10 +5,48 @@
   "website": "https://opencode.ai",
   "apiDocsUrl": "https://opencode.ai/docs/zen",
   "logoPath": "/logos/opencode-zen.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "OpenCode states that all Zen models are hosted in the US. No EU-only routing or EU region option was found in the provider's primary-source documentation."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "Zen states its providers follow a zero-retention policy and do not use data for model training, except certain free models where collected data may be used to improve the model, NVIDIA free endpoints where prompts and outputs are logged, and OpenAI/Anthropic APIs where requests are retained for 30 days. The general privacy policy says OpenCode retains personal data as long as necessary to provide services or for business/commercial purposes, and longer where legally required.",
+      "details": "Zen documentation says all models are hosted in the US and providers follow zero-retention/no-training by default, with exceptions for Big Pickle, MiniMax M2.5 Free, Qwen3.6 Plus Free, Nemotron 3 Super Free, and OpenAI/Anthropic-backed models with 30-day retention. No customer-facing training opt-out mechanism was found in primary-source documentation."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://opencode.ai/docs/zen",
+    "https://opencode.ai/zen",
+    "https://opencode.ai/fr/legal/privacy-policy",
+    "https://opencode.ai/fr/legal/terms-of-service"
+  ],
+  "notes": "OpenCode Zen documents a US-only hosting model and does not advertise EU-only inference, a DPA, SCCs, sub-processor disclosures, or security certifications in the reviewed primary sources. Zen claims zero-retention/no-training by default, but several listed free-model/provider exceptions allow logging, retention, or model improvement use."
 }

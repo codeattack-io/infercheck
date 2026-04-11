@@ -3,12 +3,52 @@
   "name": "Moonshot AI (China)",
   "type": "api_provider",
   "website": "https://platform.moonshot.cn",
-  "apiDocsUrl": "https://platform.moonshot.cn/docs/api/chat",
+  "apiDocsUrl": "https://platform.kimi.com/docs/introduction",
   "logoPath": "/logos/moonshot-ai-china.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "CN",
+    "dataResidency": {
+      "regions": [
+        "CN"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "The platform privacy policy says personal information is stored in the People's Republic of China and they will not provide personal information outside China unless they obtain separate consent and comply with applicable Chinese laws. No EU region or EU-only processing option was found in the API platform documentation."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": true,
+      "optOutAvailable": false,
+      "retentionPolicy": "The privacy policy says personal information is stored in China and retained only for the time necessary to achieve service purposes unless law requires otherwise; when the product or service stops operating, they will anonymize or delete personal information within a reasonable period. The platform service agreement also states customer data is under the customer's control and Moonshot will process it only under the customer's instructions except where laws, the agreement/product rules, or technical support/troubleshooting require otherwise.",
+      "details": "The API platform privacy policy states that conversation information entered during use helps them optimize the model and understand user needs and preferences. The platform service agreement separately says customer data is controlled by the customer and Moonshot, as a neutral technical service provider, will only process customer data under the customer's instructions except as otherwise required by law, the agreement/product rules, or for technical assistance."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://platform.moonshot.cn/",
+    "https://platform.kimi.com/docs/introduction",
+    "https://platform.kimi.com/docs/agreement/modeluse",
+    "https://platform.kimi.com/docs/agreement/userprivacy",
+    "https://platform.kimi.com/docs/pricing/limits",
+    "https://platform.kimi.com/docs/agreement/payment"
+  ],
+  "notes": "Moonshot's Kimi API platform publishes a privacy policy and platform service agreement, but no public DPA/AVV, SCC commitment, subprocessors list, EU region, or certifications were found in primary sources reviewed on April 11, 2026. The strongest primary-source evidence indicates storage in China and privacy-policy language that conversation data may be used to optimize the model, while the service agreement separately frames customer data as processed under customer instructions."
 }

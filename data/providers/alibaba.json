@@ -3,12 +3,64 @@
   "name": "Alibaba",
   "type": "api_provider",
   "website": "https://www.alibabacloud.com",
-  "apiDocsUrl": "https://www.alibabacloud.com/help/en/model-studio/models",
+  "apiDocsUrl": "https://www.alibabacloud.com/help/en/model-studio/model-api-reference/",
   "logoPath": "/logos/alibaba.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "CN",
+    "dataResidency": {
+      "regions": [
+        "EU",
+        "US",
+        "SG",
+        "CN",
+        "HK"
+      ],
+      "euOnly": true,
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "Alibaba Cloud Model Studio supports a European Union deployment mode bound to Germany (Frankfurt). The documentation states that static data is stored in the selected region and that the EU deployment mode is limited to the EU for inference. Other deployment modes such as Global and International involve cross-border computation."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.alibabacloud.com/help/en/legal/latest/ae8upq",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "For Model Studio direct API calls, Alibaba Cloud says it does not save conversation data and only records desensitized call status. For the assistant API, it retains conversation history and states that this information currently has no expiration date. The general Alibaba Cloud privacy policy says personal data is kept as long as needed for services, disputes, research/statistics, or legal requirements, then deleted or anonymized when no longer needed.",
+      "details": "Model Studio documentation states Alibaba Cloud will never use customer data for model training."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "SOC2",
+      "ISO27001",
+      "ISO27701",
+      "C5"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://www.alibabacloud.com/help/en/legal/latest/alibaba-cloud-international-website-privacy-policy",
+    "https://www.alibabacloud.com/help/en/legal/latest/ae8upq",
+    "https://www.alibabacloud.com/help/en/model-studio/compliance-and-privacy",
+    "https://www.alibabacloud.com/help/en/model-studio/regions/",
+    "https://www.alibabacloud.com/help/en/model-studio/models",
+    "https://www.alibabacloud.com/en/trust-center/security-compliance-practice",
+    "https://www.alibabacloud.com/help/en/waf/web-application-firewall-2-0/product-overview/what-is-waf",
+    "https://www.alibabacloud.com/help/en/model-studio/model-api-reference/",
+    "https://www.alibabacloud.com/help/en/model-studio/get-api-key"
+  ],
+  "notes": "Alibaba Cloud provides GDPR-facing documentation including an EEA Data Processing Addendum and references to SCCs. For AI inference, its Model Studio now documents an EU deployment mode in Germany (Frankfurt) with inference limited to the EU, but other modes explicitly involve cross-border computation; the sub-processor list is not publicly accessible and requires customer login."
 }
