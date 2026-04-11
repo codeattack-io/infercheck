@@ -310,6 +310,169 @@ Include on every page:
 
 ---
 
+## Phase 5: German Localisation + Provider Data Research
+
+> Status: Planned
+> Last updated: 2026-04-12
+
+### Goal
+
+Two parallel workstreams:
+1. **i18n infrastructure** — add German (`de`) as a fully supported locale with URL-prefix routing (`/en/`, `/de/`), translated UI strings, and locale-aware free-text fields in provider JSON.
+2. **Data scripts** — LLM-powered scripts to (a) research and fill in the 89 stub providers with real compliance data, and (b) translate free-text provider fields to German.
+
+### Key architectural decisions
+
+| Decision | Choice | Rationale |
+|---|---|---|
+| i18n library | `next-intl` v4 (already installed) | Already wired; v4 has first-class App Router support |
+| Locale routing | URL-prefix `always` (`/en/`, `/de/`) | SEO-clean, shareable links, symmetric |
+| Middleware file | `src/proxy.ts` (not `middleware.ts`) | Next.js 16 renamed the convention |
+| Default locale | `en` | English is canonical; German is additive |
+| N-locale architecture | `z.record(z.string(), TranslationSchema)` | Key = locale code; adding `fr`, `nl` etc. requires no schema change |
+| Provider content translation | Separate script from research | Research requires web search + factual accuracy focus; translation is pure transformation — mixing them degrades both |
+| LLM for scripts | `gpt-4.5` via Vercel AI SDK (`ai` + `@ai-sdk/openai`) | Easy model swapping; web search via OpenAI built-in tool |
+| Concurrency | `p-queue`, default 30 parallel, configurable via `--concurrency` | Rate limits are comfortable at 30; sequential would take ~45 min |
+| Translation quality | LLM rewrite (not raw machine translate) | GDPR legal terminology requires precise German terms (Standardvertragsklauseln, Auftragsverarbeiter, etc.) |
+
+### Workstream 1: i18n Infrastructure
+
+**Files to create/modify:**
+
+| Action | File | Notes |
+|---|---|---|
+| Update | `data/schema.ts` | Add `ProviderTranslationSchema` + optional `translations` field to both schemas |
+| Create | `src/i18n/routing.ts` | `defineRouting({ locales: ['en','de'], defaultLocale: 'en', localePrefix: 'always' })` |
+| Update | `src/i18n/request.ts` | Dynamic locale from `requestLocale` (was hardcoded `"en"`) |
+| Create | `src/i18n/navigation.ts` | `createNavigation(routing)` — locale-aware `Link`, `redirect`, `useRouter`, `usePathname` |
+| Create | `src/proxy.ts` | `createMiddleware(routing)` — Next.js 16 proxy (replaces old `middleware.ts`) |
+| Move + update | `src/app/layout.tsx` → `src/app/[locale]/layout.tsx` | Add `generateStaticParams`, `setRequestLocale`, `await params`, dynamic `lang` attr |
+| Move | `src/app/page.tsx` → `src/app/[locale]/page.tsx` | |
+| Move | `src/app/about/page.tsx` → `src/app/[locale]/about/page.tsx` | |
+| Move | `src/app/providers/page.tsx` → `src/app/[locale]/providers/page.tsx` | |
+| Move | `src/app/provider/[slug]/page.tsx` → `src/app/[locale]/provider/[slug]/page.tsx` | |
+| Move | `src/app/model/[id]/page.tsx` → `src/app/[locale]/model/[id]/page.tsx` | |
+| Update | `src/app/sitemap.ts` | Emit hreflang alternates per locale per route |
+| Update | All components with `next/link` | Swap to locale-aware `Link` from `@/i18n/navigation` |
+| Update | `src/lib/providers.ts` | Add `getLocalizedProvider(provider, locale)` helper |
+| Create | `messages/de.json` | Full German translation of all 272 UI strings (13 namespaces) |
+
+**Files that do NOT move:**
+- `src/app/api/cron/sync-models/route.ts` — not locale-scoped
+- `src/app/globals.css`, `src/app/favicon.ico` — shared assets
+
+**next-intl v4 / Next.js 16 gotchas:**
+- `params` in layouts/pages is a `Promise` — must `await params`
+- `requestLocale` in `request.ts` is a `Promise` — must `await requestLocale`
+- `setRequestLocale(locale)` must be called before any `useTranslations` / `getTranslations` call (enables static rendering)
+- No `i18n` key in `next.config.ts` — App Router uses `[locale]` segment only
+
+**Schema addition (`data/schema.ts`):**
+
+```ts
+const ProviderTranslationSchema = z.object({
+  notes: z.string().nullable().optional(),
+  dataResidency: z.object({ euRegionDetails: z.string().nullable().optional() }).optional(),
+  dataUsage: z.object({
+    retentionPolicy: z.string().nullable().optional(),
+    details: z.string().nullable().optional(),
+  }).optional(),
+  euAiAct: z.object({ details: z.string().nullable().optional() }).optional(),
+});
+// Added to ProviderSchema and ProviderStubSchema:
+translations: z.record(z.string(), ProviderTranslationSchema).optional(),
+```
+
+### Workstream 2: Data Scripts
+
+#### `scripts/research-providers.ts`
+
+Researches and fills in stub providers using a web-searching LLM.
+
+**CLI:**
+```bash
+bun run scripts/research-providers.ts --all                   # all stubs, 30 parallel
+bun run scripts/research-providers.ts --provider <slug>       # single provider
+bun run scripts/research-providers.ts --all --concurrency 10  # custom concurrency
+bun run scripts/research-providers.ts --all --dry-run         # print, don't write
+```
+
+**Behaviour:**
+- Only processes providers where `verifiedBy === "stub"` (idempotent)
+- Uses `p-queue` for concurrency control (default: 30, configurable)
+- Calls `generateText()` via Vercel AI SDK (`gpt-4.5` + `webSearchPreview` tool)
+- Validates LLM output against `ProviderSchema` with Zod before writing
+- On validation failure: writes raw output to `data/providers/_failed/<slug>.json`
+- Prints final summary: `✓ N succeeded  ✗ N failed  → N skipped`
+
+**System prompt intent:** "You are a GDPR compliance researcher. Accuracy is critical — this is legal information used by EU companies for procurement decisions. Do not guess or invent. If you cannot verify a fact from a primary source, set the field to `null`. Use web search to find the provider's privacy policy, DPA page, sub-processor list, data residency docs, EU AI Act statement, and certifications. Every non-null field must have a source URL. Set `verifiedBy` to `"ai_draft"` and `lastVerified` to today's date."
+
+**Model:** `gpt-4.5` (via `@ai-sdk/openai`, easy to swap)
+**Env:** `OPENAI_API_KEY` from `.env.local`
+
+#### `scripts/translate-providers.ts`
+
+Generates German translations of free-text fields for all fully-verified providers.
+
+**CLI:**
+```bash
+bun run scripts/translate-providers.ts --all                   # all verified, 30 parallel
+bun run scripts/translate-providers.ts --provider <slug>       # single
+bun run scripts/translate-providers.ts --all --concurrency 10
+bun run scripts/translate-providers.ts --all --force           # re-translate even if de exists
+```
+
+**Behaviour:**
+- Only processes providers where `verifiedBy !== "stub"`
+- Skips providers that already have `translations.de` set (unless `--force`)
+- Same `p-queue` concurrency pattern
+- Translates: `notes`, `compliance.dataResidency.euRegionDetails`, `compliance.dataUsage.retentionPolicy`, `compliance.dataUsage.details`, `compliance.euAiAct.details`
+- Writes into `translations.de` object in each provider JSON
+- Uses legally precise German terminology (see prompt for examples)
+
+**Model:** `gpt-4.5` (no web search needed — pure translation)
+
+#### New `package.json` scripts
+
+```json
+"research:providers": "bun scripts/research-providers.ts --all",
+"research:provider": "bun scripts/research-providers.ts --provider",
+"translate:providers": "bun scripts/translate-providers.ts --all",
+"translate:provider": "bun scripts/translate-providers.ts --provider"
+```
+
+#### New `.env.local.example` key
+
+```
+OPENAI_API_KEY=          # Used by research-providers.ts and translate-providers.ts
+```
+
+### Execution order
+
+```
+1.  data/schema.ts                      ← translations schema (blocks all downstream)
+2.  src/i18n/routing.ts                 ← new shared config
+3.  src/i18n/request.ts                 ← dynamic locale
+4.  src/i18n/navigation.ts              ← locale-aware nav exports
+5.  src/proxy.ts                        ← locale middleware
+6.  src/app/[locale]/ moves             ← layout + all pages
+7.  src/components/ Link updates        ← swap next/link → @/i18n/navigation
+8.  src/lib/providers.ts                ← getLocalizedProvider()
+9.  messages/de.json                    ← German UI strings
+10. src/app/sitemap.ts                  ← hreflang alternates
+11. bun add ai @ai-sdk/openai p-queue   ← new deps
+12. scripts/research-providers.ts       ← new script
+13. scripts/translate-providers.ts      ← new script
+14. package.json + .env.local.example   ← script entries + OPENAI_API_KEY
+15. bun validate                        ← confirm schema still passes
+16. bun build                           ← confirm no TypeScript errors
+17. git commit
+```
+
+---
+
 ## Next Steps
 
 **Phase 2 remaining:** Sort controls on the homepage → model detail page → provider profile page → SEO/JSON-LD → Vercel deploy.
+
+**Phase 5:** See above — German localisation + provider data research scripts.

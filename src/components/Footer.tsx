@@ -4,7 +4,7 @@
 // Links use NEXT_PUBLIC_GITHUB_REPO_URL so the repo URL is configurable
 // without a code change (e.g. forks, staging environments).
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 
 const GITHUB_REPO = process.env.NEXT_PUBLIC_GITHUB_REPO_URL ?? "#";

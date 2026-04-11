@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, DM_Sans, IBM_Plex_Mono } from "next/font/google";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
-import "./globals.css";
+import { NextIntlClientProvider, hasLocale } from "next-intl";
+import { getMessages, setRequestLocale } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
+import "../globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 
@@ -44,18 +46,33 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
+// Required for static rendering with next-intl v4:
+// tells Next.js which locale segments exist at build time.
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
+
+type Props = {
   children: React.ReactNode;
-}>) {
-  // Pass all messages to client components via NextIntlClientProvider.
-  // getMessages() reads from the request config (src/i18n/request.ts).
+  params: Promise<{ locale: string }>; // params is a Promise in Next.js 16
+};
+
+export default async function LocaleLayout({ children, params }: Props) {
+  const { locale } = await params;
+
+  // Guard against invalid locale segments (e.g. /xx/page)
+  if (!hasLocale(routing.locales, locale)) {
+    notFound();
+  }
+
+  // setRequestLocale must be called before any next-intl hooks — enables static rendering.
+  setRequestLocale(locale);
+
   const messages = await getMessages();
 
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`${instrumentSerif.variable} ${dmSans.variable} ${ibmPlexMono.variable} h-full`}
     >
       <body

@@ -3,7 +3,7 @@
 
 import type { Metadata } from "next";
 import { cache } from "react";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ProviderCard } from "@/components/ProviderCard";
 import { getAllProviders } from "@/lib/providers";
 import { getComplianceTier } from "@/lib/compliance";
@@ -78,7 +78,14 @@ function buildJsonLd(allProviders: AnyProvider[]) {
 
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
-export default async function ProvidersPage() {
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function ProvidersPage({ params }: PageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const [allProviders, modelCounts] = await Promise.all([
     Promise.resolve(getAllProviders()),
     getModelCountsByProvider(),

@@ -10,9 +10,9 @@
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { cache } from "react";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { db } from "@/lib/db";
 import { models } from "@/db/schema";
 import { eq, and, sql } from "drizzle-orm";
@@ -51,7 +51,7 @@ const TIER_STYLE: Record<ComplianceTier, { color: string; bg: string; border: st
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 interface PageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ locale: string; id: string }>;
 }
 
 // server-cache-react: wrap DB query so generateMetadata and the page body share
@@ -85,7 +85,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function ModelDetailPage({ params }: PageProps) {
-  const { id } = await params;
+  const { locale, id } = await params;
+  setRequestLocale(locale);
   const decoded = decodeURIComponent(id);
 
   // Parallel: cached DB query + provider JSON load (async-parallel rule).

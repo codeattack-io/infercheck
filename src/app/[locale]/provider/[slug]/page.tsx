@@ -1,4 +1,4 @@
-// Provider profile page — /provider/[slug]
+// Provider profile page — /[locale]/provider/[slug]
 // Full compliance deep-dive for a single provider.
 // All data from the provider JSON file — no DB query needed.
 //
@@ -10,16 +10,16 @@
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Link from "next/link";
 import { cache } from "react";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { getProvider, getAllProviders } from "@/lib/providers";
 import { getModelsByProvider } from "@/lib/models";
 import { getComplianceTier, isFullProvider } from "@/lib/compliance";
 import type { ComplianceTier } from "@/lib/compliance";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
 
-// ─── Static params (prerender all known providers) ────────────────────────────
+// ─── Static params (prerender all known providers × locales) ──────────────────
 
 export async function generateStaticParams() {
   const providers = getAllProviders();
@@ -28,13 +28,12 @@ export async function generateStaticParams() {
 
 // server-cache-react: wrap the synchronous fs read so generateMetadata and the
 // page body share one parse result within the same request context.
-// React.cache() deduplicates by argument identity (slug string = stable key).
 const getCachedProvider = cache((slug: string) => getProvider(slug));
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -94,7 +93,8 @@ function euAiActStyle(status: string): { color: string; bg: string; border: stri
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function ProviderProfilePage({ params }: PageProps) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
 
   // async-parallel: start model DB query immediately, while provider JSON is
   // read synchronously from the React.cache. Both complete in parallel.

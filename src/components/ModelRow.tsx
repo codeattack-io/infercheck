@@ -8,7 +8,7 @@
 // haven't changed — prevents every row re-rendering on each search keystroke.
 
 import { useState, memo, type ReactNode } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
 import { isFullProvider, getComplianceTier } from "@/lib/compliance";

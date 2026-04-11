@@ -10,7 +10,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { cache } from "react";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { FilterBar } from "@/components/FilterBar";
 import { filterStateFromSearchParams } from "@/lib/compliance";
@@ -46,12 +46,16 @@ const getActiveModels = cache(async () => {
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
 interface HomePageProps {
+  params: Promise<{ locale: string }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
-export default async function HomePage({ searchParams }: HomePageProps) {
-  const params = await searchParams;
-  const searchQuery = typeof params.q === "string" ? params.q : "";
+export default async function HomePage({ params, searchParams }: HomePageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const sp = await searchParams;
+  const searchQuery = typeof sp.q === "string" ? sp.q : "";
   const t = await getTranslations("HomePage");
 
   // Parallel fetch: DB + file system — async-parallel rule
@@ -73,7 +77,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
 
   // Reconstruct URLSearchParams for FilterBar initial state
   const urlSearchParams = new URLSearchParams(
-    Object.entries(params)
+    Object.entries(sp)
       .filter(([, v]) => typeof v === "string")
       .map(([k, v]) => [k, v as string]),
   );

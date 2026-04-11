@@ -10,6 +10,34 @@ export const EuAiActStatusSchema = z.enum(["compliant", "monitoring", "unknown",
 
 export const PricingTierSchema = z.enum(["free_tier", "pay_per_use", "enterprise_only"]);
 
+// ─── Translation schema ───────────────────────────────────────────────────────
+// Holds locale-specific overrides for free-text fields only.
+// Structured fields (booleans, enums, URLs) are locale-independent.
+// Keys are BCP-47 locale codes, e.g. "de", "fr".
+// Must be declared before ProviderSchema and ProviderStubSchema which reference it.
+
+export const ProviderTranslationSchema = z.object({
+  notes: z.string().nullable().optional(),
+  dataResidency: z
+    .object({
+      euRegionDetails: z.string().nullable().optional(),
+    })
+    .optional(),
+  dataUsage: z
+    .object({
+      retentionPolicy: z.string().nullable().optional(),
+      details: z.string().nullable().optional(),
+    })
+    .optional(),
+  euAiAct: z
+    .object({
+      details: z.string().nullable().optional(),
+    })
+    .optional(),
+});
+
+export type ProviderTranslation = z.infer<typeof ProviderTranslationSchema>;
+
 // ─── Sub-schemas ─────────────────────────────────────────────────────────────
 
 export const DataResidencySchema = z.object({
@@ -95,6 +123,11 @@ export const ProviderSchema = z.object({
   sourceUrls: z.array(z.string().url()),
   /** Plain-language editorial notes */
   notes: z.string().nullable(),
+  /**
+   * Locale-specific overrides for free-text fields.
+   * Keys are BCP-47 locale codes (e.g. "de"). English is always the canonical base.
+   */
+  translations: z.record(z.string(), ProviderTranslationSchema).optional(),
 });
 
 // ─── Stub schema (used by import script for seed data) ───────────────────────
@@ -113,6 +146,7 @@ export const ProviderStubSchema = z.object({
   verifiedBy: z.literal("stub"),
   sourceUrls: z.array(z.string()),
   notes: z.string().nullable(),
+  translations: z.record(z.string(), ProviderTranslationSchema).optional(),
 });
 
 // ─── TypeScript types ─────────────────────────────────────────────────────────

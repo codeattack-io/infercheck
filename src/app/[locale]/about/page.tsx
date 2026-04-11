@@ -2,8 +2,8 @@
 // React Server Component — no client-side data needed.
 
 import type { Metadata } from "next";
-import Link from "next/link";
-import { getTranslations } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 
 // ─── Metadata ──────────────────────────────────────────────────────────────────
 
@@ -26,7 +26,14 @@ const NEW_ISSUE_URL = `${GITHUB_REPO}/issues/new?template=report-change.yml`;
 
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
-export default async function AboutPage() {
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
+
+export default async function AboutPage({ params }: PageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   const t = await getTranslations("AboutPage");
 
   return (

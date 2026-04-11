@@ -1,7 +1,7 @@
 // ProviderCard — compact compliance summary card for the /providers listing page.
 // Server component — hover handled via CSS class (no JS event handlers needed).
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
 import { getComplianceTier, isFullProvider } from "@/lib/compliance";
