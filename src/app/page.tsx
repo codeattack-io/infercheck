@@ -10,6 +10,7 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
 import { cache } from "react";
+import { getTranslations } from "next-intl/server";
 
 import { FilterBar } from "@/components/FilterBar";
 import { filterStateFromSearchParams } from "@/lib/compliance";
@@ -51,6 +52,7 @@ interface HomePageProps {
 export default async function HomePage({ searchParams }: HomePageProps) {
   const params = await searchParams;
   const searchQuery = typeof params.q === "string" ? params.q : "";
+  const t = await getTranslations("HomePage");
 
   // Parallel fetch: DB + file system — async-parallel rule
   const [allModels, allProviders] = await Promise.all([
@@ -110,13 +112,13 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         {/* Page heading */}
         <div className="mb-8">
           <h1 className="font-display text-[2.5rem] font-normal text-heading leading-[1.15] m-0 mb-3 tracking-[-0.02em]">
-            AI inference providers,<br />
-            filtered by GDPR compliance.
+            {t("heading1")}<br />
+            {t("heading2")}
           </h1>
           <p className="font-body text-[0.9375rem] text-text-secondary m-0 max-w-[55ch] leading-[1.6]">
             {items.length > 0
-              ? `${allModels.length} models across ${providerMap.size} providers. Filter by compliance profile to find what passes your threshold.`
-              : "Browse providers and their compliance posture. Filter by data residency, DPA availability, and training policy."}
+              ? t("subheadingWithData", { modelCount: allModels.length, providerCount: providerMap.size })
+              : t("subheadingEmpty")}
           </p>
         </div>
 
@@ -131,7 +133,7 @@ export default async function HomePage({ searchParams }: HomePageProps) {
         <Suspense
           fallback={
             <div className="py-16 text-center font-body text-[0.9375rem] text-text-muted">
-              Loading models…
+              {t("loadingModels")}
             </div>
           }
         >

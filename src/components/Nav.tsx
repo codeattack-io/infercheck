@@ -3,17 +3,19 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-
-const NAV_LINKS = [
-  { href: "/", label: "Models" },
-  { href: "/providers", label: "Providers" },
-  { href: "/about", label: "About" },
-];
+import { useTranslations } from "next-intl";
 
 export function Nav() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const t = useTranslations("Nav");
+
+  const NAV_LINKS = [
+    { href: "/", label: t("links.models") },
+    { href: "/providers", label: t("links.providers") },
+    { href: "/about", label: t("links.about") },
+  ];
 
   // Show border on scroll — rerender-dependencies: use primitive in effect
   useEffect(() => {
@@ -45,7 +47,7 @@ export function Nav() {
             href="/"
             className="font-display text-[1.125rem] text-heading no-underline tracking-[-0.01em]"
           >
-            GDPR AI Directory
+            {t("wordmark")}
           </Link>
 
           {/* Desktop nav */}
@@ -73,7 +75,7 @@ export function Nav() {
           <button
             className="sm:hidden bg-transparent border-none cursor-pointer p-2 text-text-primary"
             onClick={() => setMobileOpen((o) => !o)}
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-label={mobileOpen ? t("menuClose") : t("menuOpen")}
             aria-expanded={mobileOpen}
           >
             {mobileOpen ? (

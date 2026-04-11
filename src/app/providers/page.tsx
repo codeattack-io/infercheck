@@ -3,6 +3,7 @@
 
 import type { Metadata } from "next";
 import { cache } from "react";
+import { getTranslations } from "next-intl/server";
 import { ProviderCard } from "@/components/ProviderCard";
 import { getAllProviders } from "@/lib/providers";
 import { getComplianceTier } from "@/lib/compliance";
@@ -44,27 +45,11 @@ const getModelCountsByProvider = cache(async (): Promise<Map<string, number>> =>
 
 const TIER_ORDER: ComplianceTier[] = ["compliant", "partial", "noncompliant", "unverified"];
 
-const TIER_META: Record<ComplianceTier, { label: string; description: string; color: string }> = {
-  compliant: {
-    label: "EU Compliant",
-    description: "EU-only data residency, DPA available, no training on customer data",
-    color: "var(--color-compliant)",
-  },
-  partial: {
-    label: "Partial (EU + SCCs)",
-    description: "DPA available and SCCs in place, but not EU-only",
-    color: "var(--color-partial)",
-  },
-  noncompliant: {
-    label: "Non-compliant",
-    description: "No DPA or trains on customer data without opt-out",
-    color: "var(--color-noncompliant)",
-  },
-  unverified: {
-    label: "Unverified",
-    description: "Compliance data not yet verified",
-    color: "var(--color-unverified)",
-  },
+const TIER_COLOR: Record<ComplianceTier, string> = {
+  compliant: "var(--color-compliant)",
+  partial: "var(--color-partial)",
+  noncompliant: "var(--color-noncompliant)",
+  unverified: "var(--color-unverified)",
 };
 
 // ─── JSON-LD ──────────────────────────────────────────────────────────────────
@@ -98,6 +83,7 @@ export default async function ProvidersPage() {
     Promise.resolve(getAllProviders()),
     getModelCountsByProvider(),
   ]);
+  const t = await getTranslations("ProvidersPage");
 
   // Group by tier
   const grouped = new Map<ComplianceTier, AnyProvider[]>();
@@ -120,6 +106,14 @@ export default async function ProvidersPage() {
 
   const jsonLd = buildJsonLd(allProviders);
 
+  // Build tier meta with translated strings
+  const TIER_META: Record<ComplianceTier, { label: string; description: string; color: string }> = {
+    compliant: { label: t("tiers.compliant.label"), description: t("tiers.compliant.description"), color: TIER_COLOR.compliant },
+    partial: { label: t("tiers.partial.label"), description: t("tiers.partial.description"), color: TIER_COLOR.partial },
+    noncompliant: { label: t("tiers.noncompliant.label"), description: t("tiers.noncompliant.description"), color: TIER_COLOR.noncompliant },
+    unverified: { label: t("tiers.unverified.label"), description: t("tiers.unverified.description"), color: TIER_COLOR.unverified },
+  };
+
   return (
     <>
       <script
@@ -131,12 +125,11 @@ export default async function ProvidersPage() {
         {/* Heading */}
         <div className="mb-8">
           <h1 className="font-display text-[2.5rem] font-normal text-heading leading-[1.15] m-0 mb-3 tracking-[-0.02em]">
-            AI inference providers,<br />
-            by GDPR compliance tier.
+            {t("heading1")}<br />
+            {t("heading2")}
           </h1>
           <p className="font-body text-[0.9375rem] text-text-secondary m-0 max-w-[55ch] leading-[1.6]">
-            {allProviders.length} providers indexed. {totalVerified} with verified compliance data.
-            Click any provider for the full profile.
+            {t("subheading", { providerCount: allProviders.length, verifiedCount: totalVerified })}
           </p>
         </div>
 

@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useCallback, useState, useTransition } from "react";
+import { useTranslations } from "next-intl";
 import {
   filterStateFromSearchParams,
   type FilterProfile,
@@ -16,30 +17,19 @@ export type { FilterState };
 export { filterStateFromSearchParams };
 
 // Preset profile definitions (matches PLAN.md)
-const PRESETS: { id: Exclude<FilterProfile, "custom" | null>; label: string; filter: ComplianceFilter }[] = [
-  {
-    id: "strict-eu",
-    label: "Strict EU",
-    filter: { euOnly: true, dpa: true, noTraining: true },
-  },
-  {
-    id: "eu-sccs",
-    label: "EU + SCCs",
-    filter: { dpa: true, sccs: true, noTraining: true },
-  },
-  {
-    id: "no-training",
-    label: "No Training",
-    filter: { noTraining: true },
-  },
+const PRESET_IDS: Exclude<FilterProfile, "custom" | null>[] = [
+  "strict-eu",
+  "eu-sccs",
+  "no-training",
 ];
 
-const CUSTOM_TOGGLES: { key: keyof ComplianceFilter; label: string }[] = [
-  { key: "euOnly", label: "Data stays in EU" },
-  { key: "dpa", label: "DPA available" },
-  { key: "noTraining", label: "No training on data" },
-  { key: "sccs", label: "SCCs in place" },
-];
+const PRESET_FILTERS: Record<Exclude<FilterProfile, "custom" | null>, ComplianceFilter> = {
+  "strict-eu": { euOnly: true, dpa: true, noTraining: true },
+  "eu-sccs": { dpa: true, sccs: true, noTraining: true },
+  "no-training": { noTraining: true },
+};
+
+const CUSTOM_TOGGLE_KEYS: (keyof ComplianceFilter)[] = ["euOnly", "dpa", "noTraining", "sccs"];
 
 // ─── Component ────────────────────────────────────────────────────────────────
 
@@ -56,6 +46,20 @@ export function FilterBar({ filterState }: FilterBarProps) {
   const [customOpen, setCustomOpen] = useState(
     filterState.profile === "custom" || Object.keys(filterState.custom).length > 0,
   );
+  const t = useTranslations("FilterBar");
+
+  const PRESETS: { id: Exclude<FilterProfile, "custom" | null>; label: string; filter: ComplianceFilter }[] = [
+    { id: "strict-eu", label: t("presets.strictEu"), filter: PRESET_FILTERS["strict-eu"] },
+    { id: "eu-sccs", label: t("presets.euSccs"), filter: PRESET_FILTERS["eu-sccs"] },
+    { id: "no-training", label: t("presets.noTraining"), filter: PRESET_FILTERS["no-training"] },
+  ];
+
+  const CUSTOM_TOGGLES: { key: keyof ComplianceFilter; label: string }[] = [
+    { key: "euOnly", label: t("toggles.euOnly") },
+    { key: "dpa", label: t("toggles.dpa") },
+    { key: "noTraining", label: t("toggles.noTraining") },
+    { key: "sccs", label: t("toggles.sccs") },
+  ];
 
   // Build new URL — all filter state lives in the URL (shareable links requirement)
   const buildUrl = useCallback(
@@ -103,6 +107,7 @@ export function FilterBar({ filterState }: FilterBarProps) {
         startTransition(() => router.push(buildUrl(profile, preset?.filter ?? {})));
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [filterState.profile, filterState.custom, buildUrl, router],
   );
 
@@ -135,16 +140,20 @@ export function FilterBar({ filterState }: FilterBarProps) {
     }
   };
 
+  // Suppress unused variable warnings for PRESET_IDS / CUSTOM_TOGGLE_KEYS
+  void PRESET_IDS;
+  void CUSTOM_TOGGLE_KEYS;
+
   return (
     <div>
       {/* Label + preset buttons row */}
       <div
         className="flex flex-wrap gap-2 items-center"
         role="group"
-        aria-label="Compliance filter presets"
+        aria-label={t("ariaPresets")}
       >
         <span className="font-body text-[0.8125rem] font-medium text-text-muted mr-1 whitespace-nowrap">
-          Filter:
+          {t("filterLabel")}
         </span>
 
         {PRESETS.map((preset) => {
@@ -215,7 +224,7 @@ export function FilterBar({ filterState }: FilterBarProps) {
               fill={customOpen ? "currentColor" : "none"}
             />
           </svg>
-          Custom
+          {t("custom")}
           <svg
             width="10"
             height="10"
@@ -241,7 +250,7 @@ export function FilterBar({ filterState }: FilterBarProps) {
         <div
           className="mt-2 p-4 bg-surface border border-border rounded flex flex-col gap-3"
           role="group"
-          aria-label="Custom compliance filters"
+          aria-label={t("ariaCustomPanel")}
         >
           {CUSTOM_TOGGLES.map(({ key, label }) => {
             const isOn = !!filterState.custom[key];

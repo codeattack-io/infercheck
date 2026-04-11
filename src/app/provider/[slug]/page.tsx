@@ -12,6 +12,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { cache } from "react";
+import { getTranslations } from "next-intl/server";
 import { getProvider, getAllProviders } from "@/lib/providers";
 import { getModelsByProvider } from "@/lib/models";
 import { getComplianceTier, isFullProvider } from "@/lib/compliance";
@@ -59,11 +60,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-const TIER_CONFIG: Record<ComplianceTier, { label: string; color: string; bg: string; border: string }> = {
-  compliant: { label: "EU Compliant", color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" },
-  partial: { label: "Partial (EU + SCCs)", color: "#92400e", bg: "#fffbeb", border: "#fde68a" },
-  noncompliant: { label: "Non-compliant", color: "#b91c1c", bg: "#fef2f2", border: "#fecaca" },
-  unverified: { label: "Unverified", color: "#6b7280", bg: "#f8f8f7", border: "#e2e2de" },
+const TIER_STYLE: Record<ComplianceTier, { color: string; bg: string; border: string }> = {
+  compliant: { color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" },
+  partial: { color: "#92400e", bg: "#fffbeb", border: "#fde68a" },
+  noncompliant: { color: "#b91c1c", bg: "#fef2f2", border: "#fecaca" },
+  unverified: { color: "#6b7280", bg: "#f8f8f7", border: "#e2e2de" },
 };
 
 const TIER_BORDER: Record<ComplianceTier, string> = {
@@ -102,6 +103,15 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
   if (!provider) notFound();
 
+  const t = await getTranslations("ProviderPage");
+
+  const TIER_CONFIG: Record<ComplianceTier, { label: string; color: string; bg: string; border: string }> = {
+    compliant: { label: t("tiers.compliant"), ...TIER_STYLE.compliant },
+    partial: { label: t("tiers.partial"), ...TIER_STYLE.partial },
+    noncompliant: { label: t("tiers.noncompliant"), ...TIER_STYLE.noncompliant },
+    unverified: { label: t("tiers.unverified"), ...TIER_STYLE.unverified },
+  };
+
   const tier = getComplianceTier(provider);
   const tierCfg = TIER_CONFIG[tier];
   const tierBorder = TIER_BORDER[tier];
@@ -138,11 +148,11 @@ export default async function ProviderProfilePage({ params }: PageProps) {
         <nav aria-label="Breadcrumb" className="mb-6">
           <ol className="flex items-center gap-2 list-none p-0 m-0 font-body text-[0.8125rem] text-text-muted">
             <li>
-              <Link href="/" className="text-link no-underline">Models</Link>
+              <Link href="/" className="text-link no-underline">{t("breadcrumb.models")}</Link>
             </li>
             <li aria-hidden="true">/</li>
             <li>
-              <Link href="/providers" className="text-link no-underline">Providers</Link>
+              <Link href="/providers" className="text-link no-underline">{t("breadcrumb.providers")}</Link>
             </li>
             <li aria-hidden="true">/</li>
             <li className="text-text-secondary">{provider.name}</li>
@@ -197,7 +207,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 px-3.5 py-1.5 font-body text-[0.8125rem] font-medium text-text-secondary border border-border rounded bg-surface no-underline whitespace-nowrap"
               >
-                API Docs ↗
+                {t("actions.apiDocs")}
               </a>
             ) : null}
             <a
@@ -206,7 +216,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 px-3.5 py-1.5 font-body text-[0.8125rem] font-medium text-accent border border-accent rounded bg-accent-subtle no-underline whitespace-nowrap"
             >
-              Report a change
+              {t("actions.reportChange")}
             </a>
           </div>
         </div>
@@ -224,16 +234,16 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 id="compliance-heading"
                 className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-4"
               >
-                GDPR Compliance
+                {t("sections.gdprCompliance")}
               </h2>
 
               <div className="flex flex-col gap-[10px]">
                 <ComplianceRow
-                  label="EU-only data residency"
+                  label={t("compliance.euOnlyResidency")}
                   value={provider.compliance.dataResidency.euOnly}
                 />
                 <ComplianceRow
-                  label="Inference stays in EU"
+                  label={t("compliance.inferenceStaysInEu")}
                   value={
                     provider.compliance.dataResidency.dataLeavesEuAtInference === null
                       ? null
@@ -242,7 +252,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   note={provider.compliance.dataResidency.dataLeavesEuAtInference === null ? "unknown" : undefined}
                 />
                 <ComplianceRow
-                  label="Data Processing Agreement"
+                  label={t("compliance.dpa")}
                   value={provider.compliance.dpa.available}
                   href={provider.compliance.dpa.url ?? undefined}
                   secondary={
@@ -252,19 +262,19 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   }
                 />
                 <ComplianceRow
-                  label="No training on customer data"
+                  label={t("compliance.noTraining")}
                   value={!provider.compliance.dataUsage.trainsOnCustomerData}
                 />
                 <ComplianceRow
-                  label="Opt-out available"
+                  label={t("compliance.optOut")}
                   value={provider.compliance.dataUsage.optOutAvailable}
                 />
                 <ComplianceRow
-                  label="Standard Contractual Clauses"
+                  label={t("compliance.sccs")}
                   value={provider.compliance.sccs}
                 />
                 <ComplianceRow
-                  label="Adequacy decision (HQ country)"
+                  label={t("compliance.adequacy")}
                   value={provider.compliance.adequacyDecision}
                 />
               </div>
@@ -294,15 +304,14 @@ export default async function ProviderProfilePage({ params }: PageProps) {
               style={{ borderLeft: `3px solid ${tierBorder}` }}
             >
               <h2 className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-3">
-                GDPR Compliance
+                {t("sections.gdprCompliance")}
               </h2>
               <p className="font-body text-[0.875rem] text-text-muted m-0 italic">
-                Compliance data not yet verified for this provider. If you have information, please use &ldquo;Report a change&rdquo; above.
+                {t("unverifiedNotice")}
               </p>
             </section>
           )}
 
-          {/* ── Data handling card ── */}
           {verified ? (
             <section
               className="bg-surface border border-border rounded px-6 py-5"
@@ -312,18 +321,18 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 id="data-handling-heading"
                 className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-4"
               >
-                Data Handling
+                {t("sections.dataHandling")}
               </h2>
 
               <div className="flex flex-col gap-3.5">
                 {/* Data residency detail */}
                 <div>
                   <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1">
-                    Regions
+                    {t("dataHandlingLabels.regions")}
                   </div>
                   <div className="font-mono text-[0.8125rem] text-text-primary">
                     {provider.compliance.dataResidency.euOnly
-                      ? "EU only"
+                      ? t("dataHandlingLabels.euOnly")
                       : provider.compliance.dataResidency.regions.join(", ") || "—"}
                   </div>
                   {provider.compliance.dataResidency.euRegionDetails ? (
@@ -337,7 +346,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 {provider.compliance.dataUsage.retentionPolicy ? (
                   <div>
                     <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1">
-                      Retention Policy
+                      {t("dataHandlingLabels.retentionPolicy")}
                     </div>
                     <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.6]">
                       {provider.compliance.dataUsage.retentionPolicy}
@@ -349,7 +358,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 {provider.compliance.dataUsage.details ? (
                   <div>
                     <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1">
-                      Additional Details
+                      {t("dataHandlingLabels.additionalDetails")}
                     </div>
                     <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.6]">
                       {provider.compliance.dataUsage.details}
@@ -360,7 +369,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 {/* Sub-processors */}
                 <div>
                   <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1">
-                    Sub-processors
+                    {t("dataHandlingLabels.subProcessors")}
                   </div>
                   <div className="flex items-center gap-2 font-body text-[0.8125rem] text-text-secondary">
                     {provider.compliance.subProcessors.disclosed ? (
@@ -373,21 +382,21 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                             rel="noopener noreferrer"
                             className="text-link no-underline"
                           >
-                            Disclosed ↗
+                            {t("subProcessors.disclosedLink")}
                           </a>
                         ) : (
-                          "Disclosed"
+                          t("subProcessors.disclosed")
                         )}
                         {provider.compliance.subProcessors.includesEuEntities === true
-                          ? " (includes EU entities)"
+                          ? t("subProcessors.includesEu")
                           : provider.compliance.subProcessors.includesEuEntities === false
-                          ? " (no EU entities)"
+                          ? t("subProcessors.noEu")
                           : null}
                       </>
                     ) : (
                       <>
                         <span className="text-noncompliant">✗</span>
-                        Not disclosed
+                        {t("subProcessors.notDisclosed")}
                       </>
                     )}
                   </div>
@@ -406,13 +415,13 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 id="certs-heading"
                 className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-4"
               >
-                Certifications & EU AI Act
+                {t("sections.certsAndEuAiAct")}
               </h2>
 
               {provider.compliance.certifications.length > 0 ? (
                 <div className="mb-4">
                   <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-2">
-                    Certifications
+                    {t("certs.certifications")}
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {provider.compliance.certifications.map((cert) => (
@@ -427,13 +436,13 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 </div>
               ) : (
                 <p className="font-body text-[0.8125rem] text-text-muted m-0 mb-4 italic">
-                  No certifications disclosed.
+                  {t("certs.noCerts")}
                 </p>
               )}
 
               <div>
                 <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1.5">
-                  EU AI Act Status
+                  {t("certs.euAiActStatus")}
                 </div>
                 {/* EU AI Act status pill — color depends on status string — kept as style */}
                 <span
@@ -463,27 +472,27 @@ export default async function ProviderProfilePage({ params }: PageProps) {
               id="verification-heading"
               className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-4"
             >
-              Verification
+              {t("sections.verification")}
             </h2>
 
             <div className="flex flex-col gap-[10px]">
-              <MetaRow label="Last verified" value={provider.lastVerified ?? "Not verified"} mono />
+              <MetaRow label={t("verification.lastVerified")} value={provider.lastVerified ?? t("verification.notVerified")} mono />
               <MetaRow
-                label="Verified by"
+                label={t("verification.verifiedBy")}
                 value={
                   provider.verifiedBy === "stub"
-                    ? "Not yet verified"
+                    ? t("verification.notYetVerified")
                     : provider.verifiedBy === "ai_draft"
-                    ? "AI-assisted draft (pending review)"
+                    ? t("verification.aiDraft")
                     : provider.verifiedBy
                 }
               />
               <MetaRow
-                label="Pricing tier"
+                label={t("verification.pricingTier")}
                 value={
                   provider.pricingTier
                     ? provider.pricingTier.replace(/_/g, " ")
-                    : "Unknown"
+                    : t("verification.unknown")
                 }
               />
             </div>
@@ -492,7 +501,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
             {provider.sourceUrls && provider.sourceUrls.length > 0 ? (
               <div className="mt-4">
                 <div className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] mb-2">
-                  Sources
+                  {t("verification.sources")}
                 </div>
                 <ul className="list-none p-0 m-0 flex flex-col gap-1">
                   {provider.sourceUrls.map((url, i) => (
@@ -515,7 +524,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
             {provider.notes ? (
               <div className="mt-4">
                 <div className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] mb-2">
-                  Notes
+                  {t("verification.notes")}
                 </div>
                 <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.6]">
                   {provider.notes}
@@ -532,18 +541,24 @@ export default async function ProviderProfilePage({ params }: PageProps) {
               id="models-heading"
               className="font-body text-base font-semibold text-text-primary m-0 mb-4"
             >
-              Models ({providerModels.length})
+              {t("models.heading", { count: providerModels.length })}
             </h2>
 
             <div className="border border-border rounded overflow-hidden">
               <div className="overflow-x-auto">
                 <table
                   className="w-full border-collapse bg-surface"
-                  aria-label={`Models offered by ${provider.name}`}
+                  aria-label={t("models.tableAriaLabel", { providerName: provider.name })}
                 >
                   <thead>
                     <tr className="bg-surface-alt border-b border-border">
-                      {["Model", "Modality", "Context", "Input", "Output"].map((h) => (
+                      {[
+                        t("models.columns.model"),
+                        t("models.columns.modality"),
+                        t("models.columns.context"),
+                        t("models.columns.input"),
+                        t("models.columns.output"),
+                      ].map((h) => (
                         <th
                           key={h}
                           className="px-4 py-2 text-left font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.05em] whitespace-nowrap"
@@ -600,7 +615,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
         {/* Back link */}
         <div className="mt-10">
           <Link href="/providers" className="font-body text-sm text-link no-underline">
-            ← Back to all providers
+            {t("backLink")}
           </Link>
         </div>
       </main>

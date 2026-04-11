@@ -23,6 +23,7 @@
 import { useMemo, useCallback, useTransition, useState } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import Fuse, { type FuseResultMatch, type Expression } from "fuse.js";
+import { useTranslations } from "next-intl";
 import { ModelRow } from "@/components/ModelRow";
 import { providerMatchesFilter, filterStateFromSearchParams, getComplianceTier } from "@/lib/compliance";
 import type { ModelWithProvider } from "@/components/types";
@@ -167,6 +168,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [, startTransition] = useTransition();
+  const t = useTranslations("ModelTable");
 
   // LOCAL input state — decoupled from URL after mount.
   const [inputValue, setInputValue] = useState(initialQuery);
@@ -311,7 +313,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
       {/* Search input */}
       <div className="mb-4">
         <label htmlFor="model-search" className="sr-only">
-          Search models or providers
+          {t("searchLabel")}
         </label>
         <div className="relative">
           {/* Search icon */}
@@ -333,7 +335,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
             type="text"
             value={inputValue}
             onChange={handleSearchChange}
-            placeholder="Search models or providers…"
+            placeholder={t("searchPlaceholder")}
             autoComplete="off"
             spellCheck={false}
             className="search-input w-full bg-surface border border-border rounded font-body text-[0.9375rem] text-text-primary outline-none box-border pl-9 py-[9px]"
@@ -345,7 +347,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
             <button
               type="button"
               onClick={handleClear}
-              aria-label="Clear search"
+              aria-label={t("clearSearch")}
               className="search-clear-btn absolute right-[10px] top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 rounded-full border-none bg-text-muted text-surface cursor-pointer p-0 text-sm leading-none opacity-65"
             >
               ×
@@ -357,12 +359,12 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
       {/* Results summary */}
       <div className="font-body text-[0.8125rem] text-text-muted mb-3">
         {hasQuery && totalVisible === 0
-          ? `No models found for "${inputValue}"`
+          ? t("noModelsFound", { query: inputValue })
           : hasFilter
-          ? `${matching.length} of ${totalVisible} models match the active filter`
+          ? t("resultCountFiltered", { matching: matching.length, total: totalVisible })
           : hasQuery
-          ? `${totalVisible} of ${items.length} models`
-          : `${totalVisible} models`}
+          ? t("resultCountSearch", { total: totalVisible, all: items.length })
+          : t("resultCount", { total: totalVisible })}
       </div>
 
       {/* Table */}
@@ -370,12 +372,12 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
         <div className="overflow-x-auto">
           <table
             className="w-full border-collapse bg-surface"
-            aria-label="AI models with GDPR compliance data"
+            aria-label={t("tableAriaLabel")}
           >
             <thead>
               <tr className="bg-surface-alt border-b border-border">
                 <SortableTh
-                  label="Model"
+                  label={t("columns.model")}
                   sortKey="default"
                   activeSortKey={sortKey}
                   sortDir={sortDir}
@@ -383,7 +385,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   style={{ width: "25%" }}
                 />
                 <SortableTh
-                  label="Compliance"
+                  label={t("columns.compliance")}
                   sortKey="compliance"
                   activeSortKey={sortKey}
                   sortDir={sortDir}
@@ -392,7 +394,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   style={{ width: "30%" }}
                 />
                 <SortableTh
-                  label="Residency"
+                  label={t("columns.residency")}
                   sortKey="default"
                   activeSortKey={sortKey}
                   sortDir={sortDir}
@@ -402,7 +404,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   nonSortable
                 />
                 <SortableTh
-                  label="Price / 1M tokens"
+                  label={t("columns.price")}
                   sortKey="price"
                   activeSortKey={sortKey}
                   sortDir={sortDir}
@@ -411,7 +413,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   style={{ width: "15%" }}
                 />
                 <SortableTh
-                  label="Verified"
+                  label={t("columns.verified")}
                   sortKey="default"
                   activeSortKey={sortKey}
                   sortDir={sortDir}
@@ -446,7 +448,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                     colSpan={6}
                     className="py-12 px-4 text-center font-body text-[0.9375rem] text-text-muted"
                   >
-                    No models found for &ldquo;{inputValue}&rdquo;
+                    {t("noModelsFound", { query: inputValue })}
                   </td>
                 </tr>
               ) : null}
@@ -482,6 +484,7 @@ function SortableTh({
   nonSortable = false,
 }: SortableThProps) {
   const isActive = !nonSortable && activeSortKey === sortKey;
+  const t = useTranslations("ModelTable");
 
   return (
     <th
@@ -499,7 +502,7 @@ function SortableTh({
           type="button"
           onClick={() => onSort(sortKey)}
           className="bg-transparent border-none p-0 cursor-pointer font-[inherit] text-[inherit] [text-transform:inherit] [letter-spacing:inherit] inline-flex items-center gap-1"
-          aria-label={`Sort by ${label}`}
+          aria-label={t("sortBy", { label })}
         >
           {label}
           <span

@@ -1,9 +1,7 @@
-// TODO(i18n): When adding next-intl, wrap this layout with NextIntlClientProvider,
-// move it under src/app/[locale]/layout.tsx, and set lang={locale} dynamically.
-// All UI strings should be extracted to messages/{locale}.json at that point.
-
 import type { Metadata } from "next";
 import { Instrument_Serif, DM_Sans, IBM_Plex_Mono } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
@@ -46,11 +44,15 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Pass all messages to client components via NextIntlClientProvider.
+  // getMessages() reads from the request config (src/i18n/request.ts).
+  const messages = await getMessages();
+
   return (
     <html
       lang="en"
@@ -60,9 +62,11 @@ export default function RootLayout({
         className="min-h-full flex flex-col antialiased"
         suppressHydrationWarning
       >
-        <Nav />
-        {children}
-        <Footer />
+        <NextIntlClientProvider messages={messages}>
+          <Nav />
+          {children}
+          <Footer />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

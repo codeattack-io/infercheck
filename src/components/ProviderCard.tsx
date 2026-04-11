@@ -2,6 +2,7 @@
 // Server component — hover handled via CSS class (no JS event handlers needed).
 
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
 import { getComplianceTier, isFullProvider } from "@/lib/compliance";
 import type { AnyProvider, ComplianceTier } from "@/lib/compliance";
@@ -11,13 +12,6 @@ const TIER_BORDER: Record<ComplianceTier, string> = {
   partial: "var(--color-partial)",
   noncompliant: "var(--color-noncompliant)",
   unverified: "var(--color-unverified)",
-};
-
-const TIER_LABEL: Record<ComplianceTier, string> = {
-  compliant: "EU Compliant",
-  partial: "EU + SCCs",
-  noncompliant: "Non-compliant",
-  unverified: "Unverified",
 };
 
 const TIER_TEXT_CLASS: Record<ComplianceTier, string> = {
@@ -32,9 +26,17 @@ interface ProviderCardProps {
   modelCount?: number;
 }
 
-export function ProviderCard({ provider, modelCount }: ProviderCardProps) {
+export async function ProviderCard({ provider, modelCount }: ProviderCardProps) {
   const tier = getComplianceTier(provider);
   const verified = isFullProvider(provider);
+  const t = await getTranslations("ProviderCard");
+
+  const tierLabel: Record<ComplianceTier, string> = {
+    compliant: t("tiers.compliant"),
+    partial: t("tiers.partial"),
+    noncompliant: t("tiers.noncompliant"),
+    unverified: t("tiers.unverified"),
+  };
 
   return (
     // provider-card class provides the :hover box-shadow via globals.css —
@@ -51,7 +53,7 @@ export function ProviderCard({ provider, modelCount }: ProviderCardProps) {
           {provider.name}
         </span>
         <span className={`font-body text-[0.6875rem] font-medium whitespace-nowrap shrink-0 ${TIER_TEXT_CLASS[tier]}`}>
-          {TIER_LABEL[tier]}
+          {tierLabel[tier]}
         </span>
       </div>
 
@@ -82,7 +84,9 @@ export function ProviderCard({ provider, modelCount }: ProviderCardProps) {
       <div className="flex items-center justify-between gap-2 flex-wrap">
         <span className="font-body text-xs text-text-muted">
           {provider.type.replace(/_/g, " ")}
-          {modelCount !== undefined ? ` · ${modelCount} model${modelCount !== 1 ? "s" : ""}` : ""}
+          {modelCount !== undefined
+            ? ` · ${modelCount !== 1 ? t("modelCountPlural", { count: modelCount }) : t("modelCount", { count: modelCount })}`
+            : ""}
         </span>
         {provider.lastVerified ? (
           <time

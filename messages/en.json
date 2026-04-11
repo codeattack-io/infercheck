@@ -1,0 +1,272 @@
+{
+  "Nav": {
+    "wordmark": "GDPR AI Directory",
+    "links": {
+      "models": "Models",
+      "providers": "Providers",
+      "about": "About"
+    },
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu"
+  },
+  "Footer": {
+    "license": "Data licensed under",
+    "licenseName": "CC BY-NC-SA 4.0",
+    "codeLicense": "Code under",
+    "codeLicenseName": "MIT",
+    "nav": {
+      "about": "About",
+      "github": "GitHub →"
+    },
+    "disclaimer": "This directory provides sourced information about AI providers' data practices. It is not legal advice. Always verify directly with the provider and consult legal counsel for compliance decisions."
+  },
+  "HomePage": {
+    "title": "GDPR AI Directory — EU-compliant AI inference providers",
+    "description": "Filter AI inference providers by GDPR compliance status. Compare EU data residency, DPA availability, training policies, and pricing across 100+ providers.",
+    "ogTitle": "GDPR AI Directory — EU-compliant AI inference providers",
+    "ogDescription": "Filter AI inference providers by GDPR compliance. Compare EU data residency, DPA, training opt-out, and pricing across 100+ providers.",
+    "heading1": "AI inference providers,",
+    "heading2": "filtered by GDPR compliance.",
+    "subheadingWithData": "{modelCount} models across {providerCount} providers. Filter by compliance profile to find what passes your threshold.",
+    "subheadingEmpty": "Browse providers and their compliance posture. Filter by data residency, DPA availability, and training policy.",
+    "loadingModels": "Loading models…"
+  },
+  "ProvidersPage": {
+    "heading1": "AI inference providers,",
+    "heading2": "by GDPR compliance tier.",
+    "subheading": "{providerCount} providers indexed. {verifiedCount} with verified compliance data. Click any provider for the full profile.",
+    "tiers": {
+      "compliant": {
+        "label": "EU Compliant",
+        "description": "EU-only data residency, DPA available, no training on customer data"
+      },
+      "partial": {
+        "label": "Partial (EU + SCCs)",
+        "description": "DPA available and SCCs in place, but not EU-only"
+      },
+      "noncompliant": {
+        "label": "Non-compliant",
+        "description": "No DPA or trains on customer data without opt-out"
+      },
+      "unverified": {
+        "label": "Unverified",
+        "description": "Compliance data not yet verified"
+      }
+    }
+  },
+  "ProviderPage": {
+    "breadcrumb": {
+      "models": "Models",
+      "providers": "Providers"
+    },
+    "actions": {
+      "apiDocs": "API Docs ↗",
+      "reportChange": "Report a change"
+    },
+    "sections": {
+      "gdprCompliance": "GDPR Compliance",
+      "dataHandling": "Data Handling",
+      "certsAndEuAiAct": "Certifications & EU AI Act",
+      "verification": "Verification"
+    },
+    "compliance": {
+      "euOnlyResidency": "EU-only data residency",
+      "inferenceStaysInEu": "Inference stays in EU",
+      "dpa": "Data Processing Agreement",
+      "noTraining": "No training on customer data",
+      "optOut": "Opt-out available",
+      "sccs": "Standard Contractual Clauses",
+      "adequacy": "Adequacy decision (HQ country)"
+    },
+    "dataHandlingLabels": {
+      "regions": "Regions",
+      "retentionPolicy": "Retention Policy",
+      "additionalDetails": "Additional Details",
+      "subProcessors": "Sub-processors",
+      "euOnly": "EU only"
+    },
+    "subProcessors": {
+      "disclosedLink": "Disclosed ↗",
+      "disclosed": "Disclosed",
+      "notDisclosed": "Not disclosed",
+      "includesEu": "(includes EU entities)",
+      "noEu": "(no EU entities)"
+    },
+    "certs": {
+      "certifications": "Certifications",
+      "euAiActStatus": "EU AI Act Status",
+      "noCerts": "No certifications disclosed."
+    },
+    "verification": {
+      "lastVerified": "Last verified",
+      "verifiedBy": "Verified by",
+      "pricingTier": "Pricing tier",
+      "notVerified": "Not verified",
+      "notYetVerified": "Not yet verified",
+      "aiDraft": "AI-assisted draft (pending review)",
+      "unknown": "Unknown",
+      "sources": "Sources",
+      "notes": "Notes"
+    },
+    "models": {
+      "heading": "Models ({count})",
+      "tableAriaLabel": "Models offered by {providerName}",
+      "columns": {
+        "model": "Model",
+        "modality": "Modality",
+        "context": "Context",
+        "input": "Input",
+        "output": "Output"
+      }
+    },
+    "unverifiedNotice": "Compliance data not yet verified for this provider. If you have information, please use \"Report a change\" above.",
+    "backLink": "← Back to all providers",
+    "tiers": {
+      "compliant": "EU Compliant",
+      "partial": "Partial (EU + SCCs)",
+      "noncompliant": "Non-compliant",
+      "unverified": "Unverified"
+    }
+  },
+  "ModelPage": {
+    "breadcrumb": {
+      "models": "Models"
+    },
+    "availableFrom1": "Available from 1 provider",
+    "availableFromN": "Available from {count} providers",
+    "compareSubheading": " — compare compliance, pricing, and data residency below.",
+    "fullProviderProfile": "Full provider profile →",
+    "sections": {
+      "pricing": "Pricing (per 1M tokens)",
+      "gdprCompliance": "GDPR Compliance",
+      "dataResidency": "Data Residency",
+      "complianceBadges": "Compliance Badges"
+    },
+    "pricing": {
+      "input": "Input",
+      "output": "Output",
+      "context": "Context"
+    },
+    "compliance": {
+      "euDataResidency": "EU data residency",
+      "dpaAvailable": "DPA available",
+      "noTrainingOnData": "No training on data",
+      "sccsInPlace": "SCCs in place",
+      "notYetVerified": "Not yet verified"
+    },
+    "residency": {
+      "regions": "Regions",
+      "euOnly": "EU only"
+    },
+    "verifiedDate": "Verified {date}",
+    "backLink": "← Back to all models",
+    "tiers": {
+      "compliant": "EU Compliant",
+      "partial": "Partial (EU + SCCs)",
+      "noncompliant": "Non-compliant",
+      "unverified": "Unverified"
+    }
+  },
+  "AboutPage": {
+    "heading": "About this directory",
+    "subtitle": "A neutral, sourced reference for GDPR compliance across AI inference providers — built because no such resource existed.",
+    "whyExistsHeading": "Why this exists",
+    "whyExistsPara1": "I built this for myself. As a developer building SaaS products in Germany, every time I evaluated a new AI inference provider I had to answer the same questions: Where does the data go at inference time? Is there a DPA I can actually sign? Does the provider train on my users' inputs? Is there an EU-only routing option?",
+    "whyExistsPara2": "Those questions don't have a single place to look them up. You end up digging through privacy policies, data processing addenda, and support docs — for every provider, every time. In my corporate job I saw the same friction play out weekly: teams defaulting to expensive enterprise contracts (Azure OpenAI, IBM Watsonx) not because the models were better but because the compliance paperwork was already done.",
+    "whyExistsPara3": "This directory is the resource I wanted. It presents structured, sourced facts — not a provider's own marketing copy, not a law firm's generic checklist — so you can make a defensible provider selection and move on.",
+    "whoBuiltHeading": "Who built it",
+    "whoBuiltPara1": "I'm Carlo, a software developer based in <strong>Germany</strong>. I work in enterprise IT and build SaaS products on the side — which means I operate under GDPR daily, from both the engineering and compliance sides of the table.",
+    "whoBuiltPara2": "I don't have a financial relationship with any of the providers listed here. The directory is independent. Compliance metadata reflects publicly verifiable information with source links — if something is wrong or has changed, I want to know.",
+    "dataMaintenanceHeading": "How data is maintained",
+    "dataMaintenancePara1": "Every provider entry is a flat JSON file stored in the public GitHub repository. Each field has a source URL. Every entry shows a \"last verified\" date so you can judge how fresh the information is before acting on it.",
+    "dataMaintenancePara2": "Provider compliance terms change — sometimes quietly. If you spot something outdated or missing, the best thing you can do is open an issue on GitHub. The issue template asks for the specific field that changed and a link to the source document. That keeps updates auditable and reviewable before they go into the directory.",
+    "seenChangeHeading": "Seen something change?",
+    "seenChangePara": "If a provider has updated their DPA, changed their data residency terms, launched EU-only routing, or anything else relevant to GDPR compliance — please file a GitHub issue. The structured template takes under two minutes and helps keep this resource accurate for everyone.",
+    "openIssueBtn": "Open an issue on GitHub",
+    "githubNote": "A GitHub account is required to submit. You can also browse",
+    "openIssues": "open issues",
+    "or": "or review the",
+    "providerDataFiles": "provider data files",
+    "directly": "directly.",
+    "whatIsNotHeading": "What this is not",
+    "notLegalAdviceTitle": "Not legal advice.",
+    "notLegalAdviceBody": "The directory presents facts, not compliance judgments. Always verify with the provider directly and consult legal counsel before relying on this for procurement decisions.",
+    "notPaidTitle": "Not a paid placement service.",
+    "notPaidBody": "No provider has paid to appear here or to influence how their data is presented.",
+    "notCurrentTitle": "Not guaranteed to be current.",
+    "notCurrentBody": "Provider terms change. The \"last verified\" date on each entry tells you when the information was last confirmed against source documents.",
+    "backLink": "← Browse the directory"
+  },
+  "FilterBar": {
+    "filterLabel": "Filter:",
+    "presets": {
+      "strictEu": "Strict EU",
+      "euSccs": "EU + SCCs",
+      "noTraining": "No Training"
+    },
+    "custom": "Custom",
+    "ariaPresets": "Compliance filter presets",
+    "ariaCustomPanel": "Custom compliance filters",
+    "toggles": {
+      "euOnly": "Data stays in EU",
+      "dpa": "DPA available",
+      "noTraining": "No training on data",
+      "sccs": "SCCs in place"
+    }
+  },
+  "ModelTable": {
+    "searchLabel": "Search models or providers",
+    "searchPlaceholder": "Search models or providers…",
+    "clearSearch": "Clear search",
+    "noModelsFound": "No models found for \"{query}\"",
+    "resultCountFiltered": "{matching} of {total} models match the active filter",
+    "resultCountSearch": "{total} of {all} models",
+    "resultCount": "{total} models",
+    "tableAriaLabel": "AI models with GDPR compliance data",
+    "columns": {
+      "model": "Model",
+      "compliance": "Compliance",
+      "residency": "Residency",
+      "price": "Price / 1M tokens",
+      "verified": "Verified"
+    },
+    "sortBy": "Sort by {label}"
+  },
+  "ModelRow": {
+    "fullProviderProfile": "Full provider profile →",
+    "expandSections": {
+      "compliance": "Compliance",
+      "euRouting": "EU Routing"
+    },
+    "complianceFields": {
+      "euDataResidency": "EU data residency",
+      "dpaAvailable": "DPA available",
+      "trainsOnCustomerData": "Trains on customer data",
+      "noTrainingOnCustomerData": "No training on customer data",
+      "sccsInPlace": "SCCs in place"
+    },
+    "euResidencyValue": "EU",
+    "unverifiedNotice": "Compliance data not yet verified for this provider.",
+    "priceIn": "in ",
+    "priceOut": "out "
+  },
+  "ProviderCard": {
+    "tiers": {
+      "compliant": "EU Compliant",
+      "partial": "EU + SCCs",
+      "noncompliant": "Non-compliant",
+      "unverified": "Unverified"
+    },
+    "modelCount": "{count} model",
+    "modelCountPlural": "{count} models"
+  },
+  "ComplianceBadge": {
+    "euOnly": "EU Only",
+    "dpa": "DPA",
+    "euSccs": "EU + SCCs",
+    "noTraining": "No Training",
+    "trainsOnData": "Trains on Data",
+    "usOnly": "US Only",
+    "unverified": "Unverified"
+  }
+}

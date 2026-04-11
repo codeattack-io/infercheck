@@ -12,6 +12,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { cache } from "react";
+import { getTranslations } from "next-intl/server";
 import { db } from "@/lib/db";
 import { models } from "@/db/schema";
 import { eq, and, sql } from "drizzle-orm";
@@ -40,11 +41,11 @@ function formatContext(n: number | null): string {
   return `${n}`;
 }
 
-const TIER_CONFIG: Record<ComplianceTier, { label: string; color: string; bg: string; border: string }> = {
-  compliant: { label: "EU Compliant", color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" },
-  partial: { label: "Partial (EU + SCCs)", color: "#92400e", bg: "#fffbeb", border: "#fde68a" },
-  noncompliant: { label: "Non-compliant", color: "#b91c1c", bg: "#fef2f2", border: "#fecaca" },
-  unverified: { label: "Unverified", color: "#6b7280", bg: "#f8f8f7", border: "#e2e2de" },
+const TIER_STYLE: Record<ComplianceTier, { color: string; bg: string; border: string }> = {
+  compliant: { color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" },
+  partial: { color: "#92400e", bg: "#fffbeb", border: "#fde68a" },
+  noncompliant: { color: "#b91c1c", bg: "#fef2f2", border: "#fecaca" },
+  unverified: { color: "#6b7280", bg: "#f8f8f7", border: "#e2e2de" },
 };
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
@@ -99,6 +100,15 @@ export default async function ModelDetailPage({ params }: PageProps) {
     notFound();
   }
 
+  const t = await getTranslations("ModelPage");
+
+  const TIER_CONFIG: Record<ComplianceTier, { label: string; color: string; bg: string; border: string }> = {
+    compliant: { label: t("tiers.compliant"), ...TIER_STYLE.compliant },
+    partial: { label: t("tiers.partial"), ...TIER_STYLE.partial },
+    noncompliant: { label: t("tiers.noncompliant"), ...TIER_STYLE.noncompliant },
+    unverified: { label: t("tiers.unverified"), ...TIER_STYLE.unverified },
+  };
+
   const providerMap = new Map<string, AnyProvider>(allProviders.map((p) => [p.slug, p]));
 
   const modelName = modelRows[0].displayName;
@@ -133,7 +143,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
           <ol className="flex items-center gap-2 list-none p-0 m-0 font-body text-[0.8125rem] text-text-muted">
             <li>
               <Link href="/" className="text-link no-underline">
-                Models
+                {t("breadcrumb.models")}
               </Link>
             </li>
             <li aria-hidden="true">/</li>
@@ -148,9 +158,9 @@ export default async function ModelDetailPage({ params }: PageProps) {
           </h1>
           <p className="font-body text-[0.9375rem] text-text-secondary m-0">
             {modelRows.length === 1
-              ? "Available from 1 provider"
-              : `Available from ${modelRows.length} providers`}
-            {" — compare compliance, pricing, and data residency below."}
+              ? t("availableFrom1")
+              : t("availableFromN", { count: modelRows.length })}
+            {t("compareSubheading")}
           </p>
         </div>
 
@@ -208,7 +218,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
                     href={`/provider/${row.providerSlug}`}
                     className="font-body text-[0.8125rem] font-medium text-accent no-underline inline-flex items-center gap-1 px-[10px] py-1 border border-accent rounded bg-accent-subtle whitespace-nowrap shrink-0"
                   >
-                    Full provider profile →
+                    {t("fullProviderProfile")}
                   </Link>
                 </div>
 
@@ -218,49 +228,49 @@ export default async function ModelDetailPage({ params }: PageProps) {
                   style={{ gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}
                 >
                   {/* Pricing */}
-                  <DetailSection title="Pricing (per 1M tokens)">
-                    <DetailRow label="Input" value={formatPrice(row.inputPricePerMTokens)} mono />
-                    <DetailRow label="Output" value={formatPrice(row.outputPricePerMTokens)} mono />
-                    <DetailRow label="Context" value={formatContext(row.contextWindow)} mono />
+                  <DetailSection title={t("sections.pricing")}>
+                    <DetailRow label={t("pricing.input")} value={formatPrice(row.inputPricePerMTokens)} mono />
+                    <DetailRow label={t("pricing.output")} value={formatPrice(row.outputPricePerMTokens)} mono />
+                    <DetailRow label={t("pricing.context")} value={formatContext(row.contextWindow)} mono />
                   </DetailSection>
 
                   {/* Compliance summary */}
                   {verified && provider !== null && isFullProvider(provider) ? (
-                    <DetailSection title="GDPR Compliance">
+                    <DetailSection title={t("sections.gdprCompliance")}>
                       <BooleanRow
-                        label="EU data residency"
+                        label={t("compliance.euDataResidency")}
                         value={provider.compliance.dataResidency.euOnly}
                       />
                       <BooleanRow
-                        label="DPA available"
+                        label={t("compliance.dpaAvailable")}
                         value={provider.compliance.dpa.available}
                         href={provider.compliance.dpa.url ?? undefined}
                       />
                       <BooleanRow
-                        label="No training on data"
+                        label={t("compliance.noTrainingOnData")}
                         value={!provider.compliance.dataUsage.trainsOnCustomerData}
                       />
                       <BooleanRow
-                        label="SCCs in place"
+                        label={t("compliance.sccsInPlace")}
                         value={provider.compliance.sccs ?? false}
                       />
                     </DetailSection>
                   ) : (
-                    <DetailSection title="GDPR Compliance">
+                    <DetailSection title={t("sections.gdprCompliance")}>
                       <p className="font-body text-[0.8125rem] text-text-muted m-0 italic">
-                        Not yet verified
+                        {t("compliance.notYetVerified")}
                       </p>
                     </DetailSection>
                   )}
 
                   {/* Data residency detail */}
                   {verified && provider !== null && isFullProvider(provider) ? (
-                    <DetailSection title="Data Residency">
+                    <DetailSection title={t("sections.dataResidency")}>
                       <DetailRow
-                        label="Regions"
+                        label={t("residency.regions")}
                         value={
                           provider.compliance.dataResidency.euOnly
-                            ? "EU only"
+                            ? t("residency.euOnly")
                             : provider.compliance.dataResidency.regions.join(", ")
                         }
                       />
@@ -274,7 +284,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
 
                   {/* Badges */}
                   {verified && provider !== null && isFullProvider(provider) ? (
-                    <DetailSection title="Compliance Badges">
+                    <DetailSection title={t("sections.complianceBadges")}>
                       <div className="flex flex-wrap gap-1">
                         {provider.compliance.dataResidency.euOnly ? (
                           <ComplianceBadge variant="eu-only" />
@@ -292,7 +302,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
                       </div>
                       {provider.lastVerified ? (
                         <p className="font-mono text-xs text-text-muted mt-2">
-                          Verified {provider.lastVerified}
+                          {t("verifiedDate", { date: provider.lastVerified })}
                         </p>
                       ) : null}
                     </DetailSection>
@@ -306,7 +316,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
         {/* Back link */}
         <div className="mt-10">
           <Link href="/" className="font-body text-sm text-link no-underline">
-            ← Back to all models
+            {t("backLink")}
           </Link>
         </div>
       </main>

@@ -9,6 +9,7 @@
 
 import { useState, memo, type ReactNode } from "react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
 import { isFullProvider, getComplianceTier } from "@/lib/compliance";
 import type { ModelWithProvider } from "@/components/types";
@@ -108,6 +109,7 @@ interface ModelRowProps {
 function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
   const { model, provider } = item;
   const [expanded, setExpanded] = useState(false);
+  const t = useTranslations("ModelRow");
 
   const tier = provider ? getComplianceTier(provider) : "unverified";
   const tierColor = TIER_COLOR[tier];
@@ -167,7 +169,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
         <td className="p-3 px-4 align-middle font-body text-[0.875rem] text-text-secondary hidden md:table-cell">
           {isVerified && provider !== null && isFullProvider(provider)
             ? provider.compliance.dataResidency.euOnly
-              ? "EU"
+              ? t("euResidencyValue")
               : provider.compliance.dataResidency.regions.join(", ")
             : "—"}
         </td>
@@ -177,11 +179,11 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
           {model.inputPricePerMTokens !== null || model.outputPricePerMTokens !== null ? (
             <div className="flex flex-col gap-0.5">
               <span className="font-mono text-[0.8125rem] text-text-secondary whitespace-nowrap">
-                <span className="text-text-muted text-xs">in </span>
+                <span className="text-text-muted text-xs">{t("priceIn")}</span>
                 {formatPrice(model.inputPricePerMTokens)}
               </span>
               <span className="font-mono text-[0.8125rem] text-text-secondary whitespace-nowrap">
-                <span className="text-text-muted text-xs">out </span>
+                <span className="text-text-muted text-xs">{t("priceOut")}</span>
                 {formatPrice(model.outputPricePerMTokens)}
               </span>
             </div>
@@ -236,7 +238,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                   onClick={(e) => e.stopPropagation()}
                   className="font-body text-[0.8125rem] font-medium text-accent no-underline inline-flex items-center gap-1 px-[10px] py-1 border border-accent rounded bg-accent-subtle whitespace-nowrap"
                 >
-                  Full provider profile →
+                  {t("fullProviderProfile")}
                 </Link>
               </div>
 
@@ -246,30 +248,30 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                   <>
                     <div>
                       <div className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] mb-2">
-                        Compliance
+                        {t("expandSections.compliance")}
                       </div>
                       <div className="flex flex-col gap-1.5">
                         <ComplianceField
-                          label="EU data residency"
+                          label={t("complianceFields.euDataResidency")}
                           value={provider.compliance.dataResidency.euOnly}
                         />
                         <ComplianceField
-                          label="DPA available"
+                          label={t("complianceFields.dpaAvailable")}
                           value={provider.compliance.dpa.available}
                           href={provider.compliance.dpa.url ?? undefined}
                         />
                         <ComplianceField
-                          label={provider.compliance.dataUsage.trainsOnCustomerData ? "Trains on customer data" : "No training on customer data"}
+                          label={provider.compliance.dataUsage.trainsOnCustomerData ? t("complianceFields.trainsOnCustomerData") : t("complianceFields.noTrainingOnCustomerData")}
                           value={!provider.compliance.dataUsage.trainsOnCustomerData}
                         />
-                        <ComplianceField label="SCCs in place" value={provider.compliance.sccs ?? false} />
+                        <ComplianceField label={t("complianceFields.sccsInPlace")} value={provider.compliance.sccs ?? false} />
                       </div>
                     </div>
 
                     {provider.compliance.dataResidency.euRegionDetails ? (
                       <div>
                         <div className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] mb-2">
-                          EU Routing
+                          {t("expandSections.euRouting")}
                         </div>
                         <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.5] max-w-[40ch]">
                           {provider.compliance.dataResidency.euRegionDetails}
@@ -279,7 +281,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                   </>
                 ) : (
                   <p className="font-body text-[0.875rem] text-text-muted m-0">
-                    Compliance data not yet verified for this provider.
+                    {t("unverifiedNotice")}
                   </p>
                 )}
               </div>

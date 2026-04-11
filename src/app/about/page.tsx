@@ -3,6 +3,7 @@
 
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 
 // ─── Metadata ──────────────────────────────────────────────────────────────────
 
@@ -25,18 +26,19 @@ const NEW_ISSUE_URL = `${GITHUB_REPO}/issues/new?template=report-change.yml`;
 
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const t = await getTranslations("AboutPage");
+
   return (
     <>
-      <main className="max-w-[720px] mx-auto px-6 pt-14 pb-24">
+      <main className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 pt-14 pb-24">
         {/* ── Page heading ── */}
         <h1 className="font-display text-[clamp(2rem,5vw,2.75rem)] font-normal text-heading leading-[1.15] mb-3 tracking-[-0.02em]">
-          About this directory
+          {t("heading")}
         </h1>
 
-        <p className="font-body text-[1.0625rem] text-text-secondary leading-[1.65] mb-12 max-w-[600px]">
-          A neutral, sourced reference for GDPR compliance across AI inference
-          providers — built because no such resource existed.
+        <p className="font-body text-[1.0625rem] text-text-secondary leading-[1.65] mb-12">
+          {t("subtitle")}
         </p>
 
         {/* ── Divider ── */}
@@ -45,34 +47,19 @@ export default function AboutPage() {
         {/* ── Why this exists ── */}
         <section className="mb-12">
           <h2 className="font-display text-2xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            Why this exists
+            {t("whyExistsHeading")}
           </h2>
           <div className="font-body text-[0.9375rem] text-text-primary leading-[1.75] flex flex-col gap-4">
-            <p>
-              I built this for myself. As a developer building SaaS products in Germany, every time I
-              evaluated a new AI inference provider I had to answer the same questions: Where does the
-              data go at inference time? Is there a DPA I can actually sign? Does the provider train
-              on my users&apos; inputs? Is there an EU-only routing option?
-            </p>
-            <p>
-              Those questions don&apos;t have a single place to look them up. You end up digging through
-              privacy policies, data processing addenda, and support docs — for every provider,
-              every time. In my corporate job I saw the same friction play out weekly: teams
-              defaulting to expensive enterprise contracts (Azure OpenAI, IBM Watsonx) not because
-              the models were better but because the compliance paperwork was already done.
-            </p>
-            <p>
-              This directory is the resource I wanted. It presents structured, sourced facts — not
-              a provider&apos;s own marketing copy, not a law firm&apos;s generic checklist — so you
-              can make a defensible provider selection and move on.
-            </p>
+            <p>{t("whyExistsPara1")}</p>
+            <p>{t("whyExistsPara2")}</p>
+            <p>{t("whyExistsPara3")}</p>
           </div>
         </section>
 
         {/* ── Who built it ── */}
         <section className="mb-12 bg-surface border border-border rounded-lg px-8 py-7">
           <h2 className="font-display text-2xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            Who built it
+            {t("whoBuiltHeading")}
           </h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75] mb-4">
             I&apos;m Carlo, a software developer based in{" "}
@@ -81,42 +68,28 @@ export default function AboutPage() {
             under GDPR daily, from both the engineering and compliance sides of the table.
           </p>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
-            I don&apos;t have a financial relationship with any of the providers listed here. The
-            directory is independent. Compliance metadata reflects publicly verifiable information
-            with source links — if something is wrong or has changed, I want to know.
+            {t("whoBuiltPara2")}
           </p>
         </section>
 
         {/* ── How data is maintained ── */}
         <section className="mb-12">
           <h2 className="font-display text-2xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            How data is maintained
+            {t("dataMaintenanceHeading")}
           </h2>
           <div className="font-body text-[0.9375rem] text-text-primary leading-[1.75] flex flex-col gap-4">
-            <p>
-              Every provider entry is a flat JSON file stored in the public GitHub repository.
-              Each field has a source URL. Every entry shows a &ldquo;last verified&rdquo; date so
-              you can judge how fresh the information is before acting on it.
-            </p>
-            <p>
-              Provider compliance terms change — sometimes quietly. If you spot something outdated
-              or missing, the best thing you can do is open an issue on GitHub. The issue template
-              asks for the specific field that changed and a link to the source document. That keeps
-              updates auditable and reviewable before they go into the directory.
-            </p>
+            <p>{t("dataMaintenancePara1")}</p>
+            <p>{t("dataMaintenancePara2")}</p>
           </div>
         </section>
 
         {/* ── Report a change CTA ── */}
         <section className="mb-12 bg-accent-subtle border border-[#bfdbfe] rounded-lg px-8 py-7">
           <h2 className="font-display text-[1.375rem] font-normal text-heading mb-2.5 tracking-[-0.01em]">
-            Seen something change?
+            {t("seenChangeHeading")}
           </h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.7] mb-5">
-            If a provider has updated their DPA, changed their data residency terms, launched
-            EU-only routing, or anything else relevant to GDPR compliance — please file a GitHub
-            issue. The structured template takes under two minutes and helps keep this resource
-            accurate for everyone.
+            {t("seenChangePara")}
           </p>
           <a
             href={NEW_ISSUE_URL}
@@ -134,51 +107,49 @@ export default function AboutPage() {
             >
               <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
             </svg>
-            Open an issue on GitHub
+            {t("openIssueBtn")}
           </a>
 
           <p className="font-body text-[0.8125rem] text-text-secondary mt-3 leading-[1.5]">
-            A GitHub account is required to submit. You can also browse{" "}
+            {t("githubNote")}{" "}
             <a
               href={`${GITHUB_REPO}/issues`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-link"
             >
-              open issues
+              {t("openIssues")}
             </a>{" "}
-            or review the{" "}
+            {t("or")}{" "}
             <a
               href={`${GITHUB_REPO}/tree/main/data/providers`}
               target="_blank"
               rel="noopener noreferrer"
               className="text-link"
             >
-              provider data files
+              {t("providerDataFiles")}
             </a>{" "}
-            directly.
+            {t("directly")}
           </p>
         </section>
 
         {/* ── What this is not ── */}
         <section className="mb-12">
           <h2 className="font-display text-2xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            What this is not
+            {t("whatIsNotHeading")}
           </h2>
           <ul className="font-body text-[0.9375rem] text-text-primary leading-[1.75] pl-5 flex flex-col gap-2">
             <li>
-              <strong className="font-semibold">Not legal advice.</strong> The directory
-              presents facts, not compliance judgments. Always verify with the provider directly
-              and consult legal counsel before relying on this for procurement decisions.
+              <strong className="font-semibold">{t("notLegalAdviceTitle")}</strong>{" "}
+              {t("notLegalAdviceBody")}
             </li>
             <li>
-              <strong className="font-semibold">Not a paid placement service.</strong> No
-              provider has paid to appear here or to influence how their data is presented.
+              <strong className="font-semibold">{t("notPaidTitle")}</strong>{" "}
+              {t("notPaidBody")}
             </li>
             <li>
-              <strong className="font-semibold">Not guaranteed to be current.</strong> Provider
-              terms change. The &ldquo;last verified&rdquo; date on each entry tells you when the
-              information was last confirmed against source documents.
+              <strong className="font-semibold">{t("notCurrentTitle")}</strong>{" "}
+              {t("notCurrentBody")}
             </li>
           </ul>
         </section>
@@ -189,7 +160,7 @@ export default function AboutPage() {
             href="/"
             className="font-body text-sm font-medium text-link underline underline-offset-[3px]"
           >
-            ← Browse the directory
+            {t("backLink")}
           </Link>
         </div>
       </main>
