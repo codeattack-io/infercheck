@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.52",
+    "@aws-sdk/client-bedrock": "^3.1029.0",
     "@neondatabase/serverless": "^1.0.2",
     "@sentry/nextjs": "^10.47.0",
     "ai": "^6.0.158",

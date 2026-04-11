@@ -9,13 +9,18 @@
  * Sources:
  *   1. OpenRouter /api/v1/models  — covers 300+ models across major providers
  *   2. Per-provider adapters      — EU-native providers not on OpenRouter
- *      (Scaleway, Aleph Alpha, Berget AI, Stackit, OVHcloud, Mistral)
+ *      (Scaleway, Aleph Alpha, Berget AI, Stackit, OVHcloud, Mistral, Amazon Bedrock)
  */
 
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
 import { eq, and, notInArray } from "drizzle-orm";
 import * as schema from "@/db/schema";
+import {
+  BedrockClient,
+  ListFoundationModelsCommand,
+  type FoundationModelSummary,
+} from "@aws-sdk/client-bedrock";
 
 // ─── DB client (lazily initialised) ──────────────────────────────────────────
 
@@ -50,8 +55,9 @@ const OPENROUTER_PREFIX_TO_SLUG: Record<string, string> = {
   qwen: "alibaba",
   alibaba: "alibaba",
   microsoft: "github-models",
-  // bytedance / bytedance-seed: ByteDance has no public inference API for external users — not a provider
-  // meta-llama: Meta has no self-serve inference API — not a provider (was wrongly mapped to together-ai)
+  // bytedance / bytedance-seed: Volcengine Ark API is China-only — not accessible to EU users
+  // bytedance: "bytedance",  // no international endpoint
+  // "bytedance-seed": "bytedance",
 };
 
 // ─── Modality normalisation ───────────────────────────────────────────────────
@@ -394,6 +400,55 @@ async function fetchStackitModels(): Promise<ModelRow[]> {
   }));
 }
 
+async function fetchBedrockModels(): Promise<ModelRow[]> {
+  console.log("Fetching Amazon Bedrock model catalog…");
+  const region = process.env.AWS_REGION ?? "eu-west-1";
+  const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
+  const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
+
+  if (!accessKeyId || !secretAccessKey) {
+    console.warn("  Bedrock adapter skipped: AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY not set");
+    return [];
+  }
+
+  try {
+    const client = new BedrockClient({
+      region,
+      credentials: { accessKeyId, secretAccessKey },
+    });
+
+    const cmd = new ListFoundationModelsCommand({ byInferenceType: "ON_DEMAND" });
+    const resp = await client.send(cmd);
+    const models: FoundationModelSummary[] = resp.modelSummaries ?? [];
+
+    const now = new Date();
+    return models.map((m) => {
+      const raw = m.modelId ?? "";
+      const mod = m.inputModalities ?? [];
+      const hasImage = mod.includes("IMAGE");
+      const hasText = mod.includes("TEXT");
+      const modality = hasImage && hasText ? "multimodal" : hasImage ? "multimodal" : "text";
+
+      return {
+        id: `bedrock/${raw}`,
+        providerSlug: "amazon-bedrock",
+        displayName: m.modelName ?? raw,
+        modality,
+        contextWindow: null, // not exposed by ListFoundationModels
+        inputPricePerMTokens: null,
+        outputPricePerMTokens: null,
+        tokensPerSecond: null,
+        syncSource: "provider_api",
+        isActive: m.modelLifecycle?.status !== "LEGACY",
+        lastSyncedAt: now,
+      };
+    });
+  } catch (e) {
+    console.warn(`  Bedrock adapter failed: ${e}`);
+    return [];
+  }
+}
+
 async function fetchAlephAlphaModels(): Promise<ModelRow[]> {
   // Aleph Alpha pivoted in 2024 to bespoke enterprise/government SLLMs (PhariaAI).
   // The public Luminous inference API has been shut down — /models_available is deprecated
@@ -414,6 +469,7 @@ export const PROVIDER_ADAPTERS: Record<string, () => Promise<ModelRow[]>> = {
   "ovhcloud-ai-endpoints": fetchOVHcloudModels,
   "berget-ai": fetchBergetModels,
   stackit: fetchStackitModels,
+  "amazon-bedrock": fetchBedrockModels,
   "aleph-alpha": fetchAlephAlphaModels,
 };
 
