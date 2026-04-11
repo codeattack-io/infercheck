@@ -1,4 +1,7 @@
 {
+  "LanguageSwitcher": {
+    "ariaLabel": "Sprache"
+  },
   "Nav": {
     "wordmark": "DSGVO KI-Verzeichnis",
     "links": {

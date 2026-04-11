@@ -3,6 +3,7 @@
 import { Link, usePathname } from "@/i18n/navigation";
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
 export function Nav() {
   const pathname = usePathname();
@@ -50,7 +51,7 @@ export function Nav() {
           </Link>
 
           {/* Desktop nav */}
-          <nav aria-label="Main navigation" className="hidden sm:flex gap-7">
+          <nav aria-label="Main navigation" className="hidden sm:flex items-center gap-7">
             {NAV_LINKS.map((link) => {
               const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
               return (
@@ -68,6 +69,7 @@ export function Nav() {
                 </Link>
               );
             })}
+            <LanguageSwitcher />
           </nav>
 
           {/* Mobile menu button */}
@@ -110,6 +112,9 @@ export function Nav() {
               </Link>
             );
           })}
+          <div className="mt-auto pt-4 border-t border-border">
+            <LanguageSwitcher />
+          </div>
         </div>
       ) : null}
 

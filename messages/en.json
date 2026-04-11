@@ -1,4 +1,7 @@
 {
+  "LanguageSwitcher": {
+    "ariaLabel": "Language"
+  },
   "Nav": {
     "wordmark": "GDPR AI Directory",
     "links": {
