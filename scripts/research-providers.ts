@@ -38,7 +38,9 @@ const concurrencyArg = args.find((_, i) => args[i - 1] === "--concurrency");
 const concurrency = concurrencyArg ? parseInt(concurrencyArg, 10) : 30;
 
 if (!runAll && !providerArg) {
-  console.error("Usage: --all | --provider <slug>  [--concurrency N] [--dry-run]");
+  console.error(
+    "Usage: --all | --provider <slug>  [--concurrency N] [--dry-run]",
+  );
   process.exit(1);
 }
 
@@ -56,10 +58,14 @@ interface StubEntry {
 }
 
 function loadStubs(): StubEntry[] {
-  const files = fs.readdirSync(PROVIDERS_DIR).filter((f) => f.endsWith(".json") && !f.startsWith("_"));
+  const files = fs
+    .readdirSync(PROVIDERS_DIR)
+    .filter((f) => f.endsWith(".json") && !f.startsWith("_"));
   const stubs: StubEntry[] = [];
   for (const f of files) {
-    const raw = JSON.parse(fs.readFileSync(path.join(PROVIDERS_DIR, f), "utf-8"));
+    const raw = JSON.parse(
+      fs.readFileSync(path.join(PROVIDERS_DIR, f), "utf-8"),
+    );
     const result = ProviderStubSchema.safeParse(raw);
     if (result.success) {
       stubs.push({
@@ -85,7 +91,9 @@ function loadSingleStub(slug: string): StubEntry | null {
     // Check if it's already a full provider
     const full = ProviderSchema.safeParse(raw);
     if (full.success) {
-      console.log(`→ ${slug} already fully researched (verifiedBy: ${full.data.verifiedBy}), skipping.`);
+      console.log(
+        `→ ${slug} already fully researched (verifiedBy: ${full.data.verifiedBy}), skipping.`,
+      );
       return null;
     }
     console.error(`${slug}: not a valid stub or full provider — skipping.`);
@@ -184,7 +192,10 @@ Rules:
 
 // ─── Research a single provider ───────────────────────────────────────────────
 
-async function researchProvider(stub: StubEntry, dryRun: boolean): Promise<"success" | "failed" | "skipped"> {
+async function researchProvider(
+  stub: StubEntry,
+  dryRun: boolean,
+): Promise<"success" | "failed" | "skipped"> {
   if (dryRun) {
     console.log(`[DRY RUN] Would research: ${stub.slug} (${stub.name})`);
     return "skipped";
@@ -195,7 +206,7 @@ async function researchProvider(stub: StubEntry, dryRun: boolean): Promise<"succ
   let rawOutput = "";
   try {
     const result = await generateText({
-      model: openai("gpt-4.5"),
+      model: openai("gpt-5.4"),
       tools: {
         web_search_preview: openai.tools.webSearchPreview({}),
       },
@@ -219,9 +230,16 @@ async function researchProvider(stub: StubEntry, dryRun: boolean): Promise<"succ
 
     if (!validation.success) {
       console.error(`✗  ${stub.slug}: schema validation failed`);
-      console.error("   Errors:", JSON.stringify(validation.error.issues.slice(0, 5), null, 2));
+      console.error(
+        "   Errors:",
+        JSON.stringify(validation.error.issues.slice(0, 5), null, 2),
+      );
       fs.mkdirSync(FAILED_DIR, { recursive: true });
-      fs.writeFileSync(path.join(FAILED_DIR, `${stub.slug}.json`), rawOutput, "utf-8");
+      fs.writeFileSync(
+        path.join(FAILED_DIR, `${stub.slug}.json`),
+        rawOutput,
+        "utf-8",
+      );
       return "failed";
     }
 
@@ -234,10 +252,16 @@ async function researchProvider(stub: StubEntry, dryRun: boolean): Promise<"succ
     console.log(`✓  ${stub.slug}`);
     return "success";
   } catch (err) {
-    console.error(`✗  ${stub.slug}: ${err instanceof Error ? err.message : String(err)}`);
+    console.error(
+      `✗  ${stub.slug}: ${err instanceof Error ? err.message : String(err)}`,
+    );
     if (rawOutput) {
       fs.mkdirSync(FAILED_DIR, { recursive: true });
-      fs.writeFileSync(path.join(FAILED_DIR, `${stub.slug}.json`), rawOutput, "utf-8");
+      fs.writeFileSync(
+        path.join(FAILED_DIR, `${stub.slug}.json`),
+        rawOutput,
+        "utf-8",
+      );
     }
     return "failed";
   }

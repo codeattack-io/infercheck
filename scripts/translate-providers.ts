@@ -42,7 +42,9 @@ const concurrencyArg = args.find((_, i) => args[i - 1] === "--concurrency");
 const concurrency = concurrencyArg ? parseInt(concurrencyArg, 10) : 30;
 
 if (!runAll && !providerArg) {
-  console.error("Usage: --all | --provider <slug>  [--concurrency N] [--force] [--dry-run]");
+  console.error(
+    "Usage: --all | --provider <slug>  [--concurrency N] [--force] [--dry-run]",
+  );
   process.exit(1);
 }
 
@@ -53,10 +55,14 @@ const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
 // ─── Provider loading ─────────────────────────────────────────────────────────
 
 function loadFullProviders(): Provider[] {
-  const files = fs.readdirSync(PROVIDERS_DIR).filter((f) => f.endsWith(".json") && !f.startsWith("_"));
+  const files = fs
+    .readdirSync(PROVIDERS_DIR)
+    .filter((f) => f.endsWith(".json") && !f.startsWith("_"));
   const providers: Provider[] = [];
   for (const f of files) {
-    const raw = JSON.parse(fs.readFileSync(path.join(PROVIDERS_DIR, f), "utf-8"));
+    const raw = JSON.parse(
+      fs.readFileSync(path.join(PROVIDERS_DIR, f), "utf-8"),
+    );
     const result = ProviderSchema.safeParse(raw);
     if (result.success) {
       providers.push(result.data);
@@ -74,7 +80,9 @@ function loadSingleFullProvider(slug: string): Provider | null {
   const raw = JSON.parse(fs.readFileSync(filePath, "utf-8"));
   const result = ProviderSchema.safeParse(raw);
   if (!result.success) {
-    console.error(`${slug}: not a fully verified provider (still a stub?), skipping.`);
+    console.error(
+      `${slug}: not a fully verified provider (still a stub?), skipping.`,
+    );
     return null;
   }
   return result.data;
@@ -106,7 +114,10 @@ function hasAnyContent(fields: TranslatableFields): boolean {
 
 // ─── Prompt ───────────────────────────────────────────────────────────────────
 
-function buildTranslationPrompt(provider: Provider, fields: TranslatableFields): string {
+function buildTranslationPrompt(
+  provider: Provider,
+  fields: TranslatableFields,
+): string {
   const fieldLines = Object.entries(fields)
     .filter(([, v]) => v !== null)
     .map(([k, v]) => `"${k}": ${JSON.stringify(v)}`)
@@ -163,19 +174,25 @@ async function translateProvider(
 ): Promise<"success" | "failed" | "skipped"> {
   // Skip if already translated (unless --force)
   if (!force && provider.translations?.de) {
-    console.log(`→  ${provider.slug}: already has translations.de, skipping (use --force to override)`);
+    console.log(
+      `→  ${provider.slug}: already has translations.de, skipping (use --force to override)`,
+    );
     return "skipped";
   }
 
   const fields = extractTranslatableFields(provider);
 
   if (!hasAnyContent(fields)) {
-    console.log(`→  ${provider.slug}: no translatable content (all fields null), skipping`);
+    console.log(
+      `→  ${provider.slug}: no translatable content (all fields null), skipping`,
+    );
     return "skipped";
   }
 
   if (dryRun) {
-    console.log(`[DRY RUN] Would translate: ${provider.slug} (${provider.name})`);
+    console.log(
+      `[DRY RUN] Would translate: ${provider.slug} (${provider.name})`,
+    );
     return "skipped";
   }
 
@@ -184,7 +201,7 @@ async function translateProvider(
   let rawOutput = "";
   try {
     const result = await generateText({
-      model: openai("gpt-4.5"),
+      model: openai("gpt-5.4"),
       messages: [
         {
           role: "user",
@@ -223,21 +240,35 @@ async function translateProvider(
 
     const validation = ProviderTranslationSchema.safeParse(translationData);
     if (!validation.success) {
-      console.error(`✗  ${provider.slug}: translation schema validation failed`);
-      console.error("   Errors:", JSON.stringify(validation.error.issues, null, 2));
+      console.error(
+        `✗  ${provider.slug}: translation schema validation failed`,
+      );
+      console.error(
+        "   Errors:",
+        JSON.stringify(validation.error.issues, null, 2),
+      );
       return "failed";
     }
 
     // Read the raw file, merge in translations.de, write back
     const filePath = path.join(PROVIDERS_DIR, `${provider.slug}.json`);
     const rawFile = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-    rawFile.translations = { ...(rawFile.translations ?? {}), de: validation.data };
-    fs.writeFileSync(filePath, JSON.stringify(rawFile, null, 2) + "\n", "utf-8");
+    rawFile.translations = {
+      ...(rawFile.translations ?? {}),
+      de: validation.data,
+    };
+    fs.writeFileSync(
+      filePath,
+      JSON.stringify(rawFile, null, 2) + "\n",
+      "utf-8",
+    );
 
     console.log(`✓  ${provider.slug}`);
     return "success";
   } catch (err) {
-    console.error(`✗  ${provider.slug}: ${err instanceof Error ? err.message : String(err)}`);
+    console.error(
+      `✗  ${provider.slug}: ${err instanceof Error ? err.message : String(err)}`,
+    );
     return "failed";
   }
 }
