@@ -48,9 +48,10 @@ const OPENROUTER_PREFIX_TO_SLUG: Record<string, string> = {
   stepfun: "stepfun",
   morph: "morph",
   qwen: "alibaba",
+  alibaba: "alibaba",
   microsoft: "github-models",
-  bytedance: "deepseek",
-  "bytedance-seed": "deepseek",
+  // bytedance / bytedance-seed: ByteDance has no public inference API for external users — not a provider
+  // meta-llama: Meta has no self-serve inference API — not a provider (was wrongly mapped to together-ai)
 };
 
 // ─── Modality normalisation ───────────────────────────────────────────────────
