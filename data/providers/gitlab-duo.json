@@ -3,12 +3,62 @@
   "name": "GitLab Duo",
   "type": "api_provider",
   "website": "https://docs.gitlab.com",
-  "apiDocsUrl": "https://docs.gitlab.com/user/duo_agent_platform/",
+  "apiDocsUrl": "https://docs.gitlab.com/user/gitlab_duo/",
   "logoPath": "/logos/gitlab-duo.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US",
+        "EU",
+        "APAC"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "GitLab deploys its AI Gateway in Europe (europe-west2, europe-west3, europe-west9), North America (us-east4), and Asia Pacific (asia-northeast1, asia-northeast3). However, GitLab states the multi-region AI Gateway does not enforce strict data sovereignty, is not a data residency solution, and model providers may process data in other regions. GitLab.com is single-homed in us-east1 and AI Gateway requests are routed to us-east4 in almost all cases."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://handbook.gitlab.com/pdfs/legal/privacy/customer_dpa_05_20_24.pdf",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "GitLab Duo documentation states GitLab has zero-day retention with Anthropic, Fireworks AI, AWS, and Google for Duo requests, meaning those vendors discard model input/output immediately after output is provided, except when Fireworks AI, Anthropic, and Vertex AI prompt caching is enabled for Code Suggestions and GitLab Duo Agentic Chat; OpenAI prompt caching cannot be turned off. GitLab says it does not otherwise retain Duo input/output data unless customers consent via support ticket, but GitLab Duo Chat and GitLab Duo Agent Platform retain chat/workflow history, and extended logging can retain trace data. GitLab’s general privacy statement says personal data is retained while the account is active or as needed for services, legal obligations, disputes, rights preservation, and enforcement.",
+      "details": "GitLab says it does not train generative AI models and that GitLab AI model sub-processors are contractually restricted from using model input/output to train models. GitLab Duo also collects aggregated or de-identified first-party usage telemetry such as number of users/instances, prompt and suffix lengths, model used, status codes, and response times."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://about.gitlab.com/privacy/subprocessors/",
+      "includesEuEntities": true
+    },
+    "certifications": [
+      "SOC2",
+      "ISO27001",
+      "ISO27017",
+      "ISO27018"
+    ],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "GitLab states its current AI features do not qualify as high-risk AI systems under the EU AI Act and comply with the Act’s requirements to the extent they constitute limited-risk systems."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "enterprise_only",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.gitlab.com/user/gitlab_duo/",
+    "https://docs.gitlab.com/user/gitlab_duo/data_usage/",
+    "https://docs.gitlab.com/administration/gitlab_duo/gateway/",
+    "https://about.gitlab.com/ai-transparency-center/",
+    "https://about.gitlab.com/privacy/",
+    "https://about.gitlab.com/privacy/subprocessors/",
+    "https://handbook.gitlab.com/pdfs/legal/privacy/customer_dpa_05_20_24.pdf",
+    "https://about.gitlab.com/security/",
+    "https://about.gitlab.com/pricing/"
+  ],
+  "notes": "GitLab publishes comparatively detailed primary-source documentation for Duo, including model/sub-processor transparency, Duo-specific data usage and retention notes, a public DPA, and public sub-processor disclosures. For hosted inference, GitLab explicitly says strict EU-only sovereignty is not guaranteed and data may leave Europe during inference; customers needing stronger locality guarantees should evaluate Duo Self-Hosted or Dedicated separately."
 }

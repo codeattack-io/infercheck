@@ -3,12 +3,60 @@
   "name": "Xiaomi",
   "type": "api_provider",
   "website": "https://platform.xiaomimimo.com",
-  "apiDocsUrl": "https://platform.xiaomimimo.com/#/docs",
+  "apiDocsUrl": "https://platform.xiaomimimo.com/#/docs/welcome",
   "logoPath": "/logos/xiaomi.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "CN",
+    "dataResidency": {
+      "regions": [
+        "CN",
+        "IN",
+        "US",
+        "DE",
+        "RU",
+        "SG",
+        "NL"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": "Xiaomi's general privacy policy states that it processes and backs up personal information through a global operating infrastructure and lists data centers in China, India, the United States, Germany, Russia, and Singapore in one version, and India, the Netherlands, Russia, and Singapore in another version. It also states that EEA-origin personal data may be shared with Xiaomi group entities or third-party service providers outside the EEA using SCCs. No MiMo API-specific EU-only routing or inference-location guarantee was found in primary sources."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "Xiaomi says it retains personal information only for the period necessary for the stated purpose, or as required by law; detailed retention periods are specified in the relevant specific service or product page. It says data is deleted or anonymized once the purpose is fulfilled, after an erasure request is confirmed, or after the relevant product/service is terminated, subject to legal and backup-system limitations.",
+      "details": "No MiMo API-specific statement was found in primary sources on whether customer/API data is used for model training. Xiaomi's general privacy policy says product-specific privacy policies may apply separately."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "ISO27001",
+      "ISO27701",
+      "SOC2"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": "No primary-source Xiaomi or MiMo API statement about EU AI Act compliance for the MiMo API platform was found."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://platform.xiaomimimo.com/",
+    "https://privacy.mi.com/all/en_US/xiaomiPrivacyPolicy.pdf",
+    "https://privacy.mi.com/all/v20231229/en_IN/xiaomiPrivacyPolicy.pdf",
+    "https://trust.mi.com/compliance"
+  ],
+  "notes": "Xiaomi publishes a general privacy policy and trust/compliance materials, but no MiMo API-specific DPA, sub-processor list, or clear API-data training statement was found on primary sources reviewed. Xiaomi states EEA data can be transferred outside the EEA under SCCs, so EU-only processing cannot be treated as guaranteed for this provider."
 }

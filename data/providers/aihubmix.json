@@ -3,12 +3,51 @@
   "name": "AIHubMix",
   "type": "api_provider",
   "website": "https://docs.aihubmix.com",
-  "apiDocsUrl": "https://docs.aihubmix.com",
+  "apiDocsUrl": "https://docs.aihubmix.com/en",
   "logoPath": "/logos/aihubmix.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "AIHubMix states its servers and databases are located on Microsoft Azure in the USA. Its documentation also says requests may be routed to multiple third-party AI providers and that OpenAI requests may be randomly routed to Azure OpenAI for content review, so EU-only processing is not offered in the reviewed primary sources."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "AIHubMix says it retains personal information as long as necessary for the purposes in its privacy policy, then securely deletes or anonymizes it. It says it does not actively store prompts or model responses, but stores request metadata, and may retain prompt/response-related information when an account is banned and a compliance notification is received. It also says downstream model providers have their own logging and retention policies.",
+      "details": "AIHubMix says user input and model output are not stored for normal API usage and are used solely for billing and service optimization, not content analysis or third-party sharing. However, downstream providers may log access for security or compliance, and their own retention/training terms apply."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.aihubmix.com/en",
+    "https://docs.aihubmix.com/en/terms-and-privacy/Privacy",
+    "https://docs.aihubmix.com/en/terms-and-privacy/Terms",
+    "https://docs.aihubmix.com/en/api/Data-Pravicy",
+    "https://docs.aihubmix.com/en/FAQs/Faq"
+  ],
+  "notes": "Primary-source materials reviewed show a US-based provider with servers/databases in the USA and no published DPA, SCC, sub-processor list, or security certification evidence found in the official docs reviewed. AIHubMix says it does not actively store prompts/responses in normal operation, but downstream model-provider policies apply and some compliance-triggered retention may occur."
 }

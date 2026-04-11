@@ -3,12 +3,55 @@
   "name": "Poe",
   "type": "api_provider",
   "website": "https://creator.poe.com",
-  "apiDocsUrl": "https://creator.poe.com/docs/external-applications/openai-compatible-api",
+  "apiDocsUrl": "https://creator.poe.com/docs/api",
   "logoPath": "/logos/poe.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Poe states that chats are shared with AI model providers and, for half-shield bots/apps, with third-party developers. The creator docs also state that creators may host inference on external providers such as Fireworks, Together, or Replicate, or host their own inference. No EU-only processing or EU region guarantee was found in Poe/Quora primary documentation."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "Poe says that when a user deletes chats, chats and personal data associated with the account are deleted from Poe’s systems and will not be used for any other purpose. On account deletion, Quora says the account is deactivated immediately, can be reactivated within 14 days, and after the 14-day grace period content/profile are permanently deleted and personal data is removed from Quora’s databases, except data that may be preserved to comply with legal obligations. Poe also says each AI model provider sets its own retention schedule.",
+      "details": "Poe says official Poe bots and user-created prompt bots using OpenAI, Anthropic, Google, and Meta models do not train on chats and cannot access chats except to produce the requested response. Poe also states third-party developer bots and apps can use chats to train their AI models, and developers using APIs may view and store chats on their own servers to train their models."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://poe.com/pages/privacy",
+    "https://poe.com/pages/privacy-center",
+    "https://poe.com/api_terms",
+    "https://creator.poe.com/docs/api",
+    "https://creator.poe.com/docs/how-we-cover-your-costs",
+    "https://creator.poe.com/docs/external-applications/videos-api",
+    "https://poe.com/blog/introducing-the-poe-api",
+    "https://poe.com/blog/introducing-transparent-usd-pricing-and-api-tool-calling",
+    "https://help.quora.com/hc/en-us/articles/115004250866-How-do-I-delete-my-Quora-account-"
+  ],
+  "notes": "Poe is operated by Quora, Inc. in the United States, so there is no EU adequacy decision for the headquarters country. Primary-source documentation confirms sharing of chats with underlying model providers and, in some cases, third-party developers, but no public DPA, sub-processor list, SCC statement, or EU-only processing commitment was found in the consulted primary sources."
 }

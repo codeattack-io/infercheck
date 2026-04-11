@@ -3,12 +3,54 @@
   "name": "Privatemode AI",
   "type": "api_provider",
   "website": "https://docs.privatemode.ai",
-  "apiDocsUrl": "https://docs.privatemode.ai/api/overview",
+  "apiDocsUrl": "https://docs.privatemode.ai/quickstart/",
   "logoPath": "/logos/privatemode-ai.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "DE",
+    "dataResidency": {
+      "regions": [
+        "EU"
+      ],
+      "euOnly": true,
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "Privatemode states that the service is hosted in top-tier data centers within the European Union, and its security materials state prompts are decrypted only within Privatemode’s confidential-computing environment using AMD CPUs and Nvidia H100/B200 GPUs. The desktop app documentation also states it sends no data to third-party services."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "Website privacy policy says personal data is deleted or blocked once the purpose no longer applies, subject to legal retention periods. For the product itself, Privatemode states user data is never stored, remembered, or used for training; the desktop app stores chat history and access key locally on the user's device. Inquiry-form data is kept until deletion is requested, consent is withdrawn, or the purpose no longer applies.",
+      "details": "Privatemode states its architecture ensures models cannot remember customer data or be retrained on it. Documentation says the desktop app sends no data to third-party services and stores chat history locally on device."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": true
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://www.privatemode.ai/api",
+    "https://www.privatemode.ai/privacy-policy",
+    "https://www.privatemode.ai/pricing",
+    "https://www.privatemode.ai/",
+    "https://www.privatemode.ai/chat",
+    "https://www.privatemode.ai/security-encryption",
+    "https://docs.privatemode.ai/quickstart/",
+    "https://docs.privatemode.ai/guides/desktop-app/"
+  ],
+  "notes": "Privatemode presents a strong privacy-by-design posture: it is operated by Edgeless Systems GmbH in Germany, says hosting and inference processing are in the EU, and states customer/API data is not stored, remembered, or used for training. However, no public DPA/AVV or public sub-processor list was found in the consulted primary sources, so those fields are conservatively set to unavailable/null."
 }

@@ -3,12 +3,55 @@
   "name": "Vivgrid",
   "type": "api_provider",
   "website": "https://docs.vivgrid.com",
-  "apiDocsUrl": "https://docs.vivgrid.com/models",
+  "apiDocsUrl": "https://docs.vivgrid.com/api-ref/chat-completion",
   "logoPath": "/logos/vivgrid.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "EU",
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Vivgrid states it automatically routes API requests to the nearest available compute region and markets a global GPU / geo-distributed network. Its model documentation says routing is to the nearest available compute region while maintaining data-residency compliance for enterprise workloads, but no public primary-source guarantee of EU-only processing for standard plans was found."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "Pricing pages state API access log retention is 1 day on the Free plan and 90 days on the Growth plan. Terms also state customer data may be irretrievably deleted if the account is terminated.",
+      "details": "Terms say Vivgrid gets a limited license to use Customer Data as necessary to provide the service, will not sell or share personal data in Customer Data for marketing purposes, and may use aggregated de-identified data for business purposes. Terms also state customers should not provide personally identifiable information or personal data subject to applicable law or regulation."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://www.vivgrid.com/privacy",
+    "https://www.vivgrid.com/terms",
+    "https://www.vivgrid.com/",
+    "https://www.vivgrid.com/pricing",
+    "https://docs.vivgrid.com/introduction",
+    "https://docs.vivgrid.com/api-ref/chat-completion",
+    "https://docs.vivgrid.com/models",
+    "https://docs.vivgrid.com/yc"
+  ],
+  "notes": "Vivgrid publicly discloses a privacy policy, terms, pricing, and technical docs, but no public DPA/AVV, SCC terms, sub-processor list, or security certification page was found in primary sources reviewed on 2026-04-11. Public docs indicate globally distributed / nearest-region inference and plan-based API log retention, which suggests data can leave the EU unless covered by non-public enterprise arrangements."
 }

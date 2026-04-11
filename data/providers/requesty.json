@@ -3,12 +3,56 @@
   "name": "Requesty",
   "type": "gateway",
   "website": "https://requesty.ai",
-  "apiDocsUrl": "https://requesty.ai/solution/llm-routing/models",
-  "logoPath": null,
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": "Gateway/proxy service — routes to multiple upstream providers."
+  "apiDocsUrl": "https://docs.requesty.ai/quickstart",
+  "logoPath": "/logos/requesty.svg",
+  "compliance": {
+    "headquarters": "GB",
+    "dataResidency": {
+      "regions": [
+        "EU",
+        "US",
+        "SG"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Requesty offers an EU endpoint at https://router.eu.requesty.ai/v1 and states that EU requests are hosted, stored, and processed exclusively in Frankfurt, Germany (AWS eu-central-1) with US fallback disabled. However, its public sub-processor list shows multiple inference providers in the US, Global, Singapore, China, UK, and EU, so EU-only processing is not guaranteed across the overall service unless limited to EU-capable providers."
+    },
+    "dpa": {
+      "available": true,
+      "url": null,
+      "signedVia": "custom_contract"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": true,
+      "retentionPolicy": "Requesty states a zero data retention policy for its gateway: requests are proxied in real time and nothing is stored, logged, or cached after delivery. Its sub-processor disclosure shows underlying model providers may have their own retention periods (for example, some providers retain data for 30 days).",
+      "details": "Requesty states it does not train on customer data. Its sub-processor disclosure says prompts and outputs are not used to train provider models unless the customer has explicitly opted in via Requesty project settings."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://www.requesty.ai/privacy/subprocessors",
+      "includesEuEntities": true
+    },
+    "certifications": [
+      "SOC2"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": true
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://www.requesty.ai/",
+    "https://www.requesty.ai/eu",
+    "https://www.requesty.ai/es/enterprise",
+    "https://www.requesty.ai/privacy",
+    "https://www.requesty.ai/privacy/subprocessors",
+    "https://docs.requesty.ai/quickstart"
+  ],
+  "notes": "Requesty publishes a useful sub-processor disclosure and advertises zero retention, no training, and an EU Frankfurt endpoint. However, because its gateway can route to non-EU inference providers and no public DPA URL or SCC statement was found on primary sources, EU customers should verify routing constraints and contractual terms directly with Requesty."
 }

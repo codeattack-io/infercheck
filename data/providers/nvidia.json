@@ -3,12 +3,59 @@
   "name": "Nvidia",
   "type": "api_provider",
   "website": "https://docs.api.nvidia.com",
-  "apiDocsUrl": "https://docs.api.nvidia.com/nim/",
+  "apiDocsUrl": "https://docs.api.nvidia.com",
   "logoPath": "/logos/nvidia.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.nvidia.com/en-us/agreements/data-processing-addendum/nvidia-cloud-services-data-processing-addendum/",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "For NVIDIA API Trial Terms, NVIDIA states it will not store or use User Content or Generated Content after each API service session unless otherwise disclosed for a specific API service. For certain API services such as Fine Tuning, unless a subscription is purchased from the appropriate service provider, NVIDIA stores User Content for 30 days from first upload and Generated Content for 90 days from first availability; NVIDIA may also log and store content for security, fraud, or abuse prevention. In the general privacy policy, NVIDIA says it erases customer and enterprise personal data after more than five years of no engagement.",
+      "details": "The API Trial Terms grant NVIDIA and its affiliates/service providers a license to use, host, store, reproduce, modify, display, and transmit User Content and Generated Content during the API session solely to provide the API service and as otherwise described or expressly disclosed for an API service."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://www.nvidia.com/en-us/agreements/data-processing-addendum/nvidia-cloud-services-data-processing-addendum/",
+      "includesEuEntities": false
+    },
+    "certifications": [
+      "ISO27001",
+      "SOC2"
+    ],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "NVIDIA publicly acknowledges the EU AI Act as an applicable regulation that may affect its ability to train, deploy, or release AI models in the EU, but no primary-source statement was found claiming formal EU AI Act compliance for the API service."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.api.nvidia.com/",
+    "https://docs.api.nvidia.com/nim/reference/llm-apis",
+    "https://docs.api.nvidia.com/nim/docs/api-quickstart",
+    "https://www.nvidia.com/en-us/about-nvidia/privacy-policy/",
+    "https://www.nvidia.com/en-us/agreements/data-processing-addendum/",
+    "https://www.nvidia.com/en-us/agreements/data-processing-addendum/nvidia-cloud-services-data-processing-addendum/",
+    "https://assets.ngc.nvidia.com/products/api-catalog/legal/NVIDIA%20API%20Trial%20Terms%20of%20Service.pdf",
+    "https://www.nvidia.com/en-us/ai-trust-center/security-compliance/",
+    "https://images.nvidia.com/aem-dam/Solutions/networking/ISO-27001-cert.pdf",
+    "https://investor.nvidia.com/files/doc_financials/2026/q3/13e6981b-95ed-4aac-a602-ebc5865d0590.pdf"
+  ],
+  "notes": "NVIDIA provides a cloud-services DPA, a public privacy policy, public sub-processor disclosures within its cloud-services DPA, and states SCCs are used for transfers to/from the United States. For the hosted API catalog, primary sources do not confirm EU-only inference routing; the API catalog is hosted on NVIDIA DGX Cloud and the disclosed sub-processors include U.S. hyperscalers, so EU-only processing cannot be treated as guaranteed."
 }

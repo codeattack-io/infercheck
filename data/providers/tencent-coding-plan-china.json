@@ -3,12 +3,71 @@
   "name": "Tencent Coding Plan (China)",
   "type": "api_provider",
   "website": "https://cloud.tencent.com",
-  "apiDocsUrl": "https://cloud.tencent.com/document/product/1772/128947",
+  "apiDocsUrl": null,
   "logoPath": "/logos/tencent-coding-plan-china.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "CN",
+    "dataResidency": {
+      "regions": [
+        "CN",
+        "DE",
+        "US",
+        "SG",
+        "TH",
+        "IN",
+        "KR",
+        "JP",
+        "BR",
+        "HK"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Tencent Cloud’s DPSA says personal data is processed in the selected Service Region, but Tencent may need to process it outside that region from time to time with prior consent/authorization, and its public sub-processor list includes infrastructure in Germany plus processing/support entities in PRC, Singapore, the US, Hong Kong and other regions. No primary-source statement was found guaranteeing EU-only AI inference."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.tencentcloud.com/document/product/301/17347",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": true,
+      "optOutAvailable": true,
+      "retentionPolicy": "General privacy policy says account-related personal information is retained while the account exists and then deleted within a set time period depending on data type. The PRC addendum says personal information is generally retained only for the duration of the services and no longer than necessary for the purpose, subject to legal/authority/dispute exceptions. The DPSA appendix states personal data retention for transferred content is for the duration of the Terms of Service.",
+      "details": "Tencent Cloud AI Service Terms state User Input and AI Output may be used to provide, operate, support, improve and develop AI services, including training, testing and enhancing Tencent Cloud AI models and systems, unless the customer opts out in the relevant AI service."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://www.tencentcloud.com/document/product/1033/32281",
+      "includesEuEntities": true
+    },
+    "certifications": [
+      "ISO27001",
+      "ISO27701",
+      "ISO27018",
+      "SOC2",
+      "C5"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": "No primary-source statement specifically claiming EU AI Act compliance was found. Tencent’s AI Service Terms impose usage restrictions and human-review requirements, but do not state EU AI Act compliance."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://www.tencentcloud.com/document/product/301/9248",
+    "https://intl.cloud.tencent.com/document/product/301/73195",
+    "https://www.tencentcloud.com/document/product/301/17347",
+    "https://www.tencentcloud.com/document/product/1033/32281",
+    "https://www.tencentcloud.com/document/product/301/74049",
+    "https://intl.cloud.tencent.com/services/compliance",
+    "https://intl.cloud.tencent.com/document/product/363/2408",
+    "https://intl.cloud.tencent.com/document/product/363/33540",
+    "https://intl.cloud.tencent.com/document/product/363/14031",
+    "https://intl.cloud.tencent.com/document/product/363/38341"
+  ],
+  "notes": "Tencent Cloud publishes a global privacy policy, a public DPSA/DPA, and a public sub-processor/third-party page. For AI services, Tencent’s own terms say customer input/output may be used for model training by default with an opt-out in the relevant AI service. Tencent offers a Germany service region and has Germany-based infrastructure listed, but its own DPSA allows processing outside the selected region and no EU-only inference guarantee was found."
 }

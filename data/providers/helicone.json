@@ -3,12 +3,59 @@
   "name": "Helicone",
   "type": "gateway",
   "website": "https://helicone.ai",
-  "apiDocsUrl": "https://helicone.ai/models",
+  "apiDocsUrl": "https://docs.helicone.ai/getting-started/quick-start",
   "logoPath": "/logos/helicone.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": "Gateway/proxy service — routes to multiple upstream providers."
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "EU",
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": "Helicone documents regional availability in EU and US, and EU API keys route requests to the EU region. However, Helicone's privacy policy also states data may be transferred to and processed in the United States, and no primary-source statement was found guaranteeing EU-only processing for the hosted service."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "Website privacy policy says personal data is kept only as long as necessary for the stated purposes, and usage data is generally kept for a shorter period unless needed for security, functionality, or legal obligations. Product pricing states hosted log retention by plan is 7 days, 1 month, 3 months, or forever on Enterprise, with configurable retention on Enterprise. Helicone also offers omit-logs modes where request/response bodies are only kept in memory and not stored long-term, or logging can be fully disabled in async mode.",
+      "details": "Helicone logs requests and extracts usage data for observability. Docs say omitted request/response content can still be sent to Helicone's backend in proxy mode but not stored long-term, while async mode can omit content from being sent or disable logging entirely."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "SOC2"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://www.helicone.ai/privacy",
+    "https://www.helicone.ai/terms",
+    "https://www.helicone.ai/pricing",
+    "https://www.helicone.ai/contact",
+    "https://www.helicone.ai/blog/joining-mintlify",
+    "https://docs.helicone.ai/getting-started/quick-start",
+    "https://docs.helicone.ai/references/data-autonomy",
+    "https://docs.helicone.ai/helicone-headers/helicone-auth",
+    "https://docs.helicone.ai/features/advanced-usage/omit-logs",
+    "https://docs.helicone.ai/faq/soc2"
+  ],
+  "notes": "Helicone is a US-headquartered gateway/observability provider with documented EU and US regional options and self-hosting/on-prem deployment for stronger data sovereignty. Public primary sources confirm SOC 2 compliance and configurable hosted retention by plan, but no public DPA, SCC commitment, sub-processor list, or explicit statement about model-training on customer data or EU-only hosted inference was found."
 }

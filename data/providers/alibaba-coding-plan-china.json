@@ -3,12 +3,66 @@
   "name": "Alibaba Coding Plan (China)",
   "type": "api_provider",
   "website": "https://help.aliyun.com",
-  "apiDocsUrl": "https://help.aliyun.com/zh/model-studio/coding-plan",
+  "apiDocsUrl": "https://www.alibabacloud.com/help/en/model-studio/what-is-model-studio",
   "logoPath": "/logos/alibaba-coding-plan-china.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "CN",
+    "dataResidency": {
+      "regions": [
+        "CN",
+        "SG",
+        "US",
+        "HK",
+        "DE",
+        "EU"
+      ],
+      "euOnly": true,
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "Alibaba Cloud Model Studio documents supported regions including China (Beijing), China (Hong Kong), Singapore, US (Virginia), and Germany (Frankfurt). It states static data is always stored in the selected region. It also documents a dedicated 'European Union' deployment mode bound to Germany (Frankfurt), where inference runs in the EU."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.alibabacloud.com/help/en/legal/latest/ae8upq",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "For direct API calls, Model Studio does not save conversation data and only records desensitized call status. For the Assistant API, conversation history is retained and currently has no expiration date. Model monitoring data is retained for 30 days by default.",
+      "details": "Alibaba Cloud states Model Studio will never use customer data for model training, and separately states it does not use customer business data to develop or improve models without explicit consent."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://account.alibabacloud.com",
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "SOC2",
+      "ISO27001",
+      "ISO27017",
+      "ISO27018"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "enterprise_only",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://www.alibabacloud.com/help/en/model-studio/what-is-model-studio",
+    "https://www.alibabacloud.com/help/id/model-studio/regions/",
+    "https://www.alibabacloud.com/help/en/model-studio/compliance-and-privacy",
+    "https://www.alibabacloud.com/help/en/model-studio/qwen-and-wan-training-data-disclosure",
+    "https://www.alibabacloud.com/help/en/model-studio/model-telemetry",
+    "https://www.alibabacloud.com/help/en/legal/latest/fe2cxg",
+    "https://www.alibabacloud.com/help/en/legal/latest/ae8upq",
+    "https://www.alibabacloud.com/help/en/legal/latest/alibaba-cloud-international-website-privacy-policy",
+    "https://help.aliyun.com/zh/model-studio/coding-plan",
+    "https://help.aliyun.com/zh/sfoa/security-and-compliance/compliance-certifications"
+  ],
+  "notes": "Alibaba Coding Plan appears to be a subscription wrapper for Alibaba Cloud Model Studio rather than a separate privacy/compliance entity, so the available primary-source compliance evidence is from Alibaba Cloud / Model Studio documentation. Alibaba documents an EU deployment mode bound to Frankfurt and says customer data is not used for training, but its sub-processor list is only available after account login and no product-specific EU AI Act statement was found. Pricing is fixed monthly subscription, but because the allowed schema does not include a subscription tier, it is mapped conservatively to enterprise_only."
 }

@@ -3,12 +3,50 @@
   "name": "Moonshot AI",
   "type": "api_provider",
   "website": "https://platform.moonshot.ai",
-  "apiDocsUrl": "https://platform.moonshot.ai/docs/api/chat",
+  "apiDocsUrl": "https://platform.moonshot.ai/docs/overview",
   "logoPath": "/logos/moonshot-ai.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "SG",
+    "dataResidency": {
+      "regions": [
+        "SG"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Moonshot AI states its servers are located in Singapore and that personal data may be transferred to and stored on servers outside the user's country of residence. No EU region or EU-only processing option was found in the provider's primary documentation."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": true,
+      "optOutAvailable": null,
+      "retentionPolicy": "The privacy policy says information is stored as long as necessary to provide the services, fulfill the stated purposes, other legitimate business purposes, and legal obligations. It says account, input, and payment information are retained while the account is active; violation-related information is retained until the violation is resolved.",
+      "details": "The privacy policy says user content includes prompts and generated content, and that this information helps optimize their models. The terms also say content may be used to provide, maintain, develop, and improve the services."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "Moonshot AI's terms contain usage restrictions aligned with some prohibited-use themes under the EU AI Act, but no explicit claim of EU AI Act compliance or conformity documentation was found in the primary sources reviewed."
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://platform.moonshot.ai/",
+    "https://platform.moonshot.ai/docs/overview",
+    "https://platform.moonshot.ai/docs/agreement/modeluse.en-US",
+    "https://platform.kimi.ai/docs/agreement/userprivacy"
+  ],
+  "notes": "Primary-source documentation confirms Moonshot AI PTE. LTD. is based in Singapore and stores/processes personal data on servers in Singapore, with no documented EU-only processing option. The published privacy policy indicates customer content may be used to improve and train underlying technology, and no public DPA, SCC statement, or sub-processor list was found in the reviewed primary sources."
 }

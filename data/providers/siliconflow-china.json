@@ -3,12 +3,50 @@
   "name": "SiliconFlow (China)",
   "type": "api_provider",
   "website": "https://cloud.siliconflow.com",
-  "apiDocsUrl": "https://cloud.siliconflow.com/models",
+  "apiDocsUrl": "https://docs.siliconflow.com/en/api-reference/chat-completions/chat-completions",
   "logoPath": "/logos/siliconflow-china.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "SG",
+    "dataResidency": {
+      "regions": [
+        "SG"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "The privacy policy states that personal data is retained as long as necessary to fulfill the purpose for which it was collected, or as required or permitted by applicable law, and then deleted or de-identified when no longer needed for legal or business purposes.",
+      "details": "The privacy policy defines 'Interaction Data' as the customer's business and customer data, but the publicly available primary sources reviewed do not state whether API customer data is used for model training."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://cloud.siliconflow.com",
+    "https://docs.siliconflow.com/en/api-reference/chat-completions/chat-completions",
+    "https://docs.siliconflow.com/en/legals/privacy-policy",
+    "https://docs.siliconflow.com/en/legals/terms-of-service"
+  ],
+  "notes": "SiliconFlow's public legal docs identify the contracting entity as SILICONFLOW TECHNOLOGY PTE. LTD. and frame compliance primarily under Singapore law, but the reviewed primary sources do not publish a DPA, sub-processor list, SCC commitment, EU data-residency option, or customer-data training statement. For GDPR-sensitive use cases, major processor-side safeguards appear undocumented in the public materials reviewed."
 }

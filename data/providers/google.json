@@ -3,12 +3,65 @@
   "name": "Google",
   "type": "api_provider",
   "website": "https://ai.google.dev",
-  "apiDocsUrl": "https://ai.google.dev/gemini-api/docs/pricing",
+  "apiDocsUrl": "https://ai.google.dev/api",
   "logoPath": "/logos/google.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "EU",
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "The direct Gemini Developer API at ai.google.dev does not provide an EU region selection or EU-only processing guarantee in the official Gemini API documentation consulted. Google Cloud documents data residency options for Generative AI on Vertex AI and Vertex AI Platform, including AI/ML data location controls in specific regions/multi-regions, but those controls apply to Vertex AI/Google Cloud services rather than the direct Gemini Developer API."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://cloud.google.com/terms/data-processing-addendum",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "For paid Gemini API services, Google states it does not use prompts or responses to improve its products and processes them under the Google data processing addendum. For unpaid services (including Google AI Studio and unpaid Gemini API quota), Google says submitted content and generated responses are used to provide, improve, and develop Google products and machine learning technologies, and human reviewers may review input/output. Tuning content is retained with tuned models for re-tuning support and deleted when the tuned model is deleted.",
+      "details": "Google's Gemini API terms distinguish unpaid vs paid usage. Unpaid usage is used to improve products; paid usage is not. For users in the EEA, Switzerland, or the UK, the terms say the paid-services data use terms apply to all services, including Google AI Studio and unpaid Gemini API quota."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://cloud.google.com/terms/subprocessors",
+      "includesEuEntities": true
+    },
+    "certifications": [
+      "SOC 2",
+      "SOC 3",
+      "ISO27001",
+      "ISO27017",
+      "ISO27018",
+      "ISO27701"
+    ],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "Google Cloud has an official EU AI Act compliance page and states it will continue to publish information to support customer compliance. Google Cloud also publicly stated in July 2025 that it intends to sign the EU AI Act Code of Practice."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://ai.google.dev/api",
+    "https://ai.google.dev/pricing",
+    "https://ai.google.dev/gemini-api/terms-archive/terms_02_05_25",
+    "https://policies.google.com/privacy",
+    "https://cloud.google.com/privacy/gdpr",
+    "https://cloud.google.com/terms/data-processing-addendum",
+    "https://cloud.google.com/terms/subprocessors",
+    "https://cloud.google.com/terms/data-residency",
+    "https://business.safety.google/compliance/",
+    "https://cloud.google.com/security/compliance/eu-ai-act",
+    "https://cloud.google.com/blog/products/identity-security/google-clouds-commitment-to-eu-ai-act-support"
+  ],
+  "notes": "Google offers contractual GDPR tooling for cloud customers, including a public Cloud Data Processing Addendum, SCC resources, and a public subprocessor list. For the direct Gemini Developer API, EU-only inference routing is not guaranteed from the primary sources consulted; Google positions regional data residency controls through Vertex AI/Google Cloud instead. Gemini API data-use terms differ materially between unpaid and paid usage, with unpaid usage used for product improvement unless EEA/CH/UK terms apply."
 }

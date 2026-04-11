@@ -3,12 +3,66 @@
   "name": "Weights & Biases",
   "type": "api_provider",
   "website": "https://docs.wandb.ai",
-  "apiDocsUrl": "https://docs.wandb.ai/guides/integrations/inference/",
-  "logoPath": null,
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "apiDocsUrl": "https://docs.wandb.ai/inference/api-reference",
+  "logoPath": "/logos/weights-biases.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US",
+        "EU",
+        "CA",
+        "AU",
+        "JP",
+        "KR",
+        "IN",
+        "SG"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": "W&B Multi-tenant Cloud is deployed in a North America Google Cloud region. W&B Dedicated Cloud is available on AWS, Google Cloud, and Azure in customer-selected regions, including multiple EU regions such as AWS eu-central-1/eu-west-1/eu-west-2/eu-south-1/eu-north-1, Google Cloud europe-west1/europe-west2/europe-west3/europe-west4, and Azure francecentral/westeurope. The documentation found does not explicitly guarantee that W&B Inference GPU compute remains only in the EU."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://wandb.ai/site/de/dpa/",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "The privacy policy states that personal data is retained only as long as necessary for the purposes described, unless a longer retention period is required or permitted by law; when no longer needed, data is deleted, anonymized, or securely isolated until deletion is feasible.",
+      "details": "For Weave, W&B offers client-side sensitive-data controls such as PII redaction before traces are sent to W&B servers, and Dedicated Cloud provides region-of-choice deployment for stricter governance needs. No primary-source statement was found clearly saying whether customer/API data is or is not used to train provider models."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://wandb.ai/site/ja/security/",
+      "includesEuEntities": false
+    },
+    "certifications": [
+      "SOC2",
+      "HIPAA"
+    ],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "W&B publicly provides EU AI Act guidance materials and events about AI Act compliance and positions its products as supporting governance, traceability, documentation, and reporting, but no primary-source statement was found claiming formal EU AI Act compliance certification or legal conformity status for the provider itself."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.wandb.ai/inference/api-reference",
+    "https://docs.wandb.ai/platform/hosting",
+    "https://docs.wandb.ai/weave/guides/platform",
+    "https://docs.wandb.ai/inference/lora",
+    "https://docs.wandb.ai/ko/platform/hosting/hosting-options/dedicated_regions",
+    "https://wandb.ai/site/de/dpa/",
+    "https://wandb.ai/site/ja/security/",
+    "https://wandb.ai/site/resources/whitepapers/eu-ai-act/",
+    "https://wandb.ai/site/resources/events/navigating-the-eu-ai-act-compliance-through-governance-and-observability/",
+    "https://docs.coreweave.com/policies/terms-of-service/privacy-policy"
+  ],
+  "notes": "W&B offers a click-through DPA, public sub-processor disclosure, SOC 2/HIPAA statements, and region-selectable Dedicated Cloud including EU regions, but its multi-tenant cloud is North America-based. A clear primary-source statement was not found on whether customer/API data is used for model training or whether W&B Inference compute is guaranteed to stay in the EU."
 }

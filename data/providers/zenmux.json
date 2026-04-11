@@ -5,10 +5,49 @@
   "website": "https://docs.zenmux.ai",
   "apiDocsUrl": "https://docs.zenmux.ai",
   "logoPath": "/logos/zenmux.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "SG",
+    "dataResidency": {
+      "regions": [
+        "SG"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "ZenMux says data related to account and product services is generally stored in Singapore. Its multi-provider architecture can route requests to third-party providers such as Anthropic, Google Vertex AI, and Amazon Bedrock, so EU-only processing is not guaranteed."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://docs.zenmux.ai/compliance.html",
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "ZenMux says it retains personal information only as long as necessary for the purposes in its policy and as required by law. After service termination it stops collecting personal information, but may retain data where legally required; if it ceases operations it says it will delete or anonymize retained personal information.",
+      "details": "The privacy policy states that ZenMux may store, transfer, or train on anonymized User Content to improve its model. It also states that data uploaded or transferred for account and product services is generally stored in Singapore."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "ZenMux's compliance page says GDPR is 'In progress' and describes support for global regulatory frameworks, but no specific EU AI Act compliance commitment or certification is published in the consulted primary sources."
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.zenmux.ai/privacy",
+    "https://docs.zenmux.ai/terms-of-service",
+    "https://docs.zenmux.ai/compliance.html",
+    "https://docs.zenmux.ai/about/models-and-providers.html",
+    "https://docs.zenmux.ai/guide/subscription.html"
+  ],
+  "notes": "ZenMux provides a public privacy policy and a compliance page stating that a DPA is offered, but no direct DPA text, SCC language, or public sub-processor list was found in the consulted primary sources. Data is generally stored in Singapore, and ZenMux's multi-provider routing to services such as Vertex AI and Amazon Bedrock means EU-only inference processing is not guaranteed."
 }

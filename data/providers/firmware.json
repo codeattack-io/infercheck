@@ -5,10 +5,54 @@
   "website": "https://docs.frogbot.ai",
   "apiDocsUrl": "https://docs.frogbot.ai",
   "logoPath": "/logos/firmware.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Firmware states customer data and content are stored and processed in the geographic region specified on the order form or otherwise agreed in writing, and customers may request a separate specific geographic region where supported. However, the public subprocessor list names only US-located subprocessors (AWS, MongoDB, Google Cloud, OpenAI), and the DPA states customers may transfer personal data to Firmware in the United States."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://firmware.ai/legal/data-processing-addendum",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "Privacy Policy: personal data is retained as long as necessary for the stated purposes; if a customer has a Customer Agreement, deletion follows that agreement; when no ongoing legitimate business need or legal reason remains, data is deleted or anonymized, or securely isolated until deletion is possible. DPA: on termination of the services or upon reasonable request, Firmware will return or delete DPA data unless retention is legally required.",
+      "details": "Firmware says customer data/content received through the services is processed on behalf of customers under the customer agreement. The website states 'Your data stays yours—never used for training.' Firmware separately says it uses publicly available legal information to develop and improve its AI platform."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://firmware.ai/legal/subprocessor-list",
+      "includesEuEntities": false
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "The DPA says that if new legislation and regulations specifically governing AI are implemented, the parties will review the DPA to ensure compliance and negotiate necessary amendments."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.frogbot.ai",
+    "https://firmware.ai",
+    "https://firmware.ai/pricing",
+    "https://firmware.ai/legal",
+    "https://firmware.ai/legal/privacy",
+    "https://firmware.ai/legal/privacy-center",
+    "https://firmware.ai/legal/data-processing-addendum",
+    "https://firmware.ai/legal/security-addendum",
+    "https://firmware.ai/legal/service-provider-list",
+    "https://firmware.ai/legal/subprocessor-list"
+  ],
+  "notes": "Firmware publishes a privacy policy, DPA, security addendum, and public subprocessor list. Public materials indicate US headquarters and US-based subprocessors, with regional hosting only by order form or written agreement; there is no public guarantee of EU-only inference, and the DPA expressly contemplates transfers to the US using data transfer mechanisms including the EEA SCCs."
 }

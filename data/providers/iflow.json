@@ -3,12 +3,51 @@
   "name": "iFlow",
   "type": "api_provider",
   "website": "https://platform.iflow.cn",
-  "apiDocsUrl": "https://platform.iflow.cn/en/docs",
+  "apiDocsUrl": "https://docs.iflow.cn/en/docs/",
   "logoPath": "/logos/iflow.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "CN",
+    "dataResidency": {
+      "regions": [
+        "CN"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": null,
+      "details": null
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": "No primary-source EU AI Act compliance statement was found in the consulted iFlow materials."
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://platform.iflow.cn/",
+    "https://docs.iflow.cn/en/docs/",
+    "https://docs.iflow.cn/zh-Hant/docs/limitSpeed/",
+    "https://cloud.iflow.cn/announcement-ai-generated-content.html",
+    "https://www.iflow.cn/"
+  ],
+  "notes": "Primary-source materials found for iFlow were limited to product pages and API docs. Those sources show a China-operated service with free API usage and Chinese regulatory AI-content-labeling statements, but no publicly located privacy policy text, DPA, sub-processor list, SCC terms, retention policy, or training-on-customer-data commitments on the consulted primary sources."
 }

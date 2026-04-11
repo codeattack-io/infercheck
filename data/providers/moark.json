@@ -3,12 +3,52 @@
   "name": "Moark",
   "type": "api_provider",
   "website": "https://moark.com",
-  "apiDocsUrl": "https://moark.com/docs/openapi/v1#tag/%E6%96%87%E6%9C%AC%E7%94%9F%E6%88%90",
+  "apiDocsUrl": "https://moark.com/docs",
   "logoPath": "/logos/moark.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "CN",
+    "dataResidency": {
+      "regions": [
+        "CN"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Moark states that the company and its servers are located in the People's Republic of China and that personal information collected and generated in China is stored domestically in China. No EU region or EU-only processing option was found in primary-source documentation."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "The privacy policy says data is kept only for the shortest time necessary to achieve the stated purposes, subject to legal/regulatory exceptions, and deleted or anonymized within a reasonable period when the service stops operating. It also says information is retained as needed to provide services, comply with law, maintain security, prevent incidents, and pursue legitimate interests; users can request deletion by email.",
+      "details": "The privacy policy allows use of collected information to provide services, personalize features, communicate with users, improve services, ensure security, conduct analysis or research, enforce terms, and comply with law. It also states anonymized information may be used or disclosed to third parties for service improvement and other purposes including targeted advertising."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://moark.com/docs/appendix/privacy",
+      "includesEuEntities": false
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://moark.com/",
+    "https://moark.com/about",
+    "https://moark.com/serverless-api",
+    "https://moark.com/docs",
+    "https://moark.com/docs/appendix/privacy",
+    "https://moark.com/solutions/serverless"
+  ],
+  "notes": "Primary-source materials identify Moark as a China-based provider operated by Shenzhen Aosi Yanggong Intelligent Technology Co., Ltd. The public privacy policy states the company and its servers are in China and includes a limited third-party provider list, but no public DPA, SCC commitment, EU-only processing option, training-on-customer-data statement, or security certification evidence was found."
 }

@@ -3,12 +3,56 @@
   "name": "D.Run (China)",
   "type": "api_provider",
   "website": "https://www.d.run",
-  "apiDocsUrl": "https://www.d.run",
+  "apiDocsUrl": "https://docs.d.run/en/models/apikey",
   "logoPath": "/logos/d-run-china.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "CN",
+    "dataResidency": {
+      "regions": [
+        "CN"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "The privacy policy says personal information may be transferred, stored, and processed outside the user's country/region, and the platform stores business data in the data center selected by the customer. No EU region or EU-only processing option was found in the provider's primary-source materials. The security whitepaper also says backups are stored in multiple geographic regions."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "Personal information is stored only for the period necessary to fulfill the purposes in the privacy policy, then deleted or anonymized according to law. If deletion is technically difficult or data remains in backups, processing is stopped except for storage and necessary security measures, and backup copies are deleted when backups are updated.",
+      "details": "The privacy policy says the provider collects API call records, GPU/resource metrics, and model interaction data including uploaded text, images, voice inputs, datasets, and model outputs for service response, operations/statistics, security analysis, performance optimization, billing, and service operation. It also states that for customer business data, unless otherwise required by law or agreed, d.run acts only as a technical service provider processing such data within the customer's instructions and stores business data in the customer-selected data center."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://docs.d.run/service/share",
+      "includesEuEntities": false
+    },
+    "certifications": [
+      "ISO27001"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://www.d.run/",
+    "https://docs.d.run/en/models/apikey",
+    "https://docs.d.run/en/service/privacy",
+    "https://docs.d.run/service/privacy",
+    "https://docs.d.run/service/attach/privacy.pdf",
+    "https://docs.d.run/service/index.html",
+    "https://docs.d.run/service/share",
+    "https://docs.d.run/service/security"
+  ],
+  "notes": "D.Run is operated by Shanghai DaoCloud Network Technology Co., Ltd. in China and publishes a privacy policy, service agreement, security whitepaper, and a limited third-party sharing/SDK list. No public DPA/AVV, SCC commitment, EU-only processing option, or explicit statement that API/customer data is not used for model training was found in the provider's primary-source materials."
 }

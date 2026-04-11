@@ -3,12 +3,54 @@
   "name": "ModelScope",
   "type": "api_provider",
   "website": "https://modelscope.cn",
-  "apiDocsUrl": "https://modelscope.cn/docs/model-service/API-Inference/intro",
+  "apiDocsUrl": "https://www.modelscope.cn/docs/model-service/API-Inference/intro",
   "logoPath": "/logos/modelscope.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "CN",
+    "dataResidency": {
+      "regions": [
+        "CN"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Primary-source materials found indicate ModelScope API-Inference is backed by Alibaba Cloud / DashScope infrastructure, with examples and related deployment materials pointing to mainland China regions (for example cn-hangzhou) and no published EU-region or EU-only routing option was found."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": null,
+      "details": null
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://modelscope.cn",
+    "https://www.modelscope.cn/docs/model-service/API-Inference/intro",
+    "https://community.modelscope.cn/67622c7e59bcf8384a936410.html",
+    "https://community.modelscope.cn/67a338b02db35d11953dbcc3.html",
+    "https://community.modelscope.cn/67a3397e61f6a61b94779771.html",
+    "https://community.modelscope.cn/676b86c82db35d1195237c35.html",
+    "https://community.modelscope.cn/6810a75dc89bb1649888b621.html",
+    "https://community.modelscope.cn/6819762bc7c7e505d3531f78.html"
+  ],
+  "notes": "ModelScope provides public API-Inference documentation and a free public beta tier, but no primary-source privacy policy, DPA/AVV, subprocessors list, SCC commitment, retention statement, or customer-data training statement could be confirmed from official materials reviewed. The primary-source evidence found points to China-based Alibaba Cloud-backed inference rather than any documented EU-only processing option."
 }

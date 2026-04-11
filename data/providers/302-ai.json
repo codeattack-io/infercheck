@@ -5,10 +5,48 @@
   "website": "https://doc.302.ai",
   "apiDocsUrl": "https://doc.302.ai",
   "logoPath": "/logos/302-ai.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "HK",
+    "dataResidency": {
+      "regions": [],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "The privacy policy states personal information is retained as long as necessary to provide the service and as necessary to comply with legal obligations, resolve disputes, and enforce policies; no fixed retention periods are published.",
+      "details": "The published privacy policy says user data is used to provide the service, support users, communicate updates/marketing, and conduct statistical and analytical research to improve the service. It also states they do not rent or sell user data."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://doc.302.ai",
+    "https://302.ai/",
+    "https://302.ai/legal/privacy/",
+    "https://302.ai/legal/terms/",
+    "https://studio.302.ai/en/docs/about",
+    "https://help.302.ai/en/docs/FAQ"
+  ],
+  "notes": "302.AI publishes a privacy policy and terms, but no primary-source DPA/AVV, sub-processor list, SCC statement, certification page, or EU data residency commitment was found. The service appears to aggregate many third-party model providers globally, so EU-only inference cannot be confirmed from primary documentation."
 }

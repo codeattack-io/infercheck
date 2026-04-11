@@ -3,12 +3,53 @@
   "name": "Kilo Gateway",
   "type": "api_provider",
   "website": "https://kilo.ai",
-  "apiDocsUrl": "https://kilo.ai",
+  "apiDocsUrl": "https://kilo.ai/docs/gateway/authentication",
   "logoPath": "/logos/kilo-gateway.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Kilo's privacy policy states the services are hosted in the United States and personal information is stored and processed on servers in the United States. No EU-only processing option was found in the provider's primary-source documentation reviewed."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "Kilo says it retains information for as long as the account is active or as needed to provide services, comply with legal obligations, resolve disputes, preserve legal rights, or enforce agreements. It also says limited personal information may be retained indefinitely for open-source community integrity and nonrepudiation.",
+      "details": "The Terms state customer data is licensed to Kilo to provide and improve the service and Kilo's other products and services, including development, diagnostic, and corrective purposes, and that AI model providers may use customer data under their own terms. The Terms also say if a customer does not grant an AI model a training license, some AI models may be unavailable."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://kilo.ai/privacy",
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://kilo.ai/privacy",
+    "https://kilo.ai/terms",
+    "https://kilo.ai/gateway",
+    "https://kilo.ai/pricing",
+    "https://kilo.ai/docs/gateway/authentication",
+    "https://kilo.ai/docs/gateway/usage-and-billing",
+    "https://kilo.ai/about"
+  ],
+  "notes": "Kilo publicly provides a privacy policy and states services are hosted in the United States, with SCC-based safeguards for transfers from the EEA/UK/Switzerland. No public DPA/AVV, EU-only residency option, or public security certification evidence was found in the primary sources reviewed. The Terms also permit Kilo to use customer data to provide and improve its services, so GDPR-sensitive customers should clarify DPA terms and model-provider data-use settings before adoption."
 }

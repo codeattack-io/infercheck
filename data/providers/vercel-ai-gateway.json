@@ -3,12 +3,61 @@
   "name": "Vercel AI Gateway",
   "type": "api_provider",
   "website": "https://github.com",
-  "apiDocsUrl": "https://github.com/vercel/ai/tree/5eb85cc45a259553501f535b8ac79a77d0e79223/packages/gateway",
+  "apiDocsUrl": "https://vercel.com/docs/ai-gateway",
   "logoPath": "/logos/vercel-ai-gateway.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US",
+        "EU"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Vercel states AI Gateway runs across its distributed infrastructure in multiple AWS regions and routes requests to the nearest Vercel region. Vercel documents per-request Zero Data Retention filtering for certain upstream providers, but no primary-source documentation found guarantees EU-only processing for AI Gateway inference. Vercel's privacy policy also says information may be processed in the United States and other jurisdictions in which it operates."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://vercel.com/legal/dpa",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "AI Gateway documents a zero-data-retention policy: prompts, outputs, and sensitive data are immediately and permanently deleted after requests complete. Separately, Vercel's general privacy policy says personal information is retained for the minimum necessary period to fulfill legal and contractual obligations and other legitimate business purposes, and the DPA says customer data is deleted within a commercially reasonable timeframe after termination or expiration unless retention is required by law.",
+      "details": "Vercel's AI Product Terms expressly state that for Enterprise AI Gateway subscriptions, Vercel will not use AI Gateway Customer Content to train or improve the AI Products and Services. I could not find a primary source stating the default training position for non-Enterprise AI Gateway customers specifically, so the training and opt-out fields are null."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://security.vercel.com",
+      "includesEuEntities": true
+    },
+    "certifications": [
+      "SOC2",
+      "ISO27001"
+    ],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "Vercel's AI Product Terms require customers to comply with applicable AI laws and regulations, and its Acceptable Use Policy references 'high risk' areas under the EU AI Act. No primary-source statement was found claiming formal EU AI Act compliance for AI Gateway itself."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://vercel.com/docs/ai-gateway",
+    "https://vercel.com/docs/ai-gateway/pricing",
+    "https://vercel.com/ai-gateway",
+    "https://vercel.com/docs/ai-gateway/capabilities/zdr",
+    "https://vercel.com/blog/how-ai-gateway-runs-on-fluid-compute",
+    "https://vercel.com/legal/privacy-policy",
+    "https://vercel.com/legal/dpa",
+    "https://vercel.com/legal/ai-product-terms",
+    "https://vercel.com/legal/acceptable-use-policy",
+    "https://vercel.com/legal",
+    "https://security.vercel.com"
+  ],
+  "notes": "Vercel offers a public DPA, public trust center, public subprocessor disclosure, SCC-based transfer language, and Data Privacy Framework statements, but I found no primary-source guarantee of EU-only inference for AI Gateway. AI Gateway documents zero data retention and Enterprise-only no-training language; for non-Enterprise AI Gateway customers, I could not confirm a provider-specific default training position from primary sources, so those fields are left null."
 }

@@ -3,12 +3,55 @@
   "name": "Xiaomi Token Plan (Europe)",
   "type": "api_provider",
   "website": "https://platform.xiaomimimo.com",
-  "apiDocsUrl": "https://platform.xiaomimimo.com/#/docs",
+  "apiDocsUrl": "https://platform.xiaomimimo.com/#/docs/welcome",
   "logoPath": "/logos/xiaomi-token-plan-europe.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "NL",
+    "dataResidency": {
+      "regions": [],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "Xiaomi’s general privacy policy says personal information is retained only for as long as necessary for the stated purposes or as required by law, then deleted or anonymized; if retention is legally required, the data is isolated and not further processed except as permitted by law.",
+      "details": null
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "ISO27001",
+      "ISO27701",
+      "SOC2"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://platform.xiaomimimo.com/",
+    "https://mimo.mi.com/",
+    "https://platform.xiaomimimo.com/#/docs/welcome",
+    "https://www.mi.com/global/about/privacy/",
+    "https://privacy.mi.com/all/en_US/xiaomiPrivacyPolicy.pdf",
+    "https://trust.mi.com/en/",
+    "https://trust.mi.com/compliance"
+  ],
+  "notes": "Primary-source information specific to the MiMo API platform is sparse. Xiaomi provides a general privacy policy and trust/compliance materials, but no primary-source DPA/AVV, sub-processor list, EU-only processing guarantee, or explicit statement about training on API customer data was found for the MiMo API platform, so those fields are null or false where appropriate."
 }

@@ -3,12 +3,57 @@
   "name": "LLM Gateway",
   "type": "api_provider",
   "website": "https://llmgateway.io",
-  "apiDocsUrl": "https://llmgateway.io/docs",
+  "apiDocsUrl": "https://docs.llmgateway.io",
   "logoPath": "/logos/llm-gateway.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "EU",
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "The privacy policy states data may be processed and stored on servers in the European Union or the United States. LLM Gateway routes API requests to selected third-party AI providers, and its site/docs describe access to many providers and automatic routing/fallback, so EU-only processing is not guaranteed from the public documentation."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "Default retention is metadata only. If 'Retain All Data' is enabled, full request/response payloads are stored. Data is retained for 30 days for all users, with custom retention periods for Enterprise. Stored data is automatically deleted after the retention period or when the account is deleted, and users can request immediate deletion of specific records through support.",
+      "details": "Privacy/terms say users can choose between 'Metadata Only' and 'Retain All Data' in Settings → Policies. The service shares request data with selected AI providers when routing requests."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://llmgateway.io/",
+    "https://llmgateway.io/pricing",
+    "https://llmgateway.io/legal/privacy",
+    "https://llmgateway.io/legal/terms",
+    "https://llmgateway.io/features/multi-provider-support",
+    "https://docs.llmgateway.io/",
+    "https://docs.llmgateway.io/features/data-retention",
+    "https://docs.llmgateway.io/features/caching",
+    "https://llmgateway.io/blog/introducing-llm-gateway",
+    "https://llmgateway.io/blog/custom-openai-compatible-providers"
+  ],
+  "notes": "Public primary-source documentation confirms a US legal nexus (Delaware governing law), processing/storage in the EU or US, configurable retention, and extensive routing to third-party AI providers, including custom providers. I could not find a public DPA/AVV, sub-processor list, SCC statement, training-on-customer-data statement, or security certification disclosure on the provider’s official site/docs, so those fields are null or false where appropriate."
 }

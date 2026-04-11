@@ -3,12 +3,52 @@
   "name": "MiniMax (minimaxi.com)",
   "type": "api_provider",
   "website": "https://platform.minimaxi.com",
-  "apiDocsUrl": "https://platform.minimaxi.com/docs/guides/quickstart",
+  "apiDocsUrl": "https://platform.minimaxi.com/docs/api-reference/api-overview",
   "logoPath": "/logos/minimax-minimaxi-com.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "SG",
+    "dataResidency": {
+      "regions": [
+        "SG",
+        "CN"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "The publicly accessible platform documentation states that the synchronous text-to-speech API is stateless and does not store submitted data. For asynchronous long-text speech generation, the returned download URL is valid for 9 hours and the generated information is then lost; temporary voice designs are automatically deleted after 168 hours (7 days) if not used. No general API-wide retention policy for prompts, outputs, logs, or uploaded files was found in a primary source.",
+      "details": "The public privacy policy found is a general app/web privacy policy for Nanonoble Pte. Ltd. and does not clearly state whether API customer prompts/outputs are used for model training."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": "MiniMax publishes statements about complying with Chinese AI content labeling rules, but no primary-source statement about EU AI Act compliance for the API platform was found."
+    },
+    "sccs": null,
+    "adequacyDecision": true
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://platform.minimaxi.com/docs/api-reference/api-overview",
+    "https://platform.minimaxi.com/docs/guides/pricing-coding-plan",
+    "https://platform.minimaxi.com/docs/faq/contact-us",
+    "https://platform.minimaxi.com/audio/doc/privacy-policy.html",
+    "https://www.minimaxi.com/news/%E5%85%B3%E4%BA%8E%E6%B7%B1%E5%85%A5%E8%90%BD%E5%AE%9E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%94%9F%E6%88%90%E5%90%88%E6%88%90%E5%86%85%E5%AE%B9%E6%A0%87%E8%AF%86%E5%8A%9E%E6%B3%95%E7%9A%84%E5%85%AC%E5%91%8A"
+  ],
+  "notes": "MiniMax offers a public API platform with pay-as-you-go and subscription pricing, but its publicly accessible compliance posture is sparse for GDPR procurement purposes. A general privacy policy is available and names Nanonoble Pte. Ltd. in Singapore, while the platform footer and third-party references also point to Shanghai Xiyu Technology Co., Ltd.; no public DPA, SCC commitment, sub-processor list, EU-only processing option, or explicit API training policy was found from primary sources."
 }

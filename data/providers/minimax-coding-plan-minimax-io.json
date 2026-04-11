@@ -3,12 +3,52 @@
   "name": "MiniMax Coding Plan (minimax.io)",
   "type": "api_provider",
   "website": "https://platform.minimax.io",
-  "apiDocsUrl": "https://platform.minimax.io/docs/coding-plan/intro",
-  "logoPath": null,
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "apiDocsUrl": "https://platform.minimax.io/docs/api-reference/api-overview",
+  "logoPath": "/logos/minimax-coding-plan-minimax-io.svg",
+  "compliance": {
+    "headquarters": "SG",
+    "dataResidency": {
+      "regions": [
+        "SG"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "The public MiniMax privacy policy says personal data will be retained only as long as reasonably required and then destroyed or de-identified when no longer required. No API- or Coding-Plan-specific retention schedule was found.",
+      "details": "The publicly accessible policy located for MiniMax covers app/web services generally, not a Coding Plan/API-specific data usage addendum. Public API docs also show file upload and persistent/session memory features, but do not state whether API customer data is used for model training."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://platform.minimax.io/docs/api-reference/api-overview",
+    "https://platform.minimax.io/docs/token-plan/opencode",
+    "https://platform.minimax.io/docs/solutions/mini-agent",
+    "https://www.minimax.io/audio/doc/privacy-policy.html",
+    "https://www.minimax.io/protocol/cookie-policy",
+    "https://www.minimax.io/pricing"
+  ],
+  "notes": "MiniMax publicly provides a general privacy policy and cookie policy, including an EU representative, but no publicly accessible DPA/AVV, subprocessors list, EU-only residency option, SCC statement, or API-data-training statement was found in primary sources reviewed. Headquarters appears to be Singapore (Nanonoble Pte. Ltd.), which does not have an EU adequacy decision."
 }

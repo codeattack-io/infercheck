@@ -3,12 +3,58 @@
   "name": "Llama",
   "type": "api_provider",
   "website": "https://llama.developer.meta.com",
-  "apiDocsUrl": "https://llama.developer.meta.com/docs/models",
+  "apiDocsUrl": "https://llama.developer.meta.com/docs",
   "logoPath": "/logos/llama.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "EU",
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": "Meta’s publicly available processor terms state sub-processors may be based in the United States, the EU/EEA, or other countries. I could not find a primary-source statement specific to the Llama API guaranteeing EU-only processing or confirming where inference GPUs are located, so EU-only processing and inference locality are not confirmed."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.facebook.com/legal/terms/dataprocessing",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": null,
+      "details": "A Llama developer help page about whether Meta uses Llama API data to train models exists, but its contents were not publicly accessible without login from the available tooling, so I could not verify the actual policy text from a primary source."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://www.facebook.com/legal/terms/dataprocessing",
+      "includesEuEntities": true
+    },
+    "certifications": [
+      "SOC2"
+    ],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "Meta publishes EU-specific AI terms for its AI services, but I could not find a primary-source statement in the consulted sources claiming formal EU AI Act compliance for the Llama API specifically."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://llama.developer.meta.com/docs",
+    "https://llama.developer.meta.com/help/policy/does-meta-use-my-llama-api-data-to-train-its-models",
+    "https://llama.developer.meta.com/docs/trust/data-commitments",
+    "https://about.fb.com/br/company%20info/",
+    "https://about.fb.com/news/2017/12/moving-to-a-local-selling-model/",
+    "https://www.facebook.com/legal/terms/dataprocessing",
+    "https://www.facebook.com/legal/terms/Privacy/GDTA",
+    "https://www.facebook.com/privacy/policy/",
+    "https://www.facebook.com/legal/eu-ai-terms"
+  ],
+  "notes": "Meta/Llama offers a public data processing terms page with SCC-based transfer addenda and references to a sub-processor list, and those terms mention annual SOC 2 Type II audit reporting. However, several Llama API-specific trust pages were not publicly accessible without login in the available tooling, so Llama-specific training, retention, and EU inference-location facts could not be confirmed and are left null."
 }

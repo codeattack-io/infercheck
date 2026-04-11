@@ -5,10 +5,61 @@
   "website": "https://docs.github.com",
   "apiDocsUrl": "https://docs.github.com/en/copilot",
   "logoPath": "/logos/github-copilot.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US",
+        "CA",
+        "BE",
+        "DE",
+        "IS",
+        "SG"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "GitHub states personal data may be stored and processed in the local region, the United States, and other countries where GitHub affiliates, subsidiaries, or subprocessors operate. GitHub's public subprocessor list shows AI inference and related processing in the United States, Canada, Belgium, Germany, Iceland, and Singapore depending on provider. No GitHub Copilot documentation found that guarantees EU-only processing for inference."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://docs.github.com/en/site-policy/privacy-policies/github-data-protection-agreement",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "For Copilot Business and Copilot Enterprise, GitHub says customer data is not used to train AI models and is protected under the GitHub Data Protection Agreement. GitHub's general privacy statement says personal data is retained while the account is active and as needed for contractual, legal, dispute-resolution, and enforcement purposes. Specific Copilot-related telemetry examples in docs include 90-day retention for activity/authentication metrics and 28-day retention for custom-model telemetry when that optional feature is enabled.",
+      "details": "GitHub says it does not use Copilot Business or Copilot Enterprise customer data to train AI models. Model-hosting documentation says GitHub has zero-data-retention agreements with OpenAI for Copilot, with Anthropic for generally available features, and xAI for Grok Code Fast 1; Google states prompts/responses are not used to train its models. For individual Copilot Free/Pro/Pro+ plans, GitHub says that from April 24, 2026 it may use interactions, including inputs, outputs, code snippets, and associated context, for model training, with a personal opt-out setting."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://docs.github.com/en/site-policy/privacy-policies/github-subprocessors",
+      "includesEuEntities": true
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "GitHub publicly states it follows Microsoft's Responsible AI Standard, aligns implementation with the NIST AI Risk Management Framework, and has completed a Responsible AI Impact Assessment plus security and privacy reviews for its AI products. No primary-source statement found explicitly claiming EU AI Act compliance for GitHub Copilot."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.github.com/en/copilot",
+    "https://docs.github.com/en/enterprise-cloud@latest/copilot/get-started/plans",
+    "https://docs.github.com/en/enterprise-cloud@latest/copilot/get-started/resources-for-approval",
+    "https://docs.github.com/en/enterprise-cloud@latest/copilot/reference/ai-models/model-hosting",
+    "https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement",
+    "https://docs.github.com/en/site-policy/privacy-policies/github-data-protection-agreement",
+    "https://docs.github.com/en/site-policy/privacy-policies/github-subprocessors",
+    "https://docs.github.com/en/copilot/reference/metrics-data",
+    "https://docs.github.com/en/copilot/how-tos/manage-your-account/manage-policies",
+    "https://docs.github.com/en/enterprise-cloud@latest/copilot/managing-copilot/managing-github-copilot-in-your-organization/customizing-copilot-for-your-organization/creating-a-custom-model-for-github-copilot",
+    "https://docs.github.com/en/organizations/managing-organization-settings/upgrading-to-the-github-customer-agreement",
+    "https://github.com/trust-center"
+  ],
+  "notes": "GitHub provides a public DPA, privacy statement, and subprocessor list, and Copilot Business/Enterprise data is expressly stated not to be used for AI model training. However, GitHub does not publicly guarantee EU-only Copilot inference, and its disclosed AI subprocessors/processors include multiple non-EU countries, especially the United States. No Copilot-specific security certification could be confirmed from a current primary source, so certifications are left empty."
 }

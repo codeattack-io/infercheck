@@ -5,10 +5,64 @@
   "website": "https://www.alibabacloud.com",
   "apiDocsUrl": "https://www.alibabacloud.com/help/en/model-studio/coding-plan",
   "logoPath": "/logos/alibaba-coding-plan.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "SG",
+    "dataResidency": {
+      "regions": [
+        "SG",
+        "US",
+        "DE",
+        "CN",
+        "HK"
+      ],
+      "euOnly": true,
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "Alibaba Cloud Model Studio supports a European Union deployment mode bound to Germany (Frankfurt), where static data is stored in the selected region and inference is limited to the EU. However, other deployment modes exist: Global mode can use US (Virginia) or Germany (Frankfurt) for endpoint/data storage with globally scheduled inference, and International mode stores data in Singapore with globally scheduled inference outside mainland China."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.alibabacloud.com/help/en/legal/latest/fe2cxg",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "Alibaba Cloud Model Studio states it will never use customer data for model training. For direct API calls, it does not save conversation data and records only desensitized call status. For the Assistant API, it retains conversation history with no stated expiration date. The general Alibaba Cloud privacy policy says personal data is retained as long as needed for services, legal/compliance reasons, dispute resolution, research/statistical analysis, or until deletion/anonymization is possible.",
+      "details": "Coding Plan is a Model Studio offering. Model Studio documentation states customer data is never used for model training. Data handling varies by access method: direct API calls do not save conversation content, while Assistant API usage retains conversation history."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "SOC2",
+      "ISO27001",
+      "ISO27701",
+      "ISO27018",
+      "ISO27017",
+      "CSA STAR"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "enterprise_only",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://www.alibabacloud.com/help/en/model-studio/coding-plan",
+    "https://www.alibabacloud.com/help/en/model-studio/compliance-and-privacy",
+    "https://www.alibabacloud.com/help/en/model-studio/regions/",
+    "https://www.alibabacloud.com/help/en/model-studio/models",
+    "https://www.alibabacloud.com/help/en/legal/latest/fe2cxg",
+    "https://www.alibabacloud.com/help/en/legal/latest/alibaba-cloud-international-website-privacy-policy",
+    "https://www.alibabacloud.com/help/en/pai/security-compliance-qualifications",
+    "https://www.alibabacloud.com/de/trust-center/compliance?_p_lc=1",
+    "https://www.alibabacloud.com/en/press-room/alibaba-cloud-celebrates-10-years-in-singapore"
+  ],
+  "notes": "Alibaba Coding Plan is a paid Alibaba Cloud Model Studio coding subscription, not a standalone EU-only service. Alibaba documents an EU deployment mode in Frankfurt with inference limited to the EU, but Coding Plan documentation itself does not explicitly state which deployment mode it uses; the broader Model Studio docs also include non-EU modes with global scheduling. A public sub-processor list and any specific EU AI Act statement were not found in the consulted primary sources."
 }

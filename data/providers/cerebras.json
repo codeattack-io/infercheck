@@ -3,12 +3,60 @@
   "name": "Cerebras",
   "type": "api_provider",
   "website": "https://inference-docs.cerebras.ai",
-  "apiDocsUrl": "https://inference-docs.cerebras.ai/models/overview",
+  "apiDocsUrl": "https://inference-docs.cerebras.ai",
   "logoPath": "/logos/cerebras.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US",
+        "CA",
+        "EU"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Cerebras announced inference data centers in the United States and Canada, and announced a Europe region planned for Q4 2025. Primary-source materials reviewed do not state that API customers can enforce EU-only routing or processing. Cerebras also stated in April 2025 that all inference-serving data centers were in North America at that time."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://trust.cerebras.ai/",
+      "signedVia": "custom_contract"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "Cerebras states it does not retain inputs and outputs associated with its training, inference, and chatbot services, and deletes logs associated with those services when they are no longer necessary to provide services.",
+      "details": "Prompt caching documentation says caches are ZDR-compliant, remain ephemeral in memory, are never persisted, and are stored in key-value stores colocated in the same data center as the serving model instance, with a TTL guaranteed for 5 minutes and up to 1 hour depending on load."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://trust.cerebras.ai/",
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "SOC2"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://inference-docs.cerebras.ai",
+    "https://inference-docs.cerebras.ai/capabilities/prompt-caching",
+    "https://inference-docs.cerebras.ai/api-reference/authentication",
+    "https://www.cerebras.ai/privacy-policy",
+    "https://www.cerebras.ai/pricing",
+    "https://www.cerebras.ai/contact",
+    "https://www.cerebras.ai/company",
+    "https://www.cerebras.ai/press-release/cerebras-announces-six-new-ai-datacenters-across-north-america-and-europe-to-deliver-industry-s",
+    "https://www.cerebras.ai/news/meta-unleashes-llama-api-running-18x-faster-than-openai-cerebras-partnership-delivers-2-600",
+    "https://trust.cerebras.ai/"
+  ],
+  "notes": "Cerebras provides a public privacy policy and a trust center that indicates a DPA and subprocessor information are available, but the reviewed public pages did not expose enough primary-source detail to confirm SCC terms, EU-only routing guarantees, or whether customer API data is used for model training. Their current public posture suggests predominantly North American inference infrastructure, with a Europe region announced but no verified customer-selectable EU-only processing commitment found."
 }

@@ -3,12 +3,51 @@
   "name": "KUAE Cloud Coding Plan",
   "type": "api_provider",
   "website": "https://docs.mthreads.com",
-  "apiDocsUrl": "https://docs.mthreads.com/kuaecloud/kuaecloud-doc-online/coding_plan/",
+  "apiDocsUrl": "https://docs.mthreads.com/kuae/kuae-doc-online/",
   "logoPath": "/logos/kuae-cloud-coding-plan.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "CN",
+    "dataResidency": {
+      "regions": [
+        "CN"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "The provider states its online AI/API services run on its self-developed GPU servers, and its privacy policy is governed by Chinese law and Beijing courts. No EU region or EU-only processing option was found in the provider's official documentation."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "The privacy policy says personal information is retained only for the shortest time necessary to achieve the stated purposes or as required by law, and that data past the retention period will be deleted or anonymized. It also says account-cancellation requests lead to deletion or anonymization unless law requires otherwise.",
+      "details": "The privacy policy mentions Moore Threads may sign confidentiality agreements/data processing agreements with authorized partners, but no customer-facing statement was found about model training on API/customer data."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "enterprise_only",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.mthreads.com/kuae/kuae-doc-online/",
+    "https://developer.mthreads.com/musa/musa-ai-platform",
+    "https://developer.mthreads.com/sdk/MUSAChat",
+    "https://en.mthreads.com/privacy",
+    "https://www.mthreads.com/legal"
+  ],
+  "notes": "Official sources confirm Moore Threads is a China-based provider and that its online AI inference services run on Moore Threads GPU servers, but no public DPA/AVV, SCC commitment, sub-processor list, EU-only residency option, or public security certification evidence was found. For GDPR vendor assessment, multiple key fields therefore remain null due to lack of primary-source disclosure."
 }

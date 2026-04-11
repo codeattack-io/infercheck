@@ -3,12 +3,53 @@
   "name": "Kimi For Coding",
   "type": "api_provider",
   "website": "https://www.kimi.com",
-  "apiDocsUrl": "https://www.kimi.com/coding/docs/en/third-party-agents.html",
+  "apiDocsUrl": "https://platform.kimi.com/docs/introduction",
   "logoPath": "/logos/kimi-for-coding.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "CN",
+    "dataResidency": {
+      "regions": [
+        "CN"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": "The Kimi Open Platform privacy policy states personal information is stored within the People's Republic of China and, unless separate consent is obtained and legal requirements are met, it will not be provided overseas. No EU-only processing option was found in primary-source documentation."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "The privacy policy says personal information is retained only for the time necessary to achieve service purposes unless laws require otherwise; if the service stops operating, data will be anonymized or permanently deleted within a reasonable period unless law requires retention. The platform service agreement also says account data, APIs, and balance are cleared on account deletion, but registration data and behavioral records may still be retained as required by Chinese cybersecurity laws.",
+      "details": "The platform privacy policy says conversation information (text, audio, images, video, files) helps optimize the model, and the platform service agreement says user inputs may be used within the agreed service scope, including providing and optimizing the service. No separate API-specific no-training commitment or opt-out was found in the consulted primary sources."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://www.kimi.com/",
+    "https://platform.kimi.com/",
+    "https://platform.kimi.com/docs/introduction",
+    "https://platform.kimi.com/docs/agreement/userprivacy",
+    "https://platform.kimi.com/docs/agreement/modeluse",
+    "https://platform.kimi.com/docs/agreement/payment",
+    "https://platform.kimi.com/docs/guide/faq"
+  ],
+  "notes": "Kimi For Coding is operated by Beijing Moonshot AI Technology Co., Ltd. / Moonshot AI in China. Primary-source documentation confirms China-based storage and a pay-as-you-go API platform, but no public DPA/AVV, SCC commitment, EU-only inference guarantee, sub-processor list, or verified security certifications were found in the consulted sources."
 }

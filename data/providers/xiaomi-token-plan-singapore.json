@@ -3,12 +3,52 @@
   "name": "Xiaomi Token Plan (Singapore)",
   "type": "api_provider",
   "website": "https://platform.xiaomimimo.com",
-  "apiDocsUrl": "https://platform.xiaomimimo.com/#/docs",
+  "apiDocsUrl": "https://platform.xiaomimimo.com/#/docs/welcome",
   "logoPath": "/logos/xiaomi-token-plan-singapore.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "SG",
+    "dataResidency": {
+      "regions": [
+        "DE",
+        "IN",
+        "RU",
+        "SG"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": "Xiaomi's published privacy policy says it currently has data centers in India, the Netherlands, Russia, and Singapore, and personal information may be transferred to those data centers in accordance with applicable law. No primary-source statement was found that the MiMo API offers EU-only routing or that inference compute is guaranteed to remain in the EU."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "Xiaomi's published platform privacy policy states personal information is retained only for as long as necessary for the purposes described, or as required by applicable law. No MiMo API-specific retention period was found in primary-source documentation reviewed.",
+      "details": "No primary-source MiMo API statement was found on whether API prompts/outputs are used for model training. Xiaomi's general/platform privacy policy says research, development, and machine-learning or model algorithm training may be performed after de-identification processing activities, but this is not MiMo API-specific."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://platform.xiaomimimo.com/",
+    "https://www.mi.com/sg/about/privacy",
+    "https://privacy.mi.com/all/en_US/xiaomiPrivacyPolicy.pdf"
+  ],
+  "notes": "Xiaomi MiMo's API site is publicly accessible, but no primary-source MiMo-specific DPA, sub-processor list, SCC statement, EU-only processing commitment, or training-on-API-data statement was found. The closest primary-source privacy evidence located was Xiaomi's broader Singapore/global privacy documentation, which indicates cross-border processing infrastructure including the Netherlands, India, Russia, and Singapore rather than an EU-only setup."
 }

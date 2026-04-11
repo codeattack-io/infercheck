@@ -3,12 +3,54 @@
   "name": "Morph",
   "type": "api_provider",
   "website": "https://docs.morphllm.com",
-  "apiDocsUrl": "https://docs.morphllm.com/api-reference/introduction",
-  "logoPath": null,
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "apiDocsUrl": "https://docs.morphllm.com",
+  "logoPath": "/logos/morph.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Morph states its primary data processing occurs in the United States, with additional processing in select countries where service providers operate. It mentions regional data centers for paid and enterprise customers and self-hosted deployments for chosen jurisdictions, but does not publicly guarantee EU-only processing."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.morphllm.com/privacy",
+      "signedVia": "custom_contract"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "Free tier: up to 90 days, then deleted or anonymized. Paid tier: up to 30 days, then securely deleted. Enterprise tier: zero data retention, processed in memory only with immediate purge after processing. Self-hosted retention is customer-controlled.",
+      "details": "Morph says it does not use customer inputs/outputs to train models by default. It reserves limited use of customer data for support/debugging and service quality in free/paid tiers; enterprise tier states zero training and zero retention."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://trust.delve.co/morph",
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "SOC2"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.morphllm.com",
+    "https://www.morphllm.com/privacy",
+    "https://www.morphllm.com/privacy/tos",
+    "https://www.morphllm.com/pricing",
+    "https://trust.delve.co/morph",
+    "https://www.morphllm.com/eula"
+  ],
+  "notes": "Morph provides a public privacy policy and trust center, states primary processing is in the US, and offers custom DPAs plus regional/self-hosted options for stricter residency needs. It publicly says customer data is not used for training by default, but support/debugging exceptions apply on free and paid tiers; enterprise is marketed as zero-retention/zero-training."
 }

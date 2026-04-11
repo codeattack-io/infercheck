@@ -3,12 +3,55 @@
   "name": "Meganova",
   "type": "api_provider",
   "website": "https://docs.meganova.ai",
-  "apiDocsUrl": "https://docs.meganova.ai",
+  "apiDocsUrl": "https://docs.meganova.ai/api-reference",
   "logoPath": "/logos/meganova.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "MegaNova's privacy policy states it is based in the United States and that information may be transferred to and processed in the U.S. and other countries. Enterprise documentation says customers can choose where data is processed and stored and FAQ mentions custom regions for Enterprise, but no primary-source document found guarantees an EU-only region or states that inference always stays in the EU."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "Privacy policy says personal information is retained as long as necessary to provide the services and for legitimate purposes such as business/financial records, legal compliance, dispute resolution, enforcing agreements, and safety/security/auditing/product improvement. FAQ says user prompts and outputs are not stored beyond temporary processing and there is no long-term storage of prompts/outputs.",
+      "details": "Privacy policy says they collect content users upload or generate, including prompts, files, messages, model preferences, and usage settings. It also says they use personal information to improve, research, and develop the services, including analytics, quality assurance, safety systems, testing, anonymization/aggregation, and new features, but it does not explicitly state whether API customer data is used to train models."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "SOC2"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.meganova.ai/legal-docs/privacy-policy",
+    "https://docs.meganova.ai/faq/security-and-support",
+    "https://docs.meganova.ai/enterprise",
+    "https://docs.meganova.ai/api-reference",
+    "https://docs.meganova.ai/tiers",
+    "https://www.meganova.ai/pricing",
+    "https://www.meganova.ai/terms"
+  ],
+  "notes": "Primary-source privacy documentation exists and identifies the company as US-based (Nebula Nova Inc., Delaware) with SCCs referenced for international transfers. Public docs mention temporary processing for prompts/outputs and Enterprise data residency/custom regions, but no public DPA, sub-processor list, or explicit statement confirming EU-only inference or no-training-on-customer-data was found."
 }

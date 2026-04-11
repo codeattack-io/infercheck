@@ -3,12 +3,67 @@
   "name": "Bailing",
   "type": "api_provider",
   "website": "https://alipaytbox.yuque.com",
-  "apiDocsUrl": "https://alipaytbox.yuque.com/sxs0ba/ling/intro",
+  "apiDocsUrl": "https://help.aliyun.com/zh/model-studio/applicantion-api-reference/",
   "logoPath": "/logos/bailing.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "SG",
+    "dataResidency": {
+      "regions": [
+        "CN",
+        "SG",
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Alibaba Cloud Model Studio/Bailing documents state model services are available in Chinese mainland (Beijing), US (Virginia), and International (Singapore). No EU region is documented. The DPA says customers choose a selected region, but Alibaba Cloud may transfer data outside that selected region subject to data protection measures."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.alibabacloud.com/help/en/legal/latest/fe2cxg",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "For direct API calls, Model Studio states it does not save conversation data and only desensitizes and records call status. For Assistant API usage, it retains conversation history and says this information currently has no expiration date. The general privacy policy states personal data is retained as long as needed to provide services or comply with legal, tax, or accounting requirements.",
+      "details": "Alibaba Cloud Model Studio/Bailing states it will never use customer data for model training, and transmitted data is encrypted. Retention behavior depends on the invocation method."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://account.alibabacloud.com/",
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "CSA STAR",
+      "ISO27001",
+      "ISO20000",
+      "ISO22301",
+      "ISO9001",
+      "C5",
+      "TISAX",
+      "HIPAA"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://help.aliyun.com/zh/model-studio/applicantion-api-reference/",
+    "https://help.aliyun.com/zh/model-studio/activate-alibaba-cloud-model-studio",
+    "https://www.alibabacloud.com/help/en/model-studio/what-is-model-studio",
+    "https://www.alibabacloud.com/help/en/model-studio/faq-about-alibaba-cloud-model-studio",
+    "https://www.alibabacloud.com/help/en/legal/latest/fe2cxg",
+    "https://www.alibabacloud.com/help/en/legal/latest/alibaba-cloud-international-website-privacy-policy",
+    "https://www.alibabacloud.com/help/en/legal/latest/alibaba-cloud-international-website-terms-of-use-alibaba-cloud-international-website-terms-of-use",
+    "https://www.alibabacloud.com/help/doc-detail/42427.html",
+    "https://www.alibabacloud.com/en/trust-center/compliance?_p_lc=1",
+    "https://www.alibabacloud.com/trust-center/gdpr"
+  ],
+  "notes": "Bailing appears to be Alibaba Cloud Model Studio/百炼 rather than an independent provider. Primary-source materials confirm a public DPA with SCC language, no-training statements for customer data, and processing regions in Beijing, Singapore, and Virginia, but no EU-only inference option or public standalone sub-processor list URL without account login."
 }

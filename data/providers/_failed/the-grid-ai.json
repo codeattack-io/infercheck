@@ -1,0 +1,54 @@
+{
+  "slug": "the-grid-ai",
+  "name": "The Grid AI",
+  "type": "api_provider",
+  "website": "https://thegrid.ai",
+  "apiDocsUrl": "https://thegrid.ai/docs",
+  "logoPath": "/logos/the-grid-ai.svg",
+  "compliance": {
+    "headquarters": null,
+    "dataResidency": {
+      "regions": [],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "The Grid states that all instruments have zero data retention. Separately, its documentation says it records per-call usage data including timestamp, token counts, trade details, supplier information, and performance metrics for metering and dispute resolution.",
+      "details": "API requests are routed to the lowest-cost qualifying provider/model that satisfies the instrument requirements, and The Grid records routing and metering data about each inference call."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://thegrid.ai",
+    "https://thegrid.ai/docs",
+    "https://app.thegrid.ai/",
+    "https://thegrid.ai/docs/introduction/consumption-delivery-and-metering",
+    "https://thegrid.ai/docs/consumption-delivery-and-metering",
+    "https://thegrid.ai/docs/market-mechanics/lifecycle-of-a-unit",
+    "https://thegrid.ai/docs/instruments-and-specifications",
+    "https://thegrid.ai/docs/instruments-and-specifications/evolution-of-specifications"
+  ],
+  "notes": "Primary-source review found product and API documentation but no publicly accessible privacy policy, DPA/AVV, sub-processor list, SCC statement, security certification page, or clear headquarters disclosure on the provider website/docs. The strongest confirmed privacy-relevant facts are that requests are dynamically routed across qualifying suppliers, the app claims zero data retention for instruments, and the docs confirm retention of usage/metering metadata per inference call."
+}

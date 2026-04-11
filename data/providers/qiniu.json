@@ -3,12 +3,58 @@
   "name": "Qiniu",
   "type": "api_provider",
   "website": "https://developer.qiniu.com",
-  "apiDocsUrl": "https://developer.qiniu.com/aitokenapi",
+  "apiDocsUrl": "https://developer.qiniu.com/aitokenapi/12882/ai-inference-api",
   "logoPath": "/logos/qiniu.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "CN",
+    "dataResidency": {
+      "regions": [
+        "CN"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "The privacy policy states that account information is used during the service period and, upon account cancellation, personal information will be deleted or anonymized. No product-specific retention period for AI inference inputs/outputs or logs was found in the reviewed primary sources.",
+      "details": null
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "ISO20000",
+      "ISO9001",
+      "ISO27001",
+      "CMMI3",
+      "TRUCS"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://developer.qiniu.com/aitokenapi/12882/ai-inference-api",
+    "https://developer.qiniu.com/aitokenapi/12884/how-to-get-api-key",
+    "https://www.qiniu.com/static/%E4%B8%83%E7%89%9B%E4%BA%91%E9%9A%90%E7%A7%81%E6%9D%83%E6%94%BF%E7%AD%962021%E7%89%88.pdf",
+    "https://www.qiniu.com/company",
+    "https://www.qiniu.com/contact",
+    "https://www.qiniu.com/"
+  ],
+  "notes": "Qiniu is headquartered in China and the reviewed primary sources show AI inference API endpoints and company operations centered in China, with no EU-region or EU-only processing commitment found. No public DPA/AVV, sub-processor list, SCC statement, or explicit statement on training on customer API data was found in the reviewed primary sources, so those fields are left null or marked unavailable."
 }

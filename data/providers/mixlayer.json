@@ -5,10 +5,46 @@
   "website": "https://docs.mixlayer.com",
   "apiDocsUrl": "https://docs.mixlayer.com",
   "logoPath": "/logos/mixlayer.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": true,
+      "retentionPolicy": "By default, Mixlayer says it does not log full API request/response bodies. It may retain logs, metadata, console usage analytics, security/audit logs, and stored customer content only in limited circumstances, for up to a maximum of 1 year unless otherwise agreed in writing.",
+      "details": "Mixlayer states that by default it does not use customer content to train or improve models for general availability. Training use is opt-in, and opt-in can be withdrawn prospectively through settings if available or by contacting support. Customer-directed fine-tuning/adaptation is treated separately when explicitly enabled."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.mixlayer.com",
+    "https://www.mixlayer.com/",
+    "https://www.mixlayer.com/terms-of-service",
+    "https://www.mixlayer.com/privacy-policy"
+  ],
+  "notes": "Mixlayer publishes a Privacy Policy and Terms of Service, but no public DPA/AVV, SCC commitment, public sub-processor list, or data residency/EU-only processing documentation was found in the primary sources reviewed. The company states customer content is not used for general model training by default, with explicit opt-in required, and says SOC 2 is only in progress."
 }

@@ -3,12 +3,64 @@
   "name": "Vultr",
   "type": "api_provider",
   "website": "https://api.vultrinference.com",
-  "apiDocsUrl": "https://api.vultrinference.com/",
+  "apiDocsUrl": "https://www.vultr.com/api/",
   "logoPath": "/logos/vultr.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "EU",
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": "Vultr states that customers can choose deployment locations and that data remains in the selected location unless the customer copies it elsewhere; its trust-center materials also say data residency options keep data located within selected regions and not processed in other jurisdictions. However, no primary source located for Serverless Inference specifically guarantees EU-only inference processing."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://docs.vultr.com/support/platform/compliance/does-vultr-offer-a-data-processing-addendum",
+      "signedVia": "custom_contract"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "Vultr says account closure permanently deletes the account and associated data, and its trust center says customer data is securely and permanently removed once the retention period specified in the customer contract has ended. No Serverless Inference-specific retention schedule for prompts, outputs, or logs was found in primary sources.",
+      "details": "Vultr's privacy notice says it does not apply to customer 'User Content' hosted using the services and that in that context Vultr acts solely as a data processor. Trust-center language says Vultr does not claim rights to customer content except as required by law or for security purposes, but no explicit statement was found on whether API/inference data is used for model training."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://www.vultr.com/legal/subprocessors",
+      "includesEuEntities": true
+    },
+    "certifications": [
+      "SOC2",
+      "ISO27001"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.vultr.com/support/platform/compliance/does-vultr-offer-a-data-processing-addendum",
+    "https://docs.vultr.com/support/platform/compliance/are-vultr-services-gdpr-compliant",
+    "https://www.vultr.com/legal/eea-gdpr-privacy/",
+    "https://www.vultr.com/legal/privacy/",
+    "https://www.vultr.com/legal/subprocessors",
+    "https://www.vultr.com/trust-center",
+    "https://docs.vultr.com/support/platform/compliance/how-to-delete-or-retrieve-data-on-vultr",
+    "https://docs.vultr.com/support/platform/profile/can-i-delete-or-close-my-vultr-account",
+    "https://docs.vultr.com/public/doc-assets/pdfs/collection_item/products-cloud-storage.pdf",
+    "https://www.vultr.com/multicloud/",
+    "https://www.vultr.com/api/",
+    "https://www.vultr.com/pricing/",
+    "https://docs.vultr.com/public/doc-assets/pdfs/collection_item/products-serverless-inference.pdf",
+    "https://docs.vultr.com/support/platform/billing/how-do-i-arrange-payment-via-ach-or-wire"
+  ],
+  "notes": "Vultr provides GDPR-facing documentation, a DPA available on request for e-signature, a public subprocessor list, and public statements supporting SCC-based transfers. However, primary-source evidence was not found for Serverless Inference-specific prompt/output retention, model-training use of API data, or a guarantee that inference GPU processing can be restricted to the EU."
 }

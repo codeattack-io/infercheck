@@ -3,12 +3,53 @@
   "name": "Perplexity Agent",
   "type": "api_provider",
   "website": "https://docs.perplexity.ai",
-  "apiDocsUrl": "https://docs.perplexity.ai/docs/agent-api/models",
+  "apiDocsUrl": "https://docs.perplexity.ai",
   "logoPath": "/logos/perplexity-agent.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Perplexity’s DPA lists Amazon Web Services cloud infrastructure and third-party LLM providers as subprocessors with location stated as worldwide. No EU-only processing option was found in the API documentation or DPA."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.perplexity.ai/pl/hub/legal/dpa",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "For the Sonar API, Perplexity states a zero data retention policy: it does not retain API prompt/response content and only collects billing metadata such as token counts, model used, timestamps, duration, and API key identification. The DPA also says personal data is deleted or returned within 30 days after termination of services unless law requires longer retention.",
+      "details": "Perplexity states that Sonar API customer data is not used to train models or for other purposes beyond processing the immediate request."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://www.perplexity.ai/pl/hub/legal/dpa",
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "SOC2"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.perplexity.ai/docs/resources/privacy-security",
+    "https://www.perplexity.ai/pl/hub/legal/dpa",
+    "https://www.perplexity.ai/es/hub/legal/privacy-policy",
+    "https://www.perplexity.ai/enterprise/security",
+    "https://www.perplexity.ai/enterprise/pricing"
+  ],
+  "notes": "Perplexity’s API documentation is favorable on training and retention for Sonar API: it states zero retention of API content and no training on customer data. However, the public DPA indicates worldwide processing via AWS and third-party LLM providers, so EU-only inference/processing is not documented, and cross-border transfer mechanisms rely on SCCs and the EU-US Data Privacy Framework."
 }

@@ -3,12 +3,52 @@
   "name": "OpenCode Go",
   "type": "api_provider",
   "website": "https://opencode.ai",
-  "apiDocsUrl": "https://opencode.ai/docs/zen",
+  "apiDocsUrl": "https://opencode.ai/docs/go/",
   "logoPath": "/logos/opencode-go.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "EU",
+        "US",
+        "SG"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "OpenCode Go states that its models are hosted in the US, EU, and Singapore for stable global access. It does not state that EU-only routing or processing is guaranteed for Go."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "The privacy policy says OpenCode retains personal data for as long as necessary to provide services or fulfill business/commercial purposes, and longer if needed for legal obligations, disputes, or fee collection. For OpenCode Go specifically, the Go documentation says providers follow a zero-retention policy and do not use data for model training.",
+      "details": "OpenCode Go documentation says providers follow a zero-retention policy and do not use customer data for model training. The general privacy policy also says users may voluntarily provide information included in conversations or prompts submitted to AI."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://opencode.ai/docs/go/",
+    "https://opencode.ai/legal/privacy-policy",
+    "https://dev.opencode.ai/docs/zen",
+    "https://anoma.ly/"
+  ],
+  "notes": "OpenCode Go provides API access via OpenCode and documents hosting across the US, EU, and Singapore, but does not promise EU-only inference routing. No public DPA, sub-processor list, SCC statement, or security certifications were found on primary sources reviewed."
 }

@@ -5,10 +5,57 @@
   "website": "https://docs.baseten.co",
   "apiDocsUrl": "https://docs.baseten.co/development/model-apis/overview",
   "logoPath": "/logos/baseten.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US",
+        "EU"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": "Baseten documents 'regional environments' that restrict inference traffic to a specific geographic region and route directly to infrastructure in the designated region. Baseten also markets self-hosted/hybrid deployments as supporting deployments exclusively in US and EU data centers with model data never leaving the customer's cloud, but I could not find a primary-source guarantee that Baseten Cloud offers EU-only processing by default for all services."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.baseten.co/terms-and-conditions/",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "Baseten says it does not store model inputs, outputs, or weights by default. Inputs for async inference are temporarily stored until processed; outputs are never stored; model weights are loaded directly to GPU memory, with optional caching that can be permanently deleted on request. Its website privacy policy says personal data is retained only as long as necessary for the stated purposes, and usage data is generally retained for a shorter period unless needed for security/functionality or legal obligations.",
+      "details": "Baseten states it is 'in the business of providing ML inference infrastructure, not using customer data' and separately documents that it does not store model inputs, outputs, or weights by default."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://trust.baseten.co/",
+      "includesEuEntities": true
+    },
+    "certifications": [
+      "SOC2",
+      "SOC3"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.baseten.co/development/model-apis/overview",
+    "https://docs.baseten.co/deployment/environments",
+    "https://docs.baseten.co/observability/security",
+    "https://www.baseten.co/privacy-policy/",
+    "https://www.baseten.co/pricing",
+    "https://www.baseten.co/terms-and-conditions/",
+    "https://www.baseten.co/trust/",
+    "https://trust.baseten.co/",
+    "https://www.baseten.co/platform/models/deepseek/"
+  ],
+  "notes": "Baseten provides a public privacy policy, an incorporated DPA with SCC language in its terms, a public trust center, and documented regional inference controls. It clearly states it does not store inference inputs/outputs by default and does not use customer data for its business model, but I could not verify a public explicit EU AI Act statement or a universal EU-only Baseten Cloud guarantee, so those fields remain conservative."
 }

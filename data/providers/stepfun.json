@@ -3,12 +3,50 @@
   "name": "StepFun",
   "type": "api_provider",
   "website": "https://platform.stepfun.com",
-  "apiDocsUrl": "https://platform.stepfun.com/docs/zh/overview/concept",
-  "logoPath": null,
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "apiDocsUrl": "https://platform.stepfun.com/docs/en/guide/openai",
+  "logoPath": "/logos/stepfun.svg",
+  "compliance": {
+    "headquarters": "CN",
+    "dataResidency": {
+      "regions": [
+        "CN"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "StepFun's privacy policy states that personal information collected and generated during domestic operations is stored within the People's Republic of China and that it currently does not transfer such information overseas. No EU region or EU-only processing option was found in the provider's primary-source platform documentation."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "The privacy policy says personal information is kept only for the period necessary to provide platform services. It gives the example that a registered phone number is retained while needed to provide service, handle inquiries/complaints, and protect account/system security; after account deletion, user-initiated deletion, or expiry of the necessary period, data is deleted or anonymized unless law requires retention or a longer period is reasonably needed for finance, audit, or dispute resolution.",
+      "details": "The privacy policy states that user inputs and service outputs are collected to provide intelligent dialogue/content generation, content understanding, and data analysis. It also states that information generated from use of the platform may be anonymized and then used for data analysis and possible commercial use."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://platform.stepfun.com/legal/privacy-policy.html",
+    "https://platform.stepfun.com/docs/en/guide/openai",
+    "https://platform.stepfun.com/docs/en/guides/pricing/details",
+    "https://platform.stepfun.com/docs/zh/step-plan/paid-service-agreement"
+  ],
+  "notes": "Primary-source documentation confirms a China-based provider with data stored in the PRC and no published EU region or EU-only processing option. No public DPA/AVV, sub-processor list, SCC statement, training-on-customer-data statement, or security certification evidence was found in StepFun's primary-source materials reviewed on 2026-04-11."
 }

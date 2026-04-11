@@ -3,12 +3,67 @@
   "name": "Nova",
   "type": "api_provider",
   "website": "https://nova.amazon.com",
-  "apiDocsUrl": "https://nova.amazon.com/dev/documentation",
+  "apiDocsUrl": "https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html",
   "logoPath": "/logos/nova.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "EU",
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": "Amazon Nova is served through Amazon Bedrock. AWS states it will not move customer content from the AWS Regions selected by the customer except as necessary to comply with law or a binding governmental order, and Nova understanding models are available through European regional and cross-region inference profiles in Europe (for example Frankfurt, Ireland, Paris, Stockholm). However, the consulted primary sources do not provide an explicit EU-only processing guarantee for all Nova inference scenarios."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://docs.aws.amazon.com/whitepapers/latest/navigating-gdpr-compliance/aws-data-processing-addendum-dpa.html",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "Amazon Bedrock states it does not store or log prompts and completions, and does not use prompts and completions to train AWS models or distribute them to third parties. AWS customers may choose to store metadata, prompts, and completions in their own encrypted Amazon S3 bucket.",
+      "details": "Amazon Nova is available in Amazon Bedrock. AWS states model providers do not have access to Amazon Bedrock logs or to customer prompts and completions, and prompts/outputs for Amazon foundation models are not used to train underlying Amazon foundation models unless a customer consents."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://aws.amazon.com/compliance/sub-processors/",
+      "includesEuEntities": true
+    },
+    "certifications": [
+      "SOC2",
+      "ISO27001",
+      "ISO27701",
+      "HDS"
+    ],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "AWS publishes Responsible AI materials for Amazon Nova and Bedrock, but no consulted primary source expressly states that Amazon Nova is EU AI Act compliant. Public materials indicate responsible AI governance and controls rather than a formal AI Act conformity claim."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html",
+    "https://docs.aws.amazon.com/nova/latest/nova2-userguide/responsible-use.html",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html",
+    "https://aws.amazon.com/bedrock/titan/privacy/",
+    "https://docs.aws.amazon.com/whitepapers/latest/navigating-gdpr-compliance/aws-data-processing-addendum-dpa.html",
+    "https://aws.amazon.com/compliance/europe-digital-sovereignty/faq/",
+    "https://aws.amazon.com/agreement/",
+    "https://aws.amazon.com/compliance/sub-processors/",
+    "https://aws.amazon.com/compliance/iso-certified/",
+    "https://aws.amazon.com/compliance/hds/",
+    "https://aws.amazon.com/bedrock/security-compliance/",
+    "https://aws.amazon.com/about-aws/whats-new/2025/02/amazon-nova-understanding-models-europe-asia-pacific",
+    "https://docs.aws.amazon.com/nova/latest/nova2-userguide/on-demand-inference.html",
+    "https://aws.amazon.com/bedrock/pricing/",
+    "https://aws.amazon.com/privacy/app/"
+  ],
+  "notes": "Amazon Nova is offered via Amazon Bedrock and inherits AWS’s GDPR DPA, SCCs, regional controls, and Bedrock privacy posture. Primary sources clearly state Bedrock does not use prompts/completions to train AWS models and does not store or log them, but the reviewed sources do not provide a blanket EU-only processing guarantee for all Nova inference paths, so EU-only was set to false and inference egress to null."
 }

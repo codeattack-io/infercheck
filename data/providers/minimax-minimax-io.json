@@ -3,12 +3,55 @@
   "name": "MiniMax (minimax.io)",
   "type": "api_provider",
   "website": "https://platform.minimax.io",
-  "apiDocsUrl": "https://platform.minimax.io/docs/guides/quickstart",
+  "apiDocsUrl": "https://platform.minimax.io/docs",
   "logoPath": "/logos/minimax-minimax-io.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "SG",
+    "dataResidency": {
+      "regions": [
+        "SG"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "The published privacy policy says personal data may be retained as long as necessary or permitted by law to fulfill the purpose for which it was collected, and will cease to be retained as soon as it is reasonable that the data is no longer required.",
+      "details": "MiniMax’s published privacy materials are general app/web policies for its services and do not provide a specific API-data training commitment or API-specific processing terms."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://platform.minimax.io/docs",
+    "https://platform.minimax.io/docs/pricing/overview",
+    "https://platform.minimax.io/docs/solutions/audiobook?key=68bc2a4f95a600dbfc92c7c8",
+    "https://www.minimax.io/audio/doc/privacy-policy.html",
+    "https://agent.minimax.io/doc/en/privacy-policy.html",
+    "https://www.minimax.io/protocol/cookie-policy",
+    "https://ir.minimax.io/corporate-information/company-profile",
+    "https://www.minimax.io/news/official-rules-mac-mini-giveaway",
+    "https://platform.minimax.io/docs/token-plan/promotion"
+  ],
+  "notes": "MiniMax publicly provides a general privacy policy and an EU representative contact, but no primary-source DPA/AVV, sub-processor list, SCC statement, API-data training commitment, or EU-only processing guarantee was found on its official materials reviewed. Headquarters evidence points to Singapore (Nanonoble Pte. Ltd.), which does not have an EU adequacy decision."
 }

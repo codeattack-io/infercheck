@@ -3,12 +3,57 @@
   "name": "Abacus",
   "type": "api_provider",
   "website": "https://abacus.ai",
-  "apiDocsUrl": "https://abacus.ai/help/api",
+  "apiDocsUrl": "https://abacus.ai/help/api/ref/llm_apps/getLLMAppResponse",
   "logoPath": "/logos/abacus.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Primary documentation states open-source models are hosted on secure US-based servers and RouteLLM documentation states open-weight LLMs are hosted on servers in the United States. A secure deployment options document says enterprise deployments can be hosted on AWS, GCP, or Azure of the customer's choice, including customer-owned storage/VPC options, but no primary source found guarantees EU-only inference for the public API."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://static.abacus.ai/security/Abacus_dpa.pdf",
+      "signedVia": "custom_contract"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "Abacus states it does not use customer data, prompts, uploads, or API data to train models. It says third-party/foundation model exchanges are zero-retention and deleted immediately after processing, but account/profile content and user content may be retained for a commercially reasonable time after termination for backup, archival, and audit purposes.",
+      "details": "Abacus says user data is used solely to execute user-initiated queries and tasks, and that it has enterprise agreements with providers such as OpenAI, Anthropic, and Google to prevent customer data from being used for training."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "SOC2",
+      "HIPAA"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://abacus.ai/privacy",
+    "https://static.abacus.ai/security/Abacus_dpa.pdf",
+    "https://abacus.ai/security",
+    "https://static.abacus.ai/security/AbacusSecureDeploymentOptions.pdf",
+    "https://abacus.ai/help/chatllm-ai-super-assistant/faqs/data-security",
+    "https://abacus.ai/help/developer-platform/route-llm/api",
+    "https://abacus.ai/help/api/ref/llm_apps/getLLMAppResponse",
+    "https://abacus.ai/help/chatllm-ai-super-assistant/purchase-domains"
+  ],
+  "notes": "Abacus publishes a privacy policy and a public DPA that includes SCCs. Primary-source materials clearly say customer/API data is not used for training and that third-party model use is zero-retention, but public documentation does not provide a public sub-processor list or a guaranteed EU-only inference commitment for the general API; available public docs point mainly to US hosting."
 }

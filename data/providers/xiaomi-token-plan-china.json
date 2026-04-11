@@ -3,12 +3,59 @@
   "name": "Xiaomi Token Plan (China)",
   "type": "api_provider",
   "website": "https://platform.xiaomimimo.com",
-  "apiDocsUrl": "https://platform.xiaomimimo.com/#/docs",
+  "apiDocsUrl": "https://platform.xiaomimimo.com",
   "logoPath": "/logos/xiaomi-token-plan-china.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "CN",
+    "dataResidency": {
+      "regions": [
+        "NL",
+        "SG"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": "Xiaomi's published global privacy materials say it currently has data centers in the Netherlands and Singapore, and that EEA users are controlled by Xiaomi Technology Netherlands B.V. while processing is handled by Xiaomi Technologies Singapore Pte. Ltd. No primary-source documentation specific to the MiMo API/Token Plan was found that guarantees EU-only processing or states where inference GPUs run."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": null,
+      "details": "No MiMo API-specific primary-source statement was found on whether customer/API data is used for model training or on any opt-out mechanism. Xiaomi's general platform privacy policy describes collection and sharing practices for platform services, but not LLM/API training use for MiMo Token Plan."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "ISO27001",
+      "ISO27701",
+      "SOC2"
+    ],
+    "euAiAct": {
+      "status": "unknown",
+      "details": "No primary-source Xiaomi MiMo API / Token Plan statement about EU AI Act compliance was found. Xiaomi's trust and privacy materials describe general privacy/compliance programs, but not an EU AI Act posture for this API service."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://platform.xiaomimimo.com/",
+    "https://mimo.mi.com/",
+    "https://www.mi.com/global/about/privacy/",
+    "https://www.mi.com/global/support/policy/privacy/",
+    "https://privacy.mi.com/all/en_US/xiaomiPrivacyPolicy.pdf",
+    "https://privacy.mi.com/Privacy_Support/en_US/Privacy_SupportPrivacyPolicy.pdf",
+    "https://trust.mi.com/docs/iot-privacy-white-paper-global/4",
+    "https://trust.mi.com/compliance"
+  ],
+  "notes": "Primary-source documentation specific to Xiaomi MiMo Token Plan's GDPR/commercial processor terms is sparse. Xiaomi provides broad corporate privacy and trust-center materials, including SCC-based transfer language and corporate certifications, but no public MiMo-specific DPA, sub-processor list, retention schedule, or training-on-API-data statement was found; those fields are therefore left null or marked unavailable."
 }

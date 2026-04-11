@@ -3,12 +3,62 @@
   "name": "NovitaAI",
   "type": "api_provider",
   "website": "https://novita.ai",
-  "apiDocsUrl": "https://novita.ai/docs/guides/introduction",
+  "apiDocsUrl": "https://novita.ai/docs/api-reference",
   "logoPath": "/logos/novitaai.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "EU",
+        "GB",
+        "US",
+        "IN",
+        "AE",
+        "BR",
+        "JP",
+        "SG",
+        "HK",
+        "AU",
+        "ZA"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Novita publicly advertises globally distributed GPU regions, including Germany (EU-GER-01, EU-GER-02) and the United Kingdom (EU-GB-01), alongside regions in the US, Asia, Middle East, South America, Africa, and Australia. Because processing capacity is offered across multiple non-EU regions and no primary-source statement guaranteeing EU-only routing for API inference was found, EU-only processing cannot be considered guaranteed and inference can leave the EU."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "The privacy policy says personal information is retained only as long as needed to provide the service or for legitimate business purposes such as resolving disputes, safety/security, or legal compliance. It also says de-identified or anonymized information may be used indefinitely for research or statistical purposes.",
+      "details": "Novita’s privacy policy states: \"The Personal Information will not be used for model training.\" The same policy also says it does not apply to content processed on behalf of customers while providing services, and that such content is governed by customer agreements."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://novita.ai/",
+    "https://novita.ai/docs/api-reference",
+    "https://novita.ai/legal",
+    "https://novita.ai/legal/terms-of-service",
+    "https://blogs.novita.ai/gpu-regions-zones/",
+    "https://novita.ai/models-console/model-detail/qwen-qwen-mt-plus"
+  ],
+  "notes": "Novita publishes a privacy policy and API documentation and publicly advertises multi-region global GPU infrastructure, including Germany and the UK, but no primary-source DPA, SCC commitment, or public sub-processor list was found. Their privacy policy expressly says personal information is not used for model training, but it leaves customer-content processing to separate customer agreements that were not publicly located."
 }

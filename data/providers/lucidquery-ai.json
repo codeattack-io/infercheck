@@ -5,10 +5,51 @@
   "website": "https://lucidquery.com",
   "apiDocsUrl": "https://lucidquery.com/api/docs",
   "logoPath": "/logos/lucidquery-ai.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "FR",
+    "dataResidency": {
+      "regions": [
+        "FR"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": true,
+      "optOutAvailable": null,
+      "retentionPolicy": "The privacy policy says LucidQuery uses third-party services for hosting and may store/transfer personal data, but it does not state a specific retention period. The contact FAQ says they do not store queries or generated content beyond what is necessary to provide and improve the service, and the Terms say they may collect and analyze queries, interactions, and generated content to improve services and enhance AI models.",
+      "details": "Terms of Service state they may collect and analyze service data, including queries, interactions, and generated content, to improve services, develop new features, and enhance AI models. A separate LucidArc product page says LucidArc usage data is not stored or used for training, but that statement is product-specific and not a general API commitment."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": true
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://lucidquery.com/about/",
+    "https://lucidquery.com/api/docs",
+    "https://lucidquery.com/pricing",
+    "https://lucidquery.com/privacy",
+    "https://lucidquery.com/terms",
+    "https://lucidquery.com/contact/",
+    "https://lucidquery.com/lucidarc/"
+  ],
+  "notes": "LucidQuery identifies itself as a France-based SAS and offers a pay-as-you-go API, but its public compliance documentation appears limited. No public DPA/AVV, sub-processor list, SCC statement, EU-only processing guarantee, or security certification evidence was found on the provider’s official site; the Terms also state service data may be analyzed to improve services and enhance AI models."
 }

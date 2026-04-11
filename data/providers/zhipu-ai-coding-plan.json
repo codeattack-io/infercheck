@@ -3,12 +3,54 @@
   "name": "Zhipu AI Coding Plan",
   "type": "api_provider",
   "website": "https://docs.bigmodel.cn",
-  "apiDocsUrl": "https://docs.bigmodel.cn/cn/coding-plan/overview",
+  "apiDocsUrl": "https://docs.bigmodel.cn",
   "logoPath": "/logos/zhipu-ai-coding-plan.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "CN",
+    "dataResidency": {
+      "regions": [
+        "CN"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "The privacy policy states that personal information collected and generated during operation in China is stored in China, and that they currently do not transfer or store personal information cross-border. No EU region or EU-only processing option is documented. For EU users, inference and related processing can leave the EU because the service is operated from China and no EU inference region is offered in the official docs."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "The privacy policy says personal information is kept only for the shortest period necessary to achieve the stated purposes, unless a longer retention period is required by law. If a user requests deletion or closes an account, deletion/anonymization may be delayed where statutory minimum retention periods apply or until backups can be cleared/anonymized.",
+      "details": "The user agreement says Zhipu may use data generated during use of the platform or models to locate issues, maintain, and optimize its products and services, unless otherwise agreed with the customer. The privacy policy also says anonymized data may be used for research, statistics, service improvement, and machine learning/model algorithm training."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://docs.bigmodel.cn/cn/terms/privacy-policy",
+      "includesEuEntities": false
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": "No statement about EU AI Act compliance was found in the official documentation reviewed. The provider does publish China-specific generative AI filing/compliance information."
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.bigmodel.cn/",
+    "https://docs.bigmodel.cn/cn/terms/privacy-policy",
+    "https://docs.bigmodel.cn/cn/terms/user-agreement",
+    "https://docs.bigmodel.cn/cn/terms/service-agreement",
+    "https://docs.bigmodel.cn/cn/terms/subscription-agreement",
+    "https://docs.bigmodel.cn/cn/guide/platform/filing",
+    "https://docs.bigmodel.cn/cn/update/promotion",
+    "https://www.zhipuai.cn/stream"
+  ],
+  "notes": "Zhipu AI Coding Plan is operated by Beijing Zhipu Huazhang Technology Co., Ltd. in China. Official docs provide a privacy policy and disclose third-party recipients/SDK partners, but no public DPA/AVV, SCC commitment, EU region, or EU AI Act statement was found. The docs indicate data is stored in China and the user agreement permits use of usage-generated data for product maintenance/optimization unless otherwise agreed."
 }

@@ -3,12 +3,66 @@
   "name": "Cloudflare Workers AI",
   "type": "api_provider",
   "website": "https://developers.cloudflare.com",
-  "apiDocsUrl": "https://developers.cloudflare.com/workers-ai/models/",
+  "apiDocsUrl": "https://developers.cloudflare.com/workers-ai/",
   "logoPath": "/logos/cloudflare-workers-ai.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "EU",
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Cloudflare documents regional controls for Workers via Data Localization Suite: Regional Services can ensure processing of a Workers project occurs only in-region for a custom domain, but this does not apply to subrequests or other triggers. For Developer Platform compatibility, Cloudflare states Workers AI supports Customer Metadata Boundary EU, but Jurisdictional Restrictions (data location/storage) are not supported today, and Workers AI analytics datasets are an exception that are supported. Cloudflare also describes Workers AI as running on GPUs on Cloudflare's global network."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.cloudflare.com/cloudflare-customer-dpa/",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "Cloudflare states Workers AI customer content is not used to train models or improve services without explicit consent. Customer content may be stored only if the customer uses storage services such as R2, KV, Durable Objects, or Vectorize with Workers AI. Cloudflare's general privacy policy says personal information is retained for as long as needed for business purposes and legal obligations. Workers Logs retention is 3 days on Free and 7 days on Paid plans if logs are enabled.",
+      "details": "Workers AI inputs, outputs, embeddings, and training data are treated as Customer Content. Cloudflare says it does not make that content available to other customers and does not use it to train AI models made available on Workers AI or to improve Cloudflare or third-party services unless it receives explicit consent."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://www.cloudflare.com/gdpr/subprocessors/cloudflare-services/",
+      "includesEuEntities": true
+    },
+    "certifications": [
+      "SOC2",
+      "ISO27001",
+      "ISO27701",
+      "ISO27018",
+      "C5"
+    ],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "Cloudflare has a public Responsible AI statement and says it is committed to developing AI-powered products in ways that align with applicable law, including the EU AI Act, but it does not provide a product-specific declaration that Workers AI is already EU AI Act compliant."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://developers.cloudflare.com/workers-ai/",
+    "https://developers.cloudflare.com/workers-ai/platform/data-usage/",
+    "https://developers.cloudflare.com/data-localization/how-to/workers/",
+    "https://developers.cloudflare.com/data-localization/compatibility/",
+    "https://developers.cloudflare.com/workers/observability/logs/workers-logs/",
+    "https://www.cloudflare.com/privacypolicy/",
+    "https://www.cloudflare.com/terms/",
+    "https://www.cloudflare.com/cloudflare-customer-dpa/",
+    "https://www.cloudflare.com/cloudflare_customer_SCCs.pdf",
+    "https://www.cloudflare.com/gdpr/subprocessors/cloudflare-services/",
+    "https://www.cloudflare.com/trust-hub/gdpr/",
+    "https://developers.cloudflare.com/fundamentals/reference/policies-compliances/compliance-docs/",
+    "https://www.cloudflare.com/trust-hub/responsible-ai/"
+  ],
+  "notes": "Cloudflare provides a public DPA, SCC-backed transfer terms, and a public sub-processor list, and publicly states that Workers AI customer content is not used for model training or service improvement without explicit consent. However, Workers AI runs on Cloudflare's global network and Cloudflare does not publicly guarantee EU-only inference for Workers AI; its data-localization docs also state Jurisdictional Restrictions for data location/storage are not supported for Workers AI today."
 }

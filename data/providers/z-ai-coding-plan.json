@@ -3,12 +3,53 @@
   "name": "Z.AI Coding Plan",
   "type": "api_provider",
   "website": "https://docs.z.ai",
-  "apiDocsUrl": "https://docs.z.ai/devpack/overview",
+  "apiDocsUrl": "https://docs.z.ai/api-reference/introduction",
   "logoPath": "/logos/z-ai-coding-plan.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "SG",
+    "dataResidency": {
+      "regions": [
+        "SG"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Z.ai states it generally provides services from Singapore, and customer data is generally processed in Singapore. No EU-only processing option was found in the official documentation reviewed."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://docs.z.ai/legal-agreement/privacy-policy",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": null,
+      "retentionPolicy": "For API Services, Z.ai states it does not store content that customers or end users provide or generate while using the service; such content is processed in real time and not saved on its servers. Other customer data may be temporarily stored to provide API Services or comply with law, and deleted after termination unless law requires otherwise.",
+      "details": "The consumer privacy policy says Z.ai may obtain publicly available internet information to train its models and may use personal data from consumer services to improve and train models. For API Services under the DPA, Z.ai states it processes customer data only on the customer's behalf and says API content provided or generated is not stored on its servers."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.z.ai/legal-agreement/privacy-policy",
+    "https://docs.z.ai/legal-agreement/terms-of-use",
+    "https://docs.z.ai/api-reference/introduction",
+    "https://docs.z.ai/devpack/quick-start",
+    "https://docs.z.ai/guides/overview/pricing",
+    "https://docs.z.ai/legal-agreement/subscription-terms",
+    "https://z.ai/company"
+  ],
+  "notes": "Primary-source documentation identifies the provider entity as JINGSHENG HENGXING TECHNOLOGY PTE. LTD in Singapore. The strongest GDPR-relevant statement is the embedded API DPA, which says API content is processed in real time and not stored, while customer data is generally processed in Singapore; no public sub-processor list, SCC text, EU-only residency option, or security certification evidence was found in the reviewed official sources."
 }

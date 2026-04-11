@@ -3,12 +3,53 @@
   "name": "MiniMax Coding Plan (minimaxi.com)",
   "type": "api_provider",
   "website": "https://platform.minimaxi.com",
-  "apiDocsUrl": "https://platform.minimaxi.com/docs/coding-plan/intro",
-  "logoPath": null,
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "apiDocsUrl": "https://platform.minimaxi.com/docs/api-reference/api-overview",
+  "logoPath": "/logos/minimax-coding-plan-minimaxi-com.svg",
+  "compliance": {
+    "headquarters": "SG",
+    "dataResidency": {
+      "regions": [
+        "CN",
+        "SG"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "MiniMax documentation for developer products distinguishes between \"中国大陆服务\" (Mainland China service) and \"全球 Global 服务\". No EU region or EU-only processing option was found in the provider's primary documentation, so EU-only processing is not guaranteed and inference may leave the EU."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": null,
+      "details": null
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": true
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://platform.minimaxi.com/docs/api-reference/api-overview",
+    "https://platform.minimaxi.com/docs/faq/about-apis",
+    "https://platform.minimaxi.com/docs/coding-plan/opencode",
+    "https://platform.minimaxi.com/docs/token-plan/minimax-skills",
+    "https://platform.minimaxi.com/audio/doc/privacy-policy.html",
+    "https://www.minimaxi.com/news/mini-pricemax-performance%E5%85%B3%E4%BA%8Eapi%E7%BC%96%E7%A8%8B%E5%A5%97%E9%A4%90%E5%92%8Cagent"
+  ],
+  "notes": "Primary-source materials confirm the developer platform/API exists, that Coding Plan has a free trial period for personal developers before paid plans, and that MiniMax distinguishes Mainland China and Global service routing. However, no public DPA/AVV, sub-processor list, retention schedule, SCC commitment, or security certification page was found in the provider’s primary documentation reviewed."
 }

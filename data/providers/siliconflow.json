@@ -3,12 +3,51 @@
   "name": "SiliconFlow",
   "type": "api_provider",
   "website": "https://cloud.siliconflow.com",
-  "apiDocsUrl": "https://cloud.siliconflow.com/models",
+  "apiDocsUrl": "https://docs.siliconflow.com/en",
   "logoPath": "/logos/siliconflow.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "SG",
+    "dataResidency": {
+      "regions": [
+        "SG"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "The public privacy policy is written for SILICONFLOW TECHNOLOGY PTE. LTD. and says personal data may be disclosed to affiliates, service providers, and authorities \"within or outside Singapore.\" No EU-only region or EU routing commitment was found in the provider's primary documentation."
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
+      "retentionPolicy": "The privacy policy says SiliconFlow may retain personal data as long as necessary for the purpose collected or as required/permitted by law, and will stop retaining or de-identify it when no longer needed for legal or business purposes. For interaction data, the policy says customers are responsible for storing it, SiliconFlow only provides storage where required by law or specific service rules, and otherwise has no obligation to store it.",
+      "details": "The privacy policy states Interaction Data is the customer's business and customer data, and if it contains personal data SiliconFlow will process it strictly in accordance with the customer's instructions as a neutral technology service provider. No explicit statement was found in primary documentation confirming whether API/customer data is or is not used for model training."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://docs.siliconflow.com/en/legals/privacy-policy",
+    "https://docs.siliconflow.com/en/legals/terms-of-service",
+    "https://docs.siliconflow.com/en/legals/agreement-for-account-ownership-transfer",
+    "https://docs.siliconflow.com/en",
+    "https://www.siliconflow.com/pricing"
+  ],
+  "notes": "SiliconFlow's primary legal documents identify the contracting entity as SILICONFLOW TECHNOLOGY PTE. LTD. in Singapore and allow disclosures/transfers of personal data within or outside Singapore, with no published EU-only residency commitment found. No public DPA/AVV, sub-processor list, SCC statement, or confirmed security certifications were found in primary-source documentation, so those fields are left null or marked unavailable."
 }

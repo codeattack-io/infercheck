@@ -3,12 +3,53 @@
   "name": "Inception",
   "type": "api_provider",
   "website": "https://platform.inceptionlabs.ai",
-  "apiDocsUrl": "https://platform.inceptionlabs.ai/docs",
+  "apiDocsUrl": "https://docs.inceptionlabs.ai/",
   "logoPath": "/logos/inception.svg",
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": null
+    },
+    "dpa": {
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": true,
+      "optOutAvailable": true,
+      "retentionPolicy": "The privacy policy says personal data is retained as long as necessary to provide the services or for business/commercial purposes, and longer if needed for legal obligations, disputes, or fee collection; anonymized/aggregated data may be retained, and device/IP data is kept as long as needed to ensure systems work appropriately.",
+      "details": "The Terms of Use state that Inception may use user submissions to provide and maintain services, comply with law, enforce terms/policies, and train its models. The Terms also state users can opt out of model training by turning the 'Improve the model for everyone' setting OFF in the API Platform user settings."
+    },
+    "subProcessors": {
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
+    },
+    "certifications": [],
+    "euAiAct": {
+      "status": "unknown",
+      "details": null
+    },
+    "sccs": null,
+    "adequacyDecision": false
+  },
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://www.inceptionlabs.ai/docs/privacy-policy",
+    "https://www.inceptionlabs.ai/docs/terms-of-use",
+    "https://docs.inceptionlabs.ai/",
+    "https://docs.inceptionlabs.ai/get-started/models",
+    "https://docs.inceptionlabs.ai/get-started/rate-limits",
+    "https://www.inceptionlabs.ai/",
+    "https://www.inceptionlabs.ai/blog/mercury-diffusion-llm-now-available-on-azure-ai-foundry"
+  ],
+  "notes": "Primary sources confirm a US-headquartered provider with API docs, a free tier, and terms allowing model training on user submissions unless the user disables the platform setting. No primary-source DPA/AVV, SCC statement, public sub-processor list, or EU-only data-processing guarantee was found on the provider’s site or documentation."
 }

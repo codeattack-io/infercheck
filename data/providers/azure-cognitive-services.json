@@ -3,12 +3,69 @@
   "name": "Azure Cognitive Services",
   "type": "api_provider",
   "website": "https://learn.microsoft.com",
-  "apiDocsUrl": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models",
-  "logoPath": null,
-  "compliance": null,
-  "pricingTier": null,
-  "lastVerified": null,
-  "verifiedBy": "stub",
-  "sourceUrls": [],
-  "notes": null
+  "apiDocsUrl": "https://learn.microsoft.com/en-us/azure/ai-services/",
+  "logoPath": "/logos/azure-cognitive-services.svg",
+  "compliance": {
+    "headquarters": "US",
+    "dataResidency": {
+      "regions": [
+        "EU",
+        "US"
+      ],
+      "euOnly": false,
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Microsoft states that Azure Direct Models, including Azure OpenAI models, process prompts and responses within the customer-specified geography for standard deployments, but Global deployments may process in any geography where the model is deployed and DataZone deployments may process anywhere within the specified zone. For resources in an EU member nation, DataZone processing may occur in that or any other EU member nation. Microsoft’s EU Data Boundary documentation also says commitments are subject to limited circumstances where data may continue to be transferred outside the EU Data Boundary."
+    },
+    "dpa": {
+      "available": true,
+      "url": "https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA",
+      "signedVia": "online_acceptance"
+    },
+    "dataUsage": {
+      "trainsOnCustomerData": false,
+      "optOutAvailable": true,
+      "retentionPolicy": "Microsoft says prompts, completions, embeddings, and training data are not used to train foundation models without customer permission or instruction. For standard inferencing, models are stateless and prompts/completions are not stored in the model. Optional stateful features such as Responses API, Assistants Threads, Files/vector stores, batch jobs, fine-tuning data, and stored completions persist data in the customer’s Azure geography until deleted by the customer. Azure-wide customer data is retained during the subscription term, then kept in a limited-function account for 90 days after expiration or termination before deletion. Abuse monitoring may store flagged prompts/completions for human review by default, and eligible customers can apply for modified abuse monitoring to avoid that storage and human review.",
+      "details": "Microsoft states that customer prompts, outputs, embeddings, and training data are not available to OpenAI or other model providers, are not available to other customers, and are not used to improve Microsoft or third-party products or services without explicit permission or instruction. For Azure Direct Model resources deployed in the EEA, Microsoft says authorized employees performing human review for abuse monitoring are located in the EEA."
+    },
+    "subProcessors": {
+      "disclosed": true,
+      "url": "https://aka.ms/OnlineServicesSubprocessorList",
+      "includesEuEntities": null
+    },
+    "certifications": [
+      "SOC2",
+      "ISO27001",
+      "ISO27701",
+      "C5"
+    ],
+    "euAiAct": {
+      "status": "monitoring",
+      "details": "Microsoft states that it is committed to building products and solutions that comply with the EU AI Act, has working groups preparing for the final requirements, and has updated policies and contracts to align with the Act. I did not find a service-specific statement that Azure Cognitive Services is already declared compliant."
+    },
+    "sccs": true,
+    "adequacyDecision": false
+  },
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-04-11",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": [
+    "https://learn.microsoft.com/en-us/azure/ai-services/",
+    "https://www.microsoft.com/en-us/privacy/privacystatement",
+    "https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA",
+    "https://learn.microsoft.com/en-us/azure/foundry/responsible-ai/openai/data-privacy",
+    "https://learn.microsoft.com/en-us/privacy/eudb/eu-data-boundary-learn",
+    "https://learn.microsoft.com/en-us/compliance/regulatory/gdpr-dpia-azure",
+    "https://learn.microsoft.com/en-us/azure/foundry/openai/concepts/abuse-monitoring",
+    "https://learn.microsoft.com/en-us/azure/compliance/",
+    "https://learn.microsoft.com/en-us/azure/compliance/offerings/offering-soc-2",
+    "https://learn.microsoft.com/en-us/azure/compliance/offerings/offering-iso-27001",
+    "https://learn.microsoft.com/en-us/azure/compliance/offerings/offering-iso-27701",
+    "https://learn.microsoft.com/en-us/azure/compliance/offerings/offering-germany-c5",
+    "https://learn.microsoft.com/en-us/compliance/regulatory/offering-eu-model-clauses",
+    "https://www.microsoft.com/en-us/trust-center/compliance/eu-ai-act",
+    "https://aka.ms/OnlineServicesSubprocessorList",
+    "https://azure.microsoft.com/en-us/pricing/details/foundry-tools/",
+    "https://www.microsoft.com/en-us/investor/contact-information"
+  ],
+  "notes": "Microsoft provides a formal DPA through its standard Product Terms/DPA framework and publishes extensive Azure compliance documentation. Azure offers EU-geography and EU Data Boundary options, but Microsoft’s own documentation does not support an unconditional claim that inference never leaves the EU in all configurations; Global deployments and limited EU Data Boundary exceptions mean strict EU-only guarantees should be treated cautiously."
 }
