@@ -1,7 +1,11 @@
 // Server component — no "use client" needed.
 // Renders a single compliance property badge.
+//
+// Uses useTranslations (sync) so it can be rendered from both server and
+// client component trees (async server components cannot be children of
+// client components).
 
-import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 
 export type BadgeVariant =
   | "eu-only"
@@ -53,8 +57,8 @@ const SIZE_CLASSES = {
   md: { badge: "text-xs px-2 py-0.5", dot: "size-[6px]" },
 };
 
-export async function ComplianceBadge({ variant, size = "md" }: ComplianceBadgeProps) {
-  const t = await getTranslations("ComplianceBadge");
+export function ComplianceBadge({ variant, size = "md" }: ComplianceBadgeProps) {
+  const t = useTranslations("ComplianceBadge");
 
   const LABEL_MAP: Record<BadgeVariant, string> = {
     "eu-only": t("euOnly"),
