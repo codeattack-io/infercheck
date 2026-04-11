@@ -144,9 +144,9 @@ Return ONLY a valid JSON object matching this exact schema. No markdown, no comm
   "apiDocsUrl": "<url or null>",
   "logoPath": "/logos/${stub.slug}.svg",
   "compliance": {
-    "headquarters": "<ISO 3166-1 alpha-2 country code, e.g. US, DE, FR>",
+    "headquarters": "<ISO 3166-1 alpha-2 country code, e.g. US, DE, FR — or null if genuinely unknown>",
     "dataResidency": {
-      "regions": ["<ISO codes of regions where data is processed, e.g. EU, US, DE>"],
+      "regions": ["<ISO codes of regions where data is processed, e.g. EU, US, DE — use empty array [] if unknown>"],
       "euOnly": <true if EU-only processing is guaranteed, false otherwise>,
       "dataLeavesEuAtInference": <false if inference GPU stays in EU, true if it can leave, null if unknown>,
       "euRegionDetails": "<plain-language explanation of EU routing options, or null>"
@@ -173,9 +173,9 @@ Return ONLY a valid JSON object matching this exact schema. No markdown, no comm
       "details": "<explanation of EU AI Act posture, or null>"
     },
     "sccs": <true | false | null>,
-    "adequacyDecision": <true if HQ country has EU adequacy decision, false otherwise>
+    "adequacyDecision": <true if HQ country has EU adequacy decision, false if not, null if HQ is unknown>
   },
-  "pricingTier": "<one of: free_tier | pay_per_use | enterprise_only>",
+  "pricingTier": "<one of: free_tier | pay_per_use | enterprise_only — or null if unknown>",
   "lastVerified": "${TODAY}",
   "verifiedBy": "ai_draft",
   "sourceUrls": ["<all URLs you consulted that contain primary-source evidence>"],
@@ -185,7 +185,7 @@ Return ONLY a valid JSON object matching this exact schema. No markdown, no comm
 Rules:
 - Every non-null compliance field must be supported by at least one URL in sourceUrls
 - If you find conflicting information, prefer the more recent primary source and note it in the notes field
-- headquarters must be exactly 2 uppercase letters (ISO 3166-1 alpha-2)
+- headquarters must be exactly 2 uppercase letters (ISO 3166-1 alpha-2), or null if you cannot determine it
 - Do not include any fields not in the schema above
 - certifications array must only contain certifications you can confirm from a source URL`;
 }

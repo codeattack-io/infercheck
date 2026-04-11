@@ -18,9 +18,7 @@ export function ComplianceBadges({ provider, size = "md", maxVisible = 0 }: Comp
   // EU data residency
   if (c.dataResidency.euOnly) {
     badges.push(<ComplianceBadge key="eu-only" variant="eu-only" size={size} />);
-  } else if (!c.dataResidency.euOnly && c.headquarters !== "US") {
-    // Non-EU HQ but not EU-only — no positive residency badge
-  } else {
+  } else if (!c.dataResidency.euOnly && c.headquarters === "US") {
     badges.push(<ComplianceBadge key="us-only" variant="us-only" size={size} />);
   }
 

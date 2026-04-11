@@ -41,8 +41,8 @@ export type ProviderTranslation = z.infer<typeof ProviderTranslationSchema>;
 // ─── Sub-schemas ─────────────────────────────────────────────────────────────
 
 export const DataResidencySchema = z.object({
-  /** ISO 3166-1 alpha-2 country/region codes where data can be processed */
-  regions: z.array(z.string()),
+  /** ISO 3166-1 alpha-2 country/region codes where data can be processed. Empty array = unknown. */
+  regions: z.array(z.string()).default([]),
   /** Can the provider guarantee EU-only data processing? */
   euOnly: z.boolean(),
   /**
@@ -85,8 +85,8 @@ export const EuAiActSchema = z.object({
 });
 
 export const ComplianceSchema = z.object({
-  /** ISO 3166-1 alpha-2 country code of headquarters */
-  headquarters: z.string().length(2).toUpperCase(),
+  /** ISO 3166-1 alpha-2 country code of headquarters. null = unknown. */
+  headquarters: z.string().length(2).toUpperCase().nullable(),
   dataResidency: DataResidencySchema,
   dpa: DpaSchema,
   dataUsage: DataUsageSchema,
@@ -99,8 +99,8 @@ export const ComplianceSchema = z.object({
   euAiAct: EuAiActSchema,
   /** Standard Contractual Clauses in place? */
   sccs: z.boolean().nullable(),
-  /** Provider HQ country has EU adequacy decision? */
-  adequacyDecision: z.boolean(),
+  /** Provider HQ country has EU adequacy decision? null = unknown (e.g. HQ is unknown). */
+  adequacyDecision: z.boolean().nullable(),
 });
 
 // ─── Root Provider Schema ─────────────────────────────────────────────────────
@@ -115,7 +115,8 @@ export const ProviderSchema = z.object({
   /** Path to SVG logo in /public/logos/, e.g. "/logos/openai.svg" */
   logoPath: z.string().nullable(),
   compliance: ComplianceSchema,
-  pricingTier: PricingTierSchema,
+  /** null = unknown */
+  pricingTier: PricingTierSchema.nullable(),
   /** ISO date of last manual verification */
   lastVerified: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Must be YYYY-MM-DD"),
   /** Who verified this entry: "carlo", "ai_draft", or contributor handle */
