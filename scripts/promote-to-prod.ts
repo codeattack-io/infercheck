@@ -93,16 +93,53 @@ function run(label: string, cmd: string, args: string[], env?: Record<string, st
   }
 }
 
+// Neon runs PostgreSQL 17. pg_dump/psql must be the same major version or
+// pg_dump will refuse to connect ("server version mismatch").
+const REQUIRED_PG_MAJOR = 17;
+
 function checkTool(name: string): void {
-  const result = spawnSync("which", [name], { stdio: "pipe" });
-  if (result.status !== 0) {
+  const which = spawnSync("which", [name], { stdio: "pipe" });
+  if (which.status !== 0) {
     console.error(
       `ERROR: '${name}' not found on PATH.\n` +
         `  macOS: brew install libpq && brew link --force libpq\n` +
-        `  Linux: apt install postgresql-client`
+        `  Linux: apt install postgresql-client-${REQUIRED_PG_MAJOR}`
     );
     process.exit(1);
   }
+}
+
+function checkToolVersion(name: string): void {
+  checkTool(name);
+
+  // Both pg_dump and psql print e.g. "pg_dump (PostgreSQL) 17.4" or
+  // "psql (PostgreSQL) 17.4 (Ubuntu 17.4-1.pgdg22.04+1)"
+  const result = spawnSync(name, ["--version"], { stdio: "pipe" });
+  if (result.error || result.status !== 0) {
+    console.error(`ERROR: could not determine version of '${name}'`);
+    process.exit(1);
+  }
+
+  const output = result.stdout.toString().trim();
+  const match = output.match(/(\d+)\.\d+/);
+  if (!match) {
+    console.error(`ERROR: could not parse version from '${name} --version' output: ${output}`);
+    process.exit(1);
+  }
+
+  const major = parseInt(match[1], 10);
+  if (major !== REQUIRED_PG_MAJOR) {
+    console.error(
+      `ERROR: '${name}' is version ${major} but Neon requires ${REQUIRED_PG_MAJOR}.\n` +
+        `  Found:    ${output}\n` +
+        `  macOS:    brew install libpq && brew link --force libpq\n` +
+        `  Linux:    apt install postgresql-client-${REQUIRED_PG_MAJOR}\n` +
+        `            and ensure /usr/lib/postgresql/${REQUIRED_PG_MAJOR}/bin is first on PATH`
+    );
+    process.exit(1);
+  }
+
+  console.log(`  ✓ ${name} version ${major} (matches Neon PostgreSQL ${REQUIRED_PG_MAJOR})`);
 }
 
 // ---------------------------------------------------------------------------
@@ -151,9 +188,11 @@ if (!skipMigrate) {
 // ---------------------------------------------------------------------------
 
 if (!skipData) {
-  if (!dryRun && !yes) {
-    checkTool("pg_dump");
-    checkTool("psql");
+  // Always verify tool presence and version — version mismatches cause silent
+  // data corruption or connection refusals with Neon (PostgreSQL 17).
+  if (!dryRun) {
+    checkToolVersion("pg_dump");
+    checkToolVersion("psql");
   }
 
   // Data-only dump from dev, restored into prod.
