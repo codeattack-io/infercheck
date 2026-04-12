@@ -34,24 +34,22 @@ export async function searchModels(query: string): Promise<Model[]> {
 }
 
 /**
- * Get all active providers offering a specific model ID.
+ * Get all active providers offering a model by its canonical ID.
  * Used for the /model/[id] detail page to show "available from these providers".
  *
- * Model IDs include the provider prefix (e.g. "anthropic/claude-sonnet-4-6"),
- * so we match by the model portion after the slash for cross-provider lookup.
- *
- * Example: searching for "claude-sonnet-4-6" should return rows from both
- * "anthropic" (anthropic/claude-sonnet-4-6) and "amazon-bedrock"
- * (anthropic/claude-sonnet-4-6 hosted on Bedrock).
+ * canonicalModelId is a normalized, provider-agnostic slug (e.g. "claude-sonnet-4-6")
+ * derived by deriveCanonicalModelId() during sync. All providers hosting the same
+ * underlying model share the same canonicalModelId regardless of how they name it
+ * in their own API (anthropic/claude-sonnet-4.6, bedrock/eu.anthropic.claude-sonnet-4-6, etc.).
  */
-export async function getProvidersByModelSuffix(modelSuffix: string): Promise<Model[]> {
+export async function getProvidersByModelSuffix(canonicalId: string): Promise<Model[]> {
   return db
     .select()
     .from(models)
     .where(
       and(
         eq(models.isActive, true),
-        sql`${models.id} LIKE ${"%" + modelSuffix}`,
+        eq(models.canonicalModelId, canonicalId),
       ),
     )
     .orderBy(models.providerSlug);

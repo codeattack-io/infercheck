@@ -54,6 +54,21 @@ export const models = pgTable(
     /** Source that provided this row's data, e.g. "openrouter" | "provider_api" | "manual" */
     syncSource: text("sync_source").notNull().default("openrouter"),
 
+    /**
+     * Provider-agnostic normalized model identifier used for cross-provider grouping
+     * and URL routing, e.g. "claude-sonnet-4-6".
+     *
+     * Derived by stripping the provider prefix, region prefixes (eu./us./ap./global.),
+     * and third-party prefixes (anthropic./meta./mistral./etc.) from the raw model ID,
+     * then normalising dots to hyphens and lowercasing.
+     *
+     * Examples:
+     *   anthropic/claude-sonnet-4.6             → claude-sonnet-4-6
+     *   bedrock/eu.anthropic.claude-sonnet-4-6  → claude-sonnet-4-6
+     *   bedrock/eu.amazon.nova-pro-v1:0         → nova-pro-v1-0
+     */
+    canonicalModelId: text("canonical_model_id"),
+
     /** Whether this model is currently available (set to false on removal, not deleted) */
     isActive: boolean("is_active").notNull().default(true),
 

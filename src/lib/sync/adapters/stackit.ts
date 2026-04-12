@@ -13,6 +13,7 @@
  */
 
 import type { ModelRow } from "../types";
+import { deriveCanonicalModelId } from "../utils";
 
 // Doc-derived seed — kept in sync with the STACKIT docs page.
 // Full Name = the model ID served by the API.
@@ -50,6 +51,7 @@ export async function fetchStackitModels(): Promise<ModelRow[]> {
         .map((m) => ({
           id: `stackit/${m.id}`,
           providerSlug: "stackit",
+          canonicalModelId: deriveCanonicalModelId(`stackit/${m.id}`),
           displayName: m.id.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
           modality: "text",
           contextWindow: null,
@@ -73,6 +75,7 @@ export async function fetchStackitModels(): Promise<ModelRow[]> {
   return SEED.map((m) => ({
     id: `stackit/${m.id}`,
     providerSlug: "stackit",
+    canonicalModelId: deriveCanonicalModelId(`stackit/${m.id}`),
     displayName: m.name,
     modality: m.modality,
     contextWindow: m.ctx,

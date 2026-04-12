@@ -6,6 +6,7 @@
  */
 
 import type { ModelRow } from "../types";
+import { deriveCanonicalModelId } from "../utils";
 
 export async function fetchBergetModels(): Promise<ModelRow[]> {
   console.log("Fetching Berget AI model catalog…");
@@ -31,6 +32,7 @@ export async function fetchBergetModels(): Promise<ModelRow[]> {
       return {
         id: `berget/${m.id}`,
         providerSlug: "berget-ai",
+        canonicalModelId: deriveCanonicalModelId(`berget/${m.id}`),
         displayName: m.name ?? m.id,
         modality,
         contextWindow: null,

@@ -15,6 +15,13 @@
       "when": 1775952766598,
       "tag": "0001_sparkling_unicorn",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1775955704122,
+      "tag": "0002_romantic_chat",
+      "breakpoints": true
     }
   ]
 }

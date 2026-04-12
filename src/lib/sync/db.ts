@@ -34,6 +34,7 @@ export async function upsertModels(
       .onConflictDoUpdate({
         target: [schema.models.id, schema.models.providerSlug],
         set: {
+          canonicalModelId: sql`excluded.canonical_model_id`,
           displayName: sql`excluded.display_name`,
           modality: sql`excluded.modality`,
           contextWindow: sql`excluded.context_window`,

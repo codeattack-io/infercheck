@@ -7,6 +7,7 @@
  */
 
 import type { ModelRow } from "../types";
+import { deriveCanonicalModelId } from "../utils";
 
 const SEED = [
   { id: "meta-llama__Meta-Llama-3.1-8B-Instruct",  name: "Llama 3.1 8B Instruct",  i: 0.06, o: 0.06, ctx: 131072 },
@@ -24,6 +25,7 @@ export async function fetchOVHcloudModels(): Promise<ModelRow[]> {
   return SEED.map((m) => ({
     id: `ovhcloud/${m.id}`,
     providerSlug: "ovhcloud-ai-endpoints",
+    canonicalModelId: deriveCanonicalModelId(`ovhcloud/${m.id}`),
     displayName: m.name,
     modality: "text",
     contextWindow: m.ctx,

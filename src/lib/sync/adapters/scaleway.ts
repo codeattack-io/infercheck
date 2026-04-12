@@ -6,6 +6,7 @@
  */
 
 import type { ModelRow } from "../types";
+import { deriveCanonicalModelId } from "../utils";
 
 export async function fetchScalewayModels(): Promise<ModelRow[]> {
   console.log("Fetching Scaleway model catalog…");
@@ -35,6 +36,7 @@ export async function fetchScalewayModels(): Promise<ModelRow[]> {
         return {
           id: `scaleway/${id}`,
           providerSlug: "scaleway",
+          canonicalModelId: deriveCanonicalModelId(`scaleway/${id}`),
           displayName: id.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
           modality,
           contextWindow: null,

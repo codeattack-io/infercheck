@@ -8,6 +8,12 @@ export interface ModelRow {
   id: string;
   providerSlug: string;
   displayName: string;
+  /**
+   * Provider-agnostic normalized identifier for cross-provider grouping and URL routing.
+   * e.g. "claude-sonnet-4-6" for both anthropic/claude-sonnet-4.6 and bedrock/eu.anthropic.claude-sonnet-4-6.
+   * Derived via deriveCanonicalModelId().
+   */
+  canonicalModelId: string;
   modality: string;
   contextWindow: number | null;
   inputPricePerMTokens: string | null;

@@ -1,0 +1,1 @@
+ALTER TABLE "models" ADD COLUMN "canonical_model_id" text;

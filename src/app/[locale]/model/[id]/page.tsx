@@ -15,7 +15,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { db } from "@/lib/db";
 import { models } from "@/db/schema";
-import { eq, and, sql } from "drizzle-orm";
+import { eq, and } from "drizzle-orm";
 import { getAllProviders } from "@/lib/providers";
 import { getComplianceTier, isFullProvider } from "@/lib/compliance";
 import type { AnyProvider } from "@/lib/compliance";
@@ -60,7 +60,7 @@ const getModelRows = cache(async (decoded: string) => {
   return db
     .select()
     .from(models)
-    .where(and(eq(models.isActive, true), sql`${models.id} LIKE ${"%" + decoded}`))
+    .where(and(eq(models.isActive, true), eq(models.canonicalModelId, decoded)))
     .orderBy(models.providerSlug);
 });
 

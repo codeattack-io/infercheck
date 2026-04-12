@@ -54,30 +54,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   );
 
-  // Model pages — deduplicate by model suffix (strip provider prefix)
+  // Model pages — deduplicate by canonicalModelId (provider-agnostic normalized slug)
   const activeModels = await db
-    .selectDistinct({ id: models.id, displayName: models.displayName })
+    .selectDistinct({ canonicalModelId: models.canonicalModelId })
     .from(models)
     .where(eq(models.isActive, true));
 
-  const modelSuffixes = new Set<string>();
   const modelPages: MetadataRoute.Sitemap = [];
 
   for (const m of activeModels) {
-    const suffix = m.id.includes("/") ? m.id.split("/").pop()! : m.id;
-    if (!modelSuffixes.has(suffix)) {
-      modelSuffixes.add(suffix);
-      const encoded = encodeURIComponent(suffix);
-      LOCALES.forEach((locale) => {
-        modelPages.push({
-          url: `${BASE_URL}/${locale}/model/${encoded}`,
-          lastModified: now,
-          changeFrequency: "weekly" as const,
-          priority: 0.7,
-          alternates: { languages: alternates(`/model/${encoded}`) },
-        });
+    if (!m.canonicalModelId) continue;
+    const encoded = encodeURIComponent(m.canonicalModelId);
+    LOCALES.forEach((locale) => {
+      modelPages.push({
+        url: `${BASE_URL}/${locale}/model/${encoded}`,
+        lastModified: now,
+        changeFrequency: "weekly" as const,
+        priority: 0.7,
+        alternates: { languages: alternates(`/model/${encoded}`) },
       });
-    }
+    });
   }
 
   return [...staticPages, ...providerPages, ...modelPages];

@@ -635,7 +635,7 @@ function ModelsTable({ models: rows, providerSlug, t, gateway = false }: { model
                 <td className="px-4 py-[10px]">
                   <div className="flex items-center gap-2 flex-wrap">
                     <Link
-                      href={`/model/${encodeURIComponent(m.id.split("/").pop() ?? m.id)}`}
+                      href={`/model/${encodeURIComponent(m.canonicalModelId ?? m.id.split("/").pop() ?? m.id)}`}
                       className="font-body text-[0.875rem] font-medium text-text-primary no-underline"
                     >
                       {m.displayName}

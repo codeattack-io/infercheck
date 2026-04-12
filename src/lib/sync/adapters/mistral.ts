@@ -6,6 +6,7 @@
  */
 
 import type { ModelRow } from "../types";
+import { deriveCanonicalModelId } from "../utils";
 
 export async function fetchMistralModels(): Promise<ModelRow[]> {
   console.log("Fetching Mistral model catalog…");
@@ -56,6 +57,7 @@ export async function fetchMistralModels(): Promise<ModelRow[]> {
         return {
           id: `mistralai/${m.id}`,
           providerSlug: "mistral",
+          canonicalModelId: deriveCanonicalModelId(`mistralai/${m.id}`),
           displayName: m.id
             .replace(/-/g, " ")
             .replace(/\b\w/g, (c) => c.toUpperCase()),

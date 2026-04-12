@@ -6,7 +6,7 @@
  */
 
 import type { ModelRow } from "../types";
-import { normaliseModality } from "../utils";
+import { normaliseModality, deriveCanonicalModelId } from "../utils";
 
 // OpenRouter provider prefix → our provider slug
 export const OPENROUTER_PREFIX_TO_SLUG: Record<string, string> = {
@@ -73,6 +73,7 @@ export async function fetchOpenRouterModels(): Promise<ModelRow[]> {
     rows.push({
       id: m.id,
       providerSlug,
+      canonicalModelId: deriveCanonicalModelId(m.id),
       displayName: m.name,
       modality: normaliseModality(m.architecture?.modality),
       contextWindow: m.context_length ?? null,

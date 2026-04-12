@@ -20,6 +20,7 @@ import {
   type InferenceProfileSummary,
 } from "@aws-sdk/client-bedrock";
 import type { ModelRow, BedrockPricingSeed } from "../types";
+import { deriveCanonicalModelId } from "../utils";
 
 // ─── Pricing / context seed ───────────────────────────────────────────────────
 // Keyed by underlying foundation model ID (region prefix already stripped).
@@ -163,6 +164,7 @@ export async function fetchBedrockModels(): Promise<ModelRow[]> {
       rows.push({
         id: `bedrock/${profile.inferenceProfileId}`,
         providerSlug: "amazon-bedrock",
+        canonicalModelId: deriveCanonicalModelId(`bedrock/${profile.inferenceProfileId}`),
         displayName: profile.inferenceProfileName ?? underlyingId,
         modality: toModality(mods),
         contextWindow: seed?.ctx ?? null,
@@ -187,6 +189,7 @@ export async function fetchBedrockModels(): Promise<ModelRow[]> {
       rows.push({
         id: `bedrock/${raw}`,
         providerSlug: "amazon-bedrock",
+        canonicalModelId: deriveCanonicalModelId(`bedrock/${raw}`),
         displayName: m.modelName ?? raw,
         modality: toModality(mods),
         contextWindow: seed?.ctx ?? null,
