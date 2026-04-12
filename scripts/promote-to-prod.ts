@@ -153,6 +153,7 @@ if (!skipMigrate) {
 
 if (!skipData) {
   if (!dryRun && !yes) {
+    checkTool("psql");
     checkTool("pg_dump");
     checkTool("pg_restore");
   }
@@ -161,13 +162,19 @@ if (!skipData) {
   // --data-only: skip DDL — schema already handled by migrations
   // --no-owner / --no-privileges: Neon role names differ across projects
   // --disable-triggers: avoid FK constraint errors during restore order
-  // --truncate: clear existing rows before inserting (replaces --clean, which
-  //             is incompatible with --data-only)
-  // pg_dump version must match server major version (17); see workflow for CI pin
+  // Truncate prod tables first so the data-only restore starts clean.
+  // (avoids --truncate flag which requires pg17, and --clean which is
+  //  incompatible with --data-only)
+
+  run("Truncating prod tables before restore", "psql", [
+    prodUrl,
+    "-c",
+    "TRUNCATE TABLE models, sync_log RESTART IDENTITY CASCADE;",
+  ]);
 
   run("Dumping dev DB and restoring into prod DB (data-only)", "sh", [
     "-c",
-    `pg_dump --data-only --no-owner --no-privileges --disable-triggers -Fc "${devUrl}" | pg_restore --data-only --no-owner --no-privileges --disable-triggers --truncate -d "${prodUrl}"`,
+    `pg_dump --data-only --no-owner --no-privileges --disable-triggers -Fc "${devUrl}" | pg_restore --data-only --no-owner --no-privileges --disable-triggers -d "${prodUrl}"`,
   ]);
 
   console.log("✓ Data promoted to prod");
