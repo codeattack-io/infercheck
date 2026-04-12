@@ -51,5 +51,14 @@
     "https://www.inceptionlabs.ai/",
     "https://www.inceptionlabs.ai/blog/mercury-diffusion-llm-now-available-on-azure-ai-foundry"
   ],
-  "notes": "Primary sources confirm a US-headquartered provider with API docs, a free tier, and terms allowing model training on user submissions unless the user disables the platform setting. No primary-source DPA/AVV, SCC statement, public sub-processor list, or EU-only data-processing guarantee was found on the provider’s site or documentation."
+  "notes": "Primary sources confirm a US-headquartered provider with API docs, a free tier, and terms allowing model training on user submissions unless the user disables the platform setting. No primary-source DPA/AVV, SCC statement, public sub-processor list, or EU-only data-processing guarantee was found on the provider’s site or documentation.",
+  "translations": {
+    "de": {
+      "notes": "Primärquellen bestätigen einen in den USA ansässigen Anbieter mit API-Dokumentation, einem kostenlosen Tarif und Nutzungsbedingungen, die das Training von Modellen auf Grundlage von Nutzereingaben erlauben, sofern der Nutzer die entsprechende Plattform-Einstellung nicht deaktiviert. Auf der Website oder in der Dokumentation des Anbieters wurden weder ein primärquellenbasierter Auftragsverarbeitungsvertrag (AVV), noch eine Erklärung zu Standardvertragsklauseln (SCC), noch eine öffentliche Liste von Unterauftragsverarbeitern oder eine Garantie für eine ausschließlich EU-basierte Datenverarbeitung gefunden.",
+      "dataUsage": {
+        "retentionPolicy": "In der Datenschutzerklärung heißt es, dass personenbezogene Daten so lange gespeichert werden, wie dies für die Erbringung der Dienste oder für geschäftliche/kaufmännische Zwecke erforderlich ist, und länger, wenn dies zur Erfüllung gesetzlicher Verpflichtungen, für Streitigkeiten oder zum Einzug von Gebühren erforderlich ist; anonymisierte/aggregierte Daten können gespeichert bleiben, und Geräte-/IP-Daten werden so lange aufbewahrt, wie dies erforderlich ist, um die ordnungsgemäße Funktionsweise der Systeme sicherzustellen.",
+        "details": "Die Nutzungsbedingungen sehen vor, dass Inception Nutzereingaben verwenden darf, um die Dienste bereitzustellen und aufrechtzuerhalten, gesetzliche Anforderungen einzuhalten, die Nutzungsbedingungen/Richtlinien durchzusetzen und seine Modelle zu trainieren. Die Nutzungsbedingungen sehen ferner vor, dass Nutzer dem Modelltraining per Opt-out widersprechen können, indem die Einstellung „Improve the model for everyone“ in den Benutzereinstellungen der API Platform auf OFF gesetzt wird."
+      }
+    }
+  }
 }

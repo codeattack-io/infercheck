@@ -58,5 +58,20 @@
     "https://www.upstage.ai/pricing/api",
     "https://console.upstage.ai/api-keys"
   ],
-  "notes": "Upstage publishes a detailed privacy policy with a public list of subcontractors and overseas transfers, including several U.S.-based inference providers, so EU-only inference cannot be confirmed and data can leave the EU. No public DPA/AVV or SCC commitment was found in the primary sources reviewed. Upstage does publicly claim that customer data is not used to train its models, and it advertises SOC 2, ISO 27001/27701, and HIPAA-related compliance claims."
+  "notes": "Upstage publishes a detailed privacy policy with a public list of subcontractors and overseas transfers, including several U.S.-based inference providers, so EU-only inference cannot be confirmed and data can leave the EU. No public DPA/AVV or SCC commitment was found in the primary sources reviewed. Upstage does publicly claim that customer data is not used to train its models, and it advertises SOC 2, ISO 27001/27701, and HIPAA-related compliance claims.",
+  "translations": {
+    "de": {
+      "notes": "Upstage veröffentlicht eine detaillierte Datenschutzerklärung mit einer öffentlichen Liste von Unterauftragsverarbeitern und Übermittlungen ins Ausland, darunter mehrere in den USA ansässige Inferenz-Anbieter, sodass eine ausschließlich auf die EU beschränkte Inferenz nicht bestätigt werden kann und Daten die EU verlassen können. In den geprüften Primärquellen wurde weder ein öffentlicher Auftragsverarbeitungsvertrag (AVV) noch eine Verpflichtung zu Standardvertragsklauseln (SCC) gefunden. Upstage gibt öffentlich an, dass Kundendaten nicht zum Training seiner Modelle verwendet werden, und bewirbt zudem compliancebezogene Angaben zu SOC 2, ISO 27001/27701 und HIPAA.",
+      "dataResidency": {
+        "euRegionDetails": "Upstage hat seinen Hauptsitz in Südkorea, und seine Datenschutzerklärung offenlegt Hosting bei Amazon Web Services sowie Übermittlungen ins Ausland an in den USA ansässige Inferenz-Anbieter Fireworks.ai, FriendliAI, Tavily und RunPod; außerdem wird LearnWorlds in Zypern für AI Education aufgeführt. In den Primärquellen wurde weder eine ausschließlich auf die EU beschränkte Verarbeitung noch eine Garantie für eine EU-Region gefunden. Upstage bietet außerdem eine On-Premises-Bereitstellung in der eigenen Infrastruktur eines Kunden an."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Laut Datenschutzerklärung gilt: Mitgliedsdaten werden bis zur Kontolöschung gespeichert, wobei die E-Mail-Adresse nach der Löschung noch 90 Tage aufbewahrt wird; Daten von Nichtmitgliedern im Zusammenhang mit Diensten werden 1 Jahr aufbewahrt, sofern nicht zuvor die Löschung beantragt wird; Aufzeichnungen zur Dienstnutzung/Zugriffsprotokolle/Zugriffs-IPs werden 3 Monate aufbewahrt; Transaktionsunterlagen sowie nach Verbraucherrecht erforderliche Unterlagen werden gesetzlich vorgeschrieben 6 Monate bis 5 Jahre aufbewahrt. Für die offengelegten Unterauftragsverarbeiter für Inferenz Fireworks.ai, FriendliAI, Tavily und RunPod wird beschrieben, dass Daten nach vorübergehender Nutzung nicht gespeichert werden.",
+        "details": "Upstage erklärt auf seiner AWS-Insurance-Partnerseite: „no customer data is used to train our models.“ In der öffentlichen Datenschutzerklärung werden Serviceverbesserung und Forschung ebenfalls als Verarbeitungszweck genannt, jedoch wurde kein API-spezifisches Opt-out für eine solche Nutzung gefunden."
+      },
+      "euAiAct": {
+        "details": "In den geprüften Primärquellen wurde keine ausdrückliche öffentliche Angabe zur Einhaltung des EU AI Act gefunden. Upstage bewirbt Sicherheits-/Compliance-Funktionen und Audit-Trails, jedoch wurde keine formelle Erklärung zum EU AI Act festgestellt."
+      }
+    }
+  }
 }

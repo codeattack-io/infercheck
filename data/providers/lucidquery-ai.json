@@ -51,5 +51,14 @@
     "https://lucidquery.com/contact/",
     "https://lucidquery.com/lucidarc/"
   ],
-  "notes": "LucidQuery identifies itself as a France-based SAS and offers a pay-as-you-go API, but its public compliance documentation appears limited. No public DPA/AVV, sub-processor list, SCC statement, EU-only processing guarantee, or security certification evidence was found on the provider’s official site; the Terms also state service data may be analyzed to improve services and enhance AI models."
+  "notes": "LucidQuery identifies itself as a France-based SAS and offers a pay-as-you-go API, but its public compliance documentation appears limited. No public DPA/AVV, sub-processor list, SCC statement, EU-only processing guarantee, or security certification evidence was found on the provider’s official site; the Terms also state service data may be analyzed to improve services and enhance AI models.",
+  "translations": {
+    "de": {
+      "notes": "LucidQuery bezeichnet sich als in Frankreich ansässige SAS und bietet eine Pay-as-you-go-API an, jedoch erscheint die öffentlich zugängliche Compliance-Dokumentation begrenzt. Auf der offiziellen Website des Anbieters wurden kein öffentlicher Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Erklärung zu Standardvertragsklauseln (SCC), keine Garantie einer ausschließlich in der EU erfolgenden Verarbeitung und keine Nachweise zu Sicherheitszertifizierungen gefunden; zudem heißt es in den Nutzungsbedingungen, dass Servicedaten zur Verbesserung der Dienste und zur Optimierung von KI-Modellen analysiert werden können.",
+      "dataUsage": {
+        "retentionPolicy": "Die Datenschutzerklärung besagt, dass LucidQuery Drittanbieterdienste für das Hosting nutzt und personenbezogene Daten speichern/übermitteln kann, nennt jedoch keine spezifische Aufbewahrungsfrist. In den Kontakt-FAQ wird ausgeführt, dass Abfragen oder generierte Inhalte nicht über das zur Bereitstellung und Verbesserung des Dienstes erforderliche Maß hinaus gespeichert werden, und in den Nutzungsbedingungen heißt es, dass Abfragen, Interaktionen und generierte Inhalte erhoben und analysiert werden können, um die Dienste zu verbessern und KI-Modelle zu optimieren.",
+        "details": "Laut den Nutzungsbedingungen können Servicedaten, einschließlich Abfragen, Interaktionen und generierter Inhalte, erhoben und analysiert werden, um die Dienste zu verbessern, neue Funktionen zu entwickeln und KI-Modelle zu optimieren. Eine separate Produktseite zu LucidArc besagt, dass Nutzungsdaten von LucidArc nicht gespeichert oder für das Training verwendet werden; diese Aussage ist jedoch produktspezifisch und stellt keine allgemeine Verpflichtung für die API dar."
+      }
+    }
+  }
 }

@@ -54,5 +54,20 @@
     "https://inference.net/content/ai-governance-maturity-model",
     "https://inference.net/blog/seed-round/"
   ],
-  "notes": "Inference is a US provider (Inference R&D, Inc.) with public privacy policy, terms, API docs, and a documented data-retention page. Public sources reviewed state they do not train on customer data and advertise SOC 2, but no public DPA, sub-processor list, SCC statement, or EU-only processing commitment was found; the Terms expressly say personal information may be transferred to and/or processed in the United States."
+  "notes": "Inference is a US provider (Inference R&D, Inc.) with public privacy policy, terms, API docs, and a documented data-retention page. Public sources reviewed state they do not train on customer data and advertise SOC 2, but no public DPA, sub-processor list, SCC statement, or EU-only processing commitment was found; the Terms expressly say personal information may be transferred to and/or processed in the United States.",
+  "translations": {
+    "de": {
+      "notes": "Inference ist ein US-amerikanischer Anbieter (Inference R&D, Inc.) mit öffentlich zugänglicher Datenschutzerklärung, Nutzungsbedingungen, API-Dokumentation und einer dokumentierten Seite zur Datenspeicherung. In den geprüften öffentlichen Quellen wird angegeben, dass keine Nutzung von Kundendaten zum Training erfolgt und SOC 2 beworben wird; es wurde jedoch kein öffentlich zugänglicher Auftragsverarbeitungsvertrag (AVV), keine Liste von Unterauftragsverarbeitern, keine Erklärung zu Standardvertragsklauseln (SCC) und keine Verpflichtung zur ausschließlich in der EU erfolgenden Verarbeitung gefunden; in den Nutzungsbedingungen wird ausdrücklich erklärt, dass personenbezogene Daten in die Vereinigten Staaten übermittelt und/oder dort verarbeitet werden können.",
+      "dataResidency": {
+        "euRegionDetails": "Inference erklärt in seinen Nutzungsbedingungen, dass personenbezogene Daten in die Vereinigten Staaten übermittelt und/oder dort verarbeitet werden können. In den geprüften öffentlichen Dokumenten werden weder eine ausschließlich auf die EU beschränkte Region noch eine Garantie für ein ausschließlich auf die EU beschränktes Routing beschrieben. Auf der Marketing-Website wird angegeben, dass Bereitstellungen über Public-Cloud-, Private-Cloud- oder Hybrid-Umgebungen erfolgen können, es wurde jedoch keine Primärquellen-Zusage zur Datenhaltung ausschließlich in der EU gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "In der Dokumentation wird angegeben, dass Anfragedaten standardmäßig nicht für das Modelltraining verwendet werden; die Datenspeicherung soll dem betrieblichen Bedarf entsprechen; Kunden, die eine spezifische Richtlinie oder eine Verarbeitung ohne Speicherung benötigen, müssen das Team kontaktieren. In den geprüften Quellen wurde kein fester standardmäßiger Speicherzeitraum öffentlich angegeben.",
+        "details": "Laut Datenschutzerklärung werden Kundendaten nicht zum Training von KI-Modellen verwendet und Daten werden ausschließlich zur Bereitstellung von KI-Inferenzdiensten und zur Fehlerbehebung genutzt. In der Dokumentation wird zudem angegeben, dass Anfragedaten standardmäßig nicht für das Modelltraining verwendet werden."
+      },
+      "euAiAct": {
+        "details": "Inference veröffentlicht Inhalte zur Governance nach dem EU AI Act und gibt an, dass sein Reifegradmodell auf den EU AI Act abgestimmt ist, es wurde jedoch keine ausdrückliche Erklärung gefunden, dass der Anbieter oder der Dienst den EU AI Act einhält."
+      }
+    }
+  }
 }

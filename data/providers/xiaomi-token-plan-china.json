@@ -57,5 +57,20 @@
     "https://trust.mi.com/docs/iot-privacy-white-paper-global/4",
     "https://trust.mi.com/compliance"
   ],
-  "notes": "Primary-source documentation specific to Xiaomi MiMo Token Plan's GDPR/commercial processor terms is sparse. Xiaomi provides broad corporate privacy and trust-center materials, including SCC-based transfer language and corporate certifications, but no public MiMo-specific DPA, sub-processor list, retention schedule, or training-on-API-data statement was found; those fields are therefore left null or marked unavailable."
+  "notes": "Primary-source documentation specific to Xiaomi MiMo Token Plan's GDPR/commercial processor terms is sparse. Xiaomi provides broad corporate privacy and trust-center materials, including SCC-based transfer language and corporate certifications, but no public MiMo-specific DPA, sub-processor list, retention schedule, or training-on-API-data statement was found; those fields are therefore left null or marked unavailable.",
+  "translations": {
+    "de": {
+      "notes": "Primärquellen-Dokumentation speziell zu den DSGVO-/kommerziellen Auftragsverarbeiter-Bedingungen des Xiaomi MiMo Token Plan ist nur begrenzt verfügbar. Xiaomi stellt allgemeine unternehmensweite Datenschutz- und Trust-Center-Materialien bereit, einschließlich auf Standardvertragsklauseln (SCC) gestützter Formulierungen zu Übermittlungen und unternehmensweiten Zertifizierungen; es wurde jedoch kein öffentlich verfügbarer MiMo-spezifischer Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, kein Aufbewahrungsplan und keine Aussage zur Nutzung von API-Daten für das Training gefunden; diese Felder bleiben daher null oder sind als nicht verfügbar gekennzeichnet.",
+      "dataResidency": {
+        "euRegionDetails": "In den von Xiaomi veröffentlichten globalen Datenschutzmaterialien wird angegeben, dass derzeit Rechenzentren in den Niederlanden und in Singapur betrieben werden und dass für Nutzer im EWR Xiaomi Technology Netherlands B.V. Verantwortlicher ist, während die Verarbeitung durch Xiaomi Technologies Singapore Pte. Ltd. erfolgt. Es wurde keine Primärquellen-Dokumentation speziell zur MiMo API / zum Token Plan gefunden, die eine ausschließlich in der EU erfolgende Verarbeitung garantiert oder angibt, wo die GPUs für die Inferenz betrieben werden."
+      },
+      "dataUsage": {
+        "retentionPolicy": null,
+        "details": "Es wurde keine MiMo-API-spezifische Primärquellen-Aussage dazu gefunden, ob Kunden-/API-Daten für das Modelltraining verwendet werden oder ob ein Opt-out-Mechanismus besteht. Xiaomis allgemeine Datenschutzrichtlinie für die Plattform beschreibt Erhebungs- und Weitergabepraktiken für Plattformdienste, jedoch nicht die Nutzung für das Training von LLMs/APIs im Zusammenhang mit dem MiMo Token Plan."
+      },
+      "euAiAct": {
+        "details": "Es wurde keine Primärquellen-Aussage von Xiaomi MiMo API / Token Plan zur Einhaltung des EU AI Act gefunden. Xiaomis Trust- und Datenschutzmaterialien beschreiben allgemeine Datenschutz- und Compliance-Programme, jedoch keine Positionierung zur Einhaltung des EU AI Act für diesen API-Dienst."
+      }
+    }
+  }
 }

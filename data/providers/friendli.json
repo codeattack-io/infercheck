@@ -57,5 +57,17 @@
     "https://friendli.ai/blog/SOC2-Type-II-HIPAA",
     "https://friendli.ai/blog/SOC2-Type-II-HIPPA"
   ],
-  "notes": "Friendli provides a public privacy policy and explicit documentation that managed inference request/response contents are not used for training. Public primary sources did not reveal a downloadable DPA/AVV, SCC commitment, or a public sub-processor list, and no EU-only managed API processing guarantee was found. Managed services appear U.S.-anchored, while Friendli Container offers customer-controlled deployment for stricter residency needs."
+  "notes": "Friendli provides a public privacy policy and explicit documentation that managed inference request/response contents are not used for training. Public primary sources did not reveal a downloadable DPA/AVV, SCC commitment, or a public sub-processor list, and no EU-only managed API processing guarantee was found. Managed services appear U.S.-anchored, while Friendli Container offers customer-controlled deployment for stricter residency needs.",
+  "translations": {
+    "de": {
+      "notes": "Friendli stellt eine öffentliche Datenschutzerklärung sowie eine ausdrückliche Dokumentation bereit, aus der hervorgeht, dass Inhalte von Anfragen/Antworten im Rahmen verwalteter Inferenz nicht für das Training verwendet werden. In öffentlich zugänglichen Primärquellen wurden weder ein herunterladbarer Auftragsverarbeitungsvertrag (AVV), eine Zusage zu Standardvertragsklauseln (SCC) noch eine öffentliche Liste von Unterauftragsverarbeitern gefunden; ebenso wurde keine Garantie für eine ausschließliche Verarbeitung der verwalteten API in der EU gefunden. Verwaltete Dienste scheinen in den USA verankert zu sein, während Friendli Container eine kundenseitig kontrollierte Bereitstellung für strengere Anforderungen an die Datenhaltung ermöglicht.",
+      "dataResidency": {
+        "euRegionDetails": "Laut der öffentlichen Datenschutzerklärung von Friendli werden Verbindungen zur Website über Server in den Vereinigten Staaten geleitet, und bereitgestellte Informationen werden auf Webservern und Systemen innerhalb der USA gespeichert. Öffentliche Produktseiten beschreiben zudem eine Multi-Cloud- und Multi-Region-Infrastruktur; es wurde jedoch keine Primärquellen-Dokumentation gefunden, die eine ausschließliche Verarbeitung der verwalteten API in der EU garantiert. Friendli Container kann in der eigenen Umgebung des Kunden bereitgestellt werden, einschließlich privater oder Air-Gap-Setups."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Friendli erklärt, dass Inhalte von Anfragen/Antworten im Rahmen der Inferenz zu keinem anderen Zweck als zur Bereitstellung des Dedicated Endpoints- oder Serverless Endpoints-Dienstes verwendet werden, einschließlich der Nichtverwendung dieser Inhalte für das Modelltraining. Die öffentliche Datenschutzerklärung besagt ferner, dass Informationen von Website-Besuchern auf Systemen in den USA gespeichert werden, und dass für in Korea ansässige Personen bestimmte Protokoll-/Dienstnutzungsdaten bis fünf Tage nach dem Austritt aus der Mitgliedschaft aufbewahrt werden.",
+        "details": "Öffentliche Dokumentationen unterscheiden zwischen verwalteten Inferenzprodukten und selbst gehostetem Container. Friendli Container wird damit beworben, Daten und Modelle innerhalb der Infrastruktur des Kunden zu halten, einschließlich in Air-Gap-Umgebungen."
+      }
+    }
+  }
 }

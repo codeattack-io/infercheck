@@ -51,5 +51,20 @@
     "https://trust.groq.com/subprocessors",
     "https://trust.groq.com/faq"
   ],
-  "notes": "Headquartered in Mountain View, CA. DPA is publicly available without NDA and covers GDPR, UK GDPR, Swiss FADP, CCPA, and Saudi PDPL — more transparent than most competitors. ZDR is self-service for all customers. Runs third-party open-weight models on proprietary LPU hardware; does not develop frontier models. No ISO 27001 confirmed as of verification date."
+  "notes": "Headquartered in Mountain View, CA. DPA is publicly available without NDA and covers GDPR, UK GDPR, Swiss FADP, CCPA, and Saudi PDPL — more transparent than most competitors. ZDR is self-service for all customers. Runs third-party open-weight models on proprietary LPU hardware; does not develop frontier models. No ISO 27001 confirmed as of verification date.",
+  "translations": {
+    "de": {
+      "notes": "Hauptsitz in Mountain View, Kalifornien. Der Auftragsverarbeitungsvertrag (AVV) ist öffentlich ohne NDA verfügbar und deckt DSGVO, UK GDPR, das schweizerische FADP, CCPA und das saudische PDPL ab — transparenter als die meisten Wettbewerber. ZDR ist als Self-Service für alle Kunden verfügbar. Betreibt Open-Weight-Modelle Dritter auf proprietärer LPU-Hardware; entwickelt keine Frontier-Modelle. Keine bestätigte ISO 27001-Zertifizierung zum Verifizierungsdatum.",
+      "dataResidency": {
+        "euRegionDetails": "Alle gespeicherten Kundendaten werden in Google Cloud Platform (GCP)-Buckets in den Vereinigten Staaten vorgehalten. Keine Option zur Datenhaltung in der EU. Groq hat einen benannten EU-DSGVO-Vertreter (DP-Dock GmbH, Hamburg), jedoch keine Infrastruktur mit Standort in der EU."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Standardmäßig speichert Groq keine Kundendaten für Inferenzanfragen. Daten können vorübergehend für bis zu 30 Tage ausschließlich zur Fehlerbehebung im Hinblick auf die Zuverlässigkeit oder zur Untersuchung von Missbrauch gespeichert werden. Zero Data Retention ist für alle Kunden über die Self-Service-Einstellungen für Data Controls verfügbar.",
+        "details": "ZDR ist als Self-Service für alle Kunden verfügbar, nicht nur für Enterprise-Kunden. Dateien für die Batch-Verarbeitung werden 30 Tage gespeichert. Fine-Tuning-Daten werden gespeichert, bis sie vom Kunden gelöscht werden."
+      },
+      "euAiAct": {
+        "details": "Keine öffentliche Dokumentation zum EU AI Act. Groq hostet Open-Weight-Modelle Dritter (Llama, Qwen, Whisper usw.), anstatt Frontier-Modelle zu entwickeln. Als Betreiber der Modelle anderer können die unmittelbaren Verpflichtungen als GPAI-Anbieter begrenzt sein — dies ist jedoch nicht bestätigt."
+      }
+    }
+  }
 }

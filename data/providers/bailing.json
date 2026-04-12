@@ -65,5 +65,17 @@
     "https://www.alibabacloud.com/en/trust-center/compliance?_p_lc=1",
     "https://www.alibabacloud.com/trust-center/gdpr"
   ],
-  "notes": "Bailing appears to be Alibaba Cloud Model Studio/百炼 rather than an independent provider. Primary-source materials confirm a public DPA with SCC language, no-training statements for customer data, and processing regions in Beijing, Singapore, and Virginia, but no EU-only inference option or public standalone sub-processor list URL without account login."
+  "notes": "Bailing appears to be Alibaba Cloud Model Studio/百炼 rather than an independent provider. Primary-source materials confirm a public DPA with SCC language, no-training statements for customer data, and processing regions in Beijing, Singapore, and Virginia, but no EU-only inference option or public standalone sub-processor list URL without account login.",
+  "translations": {
+    "de": {
+      "notes": "Bailing scheint eher Alibaba Cloud Model Studio/百炼 als ein unabhängiger Anbieter zu sein. Primärquellen bestätigen einen öffentlichen Auftragsverarbeitungsvertrag (AVV) mit Formulierungen zu Standardvertragsklauseln (SCC), Erklärungen, dass Kundendaten nicht für das Modelltraining verwendet werden, sowie Verarbeitungsregionen in Peking, Singapur und Virginia, jedoch keine ausschließlich in der EU verfügbare Inferenz-Option und keine öffentliche eigenständige URL zu einer Liste von Unterauftragsverarbeitern ohne Konto-Login.",
+      "dataResidency": {
+        "euRegionDetails": "Die Dokumentation zu Alibaba Cloud Model Studio/Bailing gibt an, dass Modelldienste auf dem chinesischen Festland (Peking), in den USA (Virginia) und international (Singapur) verfügbar sind. Eine EU-Region ist nicht dokumentiert. Der Auftragsverarbeitungsvertrag (AVV) besagt, dass Kunden eine ausgewählte Region bestimmen, Alibaba Cloud Daten jedoch vorbehaltlich datenschutzrechtlicher Schutzmaßnahmen außerhalb dieser ausgewählten Region übermitteln kann."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Für direkte API-Aufrufe gibt Model Studio an, keine Konversationsdaten zu speichern und lediglich den Anrufstatus zu desensibilisieren und aufzuzeichnen. Bei Nutzung der Assistant API wird der Konversationsverlauf gespeichert; zudem wird angegeben, dass für diese Informationen derzeit kein Ablaufdatum besteht. Die allgemeine Datenschutzerklärung besagt, dass personenbezogene Daten so lange aufbewahrt werden, wie es für die Erbringung der Dienste oder zur Einhaltung rechtlicher, steuerlicher oder buchhalterischer Anforderungen erforderlich ist.",
+        "details": "Alibaba Cloud Model Studio/Bailing gibt an, Kundendaten niemals für das Modelltraining zu verwenden; zudem werden übermittelte Daten verschlüsselt. Das Speicherverhalten hängt von der Art der Aufrufmethode ab."
+      }
+    }
+  }
 }

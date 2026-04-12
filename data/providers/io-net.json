@@ -55,5 +55,17 @@
     "https://io.net/docs/guides/explorer/network-map-page",
     "https://blog.io.net/article/io-net-achieves-soc-2-compliance-to-reinforce-its-enterprise-ready-infrastructure"
   ],
-  "notes": "IO.NET publishes a privacy policy and terms, and it publicly states SOC 2 compliance, but no public DPA/AVV, SCC commitment, sub-processor list, or explicit API-data training statement was found in primary sources reviewed. Its own materials indicate data is stored in the US and that compute/inference can run on a decentralized global GPU network, so EU-only processing could not be confirmed."
+  "notes": "IO.NET publishes a privacy policy and terms, and it publicly states SOC 2 compliance, but no public DPA/AVV, SCC commitment, sub-processor list, or explicit API-data training statement was found in primary sources reviewed. Its own materials indicate data is stored in the US and that compute/inference can run on a decentralized global GPU network, so EU-only processing could not be confirmed.",
+  "translations": {
+    "de": {
+      "notes": "IO.NET veröffentlicht eine Datenschutzrichtlinie und Nutzungsbedingungen und gibt öffentlich die Einhaltung von SOC 2 an, jedoch wurde in den geprüften Primärquellen kein öffentlicher Auftragsverarbeitungsvertrag (AVV), keine Zusage zu Standardvertragsklauseln (SCC), keine Liste der Unterauftragsverarbeiter und keine ausdrückliche Aussage zur Nutzung von API-Daten für Trainingszwecke gefunden. Die eigenen Unterlagen des Unternehmens weisen darauf hin, dass Daten in den USA gespeichert werden und dass Rechenverarbeitung/Inferenz in einem dezentralen globalen GPU-Netzwerk stattfinden kann; eine ausschließlich auf die EU beschränkte Verarbeitung konnte daher nicht bestätigt werden.",
+      "dataResidency": {
+        "euRegionDetails": "Laut der Datenschutzrichtlinie von IO.NET werden die von der Richtlinie erfassten Daten in den Vereinigten Staaten gespeichert; zudem beschreibt die Netzwerk-/Inferenzdokumentation ein dezentrales, geografisch verteiltes/globales GPU-Netzwerk mit Workern in mehreren Ländern und nicht eine ausschließlich auf die EU beschränkte Regionsoption. Eine Zusage aus Primärquellen zu einer ausschließlich in der EU erfolgenden Verarbeitung wurde nicht gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Die Datenschutzrichtlinie besagt, dass der Dienst die über Nutzer erhobenen Informationen so lange speichern kann, wie diese ein Konto unterhalten, und dass auf der Blockchain gespeicherte Daten möglicherweise nicht löschbar sind.",
+        "details": "Für Confidential Chat gibt IO.NET an, dass Nachrichten niemals gespeichert werden, Gesprächsinhalte niemals in Protokolle geschrieben werden und Nachrichten während der Verarbeitung nur im Browser und in der TEE vorhanden sind. Dies scheint funktionsspezifisch zu sein und keine allgemeine, API-weite Aussage zum Modelltraining oder zu sämtlichen Inferenzdaten darzustellen."
+      }
+    }
+  }
 }

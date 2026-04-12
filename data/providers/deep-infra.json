@@ -49,5 +49,17 @@
     "https://deepinfra.com/docs/misc/subprocessors",
     "https://deepinfra.com/privacy"
   ],
-  "notes": "Headquartered in San Francisco, CA. Has the only public sub-processor list and strongest security certifications (SOC2, ISO27001) of the three US inference providers (DeepInfra, Fireworks, Together), but lacks a public DPA and has GDPR formally marked as 'In Progress'. SCCs not confirmed. Sub-processors are all US-based (Stripe, AWS, GCP)."
+  "notes": "Headquartered in San Francisco, CA. Has the only public sub-processor list and strongest security certifications (SOC2, ISO27001) of the three US inference providers (DeepInfra, Fireworks, Together), but lacks a public DPA and has GDPR formally marked as 'In Progress'. SCCs not confirmed. Sub-processors are all US-based (Stripe, AWS, GCP).",
+  "translations": {
+    "de": {
+      "notes": "Hauptsitz in San Francisco, Kalifornien. Verfügt über die einzige öffentliche Liste der Unterauftragsverarbeiter und die stärksten Sicherheitszertifizierungen (SOC 2, ISO 27001) unter den drei US-Inferenzanbietern (DeepInfra, Fireworks, Together), es fehlt jedoch ein öffentlich verfügbarer Auftragsverarbeitungsvertrag (AVV), und die DSGVO-Compliance ist formal als „In Progress“ gekennzeichnet. Standardvertragsklauseln (SCC) nicht bestätigt. Die Unterauftragsverarbeiter haben sämtlich ihren Sitz in den USA (Stripe, AWS, GCP).",
+      "dataResidency": {
+        "euRegionDetails": "AWS- und GCP-Infrastruktur, mit Standort in den USA. Keine EU-Region öffentlich verfügbar."
+      },
+      "dataUsage": {
+        "retentionPolicy": "ZDR standardmäßig — nur flüchtiger Speicher, Löschung nach der Inferenz. Ausnahme: Bildausgaben werden kurzzeitig gespeichert; die Bulk-Inference-API speichert verschlüsselt auf Datenträger, bis die Ergebnisse zurückgegeben werden. Für Passthrough-Modelle von Google/Anthropic gelten die Richtlinien dieser Anbieter.",
+        "details": "Benannter Datenschutzbeauftragter: Nikola Borisov (dpo@deepinfra.com). DSGVO-Compliance zum Verifizierungsdatum im Trust Center als „In Progress“ aufgeführt."
+      }
+    }
+  }
 }

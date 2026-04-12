@@ -51,5 +51,20 @@
     "https://www.stackit.de/en/why-stackit/benefits/certificates",
     "https://www.stackit.de/en/gtc"
   ],
-  "notes": "STACKIT is the cloud arm of the Schwarz Group (Lidl, Kaufland — Europe's largest retailer group). Germany is an EU member state — no cross-border GDPR transfer concern for EU customers. BSI C5 (German Federal Office for Information Security Cloud Computing Compliance Controls Catalogue) is a key differentiator for German public sector, equivalent in rigour to SOC2 Type II. Partnership with Aleph Alpha. TISAX certification for automotive sector customers. DORA compliance as ICT provider for financial sector."
+  "notes": "STACKIT is the cloud arm of the Schwarz Group (Lidl, Kaufland — Europe's largest retailer group). Germany is an EU member state — no cross-border GDPR transfer concern for EU customers. BSI C5 (German Federal Office for Information Security Cloud Computing Compliance Controls Catalogue) is a key differentiator for German public sector, equivalent in rigour to SOC2 Type II. Partnership with Aleph Alpha. TISAX certification for automotive sector customers. DORA compliance as ICT provider for financial sector.",
+  "translations": {
+    "de": {
+      "notes": "STACKIT ist der Cloud-Bereich der Schwarz Group (Lidl, Kaufland — Europas größte Einzelhandelsgruppe). Deutschland ist Mitgliedstaat der EU — für EU-Kunden besteht kein grenzüberschreitendes Problem im Hinblick auf DSGVO-Übermittlungen. BSI C5 (Cloud Computing Compliance Controls Catalogue des Bundesamts für Sicherheit in der Informationstechnik) ist ein wesentliches Unterscheidungsmerkmal für den deutschen öffentlichen Sektor und in der Strenge mit SOC 2 Type II vergleichbar. Partnerschaft mit Aleph Alpha. TISAX-Zertifizierung für Kunden aus dem Automobilsektor. DORA-Compliance als IKT-Anbieter für den Finanzsektor.",
+      "dataResidency": {
+        "euRegionDetails": "100 % Datenhaltung in der EU. STACKIT betreibt eigene Rechenzentren — kein Hosting auf US-Hyperscalern. Regionen: eu01 (Neckarsulm, Deutschland), eu02 (Ellhofen, Deutschland), eu03 (Ostermiething, Österreich). Ein fünftes Rechenzentrum befindet sich in Lübbenau, Deutschland, im Bau."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Kein Training auf Inferenzdaten von Kunden. Spezifische Aufbewahrungsbedingungen für KI-Inferenzen gemäß AGB und Auftragsverarbeitungsvertrag (AVV).",
+        "details": "Die Positionierung von STACKIT als souveräne Cloud und das Rahmenwerk des Auftragsverarbeitungsvertrags (AVV) gewährleisten, dass Kundendaten in einer Infrastruktur in EU-Eigentum verbleiben."
+      },
+      "euAiAct": {
+        "details": "Es wurde keine spezifische Erklärung zur Compliance mit dem EU AI Act veröffentlicht. Für ein deutsches Unternehmen mit aktiver Ausrichtung auf den öffentlichen Sektor ist die Bereitschaft für den EU AI Act eine erklärte Priorität. AI Model Serving ist ein Deployer-Produkt."
+      }
+    }
+  }
 }

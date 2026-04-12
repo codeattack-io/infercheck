@@ -55,5 +55,17 @@
     "https://abacus.ai/help/api/ref/llm_apps/getLLMAppResponse",
     "https://abacus.ai/help/chatllm-ai-super-assistant/purchase-domains"
   ],
-  "notes": "Abacus publishes a privacy policy and a public DPA that includes SCCs. Primary-source materials clearly say customer/API data is not used for training and that third-party model use is zero-retention, but public documentation does not provide a public sub-processor list or a guaranteed EU-only inference commitment for the general API; available public docs point mainly to US hosting."
+  "notes": "Abacus publishes a privacy policy and a public DPA that includes SCCs. Primary-source materials clearly say customer/API data is not used for training and that third-party model use is zero-retention, but public documentation does not provide a public sub-processor list or a guaranteed EU-only inference commitment for the general API; available public docs point mainly to US hosting.",
+  "translations": {
+    "de": {
+      "notes": "Abacus veröffentlicht eine Datenschutzerklärung und einen öffentlichen Auftragsverarbeitungsvertrag (AVV), der Standardvertragsklauseln (SCC) enthält. Primärquellen stellen eindeutig fest, dass Kunden-/API-Daten nicht für das Training verwendet werden und dass die Nutzung von Drittanbieter-Modellen ohne Datenspeicherung erfolgt (Zero-Retention), jedoch enthalten die öffentlich zugänglichen Unterlagen weder eine öffentliche Liste der Unterauftragsverarbeiter noch eine garantierte Verpflichtung zur ausschließlich in der EU erfolgenden Inferenz für die allgemeine API; die verfügbaren öffentlichen Unterlagen verweisen hauptsächlich auf Hosting in den USA.",
+      "dataResidency": {
+        "euRegionDetails": "Die Primärdokumentation gibt an, dass Open-Source-Modelle auf sicheren, in den USA befindlichen Servern gehostet werden, und die RouteLLM-Dokumentation gibt an, dass Open-Weight-LLMs auf Servern in den Vereinigten Staaten gehostet werden. Ein Dokument zu sicheren Bereitstellungsoptionen besagt, dass Enterprise-Bereitstellungen auf AWS, GCP oder Azure nach Wahl des Kunden gehostet werden können, einschließlich kundeneigener Speicher-/VPC-Optionen, jedoch wurde keine Primärquelle gefunden, die für die öffentliche API eine ausschließlich in der EU erfolgende Inferenz garantiert."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Abacus gibt an, dass Kundendaten, Prompts, Uploads oder API-Daten nicht zum Training von Modellen verwendet werden. Es wird angegeben, dass der Austausch mit Drittanbieter-/Foundation-Modellen ohne Datenspeicherung erfolgt (Zero-Retention) und unmittelbar nach der Verarbeitung gelöscht wird, jedoch können Konto-/Profilinhalte und Nutzerinhalte nach Vertragsbeendigung für einen kommerziell angemessenen Zeitraum zu Sicherungs-, Archivierungs- und Prüfzwecken aufbewahrt werden.",
+        "details": "Abacus gibt an, dass Nutzerdaten ausschließlich zur Ausführung von durch den Nutzer initiierten Abfragen und Aufgaben verwendet werden und dass mit Anbietern wie OpenAI, Anthropic und Google Enterprise-Vereinbarungen bestehen, um zu verhindern, dass Kundendaten für das Training verwendet werden."
+      }
+    }
+  }
 }

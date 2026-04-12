@@ -57,5 +57,17 @@
     "https://trust.baseten.co/",
     "https://www.baseten.co/platform/models/deepseek/"
   ],
-  "notes": "Baseten provides a public privacy policy, an incorporated DPA with SCC language in its terms, a public trust center, and documented regional inference controls. It clearly states it does not store inference inputs/outputs by default and does not use customer data for its business model, but I could not verify a public explicit EU AI Act statement or a universal EU-only Baseten Cloud guarantee, so those fields remain conservative."
+  "notes": "Baseten provides a public privacy policy, an incorporated DPA with SCC language in its terms, a public trust center, and documented regional inference controls. It clearly states it does not store inference inputs/outputs by default and does not use customer data for its business model, but I could not verify a public explicit EU AI Act statement or a universal EU-only Baseten Cloud guarantee, so those fields remain conservative.",
+  "translations": {
+    "de": {
+      "notes": "Baseten stellt eine öffentliche Datenschutzerklärung, einen in die Vertragsbedingungen einbezogenen Auftragsverarbeitungsvertrag (AVV) mit Formulierungen zu Standardvertragsklauseln (SCC), ein öffentliches Trust Center sowie dokumentierte regionale Inferenz-Kontrollen bereit. Es wird klar angegeben, dass Inferenz-Eingaben/-Ausgaben standardmäßig nicht gespeichert werden und dass Kundendaten nicht für das eigene Geschäftsmodell verwendet werden; eine ausdrückliche öffentliche Erklärung zum EU AI Act oder eine allgemeingültige Garantie einer ausschließlich EU-basierten Baseten-Cloud-Verarbeitung konnte jedoch nicht verifiziert werden, weshalb diese Felder konservativ bleiben.",
+      "dataResidency": {
+        "euRegionDetails": "Baseten dokumentiert „regionale Umgebungen“, die den Inferenz-Datenverkehr auf eine bestimmte geografische Region beschränken und direkt an Infrastruktur in der vorgesehenen Region weiterleiten. Darüber hinaus bewirbt Baseten Self-Hosted-/Hybrid-Bereitstellungen dahingehend, dass Bereitstellungen ausschließlich in US- und EU-Rechenzentren unterstützt werden und Modelldaten die Cloud des Kunden niemals verlassen; eine Primärquellen-Garantie dafür, dass Baseten Cloud standardmäßig für alle Dienste eine ausschließlich EU-basierte Verarbeitung anbietet, konnte jedoch nicht gefunden werden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Baseten gibt an, Modell-Eingaben, -Ausgaben oder -Gewichte standardmäßig nicht zu speichern. Eingaben für asynchrone Inferenz werden vorübergehend gespeichert, bis sie verarbeitet sind; Ausgaben werden niemals gespeichert; Modellgewichte werden direkt in den GPU-Speicher geladen, wobei optionales Caching auf Anfrage dauerhaft gelöscht werden kann. Laut der Datenschutzerklärung auf der Website werden personenbezogene Daten nur so lange gespeichert, wie es für die angegebenen Zwecke erforderlich ist, und Nutzungsdaten werden im Allgemeinen für einen kürzeren Zeitraum gespeichert, sofern sie nicht für Sicherheit/Funktionalität oder zur Erfüllung rechtlicher Verpflichtungen benötigt werden.",
+        "details": "Baseten erklärt, man sei „im Geschäft der Bereitstellung von ML-Inferenz-Infrastruktur, nicht der Nutzung von Kundendaten“, und dokumentiert gesondert, dass Modell-Eingaben, -Ausgaben oder -Gewichte standardmäßig nicht gespeichert werden."
+      }
+    }
+  }
 }

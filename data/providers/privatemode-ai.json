@@ -52,5 +52,17 @@
     "https://docs.privatemode.ai/quickstart/",
     "https://docs.privatemode.ai/guides/desktop-app/"
   ],
-  "notes": "Privatemode presents a strong privacy-by-design posture: it is operated by Edgeless Systems GmbH in Germany, says hosting and inference processing are in the EU, and states customer/API data is not stored, remembered, or used for training. However, no public DPA/AVV or public sub-processor list was found in the consulted primary sources, so those fields are conservatively set to unavailable/null."
+  "notes": "Privatemode presents a strong privacy-by-design posture: it is operated by Edgeless Systems GmbH in Germany, says hosting and inference processing are in the EU, and states customer/API data is not stored, remembered, or used for training. However, no public DPA/AVV or public sub-processor list was found in the consulted primary sources, so those fields are conservatively set to unavailable/null.",
+  "translations": {
+    "de": {
+      "notes": "Privatemode weist eine starke Privacy-by-Design-Ausrichtung auf: Der Dienst wird von der Edgeless Systems GmbH in Deutschland betrieben, gibt an, dass Hosting und Inferenzverarbeitung in der EU erfolgen, und erklärt, dass Kunden-/API-Daten weder gespeichert noch vorgehalten oder für das Training verwendet werden. Allerdings wurden in den konsultierten Primärquellen weder ein öffentlicher Auftragsverarbeitungsvertrag (AVV) noch eine öffentliche Liste der Unterauftragsverarbeiter gefunden, sodass diese Felder vorsorglich als nicht verfügbar/null gesetzt wurden.",
+      "dataResidency": {
+        "euRegionDetails": "Privatemode gibt an, dass der Dienst in erstklassigen Rechenzentren innerhalb der Europäischen Union gehostet wird, und in den Sicherheitsunterlagen wird angegeben, dass Prompts ausschließlich innerhalb der Confidential-Computing-Umgebung von Privatemode unter Verwendung von AMD-CPUs und Nvidia-H100/B200-GPUs entschlüsselt werden. In der Dokumentation der Desktop-App wird außerdem angegeben, dass keine Daten an Dienste Dritter übermittelt werden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Laut der Datenschutzrichtlinie der Website werden personenbezogene Daten gelöscht oder gesperrt, sobald der Zweck entfällt, vorbehaltlich gesetzlicher Aufbewahrungsfristen. Für das Produkt selbst gibt Privatemode an, dass Nutzerdaten niemals gespeichert, vorgehalten oder für das Training verwendet werden; die Desktop-App speichert den Chatverlauf und den Zugriffsschlüssel lokal auf dem Gerät des Nutzers. Daten aus Anfrageformularen werden aufbewahrt, bis ihre Löschung verlangt wird, die Einwilligung widerrufen wird oder der Zweck entfällt.",
+        "details": "Privatemode gibt an, dass seine Architektur sicherstellt, dass Modelle sich Kundendaten nicht merken können und nicht mit diesen nachtrainiert werden können. Laut Dokumentation übermittelt die Desktop-App keine Daten an Dienste Dritter und speichert den Chatverlauf lokal auf dem Gerät."
+      }
+    }
+  }
 }

@@ -60,5 +60,17 @@
     "https://blogs.novita.ai/gpu-regions-zones/",
     "https://novita.ai/models-console/model-detail/qwen-qwen-mt-plus"
   ],
-  "notes": "Novita publishes a privacy policy and API documentation and publicly advertises multi-region global GPU infrastructure, including Germany and the UK, but no primary-source DPA, SCC commitment, or public sub-processor list was found. Their privacy policy expressly says personal information is not used for model training, but it leaves customer-content processing to separate customer agreements that were not publicly located."
+  "notes": "Novita publishes a privacy policy and API documentation and publicly advertises multi-region global GPU infrastructure, including Germany and the UK, but no primary-source DPA, SCC commitment, or public sub-processor list was found. Their privacy policy expressly says personal information is not used for model training, but it leaves customer-content processing to separate customer agreements that were not publicly located.",
+  "translations": {
+    "de": {
+      "notes": "Novita veröffentlicht eine Datenschutzerklärung und eine API-Dokumentation und bewirbt öffentlich eine globale GPU-Infrastruktur mit mehreren Regionen, darunter Deutschland und das Vereinigte Königreich; es wurde jedoch weder ein Auftragsverarbeitungsvertrag (AVV), eine Verpflichtung zu Standardvertragsklauseln (SCC) aus Primärquellen noch eine öffentliche Liste der Unterauftragsverarbeiter gefunden. In der Datenschutzerklärung wird ausdrücklich angegeben, dass personenbezogene Informationen nicht für das Modelltraining verwendet werden; zugleich wird die Verarbeitung von Kundeninhalten auf gesonderte Kundenvereinbarungen verwiesen, die öffentlich nicht aufgefunden wurden.",
+      "dataResidency": {
+        "euRegionDetails": "Novita bewirbt öffentlich global verteilte GPU-Regionen, darunter Deutschland (EU-GER-01, EU-GER-02) und das Vereinigte Königreich (EU-GB-01), neben Regionen in den USA, Asien, dem Nahen Osten, Südamerika, Afrika und Australien. Da Verarbeitungskapazitäten über mehrere Nicht-EU-Regionen hinweg angeboten werden und keine Aussage aus Primärquellen gefunden wurde, die eine ausschließlich auf die EU beschränkte Weiterleitung für API-Inferenz garantiert, kann eine ausschließlich in der EU erfolgende Verarbeitung nicht als gewährleistet angesehen werden, und Inferenz kann die EU verlassen."
+      },
+      "dataUsage": {
+        "retentionPolicy": "In der Datenschutzerklärung heißt es, dass personenbezogene Informationen nur so lange aufbewahrt werden, wie es zur Erbringung des Dienstes oder für berechtigte geschäftliche Zwecke erforderlich ist, etwa zur Beilegung von Streitigkeiten, zur Gewährleistung von Safety/Security oder zur Einhaltung gesetzlicher Vorgaben. Ferner wird ausgeführt, dass de-identifizierte oder anonymisierte Informationen für Forschungs- oder Statistikzwecke unbefristet verwendet werden können.",
+        "details": "In der Datenschutzerklärung von Novita heißt es: „The Personal Information will not be used for model training.“ Dieselbe Datenschutzerklärung führt zudem aus, dass sie nicht für Inhalte gilt, die bei der Erbringung von Dienstleistungen im Auftrag von Kunden verarbeitet werden, und dass solche Inhalte durch Kundenvereinbarungen geregelt werden."
+      }
+    }
+  }
 }

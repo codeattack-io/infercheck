@@ -52,5 +52,13 @@
     "https://community.modelscope.cn/6810a75dc89bb1649888b621.html",
     "https://community.modelscope.cn/6819762bc7c7e505d3531f78.html"
   ],
-  "notes": "ModelScope provides public API-Inference documentation and a free public beta tier, but no primary-source privacy policy, DPA/AVV, subprocessors list, SCC commitment, retention statement, or customer-data training statement could be confirmed from official materials reviewed. The primary-source evidence found points to China-based Alibaba Cloud-backed inference rather than any documented EU-only processing option."
+  "notes": "ModelScope provides public API-Inference documentation and a free public beta tier, but no primary-source privacy policy, DPA/AVV, subprocessors list, SCC commitment, retention statement, or customer-data training statement could be confirmed from official materials reviewed. The primary-source evidence found points to China-based Alibaba Cloud-backed inference rather than any documented EU-only processing option.",
+  "translations": {
+    "de": {
+      "notes": "ModelScope stellt öffentliche API-Inferenz-Dokumentation und eine kostenlose öffentliche Beta-Stufe bereit; aus den geprüften offiziellen Materialien konnten jedoch weder eine primärquellenbasierte Datenschutzerklärung, ein Auftragsverarbeitungsvertrag (AVV), eine Liste der Unterauftragsverarbeiter, eine Verpflichtung zu Standardvertragsklauseln (SCC), eine Erklärung zur Speicherfrist noch eine Erklärung zur Verwendung von Kundendaten für das Training bestätigt werden. Die aufgefundenen Primärquellenbelege weisen eher auf eine von Alibaba Cloud in China unterstützte Inferenz hin als auf eine dokumentierte Option für eine ausschließlich in der EU erfolgende Verarbeitung.",
+      "dataResidency": {
+        "euRegionDetails": "Die aufgefundenen Primärquellenmaterialien deuten darauf hin, dass die API-Inferenz von ModelScope durch eine Infrastruktur von Alibaba Cloud / DashScope gestützt wird, wobei Beispiele und zugehörige Bereitstellungsmaterialien auf Regionen im chinesischen Festland (zum Beispiel cn-hangzhou) verweisen; eine veröffentlichte EU-Region oder Option für ein ausschließliches Routing innerhalb der EU wurde nicht festgestellt."
+      }
+    }
+  }
 }

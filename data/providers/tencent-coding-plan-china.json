@@ -69,5 +69,20 @@
     "https://intl.cloud.tencent.com/document/product/363/14031",
     "https://intl.cloud.tencent.com/document/product/363/38341"
   ],
-  "notes": "Tencent Cloud publishes a global privacy policy, a public DPSA/DPA, and a public sub-processor/third-party page. For AI services, Tencent’s own terms say customer input/output may be used for model training by default with an opt-out in the relevant AI service. Tencent offers a Germany service region and has Germany-based infrastructure listed, but its own DPSA allows processing outside the selected region and no EU-only inference guarantee was found."
+  "notes": "Tencent Cloud publishes a global privacy policy, a public DPSA/DPA, and a public sub-processor/third-party page. For AI services, Tencent’s own terms say customer input/output may be used for model training by default with an opt-out in the relevant AI service. Tencent offers a Germany service region and has Germany-based infrastructure listed, but its own DPSA allows processing outside the selected region and no EU-only inference guarantee was found.",
+  "translations": {
+    "de": {
+      "notes": "Tencent Cloud veröffentlicht eine globale Datenschutzrichtlinie, einen öffentlichen DPSA/Auftragsverarbeitungsvertrag (AVV) sowie eine öffentliche Seite zu Unterauftragsverarbeitern/Dritten. Für KI-Dienste besagen die eigenen Bedingungen von Tencent, dass Kundeneingaben und -ausgaben standardmäßig für das Modelltraining verwendet werden können, mit einem Opt-out im jeweiligen KI-Dienst. Tencent bietet eine Serviceregion Deutschland an und führt in Deutschland ansässige Infrastruktur auf, jedoch erlaubt das eigene DPSA eine Verarbeitung außerhalb der ausgewählten Region, und es wurde keine Garantie aus Primärquellen für eine ausschließlich in der EU erfolgende Inferenz gefunden.",
+      "dataResidency": {
+        "euRegionDetails": "Das DPSA von Tencent Cloud besagt, dass personenbezogene Daten in der ausgewählten Serviceregion verarbeitet werden, Tencent jedoch mit vorheriger Einwilligung/Genehmigung von Zeit zu Zeit eine Verarbeitung außerhalb dieser Region vornehmen muss; zudem umfasst die öffentliche Liste der Unterauftragsverarbeiter Infrastruktur in Deutschland sowie Verarbeitungs-/Supporteinheiten in der VR China, Singapur, den USA, Hongkong und anderen Regionen. Es wurde keine Aussage aus Primärquellen gefunden, die eine ausschließlich in der EU erfolgende KI-Inferenz garantiert."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Die allgemeine Datenschutzrichtlinie besagt, dass kontobezogene personenbezogene Informationen gespeichert werden, solange das Konto besteht, und danach innerhalb eines festgelegten Zeitraums je nach Datentyp gelöscht werden. Der Nachtrag für die VR China besagt, dass personenbezogene Informationen im Allgemeinen nur für die Dauer der Dienste und nicht länger als für den Zweck erforderlich gespeichert werden, vorbehaltlich gesetzlicher/behördlicher/streitbezogener Ausnahmen. Der Anhang zum DPSA besagt, dass personenbezogene Daten bei übertragenen Inhalten für die Dauer der Nutzungsbedingungen gespeichert werden.",
+        "details": "Die Tencent Cloud AI Service Terms besagen, dass User Input und AI Output zur Bereitstellung, zum Betrieb, zur Unterstützung, zur Verbesserung und zur Weiterentwicklung von KI-Diensten verwendet werden können, einschließlich des Trainings, Testens und der Verbesserung von KI-Modellen und -Systemen von Tencent Cloud, sofern der Kunde nicht im jeweiligen KI-Dienst ein Opt-out ausübt."
+      },
+      "euAiAct": {
+        "details": "Es wurde keine Aussage aus Primärquellen gefunden, die ausdrücklich die Konformität mit dem EU AI Act beansprucht. Die AI Service Terms von Tencent enthalten Nutzungsbeschränkungen und Anforderungen an die menschliche Überprüfung, erklären jedoch keine Konformität mit dem EU AI Act."
+      }
+    }
+  }
 }

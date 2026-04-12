@@ -49,5 +49,17 @@
     "https://docs.siliconflow.com/en",
     "https://www.siliconflow.com/pricing"
   ],
-  "notes": "SiliconFlow's primary legal documents identify the contracting entity as SILICONFLOW TECHNOLOGY PTE. LTD. in Singapore and allow disclosures/transfers of personal data within or outside Singapore, with no published EU-only residency commitment found. No public DPA/AVV, sub-processor list, SCC statement, or confirmed security certifications were found in primary-source documentation, so those fields are left null or marked unavailable."
+  "notes": "SiliconFlow's primary legal documents identify the contracting entity as SILICONFLOW TECHNOLOGY PTE. LTD. in Singapore and allow disclosures/transfers of personal data within or outside Singapore, with no published EU-only residency commitment found. No public DPA/AVV, sub-processor list, SCC statement, or confirmed security certifications were found in primary-source documentation, so those fields are left null or marked unavailable.",
+  "translations": {
+    "de": {
+      "notes": "In den primären Rechtsdokumenten von SiliconFlow wird die vertragsschließende Einheit als SILICONFLOW TECHNOLOGY PTE. LTD. in Singapur bezeichnet; zudem wird die Offenlegung/Übermittlung personenbezogener Daten innerhalb oder außerhalb Singapurs zugelassen. Eine veröffentlichte Zusage zur ausschließlichen Datenhaltung in der EU wurde nicht gefunden. In den Primärquellen wurden kein öffentlicher Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Erklärung zu Standardvertragsklauseln (SCC) und keine bestätigten Sicherheitszertifizierungen gefunden; diese Felder bleiben daher null oder sind als nicht verfügbar gekennzeichnet.",
+      "dataResidency": {
+        "euRegionDetails": "Die öffentliche Datenschutzerklärung ist für SILICONFLOW TECHNOLOGY PTE. LTD. formuliert und besagt, dass personenbezogene Daten an verbundene Unternehmen, Dienstleister und Behörden „innerhalb oder außerhalb Singapurs“ offengelegt werden können. In der primären Dokumentation des Anbieters wurde weder eine auf die EU beschränkte Region noch eine Verpflichtung zum EU-Routing gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Laut Datenschutzerklärung kann SiliconFlow personenbezogene Daten so lange speichern, wie es für den Erhebungszweck erforderlich ist oder gesetzlich vorgeschrieben/zulässig ist, und wird die Speicherung beenden oder die Daten de-identifizieren, wenn sie für rechtliche oder geschäftliche Zwecke nicht mehr benötigt werden. Für Interaktionsdaten besagt die Richtlinie, dass Kunden für deren Speicherung verantwortlich sind, SiliconFlow eine Speicherung nur bereitstellt, soweit dies gesetzlich erforderlich ist oder besondere Dienstregeln dies vorsehen, und im Übrigen keine Verpflichtung zur Speicherung besteht.",
+        "details": "Die Datenschutzerklärung besagt, dass Interaction Data die Geschäfts- und Kundendaten des Kunden sind und dass SiliconFlow, sofern diese personenbezogene Daten enthalten, diese als neutraler Technologiedienstleister strikt gemäß den Anweisungen des Kunden verarbeitet. In der primären Dokumentation wurde keine ausdrückliche Erklärung dazu gefunden, ob API-/Kundendaten für das Modelltraining verwendet werden oder nicht."
+      }
+    }
+  }
 }

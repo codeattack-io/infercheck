@@ -51,5 +51,20 @@
     "https://huggingface.co/enterprise",
     "https://huggingface.co/docs/hub/storage-regions"
   ],
-  "notes": "Scope is Inference Endpoints (dedicated), NOT Inference Providers (shared/serverless). HQ: Hugging Face Inc. (New York, US). EU controller: Hugging Face SAS (Paris, France), supervised by CNIL. Sub-processors include OVHcloud (FR), AWS, GCP. EU residency and DPA require Team or Enterprise plan. Any model on the Hub can be deployed via Inference Endpoints."
+  "notes": "Scope is Inference Endpoints (dedicated), NOT Inference Providers (shared/serverless). HQ: Hugging Face Inc. (New York, US). EU controller: Hugging Face SAS (Paris, France), supervised by CNIL. Sub-processors include OVHcloud (FR), AWS, GCP. EU residency and DPA require Team or Enterprise plan. Any model on the Hub can be deployed via Inference Endpoints.",
+  "translations": {
+    "de": {
+      "notes": "Der Geltungsbereich umfasst Inference Endpoints (dediziert), NICHT Inference Providers (gemeinsam/serverless). Hauptsitz: Hugging Face Inc. (New York, USA). EU-Verantwortlicher: Hugging Face SAS (Paris, Frankreich), beaufsichtigt durch die CNIL. Zu den Unterauftragsverarbeitern gehören OVHcloud (FR), AWS und GCP. EU-Datenhaltung und Auftragsverarbeitungsvertrag (AVV) erfordern einen Team- oder Enterprise-Plan. Jedes Modell auf dem Hub kann über Inference Endpoints bereitgestellt werden.",
+      "dataResidency": {
+        "euRegionDetails": "Eine EU-Region ist in Team- und Enterprise-Plänen verfügbar. Inference Endpoints können in EU-Regionen von AWS oder GCP bereitgestellt werden. Modelle, Datensätze und Endpunkte können auf EU-Rechenzentren festgelegt werden. Die Funktion für Enterprise Hub-Speicherregionen ist verfügbar."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Payload-Daten (Prompts/Tokens) werden auf Inference Endpoints nicht gespeichert. Protokolle werden 30 Tage aufbewahrt.",
+        "details": "Laut Sicherheitsdokumentation speichert Hugging Face keine Kundendaten in Form von Payloads oder Tokens. Kein Training auf Daten aus Inference Endpoints."
+      },
+      "euAiAct": {
+        "details": "Die EU-Rechtseinheit (HF SAS, Paris) unterliegt als Anbieter dem EU AI Act. Zum Zeitpunkt der Verifizierung war keine formale Zertifizierung veröffentlicht."
+      }
+    }
+  }
 }

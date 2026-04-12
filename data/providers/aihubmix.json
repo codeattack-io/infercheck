@@ -49,5 +49,17 @@
     "https://docs.aihubmix.com/en/api/Data-Pravicy",
     "https://docs.aihubmix.com/en/FAQs/Faq"
   ],
-  "notes": "Primary-source materials reviewed show a US-based provider with servers/databases in the USA and no published DPA, SCC, sub-processor list, or security certification evidence found in the official docs reviewed. AIHubMix says it does not actively store prompts/responses in normal operation, but downstream model-provider policies apply and some compliance-triggered retention may occur."
+  "notes": "Primary-source materials reviewed show a US-based provider with servers/databases in the USA and no published DPA, SCC, sub-processor list, or security certification evidence found in the official docs reviewed. AIHubMix says it does not actively store prompts/responses in normal operation, but downstream model-provider policies apply and some compliance-triggered retention may occur.",
+  "translations": {
+    "de": {
+      "notes": "Die geprüften Primärquellen weisen auf einen in den USA ansässigen Anbieter mit Servern/Datenbanken in den USA hin; in den geprüften offiziellen Unterlagen wurden weder ein veröffentlichter Auftragsverarbeitungsvertrag (AVV), Standardvertragsklauseln (SCC), eine Liste der Unterauftragsverarbeiter noch Nachweise über Sicherheitszertifizierungen gefunden. AIHubMix gibt an, Prompts/Antworten im Normalbetrieb nicht aktiv zu speichern; es gelten jedoch die Richtlinien nachgelagerter Modellanbieter, und eine gewisse, durch Compliance-Anforderungen ausgelöste Aufbewahrung kann erfolgen.",
+      "dataResidency": {
+        "euRegionDetails": "AIHubMix gibt an, dass sich seine Server und Datenbanken auf Microsoft Azure in den USA befinden. In der Dokumentation wird außerdem ausgeführt, dass Anfragen an mehrere Drittanbieter von KI weitergeleitet werden können und dass OpenAI-Anfragen zur Inhaltsprüfung nach dem Zufallsprinzip an Azure OpenAI weitergeleitet werden können; eine ausschließlich auf die EU beschränkte Verarbeitung wird in den geprüften Primärquellen daher nicht angeboten."
+      },
+      "dataUsage": {
+        "retentionPolicy": "AIHubMix gibt an, personenbezogene Informationen so lange aufzubewahren, wie dies für die in seiner Datenschutzerklärung genannten Zwecke erforderlich ist, und diese anschließend sicher zu löschen oder zu anonymisieren. Ferner wird angegeben, dass Prompts oder Modellantworten nicht aktiv gespeichert werden, jedoch Metadaten zu Anfragen gespeichert werden und dass bei Sperrung eines Kontos sowie Eingang einer Compliance-Benachrichtigung Informationen im Zusammenhang mit Prompts/Antworten aufbewahrt werden können. Außerdem wird darauf hingewiesen, dass nachgelagerte Modellanbieter über eigene Protokollierungs- und Aufbewahrungsrichtlinien verfügen.",
+        "details": "AIHubMix gibt an, dass Benutzereingaben und Modellausgaben bei normaler API-Nutzung nicht gespeichert und ausschließlich für die Abrechnung und Serviceoptimierung verwendet werden, nicht jedoch für Inhaltsanalysen oder die Weitergabe an Dritte. Nachgelagerte Anbieter können Zugriffe jedoch zu Sicherheits- oder Compliance-Zwecken protokollieren, und es gelten deren eigene Bedingungen zur Aufbewahrung und zum Training."
+      }
+    }
+  }
 }

@@ -68,5 +68,20 @@
     "https://www.cloudflare.com/trust-hub/responsible-ai/",
     "https://www.cloudflare.com/trust-hub/compliance-resources/eu-cloud-code-of-conduct/"
   ],
-  "notes": "Cloudflare provides a public DPA, public sub-processor disclosures, SCC-based transfer language, and documented EU metadata-localization controls. For AI Gateway specifically, the cited primary sources do not guarantee EU-only inference processing, and listed AI Gateway sub-processors include U.S.-based providers, so EU companies should treat inference-related cross-border transfers as possible."
+  "notes": "Cloudflare provides a public DPA, public sub-processor disclosures, SCC-based transfer language, and documented EU metadata-localization controls. For AI Gateway specifically, the cited primary sources do not guarantee EU-only inference processing, and listed AI Gateway sub-processors include U.S.-based providers, so EU companies should treat inference-related cross-border transfers as possible.",
+  "translations": {
+    "de": {
+      "notes": "Cloudflare stellt einen öffentlichen Auftragsverarbeitungsvertrag (AVV), öffentliche Offenlegungen zu Unterauftragsverarbeitern, auf Standardvertragsklauseln (SCC) basierende Regelungen zu Übermittlungen sowie dokumentierte EU-Kontrollen zur Lokalisierung von Metadaten bereit. Speziell für AI Gateway gewährleisten die angeführten Primärquellen jedoch keine ausschließlich in der EU erfolgende Inferenzverarbeitung, und die aufgeführten Unterauftragsverarbeiter von AI Gateway umfassen in den USA ansässige Anbieter, sodass EU-Unternehmen davon ausgehen sollten, dass grenzüberschreitende Übermittlungen im Zusammenhang mit Inferenz möglich sind.",
+      "dataResidency": {
+        "euRegionDetails": "Cloudflare dokumentiert EU-Kontrollen zur Datenlokalisierung für Metadaten/Protokolle über die Customer Metadata Boundary, durch die Customer Logs in der EU gehalten werden können. AI Gateway nutzt jedoch auch externe Unterauftragsverarbeiter von AI Gateway mit Sitz in den Vereinigten Staaten, und OpenAI wird als Betreiber von Servern weltweit beschrieben, sodass eine ausschließlich in der EU erfolgende Verarbeitung für AI-Gateway-Inferenz auf Grundlage der angeführten Primärquellen nicht gewährleistet ist."
+      },
+      "dataUsage": {
+        "retentionPolicy": "AI-Gateway-Protokolle sind standardmäßig aktiviert und bleiben bestehen, bis der Kunde ältere Protokolle löscht oder die Protokollierung deaktiviert; die Speicherung ist durch planbezogene Limits begrenzt (beispielsweise 100.000 Protokolle bei Workers Free über alle Gateways hinweg und 10.000.000 Protokolle pro Gateway bei Workers Paid). Kunden können auf Gateway-Ebene oder pro Anfrage ein Opt-out von der Protokollerfassung vornehmen.",
+        "details": "Die Dokumentation von Cloudflare zu Workers AI zur Datennutzung besagt, dass Cloudflare Kundeninhalte nicht zur Schulung von KI-Modellen oder zur Verbesserung von Diensten von Cloudflare oder Dritten ohne ausdrückliche Einwilligung verwendet. Die Dokumentation zu AI Gateway besagt, dass Prompts/Responses standardmäßig zu Zwecken der Beobachtbarkeit protokolliert werden können, wobei die Protokollierung konfigurierbar oder deaktivierbar ist."
+      },
+      "euAiAct": {
+        "details": "Cloudflare erklärt, uneingeschränkt der Entwicklung KI-gestützter Produkte in einer Weise verpflichtet zu sein, die mit dem EU AI Act im Einklang steht, erklärt, keine Hochrisiko-KI-Systeme bereitzustellen, und erklärt, dass über Workers AI angebotene GPAI-Modelle von Dritten bereitgestellt werden, die für ihre eigene Compliance mit dem AI Act verantwortlich sind."
+      }
+    }
+  }
 }

@@ -55,5 +55,17 @@
     "https://llmgateway.io/blog/introducing-llm-gateway",
     "https://llmgateway.io/blog/custom-openai-compatible-providers"
   ],
-  "notes": "Public primary-source documentation confirms a US legal nexus (Delaware governing law), processing/storage in the EU or US, configurable retention, and extensive routing to third-party AI providers, including custom providers. I could not find a public DPA/AVV, sub-processor list, SCC statement, training-on-customer-data statement, or security certification disclosure on the provider’s official site/docs, so those fields are null or false where appropriate."
+  "notes": "Public primary-source documentation confirms a US legal nexus (Delaware governing law), processing/storage in the EU or US, configurable retention, and extensive routing to third-party AI providers, including custom providers. I could not find a public DPA/AVV, sub-processor list, SCC statement, training-on-customer-data statement, or security certification disclosure on the provider’s official site/docs, so those fields are null or false where appropriate.",
+  "translations": {
+    "de": {
+      "notes": "Öffentlich zugängliche Primärquellen-Dokumentation bestätigt einen rechtlichen Bezug zu den USA (anwendbares Recht des US-Bundesstaats Delaware), eine Verarbeitung/Speicherung in der EU oder den USA, konfigurierbare Speicherfristen sowie ein umfangreiches Routing an externe KI-Anbieter, einschließlich kundenspezifischer Anbieter. Auf der offiziellen Website/in den offiziellen Dokumentationen des Anbieters konnte kein öffentlich zugänglicher Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Erklärung zu Standardvertragsklauseln (SCC), keine Erklärung zur Nutzung von Kundendaten für das Training und keine Offenlegung von Sicherheitszertifizierungen gefunden werden; daher sind diese Felder, soweit zutreffend, null oder false.",
+      "dataResidency": {
+        "euRegionDetails": "Die Datenschutzerklärung besagt, dass Daten auf Servern in der Europäischen Union oder in den Vereinigten Staaten verarbeitet und gespeichert werden können. LLM Gateway leitet API-Anfragen an ausgewählte externe KI-Anbieter weiter, und die Website/Dokumentation beschreibt den Zugriff auf viele Anbieter sowie automatisches Routing/Fallback; daher ist eine ausschließlich auf die EU beschränkte Verarbeitung anhand der öffentlich zugänglichen Dokumentation nicht gewährleistet."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Die Standardspeicherung beschränkt sich auf Metadaten. Wenn „Retain All Data“ aktiviert ist, werden vollständige Anfrage-/Antwort-Payloads gespeichert. Daten werden für alle Nutzer 30 Tage lang gespeichert; für Enterprise sind individuelle Speicherfristen verfügbar. Gespeicherte Daten werden nach Ablauf der Speicherfrist oder bei Löschung des Kontos automatisch gelöscht, und über den Support kann die unverzügliche Löschung bestimmter Datensätze beantragt werden.",
+        "details": "Datenschutzerklärung/Nutzungsbedingungen besagen, dass Nutzer in Settings → Policies zwischen „Metadata Only“ und „Retain All Data“ wählen können. Der Dienst teilt Anfragedaten mit ausgewählten KI-Anbietern, wenn Anfragen weitergeleitet werden."
+      }
+    }
+  }
 }

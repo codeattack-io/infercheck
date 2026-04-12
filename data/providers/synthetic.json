@@ -53,5 +53,17 @@
     "https://synthetic.new/blog/subscriptions",
     "https://synthetic.new/blog/billing-launch"
   ],
-  "notes": "Synthetic publishes a privacy policy and states that it never trains on customer data; for API use it says prompts/completions may be retained for up to 14 days for debugging. No public DPA/AVV, SCC statement, sub-processor list, certifications, or EU-only residency commitment was found in primary sources. Because some models are explicitly proxied via third-party inference providers, EU-only inference cannot be confirmed and inference can leave Synthetic-hosted infrastructure."
+  "notes": "Synthetic publishes a privacy policy and states that it never trains on customer data; for API use it says prompts/completions may be retained for up to 14 days for debugging. No public DPA/AVV, SCC statement, sub-processor list, certifications, or EU-only residency commitment was found in primary sources. Because some models are explicitly proxied via third-party inference providers, EU-only inference cannot be confirmed and inference can leave Synthetic-hosted infrastructure.",
+  "translations": {
+    "de": {
+      "notes": "Synthetic veröffentlicht eine Datenschutzerklärung und gibt an, niemals auf Kundendaten zu trainieren; für die API-Nutzung wird angegeben, dass Prompts/Completions zu Debugging-Zwecken bis zu 14 Tage aufbewahrt werden können. In Primärquellen wurden weder ein öffentlich verfügbarer Auftragsverarbeitungsvertrag (AVV), eine Erklärung zu Standardvertragsklauseln (SCC), eine Liste der Unterauftragsverarbeiter, Zertifizierungen noch eine Verpflichtung zur ausschließlichen Datenhaltung in der EU gefunden. Da einige Modelle ausdrücklich über externe Inferenz-Anbieter weitergeleitet werden, kann eine ausschließlich in der EU erfolgende Inferenz nicht bestätigt werden, und die Inferenz kann die von Synthetic gehostete Infrastruktur verlassen.",
+      "dataResidency": {
+        "euRegionDetails": "Synthetic gibt an, Modelle in privaten, sicheren Rechenzentren zu betreiben, veröffentlicht jedoch in seiner Primärdokumentation weder eine EU-Region noch eine Option für eine ausschließlich in der EU erfolgende Verarbeitung. Die Statusseiten unterscheiden zwischen von Synthetic gehosteten Modellen und weitergeleiteten Modellen; weitergeleitete Modelle werden von externen Inferenz-Anbietern bereitgestellt, sodass die Inferenz die eigene Infrastruktur von Synthetic verlassen kann."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Für API-Daten gibt Synthetic an, API-Eingaben und -Ausgaben zu Debugging-Zwecken bis zu 14 Tage speichern zu können; ansonsten werden API-Prompts oder Completions ohne ausdrückliche Einwilligung nicht gespeichert, wobei Metadaten wie Request-ID, Inferenzkosten oder Sampling-Parameter protokolliert werden können. Für die UI oder sonstige Nutzung werden personenbezogene Daten so lange aufbewahrt, wie die Dienste genutzt werden, wie es gesetzlich erforderlich ist oder wie anderweitig mitgeteilt.",
+        "details": "Auf der Homepage wird angegeben, dass Synthetic niemals auf Kundendaten trainiert und API-Prompts oder Completions niemals speichert. Die Datenschutzerklärung ergänzt, dass API-Eingaben/-Ausgaben zu Debugging-Zwecken bis zu 14 Tage gespeichert werden können und dass Prompts/Completions im Übrigen ohne ausdrückliche Einwilligung nicht gespeichert werden."
+      }
+    }
+  }
 }

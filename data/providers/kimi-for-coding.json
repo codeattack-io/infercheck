@@ -51,5 +51,17 @@
     "https://platform.kimi.com/docs/agreement/payment",
     "https://platform.kimi.com/docs/guide/faq"
   ],
-  "notes": "Kimi For Coding is operated by Beijing Moonshot AI Technology Co., Ltd. / Moonshot AI in China. Primary-source documentation confirms China-based storage and a pay-as-you-go API platform, but no public DPA/AVV, SCC commitment, EU-only inference guarantee, sub-processor list, or verified security certifications were found in the consulted sources."
+  "notes": "Kimi For Coding is operated by Beijing Moonshot AI Technology Co., Ltd. / Moonshot AI in China. Primary-source documentation confirms China-based storage and a pay-as-you-go API platform, but no public DPA/AVV, SCC commitment, EU-only inference guarantee, sub-processor list, or verified security certifications were found in the consulted sources.",
+  "translations": {
+    "de": {
+      "notes": "Kimi For Coding wird von Beijing Moonshot AI Technology Co., Ltd. / Moonshot AI in China betrieben. Die herangezogene Primärdokumentation bestätigt eine Datenspeicherung in China sowie eine API-Plattform mit nutzungsabhängiger Abrechnung, jedoch wurden in den konsultierten Quellen weder ein öffentlicher Auftragsverarbeitungsvertrag (AVV), eine Zusage zu Standardvertragsklauseln (SCC), eine Garantie für eine ausschließlich in der EU erfolgende Inferenz, eine Liste der Unterauftragsverarbeiter noch verifizierte Sicherheitszertifizierungen gefunden.",
+      "dataResidency": {
+        "euRegionDetails": "Die Datenschutzrichtlinie der Kimi Open Platform besagt, dass personenbezogene Daten innerhalb der Volksrepublik China gespeichert werden und, sofern keine gesonderte Einwilligung eingeholt wurde und die gesetzlichen Anforderungen nicht erfüllt sind, nicht ins Ausland übermittelt werden. Eine Option für eine ausschließlich in der EU erfolgende Verarbeitung wurde in der Primärdokumentation nicht gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Die Datenschutzrichtlinie besagt, dass personenbezogene Daten nur so lange gespeichert werden, wie es zur Erreichung der Servicezwecke erforderlich ist, sofern keine gesetzlichen Vorschriften etwas anderes verlangen; wird der Betrieb des Dienstes eingestellt, werden die Daten innerhalb eines angemessenen Zeitraums anonymisiert oder dauerhaft gelöscht, sofern keine gesetzliche Aufbewahrungspflicht besteht. Die Plattform-Dienstleistungsvereinbarung besagt außerdem, dass bei Löschung des Kontos Kontodaten, APIs und Guthaben gelöscht werden, Registrierungsdaten und Verhaltensaufzeichnungen jedoch weiterhin aufbewahrt werden können, soweit dies nach den chinesischen Cybersicherheitsgesetzen erforderlich ist.",
+        "details": "Die Datenschutzrichtlinie der Plattform besagt, dass Konversationsinformationen (Text, Audio, Bilder, Video, Dateien) zur Optimierung des Modells beitragen, und die Plattform-Dienstleistungsvereinbarung besagt, dass Nutzereingaben im Rahmen des vereinbarten Leistungsumfangs verwendet werden dürfen, einschließlich zur Bereitstellung und Optimierung des Dienstes. In den konsultierten Primärquellen wurde weder eine gesonderte, API-spezifische Zusage, Daten nicht zu Trainingszwecken zu verwenden, noch ein Opt-out gefunden."
+      }
+    }
+  }
 }

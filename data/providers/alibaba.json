@@ -62,5 +62,17 @@
     "https://www.alibabacloud.com/help/en/model-studio/model-api-reference/",
     "https://www.alibabacloud.com/help/en/model-studio/get-api-key"
   ],
-  "notes": "Alibaba Cloud provides GDPR-facing documentation including an EEA Data Processing Addendum and references to SCCs. For AI inference, its Model Studio now documents an EU deployment mode in Germany (Frankfurt) with inference limited to the EU, but other modes explicitly involve cross-border computation; the sub-processor list is not publicly accessible and requires customer login."
+  "notes": "Alibaba Cloud provides GDPR-facing documentation including an EEA Data Processing Addendum and references to SCCs. For AI inference, its Model Studio now documents an EU deployment mode in Germany (Frankfurt) with inference limited to the EU, but other modes explicitly involve cross-border computation; the sub-processor list is not publicly accessible and requires customer login.",
+  "translations": {
+    "de": {
+      "notes": "Alibaba Cloud stellt auf die DSGVO ausgerichtete Dokumentation bereit, darunter ein EEA Data Processing Addendum sowie Verweise auf Standardvertragsklauseln (SCC). Für KI-Inferenz dokumentiert Model Studio nun einen EU-Bereitstellungsmodus in Deutschland (Frankfurt), bei dem die Inferenz auf die EU beschränkt ist; andere Modi umfassen hingegen ausdrücklich grenzüberschreitende Verarbeitung. Die Liste der Unterauftragsverarbeiter ist nicht öffentlich zugänglich und erfordert einen Kunden-Login.",
+      "dataResidency": {
+        "euRegionDetails": "Alibaba Cloud Model Studio unterstützt einen Bereitstellungsmodus für die Europäische Union mit Bindung an Deutschland (Frankfurt). In der Dokumentation wird angegeben, dass statische Daten in der ausgewählten Region gespeichert werden und dass der EU-Bereitstellungsmodus für die Inferenz auf die EU beschränkt ist. Andere Bereitstellungsmodi wie Global und International umfassen grenzüberschreitende Verarbeitung."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Für direkte API-Aufrufe in Model Studio gibt Alibaba Cloud an, keine Gesprächsdaten zu speichern und lediglich den desensibilisierten Aufrufstatus zu protokollieren. Für die Assistant API wird der Gesprächsverlauf gespeichert; zudem wird angegeben, dass für diese Informationen derzeit kein Ablaufdatum besteht. In der allgemeinen Datenschutzerklärung von Alibaba Cloud wird ausgeführt, dass personenbezogene Daten so lange aufbewahrt werden, wie dies für Dienstleistungen, Streitigkeiten, Forschung/Statistik oder rechtliche Anforderungen erforderlich ist, und anschließend gelöscht oder anonymisiert werden, wenn sie nicht mehr benötigt werden.",
+        "details": "Die Dokumentation zu Model Studio besagt, dass Alibaba Cloud Kundendaten niemals für das Modelltraining verwenden wird."
+      }
+    }
+  }
 }

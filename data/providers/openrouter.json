@@ -48,5 +48,17 @@
     "https://openrouter.ai/terms",
     "https://openrouter.ai/privacy"
   ],
-  "notes": "Gateway routing to 300+ upstream models (GPT-4o, Claude, Gemini, Llama, DeepSeek, Mistral, etc.). Most complex GDPR posture in this directory: the gateway architecture makes every upstream provider a de facto sub-processor, none of which are formally listed. EU routing requires enterprise agreement. Illustrates the compliance gap created by gateway/aggregator services."
+  "notes": "Gateway routing to 300+ upstream models (GPT-4o, Claude, Gemini, Llama, DeepSeek, Mistral, etc.). Most complex GDPR posture in this directory: the gateway architecture makes every upstream provider a de facto sub-processor, none of which are formally listed. EU routing requires enterprise agreement. Illustrates the compliance gap created by gateway/aggregator services.",
+  "translations": {
+    "de": {
+      "notes": "Gateway-Routing zu mehr als 300 Upstream-Modellen (GPT-4o, Claude, Gemini, Llama, DeepSeek, Mistral usw.). Die komplexeste DSGVO-Compliance-Position in diesem Verzeichnis: Die Gateway-Architektur macht jeden Upstream-Anbieter de facto zu einem Unterauftragsverarbeiter, von denen keiner formell aufgeführt ist. EU-Routing erfordert eine Enterprise-Vereinbarung. Veranschaulicht die durch Gateway-/Aggregator-Dienste entstehende Compliance-Lücke.",
+      "dataResidency": {
+        "euRegionDetails": "EU-In-Region-Routing (eu.openrouter.ai) ist nur für Enterprise verfügbar und standardmäßig nicht aktiviert. Standardkonten werden global über US-Infrastruktur geroutet, ohne Garantie hinsichtlich der Datenhaltung. Selbst bei aktiviertem EU-Routing läuft jede Anfrage über die US-Gateway-Infrastruktur von OpenRouter, wodurch eine zwingende grenzüberschreitende Übermittlung entsteht."
+      },
+      "dataUsage": {
+        "retentionPolicy": "OpenRouter-Ebene: Prompts werden standardmäßig nicht protokolliert (ZDR-Modus). Optionales Opt-in für die Protokollierung von Prompts verfügbar. Die jeweiligen Upstream-Anbieter haben jeweils eigene Aufbewahrungsrichtlinien, die stark variieren. Das ZDR-Flag beschränkt das Routing ausschließlich auf Endpunkte ohne Datenspeicherung.",
+        "details": "Jeder der mehr als 60 Upstream-Anbieter ist faktisch ein Unterauftragsverarbeiter mit eigener Richtlinie zur Datenverarbeitung. Der eigene Auftragsverarbeitungsvertrag (AVV) von OpenRouter deckt nur die Ebene von OpenRouter ab, nicht die Upstream-Anbieter."
+      }
+    }
+  }
 }

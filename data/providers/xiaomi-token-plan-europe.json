@@ -53,5 +53,14 @@
     "https://trust.mi.com/en/",
     "https://trust.mi.com/compliance"
   ],
-  "notes": "Primary-source information specific to the MiMo API platform is sparse. Xiaomi provides a general privacy policy and trust/compliance materials, but no primary-source DPA/AVV, sub-processor list, EU-only processing guarantee, or explicit statement about training on API customer data was found for the MiMo API platform, so those fields are null or false where appropriate."
+  "notes": "Primary-source information specific to the MiMo API platform is sparse. Xiaomi provides a general privacy policy and trust/compliance materials, but no primary-source DPA/AVV, sub-processor list, EU-only processing guarantee, or explicit statement about training on API customer data was found for the MiMo API platform, so those fields are null or false where appropriate.",
+  "translations": {
+    "de": {
+      "notes": "Primärquellenbezogene Informationen speziell zur MiMo-API-Plattform sind nur begrenzt verfügbar. Xiaomi stellt eine allgemeine Datenschutzrichtlinie sowie Materialien zu Trust/Compliance bereit, jedoch wurde für die MiMo-API-Plattform weder ein primärquellenbasierter Auftragsverarbeitungsvertrag (AVV), noch eine Liste der Unterauftragsverarbeiter, noch eine Garantie ausschließlich EU-weiter Verarbeitung, noch eine ausdrückliche Erklärung zur Nutzung von API-Kundendaten für das Training gefunden; daher sind diese Felder, soweit angemessen, null oder false.",
+      "dataUsage": {
+        "retentionPolicy": "Xiaomis allgemeine Datenschutzrichtlinie besagt, dass personenbezogene Daten nur so lange aufbewahrt werden, wie es für die angegebenen Zwecke erforderlich ist oder gesetzlich vorgeschrieben wird, und anschließend gelöscht oder anonymisiert werden; ist eine Aufbewahrung gesetzlich erforderlich, werden die Daten isoliert und nicht weiter verarbeitet, außer soweit dies gesetzlich zulässig ist.",
+        "details": null
+      }
+    }
+  }
 }

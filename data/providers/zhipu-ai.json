@@ -49,5 +49,17 @@
     "https://docs.z.ai/legal-agreement/terms-of-use",
     "https://docs.z.ai/guides/overview/pricing"
   ],
-  "notes": "Primary-source documentation for the international Z.ai API identifies JINGSHENG HENGXING TECHNOLOGY PTE. LTD in Singapore as the controller and states customer data is generally processed in Singapore. A DPA is embedded in the privacy policy and says API content is not stored, but no public sub-processor list, SCC commitment, EU-only processing option, or verified security certifications were found in the reviewed primary sources."
+  "notes": "Primary-source documentation for the international Z.ai API identifies JINGSHENG HENGXING TECHNOLOGY PTE. LTD in Singapore as the controller and states customer data is generally processed in Singapore. A DPA is embedded in the privacy policy and says API content is not stored, but no public sub-processor list, SCC commitment, EU-only processing option, or verified security certifications were found in the reviewed primary sources.",
+  "translations": {
+    "de": {
+      "notes": "Die Primärquellen-Dokumentation für die internationale Z.ai API benennt JINGSHENG HENGXING TECHNOLOGY PTE. LTD in Singapur als Verantwortlichen und gibt an, dass Kundendaten im Allgemeinen in Singapur verarbeitet werden. Ein Auftragsverarbeitungsvertrag (AVV) ist in die Datenschutzerklärung eingebettet und legt fest, dass API-Inhalte nicht gespeichert werden; in den geprüften Primärquellen wurden jedoch keine öffentliche Liste von Unterauftragsverarbeitern, keine Verpflichtung zu Standardvertragsklauseln (SCC), keine Option für eine ausschließlich auf die EU beschränkte Verarbeitung und keine verifizierten Sicherheitszertifizierungen gefunden.",
+      "dataResidency": {
+        "euRegionDetails": "Der Auftragsverarbeitungsvertrag (AVV) von Z.ai besagt, dass die Dienstleistungen im Allgemeinen von Singapur aus erbracht werden, wobei Konzerngesellschaften und benannte Dienstleister sich typischerweise in Singapur befinden, und dass Kundendaten im Allgemeinen in Singapur verarbeitet werden. In der geprüften Anbieterdokumentation wurde keine Option für eine ausschließlich auf die EU beschränkte Weiterleitung oder Verarbeitung gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Der Auftragsverarbeitungsvertrag (AVV) legt fest, dass das Unternehmen Kunden- oder Endnutzerinhalte, die dem API-Dienst bereitgestellt oder durch ihn erzeugt werden, nicht speichert; solche Inhalte werden in Echtzeit verarbeitet und nicht auf seinen Servern gespeichert. Andere Kundendaten können vorübergehend gespeichert werden, um API-Dienste bereitzustellen oder gesetzliche Pflichten zu erfüllen, und nach Beendigung der Bedingungen gelöscht werden, sofern gesetzlich nichts anderes vorgeschrieben ist.",
+        "details": "Der Auftragsverarbeitungsvertrag (AVV) besagt, dass Z.ai Kundendaten ausschließlich im Auftrag des Kunden verarbeitet, um API-Dienste bereitzustellen und zu unterstützen, und gemäß den schriftlichen Weisungen des Kunden."
+      }
+    }
+  }
 }

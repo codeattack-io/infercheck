@@ -66,5 +66,20 @@
     "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/data-residency",
     "https://cloud.google.com/vertex-ai/generative-ai/docs/vertex-ai-zero-data-retention"
   ],
-  "notes": "Most EU regional coverage of the three cloud platforms (10 European regions). Zero Data Retention (ZDR) is unique among the three — qualifying API calls store nothing, not even logs. Sub-processors for Gen AI include data labelling firms (Cognizant, GlobalLogic, Teleperformance, Uber) that may process in India, but only when the customer explicitly opts into data labelling services. CDPA accepted via online click-through in Google Cloud console. SCCs automatically incorporated. ISO 27701 held as PII processor."
+  "notes": "Most EU regional coverage of the three cloud platforms (10 European regions). Zero Data Retention (ZDR) is unique among the three — qualifying API calls store nothing, not even logs. Sub-processors for Gen AI include data labelling firms (Cognizant, GlobalLogic, Teleperformance, Uber) that may process in India, but only when the customer explicitly opts into data labelling services. CDPA accepted via online click-through in Google Cloud console. SCCs automatically incorporated. ISO 27701 held as PII processor.",
+  "translations": {
+    "de": {
+      "notes": "Die umfassendste EU-Regionalabdeckung der drei Cloud-Plattformen (10 europäische Regionen). Zero Data Retention (ZDR) ist unter den drei einzigartig — qualifizierende API-Aufrufe speichern keinerlei Daten, nicht einmal Protokolle. Zu den Unterauftragsverarbeitern für Gen AI gehören Datenkennzeichnungsunternehmen (Cognizant, GlobalLogic, Teleperformance, Uber), die eine Verarbeitung in Indien vornehmen können, jedoch nur, wenn der Kunde ausdrücklich Datenkennzeichnungsdienste per Opt-out auswählt. Der Auftragsverarbeitungsvertrag (AVV) wird über eine Online-Click-through-Annahme in der Google Cloud Console akzeptiert. Standardvertragsklauseln (SCC) werden automatisch einbezogen. ISO 27701 wird in der Rolle als Auftragsverarbeiter für personenbezogene Daten gehalten.",
+      "dataResidency": {
+        "euRegionDetails": "10 europäische Regionen: Belgien (europe-west1), Niederlande (europe-west4), Frankfurt/Deutschland (europe-west3), London/Vereinigtes Königreich (europe-west2), Finnland (europe-north1), Warschau/Polen (europe-central2), Mailand/Italien (europe-west8), Madrid/Spanien (europe-southwest1), Paris/Frankreich (europe-west9), Zürich/Schweiz (europe-west6). Google speichert und verarbeitet Daten ausschließlich in der angegebenen Region. WICHTIG: Der globale Endpoint garantiert KEINE Datenhaltung — für die DSGVO-Compliance sind spezifische regionale Endpoints zu verwenden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Kundendaten werden ausschließlich gemäß den Weisungen des Kunden verarbeitet. Eine Löschungsanweisung führt zur Löschung aus allen Google-Systemen innerhalb von maximal 180 Tagen. Zero Data Retention (ZDR) ist für bestimmte Vertex AI Generative AI-Anfragen verfügbar, bei denen weder Eingaben noch Ausgaben protokolliert werden.",
+        "details": "Das Google Cloud CDPA legt ausdrücklich fest, dass Daten ausschließlich gemäß den Weisungen des Kunden verarbeitet und nicht zum Trainieren oder Verbessern der KI-Modelle von Google verwendet werden. ZDR ist für qualifizierende API-Aufrufe verfügbar — weder Eingaben noch Ausgaben werden protokolliert oder gespeichert."
+      },
+      "euAiAct": {
+        "details": "Google Cloud unterhält ISO 27701 und verfügt über ein allgemeines Rahmenwerk für KI-Verantwortung (Secure AI Framework / SAIF). Eine spezifische veröffentlichte Compliance-Erklärung zur Anbieterrolle nach dem EU AI Act für Vertex AI wurde zum Verifizierungsdatum nicht gefunden."
+      }
+    }
+  }
 }

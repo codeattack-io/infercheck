@@ -49,5 +49,17 @@
     "https://www.together.ai/terms-of-service",
     "https://trust.together.ai"
   ],
-  "notes": "Delaware corp, headquartered in San Francisco, CA. SCCs referenced for EEA/UK transfers. No EU infrastructure. ZDR mode available. Sub-processor list not publicly disclosed."
+  "notes": "Delaware corp, headquartered in San Francisco, CA. SCCs referenced for EEA/UK transfers. No EU infrastructure. ZDR mode available. Sub-processor list not publicly disclosed.",
+  "translations": {
+    "de": {
+      "notes": "Gesellschaft nach dem Recht des US-Bundesstaats Delaware mit Hauptsitz in San Francisco, Kalifornien. Für Übermittlungen in den EWR/das Vereinigte Königreich wird auf Standardvertragsklauseln (SCC) Bezug genommen. Keine EU-Infrastruktur. ZDR-Modus verfügbar. Liste der Unterauftragsverarbeiter wird nicht öffentlich offengelegt.",
+      "dataResidency": {
+        "euRegionDetails": "Keine dedizierte EU-Region für serverlose Inferenz. Die gesamte Infrastruktur ist in den USA angesiedelt."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Keine Nutzung für Training ohne ausdrückliches Opt-in. Ein Zero Data Retention-Modus ist über Einstellungen > Profil verfügbar.",
+        "details": "Die Richtlinie stellt ausdrücklich klar, dass keine Nutzung für Training ohne ausdrückliches Opt-in erfolgt. ZDR ist in den Plattformeinstellungen verfügbar."
+      }
+    }
+  }
 }

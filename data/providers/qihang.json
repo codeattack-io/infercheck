@@ -47,5 +47,13 @@
     "https://docs.api.qhaigc.net",
     "https://www.qhaigc.net/docs/tutorials/ragflow"
   ],
-  "notes": "Primary-source material found was limited to QiHang marketing pages and API documentation. No privacy policy, DPA/AVV, sub-processor list, retention policy, SCC statement, or certifications were located on the provider's official site/docs; documentation also shows the service brokers both Chinese and international models, so EU-only inference could not be established and inference may leave the EU."
+  "notes": "Primary-source material found was limited to QiHang marketing pages and API documentation. No privacy policy, DPA/AVV, sub-processor list, retention policy, SCC statement, or certifications were located on the provider's official site/docs; documentation also shows the service brokers both Chinese and international models, so EU-only inference could not be established and inference may leave the EU.",
+  "translations": {
+    "de": {
+      "notes": "Es wurden nur in begrenztem Umfang Primärquellenmaterialien auf Marketingseiten und in der API-Dokumentation von QiHang gefunden. Auf der offiziellen Website bzw. in der offiziellen Dokumentation des Anbieters konnten keine Datenschutzerklärung, kein Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Richtlinie zur Speicherdauer, keine Erklärung zu Standardvertragsklauseln (SCC) und keine Zertifizierungen festgestellt werden; die Dokumentation zeigt zudem, dass der Dienst sowohl chinesische als auch internationale Modelle vermittelt, sodass eine ausschließlich in der EU erfolgende Inferenz nicht festgestellt werden konnte und die Inferenz die EU verlassen kann.",
+      "dataResidency": {
+        "euRegionDetails": "Die Dokumentation von QiHang weist auf die Nutzung der CN2-GIA-Netzwerkinfrastruktur hin, und der Dienst bündelt internationale sowie chinesische Drittanbietermodelle; in der Primärdokumentation des Anbieters wurde weder eine EU-Region noch eine Option für eine ausschließlich in der EU erfolgende Verarbeitung gefunden."
+      }
+    }
+  }
 }

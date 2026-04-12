@@ -52,5 +52,20 @@
     "https://docs.bigmodel.cn/cn/update/promotion",
     "https://www.zhipuai.cn/stream"
   ],
-  "notes": "Zhipu AI Coding Plan is operated by Beijing Zhipu Huazhang Technology Co., Ltd. in China. Official docs provide a privacy policy and disclose third-party recipients/SDK partners, but no public DPA/AVV, SCC commitment, EU region, or EU AI Act statement was found. The docs indicate data is stored in China and the user agreement permits use of usage-generated data for product maintenance/optimization unless otherwise agreed."
+  "notes": "Zhipu AI Coding Plan is operated by Beijing Zhipu Huazhang Technology Co., Ltd. in China. Official docs provide a privacy policy and disclose third-party recipients/SDK partners, but no public DPA/AVV, SCC commitment, EU region, or EU AI Act statement was found. The docs indicate data is stored in China and the user agreement permits use of usage-generated data for product maintenance/optimization unless otherwise agreed.",
+  "translations": {
+    "de": {
+      "notes": "Zhipu AI Coding Plan wird von Beijing Zhipu Huazhang Technology Co., Ltd. in China betrieben. Die offiziellen Unterlagen stellen eine Datenschutzrichtlinie bereit und legen Drittempfänger/SDK-Partner offen, jedoch wurde kein öffentlich verfügbarer Auftragsverarbeitungsvertrag (AVV), keine Zusage zu Standardvertragsklauseln (SCC), keine EU-Region und keine Erklärung zum EU AI Act gefunden. Den Unterlagen zufolge werden Daten in China gespeichert, und die Nutzungsvereinbarung gestattet die Verwendung von bei der Nutzung generierten Daten für die Produktwartung/-pflege und -optimierung, sofern nichts anderes vereinbart wurde.",
+      "dataResidency": {
+        "euRegionDetails": "Die Datenschutzrichtlinie besagt, dass in China erhobene und während des Betriebs in China erzeugte personenbezogene Informationen in China gespeichert werden und dass derzeit keine grenzüberschreitende Übermittlung oder Speicherung personenbezogener Informationen erfolgt. Eine EU-Region oder eine Option ausschließlich für die Verarbeitung in der EU ist nicht dokumentiert. Für EU-Nutzer können die Inferenz und damit verbundene Verarbeitungsvorgänge die EU verlassen, da der Dienst von China aus betrieben wird und in den offiziellen Unterlagen keine EU-Inferenzregion angeboten wird."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Die Datenschutzrichtlinie besagt, dass personenbezogene Informationen nur für den kürzesten Zeitraum aufbewahrt werden, der zur Erreichung der angegebenen Zwecke erforderlich ist, es sei denn, gesetzlich ist eine längere Aufbewahrungsfrist vorgeschrieben. Verlangt ein Nutzer die Löschung oder schließt ein Konto, kann sich die Löschung/Anonymisierung verzögern, wenn gesetzliche Mindestaufbewahrungsfristen gelten oder bis Sicherungskopien gelöscht/anonymisiert werden können.",
+        "details": "Die Nutzungsvereinbarung besagt, dass Zhipu die während der Nutzung der Plattform oder der Modelle generierten Daten verwenden darf, um Probleme zu identifizieren sowie seine Produkte und Dienstleistungen zu warten und zu optimieren, sofern mit dem Kunden nichts anderes vereinbart wurde. Die Datenschutzrichtlinie besagt ferner, dass anonymisierte Daten für Forschung, Statistik, Serviceverbesserung und maschinelles Lernen/Training von Modellalgorithmen verwendet werden dürfen."
+      },
+      "euAiAct": {
+        "details": "In den überprüften offiziellen Unterlagen wurde keine Erklärung zur Einhaltung des EU AI Act gefunden. Der Anbieter veröffentlicht jedoch einreichungs-/compliancebezogene Informationen zu generativer KI speziell für China."
+      }
+    }
+  }
 }

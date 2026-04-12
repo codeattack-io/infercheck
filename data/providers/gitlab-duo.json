@@ -60,5 +60,20 @@
     "https://about.gitlab.com/security/",
     "https://about.gitlab.com/pricing/"
   ],
-  "notes": "GitLab publishes comparatively detailed primary-source documentation for Duo, including model/sub-processor transparency, Duo-specific data usage and retention notes, a public DPA, and public sub-processor disclosures. For hosted inference, GitLab explicitly says strict EU-only sovereignty is not guaranteed and data may leave Europe during inference; customers needing stronger locality guarantees should evaluate Duo Self-Hosted or Dedicated separately."
+  "notes": "GitLab publishes comparatively detailed primary-source documentation for Duo, including model/sub-processor transparency, Duo-specific data usage and retention notes, a public DPA, and public sub-processor disclosures. For hosted inference, GitLab explicitly says strict EU-only sovereignty is not guaranteed and data may leave Europe during inference; customers needing stronger locality guarantees should evaluate Duo Self-Hosted or Dedicated separately.",
+  "translations": {
+    "de": {
+      "notes": "GitLab veröffentlicht vergleichsweise detaillierte Primärquellen-Dokumentation für Duo, einschließlich Transparenz zu Modellen/Unterauftragsverarbeitern, Duo-spezifischer Hinweise zur Datennutzung und Speicherfrist, eines öffentlichen Auftragsverarbeitungsvertrags (AVV) sowie öffentlicher Offenlegungen zu Unterauftragsverarbeitern. Für gehostete Inferenz weist GitLab ausdrücklich darauf hin, dass eine strikt auf die EU beschränkte Datenhoheit nicht garantiert ist und Daten während der Inferenz Europa verlassen können; Kunden mit Bedarf an stärkeren Garantien zur Datenhaltung sollten Duo Self-Hosted oder Dedicated gesondert prüfen.",
+      "dataResidency": {
+        "euRegionDetails": "GitLab betreibt sein AI Gateway in Europa (europe-west2, europe-west3, europe-west9), Nordamerika (us-east4) und im asiatisch-pazifischen Raum (asia-northeast1, asia-northeast3). GitLab erklärt jedoch, dass das AI Gateway mit mehreren Regionen keine strikte Datenhoheit durchsetzt, keine Lösung zur Datenhaltung ist und Modellanbieter Daten in anderen Regionen verarbeiten können. GitLab.com ist ausschließlich in us-east1 gehostet, und Anfragen an das AI Gateway werden in nahezu allen Fällen an us-east4 weitergeleitet."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Die GitLab-Duo-Dokumentation besagt, dass GitLab bei Duo-Anfragen gegenüber Anthropic, Fireworks AI, AWS und Google eine Speicherfrist von null Tagen anwendet, was bedeutet, dass diese Anbieter die Modell-Eingaben/-Ausgaben unmittelbar nach Bereitstellung der Ausgabe verwerfen, außer wenn das Prompt-Caching von Fireworks AI, Anthropic und Vertex AI für Code Suggestions und GitLab Duo Agentic Chat aktiviert ist; das Prompt-Caching von OpenAI kann nicht deaktiviert werden. GitLab erklärt, Duo-Eingabe-/Ausgabedaten im Übrigen nicht zu speichern, es sei denn, Kunden stimmen dem per Support-Ticket zu; GitLab Duo Chat und GitLab Duo Agent Platform speichern jedoch den Chat-/Workflow-Verlauf, und erweiterte Protokollierung kann Trace-Daten speichern. GitLabs allgemeine Datenschutzerklärung besagt, dass personenbezogene Daten gespeichert werden, solange das Konto aktiv ist oder soweit dies für Dienste, rechtliche Verpflichtungen, Streitigkeiten, die Wahrung von Rechten und die Rechtsdurchsetzung erforderlich ist.",
+        "details": "GitLab gibt an, keine generativen KI-Modelle zu trainieren, und dass GitLabs KI-Modell-Unterauftragsverarbeiter vertraglich daran gehindert sind, Modell-Eingaben/-Ausgaben zum Trainieren von Modellen zu verwenden. GitLab Duo erfasst außerdem aggregierte oder de-identifizierte nutzungsbezogene Telemetriedaten aus eigener Erhebung, etwa die Anzahl der Nutzer/Instanzen, Prompt- und Suffix-Längen, das verwendete Modell, Status-Codes und Antwortzeiten."
+      },
+      "euAiAct": {
+        "details": "GitLab erklärt, dass seine aktuellen KI-Funktionen nicht als Hochrisiko-KI-Systeme im Sinne des EU AI Act einzustufen sind und die Anforderungen des Rechtsakts erfüllen, soweit sie Systeme mit begrenztem Risiko darstellen."
+      }
+    }
+  }
 }

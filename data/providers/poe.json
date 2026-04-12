@@ -53,5 +53,17 @@
     "https://poe.com/blog/introducing-transparent-usd-pricing-and-api-tool-calling",
     "https://help.quora.com/hc/en-us/articles/115004250866-How-do-I-delete-my-Quora-account-"
   ],
-  "notes": "Poe is operated by Quora, Inc. in the United States, so there is no EU adequacy decision for the headquarters country. Primary-source documentation confirms sharing of chats with underlying model providers and, in some cases, third-party developers, but no public DPA, sub-processor list, SCC statement, or EU-only processing commitment was found in the consulted primary sources."
+  "notes": "Poe is operated by Quora, Inc. in the United States, so there is no EU adequacy decision for the headquarters country. Primary-source documentation confirms sharing of chats with underlying model providers and, in some cases, third-party developers, but no public DPA, sub-processor list, SCC statement, or EU-only processing commitment was found in the consulted primary sources.",
+  "translations": {
+    "de": {
+      "notes": "Poe wird von Quora, Inc. in den Vereinigten Staaten betrieben, daher besteht für das Land des Hauptsitzes kein EU-Angemessenheitsbeschluss. Primärquellen-Dokumentation bestätigt die Weitergabe von Chats an zugrunde liegende Modellanbieter und in einigen Fällen an Drittentwickler; in den konsultierten Primärquellen wurden jedoch weder ein öffentlicher Auftragsverarbeitungsvertrag (AVV), noch eine Liste der Unterauftragsverarbeiter, noch eine Erklärung zu Standardvertragsklauseln (SCC), noch eine Verpflichtung zur ausschließlich in der EU erfolgenden Verarbeitung gefunden.",
+      "dataResidency": {
+        "euRegionDetails": "Poe gibt an, dass Chats mit KI-Modellanbietern und bei Half-Shield-Bots/-Apps mit Drittentwicklern geteilt werden. Die Dokumentation für Ersteller gibt ferner an, dass Ersteller die Inferenz bei externen Anbietern wie Fireworks, Together oder Replicate hosten oder ihre eigene Inferenz hosten können. In der Primärdokumentation von Poe/Quora wurde weder eine ausschließlich in der EU erfolgende Verarbeitung noch eine Garantie für eine EU-Region gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Poe gibt an, dass beim Löschen von Chats durch einen Nutzer die Chats und die mit dem Konto verbundenen personenbezogenen Daten aus den Systemen von Poe gelöscht werden und nicht für andere Zwecke verwendet werden. Bei Löschung des Kontos wird das Konto nach Angaben von Quora sofort deaktiviert, kann innerhalb von 14 Tagen reaktiviert werden, und nach Ablauf der 14-tägigen Karenzfrist werden Inhalte/Profil dauerhaft gelöscht und personenbezogene Daten aus den Datenbanken von Quora entfernt, mit Ausnahme von Daten, die zur Erfüllung rechtlicher Verpflichtungen aufbewahrt werden können. Poe gibt außerdem an, dass jeder KI-Modellanbieter seinen eigenen Aufbewahrungszeitraum festlegt.",
+        "details": "Poe gibt an, dass offizielle Poe-Bots und von Nutzern erstellte Prompt-Bots unter Verwendung von Modellen von OpenAI, Anthropic, Google und Meta nicht mit Chats trainiert werden und auf Chats nicht zugreifen können, außer zur Erstellung der angeforderten Antwort. Poe erklärt ferner, dass Bots und Apps von Drittentwicklern Chats zum Training ihrer KI-Modelle verwenden können und dass Entwickler, die APIs nutzen, Chats auf ihren eigenen Servern einsehen und speichern können, um ihre Modelle zu trainieren."
+      }
+    }
+  }
 }

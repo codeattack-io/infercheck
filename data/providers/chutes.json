@@ -48,5 +48,14 @@
     "https://chutes.ai/news/end-to-end-encrypted-ai-inference-with-post-quantum-cryptography",
     "https://chutes.ai/about"
   ],
-  "notes": "Chutes publishes a privacy policy and states it does not log, store, or persist API request/response content, including a documented end-to-end encrypted TEE inference mode. However, no primary-source DPA, sub-processor list, SCC statement, HQ country, or formal data residency/EU-only processing commitment was found on the consulted official pages."
+  "notes": "Chutes publishes a privacy policy and states it does not log, store, or persist API request/response content, including a documented end-to-end encrypted TEE inference mode. However, no primary-source DPA, sub-processor list, SCC statement, HQ country, or formal data residency/EU-only processing commitment was found on the consulted official pages.",
+  "translations": {
+    "de": {
+      "notes": "Chutes veröffentlicht eine Datenschutzrichtlinie und gibt an, Inhalte von API-Anfragen/-Antworten nicht zu protokollieren, zu speichern oder anderweitig zu persistieren, einschließlich eines dokumentierten End-to-End-verschlüsselten TEE-Inferenzmodus. Auf den konsultierten offiziellen Seiten wurden jedoch keine Primärquelle für einen Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Erklärung zu Standardvertragsklauseln (SCC), kein Land des Hauptsitzes und keine formale Zusage zur Datenhaltung bzw. ausschließlich zur EU-Datenverarbeitung gefunden.",
+      "dataUsage": {
+        "retentionPolicy": "Chutes gibt an, die Inhalte von API-Anfragen oder -Antworten nicht zu protokollieren, zu speichern oder anderweitig zu persistieren. Für das End-to-End-verschlüsselte Inferenzangebot wird angegeben, dass die API nur opaken Chiffretext sowie Routing-, Nonce- und Nutzungsmetadaten für die Abrechnung sieht.",
+        "details": "Laut Datenschutzrichtlinie werden Inhalte von API-Anfragen und -Antworten nicht protokolliert, gespeichert oder anderweitig persistiert. Chutes dokumentiert außerdem einen E2EE-Modus, in dem Prompts ausschließlich innerhalb einer TEE entschlüsselt werden, während die API Chiffretext, Nonce-Validierung, Abrechnung und Ratenbegrenzung verarbeitet."
+      }
+    }
+  }
 }

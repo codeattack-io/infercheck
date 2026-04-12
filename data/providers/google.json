@@ -63,5 +63,20 @@
     "https://cloud.google.com/security/compliance/eu-ai-act",
     "https://cloud.google.com/blog/products/identity-security/google-clouds-commitment-to-eu-ai-act-support"
   ],
-  "notes": "Google offers contractual GDPR tooling for cloud customers, including a public Cloud Data Processing Addendum, SCC resources, and a public subprocessor list. For the direct Gemini Developer API, EU-only inference routing is not guaranteed from the primary sources consulted; Google positions regional data residency controls through Vertex AI/Google Cloud instead. Gemini API data-use terms differ materially between unpaid and paid usage, with unpaid usage used for product improvement unless EEA/CH/UK terms apply."
+  "notes": "Google offers contractual GDPR tooling for cloud customers, including a public Cloud Data Processing Addendum, SCC resources, and a public subprocessor list. For the direct Gemini Developer API, EU-only inference routing is not guaranteed from the primary sources consulted; Google positions regional data residency controls through Vertex AI/Google Cloud instead. Gemini API data-use terms differ materially between unpaid and paid usage, with unpaid usage used for product improvement unless EEA/CH/UK terms apply.",
+  "translations": {
+    "de": {
+      "notes": "Google bietet für Cloud-Kunden vertragliche DSGVO-Werkzeuge an, darunter ein öffentliches Cloud Data Processing Addendum, Ressourcen zu Standardvertragsklauseln (SCC) sowie eine öffentliche Liste der Unterauftragsverarbeiter. Für die direkte Gemini Developer API ist auf Grundlage der konsultierten Primärquellen kein ausschließliches EU-Inferenz-Routing garantiert; Google positioniert stattdessen regionale Kontrollen zur Datenhaltung über Vertex AI/Google Cloud. Die Bedingungen zur Datennutzung der Gemini API unterscheiden sich wesentlich zwischen unbezahlter und bezahlter Nutzung; bei unbezahlter Nutzung erfolgt eine Verwendung zur Produktverbesserung, sofern nicht Bedingungen für den EWR, die Schweiz oder das Vereinigte Königreich gelten.",
+      "dataResidency": {
+        "euRegionDetails": "Die direkte Gemini Developer API unter ai.google.dev bietet in der konsultierten offiziellen Gemini-API-Dokumentation weder eine Auswahl einer EU-Region noch eine Garantie für eine ausschließlich EU-interne Verarbeitung. Google Cloud dokumentiert Optionen zur Datenhaltung für Generative AI auf Vertex AI und der Vertex AI Platform, einschließlich Kontrollen zum Speicherort von AI/ML-Daten in bestimmten Regionen bzw. Multi-Regionen; diese Kontrollen gelten jedoch für Vertex-AI-/Google-Cloud-Dienste und nicht für die direkte Gemini Developer API."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Für bezahlte Gemini-API-Dienste erklärt Google, dass Prompts oder Antworten nicht zur Verbesserung eigener Produkte verwendet werden und diese im Rahmen des Google Data Processing Addendum verarbeitet werden. Für unbezahlte Dienste (einschließlich Google AI Studio und unbezahlter Gemini-API-Kontingente) gibt Google an, dass übermittelte Inhalte und generierte Antworten zur Bereitstellung, Verbesserung und Weiterentwicklung von Google-Produkten und Technologien des maschinellen Lernens verwendet werden, und dass menschliche Prüfer Eingaben/Ausgaben überprüfen können. Tuning-Inhalte werden zusammen mit feinabgestimmten Modellen zur Unterstützung einer erneuten Feinabstimmung gespeichert und gelöscht, wenn das feinabgestimmte Modell gelöscht wird.",
+        "details": "Die Gemini-API-Bedingungen von Google unterscheiden zwischen unbezahlter und bezahlter Nutzung. Unbezahlte Nutzung wird zur Verbesserung von Produkten verwendet; bezahlte Nutzung nicht. Für Nutzer im EWR, in der Schweiz oder im Vereinigten Königreich legen die Bedingungen fest, dass die Bedingungen zur Datennutzung für bezahlte Dienste für sämtliche Dienste gelten, einschließlich Google AI Studio und unbezahlter Gemini-API-Kontingente."
+      },
+      "euAiAct": {
+        "details": "Google Cloud verfügt über eine offizielle Informationsseite zur Compliance mit dem EU AI Act und erklärt, weiterhin Informationen zur Unterstützung der Compliance von Kunden zu veröffentlichen. Google Cloud hat zudem im Juli 2025 öffentlich erklärt, dass beabsichtigt ist, den Verhaltenskodex zum EU AI Act zu unterzeichnen."
+      }
+    }
+  }
 }

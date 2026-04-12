@@ -57,5 +57,17 @@
     "https://images.nvidia.com/aem-dam/Solutions/networking/ISO-27001-cert.pdf",
     "https://investor.nvidia.com/files/doc_financials/2026/q3/13e6981b-95ed-4aac-a602-ebc5865d0590.pdf"
   ],
-  "notes": "NVIDIA provides a cloud-services DPA, a public privacy policy, public sub-processor disclosures within its cloud-services DPA, and states SCCs are used for transfers to/from the United States. For the hosted API catalog, primary sources do not confirm EU-only inference routing; the API catalog is hosted on NVIDIA DGX Cloud and the disclosed sub-processors include U.S. hyperscalers, so EU-only processing cannot be treated as guaranteed."
+  "notes": "NVIDIA provides a cloud-services DPA, a public privacy policy, public sub-processor disclosures within its cloud-services DPA, and states SCCs are used for transfers to/from the United States. For the hosted API catalog, primary sources do not confirm EU-only inference routing; the API catalog is hosted on NVIDIA DGX Cloud and the disclosed sub-processors include U.S. hyperscalers, so EU-only processing cannot be treated as guaranteed.",
+  "translations": {
+    "de": {
+      "notes": "NVIDIA stellt für Cloud-Dienste einen Auftragsverarbeitungsvertrag (AVV), eine öffentliche Datenschutzerklärung, öffentliche Offenlegungen zu Unterauftragsverarbeitern innerhalb seines Auftragsverarbeitungsvertrags (AVV) für Cloud-Dienste bereit und gibt an, dass für Übermittlungen in die/aus den Vereinigten Staaten Standardvertragsklauseln (SCC) verwendet werden. Für den gehosteten API-Katalog bestätigen Primärquellen kein ausschließlich auf die EU beschränktes Inferenz-Routing; der API-Katalog wird auf NVIDIA DGX Cloud gehostet und die offengelegten Unterauftragsverarbeiter umfassen US-Hyperscaler, sodass eine ausschließlich in der EU erfolgende Verarbeitung nicht als garantiert angesehen werden kann.",
+      "dataUsage": {
+        "retentionPolicy": "Für die NVIDIA API Trial Terms erklärt NVIDIA, dass User Content und Generated Content nach jeder API-Dienstsitzung weder gespeichert noch verwendet werden, sofern für einen bestimmten API-Dienst nichts anderes offengelegt wird. Für bestimmte API-Dienste wie Fine Tuning speichert NVIDIA, sofern kein Abonnement bei dem entsprechenden Dienstanbieter erworben wird, User Content für 30 Tage ab dem ersten Upload und Generated Content für 90 Tage ab der ersten Verfügbarkeit; außerdem kann NVIDIA Inhalte zum Zweck der Sicherheit sowie der Betrugs- oder Missbrauchsprävention protokollieren und speichern. In der allgemeinen Datenschutzerklärung gibt NVIDIA an, Kunden- und Unternehmensdaten mit Personenbezug nach mehr als fünf Jahren ohne Interaktion zu löschen.",
+        "details": "Die API Trial Terms räumen NVIDIA sowie seinen verbundenen Unternehmen/Dienstleistern eine Lizenz ein, User Content und Generated Content während der API-Sitzung ausschließlich zur Bereitstellung des API-Dienstes sowie im Übrigen wie für einen API-Dienst beschrieben oder ausdrücklich offengelegt zu nutzen, zu hosten, zu speichern, zu vervielfältigen, zu ändern, darzustellen und zu übermitteln."
+      },
+      "euAiAct": {
+        "details": "NVIDIA erkennt den EU AI Act öffentlich als anwendbare Regulierung an, die seine Fähigkeit zum Trainieren, Bereitstellen oder Veröffentlichen von KI-Modellen in der EU beeinflussen kann; es wurde jedoch keine Aussage aus Primärquellen gefunden, die eine formale Konformität des API-Dienstes mit dem EU AI Act beansprucht."
+      }
+    }
+  }
 }

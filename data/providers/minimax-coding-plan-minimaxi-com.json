@@ -51,5 +51,13 @@
     "https://platform.minimaxi.com/audio/doc/privacy-policy.html",
     "https://www.minimaxi.com/news/mini-pricemax-performance%E5%85%B3%E4%BA%8Eapi%E7%BC%96%E7%A8%8B%E5%A5%97%E9%A4%90%E5%92%8Cagent"
   ],
-  "notes": "Primary-source materials confirm the developer platform/API exists, that Coding Plan has a free trial period for personal developers before paid plans, and that MiniMax distinguishes Mainland China and Global service routing. However, no public DPA/AVV, sub-processor list, retention schedule, SCC commitment, or security certification page was found in the provider’s primary documentation reviewed."
+  "notes": "Primary-source materials confirm the developer platform/API exists, that Coding Plan has a free trial period for personal developers before paid plans, and that MiniMax distinguishes Mainland China and Global service routing. However, no public DPA/AVV, sub-processor list, retention schedule, SCC commitment, or security certification page was found in the provider’s primary documentation reviewed.",
+  "translations": {
+    "de": {
+      "notes": "Primärquellen bestätigen, dass die Entwicklerplattform/API existiert, dass der Coding Plan für persönliche Entwickler vor kostenpflichtigen Plänen einen kostenlosen Testzeitraum vorsieht und dass MiniMax zwischen dem Routing von Diensten für Mainland China und Global unterscheidet. In den überprüften Primärunterlagen des Anbieters wurden jedoch kein öffentlicher Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, kein Aufbewahrungsplan, keine Zusage zu Standardvertragsklauseln (SCC) und keine Seite zu Sicherheitszertifizierungen gefunden.",
+      "dataResidency": {
+        "euRegionDetails": "Die MiniMax-Dokumentation für Entwicklerprodukte unterscheidet zwischen „中国大陆服务“ (Mainland China service) und „全球 Global 服务“. In den Primärunterlagen des Anbieters wurde keine EU-Region und keine Option für eine ausschließlich in der EU erfolgende Verarbeitung gefunden; daher ist eine ausschließlich EU-interne Verarbeitung nicht gewährleistet, und die Inferenz kann die EU verlassen."
+      }
+    }
+  }
 }

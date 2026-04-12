@@ -53,5 +53,17 @@
     "https://docs.vivgrid.com/models",
     "https://docs.vivgrid.com/yc"
   ],
-  "notes": "Vivgrid publicly discloses a privacy policy, terms, pricing, and technical docs, but no public DPA/AVV, SCC terms, sub-processor list, or security certification page was found in primary sources reviewed on 2026-04-11. Public docs indicate globally distributed / nearest-region inference and plan-based API log retention, which suggests data can leave the EU unless covered by non-public enterprise arrangements."
+  "notes": "Vivgrid publicly discloses a privacy policy, terms, pricing, and technical docs, but no public DPA/AVV, SCC terms, sub-processor list, or security certification page was found in primary sources reviewed on 2026-04-11. Public docs indicate globally distributed / nearest-region inference and plan-based API log retention, which suggests data can leave the EU unless covered by non-public enterprise arrangements.",
+  "translations": {
+    "de": {
+      "notes": "Vivgrid veröffentlicht öffentlich zugänglich eine Datenschutzerklärung, Bedingungen, Preisangaben und technische Dokumentation; in den am 2026-04-11 geprüften Primärquellen wurden jedoch weder ein öffentlicher Auftragsverarbeitungsvertrag (AVV), Bedingungen zu Standardvertragsklauseln (SCC), eine Liste von Unterauftragsverarbeitern noch eine Seite zu Sicherheitszertifizierungen gefunden. Öffentliche Dokumente verweisen auf global verteilte / Inferenz in der nächstgelegenen Region sowie auf eine planabhängige Aufbewahrung von API-Protokollen, was darauf hindeutet, dass Daten die EU verlassen können, sofern dies nicht durch nicht öffentliche Enterprise-Vereinbarungen abgedeckt ist.",
+      "dataResidency": {
+        "euRegionDetails": "Vivgrid gibt an, API-Anfragen automatisch an die nächstgelegene verfügbare Compute-Region weiterzuleiten, und bewirbt ein globales GPU-/geografisch verteiltes Netzwerk. In der Modelldokumentation wird ausgeführt, dass das Routing an die nächstgelegene verfügbare Compute-Region erfolgt und dabei die Compliance-Anforderungen an die Datenhaltung für Enterprise-Workloads eingehalten werden; eine öffentliche Primärquellen-Garantie für eine ausschließlich auf die EU beschränkte Verarbeitung bei Standardplänen wurde jedoch nicht gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Auf den Preisseiten wird angegeben, dass die Aufbewahrungsdauer für API-Zugriffsprotokolle im Free-Plan 1 Tag und im Growth-Plan 90 Tage beträgt. In den Bedingungen wird außerdem ausgeführt, dass Kundendaten unwiederbringlich gelöscht werden können, wenn das Konto gekündigt wird.",
+        "details": "Den Bedingungen zufolge erhält Vivgrid eine beschränkte Lizenz zur Nutzung von Kundendaten, soweit dies zur Erbringung des Dienstes erforderlich ist, wird personenbezogene Daten in Kundendaten nicht zu Marketingzwecken verkaufen oder weitergeben und kann aggregierte, de-identifizierte Daten für Geschäftszwecke verwenden. In den Bedingungen wird außerdem ausgeführt, dass Kunden keine personenbezogene Daten im Sinne einer Identifizierung natürlicher Personen oder personenbezogene Daten bereitstellen sollen, die anwendbarem Recht oder regulatorischen Vorgaben unterliegen."
+      }
+    }
+  }
 }

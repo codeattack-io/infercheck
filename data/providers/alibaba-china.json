@@ -66,5 +66,20 @@
     "https://www.alibabacloud.com/trust-center/compliance-repository-intro",
     "https://www.alibabacloud.com/help/en/slb/network-load-balancer/product-overview/regions-that-support-nlb"
   ],
-  "notes": "Alibaba Cloud offers a published DPA incorporating EU SCCs into its membership agreement, and its Model Studio docs state customer data is not used for model training. However, EU-only inference is not guaranteed: Model Studio documentation explicitly says some deployment modes use globally scheduled inference compute, and publicly accessible subprocessors are only listed behind customer login rather than a public webpage."
+  "notes": "Alibaba Cloud offers a published DPA incorporating EU SCCs into its membership agreement, and its Model Studio docs state customer data is not used for model training. However, EU-only inference is not guaranteed: Model Studio documentation explicitly says some deployment modes use globally scheduled inference compute, and publicly accessible subprocessors are only listed behind customer login rather than a public webpage.",
+  "translations": {
+    "de": {
+      "notes": "Alibaba Cloud bietet einen veröffentlichten Auftragsverarbeitungsvertrag (AVV), der EU-Standardvertragsklauseln (SCC) in seine Mitgliedschaftsvereinbarung einbezieht, und die Dokumentation zu Model Studio erklärt, dass Kundendaten nicht für das Modelltraining verwendet werden. Eine ausschließlich auf die EU beschränkte Inferenz ist jedoch nicht garantiert: Die Model-Studio-Dokumentation weist ausdrücklich darauf hin, dass bei einigen Bereitstellungsmodi global geplante Rechenressourcen für die Inferenz verwendet werden, und öffentlich zugängliche Informationen zu Unterauftragsverarbeitern werden nur hinter einem Kunden-Login statt auf einer öffentlichen Webseite bereitgestellt.",
+      "dataResidency": {
+        "euRegionDetails": "Alibaba Cloud betreibt auf Infrastrukturebene EU-Regionen, darunter Deutschland (Frankfurt) und das Vereinigte Königreich (London). Für Alibaba Cloud Model Studio geben einige Modelle/Dokumentationen an, dass bei globaler Bereitstellung Endpunkt und Datenspeicherung in Deutschland (Frankfurt) oder den USA (Virginia) erfolgen können, während die Rechenressourcen für die Inferenz dynamisch global geplant werden; bei internationaler Bereitstellung befinden sich Endpunkt und Datenspeicherung in Singapur, wobei die Rechenressourcen global außerhalb des chinesischen Festlands geplant werden. Dies gewährleistet keine ausschließlich in der EU erfolgende Inferenzverarbeitung."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Für direkte API-Aufrufe von Model Studio erklärt Alibaba Cloud, dass es keine Konversationsdaten speichert und lediglich anonymisierte Anrufstatusdaten aufzeichnet. Für die Model Studio Assistant API wird der Konversationsverlauf gespeichert und hat derzeit kein Ablaufdatum. Für personenbezogene Daten im Zusammenhang mit Website/Konto erklärt Alibaba Cloud, dass personenbezogene Daten so lange gespeichert werden, wie dies zur Erbringung von Diensten, zur Beilegung von Streitigkeiten, zur Durchführung von Forschung/statistischen Analysen oder zur Erfüllung rechtlicher, steuerlicher und buchhalterischer Anforderungen erforderlich ist, und sie anschließend unter Anwendung wirtschaftlich angemessener Maßnahmen gelöscht werden, um sie praktisch nicht wiederherstellbar oder reproduzierbar zu machen.",
+        "details": "Alibaba Cloud Model Studio erklärt, dass Kundendaten niemals für das Modelltraining verwendet werden. Die weiter gefasste internationale Datenschutzrichtlinie unterscheidet zwischen der Verarbeitung als Verantwortlicher für Konto-/Supportdaten und der Verarbeitung als Auftragsverarbeiter, wenn Kunden ihre eigenen Dienste auf Alibaba Cloud hosten."
+      },
+      "euAiAct": {
+        "details": "Alibaba Cloud stellt Materialien zur DSGVO und zu Compliance-Themen bereit, jedoch wurde in den konsultierten Quellen keine Primärquellen-Aussage gefunden, die eine formelle Konformität mit dem EU AI Act für Model-Studio-/API-Dienste beansprucht. Die derzeitige Positionierung scheint eher in einer allgemeinen Compliance-Beobachtung als in einer ausdrücklichen Verpflichtung zur Einhaltung des AI Act zu bestehen."
+      }
+    }
+  }
 }

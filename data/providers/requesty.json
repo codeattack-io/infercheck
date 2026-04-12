@@ -54,5 +54,17 @@
     "https://www.requesty.ai/privacy/subprocessors",
     "https://docs.requesty.ai/quickstart"
   ],
-  "notes": "Requesty publishes a useful sub-processor disclosure and advertises zero retention, no training, and an EU Frankfurt endpoint. However, because its gateway can route to non-EU inference providers and no public DPA URL or SCC statement was found on primary sources, EU customers should verify routing constraints and contractual terms directly with Requesty."
+  "notes": "Requesty publishes a useful sub-processor disclosure and advertises zero retention, no training, and an EU Frankfurt endpoint. However, because its gateway can route to non-EU inference providers and no public DPA URL or SCC statement was found on primary sources, EU customers should verify routing constraints and contractual terms directly with Requesty.",
+  "translations": {
+    "de": {
+      "notes": "Requesty veröffentlicht eine nützliche Offenlegung der Unterauftragsverarbeiter und bewirbt eine Null-Speicherung, kein Training sowie einen EU-Endpoint in Frankfurt. Da das Gateway jedoch an Nicht-EU-Inferenzanbieter weiterleiten kann und in den Primärquellen weder eine öffentliche URL für einen Auftragsverarbeitungsvertrag (AVV) noch eine Erklärung zu Standardvertragsklauseln (SCC) gefunden wurde, sollten EU-Kunden Routing-Beschränkungen und vertragliche Bedingungen direkt mit Requesty verifizieren.",
+      "dataResidency": {
+        "euRegionDetails": "Requesty bietet einen EU-Endpoint unter https://router.eu.requesty.ai/v1 an und erklärt, dass EU-Anfragen ausschließlich in Frankfurt, Deutschland (AWS eu-central-1), gehostet, gespeichert und verarbeitet werden, wobei ein US-Fallback deaktiviert ist. Die öffentliche Liste der Unterauftragsverarbeiter weist jedoch mehrere Inferenzanbieter in den USA, global, Singapur, China, dem Vereinigten Königreich und der EU aus, sodass eine ausschließlich EU-interne Verarbeitung über den Gesamtdienst nicht gewährleistet ist, sofern keine Beschränkung auf EU-fähige Anbieter erfolgt."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Requesty gibt für sein Gateway eine Richtlinie der Null-Speicherung an: Anfragen werden in Echtzeit weitergeleitet, und nach der Zustellung wird nichts gespeichert, protokolliert oder zwischengespeichert. Die Offenlegung der Unterauftragsverarbeiter zeigt, dass zugrunde liegende Modellanbieter eigene Aufbewahrungsfristen haben können (beispielsweise speichern einige Anbieter Daten 30 Tage lang).",
+        "details": "Requesty erklärt, keine Kundendaten für das Training zu verwenden. Laut der Offenlegung der Unterauftragsverarbeiter werden Prompts und Ausgaben nicht zum Training von Anbietermodellen verwendet, es sei denn, der Kunde hat dem über die Projekteinstellungen von Requesty ausdrücklich per Opt-in zugestimmt."
+      }
+    }
+  }
 }

@@ -64,5 +64,20 @@
     "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service",
     "https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement"
   ],
-  "notes": "GitHub Models is documented as a metered GitHub service, but the most specific processor/privacy terms GitHub publishes are generally at the GitHub platform, Enterprise/Copilot, and subprocessor-list level rather than a dedicated GitHub Models DPA or residency page. Primary sources reviewed do not provide an EU-only inference guarantee, and the disclosed AI subprocessors include both EU and non-EU processing locations."
+  "notes": "GitHub Models is documented as a metered GitHub service, but the most specific processor/privacy terms GitHub publishes are generally at the GitHub platform, Enterprise/Copilot, and subprocessor-list level rather than a dedicated GitHub Models DPA or residency page. Primary sources reviewed do not provide an EU-only inference guarantee, and the disclosed AI subprocessors include both EU and non-EU processing locations.",
+  "translations": {
+    "de": {
+      "notes": "GitHub Models ist als nutzungsabhängiger GitHub-Dienst dokumentiert, jedoch veröffentlicht GitHub die spezifischsten Auftragsverarbeiter-/Datenschutzbedingungen in der Regel auf der Ebene der GitHub-Plattform, von Enterprise/Copilot sowie der Liste der Unterauftragsverarbeiter und nicht in Form eines speziellen Auftragsverarbeitungsvertrags (AVV) oder einer speziellen Seite zur Datenhaltung für GitHub Models. Die geprüften Primärquellen enthalten keine Garantie für eine ausschließlich in der EU erfolgende Inferenz, und die offengelegten KI-Unterauftragsverarbeiter umfassen sowohl Verarbeitungsstandorte in der EU als auch außerhalb der EU.",
+      "dataResidency": {
+        "euRegionDetails": "GitHub legt öffentlich Unterauftragsverarbeiter für KI-Inferenz/Datenhosting mit Verarbeitungsstandorten offen, darunter die Vereinigten Staaten, Belgien, Deutschland, Island und Singapur. Die geprüfte Dokumentation zu GitHub Models enthielt weder eine Option für eine ausschließlich in der EU erfolgende Datenhaltung noch eine Garantie für ein kundenseitig wählbares Routing der Inferenz ausschließlich innerhalb der EU."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Aus den allgemeinen Datenschutzunterlagen von GitHub ergibt sich, dass personenbezogene Daten gespeichert werden, solange das Konto aktiv ist und soweit dies für vertragliche/rechtliche Zwecke erforderlich ist. In den Terms of Service von GitHub ist festgelegt, dass GitHub nach Kündigung des Kontos das vollständige Profil und die Inhalte der Repositorien innerhalb von 90 Tagen löscht, wobei einige Informationen in verschlüsselten Backups verbleiben können. In den geprüften Primärquellen wurde keine speziell für GitHub Models geltende Aufbewahrungsfrist für Prompts/Completions gefunden.",
+        "details": "Für das von GitHub gehostete Bereitstellen von KI-Modellen legt GitHub Zusagen von Modellanbietern für einige von Copilot gehostete Modelle offen, darunter Vereinbarungen zur Null-Datenspeicherung mit bestimmten Anbietern sowie Aussagen, dass Prompts/Responses nicht für das Modelltraining verwendet werden. Es wurde jedoch keine GitHub-Models-spezifische Primäraussage gefunden, die global und ausdrücklich besagt, dass sämtliche Kunden-/API-Daten von GitHub Models nicht für das Training verwendet werden."
+      },
+      "euAiAct": {
+        "details": "GitHub erklärt, einem sicheren, geschützten und vertrauenswürdigen KI-Einsatz verpflichtet zu sein, den Responsible AI Standard von Microsoft zu befolgen, die Implementierung am NIST AI RMF auszurichten und sowohl eine Responsible AI Impact Assessment als auch Sicherheits- und Datenschutzprüfungen abgeschlossen zu haben. Eine ausdrückliche Aussage, die für GitHub Models die Konformität mit dem EU AI Act beansprucht, wurde nicht gefunden."
+      }
+    }
+  }
 }

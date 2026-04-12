@@ -47,5 +47,14 @@
     "https://docs.fastrouter.ai/explore-features/quickstart",
     "https://fastrouter.ai/"
   ],
-  "notes": "FastRouter publishes a privacy policy and terms, but no primary-source DPA/AVV, SCC, public sub-processor list, or data-residency/EU-only processing documentation was found on its official site/docs. Because FastRouter routes prompts to third-party model providers such as OpenAI and Anthropic, inference can leave the EU unless a customer separately constrains provider selection outside of any documented FastRouter EU-only guarantee."
+  "notes": "FastRouter publishes a privacy policy and terms, but no primary-source DPA/AVV, SCC, public sub-processor list, or data-residency/EU-only processing documentation was found on its official site/docs. Because FastRouter routes prompts to third-party model providers such as OpenAI and Anthropic, inference can leave the EU unless a customer separately constrains provider selection outside of any documented FastRouter EU-only guarantee.",
+  "translations": {
+    "de": {
+      "notes": "FastRouter veröffentlicht eine Datenschutzrichtlinie und Nutzungsbedingungen, jedoch wurden auf der offiziellen Website/in der offiziellen Dokumentation keine Primärquellen für einen Auftragsverarbeitungsvertrag (AVV), Standardvertragsklauseln (SCC), eine öffentliche Liste der Unterauftragsverarbeiter oder eine Dokumentation zur Datenhaltung bzw. ausschließlich zur Verarbeitung in der EU gefunden. Da FastRouter Prompts an Drittanbieter von Modellen wie OpenAI und Anthropic weiterleitet, kann die Inferenz die EU verlassen, sofern ein Kunde die Auswahl der Anbieter nicht gesondert außerhalb einer dokumentierten FastRouter-Garantie für eine ausschließliche EU-Verarbeitung beschränkt.",
+      "dataUsage": {
+        "retentionPolicy": "Prompt-Daten werden zu Routing-Zwecken vorübergehend gespeichert und in der Regel nach 7 Tagen gelöscht. Nutzungsprotokolle können zu Überwachungs- und Debugging-Zwecken bis zu 90 Tage aufbewahrt werden. Anfrage- und Antwortdaten des Activity Log sind nur verfügbar, wenn die Inhaltsprotokollierung für den entsprechenden Schlüssel nicht deaktiviert ist.",
+        "details": "FastRouter gibt an, Prompts und zugehörige Anfragedaten mit Drittanbietern von Modellen zu teilen, um Anfragen zu erfüllen. Die Nutzungsbedingungen räumen dem Unternehmen eine beschränkte Lizenz ein, Eingaben/Ausgaben zu hosten, zu speichern, zu übertragen, darzustellen, zu vervielfältigen, anzupassen und zu verbreiten, um Dienste bereitzustellen, Debugging durchzuführen, Dienste und API-Schlüssel zu verbessern sowie rechtliche/regulatorische Compliance-Anforderungen zu erfüllen."
+      }
+    }
+  }
 }

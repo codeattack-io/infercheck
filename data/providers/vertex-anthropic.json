@@ -67,5 +67,20 @@
     "https://cloud.google.com/vertex-ai/generative-ai/pricing",
     "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/partner-models/use-claude"
   ],
-  "notes": "This offering inherits Google Cloud’s enterprise privacy and contract framework rather than Anthropic’s direct API terms. Google provides a public CDPA, SCCs, subprocessor list, and substantial compliance documentation, but because Anthropic models are available through both EU regional endpoints and a non-residency global endpoint, EU-only inference is not guaranteed across the overall service unless customers strictly constrain endpoint usage."
+  "notes": "This offering inherits Google Cloud’s enterprise privacy and contract framework rather than Anthropic’s direct API terms. Google provides a public CDPA, SCCs, subprocessor list, and substantial compliance documentation, but because Anthropic models are available through both EU regional endpoints and a non-residency global endpoint, EU-only inference is not guaranteed across the overall service unless customers strictly constrain endpoint usage.",
+  "translations": {
+    "de": {
+      "notes": "Dieses Angebot übernimmt den Datenschutz- und Vertragsrahmen für Unternehmen von Google Cloud anstelle der direkten API-Bedingungen von Anthropic. Google stellt öffentlich ein CDPA, Standardvertragsklauseln (SCC), eine Liste der Unterauftragsverarbeiter sowie umfangreiche Compliance-Dokumentation bereit; da Anthropic-Modelle jedoch sowohl über regionale EU-Endpunkte als auch über einen globalen Endpunkt ohne Datenhaltung verfügbar sind, ist eine ausschließlich in der EU erfolgende Inferenz über das Gesamtangebot hinweg nicht gewährleistet, sofern Kunden die Nutzung der Endpunkte nicht strikt beschränken.",
+      "dataResidency": {
+        "euRegionDetails": "Google Cloud dokumentiert regionale Endpunkte für Anthropic-Partnermodelle in mehreren EU-Regionen (zum Beispiel europe-west1, europe-west2, europe-west3, europe-west4, europe-west6, europe-west8, europe-west9, europe-central2, europe-north1, europe-southwest1). In der Dokumentation zur Datenhaltung für Generative AI wird angegeben, dass die ML-Verarbeitung innerhalb der spezifischen Region oder Multi-Region erfolgt, in der die Anfrage gestellt wird; Google bietet jedoch auch einen globalen Endpunkt für Anthropic-Modelle an und weist darauf hin, dass globale Endpunkte keine Anforderungen an die Datenhaltung unterstützen und nicht kontrolliert oder festgestellt werden kann, an welche Region Anfragen zur ML-Verarbeitung gesendet werden. Daher ist eine ausschließlich in der EU erfolgende Verarbeitung über das Serviceangebot hinweg nicht gewährleistet."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Google erklärt, dass Kundendaten ohne vorherige Genehmigung oder Weisung nicht zum Trainieren oder Fine-Tuning von AI-/ML-Modellen verwendet werden. Nach dem Cloud Data Processing Addendum können Kunden Daten während der Vertragslaufzeit löschen, und verbleibende Kundendaten werden bei Vertragsende gelöscht; Google erklärt, dass die Löschung so bald wie vernünftigerweise praktikabel und, soweit dieser Ersetzungstext Anwendung findet, innerhalb von maximal 180 Tagen erfolgt.",
+        "details": "Für Vertex AI dokumentiert Google eine Beschränkung hinsichtlich des Trainings und bietet zudem für geeignete Anwendungsfälle ein Programm zur Null-Datenspeicherung an; dabei handelt es sich jedoch um ein separates Programm und nicht um ein Opt-out vom Training."
+      },
+      "euAiAct": {
+        "details": "Google Cloud verfügt über eine eigene Compliance-Seite zum EU AI Act, auf der erklärt wird, weiterhin Informationen zur Unterstützung der Compliance von Kunden zu veröffentlichen und die Einhaltung des Rechtsakts darzulegen; eine pauschale Compliance-Zusage speziell für Vertex/Anthropic wird jedoch nicht abgegeben."
+      }
+    }
+  }
 }

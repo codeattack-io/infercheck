@@ -48,5 +48,20 @@
     "https://nebius.com/",
     "https://docs.nebius.com/legal/"
   ],
-  "notes": "IMPORTANT: Nebius Group N.V. is incorporated in the Netherlands but spun off from Yandex NV (2023) and has active US subsidiaries (Nebius Inc., ADC Tech Inc.). The Netherlands is an EU member state — adequacyDecision is true for intra-EU transfers. However, US subsidiary involvement means EU-US transfers are covered by EU-US DPF certification (not SCCs). Privacy policy explicitly mentions fault-tolerance data storage that may not stay in the primary selected region. Lead supervisory authority is the Dutch DPA (Autoriteit Persoonsgegevens). Inference-specific data usage policy not publicly documented — verify via DPA before processing personal data."
+  "notes": "IMPORTANT: Nebius Group N.V. is incorporated in the Netherlands but spun off from Yandex NV (2023) and has active US subsidiaries (Nebius Inc., ADC Tech Inc.). The Netherlands is an EU member state — adequacyDecision is true for intra-EU transfers. However, US subsidiary involvement means EU-US transfers are covered by EU-US DPF certification (not SCCs). Privacy policy explicitly mentions fault-tolerance data storage that may not stay in the primary selected region. Lead supervisory authority is the Dutch DPA (Autoriteit Persoonsgegevens). Inference-specific data usage policy not publicly documented — verify via DPA before processing personal data.",
+  "translations": {
+    "de": {
+      "notes": "WICHTIG: Nebius Group N.V. ist in den Niederlanden eingetragen, wurde jedoch von Yandex NV (2023) abgespalten und verfügt über aktive US-Tochtergesellschaften (Nebius Inc., ADC Tech Inc.). Die Niederlande sind ein EU-Mitgliedstaat — adequacyDecision ist für innergemeinschaftliche Übermittlungen true. Die Einbindung von US-Tochtergesellschaften bedeutet jedoch, dass EU-US-Übermittlungen durch eine Zertifizierung nach dem EU-US Data Privacy Framework abgedeckt sind (nicht durch Standardvertragsklauseln (SCC)). Die Datenschutzerklärung erwähnt ausdrücklich eine fehlertolerante Datenspeicherung, die möglicherweise nicht in der primär ausgewählten Region verbleibt. Federführende Aufsichtsbehörde ist die niederländische Datenschutzbehörde (Autoriteit Persoonsgegevens). Eine Inferenz-spezifische Richtlinie zur Datennutzung ist öffentlich nicht dokumentiert — vor der Verarbeitung personenbezogener Daten über den Auftragsverarbeitungsvertrag (AVV) zu verifizieren.",
+      "dataResidency": {
+        "euRegionDetails": "Primäre Infrastruktur in Finnland (eu-north1). Region Paris (eu-west1) in Entwicklung. Nebius Group N.V. verfügt über aktive US-Tochtergesellschaften (Nebius Inc. und ADC Tech Inc., Massachusetts), die durch eine Zertifizierung nach dem EU-US Data Privacy Framework abgedeckt sind. Laut Datenschutzerklärung können Daten aus Gründen der Fehlertoleranz in Rechenzentren gespeichert werden, die vom ausgewählten Rechenzentrum abweichen — dies kann nicht primäre EU-Standorte einschließen. Der Auftragsverarbeitungsvertrag (AVV) ist bei strengen Anforderungen an ausschließliche EU-Datenhaltung sorgfältig zu prüfen."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Personenbezogene Daten werden so lange gespeichert, wie dies für die Leistungserbringung erforderlich ist. Es wurde keine ausdrückliche öffentliche Erklärung zur Nutzung von Prompt-/Completion-Daten aus der Inferenz für Trainingszwecke gefunden — über den Auftragsverarbeitungsvertrag (AVV) zu bestätigen.",
+        "details": "Die Datenschutzerklärung konzentriert sich auf Konto-/personenbezogene Daten, nicht auf Inferenzdaten. Die Richtlinie zu Inferenzdaten sollte vertraglich bestätigt werden."
+      },
+      "euAiAct": {
+        "details": "Es wurde keine spezifische Konformitätserklärung zum EU AI Act veröffentlicht. Die in den Niederlanden eingetragene Gesellschaft unterliegt als Anbieter, der KI-Dienste auf dem EU-Markt bereitstellt, dem EU AI Act."
+      }
+    }
+  }
 }

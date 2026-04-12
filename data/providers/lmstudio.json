@@ -50,5 +50,17 @@
     "https://lmstudio.ai/hub-terms",
     "https://lmstudio.ai/pricing"
   ],
-  "notes": "LM Studio's primary posture is local/on-device inference: the vendor says chats and documents stay on the user's machine by default and that data never leaves the device for the desktop app's core inference workflow. Element Labs is a U.S. company, and its privacy policy expressly says limited data is transferred to the United States; no public DPA, SCC statement, sub-processor list, or security certification was found in the consulted primary sources."
+  "notes": "LM Studio's primary posture is local/on-device inference: the vendor says chats and documents stay on the user's machine by default and that data never leaves the device for the desktop app's core inference workflow. Element Labs is a U.S. company, and its privacy policy expressly says limited data is transferred to the United States; no public DPA, SCC statement, sub-processor list, or security certification was found in the consulted primary sources.",
+  "translations": {
+    "de": {
+      "notes": "Die primäre Ausrichtung von LM Studio ist die lokale/on-device Inferenz: Nach Angaben des Anbieters verbleiben Chats und Dokumente standardmäßig auf dem Gerät des Nutzers, und für den zentralen Inferenz-Workflow der Desktop-App verlassen Daten das Gerät zu keinem Zeitpunkt. Element Labs ist ein US-amerikanisches Unternehmen, und in seiner Datenschutzerklärung wird ausdrücklich angegeben, dass begrenzte Daten in die Vereinigten Staaten übermittelt werden; in den konsultierten Primärquellen wurden kein öffentlicher Auftragsverarbeitungsvertrag (AVV), keine Erklärung zu Standardvertragsklauseln (SCC), keine Liste der Unterauftragsverarbeiter und keine Sicherheitszertifizierung gefunden.",
+      "dataResidency": {
+        "euRegionDetails": "LM Studio gibt an, dass die Desktop-App lokal ausgeführt wird und dass Chats, Verläufe und Dokumente standardmäßig lokal auf dem Gerät des Nutzers gespeichert werden; in der Datenschutzerklärung wird außerdem angegeben, dass begrenzte Informationen in die Vereinigten Staaten übermittelt werden, wenn die App auf Updates prüft, Modelle sucht/herunterlädt oder Support-E-Mails gesendet werden. Eine Option für ausschließlich in der EU gehostete Verarbeitung ist in den konsultierten Primärquellen nicht dokumentiert."
+      },
+      "dataUsage": {
+        "retentionPolicy": "LM Studio gibt an, Informationen nur so lange zu speichern, wie dies für rechtliche, betriebliche oder vertragliche Zwecke erforderlich ist, einschließlich Support-E-Mails und IP-Adressdaten im Zusammenhang mit Updates oder Downloads von Modellen Dritter, und dass bewusst kurze Speicherfristen vorgesehen sind.",
+        "details": "Laut der Desktop-Datenschutzerklärung von LM Studio werden Nachrichten, Chatverläufe und Dokumente nicht vom System übermittelt und standardmäßig lokal auf dem Gerät gespeichert. Danach erhält das Unternehmen nur begrenzte Daten für Update-Prüfungen, die Suche/den Download von Modellen und direkte E-Mails. Für private Inhalte im Hub bestimmen die Hub-Nutzungsbedingungen, dass Element Labs die Inhalte in dem Umfang hostet und anzeigt, wie es zur Bereitstellung der Hub Cloud Services erforderlich ist, und nur unter den in der Hub Privacy Policy beschriebenen begrenzten Umständen darauf zugreift."
+      }
+    }
+  }
 }

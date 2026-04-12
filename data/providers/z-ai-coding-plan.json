@@ -51,5 +51,17 @@
     "https://docs.z.ai/legal-agreement/subscription-terms",
     "https://z.ai/company"
   ],
-  "notes": "Primary-source documentation identifies the provider entity as JINGSHENG HENGXING TECHNOLOGY PTE. LTD in Singapore. The strongest GDPR-relevant statement is the embedded API DPA, which says API content is processed in real time and not stored, while customer data is generally processed in Singapore; no public sub-processor list, SCC text, EU-only residency option, or security certification evidence was found in the reviewed official sources."
+  "notes": "Primary-source documentation identifies the provider entity as JINGSHENG HENGXING TECHNOLOGY PTE. LTD in Singapore. The strongest GDPR-relevant statement is the embedded API DPA, which says API content is processed in real time and not stored, while customer data is generally processed in Singapore; no public sub-processor list, SCC text, EU-only residency option, or security certification evidence was found in the reviewed official sources.",
+  "translations": {
+    "de": {
+      "notes": "Die Primärquellendokumentation weist JINGSHENG HENGXING TECHNOLOGY PTE. LTD in Singapur als Anbieterunternehmen aus. Die aus DSGVO-Sicht belastbarste Aussage ist der eingebettete Auftragsverarbeitungsvertrag (AVV), in dem ausgeführt wird, dass API-Inhalte in Echtzeit verarbeitet und nicht gespeichert werden, während Kundendaten grundsätzlich in Singapur verarbeitet werden; in den geprüften offiziellen Quellen wurden keine öffentliche Liste von Unterauftragsverarbeitern, kein Wortlaut der Standardvertragsklauseln (SCC), keine Option für ausschließlich EU-basierte Datenhaltung und keine Nachweise für Sicherheitszertifizierungen gefunden.",
+      "dataResidency": {
+        "euRegionDetails": "Z.ai gibt an, Dienstleistungen grundsätzlich aus Singapur bereitzustellen und dass Kundendaten grundsätzlich in Singapur verarbeitet werden. In der geprüften offiziellen Dokumentation wurde keine Option für eine ausschließlich in der EU erfolgende Verarbeitung gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Für API Services gibt Z.ai an, Inhalte, die Kunden oder Endnutzer bei der Nutzung des Dienstes bereitstellen oder generieren, nicht zu speichern; solche Inhalte werden in Echtzeit verarbeitet und nicht auf den Servern gespeichert. Andere Kundendaten können zur Bereitstellung der API Services oder zur Erfüllung gesetzlicher Pflichten vorübergehend gespeichert und nach Beendigung gelöscht werden, sofern gesetzlich nichts anderes vorgeschrieben ist.",
+        "details": "Die Datenschutzrichtlinie für Verbraucher besagt, dass Z.ai öffentlich zugängliche Informationen aus dem Internet zum Training seiner Modelle erheben kann und personenbezogene Daten aus Verbraucherdiensten zur Verbesserung und zum Training von Modellen verwenden kann. Für API Services im Rahmen des Auftragsverarbeitungsvertrags (AVV) gibt Z.ai an, Kundendaten ausschließlich im Auftrag des Kunden zu verarbeiten, und erklärt, dass bereitgestellte oder generierte API-Inhalte nicht auf seinen Servern gespeichert werden."
+      }
+    }
+  }
 }

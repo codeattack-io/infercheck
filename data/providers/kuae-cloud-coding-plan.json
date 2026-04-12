@@ -49,5 +49,17 @@
     "https://en.mthreads.com/privacy",
     "https://www.mthreads.com/legal"
   ],
-  "notes": "Official sources confirm Moore Threads is a China-based provider and that its online AI inference services run on Moore Threads GPU servers, but no public DPA/AVV, SCC commitment, sub-processor list, EU-only residency option, or public security certification evidence was found. For GDPR vendor assessment, multiple key fields therefore remain null due to lack of primary-source disclosure."
+  "notes": "Official sources confirm Moore Threads is a China-based provider and that its online AI inference services run on Moore Threads GPU servers, but no public DPA/AVV, SCC commitment, sub-processor list, EU-only residency option, or public security certification evidence was found. For GDPR vendor assessment, multiple key fields therefore remain null due to lack of primary-source disclosure.",
+  "translations": {
+    "de": {
+      "notes": "Offizielle Quellen bestätigen, dass Moore Threads ein in China ansässiger Anbieter ist und dass seine Online-KI-Inferenzdienste auf GPU-Servern von Moore Threads betrieben werden; öffentlich zugängliche Nachweise zu einem Auftragsverarbeitungsvertrag (AVV), einer Verpflichtung zu Standardvertragsklauseln (SCC), einer Liste von Unterauftragsverarbeitern, einer Option zur ausschließlichen Datenhaltung in der EU oder zu öffentlichen Sicherheitszertifizierungen wurden jedoch nicht gefunden. Für die DSGVO-Anbieterbewertung bleiben daher mehrere wesentliche Felder mangels Offenlegung aus Primärquellen null.",
+      "dataResidency": {
+        "euRegionDetails": "Der Anbieter gibt an, dass seine Online-KI-/API-Dienste auf selbst entwickelten GPU-Servern betrieben werden und dass seine Datenschutzrichtlinie dem chinesischen Recht sowie der Zuständigkeit der Gerichte in Peking unterliegt. In der offiziellen Dokumentation des Anbieters wurde weder eine EU-Region noch eine Option für eine ausschließlich in der EU erfolgende Verarbeitung gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "In der Datenschutzrichtlinie heißt es, dass personenbezogene Daten nur für den kürzesten Zeitraum gespeichert werden, der zur Erreichung der angegebenen Zwecke erforderlich ist, oder soweit gesetzlich vorgeschrieben, und dass Daten nach Ablauf der Aufbewahrungsfrist gelöscht oder anonymisiert werden. Ferner wird ausgeführt, dass Anträge auf Kontolöschung zur Löschung oder Anonymisierung führen, sofern keine gesetzlichen Anforderungen entgegenstehen.",
+        "details": "In der Datenschutzrichtlinie wird erwähnt, dass Moore Threads mit autorisierten Partnern Vertraulichkeitsvereinbarungen/Auftragsverarbeitungsverträge (AVV) abschließen kann; eine an Kunden gerichtete Erklärung zum Training von Modellen mit API-/Kundendaten wurde jedoch nicht gefunden."
+      }
+    }
+  }
 }

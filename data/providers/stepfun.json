@@ -48,5 +48,17 @@
     "https://platform.stepfun.com/docs/en/guides/pricing/details",
     "https://platform.stepfun.com/docs/zh/step-plan/paid-service-agreement"
   ],
-  "notes": "Primary-source documentation confirms a China-based provider with data stored in the PRC and no published EU region or EU-only processing option. No public DPA/AVV, sub-processor list, SCC statement, training-on-customer-data statement, or security certification evidence was found in StepFun's primary-source materials reviewed on 2026-04-11."
+  "notes": "Primary-source documentation confirms a China-based provider with data stored in the PRC and no published EU region or EU-only processing option. No public DPA/AVV, sub-processor list, SCC statement, training-on-customer-data statement, or security certification evidence was found in StepFun's primary-source materials reviewed on 2026-04-11.",
+  "translations": {
+    "de": {
+      "notes": "Die Primärquellendokumentation bestätigt einen in China ansässigen Anbieter mit Datenspeicherung in der Volksrepublik China; eine veröffentlichte EU-Region oder Option für eine ausschließlich in der EU erfolgende Verarbeitung wurde nicht festgestellt. In den am 2026-04-11 geprüften Primärquellenmaterialien von StepFun wurden kein öffentlicher Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Erklärung zu Standardvertragsklauseln (SCC), keine Erklärung zur Nutzung von Kundendaten für Trainingszwecke und keine Nachweise zu Sicherheitszertifizierungen gefunden.",
+      "dataResidency": {
+        "euRegionDetails": "Die Datenschutzerklärung von StepFun besagt, dass im Rahmen inländischer Geschäftstätigkeiten erhobene und erzeugte personenbezogene Informationen innerhalb der Volksrepublik China gespeichert werden und derzeit nicht ins Ausland übermittelt werden. In der Primärquellen-Plattformdokumentation des Anbieters wurde keine EU-Region und keine Option für eine ausschließlich in der EU erfolgende Verarbeitung gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Laut Datenschutzerklärung werden personenbezogene Informationen nur für den zur Erbringung der Plattformdienste erforderlichen Zeitraum aufbewahrt. Als Beispiel wird genannt, dass eine registrierte Telefonnummer so lange gespeichert wird, wie dies zur Leistungserbringung, zur Bearbeitung von Anfragen/Beschwerden und zum Schutz der Konto-/Systemsicherheit erforderlich ist; nach Kontolöschung, nutzerseitig veranlasster Löschung oder Ablauf des erforderlichen Zeitraums werden die Daten gelöscht oder anonymisiert, es sei denn, eine gesetzliche Aufbewahrungspflicht besteht oder ein längerer Zeitraum für Finanz-, Audit- oder Streitbeilegungszwecke vernünftigerweise erforderlich ist.",
+        "details": "Die Datenschutzerklärung besagt, dass Nutzereingaben und Dienstausgaben erhoben werden, um intelligente Dialog-/Inhaltsgenerierung, Inhaltsverständnis und Datenanalyse bereitzustellen. Sie besagt ferner, dass aus der Nutzung der Plattform erzeugte Informationen anonymisiert und anschließend für Datenanalysen und eine mögliche kommerzielle Nutzung verwendet werden können."
+      }
+    }
+  }
 }

@@ -50,5 +50,17 @@
     "https://platform.minimaxi.com/audio/doc/privacy-policy.html",
     "https://www.minimaxi.com/news/%E5%85%B3%E4%BA%8E%E6%B7%B1%E5%85%A5%E8%90%BD%E5%AE%9E%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%94%9F%E6%88%90%E5%90%88%E6%88%90%E5%86%85%E5%AE%B9%E6%A0%87%E8%AF%86%E5%8A%9E%E6%B3%95%E7%9A%84%E5%85%AC%E5%91%8A"
   ],
-  "notes": "MiniMax offers a public API platform with pay-as-you-go and subscription pricing, but its publicly accessible compliance posture is sparse for GDPR procurement purposes. A general privacy policy is available and names Nanonoble Pte. Ltd. in Singapore, while the platform footer and third-party references also point to Shanghai Xiyu Technology Co., Ltd.; no public DPA, SCC commitment, sub-processor list, EU-only processing option, or explicit API training policy was found from primary sources."
+  "notes": "MiniMax offers a public API platform with pay-as-you-go and subscription pricing, but its publicly accessible compliance posture is sparse for GDPR procurement purposes. A general privacy policy is available and names Nanonoble Pte. Ltd. in Singapore, while the platform footer and third-party references also point to Shanghai Xiyu Technology Co., Ltd.; no public DPA, SCC commitment, sub-processor list, EU-only processing option, or explicit API training policy was found from primary sources.",
+  "translations": {
+    "de": {
+      "notes": "MiniMax bietet eine öffentliche API-Plattform mit nutzungsabhängiger und abonnementbasierter Preisgestaltung an, jedoch ist die öffentlich zugängliche Compliance-Position für Zwecke der DSGVO-Beschaffung nur spärlich dokumentiert. Eine allgemeine Datenschutzerklärung ist verfügbar und nennt Nanonoble Pte. Ltd. in Singapur, während der Plattform-Footer und Verweise Dritter ebenfalls auf Shanghai Xiyu Technology Co., Ltd. hindeuten; aus Primärquellen wurden kein öffentlicher Auftragsverarbeitungsvertrag (AVV), keine Zusage zu Standardvertragsklauseln (SCC), keine Liste von Unterauftragsverarbeitern, keine Option für ausschließlich EU-basierte Verarbeitung und keine ausdrückliche Richtlinie zum API-Training gefunden.",
+      "dataUsage": {
+        "retentionPolicy": "In der öffentlich zugänglichen Plattformdokumentation wird angegeben, dass die synchrone Text-zu-Sprache-API zustandslos ist und übermittelte Daten nicht speichert. Bei der asynchronen Sprachgenerierung für lange Texte ist die zurückgegebene Download-URL 9 Stunden gültig; danach gehen die generierten Informationen verloren. Temporäre Stimmdesigns werden automatisch nach 168 Stunden (7 Tagen) gelöscht, sofern sie nicht verwendet werden. Eine allgemeine, API-weite Aufbewahrungsrichtlinie für Prompts, Ausgaben, Protokolle oder hochgeladene Dateien wurde in einer Primärquelle nicht gefunden.",
+        "details": "Bei der aufgefundenen öffentlichen Datenschutzerklärung handelt es sich um eine allgemeine App-/Web-Datenschutzerklärung von Nanonoble Pte. Ltd.; darin wird nicht klar angegeben, ob Prompts/Ausgaben von API-Kunden für das Modelltraining verwendet werden."
+      },
+      "euAiAct": {
+        "details": "MiniMax veröffentlicht Aussagen zur Einhaltung chinesischer Vorschriften zur Kennzeichnung von KI-Inhalten, jedoch wurde keine Aussage aus Primärquellen zur Einhaltung des EU AI Act für die API-Plattform gefunden."
+      }
+    }
+  }
 }

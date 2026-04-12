@@ -64,5 +64,20 @@
     "https://wandb.ai/site/resources/events/navigating-the-eu-ai-act-compliance-through-governance-and-observability/",
     "https://docs.coreweave.com/policies/terms-of-service/privacy-policy"
   ],
-  "notes": "W&B offers a click-through DPA, public sub-processor disclosure, SOC 2/HIPAA statements, and region-selectable Dedicated Cloud including EU regions, but its multi-tenant cloud is North America-based. A clear primary-source statement was not found on whether customer/API data is used for model training or whether W&B Inference compute is guaranteed to stay in the EU."
+  "notes": "W&B offers a click-through DPA, public sub-processor disclosure, SOC 2/HIPAA statements, and region-selectable Dedicated Cloud including EU regions, but its multi-tenant cloud is North America-based. A clear primary-source statement was not found on whether customer/API data is used for model training or whether W&B Inference compute is guaranteed to stay in the EU.",
+  "translations": {
+    "de": {
+      "notes": "W&B bietet einen per Click-through abschließbaren Auftragsverarbeitungsvertrag (AVV), eine öffentliche Offenlegung der Unterauftragsverarbeiter, Erklärungen zu SOC 2/HIPAA sowie eine regionenwählbare Dedicated Cloud einschließlich EU-Regionen an; die mandantenfähige Multi-tenant Cloud ist jedoch in Nordamerika angesiedelt. Es wurde keine eindeutige Aussage aus Primärquellen dazu gefunden, ob Kunden-/API-Daten für das Modelltraining verwendet werden oder ob gewährleistet ist, dass W&B Inference-Compute in der EU verbleibt.",
+      "dataResidency": {
+        "euRegionDetails": "Die W&B Multi-tenant Cloud wird in einer Google-Cloud-Region in Nordamerika betrieben. W&B Dedicated Cloud ist auf AWS, Google Cloud und Azure in kundenseitig ausgewählten Regionen verfügbar, einschließlich mehrerer EU-Regionen wie AWS eu-central-1/eu-west-1/eu-west-2/eu-south-1/eu-north-1, Google Cloud europe-west1/europe-west2/europe-west3/europe-west4 und Azure francecentral/westeurope. Die aufgefundene Dokumentation gewährleistet nicht ausdrücklich, dass W&B Inference-GPU-Compute ausschließlich in der EU verbleibt."
+      },
+      "dataUsage": {
+        "retentionPolicy": "In der Datenschutzerklärung wird ausgeführt, dass personenbezogene Daten nur so lange gespeichert werden, wie dies für die beschriebenen Zwecke erforderlich ist, sofern nicht gesetzlich eine längere Aufbewahrungsfrist vorgeschrieben oder zulässig ist; sobald die Daten nicht mehr benötigt werden, werden sie gelöscht, anonymisiert oder bis zur möglichen Löschung sicher isoliert.",
+        "details": "Für Weave bietet W&B clientseitige Kontrollmechanismen für sensible Daten an, wie etwa die Schwärzung personenbezogener Daten (PII-Redaktion), bevor Traces an W&B-Server gesendet werden, und Dedicated Cloud ermöglicht die Bereitstellung in einer frei wählbaren Region für strengere Governance-Anforderungen. Es wurde keine Aussage aus Primärquellen gefunden, die klar besagt, ob Kunden-/API-Daten für das Training von Modellen des Anbieters verwendet werden oder nicht."
+      },
+      "euAiAct": {
+        "details": "W&B stellt öffentlich Leitfäden und Veranstaltungen zum EU AI Act und zur AI-Act-Compliance bereit und positioniert seine Produkte als Unterstützung für Governance, Nachvollziehbarkeit, Dokumentation und Berichterstattung; es wurde jedoch keine Aussage aus Primärquellen gefunden, die eine formale EU-AI-Act-Compliance-Zertifizierung oder einen Rechtskonformitätsstatus des Anbieters selbst beansprucht."
+      }
+    }
+  }
 }

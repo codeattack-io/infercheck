@@ -56,5 +56,10 @@
     "https://evroc.com/ai-services/roc/",
     "https://evroc.com/news/evroc-suse-european-sovereign-cloud-partnership"
   ],
-  "notes": "evroc presents a strongly EU-sovereign posture: headquarters in Sweden, infrastructure and AI GPU operations stated to be in Europe/EU, and a public DPA with SCC language for non-EU/EEA subprocessors. Customer data for Think Models is stated not to be used for training unless the customer opts in in writing, but evroc did not provide a publicly accessible subprocessor list or a specific published retention period for API metadata in the sources reviewed."
+  "notes": "evroc presents a strongly EU-sovereign posture: headquarters in Sweden, infrastructure and AI GPU operations stated to be in Europe/EU, and a public DPA with SCC language for non-EU/EEA subprocessors. Customer data for Think Models is stated not to be used for training unless the customer opts in in writing, but evroc did not provide a publicly accessible subprocessor list or a specific published retention period for API metadata in the sources reviewed.",
+  "translations": {
+    "de": {
+      "notes": "evroc weist eine stark EU-souveräne Ausrichtung auf: Hauptsitz in Schweden, Infrastruktur sowie AI-GPU-Betrieb laut Angaben in Europa bzw. der EU, und ein öffentlich zugänglicher Auftragsverarbeitungsvertrag (AVV) mit Regelungen zu Standardvertragsklauseln (SCC) für Unterauftragsverarbeiter außerhalb der EU/des EWR. Für Think Models wird angegeben, dass Kundendaten nicht für das Training verwendet werden, es sei denn, der Kunde erteilt hierzu ausdrücklich schriftlich ein Opt-out? "
+    }
+  }
 }

@@ -54,5 +54,17 @@
     "https://featurebase.venice.ai/help/articles/5623312-who-can-access-my-data-and-chat-conversations",
     "https://featurebase.venice.ai/help/articles/2960482-can-you-delete-my-data"
   ],
-  "notes": "Venice documents a privacy-preserving architecture and expressly says it does not store or log API prompts or responses on its own servers, but it also states personal data is processed on U.S. servers and may be shared with service providers in other jurisdictions. No public DPA, sub-processor list, SCC commitment, EU-only processing option, or security certification statement was found in primary-source materials reviewed."
+  "notes": "Venice documents a privacy-preserving architecture and expressly says it does not store or log API prompts or responses on its own servers, but it also states personal data is processed on U.S. servers and may be shared with service providers in other jurisdictions. No public DPA, sub-processor list, SCC commitment, EU-only processing option, or security certification statement was found in primary-source materials reviewed.",
+  "translations": {
+    "de": {
+      "notes": "Venice dokumentiert eine datenschutzwahrende Architektur und erklärt ausdrücklich, dass API-Prompts oder -Antworten nicht auf den eigenen Servern gespeichert oder protokolliert werden; zugleich wird jedoch angegeben, dass personenbezogene Daten auf Servern in den USA verarbeitet werden und an Dienstleister in anderen Rechtsordnungen weitergegeben werden können. In den geprüften Primärquellen wurden kein öffentlich verfügbarer Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Zusage zu Standardvertragsklauseln (SCC), keine Option für eine ausschließlich EU-basierte Verarbeitung und keine Erklärung zu Sicherheitszertifizierungen gefunden.",
+      "dataResidency": {
+        "euRegionDetails": "Venice gibt an, dass personenbezogene Daten von Servern in den Vereinigten Staaten verarbeitet werden und an Dienstleister und verbundene Unternehmen in anderen Rechtsordnungen offengelegt werden können. Auf der API-Datenschutzseite wird ausgeführt, dass Anfragen an GPUs über eine Gruppe dezentraler Anbieter weitergeleitet werden; eine ausschließlich auf die EU beschränkte Weiterleitung oder eine EU-Regionsoption ist jedoch nicht dokumentiert."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Venice erklärt, dass API-Prompts oder Modellantworten nicht auf den eigenen Servern gespeichert oder protokolliert werden. Für die Plattform werden Prompts, Antworten und der Gesprächsverlauf lokal im Browser des Nutzers gespeichert; personenbezogene Informationen wie Kontodaten werden nur so lange aufbewahrt, wie dies zur Erbringung des Dienstes oder für berechtigte Geschäftszwecke wie Streitigkeiten, Sicherheit und rechtliche Verpflichtungen erforderlich ist.",
+        "details": "Die API-Dokumentation gibt an, dass Venice Prompts oder Modellantworten nicht auf den eigenen Servern speichert oder protokolliert und API-Aufrufe über verschlüsseltes HTTPS an dezentrale GPU-Anbieter weiterleitet. Die Datenschutzerklärung führt ferner aus, dass personenbezogene Daten auf Servern in den USA verarbeitet werden und an Dienstleister und verbundene Unternehmen in anderen Rechtsordnungen offengelegt werden können. Die Kennzeichnung des Modell-Datenschutzes in der Preisübersicht unterscheidet einige Modelle als \"Private\" und andere als \"Anonymized\"; zudem heißt es in den Nutzungsbedingungen, dass Daten, sobald sie an einen Anbieter übermittelt wurden, gemäß den Bedingungen dieses Anbieters verarbeitet werden."
+      }
+    }
+  }
 }

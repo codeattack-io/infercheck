@@ -51,5 +51,20 @@
     "https://www.ovhcloud.com/en/personal-data-protection/",
     "https://www.ovhcloud.com/en/compliance/"
   ],
-  "notes": "OVHcloud (OVH SAS, Roubaix, France) is the largest EU-owned cloud provider by infrastructure. France is an EU member state — no cross-border transfer concern for EU customers. SecNumCloud qualification (French ANSSI sovereign cloud standard) applies to OVHcloud Private Cloud and Bare Metal Pod products, NOT to AI Endpoints (public cloud serverless). SOC 1 Type II confirmed for some products. HDS certification for healthcare data hosting."
+  "notes": "OVHcloud (OVH SAS, Roubaix, France) is the largest EU-owned cloud provider by infrastructure. France is an EU member state — no cross-border transfer concern for EU customers. SecNumCloud qualification (French ANSSI sovereign cloud standard) applies to OVHcloud Private Cloud and Bare Metal Pod products, NOT to AI Endpoints (public cloud serverless). SOC 1 Type II confirmed for some products. HDS certification for healthcare data hosting.",
+  "translations": {
+    "de": {
+      "notes": "OVHcloud (OVH SAS, Roubaix, Frankreich) ist nach Infrastruktur der größte Cloud-Anbieter in EU-Eigentum. Frankreich ist ein EU-Mitgliedstaat — für EU-Kunden besteht kein grenzüberschreitendes Übermittlungsrisiko. Die SecNumCloud-Qualifizierung (französischer Souveränitäts-Cloud-Standard der ANSSI) gilt für die Produkte OVHcloud Private Cloud und Bare Metal Pod, NICHT für AI Endpoints (serverlose Public Cloud). SOC 1 Type II ist für einige Produkte bestätigt. HDS-Zertifizierung für das Hosting von Gesundheitsdaten.",
+      "dataResidency": {
+        "euRegionDetails": "Die Inferenz von AI Endpoints läuft in den europäischen Rechenzentren von OVHcloud. EU-Regionen: Gravelines (GRA1–GRA11, Frankreich) und Straßburg (SBG1–SBG5, Frankreich). In der EU ansässige Kunden sollten EU-Regionen auswählen; die kanadische Region (BHS) existiert ebenfalls, ist jedoch nicht für EU-Workloads vorgesehen."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Prompts und Completions werden gemäß der Datenschutzdokumentation von OVHcloud nicht über die Antragsverarbeitung hinaus gespeichert.",
+        "details": "OVHcloud handelt für Kunden-Workloads als Auftragsverarbeiter. Kein KI-spezifisches Training auf Kundendaten aus der Inferenz."
+      },
+      "euAiAct": {
+        "details": "Infrastrukturanbieter und Betreiber von Open-Weight-Modellen Dritter. Für AI Endpoints wurde keine spezifische Erklärung zur Einhaltung des EU AI Act veröffentlicht. OVHcloud ist an Diskussionen zur Vorbereitung auf den EU AI Act beteiligt."
+      }
+    }
+  }
 }

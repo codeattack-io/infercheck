@@ -62,5 +62,17 @@
     "https://docs.vultr.com/public/doc-assets/pdfs/collection_item/products-serverless-inference.pdf",
     "https://docs.vultr.com/support/platform/billing/how-do-i-arrange-payment-via-ach-or-wire"
   ],
-  "notes": "Vultr provides GDPR-facing documentation, a DPA available on request for e-signature, a public subprocessor list, and public statements supporting SCC-based transfers. However, primary-source evidence was not found for Serverless Inference-specific prompt/output retention, model-training use of API data, or a guarantee that inference GPU processing can be restricted to the EU."
+  "notes": "Vultr provides GDPR-facing documentation, a DPA available on request for e-signature, a public subprocessor list, and public statements supporting SCC-based transfers. However, primary-source evidence was not found for Serverless Inference-specific prompt/output retention, model-training use of API data, or a guarantee that inference GPU processing can be restricted to the EU.",
+  "translations": {
+    "de": {
+      "notes": "Vultr stellt DSGVO-bezogene Dokumentation bereit, einen Auftragsverarbeitungsvertrag (AVV), der auf Anfrage zur elektronischen Signatur verfügbar ist, eine öffentliche Liste von Unterauftragsverarbeitern sowie öffentliche Erklärungen zur Unterstützung von auf Standardvertragsklauseln (SCC) gestützten Übermittlungen. Es wurde jedoch kein Primärquellennachweis für eine speziell auf Serverless Inference bezogene Speicherung von Prompts/Ausgaben, für die Nutzung von API-Daten zum Modelltraining oder für eine Garantie gefunden, dass die GPU-Verarbeitung für Inferenz auf die EU beschränkt werden kann.",
+      "dataResidency": {
+        "euRegionDetails": "Vultr gibt an, dass Kunden Bereitstellungsstandorte wählen können und dass Daten am ausgewählten Standort verbleiben, sofern der Kunde sie nicht anderweitig kopiert; die Materialien des Trust Centers besagen zudem, dass Optionen zur Datenhaltung gewährleisten, dass Daten innerhalb der ausgewählten Regionen gespeichert bleiben und nicht in anderen Rechtsordnungen verarbeitet werden. Es wurde jedoch keine Primärquelle gefunden, die speziell für Serverless Inference eine ausschließlich auf die EU beschränkte Inferenzverarbeitung garantiert."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Vultr gibt an, dass die Schließung eines Kontos zur dauerhaften Löschung des Kontos und der zugehörigen Daten führt, und sein Trust Center erklärt, dass Kundendaten nach Ablauf des im Kundenvertrag festgelegten Aufbewahrungszeitraums sicher und dauerhaft entfernt werden. In Primärquellen wurde kein speziell auf Serverless Inference bezogener Aufbewahrungsplan für Prompts, Ausgaben oder Protokolle gefunden.",
+        "details": "Die Datenschutzhinweise von Vultr besagen, dass sie keine Anwendung auf vom Kunden unter Nutzung der Dienste gehostete \"User Content\" finden und dass Vultr in diesem Kontext ausschließlich als Auftragsverarbeiter handelt. Die Formulierungen im Trust Center besagen, dass Vultr keine Rechte an Kundeninhalten beansprucht, außer soweit dies gesetzlich erforderlich ist oder Sicherheitszwecken dient; es wurde jedoch keine ausdrückliche Erklärung dazu gefunden, ob API-/Inferenzdaten für das Modelltraining verwendet werden."
+      }
+    }
+  }
 }

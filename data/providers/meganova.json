@@ -53,5 +53,17 @@
     "https://www.meganova.ai/pricing",
     "https://www.meganova.ai/terms"
   ],
-  "notes": "Primary-source privacy documentation exists and identifies the company as US-based (Nebula Nova Inc., Delaware) with SCCs referenced for international transfers. Public docs mention temporary processing for prompts/outputs and Enterprise data residency/custom regions, but no public DPA, sub-processor list, or explicit statement confirming EU-only inference or no-training-on-customer-data was found."
+  "notes": "Primary-source privacy documentation exists and identifies the company as US-based (Nebula Nova Inc., Delaware) with SCCs referenced for international transfers. Public docs mention temporary processing for prompts/outputs and Enterprise data residency/custom regions, but no public DPA, sub-processor list, or explicit statement confirming EU-only inference or no-training-on-customer-data was found.",
+  "translations": {
+    "de": {
+      "notes": "Es liegt Datenschutzdokumentation aus Primärquellen vor, die das Unternehmen als in den USA ansässig ausweist (Nebula Nova Inc., Delaware); für internationale Übermittlungen werden Standardvertragsklauseln (SCC) genannt. Öffentliche Dokumente erwähnen eine vorübergehende Verarbeitung von Prompts/Outputs sowie Datenhaltung und benutzerdefinierte Regionen für Enterprise, jedoch wurde weder ein öffentlich zugänglicher Auftragsverarbeitungsvertrag (AVV), noch eine Liste der Unterauftragsverarbeiter, noch eine ausdrückliche Aussage gefunden, die eine ausschließlich in der EU erfolgende Inferenz oder die Nichtverwendung von Kundendaten zu Trainingszwecken bestätigt.",
+      "dataResidency": {
+        "euRegionDetails": "Die Datenschutzerklärung von MegaNova besagt, dass das Unternehmen in den Vereinigten Staaten ansässig ist und dass Informationen in die USA und andere Länder übermittelt und dort verarbeitet werden können. In der Enterprise-Dokumentation wird ausgeführt, dass Kunden wählen können, wo Daten verarbeitet und gespeichert werden, und in den FAQ werden benutzerdefinierte Regionen für Enterprise erwähnt; es wurde jedoch kein Primärquellendokument gefunden, das eine ausschließlich auf die EU beschränkte Region garantiert oder besagt, dass die Inferenz stets in der EU verbleibt."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Laut Datenschutzerklärung werden personenbezogene Daten so lange aufbewahrt, wie dies zur Erbringung der Dienste und für berechtigte Zwecke erforderlich ist, etwa für geschäftliche/finanzielle Unterlagen, die Einhaltung gesetzlicher Pflichten, die Beilegung von Streitigkeiten, die Durchsetzung von Vereinbarungen sowie Sicherheit/Schutz/Audits/Produktverbesserung. Laut FAQ werden Nutzer-Prompts und Outputs nicht über die vorübergehende Verarbeitung hinaus gespeichert; eine langfristige Speicherung von Prompts/Outputs erfolgt nicht.",
+        "details": "Laut Datenschutzerklärung erhebt das Unternehmen Inhalte, die Nutzer hochladen oder generieren, einschließlich Prompts, Dateien, Nachrichten, Modellpräferenzen und Nutzungseinstellungen. Ferner wird dort ausgeführt, dass personenbezogene Daten zur Verbesserung, Erforschung und Weiterentwicklung der Dienste verwendet werden, einschließlich Analytik, Qualitätssicherung, Sicherheitssystemen, Tests, Anonymisierung/Aggregation und neuer Funktionen; es wird jedoch nicht ausdrücklich angegeben, ob Daten von API-Kunden zum Training von Modellen verwendet werden."
+      }
+    }
+  }
 }

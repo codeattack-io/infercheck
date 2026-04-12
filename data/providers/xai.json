@@ -56,5 +56,17 @@
     "https://x.ai/legal/subprocessor-list",
     "https://x.ai/security"
   ],
-  "notes": "xAI provides a public enterprise DPA, subprocessor list, and SCC-based transfer terms, but the available primary sources point to US-centric processing rather than EU-only residency. For API/enterprise use, xAI states it does not train on customer User Content, while retaining limited rights for service delivery, abuse prevention, safety/compliance, and de-identified/aggregated data use."
+  "notes": "xAI provides a public enterprise DPA, subprocessor list, and SCC-based transfer terms, but the available primary sources point to US-centric processing rather than EU-only residency. For API/enterprise use, xAI states it does not train on customer User Content, while retaining limited rights for service delivery, abuse prevention, safety/compliance, and de-identified/aggregated data use.",
+  "translations": {
+    "de": {
+      "notes": "xAI stellt einen öffentlichen Auftragsverarbeitungsvertrag (AVV), eine Liste der Unterauftragsverarbeiter sowie auf Standardvertragsklauseln (SCC) basierende Bedingungen für Drittlandübermittlungen bereit; die verfügbaren Primärquellen weisen jedoch eher auf eine US-zentrierte Verarbeitung als auf eine ausschließliche Datenhaltung in der EU hin. Für die API-/Enterprise-Nutzung gibt xAI an, Kundennutzerinhalte nicht zum Training zu verwenden, wobei begrenzte Rechte für die Leistungserbringung, Missbrauchsprävention, Sicherheit/Compliance sowie die Nutzung de-identifizierter/aggregierter Daten vorbehalten bleiben.",
+      "dataResidency": {
+        "euRegionDetails": "Die Enterprise-/API-Infrastruktur von xAI ist dokumentiert als primär auf AWS aufgebaut, und die aktuellen API-Dokumentationen weisen ausdrücklich mindestens us-east-1 als verfügbaren API-Cluster aus. Der Auftragsverarbeitungsvertrag (AVV) besagt, dass xAI personenbezogene Daten außerhalb Europas, einschließlich der Vereinigten Staaten und anderer Länder, in denen xAI und seine Unterauftragsverarbeiter tätig sind, übermitteln und verarbeiten darf. In den Primärquellen wurde keine Option für eine ausschließlich auf die EU beschränkte Verarbeitung gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Für Enterprise-/API-Dienste gibt xAI an, dass Nutzungsinhalte automatisch innerhalb von 30 Tagen gelöscht werden, sofern keine gesetzliche Aufbewahrungspflicht besteht oder diese Inhalte für Sicherheit, Compliance, Moderation oder mögliche Verstöße gegen die Vereinbarung/AUP gekennzeichnet wurden. Der Auftragsverarbeitungsvertrag (AVV) besagt ferner, dass Kunden Daten löschen können und dass Anmeldedaten, Prompt-/Response-Paare und Abrechnungsinformationen nach einem Löschungsersuchen typischerweise innerhalb von 30 Tagen gelöscht werden; bei Vertragsbeendigung löscht xAI personenbezogene Daten, außer soweit eine gesetzliche Aufbewahrung erforderlich ist.",
+        "details": "Die Enterprise-Bedingungen sehen vor, dass xAI Nutzungsinhalte zur Erbringung der Dienste sowie für Sicherheit, Compliance, Missbrauchsprävention und Moderation verwenden darf, diese Nutzungsinhalte jedoch nicht für interne KI- oder sonstige Trainingszwecke verwenden darf. xAI darf de-identifizierte oder aggregierte Daten sowie Feedback weiterhin verwenden."
+      }
+    }
+  }
 }

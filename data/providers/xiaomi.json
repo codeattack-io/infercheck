@@ -58,5 +58,20 @@
     "https://privacy.mi.com/all/v20231229/en_IN/xiaomiPrivacyPolicy.pdf",
     "https://trust.mi.com/compliance"
   ],
-  "notes": "Xiaomi publishes a general privacy policy and trust/compliance materials, but no MiMo API-specific DPA, sub-processor list, or clear API-data training statement was found on primary sources reviewed. Xiaomi states EEA data can be transferred outside the EEA under SCCs, so EU-only processing cannot be treated as guaranteed for this provider."
+  "notes": "Xiaomi publishes a general privacy policy and trust/compliance materials, but no MiMo API-specific DPA, sub-processor list, or clear API-data training statement was found on primary sources reviewed. Xiaomi states EEA data can be transferred outside the EEA under SCCs, so EU-only processing cannot be treated as guaranteed for this provider.",
+  "translations": {
+    "de": {
+      "notes": "Xiaomi veröffentlicht eine allgemeine Datenschutzrichtlinie sowie Trust-/Compliance-Materialien; ein MiMo-API-spezifischer Auftragsverarbeitungsvertrag (AVV), eine Liste der Unterauftragsverarbeiter oder eine klare Erklärung zur Nutzung von API-Daten für das Training wurden in den geprüften Primärquellen jedoch nicht gefunden. Xiaomi erklärt, dass Daten aus dem EWR auf Grundlage von Standardvertragsklauseln (SCC) außerhalb des EWR übermittelt werden können; eine ausschließlich auf die EU beschränkte Verarbeitung kann für diesen Anbieter daher nicht als garantiert angesehen werden.",
+      "dataResidency": {
+        "euRegionDetails": "Xiaomis allgemeine Datenschutzrichtlinie besagt, dass personenbezogene Daten über eine globale Betriebsinfrastruktur verarbeitet und gesichert werden, und nennt in einer Version Rechenzentren in China, Indien, den Vereinigten Staaten, Deutschland, Russland und Singapur sowie in einer anderen Version in Indien, den Niederlanden, Russland und Singapur. Ferner wird angegeben, dass aus dem EWR stammende personenbezogene Daten unter Verwendung von Standardvertragsklauseln (SCC) an Unternehmen der Xiaomi-Gruppe oder externe Dienstleister außerhalb des EWR weitergegeben werden können. In den Primärquellen wurde keine MiMo-API-spezifische Garantie für ein ausschließliches Routing innerhalb der EU oder für den Ort der Inferenz gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Xiaomi erklärt, dass personenbezogene Daten nur für den für den angegebenen Zweck erforderlichen Zeitraum oder soweit gesetzlich vorgeschrieben gespeichert werden; detaillierte Aufbewahrungsfristen werden auf der jeweiligen spezifischen Dienst- oder Produktseite angegeben. Weiter heißt es, dass Daten gelöscht oder anonymisiert werden, sobald der Zweck erfüllt ist, nachdem ein Löschungsantrag bestätigt wurde oder nachdem das betreffende Produkt bzw. der betreffende Dienst beendet wurde, vorbehaltlich gesetzlicher Beschränkungen und Einschränkungen von Backup-Systemen.",
+        "details": "In den Primärquellen wurde keine MiMo-API-spezifische Aussage dazu gefunden, ob Kunden-/API-Daten für das Modelltraining verwendet werden. Xiaomis allgemeine Datenschutzrichtlinie besagt, dass produktspezifische Datenschutzrichtlinien gesondert gelten können."
+      },
+      "euAiAct": {
+        "details": "In Primärquellen wurde keine Aussage von Xiaomi oder zur MiMo API über die Einhaltung des EU AI Act für die MiMo-API-Plattform gefunden."
+      }
+    }
+  }
 }

@@ -46,5 +46,14 @@
     "https://docs.perplexity.ai",
     "https://www.perplexity.ai/hub/faq/pplx-api"
   ],
-  "notes": "GDPR posture materially undocumented. No DPA, no sub-processor list, no certifications found. API offers search-augmented LLM inference with real-time web grounding. EU organisations should conduct independent due diligence before using this API to process personal data. trainsOnCustomerData and optOutAvailable values are conservative defaults pending policy verification."
+  "notes": "GDPR posture materially undocumented. No DPA, no sub-processor list, no certifications found. API offers search-augmented LLM inference with real-time web grounding. EU organisations should conduct independent due diligence before using this API to process personal data. trainsOnCustomerData and optOutAvailable values are conservative defaults pending policy verification.",
+  "translations": {
+    "de": {
+      "notes": "Die DSGVO-Compliance-Position ist in wesentlichen Teilen nicht dokumentiert. Es wurden kein Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter und keine Zertifizierungen gefunden. Die API bietet suchaugmentierte LLM-Inferenz mit Web-Grounding in Echtzeit. Organisationen in der EU sollten vor der Nutzung dieser API zur Verarbeitung personenbezogener Daten eine unabhängige Due-Diligence-Prüfung durchführen. Die Werte für trainsOnCustomerData und optOutAvailable sind konservative Standardannahmen bis zur Verifizierung der Richtlinien.",
+      "dataUsage": {
+        "retentionPolicy": null,
+        "details": "Es wurde keine API-spezifische Richtlinie zur Datennutzung gefunden. Die Werte wurden aufgrund des Fehlens entsprechender Dokumentation konservativ festgelegt — vor der Verarbeitung personenbezogener Daten direkt verifizieren."
+      }
+    }
+  }
 }

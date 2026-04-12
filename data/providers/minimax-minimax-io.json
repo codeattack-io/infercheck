@@ -53,5 +53,14 @@
     "https://www.minimax.io/news/official-rules-mac-mini-giveaway",
     "https://platform.minimax.io/docs/token-plan/promotion"
   ],
-  "notes": "MiniMax publicly provides a general privacy policy and an EU representative contact, but no primary-source DPA/AVV, sub-processor list, SCC statement, API-data training commitment, or EU-only processing guarantee was found on its official materials reviewed. Headquarters evidence points to Singapore (Nanonoble Pte. Ltd.), which does not have an EU adequacy decision."
+  "notes": "MiniMax publicly provides a general privacy policy and an EU representative contact, but no primary-source DPA/AVV, sub-processor list, SCC statement, API-data training commitment, or EU-only processing guarantee was found on its official materials reviewed. Headquarters evidence points to Singapore (Nanonoble Pte. Ltd.), which does not have an EU adequacy decision.",
+  "translations": {
+    "de": {
+      "notes": "MiniMax veröffentlicht öffentlich eine allgemeine Datenschutzerklärung sowie die Kontaktdaten eines EU-Vertreters, jedoch wurden in den geprüften offiziellen Unterlagen keine Primärquellen zu einem Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Erklärung zu Standardvertragsklauseln (SCC), keine Zusage zum Training mit API-Daten und keine Garantie für eine ausschließlich in der EU erfolgende Verarbeitung gefunden. Hinweise zum Hauptsitz verweisen auf Singapur (Nanonoble Pte. Ltd.), für das kein EU-Angemessenheitsbeschluss besteht.",
+      "dataUsage": {
+        "retentionPolicy": "Die veröffentlichte Datenschutzerklärung besagt, dass personenbezogene Daten so lange aufbewahrt werden können, wie es erforderlich oder gesetzlich zulässig ist, um den Zweck zu erfüllen, für den sie erhoben wurden, und dass die Aufbewahrung beendet wird, sobald vernünftigerweise davon ausgegangen werden kann, dass die Daten nicht mehr benötigt werden.",
+        "details": "Die von MiniMax veröffentlichten Datenschutzunterlagen sind allgemeine Richtlinien für Apps/Webdienste für seine Services und enthalten weder eine spezifische Zusage zum Training mit API-Daten noch API-spezifische Verarbeitungsbedingungen."
+      }
+    }
+  }
 }

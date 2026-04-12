@@ -49,5 +49,13 @@
     "https://cloud.iflow.cn/announcement-ai-generated-content.html",
     "https://www.iflow.cn/"
   ],
-  "notes": "Primary-source materials found for iFlow were limited to product pages and API docs. Those sources show a China-operated service with free API usage and Chinese regulatory AI-content-labeling statements, but no publicly located privacy policy text, DPA, sub-processor list, SCC terms, retention policy, or training-on-customer-data commitments on the consulted primary sources."
+  "notes": "Primary-source materials found for iFlow were limited to product pages and API docs. Those sources show a China-operated service with free API usage and Chinese regulatory AI-content-labeling statements, but no publicly located privacy policy text, DPA, sub-processor list, SCC terms, retention policy, or training-on-customer-data commitments on the consulted primary sources.",
+  "translations": {
+    "de": {
+      "notes": "Für iFlow konnten nur in begrenztem Umfang Primärquellenmaterialien in Produktseiten und API-Dokumentationen festgestellt werden. Diese Quellen weisen auf einen in China betriebenen Dienst mit kostenloser API-Nutzung und chinesischen regulatorischen Erklärungen zur Kennzeichnung von KI-Inhalten hin, jedoch konnten in den konsultierten Primärquellen weder ein öffentlich zugänglicher Text einer Datenschutzerklärung noch ein Auftragsverarbeitungsvertrag (AVV), eine Liste der Unterauftragsverarbeiter, Bedingungen zu Standardvertragsklauseln (SCC), eine Aufbewahrungsrichtlinie oder Zusicherungen zum Training auf Kundendaten öffentlich festgestellt werden.",
+      "euAiAct": {
+        "details": "In den konsultierten iFlow-Materialien konnte keine Primärquellen-Erklärung zur Einhaltung des EU AI Act festgestellt werden."
+      }
+    }
+  }
 }

@@ -50,5 +50,17 @@
     "https://www.mi.com/sg/about/privacy",
     "https://privacy.mi.com/all/en_US/xiaomiPrivacyPolicy.pdf"
   ],
-  "notes": "Xiaomi MiMo's API site is publicly accessible, but no primary-source MiMo-specific DPA, sub-processor list, SCC statement, EU-only processing commitment, or training-on-API-data statement was found. The closest primary-source privacy evidence located was Xiaomi's broader Singapore/global privacy documentation, which indicates cross-border processing infrastructure including the Netherlands, India, Russia, and Singapore rather than an EU-only setup."
+  "notes": "Xiaomi MiMo's API site is publicly accessible, but no primary-source MiMo-specific DPA, sub-processor list, SCC statement, EU-only processing commitment, or training-on-API-data statement was found. The closest primary-source privacy evidence located was Xiaomi's broader Singapore/global privacy documentation, which indicates cross-border processing infrastructure including the Netherlands, India, Russia, and Singapore rather than an EU-only setup.",
+  "translations": {
+    "de": {
+      "notes": "Die API-Website von Xiaomi MiMo ist öffentlich zugänglich, jedoch wurden keine MiMo-spezifischen Primärquellen zu einem Auftragsverarbeitungsvertrag (AVV), einer Liste der Unterauftragsverarbeiter, einer Erklärung zu Standardvertragsklauseln (SCC), einer Verpflichtung zur ausschließlichen Verarbeitung in der EU oder einer Erklärung zur Nutzung von API-Daten für das Training gefunden. Der nächstliegende gefundene Nachweis aus Primärquellen zum Datenschutz war Xiaomis allgemeineres Datenschutzmaterial für Singapur bzw. global, das auf eine grenzüberschreitende Verarbeitungsinfrastruktur einschließlich der Niederlande, Indiens, Russlands und Singapurs statt auf eine reine EU-Konfiguration hinweist.",
+      "dataResidency": {
+        "euRegionDetails": "Xiaomis veröffentlichte Datenschutzrichtlinie besagt, dass das Unternehmen derzeit Rechenzentren in Indien, den Niederlanden, Russland und Singapur betreibt und dass personenbezogene Daten in Übereinstimmung mit dem anwendbaren Recht an diese Rechenzentren übermittelt werden können. Es wurde keine Erklärung aus Primärquellen gefunden, wonach die MiMo API ein ausschließliches Routing innerhalb der EU anbietet oder wonach garantiert ist, dass die Rechenleistung für Inferenz innerhalb der EU verbleibt."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Xiaomis veröffentlichte Datenschutzrichtlinie für die Plattform besagt, dass personenbezogene Daten nur so lange gespeichert werden, wie es für die beschriebenen Zwecke erforderlich ist oder wie es das anwendbare Recht verlangt. In den geprüften Primärquellen wurde keine MiMo-API-spezifische Aufbewahrungsfrist gefunden.",
+        "details": "Es wurde keine MiMo-API-Erklärung aus Primärquellen dazu gefunden, ob API-Prompts/-Eingaben und -Ausgaben für das Modelltraining verwendet werden. Xiaomis allgemeine bzw. plattformbezogene Datenschutzrichtlinie besagt, dass Forschung, Entwicklung sowie maschinelles Lernen oder das Training von Modellalgorithmen nach Durchführung von De-Identifizierungsmaßnahmen erfolgen können; dies ist jedoch nicht MiMo-API-spezifisch."
+      }
+    }
+  }
 }

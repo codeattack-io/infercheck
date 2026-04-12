@@ -46,5 +46,17 @@
     "https://fireworks.ai/privacy-policy",
     "https://fireworks.ai/terms-of-service"
   ],
-  "notes": "Headquartered in San Francisco, CA. SCCs explicitly referenced for EEA/UK transfers. Named EU GDPR representative via GDPR Local (fireworksaiinc.gdprlocal.com/eu). ZDR is the default for inference — better data hygiene posture than many US competitors. No EU data residency option."
+  "notes": "Headquartered in San Francisco, CA. SCCs explicitly referenced for EEA/UK transfers. Named EU GDPR representative via GDPR Local (fireworksaiinc.gdprlocal.com/eu). ZDR is the default for inference — better data hygiene posture than many US competitors. No EU data residency option.",
+  "translations": {
+    "de": {
+      "notes": "Hauptsitz in San Francisco, Kalifornien. Standardvertragsklauseln (SCC) werden für Übermittlungen in den EWR/das Vereinigte Königreich ausdrücklich erwähnt. Benannter EU-GDPR-Vertreter über GDPR Local (fireworksaiinc.gdprlocal.com/eu). ZDR ist der Standard für Inferenz — bessere Data-Hygiene-Position als bei vielen US-Wettbewerbern. Keine Option für Datenhaltung in der EU.",
+      "dataResidency": {
+        "euRegionDetails": "Nur US-Infrastruktur. Keine EU-Region allgemein verfügbar."
+      },
+      "dataUsage": {
+        "retentionPolicy": "ZDR ist standardmäßig für alle offenen Modelle aktiviert — Prompt-/Generierungsdaten nur im flüchtigen Speicher, Löschung nach der Anfrage. Response API: 30 Tage Aufbewahrung, wenn store=true (Opt-out: store=false). FireOptimizer: Protokollierung nur auf Opt-in-Basis.",
+        "details": "Keine Nutzung von Kunden-Inferenzdaten für das Training. ZDR ist der Standard für Endpunkte offener Modelle."
+      }
+    }
+  }
 }

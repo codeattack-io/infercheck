@@ -48,5 +48,20 @@
     "https://platform.moonshot.ai/docs/agreement/modeluse.en-US",
     "https://platform.kimi.ai/docs/agreement/userprivacy"
   ],
-  "notes": "Primary-source documentation confirms Moonshot AI PTE. LTD. is based in Singapore and stores/processes personal data on servers in Singapore, with no documented EU-only processing option. The published privacy policy indicates customer content may be used to improve and train underlying technology, and no public DPA, SCC statement, or sub-processor list was found in the reviewed primary sources."
+  "notes": "Primary-source documentation confirms Moonshot AI PTE. LTD. is based in Singapore and stores/processes personal data on servers in Singapore, with no documented EU-only processing option. The published privacy policy indicates customer content may be used to improve and train underlying technology, and no public DPA, SCC statement, or sub-processor list was found in the reviewed primary sources.",
+  "translations": {
+    "de": {
+      "notes": "Die Primärquellen-Dokumentation bestätigt, dass Moonshot AI PTE. LTD. in Singapur ansässig ist und personenbezogene Daten auf Servern in Singapur speichert/verarbeitet; eine dokumentierte Option für eine ausschließlich in der EU erfolgende Verarbeitung wurde nicht gefunden. Die veröffentlichte Datenschutzrichtlinie weist darauf hin, dass Kundeninhalte zur Verbesserung und zum Training der zugrunde liegenden Technologie verwendet werden können, und in den geprüften Primärquellen wurden weder ein öffentlicher Auftragsverarbeitungsvertrag (AVV), eine Erklärung zu Standardvertragsklauseln (SCC) noch eine Liste von Unterauftragsverarbeitern gefunden.",
+      "dataResidency": {
+        "euRegionDetails": "Moonshot AI gibt an, dass sich seine Server in Singapur befinden und dass personenbezogene Daten auf Server außerhalb des Wohnsitzlandes des Nutzers übermittelt und dort gespeichert werden können. In der Primärdokumentation des Anbieters wurde weder eine EU-Region noch eine Option für eine ausschließlich in der EU erfolgende Verarbeitung gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Laut Datenschutzrichtlinie werden Informationen so lange gespeichert, wie dies zur Erbringung der Dienste, zur Erfüllung der angegebenen Zwecke, für andere berechtigte Geschäftszwecke und zur Erfüllung rechtlicher Verpflichtungen erforderlich ist. Dort heißt es, dass Konto-, Eingabe- und Zahlungsinformationen aufbewahrt werden, solange das Konto aktiv ist; Informationen im Zusammenhang mit Verstößen werden aufbewahrt, bis der Verstoß geklärt ist.",
+        "details": "Laut Datenschutzrichtlinie umfassen Nutzerinhalte Prompts und generierte Inhalte, und diese Informationen helfen bei der Optimierung ihrer Modelle. In den Bedingungen heißt es außerdem, dass Inhalte zur Bereitstellung, Aufrechterhaltung, Entwicklung und Verbesserung der Dienste verwendet werden können."
+      },
+      "euAiAct": {
+        "details": "Die Bedingungen von Moonshot AI enthalten Nutzungsbeschränkungen, die mit einigen Themen verbotener Nutzungen nach dem EU AI Act im Einklang stehen, jedoch wurde in den geprüften Primärquellen keine ausdrückliche Erklärung zur Einhaltung des EU AI Act oder Konformitätsdokumentation gefunden."
+      }
+    }
+  }
 }

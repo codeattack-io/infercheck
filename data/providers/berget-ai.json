@@ -48,5 +48,20 @@
     "https://www.berget.ai/privacy",
     "https://www.berget.ai/models"
   ],
-  "notes": "Founded 2024 in Sweden. Sweden is an EU member state — no cross-border GDPR transfer concern for EU customers. Strong sovereignty positioning targeting Swedish and EU public sector. Zero-retention is a core B2G/GDPR selling point. Unique sustainability angle: 100% fossil-free energy, circular hardware (75% lower hardware CO2e), per-request CO2e tracking in API responses. No formal certifications (ISO 27001, SOC2) as of verification date — startup stage. Sub-processor list not prominently disclosed but company positions itself as EU-only with no US entity involvement."
+  "notes": "Founded 2024 in Sweden. Sweden is an EU member state — no cross-border GDPR transfer concern for EU customers. Strong sovereignty positioning targeting Swedish and EU public sector. Zero-retention is a core B2G/GDPR selling point. Unique sustainability angle: 100% fossil-free energy, circular hardware (75% lower hardware CO2e), per-request CO2e tracking in API responses. No formal certifications (ISO 27001, SOC2) as of verification date — startup stage. Sub-processor list not prominently disclosed but company positions itself as EU-only with no US entity involvement.",
+  "translations": {
+    "de": {
+      "notes": "Gegründet 2024 in Schweden. Schweden ist ein EU-Mitgliedstaat — für EU-Kunden besteht kein Problem einer grenzüberschreitenden DSGVO-Übermittlung. Starke Souveränitätspositionierung mit Ausrichtung auf den schwedischen und europäischen öffentlichen Sektor. Zero-Retention ist ein zentrales B2G-/DSGVO-Verkaufsargument. Einzigartiger Nachhaltigkeitsaspekt: 100 % fossilfreie Energie, zirkuläre Hardware (75 % geringere hardwarebezogene CO2e), CO2e-Tracking pro Anfrage in API-Antworten. Zum Verifizierungsdatum keine formalen Zertifizierungen (ISO 27001, SOC 2) — Startup-Phase. Eine Liste der Unterauftragsverarbeiter wird nicht prominent offengelegt, das Unternehmen positioniert sich jedoch als rein auf die EU ausgerichtet, ohne Beteiligung einer US-Einheit.",
+      "dataResidency": {
+        "euRegionDetails": "Sämtliche Inferenz-Vorgänge laufen innerhalb des gesicherten, ausschließlich auf Schweden beschränkten Netzwerks von Berget. Daten durchlaufen zu keinem Zeitpunkt das öffentliche Internet. Standort des Rechenzentrums in Schweden — die konkrete Stadt ist öffentlich nicht bekanntgegeben. Es wird zirkuläre/wiederverwendete Hardware eingesetzt."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Zero Retention: Prompts und Ausgaben werden unmittelbar nach der Verarbeitung gelöscht. Es werden keine Daten gespeichert.",
+        "details": "Zero Retention ist ein zentrales Produktdifferenzierungsmerkmal — ausdrücklich damit beworben, dass „Ihre Daten niemals gespeichert oder aufbewahrt werden“."
+      },
+      "euAiAct": {
+        "details": "Unternehmen in der Frühphase (gegründet 2024). Keine veröffentlichte Erklärung zur Konformität mit dem EU AI Act. Als Betreiber von Open-Weight-Modellen liegen die primären Verpflichtungen aus dem AI Act bei den Modellentwicklern."
+      }
+    }
+  }
 }

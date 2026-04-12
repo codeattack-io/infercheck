@@ -57,5 +57,20 @@
     "https://platform.openai.com/docs/guides/your-data",
     "https://trust.openai.com"
   ],
-  "notes": "EU data controller is OpenAI Ireland Limited (Dublin). Lead supervisory authority is the Irish DPC. DPA is auto-accepted on account creation. EU inference residency (GPU processing in-region) available via eu.api.openai.com. ZDR and data residency require enterprise engagement."
+  "notes": "EU data controller is OpenAI Ireland Limited (Dublin). Lead supervisory authority is the Irish DPC. DPA is auto-accepted on account creation. EU inference residency (GPU processing in-region) available via eu.api.openai.com. ZDR and data residency require enterprise engagement.",
+  "translations": {
+    "de": {
+      "notes": "EU-Verantwortlicher ist OpenAI Ireland Limited (Dublin). Federführende Aufsichtsbehörde ist die irische DPC. Der Auftragsverarbeitungsvertrag (AVV) wird bei der Kontoerstellung automatisch akzeptiert. EU-Inferenz-Datenhaltung (GPU-Verarbeitung in der Region) ist über eu.api.openai.com verfügbar. ZDR und Datenhaltung erfordern eine Enterprise-Abstimmung.",
+      "dataResidency": {
+        "euRegionDetails": "EU-Datenhaltung über eu.api.openai.com verfügbar (EWR + Schweiz). Sowohl regionale Datenspeicherung als auch regionale Inferenz (GPU-Verarbeitung in der Region) werden unterstützt. Erfordert eine Zero Data Retention-Ergänzung und genehmigte Kontrollen zur Missbrauchsüberwachung. Für einige Modelle auf Endpunkten mit Datenhaltung gilt ein Preisaufschlag."
+      },
+      "dataUsage": {
+        "retentionPolicy": "API-Daten werden seit März 2023 standardmäßig nicht für das Training verwendet. Protokolle zur Missbrauchsüberwachung werden bis zu 30 Tage aufbewahrt. Zero Data Retention (ZDR) ist für berechtigte Enterprise-Kunden verfügbar.",
+        "details": "Daten von API-Kunden werden standardmäßig nicht für das Modelltraining verwendet. ZDR und geänderte Missbrauchsüberwachung erfordern die Genehmigung durch den Enterprise-Vertrieb. Für Consumer-ChatGPT-Nutzer gibt es einen separaten Opt-out-Schalter."
+      },
+      "euAiAct": {
+        "details": "Verfügt über die Zertifizierung ISO 42001 (AI Management System). Ist aktiv mit dem EU AI Office in Bezug auf Verpflichtungen für GPAI-Modelle befasst. Zum Verifizierungsdatum wurde keine formelle EU AI Act-Compliance-Erklärung veröffentlicht."
+      }
+    }
+  }
 }

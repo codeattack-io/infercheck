@@ -56,5 +56,20 @@
     "https://www.facebook.com/privacy/policy/",
     "https://www.facebook.com/legal/eu-ai-terms"
   ],
-  "notes": "Meta/Llama offers a public data processing terms page with SCC-based transfer addenda and references to a sub-processor list, and those terms mention annual SOC 2 Type II audit reporting. However, several Llama API-specific trust pages were not publicly accessible without login in the available tooling, so Llama-specific training, retention, and EU inference-location facts could not be confirmed and are left null."
+  "notes": "Meta/Llama offers a public data processing terms page with SCC-based transfer addenda and references to a sub-processor list, and those terms mention annual SOC 2 Type II audit reporting. However, several Llama API-specific trust pages were not publicly accessible without login in the available tooling, so Llama-specific training, retention, and EU inference-location facts could not be confirmed and are left null.",
+  "translations": {
+    "de": {
+      "notes": "Meta/Llama stellt öffentlich eine Seite mit Datenverarbeitungsbedingungen bereit, einschließlich SCC-basierter Zusätze für Drittlandübermittlungen und Verweisen auf eine Liste von Unterauftragsverarbeitern; zudem wird in diesen Bedingungen auf eine jährliche SOC 2 Type II-Auditberichterstattung Bezug genommen. Mehrere vertrauensbezogene Seiten speziell zur Llama API waren jedoch mit den verfügbaren Werkzeugen ohne Login nicht öffentlich zugänglich, sodass Llama-API-spezifische Angaben zu Training, Speicherfristen und dem EU-Standort der Inferenz nicht bestätigt werden konnten und daher null bleiben.",
+      "dataResidency": {
+        "euRegionDetails": "Metas öffentlich verfügbare Bedingungen für Auftragsverarbeiter sehen vor, dass Unterauftragsverarbeiter in den Vereinigten Staaten, der EU/dem EWR oder anderen Ländern ansässig sein können. Es konnte keine Primärquellen-Aussage gefunden werden, die speziell für die Llama API eine ausschließlich auf die EU beschränkte Verarbeitung gewährleistet oder bestätigt, wo sich die für die Inferenz verwendeten GPUs befinden; daher sind eine ausschließlich in der EU erfolgende Verarbeitung und die Örtlichkeit der Inferenz nicht bestätigt."
+      },
+      "dataUsage": {
+        "retentionPolicy": null,
+        "details": "Es existiert eine Hilfe-Seite für Llama-Entwickler dazu, ob Meta Daten der Llama API zum Trainieren von Modellen verwendet; deren Inhalte waren jedoch mit den verfügbaren Werkzeugen ohne Login nicht öffentlich zugänglich, sodass der tatsächliche Richtlinientext nicht anhand einer Primärquelle verifiziert werden konnte."
+      },
+      "euAiAct": {
+        "details": "Meta veröffentlicht EU-spezifische KI-Bedingungen für seine KI-Dienste, jedoch konnte in den konsultierten Quellen keine Primärquellen-Aussage gefunden werden, die speziell für die Llama API eine formale Einhaltung des EU AI Act beansprucht."
+      }
+    }
+  }
 }

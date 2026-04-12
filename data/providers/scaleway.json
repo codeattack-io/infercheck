@@ -51,5 +51,20 @@
     "https://www.scaleway.com/en/privacy-policy/",
     "https://www.scaleway.com/en/generative-apis/"
   ],
-  "notes": "Scaleway (Iliad Group) is 100% French-owned. France is an EU member state — adequacyDecision is true in that no cross-border GDPR transfer concern exists for EU customers. HDS certification (French health data hosting) is a differentiator for healthcare use cases. ISO 27001 covers datacentres and cloud platform."
+  "notes": "Scaleway (Iliad Group) is 100% French-owned. France is an EU member state — adequacyDecision is true in that no cross-border GDPR transfer concern exists for EU customers. HDS certification (French health data hosting) is a differentiator for healthcare use cases. ISO 27001 covers datacentres and cloud platform.",
+  "translations": {
+    "de": {
+      "notes": "Scaleway (Iliad Group) befindet sich zu 100 % in französischem Eigentum. Frankreich ist ein EU-Mitgliedstaat — adequacyDecision ist insoweit true, als für EU-Kunden keine Bedenken im Hinblick auf grenzüberschreitende DSGVO-Übermittlungen bestehen. Die HDS-Zertifizierung (französische Zertifizierung für das Hosting von Gesundheitsdaten) ist ein Unterscheidungsmerkmal für Anwendungsfälle im Gesundheitswesen. ISO 27001 deckt Rechenzentren und die Cloud-Plattform ab.",
+      "dataResidency": {
+        "euRegionDetails": "Generative APIs werden ausschließlich in fr-par (Paris) ausgeführt. Managed Inference unterstützt fr-par (Paris), nl-ams (Amsterdam) und pl-waw (Warschau). Es verlassen keine Daten die EU. Rechenzentren: DC2/DC3/DC5 (Paris), AMS1/AMS2 (Amsterdam), WAW1/WAW2 (Warschau)."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Prompts und Completions werden gemäß der ausdrücklichen Datenschutzdokumentation nicht über die Bearbeitung der Anfrage hinaus gespeichert. Konto- und Abrechnungsdaten werden für die Vertragsdauer zuzüglich der gesetzlichen Archivierungsfrist aufbewahrt.",
+        "details": "Eine eigene Datenschutzseite unter /docs/generative-apis/reference-content/data-privacy/ stellt ausdrücklich klar, dass kein Training auf Kundendaten erfolgt."
+      },
+      "euAiAct": {
+        "details": "Infrastrukturanbieter und Deployer von Open-Weight-Modellen Dritter. Es liegt keine veröffentlichte Konformitätserklärung zum EU AI Act vor, die spezifisch auf die Generative APIs bezogen ist. Als Deployer fallen die primären Verpflichtungen den Modellentwicklern zu."
+      }
+    }
+  }
 }

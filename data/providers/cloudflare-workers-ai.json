@@ -64,5 +64,20 @@
     "https://developers.cloudflare.com/fundamentals/reference/policies-compliances/compliance-docs/",
     "https://www.cloudflare.com/trust-hub/responsible-ai/"
   ],
-  "notes": "Cloudflare provides a public DPA, SCC-backed transfer terms, and a public sub-processor list, and publicly states that Workers AI customer content is not used for model training or service improvement without explicit consent. However, Workers AI runs on Cloudflare's global network and Cloudflare does not publicly guarantee EU-only inference for Workers AI; its data-localization docs also state Jurisdictional Restrictions for data location/storage are not supported for Workers AI today."
+  "notes": "Cloudflare provides a public DPA, SCC-backed transfer terms, and a public sub-processor list, and publicly states that Workers AI customer content is not used for model training or service improvement without explicit consent. However, Workers AI runs on Cloudflare's global network and Cloudflare does not publicly guarantee EU-only inference for Workers AI; its data-localization docs also state Jurisdictional Restrictions for data location/storage are not supported for Workers AI today.",
+  "translations": {
+    "de": {
+      "notes": "Cloudflare stellt einen öffentlichen AVV, durch Standardvertragsklauseln (SCC) abgesicherte Übermittlungsbedingungen sowie eine öffentliche Liste der Unterauftragsverarbeiter bereit und erklärt öffentlich, dass Kundeninhalte von Workers AI ohne ausdrückliche Einwilligung nicht für das Modelltraining oder die Serviceverbesserung verwendet werden. Workers AI läuft jedoch im globalen Netzwerk von Cloudflare, und Cloudflare garantiert öffentlich keine ausschließlich auf die EU beschränkte Inferenz für Workers AI; zudem wird in der Dokumentation zur Datenlokalisierung angegeben, dass Jurisdictional Restrictions für Datenhaltung/Datenspeicherung derzeit für Workers AI nicht unterstützt werden.",
+      "dataResidency": {
+        "euRegionDetails": "Cloudflare dokumentiert regionale Steuerungsmöglichkeiten für Workers über die Data Localization Suite: Regional Services können sicherstellen, dass die Verarbeitung eines Workers-Projekts für eine benutzerdefinierte Domain ausschließlich innerhalb der Region erfolgt, dies gilt jedoch nicht für Subrequests oder andere Trigger. Zur Kompatibilität mit der Developer Platform erklärt Cloudflare, dass Workers AI Customer Metadata Boundary EU unterstützt, dass Jurisdictional Restrictions (Datenhaltung/Datenspeicherung) derzeit jedoch nicht unterstützt werden, wobei Datensätze der Workers AI-Analytik eine unterstützte Ausnahme darstellen. Cloudflare beschreibt Workers AI außerdem als auf GPUs im globalen Netzwerk von Cloudflare laufend."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Cloudflare erklärt, dass Kundeninhalte von Workers AI ohne ausdrückliche Einwilligung nicht zum Trainieren von Modellen oder zur Verbesserung von Services verwendet werden. Kundeninhalte können nur gespeichert werden, wenn der Kunde Speicherdienste wie R2, KV, Durable Objects oder Vectorize zusammen mit Workers AI nutzt. In der allgemeinen Datenschutzrichtlinie von Cloudflare heißt es, dass personenbezogene Daten so lange aufbewahrt werden, wie es für Geschäftszwecke und rechtliche Verpflichtungen erforderlich ist. Die Aufbewahrungsdauer für Workers Logs beträgt 3 Tage im Free-Tarif und 7 Tage in Paid-Plänen, sofern Logs aktiviert sind.",
+        "details": "Eingaben, Ausgaben, Embeddings und Trainingsdaten von Workers AI werden als Customer Content behandelt. Cloudflare erklärt, dass diese Inhalte anderen Kunden nicht zugänglich gemacht werden und nicht zum Trainieren von auf Workers AI bereitgestellten KI-Modellen oder zur Verbesserung von Cloudflare- oder Drittanbieterdiensten verwendet werden, es sei denn, es liegt eine ausdrückliche Einwilligung vor."
+      },
+      "euAiAct": {
+        "details": "Cloudflare verfügt über eine öffentliche Responsible AI-Erklärung und erklärt, dass es sich dazu verpflichtet, KI-gestützte Produkte in einer Weise zu entwickeln, die mit geltendem Recht, einschließlich des EU AI Act, im Einklang steht; eine produktspezifische Erklärung, dass Workers AI bereits mit dem EU AI Act konform ist, wird jedoch nicht bereitgestellt."
+      }
+    }
+  }
 }

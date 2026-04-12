@@ -50,5 +50,17 @@
     "https://platform.kimi.com/docs/pricing/limits",
     "https://platform.kimi.com/docs/agreement/payment"
   ],
-  "notes": "Moonshot's Kimi API platform publishes a privacy policy and platform service agreement, but no public DPA/AVV, SCC commitment, subprocessors list, EU region, or certifications were found in primary sources reviewed on April 11, 2026. The strongest primary-source evidence indicates storage in China and privacy-policy language that conversation data may be used to optimize the model, while the service agreement separately frames customer data as processed under customer instructions."
+  "notes": "Moonshot's Kimi API platform publishes a privacy policy and platform service agreement, but no public DPA/AVV, SCC commitment, subprocessors list, EU region, or certifications were found in primary sources reviewed on April 11, 2026. The strongest primary-source evidence indicates storage in China and privacy-policy language that conversation data may be used to optimize the model, while the service agreement separately frames customer data as processed under customer instructions.",
+  "translations": {
+    "de": {
+      "notes": "Für die Kimi-API-Plattform von Moonshot werden eine Datenschutzrichtlinie und ein Plattform-Servicevertrag veröffentlicht; in den am 11. April 2026 geprüften Primärquellen wurden jedoch kein öffentlicher Auftragsverarbeitungsvertrag (AVV), keine Verpflichtung zu Standardvertragsklauseln (SCC), keine Liste von Unterauftragsverarbeitern, keine EU-Region und keine Zertifizierungen gefunden. Die belastbarsten Nachweise aus Primärquellen weisen auf eine Datenspeicherung in China sowie auf Formulierungen in der Datenschutzrichtlinie hin, wonach Konversationsdaten zur Optimierung des Modells verwendet werden können, während der Servicevertrag Kundendaten gesondert als unter den Weisungen des Kunden verarbeitet darstellt.",
+      "dataResidency": {
+        "euRegionDetails": "Nach der Datenschutzrichtlinie der Plattform werden personenbezogene Daten in der Volksrepublik China gespeichert; personenbezogene Daten werden nicht außerhalb Chinas bereitgestellt, es sei denn, dass eine gesonderte Einwilligung eingeholt wird und die anwendbaren chinesischen Gesetze eingehalten werden. In der Dokumentation der API-Plattform wurde weder eine EU-Region noch eine Option für eine ausschließlich in der EU erfolgende Verarbeitung gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Nach der Datenschutzrichtlinie werden personenbezogene Daten in China gespeichert und nur für den zur Erreichung der Servicezwecke erforderlichen Zeitraum aufbewahrt, sofern gesetzlich nichts anderes vorgeschrieben ist; wenn das Produkt oder der Dienst den Betrieb einstellt, werden personenbezogene Daten innerhalb eines angemessenen Zeitraums anonymisiert oder gelöscht. Der Plattform-Servicevertrag bestimmt zudem, dass Kundendaten der Kontrolle des Kunden unterliegen und Moonshot diese nur nach Weisung des Kunden verarbeitet, es sei denn, gesetzliche Vorgaben, der Vertrag/Produktregeln oder technischer Support bzw. Fehlerbehebung erfordern etwas anderes.",
+        "details": "Die Datenschutzrichtlinie der API-Plattform besagt, dass während der Nutzung eingegebene Konversationsinformationen dazu beitragen, das Modell zu optimieren und die Bedürfnisse und Präferenzen der Nutzer zu verstehen. Der Plattform-Servicevertrag stellt gesondert klar, dass Kundendaten vom Kunden kontrolliert werden und Moonshot als neutraler technischer Dienstleister Kundendaten nur nach Weisung des Kunden verarbeitet, sofern nicht gesetzliche Vorgaben, der Vertrag/Produktregeln oder technische Unterstützung etwas anderes erfordern."
+      }
+    }
+  }
 }

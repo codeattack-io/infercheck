@@ -51,5 +51,17 @@
     "https://kilo.ai/docs/gateway/usage-and-billing",
     "https://kilo.ai/about"
   ],
-  "notes": "Kilo publicly provides a privacy policy and states services are hosted in the United States, with SCC-based safeguards for transfers from the EEA/UK/Switzerland. No public DPA/AVV, EU-only residency option, or public security certification evidence was found in the primary sources reviewed. The Terms also permit Kilo to use customer data to provide and improve its services, so GDPR-sensitive customers should clarify DPA terms and model-provider data-use settings before adoption."
+  "notes": "Kilo publicly provides a privacy policy and states services are hosted in the United States, with SCC-based safeguards for transfers from the EEA/UK/Switzerland. No public DPA/AVV, EU-only residency option, or public security certification evidence was found in the primary sources reviewed. The Terms also permit Kilo to use customer data to provide and improve its services, so GDPR-sensitive customers should clarify DPA terms and model-provider data-use settings before adoption.",
+  "translations": {
+    "de": {
+      "notes": "Kilo stellt öffentlich eine Datenschutzerklärung bereit und gibt an, dass die Dienste in den Vereinigten Staaten gehostet werden, mit auf Standardvertragsklauseln (SCC) gestützten Schutzmaßnahmen für Übermittlungen aus dem EWR/Vereinigten Königreich/der Schweiz. In den geprüften Primärquellen wurden kein öffentlicher Auftragsverarbeitungsvertrag (AVV), keine Option zur ausschließlichen Datenhaltung in der EU und keine öffentlich zugänglichen Nachweise zu Sicherheitszertifizierungen gefunden. Die Nutzungsbedingungen erlauben Kilo außerdem, Kundendaten zur Bereitstellung und Verbesserung seiner Dienste zu verwenden, sodass Kunden mit besonderer DSGVO-Sensibilität die Bedingungen des Auftragsverarbeitungsvertrags (AVV) sowie die Einstellungen zur Datennutzung durch Modellanbieter vor der Einführung klären sollten.",
+      "dataResidency": {
+        "euRegionDetails": "Laut der Datenschutzerklärung von Kilo werden die Dienste in den Vereinigten Staaten gehostet, und personenbezogene Informationen werden auf Servern in den Vereinigten Staaten gespeichert und verarbeitet. In der geprüften Primärdokumentation des Anbieters wurde keine Option für eine ausschließlich in der EU erfolgende Verarbeitung gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Kilo gibt an, Informationen so lange aufzubewahren, wie das Konto aktiv ist oder wie es erforderlich ist, um Dienste bereitzustellen, rechtlichen Verpflichtungen nachzukommen, Streitigkeiten beizulegen, Rechtsansprüche zu wahren oder Vereinbarungen durchzusetzen. Ferner wird angegeben, dass begrenzte personenbezogene Informationen zum Zweck der Integrität der Open-Source-Community und der Nichtabstreitbarkeit unbefristet aufbewahrt werden können.",
+        "details": "Die Nutzungsbedingungen sehen vor, dass Kundendaten Kilo lizenziert werden, um den Dienst und die sonstigen Produkte und Dienste von Kilo bereitzustellen und zu verbessern, einschließlich zu Entwicklungs-, Diagnose- und Korrekturzwecken, und dass Anbieter von KI-Modellen Kundendaten nach ihren eigenen Bedingungen verwenden können. Die Nutzungsbedingungen besagen außerdem, dass bestimmte KI-Modelle möglicherweise nicht verfügbar sind, wenn ein Kunde einem KI-Modell keine Trainingslizenz erteilt."
+      }
+    }
+  }
 }

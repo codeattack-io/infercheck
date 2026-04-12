@@ -46,5 +46,20 @@
     "https://api-docs.deepseek.com",
     "https://www.deepseek.com/privacy_policy"
   ],
-  "notes": "HIGH GDPR RISK. Operated by Hangzhou DeepSeek Artificial Intelligence Co., Ltd. (PRC). All data processed in China. No adequacy decision, no SCCs, no BCRs, no DPA. Italy's Garante issued a provisional access restriction in 2025. PRC security laws (PIPL/DSL/NSL) create an irreconcilable conflict with GDPR Chapter V transfer rules. EU organisations should use DeepSeek models via re-hosting providers (Azure, Bedrock, Groq, Scaleway, etc.) rather than the direct DeepSeek API."
+  "notes": "HIGH GDPR RISK. Operated by Hangzhou DeepSeek Artificial Intelligence Co., Ltd. (PRC). All data processed in China. No adequacy decision, no SCCs, no BCRs, no DPA. Italy's Garante issued a provisional access restriction in 2025. PRC security laws (PIPL/DSL/NSL) create an irreconcilable conflict with GDPR Chapter V transfer rules. EU organisations should use DeepSeek models via re-hosting providers (Azure, Bedrock, Groq, Scaleway, etc.) rather than the direct DeepSeek API.",
+  "translations": {
+    "de": {
+      "notes": "HOHES DSGVO-RISIKO. Betrieben von Hangzhou DeepSeek Artificial Intelligence Co., Ltd. (VR China). Sämtliche Daten werden in China verarbeitet. Kein Angemessenheitsbeschluss, keine Standardvertragsklauseln (SCC), keine BCRs, kein Auftragsverarbeitungsvertrag (AVV). Die italienische Datenschutzaufsichtsbehörde Garante erließ 2025 eine vorläufige Zugangsbeschränkung. Die chinesischen Sicherheitsgesetze der VR China (PIPL/DSL/NSL) begründen einen unauflösbaren Konflikt mit den Vorschriften der DSGVO in Kapitel V zur Drittlandübermittlung. EU-Organisationen sollten DeepSeek-Modelle über Re-Hosting-Anbieter (Azure, Bedrock, Groq, Scaleway usw.) statt über die direkte DeepSeek-API nutzen.",
+      "dataResidency": {
+        "euRegionDetails": "Sämtliche API-Daten werden in der Volksrepublik China verarbeitet und gespeichert. Es besteht keine Infrastruktur-Option außerhalb Chinas."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Für API-Kunden nicht öffentlich offengelegt. Die Datenschutzrichtlinie für Verbraucher weist auf eine Speicherung auf Servern in der VR China mit umfassender Datennutzung zur Verbesserung des Dienstes hin.",
+        "details": "Unterliegt den Gesetzen der VR China, einschließlich PIPL, DSL und NSL, die staatliche Zugriffsrechte begründen, welche strukturell mit den Anforderungen der DSGVO an Drittlandübermittlungen nach Artikel 44 ff. unvereinbar sind."
+      },
+      "euAiAct": {
+        "details": "Keine öffentliche Erklärung. Von EU-/US-Anbietern (Azure, Bedrock, Groq, Scaleway usw.) re-hostete Open-Weight-Modellvarianten unterliegen im Rahmen dieser Anbieter jeweils einer eigenen, separaten Compliance-Bewertung."
+      }
+    }
+  }
 }

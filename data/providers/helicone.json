@@ -57,5 +57,17 @@
     "https://docs.helicone.ai/features/advanced-usage/omit-logs",
     "https://docs.helicone.ai/faq/soc2"
   ],
-  "notes": "Helicone is a US-headquartered gateway/observability provider with documented EU and US regional options and self-hosting/on-prem deployment for stronger data sovereignty. Public primary sources confirm SOC 2 compliance and configurable hosted retention by plan, but no public DPA, SCC commitment, sub-processor list, or explicit statement about model-training on customer data or EU-only hosted inference was found."
+  "notes": "Helicone is a US-headquartered gateway/observability provider with documented EU and US regional options and self-hosting/on-prem deployment for stronger data sovereignty. Public primary sources confirm SOC 2 compliance and configurable hosted retention by plan, but no public DPA, SCC commitment, sub-processor list, or explicit statement about model-training on customer data or EU-only hosted inference was found.",
+  "translations": {
+    "de": {
+      "notes": "Helicone ist ein Anbieter von Gateway-/Observability-Diensten mit Hauptsitz in den USA und dokumentierten regionalen Optionen in der EU und den USA sowie Self-Hosting-/On-Prem-Deployment für eine stärkere Datensouveränität. Öffentliche Primärquellen bestätigen die SOC 2-Compliance und eine je nach Tarif konfigurierbare Speicherdauer bei gehosteten Diensten, jedoch wurden weder ein öffentlich verfügbarer Auftragsverarbeitungsvertrag (AVV), eine Zusage zu Standardvertragsklauseln (SCC), eine Liste der Unterauftragsverarbeiter noch eine ausdrückliche Aussage zur Nutzung von Kundendaten für das Modelltraining oder zu einer ausschließlich in der EU gehosteten Inferenz gefunden.",
+      "dataResidency": {
+        "euRegionDetails": "Helicone dokumentiert die regionale Verfügbarkeit in der EU und den USA, und EU-API-Schlüssel leiten Anfragen an die EU-Region weiter. Allerdings erklärt die Datenschutzerklärung von Helicone auch, dass Daten in die Vereinigten Staaten übermittelt und dort verarbeitet werden können, und es wurde keine Aussage aus Primärquellen gefunden, die eine ausschließlich in der EU erfolgende Verarbeitung für den gehosteten Dienst garantiert."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Laut Datenschutzerklärung auf der Website werden personenbezogene Daten nur so lange aufbewahrt, wie es für die angegebenen Zwecke erforderlich ist, und Nutzungsdaten werden grundsätzlich für einen kürzeren Zeitraum aufbewahrt, es sei denn, sie werden für Sicherheit, Funktionalität oder rechtliche Verpflichtungen benötigt. Laut Produktpreisangaben beträgt die Speicherdauer gehosteter Logs je nach Tarif 7 Tage, 1 Monat, 3 Monate oder bei Enterprise unbegrenzt, wobei bei Enterprise eine konfigurierbare Speicherdauer vorgesehen ist. Helicone bietet zudem Modi zum Weglassen von Logs an, bei denen Request-/Response-Bodies nur im Arbeitsspeicher vorgehalten und nicht langfristig gespeichert werden, oder bei denen die Protokollierung im Async-Modus vollständig deaktiviert werden kann.",
+        "details": "Helicone protokolliert Anfragen und extrahiert Nutzungsdaten für Observability-Zwecke. Die Dokumentation besagt, dass ausgelassene Request-/Response-Inhalte im Proxy-Modus dennoch an das Backend von Helicone gesendet, aber nicht langfristig gespeichert werden können, während im Async-Modus Inhalte vom Versand ausgenommen oder die Protokollierung vollständig deaktiviert werden können."
+      }
+    }
+  }
 }

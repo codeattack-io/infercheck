@@ -54,5 +54,20 @@
     "https://docs.cortecs.ai/",
     "https://docs.cortecs.ai/security-and-compliance/zero-data-retention-zdr"
   ],
-  "notes": "Cortecs provides a public privacy policy, public Art. 28 GDPR DPA, and a public sub-processor disclosure. Its own materials strongly emphasize EU residency and no training, but the primary documents show that inference can involve EEA entities using the EU-US Data Privacy Framework and that compliance depends on customer routing choices, especially for zero-retention/EU-constrained operation."
+  "notes": "Cortecs provides a public privacy policy, public Art. 28 GDPR DPA, and a public sub-processor disclosure. Its own materials strongly emphasize EU residency and no training, but the primary documents show that inference can involve EEA entities using the EU-US Data Privacy Framework and that compliance depends on customer routing choices, especially for zero-retention/EU-constrained operation.",
+  "translations": {
+    "de": {
+      "notes": "Cortecs stellt eine öffentliche Datenschutzerklärung, einen öffentlichen Auftragsverarbeitungsvertrag (AVV) nach Art. 28 DSGVO sowie eine öffentliche Offenlegung der Unterauftragsverarbeiter bereit. Die eigenen Unterlagen betonen nachdrücklich die EU-Datenhaltung und dass kein Training erfolgt, jedoch zeigen die maßgeblichen Dokumente, dass die Inferenz EWR-Unternehmen unter Nutzung des EU-US Data Privacy Framework einbeziehen kann und dass die Compliance von den Routing-Entscheidungen des Kunden abhängt, insbesondere für einen Betrieb mit Zero Data Retention bzw. EU-beschränkten Betrieb.",
+      "dataResidency": {
+        "euRegionDetails": "Cortecs gibt an, dass Daten vollständig innerhalb Europas verarbeitet werden und dass Kunden ausschließlich an Endpunkte mit Zero Data Retention routen können. Allerdings führen die Datenschutzerklärung und der Auftragsverarbeitungsvertrag (AVV) Unterauftragsverarbeiter für die Inferenz auf, darunter Microsoft Ireland Operations Limited, Google Cloud EMEA Limited und Amazon Web Services EMEA SARL, mit Verarbeitungsort(en) im EWR und einer als EU-US Data Privacy Framework angegebenen Grundlage für die Drittlandübermittlung. Die Unterlagen zeigen ferner, dass Kunden das Routing zu bestimmten Anbietern, einschließlich Beta-Anbietern, konfigurieren können, sodass eine ausschließlich EU-basierte Inferenz von der Routing-Konfiguration abhängt und nicht auf einer bedingungslosen plattformweiten Garantie beruht."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Cortecs gibt an, dass Prompts und Completions ausschließlich im flüchtigen Speicher verarbeitet und nicht in persistenten Speicher geschrieben werden; sobald die API-Antwort zurückgegeben wird, werden die Nutzlastdaten unverzüglich aus der Cortecs-Infrastruktur verworfen. Systemprotokolle speichern ausschließlich betriebliche Metadaten wie Zeitstempel, Token-Anzahlen und Fehlercodes. Aufbewahrungsfristen vorgelagerter Anbieter können weiterhin gelten, sofern der Kunde nicht Routing mit Zero Data Retention aktiviert.",
+        "details": "Cortecs gibt an, dass Kundendaten niemals für das Modelltraining verwendet werden. Der Kunde kann das Routing zu Anbietern mit Zero Data Retention konfigurieren und ist dafür verantwortlich, Anbieter zu vermeiden, deren Aufbewahrungsrichtlinien die Compliance-Anforderungen nicht erfüllen."
+      },
+      "euAiAct": {
+        "details": "Der Verhaltenskodex von Cortecs stellt fest, dass das Unternehmen nicht als Anbieter im Sinne von Art. 3 Nr. 3 KI-Verordnung zu qualifizieren ist, da es einen Routing-Dienst anbietet und keine General-Purpose-AI-Modelle entwickelt, vermarktet, unter eigenem Namen betreibt oder wesentlich verändert."
+      }
+    }
+  }
 }

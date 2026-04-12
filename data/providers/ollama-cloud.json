@@ -51,5 +51,17 @@
     "https://ollama.com/blog/cloud-models",
     "https://ollama.com/pricing"
   ],
-  "notes": "Primary-source documentation confirms Ollama Cloud is operated by Ollama Inc. in the United States, offers direct API access, and states that cloud prompts/responses are processed transiently and not used for training. No public DPA/AVV, sub-processor list, EU-only residency option, SCC statement, or security certification page was found in the provider’s primary documentation reviewed on April 11, 2026."
+  "notes": "Primary-source documentation confirms Ollama Cloud is operated by Ollama Inc. in the United States, offers direct API access, and states that cloud prompts/responses are processed transiently and not used for training. No public DPA/AVV, sub-processor list, EU-only residency option, SCC statement, or security certification page was found in the provider’s primary documentation reviewed on April 11, 2026.",
+  "translations": {
+    "de": {
+      "notes": "Die Primärdokumentation bestätigt, dass Ollama Cloud von Ollama Inc. in den Vereinigten Staaten betrieben wird, einen direkten API-Zugang bietet und angibt, dass Cloud-Prompts/-Eingaben und -Antworten nur vorübergehend verarbeitet und nicht für das Training verwendet werden. In der am 11. April 2026 geprüften Primärdokumentation des Anbieters wurden kein öffentlicher Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Option zur ausschließlichen Datenhaltung in der EU, keine Erklärung zu Standardvertragsklauseln (SCC) und keine Seite zu Sicherheitszertifizierungen gefunden.",
+      "dataResidency": {
+        "euRegionDetails": "Ollama gibt an, dass Daten cloudgehosteter Modelle in die Vereinigten Staaten übermittelt und dort verarbeitet werden können und dass die Rechenleistung für die Inferenz von Cloud-Modellen auf ollama.com ausgeführt wird. In der Primärdokumentation des Anbieters wurde keine EU-exklusive Region und keine Routing-Option gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Bei cloudgehosteten Modellen werden Prompts/Eingaben und Antworten zur Erbringung des Dienstes nur vorübergehend verarbeitet und nicht über den zur Erfüllung der Anfrage erforderlichen Zeitraum hinaus gespeichert. Ollama gibt außerdem an, dass seine Cloud keine Kundendaten speichert. Es werden jedoch begrenzte Geräte- und Nutzungsmetadaten erhoben, und Nutzer können ihr Konto über ollama.com löschen.",
+        "details": "Ollama gibt an, keine Nutzerdaten für das Training zu verwenden und Prompts/Eingaben bzw. Antworten für die Cloud-Inferenz nicht über die Erfüllung der Anfrage hinaus zu speichern. In der Datenschutzerklärung heißt es außerdem, dass Dritte beim Betrieb des Dienstes unterstützen können, darunter Anbieter von Cloud-Infrastruktur und Anbieter für Modellinferenz."
+      }
+    }
+  }
 }

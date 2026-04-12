@@ -50,5 +50,17 @@
     "https://thegrid.ai/docs/instruments-and-specifications/evolution-of-specifications",
     "https://www.linkedin.com/company/the-grid-ai"
   ],
-  "notes": "Primary-source public compliance documentation appears very limited: no privacy policy, DPA/AVV, SCC statement, or public sub-processor list was found on the provider’s site or docs as of April 11, 2026. The strongest documented privacy-related claims are zero data retention for instruments plus detailed metering/routing records, and the product architecture indicates inference may be routed across competing suppliers rather than being confined to the EU."
+  "notes": "Primary-source public compliance documentation appears very limited: no privacy policy, DPA/AVV, SCC statement, or public sub-processor list was found on the provider’s site or docs as of April 11, 2026. The strongest documented privacy-related claims are zero data retention for instruments plus detailed metering/routing records, and the product architecture indicates inference may be routed across competing suppliers rather than being confined to the EU.",
+  "translations": {
+    "de": {
+      "notes": "Öffentlich zugängliche Compliance-Dokumentation aus Primärquellen scheint sehr begrenzt zu sein: Auf der Website oder in der Dokumentation des Anbieters wurden mit Stand vom 11. April 2026 weder eine Datenschutzerklärung noch ein Auftragsverarbeitungsvertrag (AVV), eine Erklärung zu Standardvertragsklauseln (SCC) oder eine öffentliche Liste von Unterauftragsverarbeitern gefunden. Die am stärksten dokumentierten datenschutzbezogenen Aussagen betreffen eine Speicherdauer von null für Instrumente sowie detaillierte Mess-/Zähl- und Routing-Datensätze, und die Produktarchitektur weist darauf hin, dass die Inferenz über konkurrierende Anbieter hinweg geleitet werden kann, anstatt auf die EU beschränkt zu sein.",
+      "dataResidency": {
+        "euRegionDetails": "The Grid gibt an, dass API-Anfragen an den kostengünstigsten qualifizierten Anbieter bzw. das entsprechende Modell weitergeleitet werden, und die Dokumentation sieht mehrere Anbieter sowie mögliche künftige „regionale Datenschutzbeschränkungen“ vor; es wurde jedoch keine aktuelle öffentlich zugängliche Dokumentation aus Primärquellen gefunden, die eine Verarbeitung ausschließlich in der EU garantiert oder EU-Verarbeitungsregionen ausweist."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Die Anwendung gibt an, dass für alle Instrumente eine Speicherdauer von null gilt. Unabhängig davon dokumentiert The Grid, dass für jeden Inferenz-Aufruf Nutzungs-/Messdaten erfasst werden, einschließlich Zeitstempel, Token-Anzahlen, Informationen zu Einheiten/Losen, Handelsdetails, Anbieterinformationen und Leistungskennzahlen; eine Speicherdauer für diese Aufzeichnungen wurde nicht gefunden.",
+        "details": "The Grid leitet /chat/completions-Anfragen an den kostengünstigsten Anbieter bzw. das kostengünstigste Modell weiter, das die Anforderungen des jeweiligen Instruments erfüllt, und erfasst Routing-/Messdaten zu Auditierungs- und Abrechnungszwecken."
+      }
+    }
+  }
 }

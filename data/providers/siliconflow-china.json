@@ -48,5 +48,14 @@
     "https://docs.siliconflow.com/en/legals/privacy-policy",
     "https://docs.siliconflow.com/en/legals/terms-of-service"
   ],
-  "notes": "SiliconFlow's public legal docs identify the contracting entity as SILICONFLOW TECHNOLOGY PTE. LTD. and frame compliance primarily under Singapore law, but the reviewed primary sources do not publish a DPA, sub-processor list, SCC commitment, EU data-residency option, or customer-data training statement. For GDPR-sensitive use cases, major processor-side safeguards appear undocumented in the public materials reviewed."
+  "notes": "SiliconFlow's public legal docs identify the contracting entity as SILICONFLOW TECHNOLOGY PTE. LTD. and frame compliance primarily under Singapore law, but the reviewed primary sources do not publish a DPA, sub-processor list, SCC commitment, EU data-residency option, or customer-data training statement. For GDPR-sensitive use cases, major processor-side safeguards appear undocumented in the public materials reviewed.",
+  "translations": {
+    "de": {
+      "notes": "Die öffentlich zugänglichen Rechtsdokumente von SiliconFlow benennen SILICONFLOW TECHNOLOGY PTE. LTD. als vertragsschließende Einheit und stellen die Compliance in erster Linie nach singapurischem Recht dar; die geprüften primären Quellen veröffentlichen jedoch weder einen Auftragsverarbeitungsvertrag (AVV), noch eine Liste der Unterauftragsverarbeiter, noch eine Verpflichtung zu Standardvertragsklauseln (SCC), noch eine EU-Option zur Datenhaltung, noch eine Erklärung zur Nutzung von Kundendaten für das Training. Für DSGVO-sensible Anwendungsfälle erscheinen wesentliche Schutzmaßnahmen auf Seiten des Auftragsverarbeiters in den geprüften öffentlich zugänglichen Materialien nicht dokumentiert.",
+      "dataUsage": {
+        "retentionPolicy": "Die Datenschutzrichtlinie besagt, dass personenbezogene Daten so lange aufbewahrt werden, wie es zur Erfüllung des Zwecks, für den sie erhoben wurden, erforderlich ist oder wie es nach anwendbarem Recht vorgeschrieben oder zulässig ist, und dass sie anschließend gelöscht oder de-identifiziert werden, wenn sie für rechtliche oder geschäftliche Zwecke nicht mehr benötigt werden.",
+        "details": "Die Datenschutzrichtlinie definiert „Interaction Data“ als die Geschäfts- und Kundendaten des Kunden; die geprüften öffentlich zugänglichen primären Quellen geben jedoch nicht an, ob API-Kundendaten für das Modelltraining verwendet werden."
+      }
+    }
+  }
 }

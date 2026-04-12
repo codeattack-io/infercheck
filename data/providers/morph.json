@@ -52,5 +52,17 @@
     "https://trust.delve.co/morph",
     "https://www.morphllm.com/eula"
   ],
-  "notes": "Morph provides a public privacy policy and trust center, states primary processing is in the US, and offers custom DPAs plus regional/self-hosted options for stricter residency needs. It publicly says customer data is not used for training by default, but support/debugging exceptions apply on free and paid tiers; enterprise is marketed as zero-retention/zero-training."
+  "notes": "Morph provides a public privacy policy and trust center, states primary processing is in the US, and offers custom DPAs plus regional/self-hosted options for stricter residency needs. It publicly says customer data is not used for training by default, but support/debugging exceptions apply on free and paid tiers; enterprise is marketed as zero-retention/zero-training.",
+  "translations": {
+    "de": {
+      "notes": "Morph stellt eine öffentliche Datenschutzerklärung und ein Trust Center bereit, gibt an, dass die primäre Verarbeitung in den USA erfolgt, und bietet individuelle Auftragsverarbeitungsverträge (AVV) sowie regionale bzw. selbst gehostete Optionen für strengere Anforderungen an die Datenhaltung an. Öffentlich wird erklärt, dass Kundendaten standardmäßig nicht für das Training verwendet werden; Ausnahmen für Support/Debugging gelten jedoch in den kostenlosen und kostenpflichtigen Stufen. Die Enterprise-Stufe wird als Zero-Retention/Zero-Training vermarktet.",
+      "dataResidency": {
+        "euRegionDetails": "Morph gibt an, dass die primäre Datenverarbeitung in den Vereinigten Staaten erfolgt, mit zusätzlicher Verarbeitung in ausgewählten Ländern, in denen Dienstleister tätig sind. Erwähnt werden regionale Rechenzentren für kostenpflichtige und Enterprise-Kunden sowie selbst gehostete Bereitstellungen für ausgewählte Jurisdiktionen; eine ausschließlich auf die EU beschränkte Verarbeitung wird öffentlich jedoch nicht garantiert."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Kostenlose Stufe: bis zu 90 Tage, danach gelöscht oder anonymisiert. Kostenpflichtige Stufe: bis zu 30 Tage, danach sicher gelöscht. Enterprise-Stufe: keine Datenspeicherung, Verarbeitung ausschließlich im Arbeitsspeicher mit sofortiger Löschung nach der Verarbeitung. Bei selbst gehosteten Bereitstellungen wird die Speicherdauer durch den Kunden kontrolliert.",
+        "details": "Morph gibt an, Kundeneingaben/-ausgaben standardmäßig nicht für das Training von Modellen zu verwenden. Für die kostenlosen und kostenpflichtigen Stufen behält sich Morph eine begrenzte Nutzung von Kundendaten für Support/Debugging und die Servicequalität vor; für die Enterprise-Stufe werden Zero Training und Zero Retention angegeben."
+      }
+    }
+  }
 }

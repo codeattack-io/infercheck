@@ -48,5 +48,14 @@
     "https://studio.302.ai/en/docs/about",
     "https://help.302.ai/en/docs/FAQ"
   ],
-  "notes": "302.AI publishes a privacy policy and terms, but no primary-source DPA/AVV, sub-processor list, SCC statement, certification page, or EU data residency commitment was found. The service appears to aggregate many third-party model providers globally, so EU-only inference cannot be confirmed from primary documentation."
+  "notes": "302.AI publishes a privacy policy and terms, but no primary-source DPA/AVV, sub-processor list, SCC statement, certification page, or EU data residency commitment was found. The service appears to aggregate many third-party model providers globally, so EU-only inference cannot be confirmed from primary documentation.",
+  "translations": {
+    "de": {
+      "notes": "302.AI veröffentlicht eine Datenschutzerklärung und Nutzungsbedingungen, jedoch wurden keine Primärquellen zu einem Auftragsverarbeitungsvertrag (AVV), einer Liste der Unterauftragsverarbeiter, einer Erklärung zu Standardvertragsklauseln (SCC), einer Zertifizierungsseite oder einer Verpflichtung zur Datenhaltung in der EU gefunden. Der Dienst scheint zahlreiche Drittanbieter von Modellen weltweit zu aggregieren, sodass eine ausschließlich in der EU erfolgende Inferenz anhand der Primärdokumentation nicht bestätigt werden kann.",
+      "dataUsage": {
+        "retentionPolicy": "Die Datenschutzerklärung besagt, dass personenbezogene Daten so lange gespeichert werden, wie dies für die Bereitstellung des Dienstes erforderlich ist und soweit dies zur Erfüllung rechtlicher Verpflichtungen, zur Beilegung von Streitigkeiten und zur Durchsetzung von Richtlinien notwendig ist; feste Speicherfristen werden nicht veröffentlicht.",
+        "details": "Die veröffentlichte Datenschutzerklärung besagt, dass Nutzerdaten zur Bereitstellung des Dienstes, zur Unterstützung von Nutzern, zur Kommunikation von Aktualisierungen/Marketing sowie zur Durchführung statistischer und analytischer Untersuchungen zur Verbesserung des Dienstes verwendet werden. Ferner wird angegeben, dass keine Nutzerdaten vermietet oder verkauft werden."
+      }
+    }
+  }
 }

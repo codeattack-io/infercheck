@@ -51,5 +51,20 @@
     "https://docs.aleph-alpha.com/",
     "https://aleph-alpha.com/imprint/"
   ],
-  "notes": "IMPORTANT CONTEXT: Aleph Alpha underwent a strategic pivot in 2024. The original Luminous model API is legacy — current product is PhariaAI, a sovereign AI suite for enterprises and governments. B2G/enterprise-only: no public self-serve pricing or API. Key customers include the German Federal Employment Agency (80,000 users), Baden-Württemberg state government, Deutsche Bank, Bosch, SAP, and Schwarz Group. Germany is an EU member state — no cross-border GDPR transfer concern for EU customers. Most proactive EU AI Act engagement of any provider in this directory alongside Mistral."
+  "notes": "IMPORTANT CONTEXT: Aleph Alpha underwent a strategic pivot in 2024. The original Luminous model API is legacy — current product is PhariaAI, a sovereign AI suite for enterprises and governments. B2G/enterprise-only: no public self-serve pricing or API. Key customers include the German Federal Employment Agency (80,000 users), Baden-Württemberg state government, Deutsche Bank, Bosch, SAP, and Schwarz Group. Germany is an EU member state — no cross-border GDPR transfer concern for EU customers. Most proactive EU AI Act engagement of any provider in this directory alongside Mistral.",
+  "translations": {
+    "de": {
+      "notes": "WICHTIGER KONTEXT: Aleph Alpha vollzog im Jahr 2024 eine strategische Neuausrichtung. Die ursprüngliche Luminous-Modell-API ist ein Legacy-Produkt — das aktuelle Produkt ist PhariaAI, eine souveräne KI-Suite für Unternehmen und Regierungen. Ausschließlich B2G/Enterprise: keine öffentliche Self-Service-Preisgestaltung und keine öffentliche API. Zu den wichtigsten Kunden zählen die Bundesagentur für Arbeit (80.000 Nutzer), die Landesregierung Baden-Württemberg, Deutsche Bank, Bosch, SAP und die Schwarz Group. Deutschland ist ein EU-Mitgliedstaat — für EU-Kunden besteht kein datenschutzrechtliches Problem einer grenzüberschreitenden Übermittlung nach der DSGVO. Im Vergleich zu allen anderen Anbietern in diesem Verzeichnis weist Aleph Alpha neben Mistral die proaktivste Auseinandersetzung mit dem EU AI Act auf.",
+      "dataResidency": {
+        "euRegionDetails": "Sämtliche Infrastruktur befindet sich in Deutschland. Der PhariaAI-Stack ist für die On-Premise-Bereitstellung oder die Bereitstellung in einer souveränen EU-Cloud ausgelegt, primär auf Infrastruktur von STACKIT (Schwarz Group). Die On-Premise-Bereitstellungsoption ermöglicht vollständige Datenisolation. Keine Beteiligung von US-Gesellschaften. Air-Gapped-Bereitstellung für Verteidigungs- und Regierungseinsatzszenarien verfügbar."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Für den On-Premise-/PhariaAI-Stack gilt: Der Kunde kontrolliert die Daten vollständig; nichts verlässt die Kundenumgebung. Für die Cloud-API: gemäß den Servicebedingungen. Kein Training auf Kundendaten.",
+        "details": "On-Premise-Bereitstellungen ermöglichen vollständige Datenisolation — keinerlei Daten verlassen die Kundenumgebung. Die Cloud-API unterliegt den vertraglichen Bestimmungen des Auftragsverarbeitungsvertrag (AVV). Kein Training auf Inferenzdaten von Kunden."
+      },
+      "euAiAct": {
+        "details": "Eines der Unternehmen in Europa mit der stärksten Ausrichtung auf den EU AI Act. Anbieter von Foundation Models (Pharia-1-LLM-7B), die den Verpflichtungen für GPAI-Modellanbieter unterliegen. Mitbegründer der Initiative Future of European AI. Aktive Teilnahme an Konsultationen des EU AI Office. Model Card und technische Dokumentation für das Modell Pharia-1-LLM-7B wurden gemäß den GPAI-Transparenzanforderungen veröffentlicht."
+      }
+    }
+  }
 }

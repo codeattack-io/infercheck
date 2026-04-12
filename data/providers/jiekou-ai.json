@@ -46,5 +46,14 @@
     "https://jiekou.ai/legal/terms-of-service",
     "https://jiekou.ai/pricing"
   ],
-  "notes": "Jiekou.AI publishes a privacy policy and terms of service, but no primary-source DPA/AVV, sub-processor list, SCC statement, security certifications, or data residency documentation was found on the consulted official pages. The available legal text is high level and does not clearly address API-data training use, EU-only processing, or inference-location guarantees."
+  "notes": "Jiekou.AI publishes a privacy policy and terms of service, but no primary-source DPA/AVV, sub-processor list, SCC statement, security certifications, or data residency documentation was found on the consulted official pages. The available legal text is high level and does not clearly address API-data training use, EU-only processing, or inference-location guarantees.",
+  "translations": {
+    "de": {
+      "notes": "Jiekou.AI veröffentlicht eine Datenschutzerklärung und Nutzungsbedingungen, jedoch wurden auf den konsultierten offiziellen Seiten keine Primärquellen für einen Auftragsverarbeitungsvertrag (AVV), eine Liste der Unterauftragsverarbeiter, eine Erklärung zu Standardvertragsklauseln (SCC), Sicherheitszertifizierungen oder eine Dokumentation zur Datenhaltung gefunden. Der verfügbare Rechtstext ist allgemein gehalten und behandelt weder die Nutzung von API-Daten zum Training noch eine Verarbeitung ausschließlich in der EU oder Garantien zum Ort der Inferenz eindeutig.",
+      "dataUsage": {
+        "retentionPolicy": "Laut Datenschutzerklärung werden personenbezogene Daten während des Nutzungszeitraums des Dienstes und darüber hinaus aufbewahrt, soweit dies zur Einhaltung gesetzlicher Verpflichtungen oder zur Risikoprävention erforderlich ist; anschließend werden die Daten sicher vernichtet. Es wird kein spezifischer Aufbewahrungszeitraum für API-Prompts/-Ausgaben genannt.",
+        "details": "Den Nutzungsbedingungen zufolge werden von Nutzern übermittelte Inhalte JieKou.AI und seinen verbundenen Unternehmen auf nicht ausschließlicher, weltweiter und lizenzgebührenfreier Basis zur Nutzung für Hosting, Verbreitung, Änderung oder Anzeige lizenziert, soweit dies zur Bereitstellung des Dienstes erforderlich ist. Es wurde keine Primärquellen-Erklärung gefunden, die ausdrücklich besagt, ob Daten von API-Kunden für das Modelltraining verwendet werden oder nicht."
+      }
+    }
+  }
 }

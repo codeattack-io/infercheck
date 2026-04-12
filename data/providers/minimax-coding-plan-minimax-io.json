@@ -50,5 +50,14 @@
     "https://www.minimax.io/protocol/cookie-policy",
     "https://www.minimax.io/pricing"
   ],
-  "notes": "MiniMax publicly provides a general privacy policy and cookie policy, including an EU representative, but no publicly accessible DPA/AVV, subprocessors list, EU-only residency option, SCC statement, or API-data-training statement was found in primary sources reviewed. Headquarters appears to be Singapore (Nanonoble Pte. Ltd.), which does not have an EU adequacy decision."
+  "notes": "MiniMax publicly provides a general privacy policy and cookie policy, including an EU representative, but no publicly accessible DPA/AVV, subprocessors list, EU-only residency option, SCC statement, or API-data-training statement was found in primary sources reviewed. Headquarters appears to be Singapore (Nanonoble Pte. Ltd.), which does not have an EU adequacy decision.",
+  "translations": {
+    "de": {
+      "notes": "MiniMax stellt öffentlich eine allgemeine Datenschutzerklärung und Cookie-Richtlinie einschließlich eines EU-Vertreters bereit; in den geprüften Primärquellen wurden jedoch kein öffentlich zugänglicher Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Option zur ausschließlichen Datenhaltung in der EU, keine Erklärung zu Standardvertragsklauseln (SCC) und keine Erklärung zur Verwendung von API-Daten für das Modelltraining gefunden. Der Hauptsitz scheint in Singapur (Nanonoble Pte. Ltd.) zu liegen; für Singapur besteht kein EU-Angemessenheitsbeschluss.",
+      "dataUsage": {
+        "retentionPolicy": "Die öffentlich zugängliche Datenschutzerklärung von MiniMax besagt, dass personenbezogene Daten nur so lange aufbewahrt werden, wie dies vernünftigerweise erforderlich ist, und anschließend gelöscht oder de-identifiziert werden, sobald sie nicht mehr erforderlich sind. Es wurde kein spezifischer Aufbewahrungszeitplan für die API oder den Coding Plan gefunden.",
+        "details": "Die öffentlich zugängliche, für MiniMax aufgefundene Richtlinie bezieht sich allgemein auf App-/Web-Dienste und nicht auf einen spezifischen Zusatz zur Datennutzung für den Coding Plan bzw. die API. Die öffentlich zugängliche API-Dokumentation weist zudem Funktionen zum Datei-Upload sowie für persistente/sitzungsbezogene Speicherfunktionen aus, enthält jedoch keine Aussage dazu, ob Kundendaten aus der API für das Modelltraining verwendet werden."
+      }
+    }
+  }
 }

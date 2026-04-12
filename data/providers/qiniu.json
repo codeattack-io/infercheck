@@ -56,5 +56,14 @@
     "https://www.qiniu.com/contact",
     "https://www.qiniu.com/"
   ],
-  "notes": "Qiniu is headquartered in China and the reviewed primary sources show AI inference API endpoints and company operations centered in China, with no EU-region or EU-only processing commitment found. No public DPA/AVV, sub-processor list, SCC statement, or explicit statement on training on customer API data was found in the reviewed primary sources, so those fields are left null or marked unavailable."
+  "notes": "Qiniu is headquartered in China and the reviewed primary sources show AI inference API endpoints and company operations centered in China, with no EU-region or EU-only processing commitment found. No public DPA/AVV, sub-processor list, SCC statement, or explicit statement on training on customer API data was found in the reviewed primary sources, so those fields are left null or marked unavailable.",
+  "translations": {
+    "de": {
+      "notes": "Qiniu hat seinen Hauptsitz in China, und die geprüften Primärquellen zeigen KI-Inferenz-API-Endpunkte sowie Unternehmensaktivitäten mit Schwerpunkt in China; eine Zusage zur Verarbeitung in der EU-Region oder ausschließlich in der EU wurde nicht gefunden. In den geprüften Primärquellen wurden kein öffentlicher Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Erklärung zu Standardvertragsklauseln (SCC) und keine ausdrückliche Erklärung zum Training mit Kundendaten aus API-Anfragen gefunden; daher bleiben diese Felder null oder sind als nicht verfügbar gekennzeichnet.",
+      "dataUsage": {
+        "retentionPolicy": "Die Datenschutzerklärung besagt, dass Kontoinformationen während des Dienstleistungszeitraums verwendet werden und dass personenbezogene Daten bei Kündigung des Kontos gelöscht oder anonymisiert werden. In den geprüften Primärquellen wurde keine produktspezifische Aufbewahrungsfrist für KI-Inferenz-Eingaben/-Ausgaben oder Protokolle gefunden.",
+        "details": null
+      }
+    }
+  }
 }

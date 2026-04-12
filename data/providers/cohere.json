@@ -52,5 +52,20 @@
     "https://trustcenter.cohere.com/",
     "https://trustcenter.cohere.com/subprocessors"
   ],
-  "notes": "Headquartered in Toronto, Canada. DPA requires NDA and is not publicly downloadable — request via privacy@cohere.com. All SaaS infrastructure is US-based; EU-to-US transfers rely on SCCs. All listed sub-processors are US-based. Enterprise customers have strong opt-out controls including ZDR."
+  "notes": "Headquartered in Toronto, Canada. DPA requires NDA and is not publicly downloadable — request via privacy@cohere.com. All SaaS infrastructure is US-based; EU-to-US transfers rely on SCCs. All listed sub-processors are US-based. Enterprise customers have strong opt-out controls including ZDR.",
+  "translations": {
+    "de": {
+      "notes": "Hauptsitz in Toronto, Kanada. Für den Auftragsverarbeitungsvertrag (AVV) ist eine NDA erforderlich, und er steht nicht öffentlich zum Download zur Verfügung — Anforderung über privacy@cohere.com. Die gesamte SaaS-Infrastruktur ist in den USA angesiedelt; EU-US-Drittlandübermittlungen stützen sich auf Standardvertragsklauseln (SCC). Alle aufgeführten Unterauftragsverarbeiter haben ihren Sitz in den USA. Unternehmenskunden verfügen über umfassende Opt-out-Kontrollen, einschließlich ZDR.",
+      "dataResidency": {
+        "euRegionDetails": "Die Infrastruktur der SaaS-Plattform ist ausschließlich in den USA angesiedelt (Google Cloud US-Central). Private und Drittanbieter-Cloud-Bereitstellungen (AWS, Azure, GCP, OCI) können vom Kunden für EU-Regionen konfiguriert werden — in diesen Fällen erhält Cohere niemals Kundendaten."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Unternehmenskunden können das Training über den Schalter „Data Controls“ im Dashboard per Opt-out deaktivieren. Testnutzer sind standardmäßig einbezogen. Zero Data Retention ist für Unternehmenskunden verfügbar. Prompts und Generierungen werden nach 30 Tagen automatisch gelöscht, sofern sie nicht markiert wurden.",
+        "details": "PII wird vor der Verwendung für das Training aus Prompts herausgefiltert bzw. entfernt, sofern ein Opt-in erfolgt ist. Bei privaten und Drittanbieter-Cloud-Bereitstellungen erhält Cohere niemals Kunden-Prompts oder -Generierungen."
+      },
+      "euAiAct": {
+        "details": "Verfügt über die Zertifizierung ISO 42001 (AI Management System). Es wurde keine spezifische Konformitätserklärung zum EU AI Act gefunden. Als kanadisches Unternehmen, das Modelle auf dem EU-Markt bereitstellt, gelten die GPAI-Verpflichtungen des EU AI Act."
+      }
+    }
+  }
 }

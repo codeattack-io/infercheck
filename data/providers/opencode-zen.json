@@ -48,5 +48,17 @@
     "https://opencode.ai/fr/legal/privacy-policy",
     "https://opencode.ai/fr/legal/terms-of-service"
   ],
-  "notes": "OpenCode Zen documents a US-only hosting model and does not advertise EU-only inference, a DPA, SCCs, sub-processor disclosures, or security certifications in the reviewed primary sources. Zen claims zero-retention/no-training by default, but several listed free-model/provider exceptions allow logging, retention, or model improvement use."
+  "notes": "OpenCode Zen documents a US-only hosting model and does not advertise EU-only inference, a DPA, SCCs, sub-processor disclosures, or security certifications in the reviewed primary sources. Zen claims zero-retention/no-training by default, but several listed free-model/provider exceptions allow logging, retention, or model improvement use.",
+  "translations": {
+    "de": {
+      "notes": "OpenCode Zen dokumentiert ein ausschließliches Hosting in den USA und bewirbt in den geprüften Primärquellen weder eine ausschließlich in der EU erfolgende Inferenz noch einen Auftragsverarbeitungsvertrag (AVV), Standardvertragsklauseln (SCC), Offenlegungen zu Unterauftragsverarbeitern oder Sicherheitszertifizierungen. Zen gibt standardmäßig Zero-Retention/No-Training an, jedoch erlauben mehrere aufgeführte Ausnahmen bei kostenlosen Modellen/Anbietern Protokollierung, Speicherung oder die Nutzung zur Modellverbesserung.",
+      "dataResidency": {
+        "euRegionDetails": "OpenCode erklärt, dass alle Zen-Modelle in den USA gehostet werden. In der Primärdokumentation des Anbieters wurde weder ein ausschließliches Routing über die EU noch eine EU-Region-Option gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Zen erklärt, dass seine Anbieter einer Zero-Retention-Richtlinie folgen und Daten nicht für das Modelltraining verwenden, mit Ausnahme bestimmter kostenloser Modelle, bei denen erhobene Daten zur Verbesserung des Modells verwendet werden können, kostenloser NVIDIA-Endpunkte, bei denen Prompts und Ausgaben protokolliert werden, sowie der OpenAI-/Anthropic-APIs, bei denen Anfragen 30 Tage lang gespeichert werden. Die allgemeine Datenschutzerklärung besagt, dass OpenCode personenbezogene Daten so lange speichert, wie dies zur Erbringung der Dienste oder für geschäftliche/kommerzielle Zwecke erforderlich ist, und länger, sofern dies gesetzlich vorgeschrieben ist.",
+        "details": "Die Zen-Dokumentation besagt, dass alle Modelle in den USA gehostet werden und die Anbieter standardmäßig Zero-Retention/No-Training einhalten, mit Ausnahmen für Big Pickle, MiniMax M2.5 Free, Qwen3.6 Plus Free, Nemotron 3 Super Free und durch OpenAI/Anthropic unterstützte Modelle mit einer Speicherdauer von 30 Tagen. In der Primärdokumentation wurde kein kundenorientierter Opt-out-Mechanismus für Training gefunden."
+      }
+    }
+  }
 }

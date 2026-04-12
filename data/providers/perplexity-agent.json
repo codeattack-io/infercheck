@@ -51,5 +51,17 @@
     "https://www.perplexity.ai/enterprise/security",
     "https://www.perplexity.ai/enterprise/pricing"
   ],
-  "notes": "Perplexity’s API documentation is favorable on training and retention for Sonar API: it states zero retention of API content and no training on customer data. However, the public DPA indicates worldwide processing via AWS and third-party LLM providers, so EU-only inference/processing is not documented, and cross-border transfer mechanisms rely on SCCs and the EU-US Data Privacy Framework."
+  "notes": "Perplexity’s API documentation is favorable on training and retention for Sonar API: it states zero retention of API content and no training on customer data. However, the public DPA indicates worldwide processing via AWS and third-party LLM providers, so EU-only inference/processing is not documented, and cross-border transfer mechanisms rely on SCCs and the EU-US Data Privacy Framework.",
+  "translations": {
+    "de": {
+      "notes": "Die API-Dokumentation von Perplexity ist hinsichtlich Training und Speicherung für die Sonar API günstig: Sie gibt an, dass API-Inhalte keiner Speicherung unterliegen und dass kein Training mit Kundendaten erfolgt. Der öffentlich zugängliche Auftragsverarbeitungsvertrag (AVV) weist jedoch auf eine weltweite Verarbeitung über AWS und Drittanbieter-LLM-Anbieter hin; eine ausschließlich auf die EU beschränkte Inferenz/Verarbeitung ist daher nicht dokumentiert, und die Mechanismen für Drittlandübermittlung stützen sich auf Standardvertragsklauseln (SCC) und das EU-US Data Privacy Framework.",
+      "dataResidency": {
+        "euRegionDetails": "Der Auftragsverarbeitungsvertrag (AVV) von Perplexity führt die Cloud-Infrastruktur von Amazon Web Services sowie Drittanbieter-LLM-Anbieter als Unterauftragsverarbeiter auf, wobei als Standort weltweit angegeben ist. Weder in der API-Dokumentation noch im Auftragsverarbeitungsvertrag (AVV) wurde eine Option für eine ausschließlich in der EU erfolgende Verarbeitung gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Für die Sonar API gibt Perplexity eine Richtlinie zur Datenspeicherung von null an: Inhalte von API-Prompts/Antworten werden nicht gespeichert, und es werden nur Abrechnungsmetadaten wie Token-Anzahlen, das verwendete Modell, Zeitstempel, Dauer und die Identifikation des API-Schlüssels erhoben. Der Auftragsverarbeitungsvertrag (AVV) besagt außerdem, dass personenbezogene Daten innerhalb von 30 Tagen nach Beendigung der Dienste gelöscht oder zurückgegeben werden, sofern keine gesetzlichen Aufbewahrungspflichten eine längere Speicherung erfordern.",
+        "details": "Perplexity gibt an, dass Kundendaten der Sonar API nicht zum Trainieren von Modellen oder für andere Zwecke verwendet werden, die über die Verarbeitung der unmittelbaren Anfrage hinausgehen."
+      }
+    }
+  }
 }

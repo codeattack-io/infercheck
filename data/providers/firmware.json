@@ -54,5 +54,20 @@
     "https://firmware.ai/legal/service-provider-list",
     "https://firmware.ai/legal/subprocessor-list"
   ],
-  "notes": "Firmware publishes a privacy policy, DPA, security addendum, and public subprocessor list. Public materials indicate US headquarters and US-based subprocessors, with regional hosting only by order form or written agreement; there is no public guarantee of EU-only inference, and the DPA expressly contemplates transfers to the US using data transfer mechanisms including the EEA SCCs."
+  "notes": "Firmware publishes a privacy policy, DPA, security addendum, and public subprocessor list. Public materials indicate US headquarters and US-based subprocessors, with regional hosting only by order form or written agreement; there is no public guarantee of EU-only inference, and the DPA expressly contemplates transfers to the US using data transfer mechanisms including the EEA SCCs.",
+  "translations": {
+    "de": {
+      "notes": "Firmware veröffentlicht eine Datenschutzrichtlinie, einen Auftragsverarbeitungsvertrag (AVV), einen Sicherheitsnachtrag und eine öffentliche Liste der Unterauftragsverarbeiter. Den öffentlich zugänglichen Unterlagen zufolge befinden sich der Hauptsitz in den USA sowie Unterauftragsverarbeiter in den USA; eine regionale Datenhaltung wird nur per Bestellformular oder schriftlicher Vereinbarung vorgesehen. Es gibt keine öffentliche Garantie für eine ausschließlich auf die EU beschränkte Inferenz, und der AVV sieht Drittlandübermittlungen in die USA unter Verwendung von Datenübermittlungsmechanismen, einschließlich der Standardvertragsklauseln (SCC) des EWR, ausdrücklich vor.",
+      "dataResidency": {
+        "euRegionDetails": "Firmware erklärt, dass Kundendaten und -inhalte in der im Bestellformular angegebenen geografischen Region oder anderweitig schriftlich vereinbarten Region gespeichert und verarbeitet werden, und dass Kunden, soweit unterstützt, eine gesonderte spezifische geografische Region anfordern können. Die öffentliche Liste der Unterauftragsverarbeiter nennt jedoch ausschließlich in den USA ansässige Unterauftragsverarbeiter (AWS, MongoDB, Google Cloud, OpenAI), und der AVV besagt, dass Kunden personenbezogene Daten an Firmware in den Vereinigten Staaten übermitteln können."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Datenschutzrichtlinie: Personenbezogene Daten werden so lange gespeichert, wie es für die angegebenen Zwecke erforderlich ist; sofern ein Kunde über einen Customer Agreement verfügt, erfolgt die Löschung gemäß dieser Vereinbarung; besteht kein fortlaufender berechtigter geschäftlicher Bedarf oder rechtlicher Grund mehr, werden die Daten gelöscht oder anonymisiert oder bis zur möglichen Löschung sicher isoliert. AVV: Bei Beendigung der Dienste oder auf angemessene Anfrage wird Firmware die dem AVV unterliegenden Daten zurückgeben oder löschen, sofern keine gesetzliche Aufbewahrungspflicht besteht.",
+        "details": "Firmware gibt an, dass über die Dienste erhaltene Kundendaten/-inhalte im Auftrag der Kunden gemäß dem Customer Agreement verarbeitet werden. Auf der Website heißt es: „Ihre Daten bleiben Ihre Daten — niemals für das Training verwendet.“ Firmware erklärt gesondert, dass öffentlich zugängliche rechtliche Informationen genutzt werden, um seine KI-Plattform zu entwickeln und zu verbessern."
+      },
+      "euAiAct": {
+        "details": "Der AVV besagt, dass die Parteien, falls neue Rechtsvorschriften und Regelungen eingeführt werden, die speziell KI regeln, den AVV überprüfen werden, um die Einhaltung sicherzustellen, und erforderliche Änderungen verhandeln werden."
+      }
+    }
+  }
 }

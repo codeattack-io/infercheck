@@ -56,5 +56,17 @@
     "https://www.clarifai.com/pricing",
     "https://www.clarifai.com/hubfs/whitepaper-machine-learning-visual-similarity-search.pdf"
   ],
-  "notes": "Clarifai provides a public DPA with SCC language and states private customer data is not used for training unless shared to the Community. However, no public sub-processor list or EU-only processing guarantee was found, and the DPA expressly allows global transfers including to the United States, so EU inference confinement could not be established."
+  "notes": "Clarifai provides a public DPA with SCC language and states private customer data is not used for training unless shared to the Community. However, no public sub-processor list or EU-only processing guarantee was found, and the DPA expressly allows global transfers including to the United States, so EU inference confinement could not be established.",
+  "translations": {
+    "de": {
+      "notes": "Clarifai stellt einen öffentlichen Auftragsverarbeitungsvertrag (AVV) mit Standardvertragsklauseln (SCC) bereit und erklärt, dass private Kundendaten nicht für das Training verwendet werden, es sei denn, sie werden mit der Community geteilt. Es wurde jedoch weder eine öffentliche Liste der Unterauftragsverarbeiter noch eine Garantie für eine ausschließlich in der EU erfolgende Verarbeitung gefunden, und der AVV erlaubt ausdrücklich weltweite Übermittlungen einschließlich in die Vereinigten Staaten, sodass eine Beschränkung der Inferenz auf die EU nicht festgestellt werden konnte.",
+      "dataResidency": {
+        "euRegionDetails": "Clarifai gibt an, dass Teams auf einer gemeinsam genutzten oder dedizierten Cloud, innerhalb ihrer eigenen VPC, On-Premise oder am Edge bereitstellen können. Der AVV besagt jedoch, dass personenbezogene Daten weltweit übermittelt werden können, einschließlich an Clarifai in den Vereinigten Staaten sowie an verbundene Unternehmen und Unterauftragsverarbeiter in anderen Rechtsordnungen. Eine Garantie aus Primärquellen für eine ausschließlich in der EU gehostete Verarbeitung wurde nicht gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Standardmäßig speichert Clarifai Eingaben und daraus resultierende Vorhersagen sicher, damit Nutzer auf den Vorhersageverlauf zugreifen können; die Dokumentation besagt jedoch, dass Kunden die vollständige Kontrolle über die Aufbewahrung behalten. Der AVV besagt, dass Clarifai personenbezogene Daten nach Vertragsende nach Wahl des Kunden löschen oder zurückgeben wird, vorbehaltlich gesetzlicher Anforderungen und von Stripe gehaltenen Kopien. In der Datenschutzerklärung heißt es außerdem, dass einige personenbezogene Daten für Serviceverbesserungen, zur Einhaltung gesetzlicher Vorschriften, zur Streitbeilegung, zum Einzug von Gebühren oder bei erteilter Einwilligung länger aufbewahrt werden können und dass anonymisierte/aggregierte Daten aufbewahrt werden können.",
+        "details": "Die Dokumentation von Clarifai besagt, dass private Kundendaten nicht zum Training von Clarifai-Modellen oder anderen Modellen auf der Plattform verwendet werden, es sei denn, der Kunde entscheidet sich ausdrücklich dafür, Eingaben und Annotationen mit der Community zu teilen. Clarifai protokolliert außerdem nicht sensible Metadaten für Abrechnung, Überwachung und Leistungserbringung und kann aggregierte Nutzungsmuster zur Verbesserung proprietärer Modelle analysieren, ohne private Eingabedaten zu verwenden."
+      }
+    }
+  }
 }

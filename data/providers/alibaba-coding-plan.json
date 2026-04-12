@@ -64,5 +64,17 @@
     "https://www.alibabacloud.com/de/trust-center/compliance?_p_lc=1",
     "https://www.alibabacloud.com/en/press-room/alibaba-cloud-celebrates-10-years-in-singapore"
   ],
-  "notes": "Alibaba Coding Plan is a paid Alibaba Cloud Model Studio coding subscription, not a standalone EU-only service. Alibaba documents an EU deployment mode in Frankfurt with inference limited to the EU, but Coding Plan documentation itself does not explicitly state which deployment mode it uses; the broader Model Studio docs also include non-EU modes with global scheduling. A public sub-processor list and any specific EU AI Act statement were not found in the consulted primary sources."
+  "notes": "Alibaba Coding Plan is a paid Alibaba Cloud Model Studio coding subscription, not a standalone EU-only service. Alibaba documents an EU deployment mode in Frankfurt with inference limited to the EU, but Coding Plan documentation itself does not explicitly state which deployment mode it uses; the broader Model Studio docs also include non-EU modes with global scheduling. A public sub-processor list and any specific EU AI Act statement were not found in the consulted primary sources.",
+  "translations": {
+    "de": {
+      "notes": "Alibaba Coding Plan ist ein kostenpflichtiges Coding-Abonnement von Alibaba Cloud Model Studio und kein eigenständiger, ausschließlich auf die EU beschränkter Dienst. Alibaba dokumentiert einen EU-Bereitstellungsmodus in Frankfurt, bei dem die Inferenz auf die EU beschränkt ist; in der Dokumentation zum Coding Plan selbst wird jedoch nicht ausdrücklich angegeben, welcher Bereitstellungsmodus verwendet wird. Die umfassendere Model-Studio-Dokumentation umfasst zudem Nicht-EU-Modi mit globaler Zuweisung. Eine öffentliche Liste der Unterauftragsverarbeiter sowie eine spezifische Erklärung zum EU AI Act wurden in den konsultierten Primärquellen nicht gefunden.",
+      "dataResidency": {
+        "euRegionDetails": "Alibaba Cloud Model Studio unterstützt einen Bereitstellungsmodus für die Europäische Union mit Bindung an Deutschland (Frankfurt), bei dem statische Daten in der ausgewählten Region gespeichert werden und die Inferenz auf die EU beschränkt ist. Es bestehen jedoch weitere Bereitstellungsmodi: Im Global-Modus können für die Endpunkt-/Datenspeicherung die USA (Virginia) oder Deutschland (Frankfurt) genutzt werden, bei global zugewiesener Inferenz; im International-Modus werden Daten in Singapur gespeichert, bei global zugewiesener Inferenz außerhalb des chinesischen Festlands."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Alibaba Cloud Model Studio gibt an, Kundendaten niemals für das Modelltraining zu verwenden. Bei direkten API-Aufrufen werden Gesprächsdaten nicht gespeichert; aufgezeichnet wird nur ein desensibilisierter Aufrufstatus. Bei der Assistant API wird der Gesprächsverlauf gespeichert, ohne dass ein Ablaufdatum angegeben wird. Die allgemeine Datenschutzerklärung von Alibaba Cloud besagt, dass personenbezogene Daten so lange aufbewahrt werden, wie dies für Dienstleistungen, aus rechtlichen/compliancebezogenen Gründen, zur Streitbeilegung, für Forschungs-/statistische Analysen oder bis zur Löschung/Anonymisierung erforderlich ist.",
+        "details": "Coding Plan ist ein Angebot von Model Studio. Die Dokumentation zu Model Studio besagt, dass Kundendaten niemals für das Modelltraining verwendet werden. Die Datenverarbeitung variiert je nach Zugriffsmethode: Direkte API-Aufrufe speichern keine Gesprächsinhalte, während bei Nutzung der Assistant API der Gesprächsverlauf gespeichert wird."
+      }
+    }
+  }
 }

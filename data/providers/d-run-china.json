@@ -54,5 +54,17 @@
     "https://docs.d.run/service/share",
     "https://docs.d.run/service/security"
   ],
-  "notes": "D.Run is operated by Shanghai DaoCloud Network Technology Co., Ltd. in China and publishes a privacy policy, service agreement, security whitepaper, and a limited third-party sharing/SDK list. No public DPA/AVV, SCC commitment, EU-only processing option, or explicit statement that API/customer data is not used for model training was found in the provider's primary-source materials."
+  "notes": "D.Run is operated by Shanghai DaoCloud Network Technology Co., Ltd. in China and publishes a privacy policy, service agreement, security whitepaper, and a limited third-party sharing/SDK list. No public DPA/AVV, SCC commitment, EU-only processing option, or explicit statement that API/customer data is not used for model training was found in the provider's primary-source materials.",
+  "translations": {
+    "de": {
+      "notes": "D.Run wird von Shanghai DaoCloud Network Technology Co., Ltd. in China betrieben und veröffentlicht eine Datenschutzrichtlinie, einen Servicevertrag, ein Security Whitepaper sowie eine eingeschränkte Liste zur Weitergabe an Dritte/zu SDKs. In den Primärquellen des Anbieters wurden kein öffentlich zugänglicher Auftragsverarbeitungsvertrag (AVV), keine Zusage zu Standardvertragsklauseln (SCC), keine Option für eine ausschließlich auf die EU beschränkte Verarbeitung und keine ausdrückliche Erklärung gefunden, dass API-/Kundendaten nicht für das Modelltraining verwendet werden.",
+      "dataResidency": {
+        "euRegionDetails": "Die Datenschutzrichtlinie besagt, dass personenbezogene Daten außerhalb des Landes/der Region des Nutzers übertragen, gespeichert und verarbeitet werden können, und dass die Plattform Geschäftsdaten in dem vom Kunden ausgewählten Rechenzentrum speichert. In den Primärquellen des Anbieters wurde keine EU-Region und keine Option für eine ausschließlich auf die EU beschränkte Verarbeitung gefunden. Das Security Whitepaper besagt zudem, dass Sicherungskopien in mehreren geografischen Regionen gespeichert werden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Personenbezogene Daten werden nur für den Zeitraum gespeichert, der zur Erfüllung der in der Datenschutzrichtlinie genannten Zwecke erforderlich ist, und anschließend nach Maßgabe des Gesetzes gelöscht oder anonymisiert. Wenn eine Löschung technisch schwierig ist oder Daten in Sicherungskopien verbleiben, wird die Verarbeitung mit Ausnahme der Speicherung und erforderlicher Sicherheitsmaßnahmen eingestellt, und Sicherungskopien werden gelöscht, sobald die Backups aktualisiert werden.",
+        "details": "Die Datenschutzrichtlinie besagt, dass der Anbieter API-Aufrufprotokolle, GPU-/Ressourcenmetriken und Daten aus Modellinteraktionen einschließlich hochgeladener Texte, Bilder, Spracheingaben, Datensätze und Modellausgaben zum Zweck der Servicebereitstellung, des Betriebs/der Statistik, der Sicherheitsanalyse, der Leistungsoptimierung, der Abrechnung und des Servicebetriebs erhebt. Ferner wird ausgeführt, dass d.run bei Geschäftsdaten des Kunden, sofern nicht gesetzlich etwas anderes vorgeschrieben ist oder anderweitig vereinbart wurde, ausschließlich als technischer Dienstleister handelt, der solche Daten innerhalb der Weisungen des Kunden verarbeitet, und Geschäftsdaten in dem vom Kunden ausgewählten Rechenzentrum speichert."
+      }
+    }
+  }
 }

@@ -50,5 +50,17 @@
     "https://dev.opencode.ai/docs/zen",
     "https://anoma.ly/"
   ],
-  "notes": "OpenCode Go provides API access via OpenCode and documents hosting across the US, EU, and Singapore, but does not promise EU-only inference routing. No public DPA, sub-processor list, SCC statement, or security certifications were found on primary sources reviewed."
+  "notes": "OpenCode Go provides API access via OpenCode and documents hosting across the US, EU, and Singapore, but does not promise EU-only inference routing. No public DPA, sub-processor list, SCC statement, or security certifications were found on primary sources reviewed.",
+  "translations": {
+    "de": {
+      "notes": "OpenCode Go bietet API-Zugriff über OpenCode und dokumentiert das Hosting in den USA, der EU und Singapur, sagt jedoch keine ausschließlich auf die EU beschränkte Inferenz-Routing zu. In den überprüften Primärquellen wurden kein öffentlich zugänglicher Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Erklärung zu Standardvertragsklauseln (SCC) und keine Sicherheitszertifizierungen gefunden.",
+      "dataResidency": {
+        "euRegionDetails": "OpenCode Go gibt an, dass seine Modelle für einen stabilen globalen Zugriff in den USA, der EU und Singapur gehostet werden. Es wird nicht angegeben, dass ein ausschließlich auf die EU beschränktes Routing oder eine Verarbeitung für Go gewährleistet ist."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Die Datenschutzerklärung besagt, dass OpenCode personenbezogene Daten so lange speichert, wie dies zur Erbringung der Dienste oder zur Erfüllung geschäftlicher/kommerzieller Zwecke erforderlich ist, und länger, sofern dies zur Erfüllung gesetzlicher Verpflichtungen, zur Beilegung von Streitigkeiten oder zum Einzug von Gebühren erforderlich ist. Spezifisch für OpenCode Go besagt die Go-Dokumentation, dass Anbieter einer Zero-Retention-Policy folgen und Daten nicht für das Modelltraining verwenden.",
+        "details": "Die Dokumentation zu OpenCode Go besagt, dass Anbieter einer Zero-Retention-Policy folgen und Kundendaten nicht für das Modelltraining verwenden. Die allgemeine Datenschutzerklärung besagt außerdem, dass Nutzer freiwillig Informationen bereitstellen können, die in an die KI übermittelten Konversationen oder Prompts enthalten sind."
+      }
+    }
+  }
 }

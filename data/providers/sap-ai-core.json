@@ -56,5 +56,20 @@
     "https://www.sap.com/about/trust-center/subprocessors.html",
     "https://help.sap.com/docs/sap-ai-core"
   ],
-  "notes": "SAP is headquartered in Walldorf, Germany — an EU member state. SCCs are used for transfers to US hyperscalers (AWS/Azure/GCP) that underpin EU region infrastructure. SAP AI Core is a PaaS layer on top of AWS/Azure/GCP, not own-infrastructure. ISO 27701 (privacy information management) is a strong differentiator. BSI C5 attestation covers SAP BTP and SAP S/4HANA Cloud. Most extensive certification portfolio of all providers in this directory. Pricing via SAP BTP credits/CPEA — enterprise licensing only."
+  "notes": "SAP is headquartered in Walldorf, Germany — an EU member state. SCCs are used for transfers to US hyperscalers (AWS/Azure/GCP) that underpin EU region infrastructure. SAP AI Core is a PaaS layer on top of AWS/Azure/GCP, not own-infrastructure. ISO 27701 (privacy information management) is a strong differentiator. BSI C5 attestation covers SAP BTP and SAP S/4HANA Cloud. Most extensive certification portfolio of all providers in this directory. Pricing via SAP BTP credits/CPEA — enterprise licensing only.",
+  "translations": {
+    "de": {
+      "notes": "SAP hat seinen Hauptsitz in Walldorf, Deutschland — einem EU-Mitgliedstaat. Für Übermittlungen an US-Hyperscaler (AWS/Azure/GCP), die der Infrastruktur in der EU-Region zugrunde liegen, werden Standardvertragsklauseln (SCC) verwendet. SAP AI Core ist eine PaaS-Schicht auf AWS/Azure/GCP und keine eigene Infrastruktur. ISO 27701 (Privacy Information Management) ist ein starkes Unterscheidungsmerkmal. Die BSI C5-Testierung deckt SAP BTP und SAP S/4HANA Cloud ab. Das umfangreichste Zertifizierungsportfolio aller Anbieter in diesem Verzeichnis. Preisgestaltung über SAP BTP-Credits/CPEA — ausschließlich Enterprise-Lizenzierung.",
+      "dataResidency": {
+        "euRegionDetails": "Verfügbare EU-Regionen: eu10/eu11 (AWS Frankfurt, Deutschland), eu20 (Azure Niederlande), eu30 (GCP Frankfurt). Der Kunde wählt die Subaccount-Region aus. Für eine strikte Datenhaltung in der EU sollten eu10/eu11/eu20/eu30 ausgewählt werden. Hinweis: Die zugrunde liegende IaaS wird von AWS/Azure/GCP (US-Unternehmen) mit Rechenzentren in der EU betrieben."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Kundendaten in SAP AI Core liegen in der Verantwortung des Kunden. Modelleingaben/-ausgaben werden gemäß den dienstspezifischen Bedingungen verarbeitet. Die Dokumentation von SAP's Generative AI Hub stellt ausdrücklich fest, dass Kundendaten nicht zum Training von Foundation Models verwendet werden.",
+        "details": "SAP handelt als Auftragsverarbeiter. Die Aufbewahrung richtet sich nach den SAP BTP-Servicebedingungen und der Kundekonfiguration."
+      },
+      "euAiAct": {
+        "details": "SAP befasst sich aktiv mit der Einhaltung des EU AI Act. SAP-AI-Lösungen unterliegen dem EU AI Act in der Rolle als Anbieter. SAP hat über das Trust Center Erklärungen zur Bereitschaft für den EU AI Act veröffentlicht. SAP-ABAP-1 und SAP-RPT-1 (SAPs eigene Foundation Models) unterliegen den Pflichten eines Anbieters."
+      }
+    }
+  }
 }

@@ -48,5 +48,17 @@
     "https://dinference.com/terms-of-service",
     "https://dinference.com/pricing"
   ],
-  "notes": "Primary-source materials show a US-based provider with US-hosted inference and no published EU-only processing option, DPA, or public sub-processor list. The privacy policy claims security measures 'comply with SOC 2 and ISO 27001 standards,' but no certification evidence or certificate page was found, so certifications are left empty."
+  "notes": "Primary-source materials show a US-based provider with US-hosted inference and no published EU-only processing option, DPA, or public sub-processor list. The privacy policy claims security measures 'comply with SOC 2 and ISO 27001 standards,' but no certification evidence or certificate page was found, so certifications are left empty.",
+  "translations": {
+    "de": {
+      "notes": "Primärquellen belegen, dass es sich um einen in den USA ansässigen Anbieter mit in den USA gehosteter Inferenz handelt; eine veröffentlichte Option für eine ausschließlich EU-basierte Verarbeitung, ein Auftragsverarbeitungsvertrag (AVV) oder eine öffentliche Liste von Unterauftragsverarbeitern wurden nicht gefunden. Die Datenschutzerklärung gibt an, dass Sicherheitsmaßnahmen den „SOC 2 and ISO 27001 standards“ entsprechen, jedoch wurden weder Nachweise über Zertifizierungen noch eine Zertifikatsseite gefunden, sodass Zertifizierungen leer gelassen werden.",
+      "dataResidency": {
+        "euRegionDetails": "DInference beschreibt sich selbst als in den USA gehostet, führt die Regionen US-West und US-East auf, nennt „US-Based Nodes“ und erklärt, dass Daten in die Vereinigten Staaten übermittelt, dort gespeichert und verarbeitet werden können. Eine Option für eine ausschließlich EU-basierte Verarbeitung wurde nicht gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Es wird angegeben, dass Prompts/Completions standardmäßig nicht gespeichert werden und Eingaben/Ausgaben für eine begrenzte Zeit zum Zwecke des Debuggings gespeichert werden können. Personenbezogene Informationen werden so lange aufbewahrt, wie die Dienste genutzt werden, soweit gesetzlich erforderlich oder anderweitig mitgeteilt; nach Löschung des Kontos werden personenbezogene Informationen nach 30 Tagen entfernt.",
+        "details": "Datenschutzerklärung und Nutzungsbedingungen geben an, dass API-Übermittlungen nicht gespeichert, verkauft oder für Training verwendet werden, es sei denn, der Kunde erteilt ausdrücklich seine Einwilligung oder fordert Modelltraining/Fine-Tuning ausdrücklich an. Die Datenschutzerklärung besagt außerdem, dass bestimmte Daten zur Modellnutzung mit den entsprechenden API-Endpunkten geteilt werden können."
+      }
+    }
+  }
 }

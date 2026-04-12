@@ -58,5 +58,17 @@
     "https://www.cerebras.ai/news/meta-unleashes-llama-api-running-18x-faster-than-openai-cerebras-partnership-delivers-2-600",
     "https://trust.cerebras.ai/"
   ],
-  "notes": "Cerebras provides a public privacy policy and a trust center that indicates a DPA and subprocessor information are available, but the reviewed public pages did not expose enough primary-source detail to confirm SCC terms, EU-only routing guarantees, or whether customer API data is used for model training. Their current public posture suggests predominantly North American inference infrastructure, with a Europe region announced but no verified customer-selectable EU-only processing commitment found."
+  "notes": "Cerebras provides a public privacy policy and a trust center that indicates a DPA and subprocessor information are available, but the reviewed public pages did not expose enough primary-source detail to confirm SCC terms, EU-only routing guarantees, or whether customer API data is used for model training. Their current public posture suggests predominantly North American inference infrastructure, with a Europe region announced but no verified customer-selectable EU-only processing commitment found.",
+  "translations": {
+    "de": {
+      "notes": "Cerebras stellt eine öffentliche Datenschutzerklärung und ein Trust Center bereit, aus denen hervorgeht, dass ein Auftragsverarbeitungsvertrag (AVV) und Informationen zu Unterauftragsverarbeitern verfügbar sind; die geprüften öffentlich zugänglichen Seiten enthielten jedoch nicht genügend Details aus Primärquellen, um Bedingungen zu Standardvertragsklauseln (SCC), Garantien für ein ausschließliches EU-Routing oder die Frage zu bestätigen, ob API-Kundendaten für das Modelltraining verwendet werden. Die derzeitige öffentliche Positionierung deutet auf eine überwiegend nordamerikanische Inferenz-Infrastruktur hin, wobei eine Region in Europa angekündigt wurde, jedoch keine verifizierte, kundenseitig auswählbare Verpflichtung zu einer ausschließlich in der EU erfolgenden Verarbeitung festgestellt werden konnte.",
+      "dataResidency": {
+        "euRegionDetails": "Cerebras kündigte Inferenz-Rechenzentren in den Vereinigten Staaten und Kanada an und kündigte eine für Q4 2025 geplante Region in Europa an. Die geprüften Materialien aus Primärquellen besagen nicht, dass API-Kunden ein ausschließliches Routing oder eine ausschließlich in der EU erfolgende Verarbeitung durchsetzen können. Cerebras erklärte außerdem im April 2025, dass sich zu diesem Zeitpunkt sämtliche Rechenzentren für die Bereitstellung von Inferenz in Nordamerika befanden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Cerebras gibt an, Eingaben und Ausgaben im Zusammenhang mit seinen Trainings-, Inferenz- und Chatbot-Diensten nicht zu speichern, und Protokolle im Zusammenhang mit diesen Diensten zu löschen, sobald sie für die Erbringung der Dienste nicht mehr erforderlich sind.",
+        "details": "Die Dokumentation zum Prompt Caching besagt, dass die Caches ZDR-konform sind, flüchtig im Speicher verbleiben, niemals persistent gespeichert werden und in Key-Value-Stores gespeichert sind, die sich im selben Rechenzentrum wie die bereitstellende Modellinstanz befinden, mit einer garantierten TTL von 5 Minuten und bis zu 1 Stunde abhängig von der Auslastung."
+      }
+    }
+  }
 }

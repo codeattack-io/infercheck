@@ -44,5 +44,10 @@
     "https://voltagent.dev/models-docs/providers/submodel/",
     "https://status.submodel.ai/"
   ],
-  "notes": "Very little primary-source compliance information could be located for Submodel from the provided documentation site or related official properties. No primary-source privacy policy, DPA/AVV, sub-processor list, data residency statement, retention policy, or security certification evidence was found, so those fields are left null or marked unavailable."
+  "notes": "Very little primary-source compliance information could be located for Submodel from the provided documentation site or related official properties. No primary-source privacy policy, DPA/AVV, sub-processor list, data residency statement, retention policy, or security certification evidence was found, so those fields are left null or marked unavailable.",
+  "translations": {
+    "de": {
+      "notes": "In den bereitgestellten Dokumentationen oder zugehörigen offiziellen Quellen konnten für Submodel nur sehr wenige Compliance-Informationen aus Primärquellen ermittelt werden. Es wurden weder eine Datenschutzrichtlinie aus Primärquelle noch ein Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Erklärung zur Datenhaltung, keine Aufbewahrungsrichtlinie und keine Nachweise über Sicherheitszertifizierungen gefunden; daher bleiben diese Felder null oder sind als nicht verfügbar gekennzeichnet."
+    }
+  }
 }

@@ -50,5 +50,17 @@
     "https://moark.com/docs/appendix/privacy",
     "https://moark.com/solutions/serverless"
   ],
-  "notes": "Primary-source materials identify Moark as a China-based provider operated by Shenzhen Aosi Yanggong Intelligent Technology Co., Ltd. The public privacy policy states the company and its servers are in China and includes a limited third-party provider list, but no public DPA, SCC commitment, EU-only processing option, training-on-customer-data statement, or security certification evidence was found."
+  "notes": "Primary-source materials identify Moark as a China-based provider operated by Shenzhen Aosi Yanggong Intelligent Technology Co., Ltd. The public privacy policy states the company and its servers are in China and includes a limited third-party provider list, but no public DPA, SCC commitment, EU-only processing option, training-on-customer-data statement, or security certification evidence was found.",
+  "translations": {
+    "de": {
+      "notes": "Primärquellen identifizieren Moark als einen in China ansässigen Anbieter, der von Shenzhen Aosi Yanggong Intelligent Technology Co., Ltd. betrieben wird. Die öffentliche Datenschutzrichtlinie erklärt, dass sich das Unternehmen und seine Server in China befinden, und enthält eine begrenzte Liste von Drittanbietern; es wurden jedoch weder ein öffentlicher Auftragsverarbeitungsvertrag (AVV), eine Verpflichtung zu Standardvertragsklauseln (SCC), eine Verarbeitungsoption ausschließlich in der EU, eine Erklärung zur Nutzung von Kundendaten für das Training noch Nachweise für Sicherheitszertifizierungen gefunden.",
+      "dataResidency": {
+        "euRegionDetails": "Moark erklärt, dass sich das Unternehmen und seine Server in der Volksrepublik China befinden und dass in China erhobene und erzeugte personenbezogene Informationen im Inland in China gespeichert werden. In der Primärdokumentation wurde weder eine EU-Region noch eine Verarbeitungsoption ausschließlich in der EU gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Die Datenschutzrichtlinie besagt, dass Daten nur für die kürzest notwendige Zeit zur Erreichung der angegebenen Zwecke gespeichert werden, vorbehaltlich gesetzlicher/regulatorischer Ausnahmen, und innerhalb eines angemessenen Zeitraums gelöscht oder anonymisiert werden, wenn der Dienst nicht mehr betrieben wird. Sie besagt ferner, dass Informationen so lange aufbewahrt werden, wie dies zur Erbringung von Diensten, zur Einhaltung gesetzlicher Vorgaben, zur Aufrechterhaltung der Sicherheit, zur Verhinderung von Vorfällen und zur Wahrung berechtigter Interessen erforderlich ist; Nutzer können die Löschung per E-Mail beantragen.",
+        "details": "Die Datenschutzrichtlinie erlaubt die Nutzung erhobener Informationen zur Erbringung von Diensten, zur Personalisierung von Funktionen, zur Kommunikation mit Nutzern, zur Verbesserung von Diensten, zur Gewährleistung der Sicherheit, zur Durchführung von Analysen oder Forschung, zur Durchsetzung der Bedingungen und zur Einhaltung gesetzlicher Vorgaben. Sie besagt außerdem, dass anonymisierte Informationen zur Verbesserung von Diensten und für andere Zwecke, einschließlich zielgerichteter Werbung, verwendet oder gegenüber Dritten offengelegt werden dürfen."
+      }
+    }
+  }
 }

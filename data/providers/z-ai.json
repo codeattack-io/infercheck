@@ -49,5 +49,17 @@
     "https://z.ai/company",
     "https://docs.z.ai/legal-agreement/terms-of-use"
   ],
-  "notes": "Z.AI’s official documentation identifies a Singapore entity and says services and API customer data are generally processed in Singapore. A DPA for API Services is embedded in the privacy-policy page and appears incorporated into the API terms, but no public sub-processor list, SCC text, security certifications, or EU-only processing commitment were found in the primary sources reviewed."
+  "notes": "Z.AI’s official documentation identifies a Singapore entity and says services and API customer data are generally processed in Singapore. A DPA for API Services is embedded in the privacy-policy page and appears incorporated into the API terms, but no public sub-processor list, SCC text, security certifications, or EU-only processing commitment were found in the primary sources reviewed.",
+  "translations": {
+    "de": {
+      "notes": "Die offizielle Dokumentation von Z.AI nennt eine in Singapur ansässige Einheit und führt aus, dass Dienste und API-Kundendaten in der Regel in Singapur verarbeitet werden. Ein Auftragsverarbeitungsvertrag (AVV) für API Services ist in die Seite der Datenschutzrichtlinie eingebettet und scheint in die API-Bedingungen einbezogen zu sein; in den geprüften primären Quellen wurden jedoch weder eine öffentliche Liste von Unterauftragsverarbeitern noch der Wortlaut der Standardvertragsklauseln (SCC), Sicherheitszertifizierungen oder eine Verpflichtung zur ausschließlich in der EU erfolgenden Verarbeitung gefunden.",
+      "dataResidency": {
+        "euRegionDetails": "Z.AI gibt an, Dienste in der Regel von Singapur aus bereitzustellen, und seine Konzerngesellschaften sowie benannten Dienstleister befinden sich typischerweise in Singapur. Der Auftragsverarbeitungsvertrag (AVV) besagt, dass Kundendaten in der Regel in Singapur verarbeitet werden, und in der geprüften offiziellen Dokumentation wurde keine Option für eine ausschließlich in der EU erfolgende Verarbeitung gefunden."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Für API Services besagt der eingebettete Auftragsverarbeitungsvertrag (AVV), dass das Unternehmen keine Inhalte speichert, die Kunden oder Endnutzer bei der Nutzung der Dienste bereitstellen oder erzeugen; solche Inhalte werden in Echtzeit verarbeitet und nicht auf den Servern des Unternehmens gespeichert. Für allgemeine Konto- bzw. personenbezogene Daten besagt die Datenschutzrichtlinie, dass Daten so lange aufbewahrt werden, wie es für die Erbringung der Dienste erforderlich ist, einschließlich der Dauer des Bestehens eines Kontos, und anschließend gelöscht, vernichtet, entfernt oder anonymisiert werden, wenn sie nicht mehr erforderlich sind.",
+        "details": "Der offizielle API-Auftragsverarbeitungsvertrag (AVV) besagt, dass das Unternehmen keine von Kunden/Endnutzern für den API-Dienst bereitgestellten oder durch diesen erzeugten Inhalte speichert und diese ausschließlich in Echtzeit verarbeitet. In den geprüften primären Quellen wurde über die Aussage zur Nicht-Speicherung hinaus keine ausdrückliche Erklärung dazu gefunden, ob API-Kundendaten für das Modelltraining verwendet werden oder nicht."
+      }
+    }
+  }
 }

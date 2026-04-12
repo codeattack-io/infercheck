@@ -67,5 +67,20 @@
     "https://www.microsoft.com/en-us/trust-center/privacy/european-data-boundary-eudb",
     "https://azure.microsoft.com/en-us/explore/global-infrastructure/geographies/"
   ],
-  "notes": "Azure OpenAI is now part of Microsoft Azure AI Foundry. Strongest EU AI Act compliance posture of the three cloud platforms — Microsoft has a dedicated Trust Center page and published governance framework. Unique certifications: C5 (German BSI) and HDS (French healthcare data hosting) — neither AWS nor Google hold HDS for their AI products. EU Data Boundary product provides additional contractual guarantee. EEA abuse monitoring uses EEA-located human reviewers."
+  "notes": "Azure OpenAI is now part of Microsoft Azure AI Foundry. Strongest EU AI Act compliance posture of the three cloud platforms — Microsoft has a dedicated Trust Center page and published governance framework. Unique certifications: C5 (German BSI) and HDS (French healthcare data hosting) — neither AWS nor Google hold HDS for their AI products. EU Data Boundary product provides additional contractual guarantee. EEA abuse monitoring uses EEA-located human reviewers.",
+  "translations": {
+    "de": {
+      "notes": "Azure OpenAI ist nun Teil von Microsoft Azure AI Foundry. Stärkste Compliance-Positionierung im Hinblick auf den EU AI Act unter den drei Cloud-Plattformen — Microsoft verfügt über eine eigene Trust Center-Seite und ein veröffentlichtes Governance-Framework. Einzigartige Zertifizierungen: C5 (deutsches BSI) und HDS (französisches Hosting von Gesundheitsdaten) — weder AWS noch Google verfügen für ihre KI-Produkte über HDS. Das Produkt EU Data Boundary bietet eine zusätzliche vertragliche Garantie. Die Missbrauchsüberwachung im EWR nutzt im EWR ansässige menschliche Prüfer.",
+      "dataResidency": {
+        "euRegionDetails": "Zu den EU-Regionen gehören: Sweden Central, France Central, Germany West Central, Norway East, Poland Central, Italy North, Spain Central, Switzerland North, Switzerland West. DataZone EU-Bereitstellungen halten sämtliche Daten innerhalb der EU-Mitgliedstaaten. Das Produkt Microsoft EU Data Boundary bietet eine zusätzliche vertragliche Garantie dafür, dass sämtliche Kundendaten aus der EU innerhalb Europas verbleiben. Die im EWR bereitgestellte Missbrauchsüberwachung nutzt im EWR ansässige menschliche Prüfer."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Prompts und Completions werden nicht zum Training von Basismodellen verwendet und nicht an OpenAI oder andere Modellanbieter weitergegeben. Die Missbrauchsüberwachung kann markierte Prompts vorübergehend innerhalb der vom Kunden festgelegten Geografie speichern. Fine-Tuning-Daten werden bis zur Löschung durch den Kunden gespeichert.",
+        "details": "Kunden können eine modifizierte Missbrauchsüberwachung beantragen, um die menschliche Überprüfung zu deaktivieren. Globale Bereitstellungstypen können Daten außerhalb der festgelegten Geografie verarbeiten (nicht speichern)."
+      },
+      "euAiAct": {
+        "details": "Microsoft verfügt über spezielle Arbeitsgruppen zum EU AI Act, in denen Experten aus den Bereichen KI-Governance, Engineering, Recht und Public Policy zusammenwirken. Verbotene Praktiken wurden in die unternehmensweite Restricted Use Policy aufgenommen. Das Microsoft Trust Center verfügt über eine spezifische Compliance-Seite zum EU AI Act mit veröffentlichtem Governance-Framework."
+      }
+    }
+  }
 }

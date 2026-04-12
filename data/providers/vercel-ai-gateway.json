@@ -59,5 +59,20 @@
     "https://vercel.com/legal",
     "https://security.vercel.com"
   ],
-  "notes": "Vercel offers a public DPA, public trust center, public subprocessor disclosure, SCC-based transfer language, and Data Privacy Framework statements, but I found no primary-source guarantee of EU-only inference for AI Gateway. AI Gateway documents zero data retention and Enterprise-only no-training language; for non-Enterprise AI Gateway customers, I could not confirm a provider-specific default training position from primary sources, so those fields are left null."
+  "notes": "Vercel offers a public DPA, public trust center, public subprocessor disclosure, SCC-based transfer language, and Data Privacy Framework statements, but I found no primary-source guarantee of EU-only inference for AI Gateway. AI Gateway documents zero data retention and Enterprise-only no-training language; for non-Enterprise AI Gateway customers, I could not confirm a provider-specific default training position from primary sources, so those fields are left null.",
+  "translations": {
+    "de": {
+      "notes": "Vercel bietet einen öffentlichen Auftragsverarbeitungsvertrag (AVV), ein öffentliches Trust Center, eine öffentliche Offenlegung der Unterauftragsverarbeiter, auf Standardvertragsklauseln (SCC) basierende Formulierungen zu Übermittlungen sowie Erklärungen zum Data Privacy Framework an, jedoch wurde keine Primärquelle gefunden, die eine ausschließlich in der EU erfolgende Inferenz für AI Gateway garantiert. Für AI Gateway dokumentiert Vercel eine Datenspeicherung von null sowie Formulierungen zum Ausschluss des Trainings ausschließlich für Enterprise; für nicht zum Enterprise-Tarif gehörende AI-Gateway-Kunden konnte anhand von Primärquellen keine anbieterspezifische Standardposition zum Training bestätigt werden, daher bleiben diese Felder null.",
+      "dataResidency": {
+        "euRegionDetails": "Vercel gibt an, dass AI Gateway über seine verteilte Infrastruktur in mehreren AWS-Regionen betrieben wird und Anfragen an die nächstgelegene Vercel-Region weiterleitet. Vercel dokumentiert eine anfragebezogene Filterung im Sinne einer Datenspeicherung von null für bestimmte Upstream-Anbieter, jedoch wurde keine Primärquellen-Dokumentation gefunden, die eine ausschließlich in der EU erfolgende Verarbeitung für die Inferenz von AI Gateway garantiert. In der Datenschutzerklärung von Vercel heißt es außerdem, dass Informationen in den Vereinigten Staaten und anderen Rechtsordnungen, in denen das Unternehmen tätig ist, verarbeitet werden können."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Für AI Gateway ist eine Richtlinie zur Datenspeicherung von null dokumentiert: Prompts, Ausgaben und sensible Daten werden unmittelbar und dauerhaft gelöscht, nachdem Anfragen abgeschlossen sind. Unabhängig davon besagt die allgemeine Datenschutzerklärung von Vercel, dass personenbezogene Informationen für den zur Erfüllung rechtlicher und vertraglicher Verpflichtungen sowie sonstiger berechtigter Geschäftszwecke mindestens erforderlichen Zeitraum gespeichert werden, und der Auftragsverarbeitungsvertrag (AVV) besagt, dass Kundendaten nach Beendigung oder Ablauf innerhalb eines kaufmännisch angemessenen Zeitraums gelöscht werden, sofern keine gesetzliche Aufbewahrungspflicht besteht.",
+        "details": "In den AI Product Terms von Vercel wird ausdrücklich festgelegt, dass Vercel bei Enterprise-Abonnements für AI Gateway AI-Gateway-Kundeninhalte nicht zum Trainieren oder Verbessern der AI Products and Services verwendet. Es konnte keine Primärquelle gefunden werden, die die Standardposition zum Training speziell für nicht zum Enterprise-Tarif gehörende AI-Gateway-Kunden angibt; daher sind die Felder zum Training und zum Opt-out null."
+      },
+      "euAiAct": {
+        "details": "Die AI Product Terms von Vercel verpflichten Kunden zur Einhaltung der anwendbaren KI-Gesetze und -Vorschriften, und die Acceptable Use Policy verweist auf \"high risk\"-Bereiche im Sinne des EU AI Act. Es wurde keine Primärquelle gefunden, die für AI Gateway selbst die formale Einhaltung des EU AI Act beansprucht."
+      }
+    }
+  }
 }
