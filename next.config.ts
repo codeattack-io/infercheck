@@ -18,14 +18,15 @@ const nextConfig: NextConfig = {
 
 const withIntl = withNextIntl(nextConfig);
 
-// withSentryConfig wraps the final config to wire up the Sentry webpack plugin.
-// Source-map upload is disabled because we're using a self-hosted GlitchTip backend
-// (no Sentry auth token, no org/project slug needed).
+// withSentryConfig wires up the Sentry webpack plugin for source-map upload.
+// sentryUrl points at the self-hosted GlitchTip instance (Sentry-protocol compatible).
+// All three vars (authToken, org, project) must be set for upload to run;
+// when any is absent the plugin silently skips upload (safe for local dev).
 export default withSentryConfig(withIntl, {
-  // Disable source map upload — GlitchTip doesn't need Sentry's build-time upload.
-  sourcemaps: {
-    disable: true,
-  },
+  sentryUrl: process.env.SENTRY_URL,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
   // Suppress the Sentry CLI/webpack plugin build output.
   silent: true,
   // Disable Sentry telemetry sent back to sentry.io during builds.
