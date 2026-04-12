@@ -14,7 +14,7 @@
 
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
-import { eq, and, notInArray } from "drizzle-orm";
+import { eq, and, notInArray, sql } from "drizzle-orm";
 import * as schema from "@/db/schema";
 import {
   BedrockClient,
@@ -42,7 +42,7 @@ const OPENROUTER_PREFIX_TO_SLUG: Record<string, string> = {
   deepseek: "deepseek",
   "x-ai": "xai",
   perplexity: "perplexity",
-  amazon: "amazon-bedrock",
+  // amazon: removed — Bedrock adapter owns all amazon-bedrock rows via ListFoundationModels
   nvidia: "nvidia",
   moonshotai: "moonshot-ai",
   minimax: "minimax-minimax-io",
@@ -503,16 +503,16 @@ async function upsertModels(
       .onConflictDoUpdate({
         target: [schema.models.id, schema.models.providerSlug],
         set: {
-          displayName: schema.models.displayName,
-          modality: schema.models.modality,
-          contextWindow: schema.models.contextWindow,
-          inputPricePerMTokens: schema.models.inputPricePerMTokens,
-          outputPricePerMTokens: schema.models.outputPricePerMTokens,
-          tokensPerSecond: schema.models.tokensPerSecond,
-          syncSource: schema.models.syncSource,
-          isActive: schema.models.isActive,
-          isNativeModel: schema.models.isNativeModel,
-          lastSyncedAt: schema.models.lastSyncedAt,
+          displayName: sql`excluded.display_name`,
+          modality: sql`excluded.modality`,
+          contextWindow: sql`excluded.context_window`,
+          inputPricePerMTokens: sql`excluded.input_price_per_m_tokens`,
+          outputPricePerMTokens: sql`excluded.output_price_per_m_tokens`,
+          tokensPerSecond: sql`excluded.tokens_per_second`,
+          syncSource: sql`excluded.sync_source`,
+          isActive: sql`excluded.is_active`,
+          isNativeModel: sql`excluded.is_native_model`,
+          lastSyncedAt: sql`excluded.last_synced_at`,
         },
       });
     upserted += batch.length;
