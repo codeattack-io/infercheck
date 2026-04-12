@@ -84,18 +84,11 @@ jobs:
         run: bun run promote:prod --skip-migrate --yes
 
       # ── Step 3: Deploy to Vercel ─────────────────────────────────────────────
+      # Deploy source directly — Vercel builds on their servers where env vars
+      # (including sensitive ones like DATABASE_URL) are injected natively.
+      # Using --prebuilt + vercel build in CI breaks because vercel pull writes
+      # "***" for sensitive vars and the build runs outside Vercel infrastructure.
       - name: Install Vercel CLI
         run: bun install -g vercel@latest
-      - name: Pull env
-        run: vercel pull --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-      # Ensure the canonical prod DATABASE_URL from GitHub Secrets wins over
-      # whatever Vercel has stored in its dashboard (e.g. a Neon preview branch).
-      # vercel build reads .vercel/.env.production.local directly, so we patch it.
-      - name: Pin DATABASE_URL to prod
-        run: |
-          sed -i '/^DATABASE_URL=/d' .vercel/.env.production.local
-          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .vercel/.env.production.local
-      - name: Build
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy to Vercel
-        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}
