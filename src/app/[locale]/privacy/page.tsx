@@ -177,7 +177,28 @@ export default async function PrivacyPage({ params }: PageProps) {
           </p>
         </section>
 
-        {/* ── 7. Your rights ── */}
+        {/* ── 7. Error Tracking (GlitchTip) ── */}
+        <section className="mb-10">
+          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
+            {t("errorTrackingHeading")}
+          </h2>
+          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
+            {t.rich("errorTrackingText", {
+              link: (chunks) => (
+                <a
+                  href={`https://${chunks}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-link underline underline-offset-[3px] break-all"
+                >
+                  {chunks}
+                </a>
+              ),
+            })}
+          </p>
+        </section>
+
+        {/* ── 8. Your rights ── */}
         <section className="mb-10 bg-surface border border-border rounded-lg px-8 py-7">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("rightsHeading")}
@@ -206,7 +227,7 @@ export default async function PrivacyPage({ params }: PageProps) {
           </p>
         </section>
 
-        {/* ── 8. Cookies ── */}
+        {/* ── 9. Cookies ── */}
         <section className="mb-10">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("cookiesHeading")}
@@ -216,7 +237,7 @@ export default async function PrivacyPage({ params }: PageProps) {
           </p>
         </section>
 
-        {/* ── 9. Changes ── */}
+        {/* ── 10. Changes ── */}
         <section className="mb-12">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("changesHeading")}

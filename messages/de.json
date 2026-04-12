@@ -334,7 +334,9 @@
     "databaseText": "Der Modellkatalog, der die Suchfunktion dieses Verzeichnisses antreibt, ist in einer PostgreSQL-Datenbank des Anbieters Neon Inc. gespeichert. Die Datenbank befindet sich in der AWS-Region eu-central-1 (Frankfurt am Main, Deutschland). Die Datenbank enthält ausschließlich öffentlich verfügbare Informationen über KI-Anbieter und Modelle – keine Nutzerdaten, Konten oder personenbezogenen Daten von Besuchern. Neon ist als Auftragsverarbeiter im Rahmen eines AVV tätig. Weitere Informationen unter <link>neon.tech/privacy</link>.",
     "githubHeading": "6. GitHub (Issue-Tracking)",
     "githubText": "Diese Website verlinkt auf GitHub für die Einreichung von Änderungsanfragen und Datenkorrekturen. Wenn Sie ein GitHub-Issue öffnen, interagieren Sie direkt mit der Plattform von GitHub, Inc. (88 Colin P Kelly Jr St, San Francisco, CA 94107, USA). GitHub verarbeitet Daten gemäß seiner eigenen Datenschutzrichtlinie. Die Einreichung eines Issues ist vollständig freiwillig. Wir nutzen GitHub-Issues zur transparenten und nachvollziehbaren Pflege der Verzeichnisdaten. Weitere Informationen unter <link>docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement</link>.",
-    "rightsHeading": "7. Ihre Rechte",
+    "errorTrackingHeading": "7. Fehler-Monitoring (GlitchTip)",
+    "errorTrackingText": "Diese Website verwendet GlitchTip, ein Open-Source-Fehlerüberwachungs-Tool, zur Erfassung von Anwendungsfehlern und Ausnahmen. GlitchTip wird selbst gehostet auf einem Hetzner-VPS in Frankfurt am Main (Deutschland, EU) – derselben Infrastruktur, die wir für unsere Analyse-Tools einsetzen. Fehlerberichte können technische Informationen wie Browsertyp, Betriebssystem, Seiten-URL und einen Stack-Trace enthalten. Diese Daten werden ausschließlich zur Identifikation und Behebung von Softwarefehlern verwendet und nie an Dritte weitergegeben. Rechtsgrundlage ist unser berechtigtes Interesse an der Zuverlässigkeit und Sicherheit der Website (Art. 6 Abs. 1 lit. f DSGVO). Weitere Informationen unter <link>glitchtip.com</link>.",
+    "rightsHeading": "8. Ihre Rechte",
     "rightsText": "Sie haben nach der DSGVO folgende Rechte bezüglich Ihrer personenbezogenen Daten:",
     "rightsList": [
       "Auskunftsrecht (Art. 15 DSGVO)",
@@ -347,9 +349,9 @@
     "rightsContact": "Zur Ausübung dieser Rechte wenden Sie sich bitte an carlo@codeattack.io. Sie haben außerdem das Recht, sich bei einer Aufsichtsbehörde zu beschweren. Die zuständige Behörde für Köln ist:",
     "supervisoryAuthority": "Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW), Postfach 20 04 44, 40102 Düsseldorf",
     "supervisoryLink": "ldi.nrw.de",
-    "cookiesHeading": "8. Cookies",
+    "cookiesHeading": "9. Cookies",
     "cookiesText": "Diese Website verwendet keine Cookies für Tracking oder Werbung. Ein Session-Cookie kann von der Hosting-Infrastruktur (Vercel) ausschließlich für technische Routing-Zwecke gesetzt werden. Es werden keine dauerhaften Tracking-Cookies gesetzt.",
-    "changesHeading": "9. Änderungen dieser Datenschutzerklärung",
+    "changesHeading": "10. Änderungen dieser Datenschutzerklärung",
     "changesText": "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Die jeweils aktuelle Version ist stets unter dieser URL verfügbar. Wesentliche Änderungen werden durch eine Aktualisierung des obigen Datums kenntlich gemacht.",
     "backLink": "← Zurück"
   },

@@ -19,7 +19,9 @@
     "research:providers": "bun run scripts/research-providers.ts --all",
     "research:provider": "bun run scripts/research-providers.ts --provider",
     "translate:providers": "bun run scripts/translate-providers.ts --all",
-    "translate:provider": "bun run scripts/translate-providers.ts --provider"
+    "translate:provider": "bun run scripts/translate-providers.ts --provider",
+    "promote:prod": "bun run scripts/promote-to-prod.ts",
+    "promote:prod:dry": "bun run scripts/promote-to-prod.ts --dry-run"
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.52",

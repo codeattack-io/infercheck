@@ -334,7 +334,9 @@
     "databaseText": "The model catalog powering this directory's search functionality is stored in a PostgreSQL database provided by Neon Inc. The database is located in the AWS eu-central-1 region (Frankfurt, Germany). The database stores only publicly available information about AI providers and models — no user data, accounts, or personal data of visitors. Neon acts as a data processor under a Data Processing Agreement. For more information see <link>neon.tech/privacy</link>.",
     "githubHeading": "6. GitHub (Issue Tracking)",
     "githubText": "This website links to GitHub for submitting change requests and data corrections. When you open a GitHub issue, you interact directly with GitHub's platform (GitHub, Inc., 88 Colin P Kelly Jr St, San Francisco, CA 94107, USA). GitHub processes data according to their own privacy policy. Submitting an issue is entirely voluntary. We use GitHub issues to maintain accuracy of directory data in a transparent, auditable way. See <link>docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement</link> for GitHub's privacy practices.",
-    "rightsHeading": "7. Your Rights",
+    "errorTrackingHeading": "7. Error Tracking (GlitchTip)",
+    "errorTrackingText": "This website uses GlitchTip, an open-source error monitoring tool, to capture application errors and exceptions. GlitchTip is self-hosted on a Hetzner VPS in Frankfurt, Germany (EU) — the same infrastructure used for our analytics. Error reports may include technical information such as browser type, operating system, page URL, and a stack trace. This data is used solely to identify and fix software defects and is never shared with third parties. The legal basis is our legitimate interest in maintaining the reliability and security of the website (Art. 6(1)(f) GDPR). For more information see <link>glitchtip.com</link>.",
+    "rightsHeading": "8. Your Rights",
     "rightsText": "Under the GDPR, you have the following rights regarding your personal data:",
     "rightsList": [
       "Right of access (Art. 15 GDPR)",
@@ -347,9 +349,9 @@
     "rightsContact": "To exercise these rights, contact us at carlo@codeattack.io. You also have the right to lodge a complaint with a supervisory authority. The competent authority for Cologne is:",
     "supervisoryAuthority": "Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen (LDI NRW), Postfach 20 04 44, 40102 Düsseldorf, Germany",
     "supervisoryLink": "ldi.nrw.de",
-    "cookiesHeading": "8. Cookies",
+    "cookiesHeading": "9. Cookies",
     "cookiesText": "This website does not use cookies for tracking or advertising. A session cookie may be set by the hosting infrastructure (Vercel) for technical routing purposes only. No persistent tracking cookies are set.",
-    "changesHeading": "9. Changes to this Policy",
+    "changesHeading": "10. Changes to this Policy",
     "changesText": "We may update this privacy policy from time to time. The current version is always available at this URL. Material changes will be reflected in the \"last updated\" date above.",
     "backLink": "← Back"
   },
