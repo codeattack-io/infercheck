@@ -157,14 +157,17 @@ if (!skipData) {
     checkTool("pg_restore");
   }
 
-  // Use custom format (-Fc) for streaming pipe support and compression
-  // --data-only: skip DDL — schema already handled by migrations above
-  // --no-owner / --no-privileges: Neon may have different role names
+  // Use custom format (-Fc) for pipe + compression
+  // --data-only: skip DDL — schema already handled by migrations
+  // --no-owner / --no-privileges: Neon role names differ across projects
   // --disable-triggers: avoid FK constraint errors during restore order
+  // --truncate: clear existing rows before inserting (replaces --clean, which
+  //             is incompatible with --data-only)
+  // pg_dump version must match server major version (17); see workflow for CI pin
 
   run("Dumping dev DB and restoring into prod DB (data-only)", "sh", [
     "-c",
-    `pg_dump --data-only --no-owner --no-privileges --disable-triggers -Fc "${devUrl}" | pg_restore --data-only --no-owner --no-privileges --disable-triggers --clean --if-exists -d "${prodUrl}"`,
+    `pg_dump --data-only --no-owner --no-privileges --disable-triggers -Fc "${devUrl}" | pg_restore --data-only --no-owner --no-privileges --disable-triggers --truncate -d "${prodUrl}"`,
   ]);
 
   console.log("✓ Data promoted to prod");

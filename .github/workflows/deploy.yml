@@ -49,11 +49,17 @@ jobs:
         with:
           bun-version: latest
 
-      # ── Install PostgreSQL client (pg_dump / pg_restore) ────────────────────
-      - name: Install PostgreSQL client
+      # ── Install PostgreSQL 17 client (pg_dump / pg_restore) ────────────────
+      # Must match Neon's server major version (17) or pg_dump will refuse to connect.
+      - name: Install PostgreSQL 17 client
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends postgresql-client
+          sudo apt-get install -y --no-install-recommends curl ca-certificates
+          sudo install -d /usr/share/postgresql-common/pgdg
+          sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc
+          sudo sh -c 'echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends postgresql-client-17
 
       # ── Install Node deps ────────────────────────────────────────────────────
       - name: Install dependencies
