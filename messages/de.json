@@ -240,6 +240,7 @@
   },
   "ModelRow": {
     "fullProviderProfile": "Vollständiges Anbieterprofil →",
+    "allProviders": "Alle Anbieter für dieses Modell →",
     "expandSections": {
       "compliance": "Compliance",
       "euRouting": "EU-Routing"

@@ -109,6 +109,7 @@ interface ModelRowProps {
 function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
   const { model, provider } = item;
   const [expanded, setExpanded] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const t = useTranslations("ModelRow");
 
   const tier = provider ? getComplianceTier(provider) : "unverified";
@@ -125,9 +126,15 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
         style={{
           opacity: dimmed ? 0.35 : 1,
           borderLeft: `2px solid ${tierColor}`,
-          backgroundColor: expanded ? "var(--color-surface-alt)" : "var(--color-surface)",
+          backgroundColor: expanded
+            ? "var(--color-surface-alt)"
+            : hovered
+              ? "color-mix(in srgb, var(--color-surface-alt) 60%, var(--color-surface))"
+              : "var(--color-surface)",
         }}
         onClick={() => setExpanded((e) => !e)}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
         aria-expanded={expanded}
       >
         {/* Model column */}
@@ -248,13 +255,24 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                 <span className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em]">
                   {providerName}
                 </span>
-                <Link
-                  href={`/provider/${model.providerSlug}`}
-                  onClick={(e) => e.stopPropagation()}
-                  className="font-body text-[0.8125rem] font-medium text-accent no-underline inline-flex items-center gap-1 px-[10px] py-1 border border-accent rounded bg-accent-subtle whitespace-nowrap"
-                >
-                  {t("fullProviderProfile")}
-                </Link>
+                <div className="flex items-center gap-2 flex-wrap">
+                  {model.canonicalModelId ? (
+                    <Link
+                      href={`/model/${model.canonicalModelId}`}
+                      onClick={(e) => e.stopPropagation()}
+                      className="font-body text-[0.8125rem] font-medium text-text-secondary no-underline inline-flex items-center gap-1 px-[10px] py-1 border border-border rounded bg-surface-alt whitespace-nowrap"
+                    >
+                      {t("allProviders")}
+                    </Link>
+                  ) : null}
+                  <Link
+                    href={`/provider/${model.providerSlug}`}
+                    onClick={(e) => e.stopPropagation()}
+                    className="font-body text-[0.8125rem] font-medium text-accent no-underline inline-flex items-center gap-1 px-[10px] py-1 border border-accent rounded bg-accent-subtle whitespace-nowrap"
+                  >
+                    {t("fullProviderProfile")}
+                  </Link>
+                </div>
               </div>
 
               {/* Compliance detail grid */}
