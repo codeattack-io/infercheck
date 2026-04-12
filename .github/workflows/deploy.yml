@@ -77,10 +77,11 @@ jobs:
       - name: Run database migrations (prod)
         run: bun run db:migrate
 
-      # ── Step 2: Promote dev data → prod ─────────────────────────────────────
+      # ── Step 2: Copy dev data → prod (data-only, schema already migrated) ───
       - name: Promote dev DB data to prod
         # --skip-migrate: migrations already applied in previous step
         # --yes: skip interactive confirmation prompt (CI has no stdin)
+        # Script uses pg_dump --data-only | psql — never touches prod DDL/schema
         run: bun run promote:prod --skip-migrate --yes
 
       # ── Step 3: Deploy to Vercel ─────────────────────────────────────────────

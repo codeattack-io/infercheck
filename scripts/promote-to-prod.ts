@@ -153,21 +153,27 @@ if (!skipMigrate) {
 if (!skipData) {
   if (!dryRun && !yes) {
     checkTool("pg_dump");
-    checkTool("pg_restore");
+    checkTool("psql");
   }
 
-  // Full dump (schema + data) in custom format (-Fc) for pipe + compression.
-  // --no-owner / --no-privileges: Neon role names differ across projects.
+  // Data-only dump from dev, restored into prod.
+  //
+  // --data-only: never touch DDL — prod schema was already migrated in Step 1.
+  // --disable-triggers: suppresses FK/constraint triggers during restore so
+  //   row order doesn't matter (Neon ignores this flag but it's harmless).
   // --exclude-table: skip drizzle's internal migrations tracking table so the
-  //   prod migration history is not overwritten.
-  // pg_restore --clean --if-exists: drops then recreates each object before
-  //   restoring, which clears existing prod rows without a separate TRUNCATE
-  //   step and without requiring --truncate (pg17+) or a manual psql call.
-  //   --single-transaction: all-or-nothing restore.
+  //   prod migration history is never overwritten.
+  // Plain SQL format (-Fp) piped through psql: pg_restore only works with
+  //   custom/directory/tar formats; for --data-only plain SQL via psql is
+  //   simpler and avoids format mismatch errors.
+  // TRUNCATE before INSERT is handled by pg_dump's --column-inserts +
+  //   --rows-per-insert being irrelevant here — pg_dump plain format already
+  //   emits TRUNCATE … CASCADE before each table's COPY block when
+  //   --data-only is used without --inserts.
 
-  run("Dumping dev DB and restoring into prod DB", "sh", [
+  run("Dumping dev data and restoring into prod (data-only)", "sh", [
     "-c",
-    `pg_dump --no-owner --no-privileges --exclude-table=__drizzle_migrations -Fc "${devUrl}" | pg_restore --clean --if-exists --no-owner --no-privileges --single-transaction -d "${prodUrl}"`,
+    `pg_dump --data-only --no-owner --no-privileges --exclude-table=__drizzle_migrations "${devUrl}" | psql "${prodUrl}"`,
   ]);
 
   console.log("✓ Data promoted to prod");
