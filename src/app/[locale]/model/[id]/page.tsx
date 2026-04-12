@@ -69,7 +69,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const decoded = decodeURIComponent(id);
 
   const rows = await getModelRows(decoded);
-  const name = rows[0]?.displayName ?? decoded;
+  const rawName =
+    (rows.find((r) => r.isNativeModel === true) ??
+     rows.find((r) => r.providerSlug !== "amazon-bedrock") ??
+     rows[0])?.displayName ?? decoded;
+  const name = rawName.replace(/^\w[\w\s]*:\s+/, "");
 
   return {
     title: `${name} — GDPR compliance by provider`,
@@ -112,7 +116,16 @@ export default async function ModelDetailPage({ params }: PageProps) {
 
   const providerMap = new Map<string, AnyProvider>(allProviders.map((p) => [p.slug, p]));
 
-  const modelName = modelRows[0].displayName;
+  // Prefer a non-gateway row's display name for the page heading so we get the
+  // upstream model name (e.g. "Claude Sonnet 4.6") rather than a provider-specific
+  // label like "EU Anthropic Claude Sonnet 4.6" (Bedrock) or "Anthropic: Claude
+  // Sonnet 4.6" (OpenRouter). Fall back to the first row if no better option exists.
+  const preferredRow =
+    modelRows.find((r) => r.isNativeModel === true) ??
+    modelRows.find((r) => r.providerSlug !== "amazon-bedrock") ??
+    modelRows[0];
+  // Strip the "Vendor: " prefix that OpenRouter injects (e.g. "Anthropic: Claude …").
+  const modelName = preferredRow.displayName.replace(/^\w[\w\s]*:\s+/, "");
 
   // JSON-LD structured data
   const jsonLd = {
