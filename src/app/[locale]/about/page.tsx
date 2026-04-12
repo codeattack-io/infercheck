@@ -73,10 +73,11 @@ export default async function AboutPage({ params }: PageProps) {
             {t("whoBuiltHeading")}
           </h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75] mb-4">
-            I&apos;m Carlo, a software developer based in{" "}
-            <strong className="text-heading font-semibold">Germany</strong>.
-            I work in enterprise IT and build SaaS products on the side — which means I operate
-            under GDPR daily, from both the engineering and compliance sides of the table.
+            {t.rich("whoBuiltPara1", {
+              strong: (chunks) => (
+                <strong className="text-heading font-semibold">{chunks}</strong>
+              ),
+            })}
           </p>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
             {t("whoBuiltPara2")}

@@ -48,7 +48,18 @@ export async function Footer() {
             >
               {t("nav.about")}
             </Link>
-            {/* Imprint and Privacy will be added here when those pages exist */}
+            <Link
+              href="/imprint"
+              className="font-body text-[0.8125rem] text-text-muted no-underline"
+            >
+              {t("nav.imprint")}
+            </Link>
+            <Link
+              href="/privacy"
+              className="font-body text-[0.8125rem] text-text-muted no-underline"
+            >
+              {t("nav.privacy")}
+            </Link>
             <a
               href={GITHUB_REPO}
               target="_blank"
