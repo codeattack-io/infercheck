@@ -16,7 +16,7 @@ import { Link } from "@/i18n/navigation";
 import { db } from "@/lib/db";
 import { models } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
-import { getAllProviders } from "@/lib/providers";
+import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import { getComplianceTier, isFullProvider } from "@/lib/compliance";
 import type { AnyProvider } from "@/lib/compliance";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
@@ -114,7 +114,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
     unverified: { label: t("tiers.unverified"), ...TIER_STYLE.unverified },
   };
 
-  const providerMap = new Map<string, AnyProvider>(allProviders.map((p) => [p.slug, p]));
+  const providerMap = new Map<string, AnyProvider>(allProviders.map((p) => [p.slug, getLocalizedProvider(p, locale)]));
 
   // Prefer a non-gateway row's display name for the page heading so we get the
   // upstream model name (e.g. "Claude Sonnet 4.6") rather than a provider-specific

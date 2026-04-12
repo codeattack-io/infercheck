@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { cache } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ProviderCard } from "@/components/ProviderCard";
-import { getAllProviders } from "@/lib/providers";
+import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import { getComplianceTier } from "@/lib/compliance";
 import type { AnyProvider, ComplianceTier } from "@/lib/compliance";
 import { db } from "@/lib/db";
@@ -90,6 +90,7 @@ export default async function ProvidersPage({ params }: PageProps) {
     Promise.resolve(getAllProviders()),
     getModelCountsByProvider(),
   ]);
+  const localizedProviders = allProviders.map((p) => getLocalizedProvider(p, locale));
   const t = await getTranslations("ProvidersPage");
 
   // Group by tier
@@ -97,7 +98,7 @@ export default async function ProvidersPage({ params }: PageProps) {
   for (const tier of TIER_ORDER) {
     grouped.set(tier, []);
   }
-  for (const p of allProviders) {
+  for (const p of localizedProviders) {
     const tier = getComplianceTier(p);
     grouped.get(tier)!.push(p);
   }

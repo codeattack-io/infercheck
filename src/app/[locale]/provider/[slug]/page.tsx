@@ -13,7 +13,7 @@ import { notFound } from "next/navigation";
 import { cache } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { getProvider, getAllProviders } from "@/lib/providers";
+import { getProvider, getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import { getModelsByProvider } from "@/lib/models";
 import { getComplianceTier, isFullProvider } from "@/lib/compliance";
 import type { ComplianceTier } from "@/lib/compliance";
@@ -100,9 +100,11 @@ export default async function ProviderProfilePage({ params }: PageProps) {
   // async-parallel: start model DB query immediately, while provider JSON is
   // read synchronously from the React.cache. Both complete in parallel.
   const modelsPromise = getModelsByProvider(slug);
-  const provider = getCachedProvider(slug);
+  const rawProvider = getCachedProvider(slug);
 
-  if (!provider) notFound();
+  if (!rawProvider) notFound();
+
+  const provider = getLocalizedProvider(rawProvider, locale);
 
   const t = await getTranslations("ProviderPage");
 

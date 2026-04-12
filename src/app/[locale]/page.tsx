@@ -18,7 +18,7 @@ import { ModelTable } from "@/components/ModelTable";
 import { db } from "@/lib/db";
 import { models } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
-import { getAllProviders } from "@/lib/providers";
+import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import type { ModelWithProvider } from "@/components/types";
 import type { AnyProvider } from "@/lib/compliance";
 
@@ -66,7 +66,7 @@ export default async function HomePage({ params, searchParams }: HomePageProps) 
 
   // Build provider lookup map — js-index-maps rule
   const providerMap = new Map<string, AnyProvider>(
-    allProviders.map((p) => [p.slug, p]),
+    allProviders.map((p) => [p.slug, getLocalizedProvider(p, locale)]),
   );
 
   // Serialize: only pass what client components need — server-serialization rule

@@ -65,5 +65,20 @@
     "https://aws.amazon.com/compliance/sub-processors/",
     "https://d1.awsstatic.com/legal/aws-gdpr/AWS_GDPR_DPA.pdf"
   ],
-  "notes": "Broadest model marketplace of the three cloud platforms, offering models from 13+ providers including Anthropic, Meta, Mistral, Cohere, DeepSeek, and Amazon's own Nova series. Customer data never leaves the selected AWS Region and is never shared with model providers — contractually guaranteed without requiring any opt-out. CISPE Code of Conduct adherence provides additional EU-specific cloud privacy certification. AWS European Sovereign Cloud (separate product) provides dedicated EU-only infrastructure with EU-only AWS entities. Sub-processors page lists extensive EU infrastructure entities. SCCs are automatically incorporated into AWS Service Terms."
+  "notes": "Broadest model marketplace of the three cloud platforms, offering models from 13+ providers including Anthropic, Meta, Mistral, Cohere, DeepSeek, and Amazon's own Nova series. Customer data never leaves the selected AWS Region and is never shared with model providers — contractually guaranteed without requiring any opt-out. CISPE Code of Conduct adherence provides additional EU-specific cloud privacy certification. AWS European Sovereign Cloud (separate product) provides dedicated EU-only infrastructure with EU-only AWS entities. Sub-processors page lists extensive EU infrastructure entities. SCCs are automatically incorporated into AWS Service Terms.",
+  "translations": {
+    "de": {
+      "notes": "Der umfassendste Modell-Marktplatz der drei Cloud-Plattformen mit Modellen von mehr als 13 Anbietern, darunter Anthropic, Meta, Mistral, Cohere, DeepSeek sowie Amazons eigene Nova-Serie. Kundendaten verlassen niemals die ausgewählte AWS-Region und werden niemals an Modellanbieter weitergegeben — vertraglich garantiert, ohne dass ein Opt-out erforderlich ist. Die Einhaltung des CISPE Code of Conduct bietet eine zusätzliche EU-spezifische Cloud-Datenschutz-Zertifizierung. Die AWS European Sovereign Cloud (separates Produkt) bietet dedizierte Infrastruktur ausschließlich in der EU mit AWS-Gesellschaften ausschließlich in der EU. Auf der Seite zu Unterauftragsverarbeitern sind umfangreiche EU-Infrastrukturgesellschaften aufgeführt. Standardvertragsklauseln (SCC) sind automatisch in die AWS Service Terms einbezogen.",
+      "dataResidency": {
+        "euRegionDetails": "EU-Regionen: Frankfurt (eu-central-1), Irland (eu-west-1), London (eu-west-2), Mailand (eu-south-1), Paris (eu-west-3), Spanien (eu-south-2), Stockholm (eu-north-1), Zürich (eu-central-2). Kundeninhalte werden verschlüsselt und in der AWS-Region gespeichert, in der sie verwendet werden — sie werden NICHT außerhalb der ausgewählten Region verschoben. Die AWS European Sovereign Cloud (separates Produkt, mit Sitz in Deutschland, AWS-Gesellschaften ausschließlich in der EU) ist für maximale Datensouveränität verfügbar."
+      },
+      "dataUsage": {
+        "retentionPolicy": "Es werden keine Kundeneingaben oder Modellausgaben gespeichert oder zum Trainieren von Modellen verwendet. Daten werden nicht an Drittanbieter von Modellen weitergegeben. Dies ist vertraglich garantiert — kein Opt-out erforderlich, da standardmäßig kein Training erfolgt.",
+        "details": "AWS erklärt ausdrücklich: Kundeneingaben in Amazon Bedrock sowie Ausgaben aus Amazon Bedrock werden nicht zum Trainieren von Amazon Nova, Amazon Titan oder Modellen Dritter verwendet. Fine-Tuning-Daten bleiben in der AWS-Region verschlüsselt und werden nicht zur Verbesserung von Basismodellen verwendet."
+      },
+      "euAiAct": {
+        "details": "AWS verfügt über eine allgemeine Seite zur Einhaltung des EU AI Act. Zum Verifizierungsdatum liegt keine spezifisch veröffentlichte Erklärung zur Einhaltung des EU AI Act in Bezug auf die Anbieterrolle für Bedrock vor. Der Überwachungsstatus spiegelt das Fehlen einer veröffentlichten Compliance-Erklärung wider, die derjenigen von Microsoft entspricht."
+      }
+    }
+  }
 }
