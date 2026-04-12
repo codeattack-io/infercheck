@@ -197,22 +197,27 @@ if (!skipData) {
 
   // Data-only dump from dev, restored into prod.
   //
-  // --data-only:   never touch DDL — prod schema was already migrated in Step 1.
-  // --clean:       emits TRUNCATE before each table's COPY block so existing
-  //                prod rows don't cause duplicate key violations.
+  // --data-only:   never touch DDL — prod schema is owned by Drizzle migrations.
   // --no-owner / --no-privileges: Neon role names differ across projects.
   // --exclude-table: migrations table lives in the "drizzle" schema (not public);
   //                  must be schema-qualified or pg_dump silently ignores it.
-  // Plain SQL piped through psql: simpler than custom format + pg_restore for
-  //   data-only restores, and psql is already a required tool.
+  //
+  // Truncation: pg_dump --clean is incompatible with --data-only, so we issue
+  //   explicit TRUNCATE ... CASCADE statements via psql before the dump to clear
+  //   existing prod rows without touching DDL.
+  //
+  // Pipe safety: set -o pipefail ensures the shell exits non-zero if pg_dump
+  //   fails, even though psql is the last command in the pipe. Without this,
+  //   a pg_dump error is silently swallowed and the script reports success.
 
-  // --data-only:   no DDL — prod schema is owned by Drizzle migrations
-  // --clean:       emits TRUNCATE before each COPY so no duplicate key errors
-  // --exclude-table: migrations table lives in the "drizzle" schema, not public;
-  //                  must use schema-qualified name to actually exclude it
+  run("Truncating prod tables before data restore", "psql", [
+    prodUrl,
+    "-c", "TRUNCATE models, sync_log RESTART IDENTITY CASCADE",
+  ]);
+
   run("Dumping dev data and restoring into prod (data-only)", "sh", [
     "-c",
-    `pg_dump --data-only --clean --no-owner --no-privileges --exclude-table=drizzle.__drizzle_migrations "${devUrl}" | psql "${prodUrl}"`,
+    `set -o pipefail; pg_dump --data-only --no-owner --no-privileges --exclude-table=drizzle.__drizzle_migrations "${devUrl}" | psql "${prodUrl}"`,
   ]);
 
   console.log("✓ Data promoted to prod");
