@@ -57,6 +57,14 @@ export const models = pgTable(
     /** Whether this model is currently available (set to false on removal, not deleted) */
     isActive: boolean("is_active").notNull().default(true),
 
+    /**
+     * Whether this model is built / operated by the provider itself.
+     * false = the provider is acting as a gateway to a third-party model
+     * (e.g. Claude on Amazon Bedrock, Llama on Together AI).
+     * Defaults to true for all non-gateway providers.
+     */
+    isNativeModel: boolean("is_native_model").notNull().default(true),
+
     /** Timestamp of last successful sync for this row */
     lastSyncedAt: timestamp("last_synced_at", { withTimezone: true }).notNull(),
   },

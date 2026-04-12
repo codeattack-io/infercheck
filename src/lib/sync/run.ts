@@ -86,6 +86,8 @@ interface ModelRow {
   tokensPerSecond: string | null;
   syncSource: string;
   isActive: boolean;
+  /** false = provider is a gateway hosting a third-party model (e.g. Claude on Bedrock) */
+  isNativeModel: boolean;
   lastSyncedAt: Date;
 }
 
@@ -135,6 +137,7 @@ async function fetchOpenRouterModels(): Promise<ModelRow[]> {
       tokensPerSecond: null,
       syncSource: "openrouter",
       isActive: true,
+      isNativeModel: true,
       lastSyncedAt: now,
     });
   }
@@ -204,6 +207,7 @@ async function fetchMistralModels(): Promise<ModelRow[]> {
           tokensPerSecond: null,
           syncSource: "provider_api",
           isActive: m.deprecation === null, // deprecated models → inactive
+          isNativeModel: true,
           lastSyncedAt: now,
         };
       });
@@ -249,6 +253,7 @@ async function fetchScalewayModels(): Promise<ModelRow[]> {
           tokensPerSecond: null,
           syncSource: "provider_api",
           isActive: true,
+          isNativeModel: true,
           lastSyncedAt: now,
         };
       });
@@ -282,6 +287,7 @@ async function fetchOVHcloudModels(): Promise<ModelRow[]> {
     tokensPerSecond: null,
     syncSource: "manual",
     isActive: true,
+    isNativeModel: true,
     lastSyncedAt: now,
   }));
 }
@@ -318,6 +324,7 @@ async function fetchBergetModels(): Promise<ModelRow[]> {
         tokensPerSecond: null,
         syncSource: "provider_api",
         isActive: true,
+        isNativeModel: true,
         lastSyncedAt: now,
       };
     });
@@ -360,6 +367,7 @@ async function fetchStackitModels(): Promise<ModelRow[]> {
           tokensPerSecond: null,
           syncSource: "provider_api",
           isActive: true,
+          isNativeModel: true,
           lastSyncedAt: now,
         }));
     } catch (e) {
@@ -396,6 +404,7 @@ async function fetchStackitModels(): Promise<ModelRow[]> {
     tokensPerSecond: null,
     syncSource: "manual",
     isActive: m.active,
+    isNativeModel: true,
     lastSyncedAt: now,
   }));
 }
@@ -440,6 +449,7 @@ async function fetchBedrockModels(): Promise<ModelRow[]> {
         tokensPerSecond: null,
         syncSource: "provider_api",
         isActive: m.modelLifecycle?.status !== "LEGACY",
+        isNativeModel: m.providerName === "Amazon",
         lastSyncedAt: now,
       };
     });
@@ -501,6 +511,7 @@ async function upsertModels(
           tokensPerSecond: schema.models.tokensPerSecond,
           syncSource: schema.models.syncSource,
           isActive: schema.models.isActive,
+          isNativeModel: schema.models.isNativeModel,
           lastSyncedAt: schema.models.lastSyncedAt,
         },
       });
