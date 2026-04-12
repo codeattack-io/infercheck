@@ -32,6 +32,12 @@ concurrency:
   group: deploy-production
   cancel-in-progress: false # never cancel a running deploy mid-flight
 
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  DATABASE_URL_DEV: ${{ secrets.DATABASE_URL_DEV }}
+
 jobs:
   deploy:
     name: Migrate → Promote → Deploy
@@ -69,15 +75,10 @@ jobs:
 
       # ── Step 1: Drizzle migrate → prod ──────────────────────────────────────
       - name: Run database migrations (prod)
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: bun run db:migrate
 
       # ── Step 2: Promote dev data → prod ─────────────────────────────────────
       - name: Promote dev DB data to prod
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          DATABASE_URL_DEV: ${{ secrets.DATABASE_URL_DEV }}
         # --skip-migrate: migrations already applied in previous step
         # --yes: skip interactive confirmation prompt (CI has no stdin)
         run: bun run promote:prod --skip-migrate --yes
@@ -86,17 +87,10 @@ jobs:
       - name: Install Vercel CLI
         run: bun install -g vercel@latest
       - name: Pull env
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: vercel pull --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: test
+        run: cat .vercel/.env.production.local
       - name: Build
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy to Vercel
-        env:
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
         run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}
