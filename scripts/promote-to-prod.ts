@@ -174,7 +174,7 @@ if (!skipData) {
 
   run("Dumping dev DB and restoring into prod DB (data-only)", "sh", [
     "-c",
-    `pg_dump --data-only --no-owner --no-privileges --disable-triggers -Fc "${devUrl}" | pg_restore --data-only --no-owner --no-privileges --disable-triggers -d "${prodUrl}"`,
+    `pg_dump --data-only --no-owner --no-privileges --disable-triggers --exclude-table=__drizzle_migrations -Fc "${devUrl}" | pg_restore --data-only --no-owner --no-privileges --disable-triggers -d "${prodUrl}"`,
   ]);
 
   console.log("✓ Data promoted to prod");
