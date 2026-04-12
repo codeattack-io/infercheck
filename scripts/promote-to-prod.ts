@@ -140,7 +140,9 @@ if (!skipMigrate) {
     "Running Drizzle migrations against prod DB",
     "bun",
     ["run", "db:migrate"],
-    { DATABASE_URL: prodUrl }
+    // DATABASE_URL_OVERRIDE is read by drizzle.config.ts *after* dotenv loads
+    // .env.local, ensuring it wins over the dev URL baked into that file.
+    { DATABASE_URL_OVERRIDE: prodUrl }
   );
   console.log("✓ Migrations applied");
 } else {
@@ -153,28 +155,22 @@ if (!skipMigrate) {
 
 if (!skipData) {
   if (!dryRun && !yes) {
-    checkTool("psql");
     checkTool("pg_dump");
     checkTool("pg_restore");
   }
 
-  // Use custom format (-Fc) for pipe + compression
-  // --data-only: skip DDL — schema already handled by migrations
-  // --no-owner / --no-privileges: Neon role names differ across projects
-  // --disable-triggers: avoid FK constraint errors during restore order
-  // Truncate prod tables first so the data-only restore starts clean.
-  // (avoids --truncate flag which requires pg17, and --clean which is
-  //  incompatible with --data-only)
+  // Full dump (schema + data) in custom format (-Fc) for pipe + compression.
+  // --no-owner / --no-privileges: Neon role names differ across projects.
+  // --exclude-table: skip drizzle's internal migrations tracking table so the
+  //   prod migration history is not overwritten.
+  // pg_restore --clean --if-exists: drops then recreates each object before
+  //   restoring, which clears existing prod rows without a separate TRUNCATE
+  //   step and without requiring --truncate (pg17+) or a manual psql call.
+  //   --single-transaction: all-or-nothing restore.
 
-  run("Truncating prod tables before restore", "psql", [
-    prodUrl,
+  run("Dumping dev DB and restoring into prod DB", "sh", [
     "-c",
-    "TRUNCATE TABLE models, sync_log RESTART IDENTITY CASCADE;",
-  ]);
-
-  run("Dumping dev DB and restoring into prod DB (data-only)", "sh", [
-    "-c",
-    `pg_dump --data-only --no-owner --no-privileges --disable-triggers --exclude-table=__drizzle_migrations -Fc "${devUrl}" | pg_restore --data-only --no-owner --no-privileges --disable-triggers -d "${prodUrl}"`,
+    `pg_dump --no-owner --no-privileges --exclude-table=__drizzle_migrations -Fc "${devUrl}" | pg_restore --clean --if-exists --no-owner --no-privileges --single-transaction -d "${prodUrl}"`,
   ]);
 
   console.log("✓ Data promoted to prod");
