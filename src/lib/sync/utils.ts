@@ -29,6 +29,25 @@ const KNOWN_VENDOR_PREFIXES = [
 ];
 
 /**
+ * Maps a post-normalization canonical ID to its true cross-provider canonical ID.
+ *
+ * Needed when a provider (e.g. AWS Bedrock) appends its own deployment-version
+ * suffix to a model that is otherwise identical to the upstream release.
+ * Example: Bedrock exposes "anthropic.claude-opus-4-6-v1" — the "-v1" is AWS's
+ * internal deployment tag, not a distinct model version. The canonical ID should
+ * be "claude-opus-4-6" so it groups with Anthropic's direct listing on the
+ * model detail page.
+ *
+ * Rules for adding entries here:
+ *  - Only add when the suffix is provider infra noise, NOT a real model version.
+ *  - Key   = what deriveCanonicalModelId() produces after steps 1–6.
+ *  - Value = the canonical ID users/URLs should see.
+ */
+const CANONICAL_ID_ALIASES: Record<string, string> = {
+  "claude-opus-4-6-v1": "claude-opus-4-6",
+};
+
+/**
  * Derive a provider-agnostic, normalized model identifier suitable for
  * cross-provider grouping and URL routing.
  *
@@ -39,13 +58,15 @@ const KNOWN_VENDOR_PREFIXES = [
  *   4. Replace dots, colons, and slashes with hyphens.
  *   5. Collapse consecutive hyphens; trim trailing hyphens.
  *   6. Lowercase the result.
+ *   7. Apply CANONICAL_ID_ALIASES to unify known provider-specific variants.
  *
  * Examples:
- *   anthropic/claude-sonnet-4.6                    → claude-sonnet-4-6
- *   bedrock/eu.anthropic.claude-sonnet-4-6         → claude-sonnet-4-6
+ *   anthropic/claude-sonnet-4.6                        → claude-sonnet-4-6
+ *   bedrock/eu.anthropic.claude-sonnet-4-6             → claude-sonnet-4-6
  *   bedrock/eu.anthropic.claude-sonnet-4-20250514-v1:0 → claude-sonnet-4-20250514-v1-0
- *   bedrock/eu.amazon.nova-pro-v1:0                → nova-pro-v1-0
- *   bedrock/cohere.embed-english-v3               → embed-english-v3
+ *   bedrock/eu.anthropic.claude-opus-4-6-v1            → claude-opus-4-6  (alias)
+ *   bedrock/eu.amazon.nova-pro-v1:0                    → nova-pro-v1-0
+ *   bedrock/cohere.embed-english-v3                    → embed-english-v3
  */
 export function deriveCanonicalModelId(rawId: string): string {
   // 1. Strip storage prefix (everything up to and including the first "/")
@@ -69,7 +90,10 @@ export function deriveCanonicalModelId(rawId: string): string {
   s = s.replace(/-{2,}/g, "-").replace(/-+$/, "");
 
   // 6. Lowercase
-  return s.toLowerCase();
+  s = s.toLowerCase();
+
+  // 7. Apply alias map for known provider-specific deployment variants
+  return CANONICAL_ID_ALIASES[s] ?? s;
 }
 
 export function normaliseModality(raw: string | undefined): string {
