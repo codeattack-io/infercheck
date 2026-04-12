@@ -35,6 +35,10 @@
     "loadingModels": "Loading models…"
   },
   "ProvidersPage": {
+    "title": "AI Inference Providers — GDPR Compliance Directory",
+    "description": "Browse 100+ AI inference providers by GDPR compliance tier. Filter by EU data residency, DPA availability, training policy, and more.",
+    "ogTitle": "AI Inference Providers — GDPR Compliance Directory",
+    "ogDescription": "Compare AI inference providers by GDPR compliance: EU-only data residency, DPA, training opt-out, and certifications.",
     "heading1": "AI inference providers,",
     "heading2": "by GDPR compliance tier.",
     "subheading": "{providerCount} providers indexed. {verifiedCount} with verified compliance data. Click any provider for the full profile.",
@@ -58,6 +62,10 @@
     }
   },
   "ProviderPage": {
+    "title": "{providerName} — GDPR Compliance Profile",
+    "descriptionVerified": "{providerName} GDPR compliance: EU data residency {euOnly}, DPA {dpa}, training on customer data {training}. Verified {date}.",
+    "descriptionUnverified": "{providerName} GDPR compliance profile. Compliance data pending verification.",
+    "ogTitle": "{providerName} — GDPR Compliance Profile",
     "breadcrumb": {
       "models": "Models",
       "providers": "Providers"
@@ -135,6 +143,10 @@
     }
   },
   "ModelPage": {
+    "title": "{modelName} — GDPR Compliance by Provider",
+    "description": "Compare {modelName} availability across providers: EU data residency, DPA status, training policy, and pricing. Find which providers pass your GDPR threshold.",
+    "ogTitle": "{modelName} — GDPR Compliance by Provider",
+    "ogDescription": "EU data residency, DPA, training opt-out, and pricing for {modelName} across all providers offering it.",
     "breadcrumb": {
       "models": "Models"
     },
@@ -174,6 +186,10 @@
     }
   },
   "AboutPage": {
+    "title": "About — GDPR AI Directory",
+    "description": "Why the GDPR AI Directory exists, who built it, and how to report outdated or missing provider information.",
+    "ogTitle": "About — GDPR AI Directory",
+    "ogDescription": "Built by a German developer who needed a neutral, sourced reference for GDPR-compliant AI inference providers.",
     "heading": "About this directory",
     "subtitle": "A neutral, sourced reference for GDPR compliance across AI inference providers — built because no such resource existed.",
     "whyExistsHeading": "Why this exists",

@@ -14,17 +14,19 @@ import { eq, sql } from "drizzle-orm";
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
-export const metadata: Metadata = {
-  title: "AI Inference Providers — GDPR Compliance Directory",
-  description:
-    "Browse 100+ AI inference providers by GDPR compliance tier. Filter by EU data residency, DPA availability, training policy, and more.",
-  openGraph: {
-    title: "AI Inference Providers — GDPR Compliance Directory",
-    description:
-      "Compare AI inference providers by GDPR compliance: EU-only data residency, DPA, training opt-out, and certifications.",
-    type: "website",
-  },
-};
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "ProvidersPage" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    openGraph: {
+      title: t("ogTitle"),
+      description: t("ogDescription"),
+      type: "website",
+    },
+  };
+}
 
 // ─── Data fetching ────────────────────────────────────────────────────────────
 

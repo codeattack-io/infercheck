@@ -5,19 +5,27 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
+// ─── Types ─────────────────────────────────────────────────────────────────────
+
+interface PageProps {
+  params: Promise<{ locale: string }>;
+}
+
 // ─── Metadata ──────────────────────────────────────────────────────────────────
 
-export const metadata: Metadata = {
-  title: "About — GDPR AI Directory",
-  description:
-    "Why the GDPR AI Directory exists, who built it, and how to report outdated or missing provider information.",
-  openGraph: {
-    title: "About — GDPR AI Directory",
-    description:
-      "Built by a German developer who needed a neutral, sourced reference for GDPR-compliant AI inference providers.",
-    type: "website",
-  },
-};
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "AboutPage" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    openGraph: {
+      title: t("ogTitle"),
+      description: t("ogDescription"),
+      type: "website",
+    },
+  };
+}
 
 // ─── Constants ─────────────────────────────────────────────────────────────────
 
@@ -25,10 +33,6 @@ const GITHUB_REPO = process.env.NEXT_PUBLIC_GITHUB_REPO_URL ?? "#";
 const NEW_ISSUE_URL = `${GITHUB_REPO}/issues/new?template=report-change.yml`;
 
 // ─── Page ──────────────────────────────────────────────────────────────────────
-
-interface PageProps {
-  params: Promise<{ locale: string }>;
-}
 
 export default async function AboutPage({ params }: PageProps) {
   const { locale } = await params;

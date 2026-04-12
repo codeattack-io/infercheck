@@ -24,18 +24,20 @@ import type { AnyProvider } from "@/lib/compliance";
 
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
-export const metadata: Metadata = {
-  title: "GDPR AI Directory — EU-compliant AI inference providers",
-  description:
-    "Filter AI inference providers by GDPR compliance status. Compare EU data residency, DPA availability, training policies, and pricing across 100+ providers.",
-  openGraph: {
-    title: "GDPR AI Directory — EU-compliant AI inference providers",
-    description:
-      "Filter AI inference providers by GDPR compliance. Compare EU data residency, DPA, training opt-out, and pricing across 100+ providers.",
-    type: "website",
-    url: "https://gdpr-ai.directory",
-  },
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "HomePage" });
+  return {
+    title: t("title"),
+    description: t("description"),
+    openGraph: {
+      title: t("ogTitle"),
+      description: t("ogDescription"),
+      type: "website",
+      url: "https://gdpr-ai.directory",
+    },
+  };
+}
 
 // ─── Data fetching (React.cache for per-request deduplication) ────────────────
 

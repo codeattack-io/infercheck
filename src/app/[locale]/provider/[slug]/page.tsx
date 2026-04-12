@@ -38,20 +38,33 @@ interface PageProps {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const provider = getCachedProvider(slug);
   if (!provider) return {};
 
-  const title = `${provider.name} — GDPR Compliance Profile`;
+  const t = await getTranslations({ locale, namespace: "ProviderPage" });
+
+  const title = t("title", { providerName: provider.name });
   const description = isFullProvider(provider)
-    ? `${provider.name} GDPR compliance: EU data residency ${provider.compliance.dataResidency.euOnly ? "✓" : "✗"}, DPA ${provider.compliance.dpa.available ? "available" : "not available"}, training on customer data ${provider.compliance.dataUsage.trainsOnCustomerData === null ? "unknown" : provider.compliance.dataUsage.trainsOnCustomerData ? "yes" : "no"}. Verified ${provider.lastVerified}.`
-    : `${provider.name} GDPR compliance profile. Compliance data pending verification.`;
+    ? t("descriptionVerified", {
+        providerName: provider.name,
+        euOnly: provider.compliance.dataResidency.euOnly ? "✓" : "✗",
+        dpa: provider.compliance.dpa.available ? "available" : "not available",
+        training:
+          provider.compliance.dataUsage.trainsOnCustomerData === null
+            ? "unknown"
+            : provider.compliance.dataUsage.trainsOnCustomerData
+            ? "yes"
+            : "no",
+        date: provider.lastVerified ?? "",
+      })
+    : t("descriptionUnverified", { providerName: provider.name });
 
   return {
     title,
     description,
     openGraph: {
-      title,
+      title: t("ogTitle", { providerName: provider.name }),
       description,
       type: "website",
     },

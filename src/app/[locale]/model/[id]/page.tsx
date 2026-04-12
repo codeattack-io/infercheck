@@ -65,7 +65,7 @@ const getModelRows = cache(async (decoded: string) => {
 });
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { id } = await params;
+  const { locale, id } = await params;
   const decoded = decodeURIComponent(id);
 
   const rows = await getModelRows(decoded);
@@ -75,12 +75,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
      rows[0])?.displayName ?? decoded;
   const name = rawName.replace(/^\w[\w\s]*:\s+/, "");
 
+  const t = await getTranslations({ locale, namespace: "ModelPage" });
+
   return {
-    title: `${name} — GDPR compliance by provider`,
-    description: `Compare ${name} availability across providers: EU data residency, DPA status, training policy, and pricing. Find which providers pass your GDPR threshold.`,
+    title: t("title", { modelName: name }),
+    description: t("description", { modelName: name }),
     openGraph: {
-      title: `${name} — GDPR Compliance by Provider`,
-      description: `EU data residency, DPA, training opt-out, and pricing for ${name} across all providers offering it.`,
+      title: t("ogTitle", { modelName: name }),
+      description: t("ogDescription", { modelName: name }),
       type: "website",
     },
   };

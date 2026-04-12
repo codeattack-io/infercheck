@@ -35,6 +35,10 @@
     "loadingModels": "Modelle werden geladen…"
   },
   "ProvidersPage": {
+    "title": "KI-Inferenzanbieter — DSGVO-Compliance-Verzeichnis",
+    "description": "Über 100 KI-Inferenzanbieter nach DSGVO-Konformitätsstufe durchsuchen. Nach EU-Datenhaltung, AVV-Verfügbarkeit, Trainingsrichtlinie und mehr filtern.",
+    "ogTitle": "KI-Inferenzanbieter — DSGVO-Compliance-Verzeichnis",
+    "ogDescription": "KI-Inferenzanbieter nach DSGVO-Compliance vergleichen: EU-exklusive Datenhaltung, AVV, Trainings-Opt-out und Zertifizierungen.",
     "heading1": "KI-Inferenzanbieter,",
     "heading2": "nach DSGVO-Konformitätsstufe.",
     "subheading": "{providerCount} Anbieter indexiert. {verifiedCount} mit verifizierten Compliance-Daten. Auf einen Anbieter klicken für das vollständige Profil.",
@@ -58,6 +62,10 @@
     }
   },
   "ProviderPage": {
+    "title": "{providerName} — DSGVO-Compliance-Profil",
+    "descriptionVerified": "{providerName} DSGVO-Compliance: EU-Datenhaltung {euOnly}, AVV {dpa}, Training mit Kundendaten {training}. Verifiziert am {date}.",
+    "descriptionUnverified": "{providerName} DSGVO-Compliance-Profil. Compliance-Daten stehen noch aus.",
+    "ogTitle": "{providerName} — DSGVO-Compliance-Profil",
     "breadcrumb": {
       "models": "Modelle",
       "providers": "Anbieter"
@@ -135,6 +143,10 @@
     }
   },
   "ModelPage": {
+    "title": "{modelName} — DSGVO-Compliance nach Anbieter",
+    "description": "{modelName} bei verschiedenen Anbietern vergleichen: EU-Datenhaltung, AVV-Status, Trainingsrichtlinie und Preise. Finden Sie Anbieter, die Ihre DSGVO-Anforderungen erfüllen.",
+    "ogTitle": "{modelName} — DSGVO-Compliance nach Anbieter",
+    "ogDescription": "EU-Datenhaltung, AVV, Trainings-Opt-out und Preise für {modelName} bei allen anbietenden Providern.",
     "breadcrumb": {
       "models": "Modelle"
     },
@@ -174,6 +186,10 @@
     }
   },
   "AboutPage": {
+    "title": "Über uns — DSGVO KI-Verzeichnis",
+    "description": "Warum das DSGVO KI-Verzeichnis existiert, wer es gebaut hat und wie man veraltete oder fehlende Anbieterinformationen meldet.",
+    "ogTitle": "Über uns — DSGVO KI-Verzeichnis",
+    "ogDescription": "Erstellt von einem deutschen Entwickler, der eine neutrale, quellengestützte Referenz für DSGVO-konforme KI-Inferenzanbieter benötigte.",
     "heading": "Über dieses Verzeichnis",
     "subtitle": "Eine neutrale, quellengestützte Referenz für DSGVO-Compliance bei KI-Inferenzanbietern — entstanden, weil eine solche Ressource fehlte.",
     "whyExistsHeading": "Warum es dieses Verzeichnis gibt",

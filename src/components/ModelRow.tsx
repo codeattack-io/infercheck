@@ -275,23 +275,24 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                 </div>
               </div>
 
+              {/* Gateway notice — full width, shown before the compliance grid */}
+              {!model.isNativeModel ? (
+                <div
+                  className="rounded px-3.5 py-2.5 border font-body text-[0.8125rem] leading-[1.5] mb-4"
+                  style={{
+                    color: "var(--color-partial)",
+                    borderColor: "var(--color-partial)",
+                    backgroundColor: "color-mix(in srgb, var(--color-partial) 6%, transparent)",
+                  }}
+                >
+                  <span className="font-semibold">Third-party model hosted via {providerName}.</span>{" "}
+                  This model is made by another company but served through {providerName}&apos;s infrastructure.
+                  The compliance properties shown here reflect <span className="font-semibold">{providerName}</span>&apos;s data handling — not the original model creator&apos;s.
+                </div>
+              ) : null}
+
               {/* Compliance detail grid */}
-              <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
-                {/* Gateway notice */}
-                {!model.isNativeModel ? (
-                  <div
-                    className="col-span-full rounded px-3.5 py-2.5 border font-body text-[0.8125rem] leading-[1.5]"
-                    style={{
-                      color: "var(--color-partial)",
-                      borderColor: "var(--color-partial)",
-                      backgroundColor: "color-mix(in srgb, var(--color-partial) 6%, transparent)",
-                    }}
-                  >
-                    <span className="font-semibold">Third-party model hosted via {providerName}.</span>{" "}
-                    This model is made by another company but served through {providerName}&apos;s infrastructure.
-                    The compliance properties shown here reflect <span className="font-semibold">{providerName}</span>&apos;s data handling — not the original model creator&apos;s.
-                  </div>
-                ) : null}
+              <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))" }}>
                 {isVerified && provider !== null && isFullProvider(provider) ? (
                   <>
                     <div>
@@ -317,11 +318,11 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                     </div>
 
                     {provider.compliance.dataResidency.euRegionDetails ? (
-                      <div>
+                      <div style={{ gridColumn: "span 2" }}>
                         <div className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] mb-2">
                           {t("expandSections.euRouting")}
                         </div>
-                        <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.5] max-w-[40ch]">
+                        <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.5]">
                           {provider.compliance.dataResidency.euRegionDetails}
                         </p>
                       </div>
