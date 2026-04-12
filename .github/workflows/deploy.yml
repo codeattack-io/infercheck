@@ -88,8 +88,13 @@ jobs:
         run: bun install -g vercel@latest
       - name: Pull env
         run: vercel pull --environment=production --token=${{ secrets.VERCEL_TOKEN }}
-      - name: test
-        run: cat .vercel/.env.production.local
+      # Ensure the canonical prod DATABASE_URL from GitHub Secrets wins over
+      # whatever Vercel has stored in its dashboard (e.g. a Neon preview branch).
+      # vercel build reads .vercel/.env.production.local directly, so we patch it.
+      - name: Pin DATABASE_URL to prod
+        run: |
+          sed -i '/^DATABASE_URL=/d' .vercel/.env.production.local
+          echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .vercel/.env.production.local
       - name: Build
         run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
       - name: Deploy to Vercel
