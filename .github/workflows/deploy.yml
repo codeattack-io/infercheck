@@ -7,8 +7,8 @@
 #
 # ─── Required GitHub Secrets ──────────────────────────────────────────────────
 #
-#   DATABASE_URL           Neon dev (source) connection string
-#   DATABASE_URL_PROD      Neon prod (target) connection string
+#   DATABASE_URL           Neon prod connection string (used by Next.js build + promote target)
+#   DATABASE_URL_DEV       Neon dev connection string (promote source — data is copied from here)
 #   VERCEL_TOKEN           Vercel personal access token
 #                          → vercel.com/account/tokens
 #   VERCEL_ORG_ID          Vercel team/personal account ID
@@ -77,7 +77,7 @@ jobs:
       - name: Promote dev DB data to prod
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          DATABASE_URL_PROD: ${{ secrets.DATABASE_URL_PROD }}
+          DATABASE_URL_DEV: ${{ secrets.DATABASE_URL_DEV }}
         # --skip-migrate: migrations already applied in previous step
         # --yes: skip interactive confirmation prompt (CI has no stdin)
         run: bun run promote:prod --skip-migrate --yes

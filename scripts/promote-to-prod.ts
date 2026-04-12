@@ -17,8 +17,8 @@
  *   bun run scripts/promote-to-prod.ts --yes            (skip confirmation prompt, for CI)
  *
  * Env vars (from .env.local):
- *   DATABASE_URL       — dev (source) Neon connection string
- *   DATABASE_URL_PROD  — prod (target) Neon connection string
+ *   DATABASE_URL_DEV  — dev (source) Neon connection string
+ *   DATABASE_URL      — prod (target) Neon connection string
  */
 
 import { config } from "dotenv";
@@ -48,21 +48,21 @@ const yes = args.includes("--yes") || process.env.CI === "true";
 // Validate env
 // ---------------------------------------------------------------------------
 
-const devUrl = process.env.DATABASE_URL;
-const prodUrl = process.env.DATABASE_URL_PROD;
+const devUrl = process.env.DATABASE_URL_DEV;
+const prodUrl = process.env.DATABASE_URL;
 
 if (!devUrl) {
-  console.error("ERROR: DATABASE_URL not set (dev DB source)");
+  console.error("ERROR: DATABASE_URL_DEV not set (dev DB source)");
   process.exit(1);
 }
 
 if (!prodUrl) {
-  console.error("ERROR: DATABASE_URL_PROD not set (prod DB target)");
+  console.error("ERROR: DATABASE_URL not set (prod DB target)");
   process.exit(1);
 }
 
 if (devUrl === prodUrl) {
-  console.error("ERROR: DATABASE_URL and DATABASE_URL_PROD are identical — aborting to prevent self-overwrite");
+  console.error("ERROR: DATABASE_URL_DEV and DATABASE_URL are identical — aborting to prevent self-overwrite");
   process.exit(1);
 }
 
@@ -140,9 +140,6 @@ if (!skipMigrate) {
     "Running Drizzle migrations against prod DB",
     "bun",
     ["run", "db:migrate"],
-    // DATABASE_URL_OVERRIDE is read by drizzle.config.ts *after* dotenv loads
-    // .env.local, ensuring it wins over the dev URL baked into that file.
-    { DATABASE_URL_OVERRIDE: prodUrl }
   );
   console.log("✓ Migrations applied");
 } else {
