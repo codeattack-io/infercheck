@@ -1,7 +1,7 @@
 "use client";
 
 import { Link, usePathname } from "@/i18n/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
@@ -25,9 +25,16 @@ export function Nav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change
+  // Close mobile menu on route change.
+  // Synchronising component state to an external system (the router) is a
+  // valid effect use-case; the lint rule is suppressed intentionally here.
+  const prevPathname = useRef(pathname);
   useEffect(() => {
-    setMobileOpen(false);
+    if (prevPathname.current !== pathname) {
+      prevPathname.current = pathname;
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setMobileOpen(false);
+    }
   }, [pathname]);
 
   return (

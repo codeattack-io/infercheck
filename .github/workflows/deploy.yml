@@ -1,0 +1,88 @@
+# Deploy to Production
+#
+# Runs on every push to main. Steps in order:
+#   1. Run Drizzle migrations against prod DB
+#   2. Promote dev DB data to prod (pg_dump dev | pg_restore prod)
+#   3. Deploy to Vercel production
+#
+# ─── Required GitHub Secrets ──────────────────────────────────────────────────
+#
+#   DATABASE_URL           Neon dev (source) connection string
+#   DATABASE_URL_PROD      Neon prod (target) connection string
+#   VERCEL_TOKEN           Vercel personal access token
+#                          → vercel.com/account/tokens
+#   VERCEL_ORG_ID          Vercel team/personal account ID
+#                          → vercel.com/<team>/settings → Team ID
+#                          → or: run `vercel link` locally, copy .vercel/project.json
+#   VERCEL_PROJECT_ID      Vercel project ID
+#                          → same .vercel/project.json → "projectId"
+#
+
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+
+  # Allow manual trigger from Actions tab (useful for re-deploys without a code push)
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false # never cancel a running deploy mid-flight
+
+jobs:
+  deploy:
+    name: Migrate → Promote → Deploy
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      # ── Checkout ────────────────────────────────────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ── Install Bun ─────────────────────────────────────────────────────────
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      # ── Install PostgreSQL client (pg_dump / pg_restore) ────────────────────
+      - name: Install PostgreSQL client
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends postgresql-client
+
+      # ── Install Node deps ────────────────────────────────────────────────────
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      # ── Step 1: Drizzle migrate → prod ──────────────────────────────────────
+      - name: Run database migrations (prod)
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL_PROD }}
+        run: bun run db:migrate
+
+      # ── Step 2: Promote dev data → prod ─────────────────────────────────────
+      - name: Promote dev DB data to prod
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          DATABASE_URL_PROD: ${{ secrets.DATABASE_URL_PROD }}
+        # --skip-migrate: migrations already applied in previous step
+        # --yes: skip interactive confirmation prompt (CI has no stdin)
+        run: bun run promote:prod --skip-migrate --yes
+
+      # ── Step 3: Deploy to Vercel ─────────────────────────────────────────────
+      - name: Install Vercel CLI
+        run: bun install -g vercel@latest
+      - name: Deploy to Vercel (production)
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+        run: |
+          vercel pull --yes --environment=production --token=$VERCEL_TOKEN
+          vercel build --prod --token=$VERCEL_TOKEN
+          vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN

@@ -14,6 +14,7 @@
  *   bun run scripts/promote-to-prod.ts --skip-migrate   (skip Drizzle migrate step)
  *   bun run scripts/promote-to-prod.ts --skip-data      (only run migrations)
  *   bun run scripts/promote-to-prod.ts --dry-run        (print commands, execute nothing)
+ *   bun run scripts/promote-to-prod.ts --yes            (skip confirmation prompt, for CI)
  *
  * Env vars (from .env.local):
  *   DATABASE_URL       — dev (source) Neon connection string
@@ -24,6 +25,7 @@ import { config } from "dotenv";
 import { expand } from "dotenv-expand";
 import path from "path";
 import { spawnSync } from "child_process";
+import { readSync } from "fs";
 
 // ---------------------------------------------------------------------------
 // Load env
@@ -40,6 +42,7 @@ const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
 const skipMigrate = args.includes("--skip-migrate");
 const skipData = args.includes("--skip-data");
+const yes = args.includes("--yes") || process.env.CI === "true";
 
 // ---------------------------------------------------------------------------
 // Validate env
@@ -67,7 +70,7 @@ if (devUrl === prodUrl) {
 // Helpers
 // ---------------------------------------------------------------------------
 
-function run(label: string, cmd: string, args: string[], env?: NodeJS.ProcessEnv): void {
+function run(label: string, cmd: string, args: string[], env?: Record<string, string>): void {
   console.log(`\n▶ ${label}`);
   if (dryRun) {
     console.log(`  [dry-run] ${cmd} ${args.join(" ")}`);
@@ -106,7 +109,7 @@ function checkTool(name: string): void {
 // Confirmation gate (non-dry-run only)
 // ---------------------------------------------------------------------------
 
-if (!dryRun) {
+if (!dryRun && !yes) {
   console.log("╔══════════════════════════════════════════════════════════╗");
   console.log("║              PROMOTE DEV  →  PROD                       ║");
   console.log("╠══════════════════════════════════════════════════════════╣");
@@ -120,7 +123,7 @@ if (!dryRun) {
 
   // Read synchronous stdin line via Bun
   const buf = Buffer.alloc(256);
-  const bytesRead = require("fs").readSync(0, buf, 0, buf.length, null);
+  const bytesRead = readSync(0, buf, 0, buf.length, null);
   const answer = buf.subarray(0, bytesRead).toString().trim();
   if (answer !== "promote") {
     console.log("Aborted.");
@@ -149,7 +152,7 @@ if (!skipMigrate) {
 // ---------------------------------------------------------------------------
 
 if (!skipData) {
-  if (!dryRun) {
+  if (!dryRun && !yes) {
     checkTool("pg_dump");
     checkTool("pg_restore");
   }
