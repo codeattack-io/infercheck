@@ -18,6 +18,7 @@ import { getModelsByProvider } from "@/lib/models";
 import { getComplianceTier, isFullProvider } from "@/lib/compliance";
 import type { ComplianceTier } from "@/lib/compliance";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
+import { ProviderModelRow } from "@/components/ProviderModelRow";
 
 // ─── Static params (prerender all known providers × locales) ──────────────────
 
@@ -631,49 +632,7 @@ function ModelsTable({ models: rows, providerSlug, t, gateway = false }: { model
           </thead>
           <tbody>
             {rows.map((m) => (
-              <tr key={`${m.id}::${m.providerSlug}`} className="border-b border-border last:border-b-0">
-                <td className="px-4 py-[10px]">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <Link
-                      href={`/model/${encodeURIComponent(m.canonicalModelId ?? m.id.split("/").pop() ?? m.id)}`}
-                      className="font-body text-[0.875rem] font-medium text-text-primary no-underline"
-                    >
-                      {m.displayName}
-                    </Link>
-                    {gateway ? (
-                      <span
-                        className="inline-flex items-center px-[6px] py-px font-body text-[0.625rem] font-medium rounded border whitespace-nowrap"
-                        style={{
-                          color: "var(--color-partial)",
-                          borderColor: "var(--color-partial)",
-                          backgroundColor: "color-mix(in srgb, var(--color-partial) 8%, transparent)",
-                        }}
-                      >
-                        via gateway
-                      </span>
-                    ) : null}
-                  </div>
-                  <div className="font-mono text-xs text-text-muted mt-0.5">{m.id}</div>
-                </td>
-                <td className="px-4 py-[10px] font-body text-[0.8125rem] text-text-secondary">
-                  {m.modality}
-                </td>
-                <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
-                  {m.contextWindow
-                    ? m.contextWindow >= 1_000_000
-                      ? `${(m.contextWindow / 1_000_000).toFixed(1)}M`
-                      : m.contextWindow >= 1_000
-                      ? `${(m.contextWindow / 1_000).toFixed(0)}K`
-                      : `${m.contextWindow}`
-                    : "—"}
-                </td>
-                <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
-                  {formatPrice(m.inputPricePerMTokens)}
-                </td>
-                <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
-                  {formatPrice(m.outputPricePerMTokens)}
-                </td>
-              </tr>
+              <ProviderModelRow key={`${m.id}::${m.providerSlug}`} model={m} gateway={gateway} />
             ))}
           </tbody>
         </table>
