@@ -120,6 +120,10 @@ export default async function ProviderProfilePage({ params }: PageProps) {
   // Await the model fetch started earlier
   const providerModels = await modelsPromise;
 
+  // Split native vs gateway-hosted models for display
+  const nativeModels = providerModels.filter((m) => m.isNativeModel);
+  const gatewayModels = providerModels.filter((m) => !m.isNativeModel);
+
   // Report-a-change URL (GitHub Issue Form with provider pre-filled)
   const reportUrl = `https://github.com/carlonoelle/gdpr-ai-directory/issues/new?template=report-change.yml&title=%5BReport%5D+${encodeURIComponent(provider.name)}%3A+&provider=${encodeURIComponent(slug)}`;
 
@@ -546,71 +550,42 @@ export default async function ProviderProfilePage({ params }: PageProps) {
               {t("models.heading", { count: providerModels.length })}
             </h2>
 
-            <div className="border border-border rounded overflow-hidden">
-              <div className="overflow-x-auto">
-                <table
-                  className="w-full border-collapse bg-surface"
-                  aria-label={t("models.tableAriaLabel", { providerName: provider.name })}
-                >
-                  <thead>
-                    <tr className="bg-surface-alt border-b border-border">
-                      {[
-                        t("models.columns.model"),
-                        t("models.columns.modality"),
-                        t("models.columns.context"),
-                        t("models.columns.input"),
-                        t("models.columns.output"),
-                      ].map((h) => (
-                        <th
-                          key={h}
-                          className="px-4 py-2 text-left font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.05em] whitespace-nowrap"
-                        >
-                          {h}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {providerModels.map((m) => (
-                      <tr
-                        key={`${m.id}::${m.providerSlug}`}
-                        className="border-b border-border"
-                      >
-                        <td className="px-4 py-[10px]">
-                          <Link
-                            href={`/model/${encodeURIComponent(m.id.split("/").pop() ?? m.id)}`}
-                            className="font-body text-[0.875rem] font-medium text-text-primary no-underline"
-                          >
-                            {m.displayName}
-                          </Link>
-                          <div className="font-mono text-xs text-text-muted mt-0.5">
-                            {m.id}
-                          </div>
-                        </td>
-                        <td className="px-4 py-[10px] font-body text-[0.8125rem] text-text-secondary">
-                          {m.modality}
-                        </td>
-                        <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
-                          {m.contextWindow
-                            ? m.contextWindow >= 1_000_000
-                              ? `${(m.contextWindow / 1_000_000).toFixed(1)}M`
-                              : m.contextWindow >= 1_000
-                              ? `${(m.contextWindow / 1_000).toFixed(0)}K`
-                              : `${m.contextWindow}`
-                            : "—"}
-                        </td>
-                        <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
-                          {formatPrice(m.inputPricePerMTokens)}
-                        </td>
-                        <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
-                          {formatPrice(m.outputPricePerMTokens)}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            {/* Native models */}
+            {nativeModels.length > 0 ? (
+              <div className={gatewayModels.length > 0 ? "mb-8" : ""}>
+                {gatewayModels.length > 0 ? (
+                  <div className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] mb-3">
+                    {t("models.nativeHeading")}
+                  </div>
+                ) : null}
+                <ModelsTable models={nativeModels} providerSlug={slug} t={t} />
               </div>
-            </div>
+            ) : null}
+
+            {/* Gateway / third-party models */}
+            {gatewayModels.length > 0 ? (
+              <div>
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em]">
+                    {t("models.gatewayHeading")}
+                  </span>
+                  <span
+                    className="inline-flex items-center gap-[5px] px-[7px] py-px font-body text-[0.6875rem] font-medium rounded border whitespace-nowrap"
+                    style={{
+                      color: "var(--color-partial)",
+                      borderColor: "var(--color-partial)",
+                      backgroundColor: "color-mix(in srgb, var(--color-partial) 8%, transparent)",
+                    }}
+                  >
+                    via gateway
+                  </span>
+                </div>
+                <p className="font-body text-[0.8125rem] text-text-secondary mt-0 mb-3 leading-[1.5]">
+                  {t("models.gatewayNote", { providerName: provider.name })}
+                </p>
+                <ModelsTable models={gatewayModels} providerSlug={slug} t={t} gateway />
+              </div>
+            ) : null}
           </section>
         ) : null}
 
@@ -626,6 +601,86 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 }
 
 // ─── Small helper components ──────────────────────────────────────────────────
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function ModelsTable({ models: rows, providerSlug, t, gateway = false }: { models: import("@/db/schema").Model[]; providerSlug: string; t: any; gateway?: boolean }) {
+  return (
+    <div
+      className="border border-border rounded overflow-hidden"
+      style={gateway ? { borderColor: "color-mix(in srgb, var(--color-partial) 35%, var(--color-border))" } : undefined}
+    >
+      <div className="overflow-x-auto">
+        <table className="w-full border-collapse bg-surface">
+          <thead>
+            <tr className="bg-surface-alt border-b border-border">
+              {[
+                t("models.columns.model"),
+                t("models.columns.modality"),
+                t("models.columns.context"),
+                t("models.columns.input"),
+                t("models.columns.output"),
+              ].map((h: string) => (
+                <th
+                  key={h}
+                  className="px-4 py-2 text-left font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.05em] whitespace-nowrap"
+                >
+                  {h}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((m) => (
+              <tr key={`${m.id}::${m.providerSlug}`} className="border-b border-border last:border-b-0">
+                <td className="px-4 py-[10px]">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <Link
+                      href={`/model/${encodeURIComponent(m.id.split("/").pop() ?? m.id)}`}
+                      className="font-body text-[0.875rem] font-medium text-text-primary no-underline"
+                    >
+                      {m.displayName}
+                    </Link>
+                    {gateway ? (
+                      <span
+                        className="inline-flex items-center px-[6px] py-px font-body text-[0.625rem] font-medium rounded border whitespace-nowrap"
+                        style={{
+                          color: "var(--color-partial)",
+                          borderColor: "var(--color-partial)",
+                          backgroundColor: "color-mix(in srgb, var(--color-partial) 8%, transparent)",
+                        }}
+                      >
+                        via gateway
+                      </span>
+                    ) : null}
+                  </div>
+                  <div className="font-mono text-xs text-text-muted mt-0.5">{m.id}</div>
+                </td>
+                <td className="px-4 py-[10px] font-body text-[0.8125rem] text-text-secondary">
+                  {m.modality}
+                </td>
+                <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
+                  {m.contextWindow
+                    ? m.contextWindow >= 1_000_000
+                      ? `${(m.contextWindow / 1_000_000).toFixed(1)}M`
+                      : m.contextWindow >= 1_000
+                      ? `${(m.contextWindow / 1_000).toFixed(0)}K`
+                      : `${m.contextWindow}`
+                    : "—"}
+                </td>
+                <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
+                  {formatPrice(m.inputPricePerMTokens)}
+                </td>
+                <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
+                  {formatPrice(m.outputPricePerMTokens)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
 
 function ComplianceRow({
   label,

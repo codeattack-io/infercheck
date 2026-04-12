@@ -132,10 +132,23 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
       >
         {/* Model column */}
         <td className="p-3 px-4 align-middle">
-          <div className="flex items-center gap-[10px]">
+          <div className="flex items-center gap-[10px] flex-wrap">
             <span className="font-body text-[0.9375rem] font-semibold text-text-primary leading-[1.3]">
               {highlightText(model.displayName, matches, "model.displayName")}
             </span>
+            {!model.isNativeModel ? (
+              <span
+                className="inline-flex items-center gap-[5px] px-[7px] py-px font-body text-[0.6875rem] font-medium rounded border whitespace-nowrap"
+                style={{
+                  color: "var(--color-partial)",
+                  borderColor: "var(--color-partial)",
+                  backgroundColor: "color-mix(in srgb, var(--color-partial) 8%, transparent)",
+                }}
+                title={`This model is made by a third party and hosted via ${providerName}`}
+              >
+                via gateway
+              </span>
+            ) : null}
           </div>
           <div className="font-body text-[0.8125rem] text-text-secondary mt-0.5">
             {highlightText(providerName, matches, "provider.name")}
@@ -246,6 +259,21 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
 
               {/* Compliance detail grid */}
               <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
+                {/* Gateway notice */}
+                {!model.isNativeModel ? (
+                  <div
+                    className="col-span-full rounded px-3.5 py-2.5 border font-body text-[0.8125rem] leading-[1.5]"
+                    style={{
+                      color: "var(--color-partial)",
+                      borderColor: "var(--color-partial)",
+                      backgroundColor: "color-mix(in srgb, var(--color-partial) 6%, transparent)",
+                    }}
+                  >
+                    <span className="font-semibold">Third-party model hosted via {providerName}.</span>{" "}
+                    This model is made by another company but served through {providerName}&apos;s infrastructure.
+                    The compliance properties shown here reflect <span className="font-semibold">{providerName}</span>&apos;s data handling — not the original model creator&apos;s.
+                  </div>
+                ) : null}
                 {isVerified && provider !== null && isFullProvider(provider) ? (
                   <>
                     <div>

@@ -114,6 +114,9 @@
     "models": {
       "heading": "Modelle ({count})",
       "tableAriaLabel": "Von {providerName} angebotene Modelle",
+      "nativeHeading": "Eigene Modelle",
+      "gatewayHeading": "Auch über diesen Anbieter verfügbar",
+      "gatewayNote": "Diese Modelle stammen von Drittanbietern, können aber über die Infrastruktur von {providerName} abgerufen werden. Die auf dieser Seite dargestellten DSGVO-Eigenschaften gelten für den Umgang von {providerName} mit Ihren Daten.",
       "columns": {
         "model": "Modell",
         "modality": "Modalität",

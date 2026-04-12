@@ -114,6 +114,9 @@
     "models": {
       "heading": "Models ({count})",
       "tableAriaLabel": "Models offered by {providerName}",
+      "nativeHeading": "Own models",
+      "gatewayHeading": "Also available via this provider",
+      "gatewayNote": "These models are made by third parties but can be accessed through {providerName}'s infrastructure. The GDPR compliance properties shown on this page apply to how {providerName} handles your data.",
       "columns": {
         "model": "Model",
         "modality": "Modality",
