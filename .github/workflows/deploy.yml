@@ -83,6 +83,10 @@ jobs:
         # --yes: skip interactive confirmation prompt (CI has no stdin)
         # Script uses pg_dump --data-only | psql — never touches prod DDL/schema
         run: bun run promote:prod --skip-migrate --yes
+      - name: Wait for Neon to settle
+        # Neon's pooler needs a moment after a large COPY before cold connections
+        # (like Vercel's build workers) see the data consistently.
+        run: sleep 20
 
       # ── Step 3: Deploy to Vercel ─────────────────────────────────────────────
       # Deploy source directly — Vercel builds on their servers where env vars
