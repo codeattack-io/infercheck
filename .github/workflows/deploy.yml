@@ -70,7 +70,7 @@ jobs:
       # ── Step 1: Drizzle migrate → prod ──────────────────────────────────────
       - name: Run database migrations (prod)
         env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL_PROD }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
         run: bun run db:migrate
 
       # ── Step 2: Promote dev data → prod ─────────────────────────────────────
