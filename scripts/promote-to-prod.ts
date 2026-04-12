@@ -215,7 +215,7 @@ if (!skipData) {
     "-c", "TRUNCATE models, sync_log RESTART IDENTITY CASCADE",
   ]);
 
-  run("Dumping dev data and restoring into prod (data-only)", "sh", [
+  run("Dumping dev data and restoring into prod (data-only)", "bash", [
     "-c",
     `set -o pipefail; pg_dump --data-only --no-owner --no-privileges --exclude-table=drizzle.__drizzle_migrations "${devUrl}" | psql "${prodUrl}"`,
   ]);
