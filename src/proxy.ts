@@ -18,5 +18,5 @@ export const config = {
   //   - /api/* and /trpc/* (API routes)
   //   - /_next/* and /_vercel/* (Next.js internals)
   //   - anything containing a dot (static files: .svg, .ico, .png, etc.)
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  matcher: ["/((?!api|_next|stats|_vercel|.*\\..*).*)"],
 };

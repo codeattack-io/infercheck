@@ -7,6 +7,7 @@ import { routing } from "@/i18n/routing";
 import "../globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import Script from "next/script";
 
 // next/font/google: fonts are self-hosted at build time — no external requests,
 // no layout shift, automatic font-display:swap.
@@ -84,6 +85,13 @@ export default async function LocaleLayout({ children, params }: Props) {
           {children}
           <Footer />
         </NextIntlClientProvider>
+        <Script
+          defer
+          async
+          src="/stats/script.js"
+          data-website-id="45d43a7e-5487-4432-aa71-ddc00d51f9bc"
+          data-domains="infercheck.eu"
+        />
       </body>
     </html>
   );
