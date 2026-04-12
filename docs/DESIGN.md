@@ -1,4 +1,4 @@
-# GDPR AI Directory — Design Guide
+# InferCheck — Design Guide
 
 > Phase 2 MVP Frontend  
 > Direction: Concept B "EU Compliance Desk" + editorial tone  
@@ -312,10 +312,10 @@ Minimal. The nav should not compete with the data.
 
 **Structure:**
 ```
-[GDPR AI Directory wordmark]              [Models] [Providers] [About]
+[InferCheck wordmark]              [Models] [Providers] [About]
 ```
 
-- Wordmark: "GDPR AI Directory" in Instrument Serif, 18px, `--color-heading`
+- Wordmark: "InferCheck" in Instrument Serif, 18px, `--color-heading`
 - Nav links: DM Sans 14px / 500, `--color-text-secondary`; active = `--color-text-primary` + underline
 - No mega-menus, no dropdowns, no hamburger animation drama
 - Sticky on scroll with a `backdrop-blur` + subtle border-bottom that appears on scroll
@@ -379,7 +379,7 @@ Every filter combination, every search query, every expanded view maps to a URL 
 
 These are design constraints, not afterthoughts:
 
-- Every page title follows: `{Model or Provider Name} — GDPR AI Directory`
+- Every page title follows: `{Model or Provider Name} — InferCheck`
 - `<h1>` is always visible in the viewport on load, contains the primary keyword
 - Provider cards and model rows include the provider name as readable text (not just a logo) — for crawlers
 - "Last verified" dates are rendered as `<time datetime="...">` elements

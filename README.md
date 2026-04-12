@@ -1,4 +1,4 @@
-# GDPR AI Directory
+# InferCheck
 
 **A neutral, multi-vendor directory of AI inference providers tagged by GDPR compliance status.**
 
@@ -166,7 +166,7 @@ bun sync:models
 
 ### Reporting outdated information
 
-If a provider's compliance terms have changed, [open a Report a Change issue](https://github.com/codeattack-io/gdpr-ai-directory/issues/new?template=report-change.yml). The structured form asks for the provider, change category, details, and a source URL. A GitHub account is required — this keeps submissions accountable and filters noise.
+If a provider's compliance terms have changed, [open a Report a Change issue](https://github.com/codeattack-io/infercheck/issues/new?template=report-change.yml). The structured form asks for the provider, change category, details, and a source URL. A GitHub account is required — this keeps submissions accountable and filters noise.
 
 ### Submitting a new provider or correction
 

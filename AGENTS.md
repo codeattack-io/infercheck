@@ -1,4 +1,4 @@
-# Project: GDPR AI Directory
+# Project: InferCheck
 
 A neutral, multi-vendor directory of AI inference providers tagged by GDPR compliance status. Helps EU businesses make defensible model selection decisions.
 

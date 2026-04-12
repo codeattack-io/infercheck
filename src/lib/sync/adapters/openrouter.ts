@@ -42,8 +42,8 @@ export async function fetchOpenRouterModels(): Promise<ModelRow[]> {
 
   const res = await fetch("https://openrouter.ai/api/v1/models", {
     headers: {
-      "HTTP-Referer": "https://gdpr-ai.directory",
-      "X-Title": "GDPR AI Directory",
+      "HTTP-Referer": "https://infercheck.eu",
+      "X-Title": "InferCheck",
     },
   });
 

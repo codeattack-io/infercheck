@@ -34,14 +34,14 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s — GDPR AI Directory",
-    default: "GDPR AI Directory — EU-compliant AI inference providers",
+    template: "%s — InferCheck",
+    default: "InferCheck — Find GDPR-compliant AI inference providers",
   },
   description:
     "A neutral, sourced directory of AI inference providers tagged by GDPR compliance status. Filter by EU data residency, DPA availability, training opt-out, and more.",
-  metadataBase: new URL("https://gdpr-ai.directory"),
+  metadataBase: new URL("https://infercheck.eu"),
   openGraph: {
-    siteName: "GDPR AI Directory",
+    siteName: "InferCheck",
     type: "website",
   },
 };

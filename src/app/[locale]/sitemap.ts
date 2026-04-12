@@ -13,7 +13,7 @@ import { db } from "@/lib/db";
 import { models } from "@/db/schema";
 import { eq } from "drizzle-orm";
 
-const BASE_URL = "https://gdpr-ai.directory";
+const BASE_URL = "https://infercheck.eu";
 const LOCALES = routing.locales;
 
 /** Build alternates object for hreflang — one entry per locale. */

@@ -1,4 +1,4 @@
-# GDPR AI Directory - Build Plan
+# InferCheck - Build Plan
 
 > Status: In progress
 > Last updated: 2026-04-10
@@ -74,7 +74,7 @@ Client-side, URL params, no account needed:
 ## Project Structure
 
 ```
-gdpr-ai-directory/
+infercheck/
 ├── data/
 │   ├── providers/                     # JSON compliance files per provider (111 total)
 │   │   ├── openai.json
@@ -227,7 +227,7 @@ gdpr-ai-directory/
    - ✅ i18n comment in layout noting `[locale]` + `NextIntlClientProvider` insertion point
 
 6. **SEO fundamentals** ⬜
-   - ✅ Meta title template (`%s — GDPR AI Directory`) and default description
+   - ✅ Meta title template (`%s — InferCheck`) and default description
    - ⬜ JSON-LD structured data (Dataset on homepage, Organization per provider)
    - ⬜ Sitemap generation
    - ⬜ Per-page Open Graph metadata

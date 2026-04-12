@@ -3,7 +3,7 @@
     "ariaLabel": "Language"
   },
   "Nav": {
-    "wordmark": "GDPR AI Directory",
+    "wordmark": "InferCheck",
     "links": {
       "models": "Models",
       "providers": "Providers",
@@ -26,9 +26,9 @@
     "disclaimer": "This directory provides sourced information about AI providers' data practices. It is not legal advice. Always verify directly with the provider and consult legal counsel for compliance decisions."
   },
   "HomePage": {
-    "title": "GDPR AI Directory — EU-compliant AI inference providers",
+    "title": "InferCheck — Find GDPR-compliant AI inference providers",
     "description": "Filter AI inference providers by GDPR compliance status. Compare EU data residency, DPA availability, training policies, and pricing across 100+ providers.",
-    "ogTitle": "GDPR AI Directory — EU-compliant AI inference providers",
+    "ogTitle": "InferCheck — Find GDPR-compliant AI inference providers",
     "ogDescription": "Filter AI inference providers by GDPR compliance. Compare EU data residency, DPA, training opt-out, and pricing across 100+ providers.",
     "heading1": "AI inference providers,",
     "heading2": "filtered by GDPR compliance.",
@@ -37,9 +37,9 @@
     "loadingModels": "Loading models…"
   },
   "ProvidersPage": {
-    "title": "AI Inference Providers — GDPR Compliance Directory",
+    "title": "AI Inference Providers — InferCheck Compliance Directory",
     "description": "Browse 100+ AI inference providers by GDPR compliance tier. Filter by EU data residency, DPA availability, training policy, and more.",
-    "ogTitle": "AI Inference Providers — GDPR Compliance Directory",
+    "ogTitle": "AI Inference Providers — InferCheck Compliance Directory",
     "ogDescription": "Compare AI inference providers by GDPR compliance: EU-only data residency, DPA, training opt-out, and certifications.",
     "heading1": "AI inference providers,",
     "heading2": "by GDPR compliance tier.",
@@ -188,12 +188,12 @@
     }
   },
   "AboutPage": {
-    "title": "About — GDPR AI Directory",
-    "description": "Why the GDPR AI Directory exists, who built it, and how to report outdated or missing provider information.",
-    "ogTitle": "About — GDPR AI Directory",
+    "title": "About — InferCheck",
+    "description": "Why InferCheck exists, who built it, and how to report outdated or missing provider information.",
+    "ogTitle": "About — InferCheck",
     "ogDescription": "Built by a German developer who needed a neutral, sourced reference for GDPR-compliant AI inference providers.",
     "heading": "About this directory",
-    "subtitle": "A neutral, sourced reference for GDPR compliance across AI inference providers — built because no such resource existed.",
+    "subtitle": "A neutral, sourced reference for AI inference compliance — built because no such resource existed.",
     "whyExistsHeading": "Why this exists",
     "whyExistsPara1": "I built this for myself. As a developer building SaaS products in Germany, every time I evaluated a new AI inference provider I had to answer the same questions: Where does the data go at inference time? Is there a DPA I can actually sign? Does the provider train on my users' inputs? Is there an EU-only routing option?",
     "whyExistsPara2": "Those questions don't have a single place to look them up. You end up digging through privacy policies, data processing addenda, and support docs — for every provider, every time. In my corporate job I saw the same friction play out weekly: teams defaulting to expensive enterprise contracts (Azure OpenAI, IBM Watsonx) not because the models were better but because the compliance paperwork was already done.",
@@ -286,10 +286,10 @@
     "modelCountPlural": "{count} models"
   },
   "ImprintPage": {
-    "title": "Imprint — GDPR AI Directory",
-    "description": "Legal notice (Impressum) for GDPR AI Directory, operated by Carlo Nölle, Cologne, Germany.",
-    "ogTitle": "Imprint — GDPR AI Directory",
-    "ogDescription": "Legal notice for GDPR AI Directory operated by Carlo Nölle in Cologne, Germany.",
+    "title": "Imprint — InferCheck",
+    "description": "Legal notice (Impressum) for InferCheck, operated by Carlo Nölle, Cologne, Germany.",
+    "ogTitle": "Imprint — InferCheck",
+    "ogDescription": "Legal notice for InferCheck operated by Carlo Nölle in Cologne, Germany.",
     "heading": "Imprint",
     "legalNote": "The legally binding version of this imprint is the <german>German version</german>. This English translation is provided for convenience only.",
     "operatorHeading": "Operator",
@@ -312,10 +312,10 @@
     "backLink": "← Back"
   },
   "PrivacyPage": {
-    "title": "Privacy Policy — GDPR AI Directory",
-    "description": "Privacy policy for GDPR AI Directory. We use Vercel for hosting, self-hosted Umami for anonymous analytics, and Neon Postgres in the EU for our database.",
-    "ogTitle": "Privacy Policy — GDPR AI Directory",
-    "ogDescription": "How GDPR AI Directory processes data: Vercel hosting, anonymous Umami analytics, Neon Postgres EU database.",
+    "title": "Privacy Policy — InferCheck",
+    "description": "Privacy policy for InferCheck. We use Vercel for hosting, self-hosted Umami for anonymous analytics, and Neon Postgres in the EU for our database.",
+    "ogTitle": "Privacy Policy — InferCheck",
+    "ogDescription": "How InferCheck processes data: Vercel hosting, anonymous Umami analytics, Neon Postgres EU database.",
     "heading": "Privacy Policy",
     "legalNote": "The legally binding version of this privacy policy is the <german>German version (Datenschutzerklärung)</german>. This English translation is provided for convenience only.",
     "lastUpdated": "Last updated: April 2026",

@@ -60,15 +60,15 @@ function buildJsonLd(allProviders: AnyProvider[]) {
   return {
     "@context": "https://schema.org",
     "@type": "Dataset",
-    "name": "GDPR AI Directory — Provider Compliance Dataset",
+    "name": "InferCheck — Provider Compliance Dataset",
     "description":
       "Structured compliance metadata for AI inference providers. Fields include EU data residency, DPA availability, training policy, certifications, and EU AI Act status.",
-    "url": "https://gdpr-ai.directory/providers",
+    "url": "https://infercheck.eu/providers",
     "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
     "creator": {
       "@type": "Person",
       "name": "Carlo Noelle",
-      "url": "https://gdpr-ai.directory",
+      "url": "https://infercheck.eu",
     },
     "hasPart": allProviders.slice(0, 50).map((p) => ({
       "@type": "Organization",

@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title: t("ogTitle"),
       description: t("ogDescription"),
       type: "website",
-      url: "https://gdpr-ai.directory",
+      url: "https://infercheck.eu",
     },
   };
 }
@@ -89,10 +89,10 @@ export default async function HomePage({ params, searchParams }: HomePageProps) 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Dataset",
-    "name": "GDPR AI Directory",
+    "name": "InferCheck",
     "description":
       "Structured compliance metadata for AI inference providers — EU data residency, DPA availability, training policy, certifications, and EU AI Act status.",
-    "url": "https://gdpr-ai.directory",
+    "url": "https://infercheck.eu",
     "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
     "creator": {
       "@type": "Person",

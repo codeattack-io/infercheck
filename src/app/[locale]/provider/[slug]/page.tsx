@@ -141,7 +141,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
   const gatewayModels = providerModels.filter((m) => !m.isNativeModel);
 
   // Report-a-change URL (GitHub Issue Form with provider pre-filled)
-  const reportUrl = `https://github.com/carlonoelle/gdpr-ai-directory/issues/new?template=report-change.yml&title=%5BReport%5D+${encodeURIComponent(provider.name)}%3A+&provider=${encodeURIComponent(slug)}`;
+  const reportUrl = `https://github.com/codeattack-io/infercheck/issues/new?template=report-change.yml&title=%5BReport%5D+${encodeURIComponent(provider.name)}%3A+&provider=${encodeURIComponent(slug)}`;
 
   // JSON-LD for this provider
   const jsonLd = {
