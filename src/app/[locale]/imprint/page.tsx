@@ -20,17 +20,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: t("title"),
     description: t("description"),
+    alternates: {
+      canonical: `https://infercheck.eu/${locale}/imprint`,
+      languages: {
+        "en": "https://infercheck.eu/en/imprint",
+        "de": "https://infercheck.eu/de/imprint",
+        "x-default": "https://infercheck.eu/de/imprint",
+      },
+    },
     openGraph: {
       title: t("ogTitle"),
       description: t("ogDescription"),
       type: "website",
     },
-  };
-}
-
-// ─── Page ──────────────────────────────────────────────────────────────────────
-
-export default async function ImprintPage({ params }: PageProps) {
+  };({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 

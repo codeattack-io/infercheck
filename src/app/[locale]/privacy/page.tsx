@@ -20,17 +20,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: t("title"),
     description: t("description"),
+    alternates: {
+      canonical: `https://infercheck.eu/${locale}/privacy`,
+      languages: {
+        "en": "https://infercheck.eu/en/privacy",
+        "de": "https://infercheck.eu/de/privacy",
+        "x-default": "https://infercheck.eu/de/privacy",
+      },
+    },
     openGraph: {
       title: t("ogTitle"),
       description: t("ogDescription"),
       type: "website",
     },
-  };
-}
-
-// ─── Page ──────────────────────────────────────────────────────────────────────
-
-export default async function PrivacyPage({ params }: PageProps) {
+  };({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 

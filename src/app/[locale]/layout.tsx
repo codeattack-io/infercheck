@@ -48,6 +48,13 @@ export async function generateMetadata({
     },
     description: t("description"),
     metadataBase: new URL("https://infercheck.eu"),
+    alternates: {
+      languages: {
+        "en": "/en",
+        "de": "/de",
+        "x-default": "/en",
+      },
+    },
     icons: {
       icon: [
         { url: "/icon.svg", type: "image/svg+xml" },

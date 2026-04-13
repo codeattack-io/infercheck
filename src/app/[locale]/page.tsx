@@ -30,6 +30,14 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t("title"),
     description: t("description"),
+    alternates: {
+      canonical: `https://infercheck.eu/${locale}`,
+      languages: {
+        "en": "https://infercheck.eu/en",
+        "de": "https://infercheck.eu/de",
+        "x-default": "https://infercheck.eu/en",
+      },
+    },
     openGraph: {
       title: t("ogTitle"),
       description: t("ogDescription"),

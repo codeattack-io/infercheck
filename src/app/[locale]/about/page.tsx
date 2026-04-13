@@ -19,15 +19,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: t("title"),
     description: t("description"),
+    alternates: {
+      canonical: `https://infercheck.eu/${locale}/about`,
+      languages: {
+        "en": "https://infercheck.eu/en/about",
+        "de": "https://infercheck.eu/de/about",
+        "x-default": "https://infercheck.eu/en/about",
+      },
+    },
     openGraph: {
       title: t("ogTitle"),
       description: t("ogDescription"),
       type: "website",
     },
   };
-}
-
-// ─── Constants ─────────────────────────────────────────────────────────────────
 
 const GITHUB_REPO = process.env.NEXT_PUBLIC_GITHUB_REPO_URL ?? "#";
 const NEW_ISSUE_URL = `${GITHUB_REPO}/issues/new?template=report-change.yml`;

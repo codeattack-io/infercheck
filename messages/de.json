@@ -32,9 +32,9 @@
     "disclaimer": "Dieses Verzeichnis stellt quellengestützte Informationen über die Datenpraktiken von KI-Anbietern bereit. Es handelt sich nicht um Rechtsberatung. Überprüfen Sie Angaben stets direkt beim Anbieter und konsultieren Sie rechtlichen Beistand für Compliance-Entscheidungen."
   },
   "HomePage": {
-    "title": "DSGVO KI-Verzeichnis — DSGVO-konforme KI-Inferenzanbieter",
+    "title": "InferCheck — DSGVO-konforme KI-Inferenzanbieter finden",
     "description": "KI-Inferenzanbieter nach DSGVO-Konformität filtern. EU-Datenhaltung, AVV-Verfügbarkeit, Trainingsrichtlinien und Preise von über 100 Anbietern vergleichen.",
-    "ogTitle": "DSGVO KI-Verzeichnis — DSGVO-konforme KI-Inferenzanbieter",
+    "ogTitle": "InferCheck — DSGVO-konforme KI-Inferenzanbieter finden",
     "ogDescription": "KI-Inferenzanbieter nach DSGVO filtern. EU-Datenhaltung, AVV, Trainings-Opt-out und Preise von über 100 Anbietern vergleichen.",
     "heading1": "KI-Inferenzanbieter,",
     "heading2": "gefiltert nach DSGVO-Konformität.",
@@ -194,9 +194,9 @@
     }
   },
   "AboutPage": {
-    "title": "Über uns — DSGVO KI-Verzeichnis",
-    "description": "Warum das DSGVO KI-Verzeichnis existiert, wer es gebaut hat und wie man veraltete oder fehlende Anbieterinformationen meldet.",
-    "ogTitle": "Über uns — DSGVO KI-Verzeichnis",
+    "title": "Über uns — InferCheck",
+    "description": "Warum InferCheck existiert, wer es gebaut hat und wie man veraltete oder fehlende Anbieterinformationen meldet.",
+    "ogTitle": "Über uns — InferCheck",
     "ogDescription": "Erstellt von einem deutschen Entwickler, der eine neutrale, quellengestützte Referenz für DSGVO-konforme KI-Inferenzanbieter benötigte.",
     "heading": "Über dieses Verzeichnis",
     "subtitle": "Eine neutrale, quellengestützte Referenz für DSGVO-Compliance bei KI-Inferenzanbietern — entstanden, weil eine solche Ressource fehlte.",
@@ -292,10 +292,10 @@
     "modelCountPlural": "{count} Modelle"
   },
   "ImprintPage": {
-    "title": "Impressum — DSGVO KI-Verzeichnis",
-    "description": "Impressum des DSGVO KI-Verzeichnisses, betrieben von Carlo Nölle, Köln.",
-    "ogTitle": "Impressum — DSGVO KI-Verzeichnis",
-    "ogDescription": "Impressum des DSGVO KI-Verzeichnisses, betrieben von Carlo Nölle in Köln.",
+    "title": "Impressum — InferCheck",
+    "description": "Impressum von InferCheck, betrieben von Carlo Nölle, Köln.",
+    "ogTitle": "Impressum — InferCheck",
+    "ogDescription": "Impressum von InferCheck, betrieben von Carlo Nölle in Köln.",
     "heading": "Impressum",
     "legalNote": "Dies ist die rechtsverbindliche Fassung des Impressums. Eine englische Übersetzung ist aus Bequemlichkeit verfügbar.",
     "operatorHeading": "Angaben gemäß § 5 TMG",
@@ -318,10 +318,10 @@
     "backLink": "← Zurück"
   },
   "PrivacyPage": {
-    "title": "Datenschutzerklärung — DSGVO KI-Verzeichnis",
-    "description": "Datenschutzerklärung des DSGVO KI-Verzeichnisses. Wir nutzen Vercel für das Hosting, selbst gehostetes Umami für anonyme Analysen und Neon Postgres in der EU für die Datenbank.",
-    "ogTitle": "Datenschutzerklärung — DSGVO KI-Verzeichnis",
-    "ogDescription": "Datenverarbeitung im DSGVO KI-Verzeichnis: Vercel-Hosting, anonymes Umami-Analytics, Neon Postgres EU-Datenbank.",
+    "title": "Datenschutzerklärung — InferCheck",
+    "description": "Datenschutzerklärung von InferCheck. Wir nutzen Vercel für das Hosting, selbst gehostetes Umami für anonyme Analysen und Neon Postgres in der EU für die Datenbank.",
+    "ogTitle": "Datenschutzerklärung — InferCheck",
+    "ogDescription": "Datenverarbeitung bei InferCheck: Vercel-Hosting, anonymes Umami-Analytics, Neon Postgres EU-Datenbank.",
     "heading": "Datenschutzerklärung",
     "legalNote": "Dies ist die rechtsverbindliche Fassung der Datenschutzerklärung. Gerichtsstand ist Köln. Eine englische Übersetzung ist aus Bequemlichkeit verfügbar.",
     "lastUpdated": "Stand: April 2026",

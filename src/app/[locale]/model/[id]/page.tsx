@@ -80,6 +80,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: t("title", { modelName: name }),
     description: t("description", { modelName: name }),
+    alternates: {
+      canonical: `https://infercheck.eu/${locale}/model/${id}`,
+      languages: {
+        "en": `https://infercheck.eu/en/model/${id}`,
+        "de": `https://infercheck.eu/de/model/${id}`,
+        "x-default": `https://infercheck.eu/en/model/${id}`,
+      },
+    },
     openGraph: {
       title: t("ogTitle", { modelName: name }),
       description: t("ogDescription", { modelName: name }),
