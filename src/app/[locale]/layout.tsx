@@ -41,9 +41,27 @@ export const metadata: Metadata = {
   description:
     "A neutral, sourced directory of AI inference providers tagged by GDPR compliance status. Filter by EU data residency, DPA availability, training opt-out, and more.",
   metadataBase: new URL("https://infercheck.eu"),
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "any" },
+    ],
+  },
   openGraph: {
     siteName: "InferCheck",
     type: "website",
+    images: [
+      {
+        url: "/en/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "InferCheck — Find GDPR-compliant AI inference providers",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/en/opengraph-image"],
   },
 };
 
