@@ -135,8 +135,14 @@ function sortItems(
       return (ra - rb) * multiplier;
     }
     if (key === "price") {
-      const pa = a.model.inputPricePerMTokens !== null ? parseFloat(a.model.inputPricePerMTokens) : Infinity;
-      const pb = b.model.inputPricePerMTokens !== null ? parseFloat(b.model.inputPricePerMTokens) : Infinity;
+      const aHasPrice = a.model.inputPricePerMTokens !== null;
+      const bHasPrice = b.model.inputPricePerMTokens !== null;
+      // Models without pricing always sink to the bottom regardless of sort direction
+      if (!aHasPrice && !bHasPrice) return 0;
+      if (!aHasPrice) return 1;
+      if (!bHasPrice) return -1;
+      const pa = parseFloat(a.model.inputPricePerMTokens!);
+      const pb = parseFloat(b.model.inputPricePerMTokens!);
       return (pa - pb) * multiplier;
     }
     if (key === "provider") {
@@ -378,7 +384,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
               <tr className="bg-surface-alt border-b border-border">
                 <SortableTh
                   label={t("columns.model")}
-                  sortKey="default"
+                  sortKey="provider"
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}

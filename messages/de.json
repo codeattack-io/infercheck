@@ -13,7 +13,7 @@
     "links": {
       "models": "Modelle",
       "providers": "Anbieter",
-      "about": "Über uns"
+      "about": "Info"
     },
     "menuOpen": "Menü öffnen",
     "menuClose": "Menü schließen"
@@ -24,7 +24,7 @@
     "codeLicense": "Code unter",
     "codeLicenseName": "MIT",
     "nav": {
-      "about": "Über uns",
+      "about": "Info",
       "imprint": "Impressum",
       "privacy": "Datenschutz",
       "github": "GitHub →"
