@@ -197,17 +197,17 @@ infercheck/
    - ⬜ Sort: by price, by compliance strictness, by provider name
 
 2. **Model detail page** (`src/app/model/[id]/page.tsx`) ⬜
-   - List of all providers offering this model
-   - Per-provider: pricing, latency (if available), compliance snapshot
-   - Compliance filter applies inline
-   - Link to full provider profile
+   - ✅ List of all providers offering this model
+   - ✅ Per-provider: pricing, latency (if available), compliance snapshot
+   - ✅ Compliance filter applies inline
+   - ✅ Link to full provider profile
 
 3. **Provider profile page** (`src/app/provider/[slug]/page.tsx`) ⬜
-   - Full compliance profile with all fields
-   - Source URLs for each claim
-   - Plain-language notes
-   - "Last verified" date prominently displayed
-   - "Report a change" button
+   - ✅ Full compliance profile with all fields
+   - ✅ Source URLs for each claim
+   - ✅ Plain-language notes
+   - ✅ "Last verified" date prominently displayed
+   - ✅ "Report a change" button
 
 4. **Shared components** ✅
    - ✅ `ComplianceBadge.tsx` — atomic compliance signal badge (7 variants)
@@ -217,7 +217,7 @@ infercheck/
    - ✅ `ModelRow.tsx` — single row with inline expand
    - ✅ `Nav.tsx` — sticky header, scroll-border, mobile drawer
    - ✅ `DisclaimerBanner.tsx` — sitewide disclaimer
-   - ⬜ `ProviderCard.tsx` — compliance summary card (needed for provider listing page)
+   - ✅ `ProviderCard.tsx` — compliance summary card (needed for provider listing page)
 
 5. **Infrastructure / design system** ✅
    - ✅ `src/lib/compliance.ts` — pure filter/tier logic, client+server safe
@@ -228,18 +228,18 @@ infercheck/
 
 6. **SEO fundamentals** ⬜
    - ✅ Meta title template (`%s — InferCheck`) and default description
-   - ⬜ JSON-LD structured data (Dataset on homepage, Organization per provider)
-   - ⬜ Sitemap generation
-   - ⬜ Per-page Open Graph metadata
+   - ✅ JSON-LD structured data (Dataset on homepage, Organization per provider)
+   - ✅ Sitemap generation
+   - ✅ Per-page Open Graph metadata
 
-7. **Deploy to Vercel** ⬜ — connect `DATABASE_URL` and `CRON_SECRET` env vars
+7. ✅ **Deploy to Vercel** ⬜ — connect `DATABASE_URL` and `CRON_SECRET` env vars
 
 ### Phase 3: Growth (post-launch, based on traction)
 
 - Side-by-side provider comparison (`/compare?providers=openai,mistral`)
 - Editorial content: "GDPR guide for {provider}" articles
-- EU-native provider sync adapters (Berget, Stackit, Aleph Alpha, OVHcloud, Scaleway, SAP AI Core)
-- OpenRouter provider slug mapping table (maps OpenRouter IDs → our `provider_slug` values)
+- EU-native provider sync adapters (Stackit, Aleph Alpha, OVHcloud, SAP AI Core)
+- ✅ OpenRouter provider slug mapping table (maps OpenRouter IDs → our `provider_slug` values)
 - Email digest: compliance status change notifications
 - Provider self-submission and verification flow
 - Embedded compliance badge widget
