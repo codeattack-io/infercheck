@@ -1,0 +1,66 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "baseBranchPatterns": ["main"],
+
+  "prConcurrentLimit": 5,
+  "prHourlyLimit": 2,
+
+  "labels": ["dependencies"],
+  "assignees": ["carlonoelle"],
+
+  "packageRules": [
+    {
+      "description": "Group all patch updates and auto-merge them if CI passes",
+      "matchUpdateTypes": ["patch"],
+      "groupName": "All patch updates",
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
+    },
+    {
+      "description": "Group Next.js + React ecosystem minor/major — review together",
+      "matchPackageNames": ["next", "react", "react-dom", "eslint-config-next"],
+      "groupName": "Next.js / React",
+      "automerge": false
+    },
+    {
+      "description": "Group all Radix UI packages",
+      "groupName": "Radix UI",
+      "automerge": false,
+      "matchPackageNames": ["@radix-ui/{/,}**"]
+    },
+    {
+      "description": "Group Drizzle ORM + kit together (schema changes may be needed)",
+      "matchPackageNames": ["drizzle-orm", "drizzle-kit"],
+      "groupName": "Drizzle",
+      "automerge": false
+    },
+    {
+      "description": "Group AI SDK packages",
+      "matchPackageNames": [
+        "ai",
+        "@ai-sdk/openai",
+        "@openrouter/ai-sdk-provider"
+      ],
+      "groupName": "AI SDK",
+      "automerge": false
+    },
+    {
+      "description": "Group Sentry packages",
+      "groupName": "Sentry",
+      "automerge": false,
+      "matchPackageNames": ["@sentry/{/,}**"]
+    },
+    {
+      "description": "Group TypeScript + type definitions",
+      "matchPackageNames": ["typescript", "@types/{/,}**"],
+      "groupName": "TypeScript & types",
+      "automerge": true,
+      "automergeType": "pr",
+      "automergeStrategy": "squash"
+    }
+  ],
+
+  "ignorePaths": ["**/node_modules/**"]
+}
