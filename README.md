@@ -1,4 +1,7 @@
-# InferCheck
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/infercheck/horizontal-dark-bg.svg">
+  <img src="assets/infercheck/horizontal-color-bg.svg" alt="InferCheck" width="280" height="72">
+</picture>
 
 **A neutral, multi-vendor directory of AI inference providers tagged by GDPR compliance status.**
 
