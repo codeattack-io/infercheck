@@ -52,9 +52,35 @@ export function Nav() {
           {/* Wordmark */}
           <Link
             href="/"
-            className="font-display text-[1.125rem] text-heading no-underline tracking-[-0.01em]"
+            className="flex items-center gap-2 no-underline"
+            aria-label={t("wordmark")}
           >
-            {t("wordmark")}
+            {/* Favicon icon — 24 px, matches the favicon.svg design */}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 32 32"
+              width="24"
+              height="24"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <rect x="0" y="0" width="32" height="32" rx="7" ry="7" fill="#1d4ed8" />
+              <circle cx="13" cy="13" r="8" fill="none" stroke="#ffffff" strokeWidth="2.5" />
+              <line x1="19" y1="19" x2="25" y2="25" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
+              <polyline
+                points="9,13 12,17 18,8"
+                fill="none"
+                stroke="#4ade80"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+            {/* "Infer" in heading colour, "Check" in accent blue */}
+            <span className="font-body text-[1.0625rem] font-semibold tracking-[-0.02em] leading-none">
+              <span style={{ color: "var(--color-text-primary)" }}>Infer</span>
+              <span style={{ color: "#1d4ed8" }}>Check</span>
+            </span>
           </Link>
 
           {/* Desktop nav */}

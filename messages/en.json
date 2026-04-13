@@ -1,4 +1,10 @@
 {
+  "Layout": {
+    "titleTemplate": "%s — InferCheck",
+    "titleDefault": "InferCheck — Find GDPR-compliant AI inference providers",
+    "description": "A neutral, sourced directory of AI inference providers tagged by GDPR compliance status. Filter by EU data residency, DPA availability, training opt-out, and more.",
+    "ogImageAlt": "InferCheck — Find GDPR-compliant AI inference providers"
+  },
   "LanguageSwitcher": {
     "ariaLabel": "Language"
   },

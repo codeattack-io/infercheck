@@ -1,4 +1,10 @@
 {
+  "Layout": {
+    "titleTemplate": "%s — InferCheck",
+    "titleDefault": "InferCheck — DSGVO-konforme KI-Inferenzanbieter finden",
+    "description": "Ein neutrales, quellengestütztes Verzeichnis von KI-Inferenzanbietern mit DSGVO-Compliance-Status. Filtern nach EU-Datenhaltung, AVV-Verfügbarkeit, Trainings-Opt-out und mehr.",
+    "ogImageAlt": "InferCheck — DSGVO-konforme KI-Inferenzanbieter finden"
+  },
   "LanguageSwitcher": {
     "ariaLabel": "Sprache"
   },

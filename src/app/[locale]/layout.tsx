@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Instrument_Serif, DM_Sans, IBM_Plex_Mono } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import "../globals.css";
@@ -33,37 +33,45 @@ const ibmPlexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: {
-    template: "%s — InferCheck",
-    default: "InferCheck — Find GDPR-compliant AI inference providers",
-  },
-  description:
-    "A neutral, sourced directory of AI inference providers tagged by GDPR compliance status. Filter by EU data residency, DPA availability, training opt-out, and more.",
-  metadataBase: new URL("https://infercheck.eu"),
-  icons: {
-    icon: [
-      { url: "/icon.svg", type: "image/svg+xml" },
-      { url: "/favicon.ico", sizes: "any" },
-    ],
-  },
-  openGraph: {
-    siteName: "InferCheck",
-    type: "website",
-    images: [
-      {
-        url: "/en/opengraph-image",
-        width: 1200,
-        height: 630,
-        alt: "InferCheck — Find GDPR-compliant AI inference providers",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    images: ["/en/opengraph-image"],
-  },
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Layout" });
+
+  return {
+    title: {
+      template: t("titleTemplate"),
+      default: t("titleDefault"),
+    },
+    description: t("description"),
+    metadataBase: new URL("https://infercheck.eu"),
+    icons: {
+      icon: [
+        { url: "/icon.svg", type: "image/svg+xml" },
+        { url: "/favicon.ico", sizes: "any" },
+      ],
+    },
+    openGraph: {
+      siteName: "InferCheck",
+      type: "website",
+      images: [
+        {
+          url: `/${locale}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: t("ogImageAlt"),
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      images: [`/${locale}/opengraph-image`],
+    },
+  };
+}
 
 // Required for static rendering with next-intl v4:
 // tells Next.js which locale segments exist at build time.
