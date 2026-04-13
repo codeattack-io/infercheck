@@ -2,7 +2,7 @@
 
 A neutral, multi-vendor directory of AI inference providers tagged by GDPR compliance status. Helps EU businesses make defensible model selection decisions.
 
-**Full idea:** `docs/IDEA.md`
+**Design Guide:** `docs/DESIGN.md`
 **Build plan:** `docs/PLAN.md`
 
 ## Key facts (read before writing any code)
