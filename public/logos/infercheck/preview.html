@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InferCheck — Logo Preview</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+      background: #f5f4ef;
+      color: #1a1f2e;
+      padding: 48px 32px;
+    }
+
+    h1 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9aa0ad;
+      margin-bottom: 48px;
+    }
+
+    h1 span {
+      color: #1d4ed8;
+    }
+
+    /* ---- Sections ---- */
+    .section {
+      margin-bottom: 56px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #9aa0ad;
+      margin-bottom: 20px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #d6d4cc;
+    }
+
+    /* ---- Tiles ---- */
+    .tiles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .tile {
+      border-radius: 12px;
+      padding: 32px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      min-width: 180px;
+    }
+
+    .tile.light {
+      background: #ffffff;
+      border: 1px solid #d6d4cc;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .tile.dark {
+      background: #0f1520;
+      border: 1px solid #1a1f2e;
+    }
+
+    .tile.blue {
+      background: #1d4ed8;
+      border: 1px solid #1e3a8a;
+    }
+
+    .tile.grey {
+      background: #5a6070;
+      border: 1px solid #1a1f2e;
+    }
+
+    .tile-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .tile.light  .tile-label { color: #9aa0ad; }
+    .tile.dark   .tile-label { color: #5a6070; }
+    .tile.blue   .tile-label { color: rgba(255,255,255,0.5); }
+    .tile.grey   .tile-label { color: rgba(255,255,255,0.5); }
+
+    /* ---- Icon row: smaller tiles ---- */
+    .icon-tile {
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* ---- Size demos ---- */
+    .size-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 24px;
+      background: #ffffff;
+      border: 1px solid #d6d4cc;
+      border-radius: 12px;
+      padding: 28px 36px;
+    }
+
+    .size-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .size-item span {
+      font-size: 10px;
+      color: #9aa0ad;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    img { display: block; }
+
+    /* ---- Nav mockup ---- */
+    .mockup-nav {
+      background: #ffffff;
+      border: 1px solid #d6d4cc;
+      border-radius: 12px;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .mockup-nav-links {
+      display: flex;
+      gap: 24px;
+      margin-left: auto;
+    }
+
+    .mockup-nav-links span {
+      font-size: 14px;
+      color: #5a6070;
+    }
+
+    .mockup-nav-links span.active {
+      color: #1a1f2e;
+      font-weight: 600;
+    }
+
+    .mockup-nav-dark {
+      background: #0f1520;
+      border-color: #1a1f2e;
+    }
+
+    .mockup-nav-dark .mockup-nav-links span {
+      color: #5a6070;
+    }
+
+    .mockup-nav-dark .mockup-nav-links span.active {
+      color: #93c5fd;
+    }
+
+    hr.divider {
+      border: none;
+      border-top: 1px solid #d6d4cc;
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>InferCheck &mdash; <span>Logo Concept 3: EU Magnifier</span> &mdash; All Variations</h1>
+
+  <!-- ===== HORIZONTAL ===== -->
+  <div class="section">
+    <div class="section-label">Horizontal Lockup</div>
+    <div class="tiles">
+
+      <div class="tile light">
+        <img src="horizontal-color.svg" alt="Horizontal color" height="48" />
+        <span class="tile-label">Full Color · Light BG</span>
+      </div>
+
+      <div class="tile dark">
+        <img src="horizontal-dark.svg" alt="Horizontal dark" height="48" />
+        <span class="tile-label">Dark BG</span>
+      </div>
+
+      <div class="tile blue">
+        <img src="horizontal-dark.svg" alt="Horizontal on blue" height="48" />
+        <span class="tile-label">Blue BG</span>
+      </div>
+
+      <div class="tile light">
+        <img src="horizontal-mono.svg" alt="Horizontal mono" height="48" />
+        <span class="tile-label">Monochrome · Light BG</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== VERTICAL ===== -->
+  <div class="section">
+    <div class="section-label">Vertical / Stacked Lockup</div>
+    <div class="tiles">
+
+      <div class="tile light">
+        <img src="vertical-color.svg" alt="Vertical color" height="120" />
+        <span class="tile-label">Full Color · Light BG</span>
+      </div>
+
+      <div class="tile dark">
+        <img src="vertical-dark.svg" alt="Vertical dark" height="120" />
+        <span class="tile-label">Dark BG</span>
+      </div>
+
+      <div class="tile blue">
+        <img src="vertical-dark.svg" alt="Vertical on blue" height="120" />
+        <span class="tile-label">Blue BG</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== ICONS ===== -->
+  <div class="section">
+    <div class="section-label">Icon / Mark Only</div>
+    <div class="tiles">
+
+      <div class="tile light icon-tile">
+        <img src="icon-color.svg" alt="Icon color" width="80" height="80" />
+        <span class="tile-label">Color · Light BG</span>
+      </div>
+
+      <div class="tile dark icon-tile">
+        <img src="icon-color.svg" alt="Icon color on dark" width="80" height="80" />
+        <span class="tile-label">Color · Dark BG</span>
+      </div>
+
+      <div class="tile blue icon-tile">
+        <img src="icon-white.svg" alt="Icon white on blue" width="80" height="80" />
+        <span class="tile-label">White · Blue BG</span>
+      </div>
+
+      <div class="tile grey icon-tile">
+        <img src="icon-white.svg" alt="Icon white on grey" width="80" height="80" />
+        <span class="tile-label">White · Grey BG</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== FAVICON ===== -->
+  <div class="section">
+    <div class="section-label">Favicon (32 × 32)</div>
+    <div class="tiles">
+      <div class="tile light icon-tile">
+        <img src="favicon.svg" alt="Favicon" width="32" height="32" />
+        <span class="tile-label">32px · Light</span>
+      </div>
+      <div class="tile dark icon-tile">
+        <img src="favicon.svg" alt="Favicon dark" width="32" height="32" />
+        <span class="tile-label">32px · Dark</span>
+      </div>
+      <div class="tile light icon-tile">
+        <img src="favicon.svg" alt="Favicon 16px" width="16" height="16" />
+        <span class="tile-label">16px · Browser tab</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SIZE SCALE ===== -->
+  <div class="section">
+    <div class="section-label">Scale Test — Horizontal</div>
+    <div class="size-row">
+
+      <div class="size-item">
+        <img src="horizontal-color.svg" height="64" alt="64px" />
+        <span>64px tall</span>
+      </div>
+
+      <div class="size-item">
+        <img src="horizontal-color.svg" height="48" alt="48px" />
+        <span>48px tall</span>
+      </div>
+
+      <div class="size-item">
+        <img src="horizontal-color.svg" height="32" alt="32px" />
+        <span>32px tall</span>
+      </div>
+
+      <div class="size-item">
+        <img src="horizontal-color.svg" height="24" alt="24px" />
+        <span>24px tall</span>
+      </div>
+
+      <div class="size-item">
+        <img src="horizontal-color.svg" height="18" alt="18px" />
+        <span>18px tall</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== NAV MOCKUP ===== -->
+  <div class="section">
+    <div class="section-label">Nav Mockup</div>
+
+    <div class="mockup-nav" style="margin-bottom:12px">
+      <img src="horizontal-color.svg" height="32" alt="Nav logo light" />
+      <div class="mockup-nav-links">
+        <span class="active">Models</span>
+        <span>Providers</span>
+        <span>About</span>
+      </div>
+    </div>
+
+    <div class="mockup-nav mockup-nav-dark">
+      <img src="horizontal-dark.svg" height="32" alt="Nav logo dark" />
+      <div class="mockup-nav-links">
+        <span class="active">Models</span>
+        <span>Providers</span>
+        <span>About</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FILE LIST ===== -->
+  <div class="section">
+    <div class="section-label">Files in this package</div>
+    <table style="font-size:13px; border-collapse:collapse; width:100%; max-width:640px;">
+      <thead>
+        <tr>
+          <th style="text-align:left; padding:8px 12px; background:#eeeee8; border-radius:6px 0 0 0; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:#5a6070;">File</th>
+          <th style="text-align:left; padding:8px 12px; background:#eeeee8; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:#5a6070;">Use for</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-top:1px solid #d6d4cc;">
+          <td style="padding:10px 12px; font-family:monospace; color:#1d4ed8;">horizontal-color.svg</td>
+          <td style="padding:10px 12px; color:#5a6070;">Nav, hero, light backgrounds</td>
+        </tr>
+        <tr style="border-top:1px solid #d6d4cc;">
+          <td style="padding:10px 12px; font-family:monospace; color:#1d4ed8;">horizontal-dark.svg</td>
+          <td style="padding:10px 12px; color:#5a6070;">Nav, dark/coloured backgrounds</td>
+        </tr>
+        <tr style="border-top:1px solid #d6d4cc;">
+          <td style="padding:10px 12px; font-family:monospace; color:#1d4ed8;">horizontal-mono.svg</td>
+          <td style="padding:10px 12px; color:#5a6070;">Print, single-colour applications</td>
+        </tr>
+        <tr style="border-top:1px solid #d6d4cc;">
+          <td style="padding:10px 12px; font-family:monospace; color:#1d4ed8;">vertical-color.svg</td>
+          <td style="padding:10px 12px; color:#5a6070;">Social media profiles, square tiles</td>
+        </tr>
+        <tr style="border-top:1px solid #d6d4cc;">
+          <td style="padding:10px 12px; font-family:monospace; color:#1d4ed8;">vertical-dark.svg</td>
+          <td style="padding:10px 12px; color:#5a6070;">Social media — dark variant</td>
+        </tr>
+        <tr style="border-top:1px solid #d6d4cc;">
+          <td style="padding:10px 12px; font-family:monospace; color:#1d4ed8;">icon-color.svg</td>
+          <td style="padding:10px 12px; color:#5a6070;">App icon, profile picture, embeds</td>
+        </tr>
+        <tr style="border-top:1px solid #d6d4cc;">
+          <td style="padding:10px 12px; font-family:monospace; color:#1d4ed8;">icon-white.svg</td>
+          <td style="padding:10px 12px; color:#5a6070;">Icon on blue/dark coloured backgrounds</td>
+        </tr>
+        <tr style="border-top:1px solid #d6d4cc; border-bottom:1px solid #d6d4cc;">
+          <td style="padding:10px 12px; font-family:monospace; color:#1d4ed8;">favicon.svg</td>
+          <td style="padding:10px 12px; color:#5a6070;">Browser tab favicon (32px, 16px)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 72" width="280" height="72" role="img" aria-labelledby="ic-h-dark-title">
+  <title id="ic-h-dark-title">InferCheck</title>
+
+  <!-- Lens fill: dark tint of accent-subtle -->
+  <circle cx="36" cy="34" r="20" fill="#1e3a8a" fill-opacity="0.35"/>
+
+  <!-- Magnifier ring: lighter accent for dark bg -->
+  <circle cx="36" cy="34" r="20" fill="none" stroke="#93c5fd" stroke-width="3.5"/>
+
+  <!-- Handle -->
+  <line x1="51.5" y1="49.5" x2="63" y2="61"
+    stroke="#93c5fd" stroke-width="4.5"
+    stroke-linecap="round"/>
+
+  <!-- Stars -->
+  <polygon points="36,20.8 36.7,22.9 38.9,22.9 37.2,24.1 37.9,26.2 36,25 34.1,26.2 34.8,24.1 33.1,22.9 35.3,22.9" fill="#FCD34D"/>
+  <polygon points="46.5,25.5 47.2,27.6 49.4,27.6 47.7,28.8 48.4,30.9 46.5,29.7 44.6,30.9 45.3,28.8 43.6,27.6 45.8,27.6" fill="#FCD34D"/>
+  <polygon points="43.3,41.3 44,43.4 46.2,43.4 44.5,44.6 45.2,46.7 43.3,45.5 41.4,46.7 42.1,44.6 40.4,43.4 42.6,43.4" fill="#FCD34D"/>
+  <polygon points="28.7,41.3 29.4,43.4 31.6,43.4 29.9,44.6 30.6,46.7 28.7,45.5 26.8,46.7 27.5,44.6 25.8,43.4 28,43.4" fill="#FCD34D"/>
+  <polygon points="25.5,25.5 26.2,27.6 28.4,27.6 26.7,28.8 27.4,30.9 25.5,29.7 23.6,30.9 24.3,28.8 22.6,27.6 24.8,27.6" fill="#FCD34D"/>
+
+  <!-- Tick (compliant-ish green, brightened for dark bg) -->
+  <polyline points="25,34 32,41 47,24"
+    fill="none" stroke="#4ade80" stroke-width="3.2"
+    stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Wordmark on dark -->
+  <text x="76" y="45"
+    font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif"
+    font-size="30" font-weight="600" fill="#f8fafc"
+    letter-spacing="-0.8">Infer</text>
+  <text x="148" y="45"
+    font-family="'DM Sans', 'Helvetica Neue', Arial, sans-serif"
+    font-size="30" font-weight="600" fill="#93c5fd"
+    letter-spacing="-0.8">Check</text>
+</svg>
