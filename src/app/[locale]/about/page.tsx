@@ -33,6 +33,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: "website",
     },
   };
+}
+
+// ─── Constants ─────────────────────────────────────────────────────────────────
 
 const GITHUB_REPO = process.env.NEXT_PUBLIC_GITHUB_REPO_URL ?? "#";
 const NEW_ISSUE_URL = `${GITHUB_REPO}/issues/new?template=report-change.yml`;

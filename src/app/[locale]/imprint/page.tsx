@@ -33,7 +33,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: t("ogDescription"),
       type: "website",
     },
-  };({ params }: PageProps) {
+  };
+}
+
+// ─── Page ──────────────────────────────────────────────────────────────────────
+
+export default async function ImprintPage({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
