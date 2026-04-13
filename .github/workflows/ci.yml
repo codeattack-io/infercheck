@@ -1,12 +1,15 @@
 # CI — Pull Request Checks
 #
-# Runs on every pull request and on pushes to any branch except main.
-# Steps in order:
-#   1. Validate provider JSON data (bun run validate)
-#   2. Lint source code (bun run lint)
-#   3. Build the Next.js app (bun run build)
+# Two jobs:
 #
-# No secrets required — all steps are purely static/local.
+#   check  — always runs (including fork PRs)
+#            Validates provider JSON data and lints source code.
+#            No secrets required.
+#
+#   build  — skipped for fork PRs (they have no access to secrets)
+#            Builds the Next.js app, which requires a real DATABASE_URL
+#            because sitemap generation queries the DB at build time.
+#            Uses DATABASE_URL_DEV secret (a Neon dev/CI branch).
 
 name: CI
 
@@ -21,39 +24,52 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # ── Validate + Lint ────────────────────────────────────────────────────────
+  # Runs for all PRs including forks. No secrets needed.
   check:
-    name: Validate · Lint · Build
+    name: Validate · Lint
     runs-on: ubuntu-latest
 
     steps:
-      # ── Checkout ──────────────────────────────────────────────────────────────
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ── Install Bun ───────────────────────────────────────────────────────────
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
-      # ── Install dependencies ──────────────────────────────────────────────────
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      # ── Validate provider JSON data ───────────────────────────────────────────
       - name: Validate data
         run: bun run validate
 
-      # ── Lint ──────────────────────────────────────────────────────────────────
       - name: Lint
         run: bun run lint
 
-      # ── Build ─────────────────────────────────────────────────────────────────
+  # ── Build ──────────────────────────────────────────────────────────────────
+  # Skipped for fork PRs — they cannot access repository secrets, and the
+  # Next.js build queries the database at build time (sitemap generation).
+  # All first-party branches and PRs from this repo run the full build.
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
       - name: Build
         run: bun run build
         env:
-          # Next.js build requires a DATABASE_URL even if no DB queries run at
-          # build time (Drizzle imports are statically analysed). Use a dummy
-          # postgres URL so the build does not error on a missing env var.
-          # Replace with a real dev DB secret if the build actually queries the DB.
-          DATABASE_URL: ${{ secrets.DATABASE_URL_DEV || 'postgresql://ci:ci@localhost:5432/ci' }}
+          DATABASE_URL: ${{ secrets.DATABASE_URL_DEV }}
