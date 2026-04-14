@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
         source: "/stats/:match*",
         destination: "https://analytics.codeattack.io/:match*",
       },
+      {
+        source: "/sitemap_index.xml",
+        destination: "/sitemap.xml",
+      },
     ];
   },
 };
