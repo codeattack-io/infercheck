@@ -65,9 +65,7 @@ export async function ProviderCard({ provider, modelCount }: ProviderCardProps) 
           ) : provider.compliance.sccs ? (
             <ComplianceBadge variant="eu-sccs" size="sm" />
           ) : null}
-          {provider.compliance.dpa.available ? (
-            <ComplianceBadge variant="dpa" size="sm" />
-          ) : null}
+          {provider.compliance.dpa.available ? <ComplianceBadge variant="dpa" size="sm" /> : null}
           {provider.compliance.dataUsage.trainsOnCustomerData === true ? (
             <ComplianceBadge variant="trains-on-data" size="sm" />
           ) : provider.compliance.dataUsage.trainsOnCustomerData === false ? (
@@ -91,10 +89,7 @@ export async function ProviderCard({ provider, modelCount }: ProviderCardProps) 
             : ""}
         </span>
         {provider.lastVerified ? (
-          <time
-            dateTime={provider.lastVerified}
-            className="font-mono text-[0.6875rem] text-text-muted"
-          >
+          <time dateTime={provider.lastVerified} className="font-mono text-[0.6875rem] text-text-muted">
             {provider.lastVerified}
           </time>
         ) : null}

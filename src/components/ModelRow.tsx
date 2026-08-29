@@ -36,18 +36,12 @@ function formatPrice(val: string | null | undefined): string {
 //    (Fuse can return stale index values from internal tokenisation passes).
 //  - Skips index pairs that span fewer than 2 characters (single-char matches
 //    from aggressive tokenisation are almost always noise).
-function highlightText(
-  text: string,
-  matches: readonly FuseResultMatch[] | undefined,
-  fuseKey: string,
-): ReactNode {
+function highlightText(text: string, matches: readonly FuseResultMatch[] | undefined, fuseKey: string): ReactNode {
   if (!matches || matches.length === 0) return text;
 
   // Find the match entry for this specific field key whose stored value
   // corresponds to the text we're about to render.
-  const fieldMatch = matches.find(
-    (m) => m.key === fuseKey && m.value === text,
-  );
+  const fieldMatch = matches.find((m) => m.key === fuseKey && m.value === text);
   if (!fieldMatch || !fieldMatch.indices || fieldMatch.indices.length === 0) return text;
 
   // Filter out single-character spans — too noisy to highlight.
@@ -78,7 +72,7 @@ function highlightText(
         style={{ font: "inherit" }}
       >
         {text.slice(start, end + 1)}
-      </mark>,
+      </mark>
     );
     cursor = end + 1;
   }
@@ -171,9 +165,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
               ) : provider.compliance.sccs ? (
                 <ComplianceBadge variant="eu-sccs" size="sm" />
               ) : null}
-              {provider.compliance.dpa.available ? (
-                <ComplianceBadge variant="dpa" size="sm" />
-              ) : null}
+              {provider.compliance.dpa.available ? <ComplianceBadge variant="dpa" size="sm" /> : null}
               {provider.compliance.dataUsage.trainsOnCustomerData === true ? (
                 <ComplianceBadge variant="trains-on-data" size="sm" />
               ) : provider.compliance.dataUsage.trainsOnCustomerData === false ? (
@@ -217,10 +209,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
         {/* Last verified column */}
         <td className="p-3 px-4 align-middle hidden xl:table-cell">
           {provider?.lastVerified ? (
-            <time
-              dateTime={provider.lastVerified}
-              className="font-mono text-xs text-text-muted"
-            >
+            <time dateTime={provider.lastVerified} className="font-mono text-xs text-text-muted">
               {provider.lastVerified}
             </time>
           ) : (
@@ -285,9 +274,10 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                     backgroundColor: "color-mix(in srgb, var(--color-partial) 6%, transparent)",
                   }}
                 >
-                  <span className="font-semibold">Third-party model hosted via {providerName}.</span>{" "}
-                  This model is made by another company but served through {providerName}&apos;s infrastructure.
-                  The compliance properties shown here reflect <span className="font-semibold">{providerName}</span>&apos;s data handling — not the original model creator&apos;s.
+                  <span className="font-semibold">Third-party model hosted via {providerName}.</span> This model is made
+                  by another company but served through {providerName}&apos;s infrastructure. The compliance properties
+                  shown here reflect <span className="font-semibold">{providerName}</span>&apos;s data handling — not
+                  the original model creator&apos;s.
                 </div>
               ) : null}
 
@@ -310,10 +300,21 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                           href={provider.compliance.dpa.url ?? undefined}
                         />
                         <ComplianceField
-                          label={provider.compliance.dataUsage.trainsOnCustomerData === true ? t("complianceFields.trainsOnCustomerData") : t("complianceFields.noTrainingOnCustomerData")}
-                          value={provider.compliance.dataUsage.trainsOnCustomerData === null ? null : !provider.compliance.dataUsage.trainsOnCustomerData}
+                          label={
+                            provider.compliance.dataUsage.trainsOnCustomerData === true
+                              ? t("complianceFields.trainsOnCustomerData")
+                              : t("complianceFields.noTrainingOnCustomerData")
+                          }
+                          value={
+                            provider.compliance.dataUsage.trainsOnCustomerData === null
+                              ? null
+                              : !provider.compliance.dataUsage.trainsOnCustomerData
+                          }
                         />
-                        <ComplianceField label={t("complianceFields.sccsInPlace")} value={provider.compliance.sccs ?? false} />
+                        <ComplianceField
+                          label={t("complianceFields.sccsInPlace")}
+                          value={provider.compliance.sccs ?? false}
+                        />
                       </div>
                     </div>
 
@@ -329,9 +330,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                     ) : null}
                   </>
                 ) : (
-                  <p className="font-body text-[0.875rem] text-text-muted m-0">
-                    {t("unverifiedNotice")}
-                  </p>
+                  <p className="font-body text-[0.875rem] text-text-muted m-0">{t("unverifiedNotice")}</p>
                 )}
               </div>
             </div>
@@ -346,24 +345,12 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
 // array reference haven't changed. This is the common case during filter-only
 // updates — only rows whose data actually changed need to re-render.
 export const ModelRow = memo(ModelRowInner, (prev, next) => {
-  return (
-    prev.item === next.item &&
-    prev.dimmed === next.dimmed &&
-    prev.matches === next.matches
-  );
+  return prev.item === next.item && prev.dimmed === next.dimmed && prev.matches === next.matches;
 });
 
 // ─── ComplianceField helper ───────────────────────────────────────────────────
 
-function ComplianceField({
-  label,
-  value,
-  href,
-}: {
-  label: string;
-  value: boolean | null;
-  href?: string;
-}) {
+function ComplianceField({ label, value, href }: { label: string; value: boolean | null; href?: string }) {
   const positive = value === true;
   const negative = value === false;
 
@@ -376,11 +363,7 @@ function ComplianceField({
 
   return (
     <div className="flex items-center gap-2">
-      <span
-        className="font-mono text-[0.8125rem] w-3.5 text-center shrink-0"
-        style={{ color }}
-        aria-hidden="true"
-      >
+      <span className="font-mono text-[0.8125rem] w-3.5 text-center shrink-0" style={{ color }} aria-hidden="true">
         {symbol}
       </span>
       <span className="font-body text-[0.8125rem] text-text-secondary">

@@ -1,13 +1,4 @@
-import {
-  pgTable,
-  text,
-  integer,
-  numeric,
-  boolean,
-  timestamp,
-  serial,
-  primaryKey,
-} from "drizzle-orm/pg-core";
+import { pgTable, text, integer, numeric, boolean, timestamp, serial, primaryKey } from "drizzle-orm/pg-core";
 
 // ─── models ──────────────────────────────────────────────────────────────────
 //
@@ -83,7 +74,7 @@ export const models = pgTable(
     /** Timestamp of last successful sync for this row */
     lastSyncedAt: timestamp("last_synced_at", { withTimezone: true }).notNull(),
   },
-  (table) => [primaryKey({ columns: [table.id, table.providerSlug] })],
+  (table) => [primaryKey({ columns: [table.id, table.providerSlug] })]
 );
 
 // ─── sync_log ─────────────────────────────────────────────────────────────────

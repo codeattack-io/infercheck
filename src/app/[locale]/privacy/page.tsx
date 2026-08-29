@@ -23,8 +23,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: {
       canonical: `https://infercheck.eu/${locale}/privacy`,
       languages: {
-        "en": "https://infercheck.eu/en/privacy",
-        "de": "https://infercheck.eu/de/privacy",
+        en: "https://infercheck.eu/en/privacy",
+        de: "https://infercheck.eu/de/privacy",
         "x-default": "https://infercheck.eu/de/privacy",
       },
     },
@@ -55,20 +55,14 @@ export default async function PrivacyPage({ params }: PageProps) {
           {t("heading")}
         </h1>
 
-        <p className="font-body text-[0.8125rem] text-text-muted leading-[1.5] mb-2">
-          {t("lastUpdated")}
-        </p>
+        <p className="font-body text-[0.8125rem] text-text-muted leading-[1.5] mb-2">{t("lastUpdated")}</p>
 
         {/* ── Legal binding note ── */}
         <p className="font-body text-[0.9375rem] text-text-secondary leading-[1.65] mb-10">
           {t.rich("legalNote", {
             german: (chunks) =>
               locale === "en" ? (
-                <Link
-                  href="/privacy"
-                  locale="de"
-                  className="text-link underline underline-offset-[3px]"
-                >
+                <Link href="/privacy" locale="de" className="text-link underline underline-offset-[3px]">
                   {chunks}
                 </Link>
               ) : (
@@ -82,12 +76,8 @@ export default async function PrivacyPage({ params }: PageProps) {
 
         {/* ── 1. Overview ── */}
         <section className="mb-10">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("introHeading")}
-          </h2>
-          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
-            {t("introText")}
-          </p>
+          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">{t("introHeading")}</h2>
+          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("introText")}</p>
         </section>
 
         {/* ── 2. Controller ── */}
@@ -95,18 +85,13 @@ export default async function PrivacyPage({ params }: PageProps) {
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("controllerHeading")}
           </h2>
-          <p className="font-body text-[0.9375rem] text-text-secondary leading-[1.65] mb-4">
-            {t("controllerText")}
-          </p>
+          <p className="font-body text-[0.9375rem] text-text-secondary leading-[1.65] mb-4">{t("controllerText")}</p>
           <address className="not-italic font-body text-[0.9375rem] text-text-primary leading-[1.9]">
             <span className="font-semibold text-heading">{t("controllerName")}</span>
             <br />
             {t("controllerAddress")}
             <br />
-            <a
-              href={`mailto:${t("controllerEmail")}`}
-              className="text-link underline underline-offset-[3px]"
-            >
+            <a href={`mailto:${t("controllerEmail")}`} className="text-link underline underline-offset-[3px]">
               {t("controllerEmail")}
             </a>
           </address>
@@ -138,9 +123,7 @@ export default async function PrivacyPage({ params }: PageProps) {
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("analyticsHeading")}
           </h2>
-          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
-            {t("analyticsText")}
-          </p>
+          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("analyticsText")}</p>
         </section>
 
         {/* ── 5. Database ── */}
@@ -211,17 +194,13 @@ export default async function PrivacyPage({ params }: PageProps) {
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("rightsHeading")}
           </h2>
-          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75] mb-4">
-            {t("rightsText")}
-          </p>
+          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75] mb-4">{t("rightsText")}</p>
           <ul className="font-body text-[0.9375rem] text-text-primary leading-[1.75] pl-5 flex flex-col gap-1 mb-5 list-disc">
             {rightsList.map((right, i) => (
               <li key={i}>{right}</li>
             ))}
           </ul>
-          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75] mb-3">
-            {t("rightsContact")}
-          </p>
+          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75] mb-3">{t("rightsContact")}</p>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
             {t("supervisoryAuthority")},{" "}
             <a
@@ -240,9 +219,7 @@ export default async function PrivacyPage({ params }: PageProps) {
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("cookiesHeading")}
           </h2>
-          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
-            {t("cookiesText")}
-          </p>
+          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("cookiesText")}</p>
         </section>
 
         {/* ── 10. Changes ── */}
@@ -250,17 +227,12 @@ export default async function PrivacyPage({ params }: PageProps) {
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("changesHeading")}
           </h2>
-          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
-            {t("changesText")}
-          </p>
+          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("changesText")}</p>
         </section>
 
         {/* ── Back link ── */}
         <div className="pt-2">
-          <Link
-            href="/"
-            className="font-body text-sm font-medium text-link underline underline-offset-[3px]"
-          >
+          <Link href="/" className="font-body text-sm font-medium text-link underline underline-offset-[3px]">
             {t("backLink")}
           </Link>
         </div>

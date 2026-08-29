@@ -33,8 +33,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     alternates: {
       canonical: `https://infercheck.eu/${locale}`,
       languages: {
-        "en": "https://infercheck.eu/en",
-        "de": "https://infercheck.eu/de",
+        en: "https://infercheck.eu/en",
+        de: "https://infercheck.eu/de",
         "x-default": "https://infercheck.eu/en",
       },
     },
@@ -50,7 +50,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 // ─── Data fetching (React.cache for per-request deduplication) ────────────────
 
 const getActiveModels = cache(async () => {
-  return db.select().from(models).where(and(eq(models.isActive, true))).orderBy(models.displayName);
+  return db
+    .select()
+    .from(models)
+    .where(and(eq(models.isActive, true)))
+    .orderBy(models.displayName);
 });
 
 // ─── Page ──────────────────────────────────────────────────────────────────────
@@ -69,15 +73,10 @@ export default async function HomePage({ params, searchParams }: HomePageProps) 
   const t = await getTranslations("HomePage");
 
   // Parallel fetch: DB + file system — async-parallel rule
-  const [allModels, allProviders] = await Promise.all([
-    getActiveModels(),
-    Promise.resolve(getAllProviders()),
-  ]);
+  const [allModels, allProviders] = await Promise.all([getActiveModels(), Promise.resolve(getAllProviders())]);
 
   // Build provider lookup map — js-index-maps rule
-  const providerMap = new Map<string, AnyProvider>(
-    allProviders.map((p) => [p.slug, getLocalizedProvider(p, locale)]),
-  );
+  const providerMap = new Map<string, AnyProvider>(allProviders.map((p) => [p.slug, getLocalizedProvider(p, locale)]));
 
   // Serialize: only pass what client components need — server-serialization rule
   const items: ModelWithProvider[] = allModels.map((model) => ({
@@ -89,7 +88,7 @@ export default async function HomePage({ params, searchParams }: HomePageProps) 
   const urlSearchParams = new URLSearchParams(
     Object.entries(sp)
       .filter(([, v]) => typeof v === "string")
-      .map(([k, v]) => [k, v as string]),
+      .map(([k, v]) => [k, v as string])
   );
   const filterState = filterStateFromSearchParams(urlSearchParams);
 
@@ -97,36 +96,28 @@ export default async function HomePage({ params, searchParams }: HomePageProps) 
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Dataset",
-    "name": "InferCheck",
-    "description":
+    name: "InferCheck",
+    description:
       "Structured compliance metadata for AI inference providers — EU data residency, DPA availability, training policy, certifications, and EU AI Act status.",
-    "url": "https://infercheck.eu",
-    "license": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
-    "creator": {
+    url: "https://infercheck.eu",
+    license: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    creator: {
       "@type": "Person",
-      "name": "Carlo Noelle",
+      name: "Carlo Noelle",
     },
-    "keywords": [
-      "GDPR AI",
-      "EU AI compliance",
-      "GDPR compliant LLM",
-      "EU data residency AI",
-      "AI inference GDPR",
-    ],
+    keywords: ["GDPR AI", "EU AI compliance", "GDPR compliant LLM", "EU data residency AI", "AI inference GDPR"],
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <main className="max-w-[1200px] mx-auto flex-1 w-full box-border px-4 sm:px-6 lg:px-10 py-10">
         {/* Page heading */}
         <div className="mb-8">
           <h1 className="font-display text-[2.5rem] font-normal text-heading leading-[1.15] m-0 mb-3 tracking-[-0.02em]">
-            {t("heading1")}<br />
+            {t("heading1")}
+            <br />
             {t("heading2")}
           </h1>
           <p className="font-body text-[0.9375rem] text-text-secondary m-0 max-w-[55ch] leading-[1.6]">
@@ -146,9 +137,7 @@ export default async function HomePage({ params, searchParams }: HomePageProps) 
         {/* Model table — client component, data from server */}
         <Suspense
           fallback={
-            <div className="py-16 text-center font-body text-[0.9375rem] text-text-muted">
-              {t("loadingModels")}
-            </div>
+            <div className="py-16 text-center font-body text-[0.9375rem] text-text-muted">{t("loadingModels")}</div>
           }
         >
           <ModelTable items={items} searchQuery={searchQuery} />

@@ -80,13 +80,11 @@ export function getLocalizedProvider(provider: AnyProvider, locale: string): Any
       ...provider.compliance,
       dataResidency: {
         ...provider.compliance.dataResidency,
-        euRegionDetails:
-          t.dataResidency?.euRegionDetails ?? provider.compliance.dataResidency.euRegionDetails,
+        euRegionDetails: t.dataResidency?.euRegionDetails ?? provider.compliance.dataResidency.euRegionDetails,
       },
       dataUsage: {
         ...provider.compliance.dataUsage,
-        retentionPolicy:
-          t.dataUsage?.retentionPolicy ?? provider.compliance.dataUsage.retentionPolicy,
+        retentionPolicy: t.dataUsage?.retentionPolicy ?? provider.compliance.dataUsage.retentionPolicy,
         details: t.dataUsage?.details ?? provider.compliance.dataUsage.details,
       },
       euAiAct: {

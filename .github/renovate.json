@@ -11,6 +11,21 @@
 
   "packageRules": [
     {
+      "description": "dotenv-expand tags a 1000.0.0 sentinel release as latest — stay on real semver",
+      "matchPackageNames": ["dotenv-expand"],
+      "allowedVersions": "<1000.0.0"
+    },
+    {
+      "description": "ESLint 10 blocked: eslint-plugin-react (via eslint-config-next) peers on eslint ^9.7",
+      "matchPackageNames": ["eslint"],
+      "allowedVersions": "<10.0.0"
+    },
+    {
+      "description": "TypeScript 7 blocked: typescript-eslint peers on typescript <6.1.0",
+      "matchPackageNames": ["typescript"],
+      "allowedVersions": "<6.1.0"
+    },
+    {
       "description": "Group all patch updates and auto-merge them if CI passes",
       "matchUpdateTypes": ["patch"],
       "groupName": "All patch updates",
@@ -38,11 +53,7 @@
     },
     {
       "description": "Group AI SDK packages",
-      "matchPackageNames": [
-        "ai",
-        "@ai-sdk/openai",
-        "@openrouter/ai-sdk-provider"
-      ],
+      "matchPackageNames": ["ai", "@ai-sdk/openai", "@openrouter/ai-sdk-provider"],
       "groupName": "AI SDK",
       "automerge": false
     },

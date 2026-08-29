@@ -5,9 +5,7 @@ import { routing } from "./routing";
 export default getRequestConfig(async ({ requestLocale }) => {
   // requestLocale is a Promise in next-intl v4 — must be awaited.
   const requested = await requestLocale;
-  const locale = hasLocale(routing.locales, requested)
-    ? requested
-    : routing.defaultLocale;
+  const locale = hasLocale(routing.locales, requested) ? requested : routing.defaultLocale;
 
   return {
     locale,

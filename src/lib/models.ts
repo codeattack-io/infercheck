@@ -23,12 +23,7 @@ export async function searchModels(query: string): Promise<Model[]> {
   return db
     .select()
     .from(models)
-    .where(
-      and(
-        eq(models.isActive, true),
-        ilike(models.displayName, term),
-      ),
-    )
+    .where(and(eq(models.isActive, true), ilike(models.displayName, term)))
     .orderBy(models.displayName)
     .limit(50);
 }
@@ -46,12 +41,7 @@ export async function getProvidersByModelSuffix(canonicalId: string): Promise<Mo
   return db
     .select()
     .from(models)
-    .where(
-      and(
-        eq(models.isActive, true),
-        eq(models.canonicalModelId, canonicalId),
-      ),
-    )
+    .where(and(eq(models.isActive, true), eq(models.canonicalModelId, canonicalId)))
     .orderBy(models.providerSlug);
 }
 
@@ -63,12 +53,7 @@ export async function getModelsByProvider(providerSlug: string): Promise<Model[]
   return db
     .select()
     .from(models)
-    .where(
-      and(
-        eq(models.providerSlug, providerSlug),
-        eq(models.isActive, true),
-      ),
-    )
+    .where(and(eq(models.providerSlug, providerSlug), eq(models.isActive, true)))
     .orderBy(models.displayName);
 }
 
@@ -94,13 +79,7 @@ export async function getLastSyncedAt(providerSlug: string): Promise<Date | null
   const rows = await db
     .select({ lastSyncedAt: models.lastSyncedAt })
     .from(models)
-    .where(
-      and(
-        eq(models.providerSlug, providerSlug),
-        eq(models.isActive, true),
-        isNotNull(models.lastSyncedAt),
-      ),
-    )
+    .where(and(eq(models.providerSlug, providerSlug), eq(models.isActive, true), isNotNull(models.lastSyncedAt)))
     .orderBy(sql`${models.lastSyncedAt} DESC`)
     .limit(1);
   return rows[0]?.lastSyncedAt ?? null;

@@ -42,22 +42,13 @@ export async function Footer() {
 
           {/* Right: nav links */}
           <nav aria-label="Footer navigation" className="flex gap-5 items-center">
-            <Link
-              href="/about"
-              className="font-body text-[0.8125rem] text-text-muted no-underline"
-            >
+            <Link href="/about" className="font-body text-[0.8125rem] text-text-muted no-underline">
               {t("nav.about")}
             </Link>
-            <Link
-              href="/imprint"
-              className="font-body text-[0.8125rem] text-text-muted no-underline"
-            >
+            <Link href="/imprint" className="font-body text-[0.8125rem] text-text-muted no-underline">
               {t("nav.imprint")}
             </Link>
-            <Link
-              href="/privacy"
-              className="font-body text-[0.8125rem] text-text-muted no-underline"
-            >
+            <Link href="/privacy" className="font-body text-[0.8125rem] text-text-muted no-underline">
               {t("nav.privacy")}
             </Link>
             <a
@@ -72,10 +63,7 @@ export async function Footer() {
         </div>
 
         {/* ── Disclaimer ── */}
-        <p
-          role="note"
-          className="font-body text-xs text-text-muted mt-4 leading-[1.5] border-t border-border pt-4"
-        >
+        <p role="note" className="font-body text-xs text-text-muted mt-4 leading-[1.5] border-t border-border pt-4">
           {t("disclaimer")}
         </p>
       </div>

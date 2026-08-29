@@ -47,9 +47,7 @@ export function ComplianceBadges({ provider, size = "md", maxVisible = 0 }: Comp
     <div className="flex flex-wrap gap-1 items-center">
       {visible}
       {maxVisible > 0 && badges.length > maxVisible ? (
-        <span className="text-xs text-text-muted font-body">
-          +{badges.length - maxVisible}
-        </span>
+        <span className="text-xs text-text-muted font-body">+{badges.length - maxVisible}</span>
       ) : null}
     </div>
   );

@@ -33,11 +33,7 @@ const ibmPlexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "Layout" });
 
@@ -50,8 +46,8 @@ export async function generateMetadata({
     metadataBase: new URL("https://infercheck.eu"),
     alternates: {
       languages: {
-        "en": "/en",
-        "de": "/de",
+        en: "/en",
+        de: "/de",
         "x-default": "/en",
       },
     },
@@ -105,14 +101,8 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
 
   return (
-    <html
-      lang={locale}
-      className={`${instrumentSerif.variable} ${dmSans.variable} ${ibmPlexMono.variable} h-full`}
-    >
-      <body
-        className="min-h-full flex flex-col antialiased"
-        suppressHydrationWarning
-      >
+    <html lang={locale} className={`${instrumentSerif.variable} ${dmSans.variable} ${ibmPlexMono.variable} h-full`}>
+      <body className="min-h-full flex flex-col antialiased" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <Nav />
           {children}
