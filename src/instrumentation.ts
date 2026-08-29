@@ -30,11 +30,7 @@ export async function register() {
   }
 }
 
-export const onRequestError: Instrumentation.onRequestError = async (
-  error,
-  request,
-  context,
-) => {
+export const onRequestError: Instrumentation.onRequestError = async (error, request, context) => {
   if (!process.env.SENTRY_DSN) return;
 
   const Sentry = await import("@sentry/nextjs");

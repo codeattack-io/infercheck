@@ -17,11 +17,7 @@ export type { FilterState };
 export { filterStateFromSearchParams };
 
 // Preset profile definitions (matches PLAN.md)
-const PRESET_IDS: Exclude<FilterProfile, "custom" | null>[] = [
-  "strict-eu",
-  "eu-sccs",
-  "no-training",
-];
+const PRESET_IDS: Exclude<FilterProfile, "custom" | null>[] = ["strict-eu", "eu-sccs", "no-training"];
 
 const PRESET_FILTERS: Record<Exclude<FilterProfile, "custom" | null>, ComplianceFilter> = {
   "strict-eu": { euOnly: true, dpa: true, noTraining: true },
@@ -44,7 +40,7 @@ export function FilterBar({ filterState }: FilterBarProps) {
   const searchParams = useSearchParams();
   const [, startTransition] = useTransition();
   const [customOpen, setCustomOpen] = useState(
-    filterState.profile === "custom" || Object.keys(filterState.custom).length > 0,
+    filterState.profile === "custom" || Object.keys(filterState.custom).length > 0
   );
   const t = useTranslations("FilterBar");
 
@@ -88,7 +84,7 @@ export function FilterBar({ filterState }: FilterBarProps) {
       const qs = params.toString();
       return `${pathname}${qs ? `?${qs}` : ""}`;
     },
-    [pathname, searchParams],
+    [pathname, searchParams]
   );
 
   const setProfile = useCallback(
@@ -108,7 +104,7 @@ export function FilterBar({ filterState }: FilterBarProps) {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [filterState.profile, filterState.custom, buildUrl, router],
+    [filterState.profile, filterState.custom, buildUrl, router]
   );
 
   const toggleCustom = useCallback(
@@ -120,11 +116,9 @@ export function FilterBar({ filterState }: FilterBarProps) {
         newCustom[key] = true;
       }
       const hasAny = Object.keys(newCustom).length > 0;
-      startTransition(() =>
-        router.push(buildUrl(hasAny ? "custom" : null, newCustom)),
-      );
+      startTransition(() => router.push(buildUrl(hasAny ? "custom" : null, newCustom)));
     },
-    [filterState.custom, buildUrl, router],
+    [filterState.custom, buildUrl, router]
   );
 
   const toggleCustomPanel = () => {
@@ -147,11 +141,7 @@ export function FilterBar({ filterState }: FilterBarProps) {
   return (
     <div>
       {/* Label + preset buttons row */}
-      <div
-        className="flex flex-wrap gap-2 items-center"
-        role="group"
-        aria-label={t("ariaPresets")}
-      >
+      <div className="flex flex-wrap gap-2 items-center" role="group" aria-label={t("ariaPresets")}>
         <span className="font-body text-[0.8125rem] font-medium text-text-muted mr-1 whitespace-nowrap">
           {t("filterLabel")}
         </span>
@@ -255,13 +245,8 @@ export function FilterBar({ filterState }: FilterBarProps) {
           {CUSTOM_TOGGLES.map(({ key, label }) => {
             const isOn = !!filterState.custom[key];
             return (
-              <label
-                key={key}
-                className="flex items-center justify-between cursor-pointer gap-4"
-              >
-                <span className="font-body text-[0.875rem] text-text-primary">
-                  {label}
-                </span>
+              <label key={key} className="flex items-center justify-between cursor-pointer gap-4">
+                <span className="font-body text-[0.875rem] text-text-primary">{label}</span>
                 {/* Toggle track — bg depends on isOn state */}
                 <button
                   role="switch"

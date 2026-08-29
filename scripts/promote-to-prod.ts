@@ -173,11 +173,7 @@ if (!dryRun && !yes) {
 // ---------------------------------------------------------------------------
 
 if (!skipMigrate) {
-  run(
-    "Running Drizzle migrations against prod DB",
-    "bun",
-    ["run", "db:migrate"],
-  );
+  run("Running Drizzle migrations against prod DB", "bun", ["run", "db:migrate"]);
   console.log("✓ Migrations applied");
 } else {
   console.log("⏭  Skipping migrations (--skip-migrate)");
@@ -212,7 +208,8 @@ if (!skipData) {
 
   run("Truncating prod tables before data restore", "psql", [
     prodUrl,
-    "-c", "TRUNCATE models, sync_log RESTART IDENTITY CASCADE",
+    "-c",
+    "TRUNCATE models, sync_log RESTART IDENTITY CASCADE",
   ]);
 
   run("Dumping dev data and restoring into prod (data-only)", "bash", [

@@ -50,11 +50,7 @@ export function Nav() {
       >
         <div className="max-w-[1200px] mx-auto h-14 flex items-center justify-between px-4 sm:px-6 lg:px-10">
           {/* Wordmark */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 no-underline"
-            aria-label={t("wordmark")}
-          >
+          <Link href="/" className="flex items-center gap-2 no-underline" aria-label={t("wordmark")}>
             {/* Favicon icon — 24 px, matches the favicon.svg design */}
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -70,9 +70,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const rows = await getModelRows(decoded);
   const rawName =
-    (rows.find((r) => r.isNativeModel === true) ??
-     rows.find((r) => r.providerSlug !== "amazon-bedrock") ??
-     rows[0])?.displayName ?? decoded;
+    (rows.find((r) => r.isNativeModel === true) ?? rows.find((r) => r.providerSlug !== "amazon-bedrock") ?? rows[0])
+      ?.displayName ?? decoded;
   const name = rawName.replace(/^\w[\w\s]*:\s+/, "");
 
   const t = await getTranslations({ locale, namespace: "ModelPage" });
@@ -83,8 +82,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: {
       canonical: `https://infercheck.eu/${locale}/model/${id}`,
       languages: {
-        "en": `https://infercheck.eu/en/model/${id}`,
-        "de": `https://infercheck.eu/de/model/${id}`,
+        en: `https://infercheck.eu/en/model/${id}`,
+        de: `https://infercheck.eu/de/model/${id}`,
         "x-default": `https://infercheck.eu/en/model/${id}`,
       },
     },
@@ -106,10 +105,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
   // Parallel: cached DB query + provider JSON load (async-parallel rule).
   // getModelRows() is React.cache-wrapped — if generateMetadata already ran it,
   // this hits the request-scoped cache instead of the DB (server-cache-react rule).
-  const [modelRows, allProviders] = await Promise.all([
-    getModelRows(decoded),
-    Promise.resolve(getAllProviders()),
-  ]);
+  const [modelRows, allProviders] = await Promise.all([getModelRows(decoded), Promise.resolve(getAllProviders())]);
 
   if (modelRows.length === 0) {
     notFound();
@@ -141,25 +137,22 @@ export default async function ModelDetailPage({ params }: PageProps) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": modelName,
-    "applicationCategory": "AI Language Model",
-    "offers": modelRows.map((row) => {
+    name: modelName,
+    applicationCategory: "AI Language Model",
+    offers: modelRows.map((row) => {
       const provider = providerMap.get(row.providerSlug);
       return {
         "@type": "Offer",
-        "seller": { "@type": "Organization", "name": provider?.name ?? row.providerSlug },
-        "price": row.inputPricePerMTokens ?? undefined,
-        "priceCurrency": "USD",
+        seller: { "@type": "Organization", name: provider?.name ?? row.providerSlug },
+        price: row.inputPricePerMTokens ?? undefined,
+        priceCurrency: "USD",
       };
     }),
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <main className="max-w-[1200px] mx-auto flex-1 w-full box-border px-4 sm:px-6 lg:px-10 py-10">
         {/* Breadcrumb */}
@@ -181,9 +174,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
             {modelName}
           </h1>
           <p className="font-body text-[0.9375rem] text-text-secondary m-0">
-            {modelRows.length === 1
-              ? t("availableFrom1")
-              : t("availableFromN", { count: modelRows.length })}
+            {modelRows.length === 1 ? t("availableFrom1") : t("availableFromN", { count: modelRows.length })}
             {t("compareSubheading")}
           </p>
         </div>
@@ -206,10 +197,10 @@ export default async function ModelDetailPage({ params }: PageProps) {
                     tier === "compliant"
                       ? "var(--color-compliant)"
                       : tier === "partial"
-                      ? "var(--color-partial)"
-                      : tier === "noncompliant"
-                      ? "var(--color-noncompliant)"
-                      : "var(--color-unverified)"
+                        ? "var(--color-partial)"
+                        : tier === "noncompliant"
+                          ? "var(--color-noncompliant)"
+                          : "var(--color-unverified)"
                   }`,
                   padding: "20px 24px",
                 }}
@@ -247,10 +238,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
                 </div>
 
                 {/* Detail grid */}
-                <div
-                  className="grid gap-4"
-                  style={{ gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}
-                >
+                <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}>
                   {/* Pricing */}
                   <DetailSection title={t("sections.pricing")}>
                     <DetailRow label={t("pricing.input")} value={formatPrice(row.inputPricePerMTokens)} mono />
@@ -272,12 +260,13 @@ export default async function ModelDetailPage({ params }: PageProps) {
                       />
                       <BooleanRow
                         label={t("compliance.noTrainingOnData")}
-                        value={provider.compliance.dataUsage.trainsOnCustomerData === null ? null : !provider.compliance.dataUsage.trainsOnCustomerData}
+                        value={
+                          provider.compliance.dataUsage.trainsOnCustomerData === null
+                            ? null
+                            : !provider.compliance.dataUsage.trainsOnCustomerData
+                        }
                       />
-                      <BooleanRow
-                        label={t("compliance.sccsInPlace")}
-                        value={provider.compliance.sccs ?? false}
-                      />
+                      <BooleanRow label={t("compliance.sccsInPlace")} value={provider.compliance.sccs ?? false} />
                     </DetailSection>
                   ) : (
                     <DetailSection title={t("sections.gdprCompliance")}>
@@ -315,9 +304,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
                         ) : provider.compliance.sccs ? (
                           <ComplianceBadge variant="eu-sccs" />
                         ) : null}
-                        {provider.compliance.dpa.available ? (
-                          <ComplianceBadge variant="dpa" />
-                        ) : null}
+                        {provider.compliance.dpa.available ? <ComplianceBadge variant="dpa" /> : null}
                         {provider.compliance.dataUsage.trainsOnCustomerData === true ? (
                           <ComplianceBadge variant="trains-on-data" />
                         ) : provider.compliance.dataUsage.trainsOnCustomerData === false ? (
@@ -352,13 +339,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
-function DetailSection({
-  title,
-  children,
-}: {
-  title: string;
-  children: React.ReactNode;
-}) {
+function DetailSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
       <div className="font-body text-[0.6875rem] font-semibold text-text-secondary uppercase tracking-[0.06em] mb-[10px]">
@@ -369,20 +350,10 @@ function DetailSection({
   );
 }
 
-function DetailRow({
-  label,
-  value,
-  mono = false,
-}: {
-  label: string;
-  value: string;
-  mono?: boolean;
-}) {
+function DetailRow({ label, value, mono = false }: { label: string; value: string; mono?: boolean }) {
   return (
     <div className="flex items-baseline justify-between gap-2 mb-1">
-      <span className="font-body text-[0.8125rem] text-text-secondary shrink-0">
-        {label}
-      </span>
+      <span className="font-body text-[0.8125rem] text-text-secondary shrink-0">{label}</span>
       <span className={`text-[0.8125rem] text-text-primary text-right ${mono ? "font-mono" : "font-body"}`}>
         {value}
       </span>
@@ -390,40 +361,23 @@ function DetailRow({
   );
 }
 
-function BooleanRow({
-  label,
-  value,
-  href,
-}: {
-  label: string;
-  value: boolean | null;
-  href?: string;
-}) {
+function BooleanRow({ label, value, href }: { label: string; value: boolean | null; href?: string }) {
   const positive = value === true;
   const symbol = positive ? "✓" : value === false ? "✗" : "?";
   const color = positive
     ? "var(--color-compliant)"
     : value === false
-    ? "var(--color-noncompliant)"
-    : "var(--color-text-muted)";
+      ? "var(--color-noncompliant)"
+      : "var(--color-text-muted)";
 
   return (
     <div className="flex items-center gap-2 mb-1">
-      <span
-        className="font-mono text-[0.8125rem] w-3.5 text-center shrink-0"
-        style={{ color }}
-        aria-hidden="true"
-      >
+      <span className="font-mono text-[0.8125rem] w-3.5 text-center shrink-0" style={{ color }} aria-hidden="true">
         {symbol}
       </span>
       <span className="font-body text-[0.8125rem] text-text-secondary">
         {href ? (
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-link no-underline"
-          >
+          <a href={href} target="_blank" rel="noopener noreferrer" className="text-link no-underline">
             {label} ↗
           </a>
         ) : (

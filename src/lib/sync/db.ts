@@ -19,7 +19,7 @@ export function getDb() {
 export async function upsertModels(
   db: ReturnType<typeof getDb>,
   rows: ModelRow[],
-  providerSlug: string,
+  providerSlug: string
 ): Promise<{ upserted: number; deactivated: number }> {
   if (rows.length === 0) return { upserted: 0, deactivated: 0 };
 
@@ -61,8 +61,8 @@ export async function upsertModels(
         and(
           eq(schema.models.providerSlug, providerSlug),
           notInArray(schema.models.id, activeIds),
-          eq(schema.models.isActive, true),
-        ),
+          eq(schema.models.isActive, true)
+        )
       );
     deactivated = result.rowCount ?? 0;
   }

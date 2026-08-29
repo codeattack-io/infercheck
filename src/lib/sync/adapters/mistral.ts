@@ -43,24 +43,15 @@ export async function fetchMistralModels(): Promise<ModelRow[]> {
       .filter((m) => m.object === "model" && m.id === m.name) // deduplicate: skip aliases
       .map((m) => {
         const c = m.capabilities;
-        const isAudio =
-          c.audio || c.audio_transcription || c.audio_transcription_realtime || c.audio_speech;
+        const isAudio = c.audio || c.audio_transcription || c.audio_transcription_realtime || c.audio_speech;
         const isMultimodal = !isAudio && c.vision;
         const isEmbedding = !isAudio && !isMultimodal && !c.completion_chat && !c.fine_tuning;
-        const modality = isAudio
-          ? "audio"
-          : isMultimodal
-            ? "multimodal"
-            : isEmbedding
-              ? "embedding"
-              : "text";
+        const modality = isAudio ? "audio" : isMultimodal ? "multimodal" : isEmbedding ? "embedding" : "text";
         return {
           id: `mistralai/${m.id}`,
           providerSlug: "mistral",
           canonicalModelId: deriveCanonicalModelId(`mistralai/${m.id}`),
-          displayName: m.id
-            .replace(/-/g, " ")
-            .replace(/\b\w/g, (c) => c.toUpperCase()),
+          displayName: m.id.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase()),
           modality,
           contextWindow: m.max_context_length ?? null,
           inputPricePerMTokens: null,

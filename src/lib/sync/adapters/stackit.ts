@@ -19,16 +19,40 @@ import { deriveCanonicalModelId } from "../utils";
 // Full Name = the model ID served by the API.
 const SEED: Array<{ id: string; name: string; ctx: number; modality: string; active: boolean }> = [
   // Text / multimodal models
-  { id: "Qwen/Qwen3-VL-235B-A22B-Instruct-FP8",         name: "Qwen3-VL 235B",         ctx: 218000, modality: "multimodal", active: true  },
-  { id: "cortecs/Llama-3.3-70B-Instruct-FP8-Dynamic",    name: "Llama 3.3 70B",         ctx: 131072, modality: "text",      active: true  },
-  { id: "openai/gpt-oss-120b",                           name: "GPT-OSS 120B",          ctx: 131072, modality: "text",      active: true  },
-  { id: "google/gemma-3-27b-it",                         name: "Gemma 3 27B",           ctx: 37000,  modality: "multimodal", active: true  },
-  { id: "openai/gpt-oss-20b",                            name: "GPT-OSS 20B",           ctx: 131072, modality: "text",      active: true  },
-  { id: "neuralmagic/Mistral-Nemo-Instruct-2407-FP8",    name: "Mistral Nemo",          ctx: 128000, modality: "text",      active: false }, // deprecated
-  { id: "neuralmagic/Meta-Llama-3.1-8B-Instruct-FP8",   name: "Llama 3.1 8B",          ctx: 128000, modality: "text",      active: false }, // deprecated
+  {
+    id: "Qwen/Qwen3-VL-235B-A22B-Instruct-FP8",
+    name: "Qwen3-VL 235B",
+    ctx: 218000,
+    modality: "multimodal",
+    active: true,
+  },
+  {
+    id: "cortecs/Llama-3.3-70B-Instruct-FP8-Dynamic",
+    name: "Llama 3.3 70B",
+    ctx: 131072,
+    modality: "text",
+    active: true,
+  },
+  { id: "openai/gpt-oss-120b", name: "GPT-OSS 120B", ctx: 131072, modality: "text", active: true },
+  { id: "google/gemma-3-27b-it", name: "Gemma 3 27B", ctx: 37000, modality: "multimodal", active: true },
+  { id: "openai/gpt-oss-20b", name: "GPT-OSS 20B", ctx: 131072, modality: "text", active: true },
+  {
+    id: "neuralmagic/Mistral-Nemo-Instruct-2407-FP8",
+    name: "Mistral Nemo",
+    ctx: 128000,
+    modality: "text",
+    active: false,
+  }, // deprecated
+  {
+    id: "neuralmagic/Meta-Llama-3.1-8B-Instruct-FP8",
+    name: "Llama 3.1 8B",
+    ctx: 128000,
+    modality: "text",
+    active: false,
+  }, // deprecated
   // Embedding models
-  { id: "intfloat/e5-mistral-7b-instruct",               name: "E5 Mistral 7B",         ctx: 4096,   modality: "embedding", active: true  },
-  { id: "Qwen/Qwen3-VL-Embedding-8B",                    name: "Qwen3 VL Embedding 8B", ctx: 32000,  modality: "embedding", active: true  },
+  { id: "intfloat/e5-mistral-7b-instruct", name: "E5 Mistral 7B", ctx: 4096, modality: "embedding", active: true },
+  { id: "Qwen/Qwen3-VL-Embedding-8B", name: "Qwen3 VL Embedding 8B", ctx: 32000, modality: "embedding", active: true },
 ];
 
 export async function fetchStackitModels(): Promise<ModelRow[]> {
@@ -37,10 +61,9 @@ export async function fetchStackitModels(): Promise<ModelRow[]> {
   if (apiKey) {
     console.log("Fetching Stackit model catalog (live API)…");
     try {
-      const res = await fetch(
-        "https://model-serving.api.stackit.cloud/v1/regions/eu01/models",
-        { headers: { Authorization: `Bearer ${apiKey}` } },
-      );
+      const res = await fetch("https://model-serving.api.stackit.cloud/v1/regions/eu01/models", {
+        headers: { Authorization: `Bearer ${apiKey}` },
+      });
       if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
       const data = (await res.json()) as {
         data: Array<{ id: string; object?: string }>;

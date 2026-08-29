@@ -41,13 +41,13 @@ const FUSE_OPTIONS: ConstructorParameters<typeof Fuse<ModelWithProvider>>[1] = {
     { name: "provider.name", weight: 1 },
     { name: "model.id", weight: 0.5 },
   ],
-  threshold: 0.2,            // tight: only close matches; 0 = exact, 1 = anything
-  distance: 200,             // allow matches further into long model-id strings
-  ignoreLocation: true,      // don't penalise matches that occur deep in the string
-  useExtendedSearch: true,   // required for $and / $or logical queries
-  useTokenSearch: false,     // off — we build the token split manually below
-  includeMatches: true,      // character-level indices for highlighting
-  minMatchCharLength: 2,     // never match single characters
+  threshold: 0.2, // tight: only close matches; 0 = exact, 1 = anything
+  distance: 200, // allow matches further into long model-id strings
+  ignoreLocation: true, // don't penalise matches that occur deep in the string
+  useExtendedSearch: true, // required for $and / $or logical queries
+  useTokenSearch: false, // off — we build the token split manually below
+  includeMatches: true, // character-level indices for highlighting
+  minMatchCharLength: 2, // never match single characters
 };
 
 // Split the query into tokens on whitespace.
@@ -118,11 +118,7 @@ const TIER_RANK: Record<string, number> = {
   unverified: 3,
 };
 
-function sortItems(
-  items: ModelWithProvider[],
-  key: SortKey,
-  dir: SortDir,
-): ModelWithProvider[] {
+function sortItems(items: ModelWithProvider[], key: SortKey, dir: SortDir): ModelWithProvider[] {
   if (key === "default") return items;
 
   const multiplier = dir === "asc" ? 1 : -1;
@@ -199,18 +195,13 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
         params.set("sort", key);
         params.set("dir", "asc");
       }
-      startTransition(() =>
-        router.replace(`${pathname}?${params.toString()}`, { scroll: false }),
-      );
+      startTransition(() => router.replace(`${pathname}?${params.toString()}`, { scroll: false }));
     },
-    [searchParams, pathname, router, sortKey, sortDir],
+    [searchParams, pathname, router, sortKey, sortDir]
   );
 
   // Derive filter state from URL params during render — no useEffect
-  const filterState = useMemo(
-    () => filterStateFromSearchParams(searchParams),
-    [searchParams],
-  );
+  const filterState = useMemo(() => filterStateFromSearchParams(searchParams), [searchParams]);
 
   // Build active filter from profile or custom
   const activeFilter = useMemo(() => {
@@ -225,10 +216,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
   }, [filterState]);
 
   // Build Fuse index once per items change — O(n) cost paid on data change, not per keystroke
-  const fuse = useMemo(
-    () => new Fuse(items, FUSE_OPTIONS),
-    [items],
-  );
+  const fuse = useMemo(() => new Fuse(items, FUSE_OPTIONS), [items]);
 
   // Search: update local state immediately (keeps input responsive), push URL
   // in a transition so the RSC navigation doesn't block typing.
@@ -242,11 +230,9 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
       } else {
         params.delete("q");
       }
-      startTransition(() =>
-        router.replace(`${pathname}?${params.toString()}`, { scroll: false }),
-      );
+      startTransition(() => router.replace(`${pathname}?${params.toString()}`, { scroll: false }));
     },
-    [searchParams, pathname, router],
+    [searchParams, pathname, router]
   );
 
   // Clear search
@@ -254,9 +240,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
     setInputValue("");
     const params = new URLSearchParams(searchParams.toString());
     params.delete("q");
-    startTransition(() =>
-      router.replace(`${pathname}?${params.toString()}`, { scroll: false }),
-    );
+    startTransition(() => router.replace(`${pathname}?${params.toString()}`, { scroll: false }));
   }, [searchParams, pathname, router]);
 
   // Search + filter — derived during render (rerender-derived-state-no-effect)
@@ -285,14 +269,14 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
     const matching: ModelWithProvider[] = [];
     const nonMatching: ModelWithProvider[] = [];
 
-    const source = searchPassed !== null
-      ? Array.from(searchPassed)  // Fuse-ranked order
-      : items;                     // original DB order when no query
+    const source =
+      searchPassed !== null
+        ? Array.from(searchPassed) // Fuse-ranked order
+        : items; // original DB order when no query
 
     for (const item of source) {
       const matchesFilter =
-        activeFilter === null ||
-        (item.provider !== null && providerMatchesFilter(item.provider, activeFilter));
+        activeFilter === null || (item.provider !== null && providerMatchesFilter(item.provider, activeFilter));
 
       if (matchesFilter) {
         matching.push(item);
@@ -367,19 +351,16 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
         {hasQuery && totalVisible === 0
           ? t("noModelsFound", { query: inputValue })
           : hasFilter
-          ? t("resultCountFiltered", { matching: matching.length, total: totalVisible })
-          : hasQuery
-          ? t("resultCountSearch", { total: totalVisible, all: items.length })
-          : t("resultCount", { total: totalVisible })}
+            ? t("resultCountFiltered", { matching: matching.length, total: totalVisible })
+            : hasQuery
+              ? t("resultCountSearch", { total: totalVisible, all: items.length })
+              : t("resultCount", { total: totalVisible })}
       </div>
 
       {/* Table */}
       <div className="border border-border rounded overflow-hidden">
         <div className="overflow-x-auto">
-          <table
-            className="w-full border-collapse bg-surface"
-            aria-label={t("tableAriaLabel")}
-          >
+          <table className="w-full border-collapse bg-surface" aria-label={t("tableAriaLabel")}>
             <thead>
               <tr className="bg-surface-alt border-b border-border">
                 <SortableTh
@@ -433,27 +414,14 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
             </thead>
             <tbody>
               {matching.map((item) => (
-                <ModelRow
-                  key={rowKey(item)}
-                  item={item}
-                  dimmed={false}
-                  matches={matchMap.get(rowKey(item))}
-                />
+                <ModelRow key={rowKey(item)} item={item} dimmed={false} matches={matchMap.get(rowKey(item))} />
               ))}
               {nonMatching.map((item) => (
-                <ModelRow
-                  key={rowKey(item)}
-                  item={item}
-                  dimmed={true}
-                  matches={matchMap.get(rowKey(item))}
-                />
+                <ModelRow key={rowKey(item)} item={item} dimmed={true} matches={matchMap.get(rowKey(item))} />
               ))}
               {totalVisible === 0 ? (
                 <tr>
-                  <td
-                    colSpan={6}
-                    className="py-12 px-4 text-center font-body text-[0.9375rem] text-text-muted"
-                  >
+                  <td colSpan={6} className="py-12 px-4 text-center font-body text-[0.9375rem] text-text-muted">
                     {t("noModelsFound", { query: inputValue })}
                   </td>
                 </tr>
@@ -498,7 +466,9 @@ function SortableTh({
         "px-4 py-[10px] text-left font-body text-xs font-semibold uppercase tracking-[0.05em] select-none",
         isActive ? "text-text-primary" : "text-text-secondary",
         className,
-      ].filter(Boolean).join(" ")}
+      ]
+        .filter(Boolean)
+        .join(" ")}
       style={style}
     >
       {nonSortable ? (
@@ -511,11 +481,7 @@ function SortableTh({
           aria-label={t("sortBy", { label })}
         >
           {label}
-          <span
-            className="text-[10px] leading-none"
-            style={{ opacity: isActive ? 1 : 0.35 }}
-            aria-hidden="true"
-          >
+          <span className="text-[10px] leading-none" style={{ opacity: isActive ? 1 : 0.35 }} aria-hidden="true">
             {isActive && sortDir === "desc" ? "↓" : "↑"}
           </span>
         </button>

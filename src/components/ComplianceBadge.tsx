@@ -8,14 +8,7 @@
 import { useTranslations } from "next-intl";
 
 export type BadgeVariant =
-  | "eu-only"
-  | "dpa"
-  | "eu-sccs"
-  | "no-training"
-  | "trains-on-data"
-  | "training-unknown"
-  | "us-only"
-  | "unverified";
+  "eu-only" | "dpa" | "eu-sccs" | "no-training" | "trains-on-data" | "training-unknown" | "us-only" | "unverified";
 
 interface ComplianceBadgeProps {
   variant: BadgeVariant;
@@ -87,10 +80,7 @@ export function ComplianceBadge({ variant, size = "md" }: ComplianceBadgeProps) 
         sz.badge,
       ].join(" ")}
     >
-      <span
-        className={["rounded-full shrink-0", style.dotClasses, sz.dot].join(" ")}
-        aria-hidden="true"
-      />
+      <span className={["rounded-full shrink-0", style.dotClasses, sz.dot].join(" ")} aria-hidden="true" />
       {LABEL_MAP[variant]}
     </span>
   );

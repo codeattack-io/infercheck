@@ -58,9 +58,7 @@ export function ProviderModelRow({ model: m, gateway = false }: ProviderModelRow
     >
       <td className="px-4 py-[10px]">
         <div className="flex items-center gap-2 flex-wrap">
-          <span className="font-body text-[0.875rem] font-medium text-text-primary">
-            {m.displayName}
-          </span>
+          <span className="font-body text-[0.875rem] font-medium text-text-primary">{m.displayName}</span>
           {gateway ? (
             <span
               className="inline-flex items-center px-[6px] py-px font-body text-[0.625rem] font-medium rounded border whitespace-nowrap"
@@ -76,9 +74,7 @@ export function ProviderModelRow({ model: m, gateway = false }: ProviderModelRow
         </div>
         <div className="font-mono text-xs text-text-muted mt-0.5">{m.id}</div>
       </td>
-      <td className="px-4 py-[10px] font-body text-[0.8125rem] text-text-secondary">
-        {m.modality}
-      </td>
+      <td className="px-4 py-[10px] font-body text-[0.8125rem] text-text-secondary">{m.modality}</td>
       <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
         {formatContext(m.contextWindow)}
       </td>

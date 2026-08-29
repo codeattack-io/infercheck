@@ -45,14 +45,10 @@ export async function runSync(options: SyncOptions = {}): Promise<void> {
   const { targetProvider, dryRun = false } = options;
 
   if (targetProvider && !PROVIDER_ADAPTERS[targetProvider]) {
-    throw new Error(
-      `Unknown provider: "${targetProvider}". Available: ${Object.keys(PROVIDER_ADAPTERS).join(", ")}`,
-    );
+    throw new Error(`Unknown provider: "${targetProvider}". Available: ${Object.keys(PROVIDER_ADAPTERS).join(", ")}`);
   }
 
-  const adapters = targetProvider
-    ? { [targetProvider]: PROVIDER_ADAPTERS[targetProvider] }
-    : PROVIDER_ADAPTERS;
+  const adapters = targetProvider ? { [targetProvider]: PROVIDER_ADAPTERS[targetProvider] } : PROVIDER_ADAPTERS;
 
   const db = getDb();
 
@@ -70,7 +66,9 @@ export async function runSync(options: SyncOptions = {}): Promise<void> {
       if (dryRun) {
         console.log(`  [dry-run] ${adapterKey}: would upsert ${rows.length} rows`);
         for (const r of rows.slice(0, 3)) {
-          console.log(`    ${r.id} (${r.providerSlug}) — $${r.inputPricePerMTokens ?? "?"}/$${r.outputPricePerMTokens ?? "?"} per 1M`);
+          console.log(
+            `    ${r.id} (${r.providerSlug}) — $${r.inputPricePerMTokens ?? "?"}/$${r.outputPricePerMTokens ?? "?"} per 1M`
+          );
         }
         if (rows.length > 3) console.log(`    … and ${rows.length - 3} more`);
         continue;

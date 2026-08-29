@@ -23,8 +23,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: {
       canonical: `https://infercheck.eu/${locale}/imprint`,
       languages: {
-        "en": "https://infercheck.eu/en/imprint",
-        "de": "https://infercheck.eu/de/imprint",
+        en: "https://infercheck.eu/en/imprint",
+        de: "https://infercheck.eu/de/imprint",
         "x-default": "https://infercheck.eu/de/imprint",
       },
     },
@@ -57,11 +57,7 @@ export default async function ImprintPage({ params }: PageProps) {
           {t.rich("legalNote", {
             german: (chunks) =>
               locale === "en" ? (
-                <Link
-                  href="/imprint"
-                  locale="de"
-                  className="text-link underline underline-offset-[3px]"
-                >
+                <Link href="/imprint" locale="de" className="text-link underline underline-offset-[3px]">
                   {chunks}
                 </Link>
               ) : (
@@ -94,10 +90,7 @@ export default async function ImprintPage({ params }: PageProps) {
           </h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
             {t("emailLabel")}:{" "}
-            <a
-              href={`mailto:${t("email")}`}
-              className="text-link underline underline-offset-[3px]"
-            >
+            <a href={`mailto:${t("email")}`} className="text-link underline underline-offset-[3px]">
               {t("email")}
             </a>
           </p>
@@ -108,9 +101,7 @@ export default async function ImprintPage({ params }: PageProps) {
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("responsibleHeading")}
           </h2>
-          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
-            {t("responsibleText")}
-          </p>
+          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("responsibleText")}</p>
         </section>
 
         {/* ── EU Dispute resolution ── */}
@@ -139,9 +130,7 @@ export default async function ImprintPage({ params }: PageProps) {
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("liabilityContentHeading")}
           </h2>
-          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
-            {t("liabilityContentText")}
-          </p>
+          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("liabilityContentText")}</p>
         </section>
 
         {/* ── Liability for links ── */}
@@ -149,9 +138,7 @@ export default async function ImprintPage({ params }: PageProps) {
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("liabilityLinksHeading")}
           </h2>
-          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
-            {t("liabilityLinksText")}
-          </p>
+          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("liabilityLinksText")}</p>
         </section>
 
         {/* ── Copyright ── */}
@@ -159,17 +146,12 @@ export default async function ImprintPage({ params }: PageProps) {
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("copyrightHeading")}
           </h2>
-          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
-            {t("copyrightText")}
-          </p>
+          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("copyrightText")}</p>
         </section>
 
         {/* ── Back link ── */}
         <div className="pt-2">
-          <Link
-            href="/"
-            className="font-body text-sm font-medium text-link underline underline-offset-[3px]"
-          >
+          <Link href="/" className="font-body text-sm font-medium text-link underline underline-offset-[3px]">
             {t("backLink")}
           </Link>
         </div>
