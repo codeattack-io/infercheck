@@ -363,7 +363,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}
-                  style={{ width: "25%" }}
+                  className="w-[25%]"
                 />
                 <SortableTh
                   label={t("columns.compliance")}
@@ -371,8 +371,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}
-                  className="hidden sm:table-cell"
-                  style={{ width: "26%" }}
+                  className="hidden sm:table-cell w-[26%]"
                 />
                 <SortableTh
                   label={t("columns.residency")}
@@ -380,8 +379,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}
-                  className="hidden md:table-cell"
-                  style={{ width: "15%" }}
+                  className="hidden md:table-cell w-[15%]"
                   nonSortable
                 />
                 <SortableTh
@@ -390,8 +388,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}
-                  className="hidden lg:table-cell"
-                  style={{ width: "15%" }}
+                  className="hidden lg:table-cell w-[15%]"
                 />
                 <SortableTh
                   label={t("columns.status")}
@@ -399,11 +396,10 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}
-                  className="hidden xl:table-cell"
-                  style={{ width: "14%" }}
+                  className="hidden xl:table-cell w-[14%]"
                   nonSortable
                 />
-                <th style={{ width: "5%" }} aria-hidden="true" />
+                <th className="w-[5%]" aria-hidden="true" />
               </tr>
             </thead>
             <tbody>
@@ -435,7 +431,6 @@ interface SortableThProps {
   sortDir: SortDir;
   onSort: (key: SortKey) => void;
   className?: string;
-  style?: React.CSSProperties;
   nonSortable?: boolean;
 }
 
@@ -446,7 +441,6 @@ function SortableTh({
   sortDir,
   onSort,
   className,
-  style,
   nonSortable = false,
 }: SortableThProps) {
   const isActive = !nonSortable && activeSortKey === sortKey;
@@ -461,7 +455,6 @@ function SortableTh({
       ]
         .filter(Boolean)
         .join(" ")}
-      style={style}
     >
       {nonSortable ? (
         label

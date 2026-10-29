@@ -58,11 +58,7 @@ function highlightText(text: string, matches: readonly FuseResultMatch[] | undef
       nodes.push(text.slice(cursor, start));
     }
     nodes.push(
-      <mark
-        key={start}
-        className="bg-accent-subtle text-accent rounded-[2px] px-px font-bold"
-        style={{ font: "inherit" }}
-      >
+      <mark key={start} className="bg-accent-subtle text-accent rounded-[2px] px-px [font:inherit]">
         {text.slice(start, end + 1)}
       </mark>
     );
