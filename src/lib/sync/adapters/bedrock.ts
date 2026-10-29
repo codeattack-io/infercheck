@@ -20,7 +20,7 @@ import {
   type InferenceProfileSummary,
 } from "@aws-sdk/client-bedrock";
 import type { ModelRow, BedrockPricingSeed } from "../types";
-import { deriveCanonicalModelId } from "../utils";
+import { deriveCanonicalModelId, toPricePerMTokens } from "../utils";
 
 // ─── Pricing / context seed ───────────────────────────────────────────────────
 // Keyed by underlying foundation model ID (region prefix already stripped).
@@ -168,8 +168,8 @@ export async function fetchBedrockModels(): Promise<ModelRow[]> {
         displayName: profile.inferenceProfileName ?? underlyingId,
         modality: toModality(mods),
         contextWindow: seed?.ctx ?? null,
-        inputPricePerMTokens: seed?.i != null ? seed.i.toFixed(6) : null,
-        outputPricePerMTokens: seed?.o != null ? seed.o.toFixed(6) : null,
+        inputPricePerMTokens: toPricePerMTokens(seed?.i),
+        outputPricePerMTokens: toPricePerMTokens(seed?.o),
         tokensPerSecond: null,
         syncSource: "provider_api",
         isActive: true,
@@ -193,8 +193,8 @@ export async function fetchBedrockModels(): Promise<ModelRow[]> {
         displayName: m.modelName ?? raw,
         modality: toModality(mods),
         contextWindow: seed?.ctx ?? null,
-        inputPricePerMTokens: seed?.i != null ? seed.i.toFixed(6) : null,
-        outputPricePerMTokens: seed?.o != null ? seed.o.toFixed(6) : null,
+        inputPricePerMTokens: toPricePerMTokens(seed?.i),
+        outputPricePerMTokens: toPricePerMTokens(seed?.o),
         tokensPerSecond: null,
         syncSource: "provider_api",
         isActive: m.modelLifecycle?.status !== "LEGACY",
