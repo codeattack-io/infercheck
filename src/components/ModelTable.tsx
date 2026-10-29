@@ -406,7 +406,9 @@ export function ModelTable({ items, searchParams }: ModelTableProps) {
                   className="hidden xl:table-cell w-[14%]"
                   nonSortable
                 />
-                <th className="w-[5%]" aria-hidden="true" />
+                <th className="w-[5%]">
+                  <span className="sr-only">{t("columns.details")}</span>
+                </th>
               </tr>
             </thead>
             <tbody>

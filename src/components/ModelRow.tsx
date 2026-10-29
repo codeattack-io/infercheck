@@ -7,7 +7,7 @@
 // Wrapped in React.memo so re-renders are skipped when item/dimmed/matches
 // haven't changed — prevents every row re-rendering on each search keystroke.
 
-import { useState, memo, type ReactNode } from "react";
+import { useId, useState, memo, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { ComplianceBadge, ComplianceBadgeList } from "@/components/ComplianceBadge";
@@ -81,9 +81,11 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
   const { model, provider } = item;
   const [expanded, setExpanded] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const panelId = useId();
   const t = useTranslations("ModelRow");
   const locale = useLocale();
-  const priceFormat = { locale, freeLabel: useTranslations("Format")("free") };
+  const tf = useTranslations("Format");
+  const priceFormat = { locale, freeLabel: tf("free") };
 
   const tier = provider ? getComplianceTier(provider) : "unverified";
   const accentBorder = TIER_CLASSES[tier].accentBorder;
@@ -95,9 +97,9 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
     <>
       {/* Main row — opacity, borderLeft, backgroundColor are dynamic */}
       <tr
-        className={`cursor-pointer transition-opacity duration-150 ease-in-out border-l-2 ${accentBorder}`}
+        className={`cursor-pointer border-l-2 ${accentBorder}`}
+        data-dimmed={dimmed ? "" : undefined}
         style={{
-          opacity: dimmed ? 0.35 : 1,
           backgroundColor: expanded
             ? "var(--color-surface-alt)"
             : hovered
@@ -107,10 +109,10 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
         onClick={() => setExpanded((e) => !e)}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        aria-expanded={expanded}
       >
         {/* Model column */}
         <td className="p-3 px-4 align-middle">
+          {dimmed ? <span className="sr-only">{t("dimmed")}. </span> : null}
           <div className="flex items-center gap-[10px] flex-wrap">
             <span className="font-body text-[0.9375rem] font-semibold text-text-primary leading-[1.3]">
               {highlightText(model.displayName, matches, "model.displayName")}
@@ -169,19 +171,26 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
 
         {/* Expand toggle column */}
         <td className="p-3 px-4 align-middle text-right">
-          <span
-            className="inline-flex items-center justify-center w-5 h-5 rounded-full border border-border text-text-muted text-sm leading-none transition-[background-color] duration-[120ms] ease-in-out"
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setExpanded((v) => !v);
+            }}
+            aria-expanded={expanded}
+            aria-controls={panelId}
+            aria-label={t("toggleDetails", { name: model.displayName })}
+            className="inline-flex items-center justify-center w-6 h-6 rounded-full border border-border text-text-muted text-sm leading-none cursor-pointer p-0 transition-[background-color] duration-[120ms] ease-in-out"
             style={{ backgroundColor: expanded ? "var(--color-surface-alt)" : "transparent" }}
-            aria-hidden="true"
           >
-            {expanded ? "−" : "+"}
-          </span>
+            <span aria-hidden="true">{expanded ? "−" : "+"}</span>
+          </button>
         </td>
       </tr>
 
       {/* Inline expand panel — per DESIGN.md, no modals */}
       {expanded ? (
-        <tr className={`bg-surface-alt border-l-2 ${accentBorder}`}>
+        <tr id={panelId} className={`bg-surface-alt border-l-2 ${accentBorder}`}>
           <td colSpan={6} className="p-0">
             <div className="px-4 pt-3.5 pb-[18px] border-t border-border">
               {/* Header row: provider name + profile link prominently together */}

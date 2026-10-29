@@ -42,8 +42,7 @@
     "heading1": "KI-Inferenzanbieter,",
     "heading2": "gefiltert nach DSGVO-Konformität.",
     "subheadingWithData": "{modelCount} Modelle bei {providerCount} Anbietern. Nach Compliance-Profil filtern, um geeignete Anbieter zu finden.",
-    "subheadingEmpty": "Anbieter und ihre Compliance-Haltung durchsuchen. Nach Datenhaltung, AVV-Verfügbarkeit und Trainingsrichtlinie filtern.",
-    "loadingModels": "Modelle werden geladen…"
+    "subheadingEmpty": "Anbieter und ihre Compliance-Haltung durchsuchen. Nach Datenhaltung, AVV-Verfügbarkeit und Trainingsrichtlinie filtern."
   },
   "ProvidersPage": {
     "title": "KI-Inferenzanbieter — DSGVO-Compliance-Verzeichnis",
@@ -289,7 +288,8 @@
       "compliance": "Compliance",
       "residency": "Datenhaltung",
       "price": "Preis / 1 Mio. Token",
-      "status": "Stand"
+      "status": "Stand",
+      "details": "Details"
     },
     "sortBy": "Sortieren nach {label}"
   },
@@ -317,7 +317,9 @@
     "priceIn": "ein ",
     "priceOut": "aus ",
     "gatewayTitle": "Dieses Modell stammt von einem Drittanbieter und wird über {providerName} bereitgestellt",
-    "gatewayNotice": "<strong>Drittanbieter-Modell, bereitgestellt über {providerName}.</strong> Dieses Modell stammt von einem anderen Unternehmen, wird aber über die Infrastruktur von {providerName} betrieben. Die hier gezeigten Compliance-Eigenschaften beschreiben den Umgang von <strong>{providerName}</strong> mit Daten – nicht den des ursprünglichen Modellherstellers."
+    "gatewayNotice": "<strong>Drittanbieter-Modell, bereitgestellt über {providerName}.</strong> Dieses Modell stammt von einem anderen Unternehmen, wird aber über die Infrastruktur von {providerName} betrieben. Die hier gezeigten Compliance-Eigenschaften beschreiben den Umgang von <strong>{providerName}</strong> mit Daten – nicht den des ursprünglichen Modellherstellers.",
+    "dimmed": "Entspricht nicht dem aktiven Filter",
+    "toggleDetails": "Details zu {name}"
   },
   "ProviderCard": {
     "tiers": {
@@ -425,5 +427,10 @@
     "api_provider": "API-Anbieter",
     "cloud_platform": "Cloud-Plattform",
     "gateway": "Gateway"
+  },
+  "BooleanRow": {
+    "yes": "ja",
+    "no": "nein",
+    "unknown": "unbekannt"
   }
 }

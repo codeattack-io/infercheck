@@ -42,8 +42,7 @@
     "heading1": "AI inference providers,",
     "heading2": "filtered by GDPR compliance.",
     "subheadingWithData": "{modelCount} models across {providerCount} providers. Filter by compliance profile to find what passes your threshold.",
-    "subheadingEmpty": "Browse providers and their compliance posture. Filter by data residency, DPA availability, and training policy.",
-    "loadingModels": "Loading models…"
+    "subheadingEmpty": "Browse providers and their compliance posture. Filter by data residency, DPA availability, and training policy."
   },
   "ProvidersPage": {
     "title": "AI Inference Providers — InferCheck Compliance Directory",
@@ -289,7 +288,8 @@
       "compliance": "Compliance",
       "residency": "Residency",
       "price": "Price / 1M tokens",
-      "status": "Status"
+      "status": "Status",
+      "details": "Details"
     },
     "sortBy": "Sort by {label}"
   },
@@ -317,7 +317,9 @@
     "priceIn": "in ",
     "priceOut": "out ",
     "gatewayTitle": "This model is made by a third party and hosted via {providerName}",
-    "gatewayNotice": "<strong>Third-party model hosted via {providerName}.</strong> This model is made by another company but served through {providerName}'s infrastructure. The compliance properties shown here reflect <strong>{providerName}</strong>'s data handling — not the original model creator's."
+    "gatewayNotice": "<strong>Third-party model hosted via {providerName}.</strong> This model is made by another company but served through {providerName}'s infrastructure. The compliance properties shown here reflect <strong>{providerName}</strong>'s data handling — not the original model creator's.",
+    "dimmed": "Does not match the active filter",
+    "toggleDetails": "Details for {name}"
   },
   "ProviderCard": {
     "tiers": {
@@ -425,5 +427,10 @@
     "api_provider": "API provider",
     "cloud_platform": "Cloud platform",
     "gateway": "Gateway"
+  },
+  "BooleanRow": {
+    "yes": "yes",
+    "no": "no",
+    "unknown": "unknown"
   }
 }

@@ -360,7 +360,9 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   <div className="flex items-center gap-2 font-body text-[0.8125rem] text-text-secondary">
                     {provider.compliance.subProcessors.disclosed ? (
                       <>
-                        <span className="text-compliant">✓</span>
+                        <span className="text-compliant" aria-hidden="true">
+                          ✓
+                        </span>
                         {provider.compliance.subProcessors.url ? (
                           <a
                             href={provider.compliance.subProcessors.url}
@@ -381,7 +383,9 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                       </>
                     ) : (
                       <>
-                        <span className="text-noncompliant">✗</span>
+                        <span className="text-noncompliant" aria-hidden="true">
+                          ✗
+                        </span>
                         {t("subProcessors.notDisclosed")}
                       </>
                     )}
