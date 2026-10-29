@@ -18,6 +18,7 @@ import { models } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import { getComplianceTier, isFullProvider } from "@/lib/compliance";
+import { VerificationLabel } from "@/components/VerificationLabel";
 import type { AnyProvider } from "@/lib/compliance";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
 import type { ComplianceTier } from "@/lib/compliance";
@@ -313,11 +314,9 @@ export default async function ModelDetailPage({ params }: PageProps) {
                           <ComplianceBadge variant="training-unknown" />
                         )}
                       </div>
-                      {provider.lastVerified ? (
-                        <p className="font-mono text-xs text-text-muted mt-2">
-                          {t("verifiedDate", { date: provider.lastVerified })}
-                        </p>
-                      ) : null}
+                      <p className="mt-2 mb-0">
+                        <VerificationLabel provider={provider} className="font-mono text-xs text-text-muted" />
+                      </p>
                     </DetailSection>
                   ) : null}
                 </div>

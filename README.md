@@ -54,7 +54,7 @@ For each model at each provider, the catalog tracks: pricing (input/output per 1
 
 ## Provider Coverage
 
-The directory covers **110+ providers** across three categories:
+The directory covers **75+ providers** across three categories:
 
 - **API providers** — OpenAI, Anthropic, Mistral, Cohere, Groq, Together AI, Scaleway, Nebius, Aleph Alpha, DeepSeek, Hugging Face, Fireworks AI, Perplexity, and more
 - **Cloud platforms** — Azure OpenAI, AWS Bedrock, Google Vertex AI, SAP AI Core
