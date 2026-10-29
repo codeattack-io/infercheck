@@ -57,6 +57,7 @@ body:
         - meganova
         - minimax-minimax-io
         - mistral
+        - mixlayer
         - moonshot-ai
         - morph
         - nanogpt
