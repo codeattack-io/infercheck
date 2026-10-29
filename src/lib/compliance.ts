@@ -9,6 +9,55 @@ export type { Provider, AnyProvider };
 
 export type ComplianceTier = "compliant" | "partial" | "noncompliant" | "unverified";
 
+export interface TierClasses {
+  text: string;
+  bg: string;
+  border: string;
+  dot: string;
+  dotInk: string;
+  accentBorder: string;
+}
+
+export const TIER_CLASSES: Record<ComplianceTier, TierClasses> = {
+  compliant: {
+    text: "text-compliant-text",
+    bg: "bg-compliant-bg",
+    border: "border-compliant-border",
+    dot: "bg-compliant",
+    dotInk: "bg-compliant-text",
+    accentBorder: "border-l-compliant",
+  },
+  partial: {
+    text: "text-partial-text",
+    bg: "bg-partial-bg",
+    border: "border-partial-border",
+    dot: "bg-partial",
+    dotInk: "bg-partial-text",
+    accentBorder: "border-l-partial",
+  },
+  noncompliant: {
+    text: "text-noncompliant-text",
+    bg: "bg-noncompliant-bg",
+    border: "border-noncompliant-border",
+    dot: "bg-noncompliant",
+    dotInk: "bg-noncompliant-text",
+    accentBorder: "border-l-noncompliant",
+  },
+  unverified: {
+    text: "text-unverified-text",
+    bg: "bg-unverified-bg",
+    border: "border-unverified-border",
+    dot: "bg-unverified",
+    dotInk: "bg-unverified-text",
+    accentBorder: "border-l-unverified",
+  },
+};
+
+export function tierPillClasses(tier: ComplianceTier): string {
+  const c = TIER_CLASSES[tier];
+  return `${c.bg} ${c.border} ${c.text}`;
+}
+
 export interface ComplianceFilter {
   euOnly?: boolean;
   dpa?: boolean;
@@ -17,8 +66,6 @@ export interface ComplianceFilter {
 }
 
 export type FilterProfile = "strict-eu" | "eu-sccs" | "no-training" | "custom" | null;
-
-// ─── Filter state ─────────────────────────────────────────────────────────────
 
 export interface FilterState {
   profile: FilterProfile;
@@ -44,16 +91,12 @@ export function filterStateFromSearchParams(params: URLSearchParams): FilterStat
   return { profile, custom };
 }
 
-// ─── Guards ───────────────────────────────────────────────────────────────────
-
 /**
  * Narrow type guard: is this a fully verified provider (not a stub)?
  */
 export function isFullProvider(p: AnyProvider): p is Provider {
   return p.compliance !== null && p.verifiedBy !== "stub";
 }
-
-// ─── Tier ─────────────────────────────────────────────────────────────────────
 
 /**
  * Compute a single compliance tier for display (left-border color, badge).
@@ -83,8 +126,6 @@ export function getComplianceTier(p: AnyProvider): ComplianceTier {
 
   return "unverified";
 }
-
-// ─── Filter ───────────────────────────────────────────────────────────────────
 
 /**
  * Test whether a provider passes all conditions in a compliance filter.

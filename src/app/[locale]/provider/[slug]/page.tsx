@@ -15,13 +15,11 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getProvider, getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import { getModelsByProvider } from "@/lib/models";
-import { getComplianceTier, isFullProvider } from "@/lib/compliance";
+import { getComplianceTier, isFullProvider, tierPillClasses, TIER_CLASSES } from "@/lib/compliance";
 import { getVerification } from "@/lib/verification";
 import type { ComplianceTier } from "@/lib/compliance";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
 import { ProviderModelRow } from "@/components/ProviderModelRow";
-
-// ─── Static params (prerender all known providers × locales) ──────────────────
 
 export async function generateStaticParams() {
   const providers = getAllProviders();
@@ -31,8 +29,6 @@ export async function generateStaticParams() {
 // server-cache-react: wrap the synchronous fs read so generateMetadata and the
 // page body share one parse result within the same request context.
 const getCachedProvider = cache((slug: string) => getProvider(slug));
-
-// ─── Metadata ─────────────────────────────────────────────────────────────────
 
 interface PageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -84,30 +80,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
-const TIER_STYLE: Record<ComplianceTier, { color: string; bg: string; border: string }> = {
-  compliant: { color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" },
-  partial: { color: "#92400e", bg: "#fffbeb", border: "#fde68a" },
-  noncompliant: { color: "#b91c1c", bg: "#fef2f2", border: "#fecaca" },
-  unverified: { color: "#6b7280", bg: "#f8f8f7", border: "#e2e2de" },
-};
-
-const TIER_BORDER: Record<ComplianceTier, string> = {
-  compliant: "var(--color-compliant)",
-  partial: "var(--color-partial)",
-  noncompliant: "var(--color-noncompliant)",
-  unverified: "var(--color-unverified)",
-};
-
-// EU AI Act status pill — color depends on status string at runtime
-function euAiActStyle(status: string): { color: string; bg: string; border: string } {
-  if (status === "compliant") return { color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" };
-  if (status === "monitoring") return { color: "#92400e", bg: "#fffbeb", border: "#fde68a" };
-  return { color: "#6b7280", bg: "#f8f8f7", border: "#e2e2de" };
+function euAiActTier(status: string): ComplianceTier {
+  if (status === "compliant") return "compliant";
+  if (status === "monitoring") return "partial";
+  return "unverified";
 }
-
-// ─── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function ProviderProfilePage({ params }: PageProps) {
   const { locale, slug } = await params;
@@ -124,16 +101,15 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
   const t = await getTranslations("ProviderPage");
 
-  const TIER_CONFIG: Record<ComplianceTier, { label: string; color: string; bg: string; border: string }> = {
-    compliant: { label: t("tiers.compliant"), ...TIER_STYLE.compliant },
-    partial: { label: t("tiers.partial"), ...TIER_STYLE.partial },
-    noncompliant: { label: t("tiers.noncompliant"), ...TIER_STYLE.noncompliant },
-    unverified: { label: t("tiers.unverified"), ...TIER_STYLE.unverified },
+  const tierLabel: Record<ComplianceTier, string> = {
+    compliant: t("tiers.compliant"),
+    partial: t("tiers.partial"),
+    noncompliant: t("tiers.noncompliant"),
+    unverified: t("tiers.unverified"),
   };
 
   const tier = getComplianceTier(provider);
-  const tierCfg = TIER_CONFIG[tier];
-  const tierBorder = TIER_BORDER[tier];
+  const tierClasses = TIER_CLASSES[tier];
   const verified = isFullProvider(provider);
   const verification = getVerification(provider);
 
@@ -192,17 +168,11 @@ export default async function ProviderProfilePage({ params }: PageProps) {
               {provider.name}
             </h1>
             <div className="flex items-center gap-[10px] flex-wrap">
-              {/* Tier pill — colors are dynamic from tierCfg */}
               <span
-                className="inline-flex items-center gap-1.5 px-[10px] py-[3px] rounded font-body text-[0.8125rem] font-medium border"
-                style={{ backgroundColor: tierCfg.bg, borderColor: tierCfg.border, color: tierCfg.color }}
+                className={`inline-flex items-center gap-1.5 px-[10px] py-[3px] rounded font-body text-[0.8125rem] font-medium border ${tierPillClasses(tier)}`}
               >
-                <span
-                  className="w-[7px] h-[7px] rounded-full shrink-0"
-                  style={{ backgroundColor: tierCfg.color }}
-                  aria-hidden="true"
-                />
-                {tierCfg.label}
+                <span className={`w-[7px] h-[7px] rounded-full shrink-0 ${tierClasses.dotInk}`} aria-hidden="true" />
+                {tierLabel[tier]}
               </span>
 
               {/* Provider type */}
@@ -252,8 +222,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
           {/* ── Compliance card ── */}
           {verified ? (
             <section
-              className="bg-surface border border-border rounded px-6 py-5"
-              style={{ borderLeft: `3px solid ${tierBorder}` }}
+              className={`bg-surface border border-border border-l-[3px] ${tierClasses.accentBorder} rounded px-6 py-5`}
               aria-labelledby="compliance-heading"
             >
               <h2
@@ -321,8 +290,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
             </section>
           ) : (
             <section
-              className="bg-surface border border-border rounded px-6 py-5"
-              style={{ borderLeft: `3px solid ${tierBorder}` }}
+              className={`bg-surface border border-border border-l-[3px] ${tierClasses.accentBorder} rounded px-6 py-5`}
             >
               <h2 className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-3">
                 {t("sections.gdprCompliance")}
@@ -458,13 +426,8 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1.5">
                   {t("certs.euAiActStatus")}
                 </div>
-                {/* EU AI Act status pill — color depends on status string — kept as style */}
                 <span
-                  className="inline-block font-body text-[0.8125rem] font-medium rounded px-2 py-0.5 mb-1.5 border"
-                  style={(() => {
-                    const s = euAiActStyle(provider.compliance.euAiAct.status);
-                    return { color: s.color, backgroundColor: s.bg, borderColor: s.border };
-                  })()}
+                  className={`inline-block font-body text-[0.8125rem] font-medium rounded px-2 py-0.5 mb-1.5 border ${tierPillClasses(euAiActTier(provider.compliance.euAiAct.status))}`}
                 >
                   {provider.compliance.euAiAct.status.replace(/_/g, " ")}
                 </span>
@@ -608,8 +571,6 @@ export default async function ProviderProfilePage({ params }: PageProps) {
   );
 }
 
-// ─── Small helper components ──────────────────────────────────────────────────
-
 function ModelsTable({
   models: rows,
   t,
@@ -622,8 +583,9 @@ function ModelsTable({
 }) {
   return (
     <div
-      className="border border-border rounded overflow-hidden"
-      style={gateway ? { borderColor: "color-mix(in srgb, var(--color-partial) 35%, var(--color-border))" } : undefined}
+      className={`border rounded overflow-hidden ${
+        gateway ? "border-[color-mix(in_srgb,var(--color-partial)_35%,var(--color-border))]" : "border-border"
+      }`}
     >
       <div className="overflow-x-auto">
         <table className="w-full border-collapse bg-surface">

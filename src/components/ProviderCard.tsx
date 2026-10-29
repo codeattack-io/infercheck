@@ -5,22 +5,8 @@ import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
 import { VerificationLabel } from "@/components/VerificationLabel";
-import { getComplianceTier, isFullProvider } from "@/lib/compliance";
+import { getComplianceTier, isFullProvider, TIER_CLASSES } from "@/lib/compliance";
 import type { AnyProvider, ComplianceTier } from "@/lib/compliance";
-
-const TIER_BORDER: Record<ComplianceTier, string> = {
-  compliant: "var(--color-compliant)",
-  partial: "var(--color-partial)",
-  noncompliant: "var(--color-noncompliant)",
-  unverified: "var(--color-unverified)",
-};
-
-const TIER_TEXT_CLASS: Record<ComplianceTier, string> = {
-  compliant: "text-[#15803d]",
-  partial: "text-[#92400e]",
-  noncompliant: "text-[#b91c1c]",
-  unverified: "text-[#6b7280]",
-};
 
 interface ProviderCardProps {
   provider: AnyProvider;
@@ -42,18 +28,18 @@ export async function ProviderCard({ provider, modelCount }: ProviderCardProps) 
   return (
     // provider-card class provides the :hover box-shadow via globals.css —
     // no JS event handlers needed, no "use client" required.
-    // borderLeft uses style because it's a dynamic value from TIER_BORDER map.
     <Link
       href={`/provider/${provider.slug}`}
-      className="provider-card block bg-surface border border-border rounded text-inherit no-underline transition-shadow duration-[120ms] ease-in-out px-5 py-4"
-      style={{ borderLeft: `3px solid ${TIER_BORDER[tier]}` }}
+      className={`provider-card block bg-surface border border-border border-l-[3px] ${TIER_CLASSES[tier].accentBorder} rounded text-inherit no-underline transition-shadow duration-[120ms] ease-in-out px-5 py-4`}
     >
       {/* Name + tier */}
       <div className="flex items-start justify-between gap-2 mb-[10px]">
         <span className="font-body text-[0.9375rem] font-semibold text-text-primary leading-[1.3]">
           {provider.name}
         </span>
-        <span className={`font-body text-[0.6875rem] font-medium whitespace-nowrap shrink-0 ${TIER_TEXT_CLASS[tier]}`}>
+        <span
+          className={`font-body text-[0.6875rem] font-medium whitespace-nowrap shrink-0 ${TIER_CLASSES[tier].text}`}
+        >
           {tierLabel[tier]}
         </span>
       </div>

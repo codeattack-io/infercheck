@@ -14,7 +14,7 @@ import { ComplianceBadge } from "@/components/ComplianceBadge";
 import { VerificationLabel } from "@/components/VerificationLabel";
 import { getVerification } from "@/lib/verification";
 import { formatPrice } from "@/lib/format";
-import { isFullProvider, getComplianceTier } from "@/lib/compliance";
+import { isFullProvider, getComplianceTier, TIER_CLASSES } from "@/lib/compliance";
 import type { ModelWithProvider } from "@/components/types";
 import type { FuseResultMatch } from "fuse.js";
 
@@ -72,13 +72,6 @@ function highlightText(text: string, matches: readonly FuseResultMatch[] | undef
   return <>{nodes}</>;
 }
 
-const TIER_COLOR: Record<string, string> = {
-  compliant: "var(--color-compliant)",
-  partial: "var(--color-partial)",
-  noncompliant: "var(--color-noncompliant)",
-  unverified: "var(--color-unverified)",
-};
-
 interface ModelRowProps {
   item: ModelWithProvider;
   dimmed?: boolean;
@@ -93,7 +86,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
   const t = useTranslations("ModelRow");
 
   const tier = provider ? getComplianceTier(provider) : "unverified";
-  const tierColor = TIER_COLOR[tier];
+  const accentBorder = TIER_CLASSES[tier].accentBorder;
 
   const providerName = provider?.name ?? model.providerSlug;
   const isVerified = provider ? isFullProvider(provider) : false;
@@ -102,10 +95,9 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
     <>
       {/* Main row — opacity, borderLeft, backgroundColor are dynamic */}
       <tr
-        className="cursor-pointer transition-opacity duration-150 ease-in-out"
+        className={`cursor-pointer transition-opacity duration-150 ease-in-out border-l-2 ${accentBorder}`}
         style={{
           opacity: dimmed ? 0.35 : 1,
-          borderLeft: `2px solid ${tierColor}`,
           backgroundColor: expanded
             ? "var(--color-surface-alt)"
             : hovered
@@ -215,12 +207,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
 
       {/* Inline expand panel — per DESIGN.md, no modals */}
       {expanded ? (
-        <tr
-          style={{
-            backgroundColor: "var(--color-surface-alt)",
-            borderLeft: `2px solid ${tierColor}`,
-          }}
-        >
+        <tr className={`bg-surface-alt border-l-2 ${accentBorder}`}>
           <td colSpan={6} className="p-0">
             <div className="px-4 pt-3.5 pb-[18px] border-t border-border">
               {/* Header row: provider name + profile link prominently together */}

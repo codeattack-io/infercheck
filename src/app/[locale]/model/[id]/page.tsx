@@ -17,19 +17,12 @@ import { db } from "@/lib/db";
 import { models } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
-import { getComplianceTier, isFullProvider } from "@/lib/compliance";
+import { getComplianceTier, isFullProvider, tierPillClasses, TIER_CLASSES } from "@/lib/compliance";
 import { formatContext, formatPrice } from "@/lib/format";
 import { VerificationLabel } from "@/components/VerificationLabel";
 import type { AnyProvider } from "@/lib/compliance";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
 import type { ComplianceTier } from "@/lib/compliance";
-
-const TIER_STYLE: Record<ComplianceTier, { color: string; bg: string; border: string }> = {
-  compliant: { color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" },
-  partial: { color: "#92400e", bg: "#fffbeb", border: "#fde68a" },
-  noncompliant: { color: "#b91c1c", bg: "#fef2f2", border: "#fecaca" },
-  unverified: { color: "#6b7280", bg: "#f8f8f7", border: "#e2e2de" },
-};
 
 interface PageProps {
   params: Promise<{ locale: string; id: string }>;
@@ -92,11 +85,11 @@ export default async function ModelDetailPage({ params }: PageProps) {
 
   const t = await getTranslations("ModelPage");
 
-  const TIER_CONFIG: Record<ComplianceTier, { label: string; color: string; bg: string; border: string }> = {
-    compliant: { label: t("tiers.compliant"), ...TIER_STYLE.compliant },
-    partial: { label: t("tiers.partial"), ...TIER_STYLE.partial },
-    noncompliant: { label: t("tiers.noncompliant"), ...TIER_STYLE.noncompliant },
-    unverified: { label: t("tiers.unverified"), ...TIER_STYLE.unverified },
+  const tierLabel: Record<ComplianceTier, string> = {
+    compliant: t("tiers.compliant"),
+    partial: t("tiers.partial"),
+    noncompliant: t("tiers.noncompliant"),
+    unverified: t("tiers.unverified"),
   };
 
   const providerMap = new Map<string, AnyProvider>(allProviders.map((p) => [p.slug, getLocalizedProvider(p, locale)]));
@@ -163,26 +156,13 @@ export default async function ModelDetailPage({ params }: PageProps) {
           {modelRows.map((row) => {
             const provider = providerMap.get(row.providerSlug) ?? null;
             const tier = provider ? getComplianceTier(provider) : "unverified";
-            const tierCfg = TIER_CONFIG[tier];
+            const tierClasses = TIER_CLASSES[tier];
             const verified = provider !== null && isFullProvider(provider);
 
             return (
               <div
                 key={`${row.id}::${row.providerSlug}`}
-                className="bg-surface border border-border rounded"
-                // borderLeft is dynamic (tier color) — kept as style
-                style={{
-                  borderLeft: `3px solid ${
-                    tier === "compliant"
-                      ? "var(--color-compliant)"
-                      : tier === "partial"
-                        ? "var(--color-partial)"
-                        : tier === "noncompliant"
-                          ? "var(--color-noncompliant)"
-                          : "var(--color-unverified)"
-                  }`,
-                  padding: "20px 24px",
-                }}
+                className={`bg-surface border border-border border-l-[3px] ${tierClasses.accentBorder} rounded px-6 py-5`}
               >
                 {/* Card header */}
                 <div className="flex items-start justify-between gap-4 flex-wrap mb-4">
@@ -190,21 +170,11 @@ export default async function ModelDetailPage({ params }: PageProps) {
                     <div className="font-body text-base font-semibold text-text-primary mb-1">
                       {provider?.name ?? row.providerSlug}
                     </div>
-                    {/* Tier pill — colors are dynamic from tierCfg */}
                     <div
-                      className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-body text-xs font-medium border"
-                      style={{
-                        backgroundColor: tierCfg.bg,
-                        borderColor: tierCfg.border,
-                        color: tierCfg.color,
-                      }}
+                      className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-body text-xs font-medium border ${tierPillClasses(tier)}`}
                     >
-                      <span
-                        className="w-1.5 h-1.5 rounded-full shrink-0"
-                        style={{ backgroundColor: tierCfg.color }}
-                        aria-hidden="true"
-                      />
-                      {tierCfg.label}
+                      <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${tierClasses.dotInk}`} aria-hidden="true" />
+                      {tierLabel[tier]}
                     </div>
                   </div>
 
@@ -217,7 +187,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
                 </div>
 
                 {/* Detail grid */}
-                <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}>
+                <div className="grid gap-4 grid-cols-[repeat(auto-fit,minmax(180px,1fr))]">
                   {/* Pricing */}
                   <DetailSection title={t("sections.pricing")}>
                     <DetailRow label={t("pricing.input")} value={formatPrice(row.inputPricePerMTokens)} mono />
