@@ -11,6 +11,8 @@ import { useState, memo, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
+import { VerificationLabel } from "@/components/VerificationLabel";
+import { getVerification } from "@/lib/verification";
 import { isFullProvider, getComplianceTier } from "@/lib/compliance";
 import type { ModelWithProvider } from "@/components/types";
 import type { FuseResultMatch } from "fuse.js";
@@ -206,12 +208,10 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
           )}
         </td>
 
-        {/* Last verified column */}
+        {/* Verification status column */}
         <td className="p-3 px-4 align-middle hidden xl:table-cell">
-          {provider?.lastVerified ? (
-            <time dateTime={provider.lastVerified} className="font-mono text-xs text-text-muted">
-              {provider.lastVerified}
-            </time>
+          {provider && getVerification(provider).kind !== "none" ? (
+            <VerificationLabel provider={provider} className="font-mono text-xs text-text-muted whitespace-nowrap" />
           ) : (
             <span className="font-mono text-xs text-text-muted">—</span>
           )}

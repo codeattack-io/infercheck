@@ -49,7 +49,7 @@
     "ogDescription": "Compare AI inference providers by GDPR compliance: EU-only data residency, DPA, training opt-out, and certifications.",
     "heading1": "AI inference providers,",
     "heading2": "by GDPR compliance tier.",
-    "subheading": "{providerCount} providers indexed. {verifiedCount} with verified compliance data. Click any provider for the full profile.",
+    "subheading": "{providerCount} providers indexed. {verifiedCount} with researched compliance data. Click any provider for the full profile.",
     "tiers": {
       "compliant": {
         "label": "EU Compliant",
@@ -71,7 +71,7 @@
   },
   "ProviderPage": {
     "title": "{providerName} — GDPR Compliance Profile",
-    "descriptionVerified": "{providerName} GDPR compliance: EU data residency {euOnly}, DPA {dpa}, training on customer data {training}. Verified {date}.",
+    "descriptionFull": "{providerName} GDPR compliance: EU data residency {euOnly}, DPA {dpa}, training on customer data {training}. {status}.",
     "descriptionUnverified": "{providerName} GDPR compliance profile. Compliance data pending verification.",
     "ogTitle": "{providerName} — GDPR Compliance Profile",
     "breadcrumb": {
@@ -117,12 +117,15 @@
       "noCerts": "No certifications disclosed."
     },
     "verification": {
-      "lastVerified": "Last verified",
-      "verifiedBy": "Verified by",
+      "status": "Status",
+      "dateAiDraft": "Researched on",
+      "dateHuman": "Last verified",
+      "statusAiDraft": "AI draft (not yet manually verified)",
+      "statusHuman": "Verified by {name}",
+      "statusNone": "Not yet researched",
+      "aiDraftNote": "This entry was researched with AI assistance and has not yet been checked manually against the sources. Treat it as a starting point and confirm critical details with the provider.",
       "pricingTier": "Pricing tier",
-      "notVerified": "Not verified",
-      "notYetVerified": "Not yet verified",
-      "aiDraft": "AI-assisted draft (pending review)",
+      "notResearched": "Not researched",
       "unknown": "Unknown",
       "sources": "Sources",
       "notes": "Notes"
@@ -184,7 +187,6 @@
       "regions": "Regions",
       "euOnly": "EU only"
     },
-    "verifiedDate": "Verified {date}",
     "backLink": "← Back to all models",
     "tiers": {
       "compliant": "EU Compliant",
@@ -208,7 +210,7 @@
     "whoBuiltPara1": "I'm Carlo, a software developer based in <strong>Germany</strong>. I work in enterprise IT and build SaaS products on the side — which means I operate under GDPR daily, from both the engineering and compliance sides of the table.",
     "whoBuiltPara2": "I don't have a financial relationship with any of the providers listed here. The directory is independent. Compliance metadata reflects publicly verifiable information with source links — if something is wrong or has changed, I want to know.",
     "dataMaintenanceHeading": "How data is maintained",
-    "dataMaintenancePara1": "Every provider entry is a flat JSON file stored in the public GitHub repository. Each field has a source URL. Every entry shows a \"last verified\" date so you can judge how fresh the information is before acting on it.",
+    "dataMaintenancePara1": "Every provider entry is a flat JSON file stored in the public GitHub repository. Each field has a source URL. Entries are researched with AI assistance and reviewed over time. Every entry is labelled as an AI draft or as manually verified, together with its date, so you can judge how reliable and how fresh the information is before acting on it.",
     "dataMaintenancePara2": "Provider compliance terms change — sometimes quietly. If you spot something outdated or missing, the best thing you can do is open an issue on GitHub. The issue template asks for the specific field that changed and a link to the source document. That keeps updates auditable and reviewable before they go into the directory.",
     "seenChangeHeading": "Seen something change?",
     "seenChangePara": "If a provider has updated their DPA, changed their data residency terms, launched EU-only routing, or anything else relevant to GDPR compliance — please file a GitHub issue. The structured template takes under two minutes and helps keep this resource accurate for everyone.",
@@ -224,7 +226,7 @@
     "notPaidTitle": "Not a paid placement service.",
     "notPaidBody": "No provider has paid to appear here or to influence how their data is presented.",
     "notCurrentTitle": "Not guaranteed to be current.",
-    "notCurrentBody": "Provider terms change. The \"last verified\" date on each entry tells you when the information was last confirmed against source documents.",
+    "notCurrentBody": "Provider terms change. The date on each entry tells you when it was last researched or, for manually verified entries, last confirmed against source documents.",
     "backLink": "← Browse the directory"
   },
   "FilterBar": {
@@ -258,9 +260,14 @@
       "compliance": "Compliance",
       "residency": "Residency",
       "price": "Price / 1M tokens",
-      "verified": "Verified"
+      "status": "Status"
     },
     "sortBy": "Sort by {label}"
+  },
+  "Verification": {
+    "aiDraft": "AI draft · {date}",
+    "verified": "Verified {date}",
+    "aiDraftHint": "Researched with AI assistance; not yet manually verified."
   },
   "ModelRow": {
     "fullProviderProfile": "Full provider profile →",

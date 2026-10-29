@@ -4,6 +4,7 @@
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
+import { VerificationLabel } from "@/components/VerificationLabel";
 import { getComplianceTier, isFullProvider } from "@/lib/compliance";
 import type { AnyProvider, ComplianceTier } from "@/lib/compliance";
 
@@ -88,11 +89,7 @@ export async function ProviderCard({ provider, modelCount }: ProviderCardProps) 
             ? ` · ${modelCount !== 1 ? t("modelCountPlural", { count: modelCount }) : t("modelCount", { count: modelCount })}`
             : ""}
         </span>
-        {provider.lastVerified ? (
-          <time dateTime={provider.lastVerified} className="font-mono text-[0.6875rem] text-text-muted">
-            {provider.lastVerified}
-          </time>
-        ) : null}
+        <VerificationLabel provider={provider} className="font-mono text-[0.6875rem] text-text-muted" />
       </div>
     </Link>
   );

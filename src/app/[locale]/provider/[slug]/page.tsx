@@ -16,6 +16,7 @@ import { Link } from "@/i18n/navigation";
 import { getProvider, getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import { getModelsByProvider } from "@/lib/models";
 import { getComplianceTier, isFullProvider } from "@/lib/compliance";
+import { getVerification } from "@/lib/verification";
 import type { ComplianceTier } from "@/lib/compliance";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
 import { ProviderModelRow } from "@/components/ProviderModelRow";
@@ -45,6 +46,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const t = await getTranslations({ locale, namespace: "ProviderPage" });
 
   const title = t("title", { providerName: provider.name });
+  const tv = await getTranslations({ locale, namespace: "Verification" });
+  const { kind, date } = getVerification(provider);
+  const verificationStatus =
+    kind === "ai_draft" ? tv("aiDraft", { date: date ?? "" }) : tv("verified", { date: date ?? "" });
   const description = isFullProvider(provider)
     ? t("descriptionVerified", {
         providerName: provider.name,
@@ -56,7 +61,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
             : provider.compliance.dataUsage.trainsOnCustomerData
               ? "yes"
               : "no",
-        date: provider.lastVerified ?? "",
+        status: verificationStatus,
       })
     : t("descriptionUnverified", { providerName: provider.name });
 
@@ -130,6 +135,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
   const tierCfg = TIER_CONFIG[tier];
   const tierBorder = TIER_BORDER[tier];
   const verified = isFullProvider(provider);
+  const verification = getVerification(provider);
 
   // Await the model fetch started earlier
   const providerModels = await modelsPromise;
@@ -482,25 +488,33 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
             <div className="flex flex-col gap-[10px]">
               <MetaRow
-                label={t("verification.lastVerified")}
-                value={provider.lastVerified ?? t("verification.notVerified")}
-                mono
-              />
-              <MetaRow
-                label={t("verification.verifiedBy")}
+                label={t("verification.status")}
                 value={
-                  provider.verifiedBy === "stub"
-                    ? t("verification.notYetVerified")
-                    : provider.verifiedBy === "ai_draft"
-                      ? t("verification.aiDraft")
-                      : provider.verifiedBy
+                  verification.kind === "none"
+                    ? t("verification.statusNone")
+                    : verification.kind === "ai_draft"
+                      ? t("verification.statusAiDraft")
+                      : t("verification.statusHuman", { name: provider.verifiedBy })
                 }
               />
+              {verification.date ? (
+                <MetaRow
+                  label={verification.kind === "ai_draft" ? t("verification.dateAiDraft") : t("verification.dateHuman")}
+                  value={verification.date}
+                  mono
+                />
+              ) : null}
               <MetaRow
                 label={t("verification.pricingTier")}
                 value={provider.pricingTier ? provider.pricingTier.replace(/_/g, " ") : t("verification.unknown")}
               />
             </div>
+
+            {verification.kind === "ai_draft" ? (
+              <p className="font-body text-[0.8125rem] text-text-secondary leading-relaxed mt-4 mb-0">
+                {t("verification.aiDraftNote")}
+              </p>
+            ) : null}
 
             {/* Source URLs */}
             {provider.sourceUrls && provider.sourceUrls.length > 0 ? (

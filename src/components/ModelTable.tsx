@@ -378,7 +378,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   sortDir={sortDir}
                   onSort={handleSort}
                   className="hidden sm:table-cell"
-                  style={{ width: "30%" }}
+                  style={{ width: "26%" }}
                 />
                 <SortableTh
                   label={t("columns.residency")}
@@ -400,13 +400,13 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   style={{ width: "15%" }}
                 />
                 <SortableTh
-                  label={t("columns.verified")}
+                  label={t("columns.status")}
                   sortKey="default"
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}
                   className="hidden xl:table-cell"
-                  style={{ width: "10%" }}
+                  style={{ width: "14%" }}
                   nonSortable
                 />
                 <th style={{ width: "5%" }} aria-hidden="true" />
