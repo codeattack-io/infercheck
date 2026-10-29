@@ -22,6 +22,7 @@ import { ComplianceBadgeList } from "@/components/ComplianceBadge";
 import { GatewayPill } from "@/components/GatewayPill";
 import { BooleanRow } from "@/components/BooleanRow";
 import { ProviderModelRow } from "@/components/ProviderModelRow";
+import type { ProviderModel } from "@/components/types";
 
 export async function generateStaticParams() {
   const providers = getAllProviders();
@@ -563,7 +564,7 @@ function ModelsTable({
   t,
   gateway = false,
 }: {
-  models: import("@/db/schema").Model[];
+  models: ProviderModel[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   t: any;
   gateway?: boolean;

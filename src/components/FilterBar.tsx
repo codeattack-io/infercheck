@@ -1,29 +1,25 @@
 "use client";
 
-import { useRouter, useSearchParams, usePathname } from "next/navigation";
-import { useCallback, useState, useTransition } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import {
   PRESET_FILTERS,
+  filterStateFromSearchParams,
   type PresetProfile,
   type FilterProfile,
-  type FilterState,
   type ComplianceFilter,
 } from "@/lib/compliance";
+import { writeSearchParams } from "@/lib/url-state";
 
-interface FilterBarProps {
-  /** Active filter state — derived from URL params by parent */
-  filterState: FilterState;
-}
-
-export function FilterBar({ filterState }: FilterBarProps) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const [, startTransition] = useTransition();
-  const [customOpen, setCustomOpen] = useState(
-    filterState.profile === "custom" || Object.keys(filterState.custom).length > 0
-  );
+export function FilterBar({ searchParams }: { searchParams: URLSearchParams }) {
+  const filterState = useMemo(() => filterStateFromSearchParams(searchParams), [searchParams]);
+  const isCustomProfile = filterState.profile === "custom" || Object.keys(filterState.custom).length > 0;
+  const [customOpen, setCustomOpen] = useState(isCustomProfile);
+  const [wasCustomProfile, setWasCustomProfile] = useState(isCustomProfile);
+  if (isCustomProfile !== wasCustomProfile) {
+    setWasCustomProfile(isCustomProfile);
+    if (isCustomProfile) setCustomOpen(true);
+  }
   const t = useTranslations("FilterBar");
 
   const PRESETS: { id: PresetProfile; label: string; filter: ComplianceFilter }[] = [
@@ -39,54 +35,46 @@ export function FilterBar({ filterState }: FilterBarProps) {
     { key: "sccs", label: t("toggles.sccs") },
   ];
 
-  // Build new URL — all filter state lives in the URL (shareable links requirement)
-  const buildUrl = useCallback(
-    (profile: FilterProfile, custom: ComplianceFilter) => {
-      const params = new URLSearchParams(searchParams.toString());
+  // All filter state lives in the URL (shareable links requirement); each change is a history entry
+  const pushFilter = useCallback((profile: FilterProfile, custom: ComplianceFilter) => {
+    const params = new URLSearchParams(window.location.search);
+    params.delete("profile");
+    params.delete("euOnly");
+    params.delete("dpa");
+    params.delete("noTraining");
+    params.delete("sccs");
 
-      // Preserve search query if present
-      const q = params.get("q");
-      params.delete("profile");
-      params.delete("euOnly");
-      params.delete("dpa");
-      params.delete("noTraining");
-      params.delete("sccs");
-      if (q) params.set("q", q);
+    if (profile && profile !== "custom") {
+      params.set("profile", profile);
+    } else if (profile === "custom") {
+      params.set("profile", "custom");
+      if (custom.euOnly) params.set("euOnly", "true");
+      if (custom.dpa) params.set("dpa", "true");
+      if (custom.noTraining) params.set("noTraining", "true");
+      if (custom.sccs) params.set("sccs", "true");
+    }
 
-      if (profile && profile !== "custom") {
-        params.set("profile", profile);
-      } else if (profile === "custom") {
-        params.set("profile", "custom");
-        if (custom.euOnly) params.set("euOnly", "true");
-        if (custom.dpa) params.set("dpa", "true");
-        if (custom.noTraining) params.set("noTraining", "true");
-        if (custom.sccs) params.set("sccs", "true");
-      }
-
-      const qs = params.toString();
-      return `${pathname}${qs ? `?${qs}` : ""}`;
-    },
-    [pathname, searchParams]
-  );
+    writeSearchParams(params, "push");
+  }, []);
 
   const setProfile = useCallback(
     (profile: FilterProfile) => {
       if (profile === filterState.profile) {
         // Toggle off
-        startTransition(() => router.push(buildUrl(null, {})));
+        pushFilter(null, {});
         return;
       }
       if (profile === "custom") {
         setCustomOpen(true);
-        startTransition(() => router.push(buildUrl("custom", filterState.custom)));
+        pushFilter("custom", filterState.custom);
       } else if (profile !== null) {
         setCustomOpen(false);
         const preset = PRESETS.find((p) => p.id === profile);
-        startTransition(() => router.push(buildUrl(profile, preset?.filter ?? {})));
+        pushFilter(profile, preset?.filter ?? {});
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [filterState.profile, filterState.custom, buildUrl, router]
+    [filterState.profile, filterState.custom, pushFilter]
   );
 
   const toggleCustom = useCallback(
@@ -98,9 +86,9 @@ export function FilterBar({ filterState }: FilterBarProps) {
         newCustom[key] = true;
       }
       const hasAny = Object.keys(newCustom).length > 0;
-      startTransition(() => router.push(buildUrl(hasAny ? "custom" : null, newCustom)));
+      pushFilter(hasAny ? "custom" : null, newCustom);
     },
-    [filterState.custom, buildUrl, router]
+    [filterState.custom, pushFilter]
   );
 
   const toggleCustomPanel = () => {
@@ -108,7 +96,7 @@ export function FilterBar({ filterState }: FilterBarProps) {
       // Close and clear custom filters
       setCustomOpen(false);
       if (filterState.profile === "custom") {
-        startTransition(() => router.push(buildUrl(null, {})));
+        pushFilter(null, {});
       }
     } else {
       setCustomOpen(true);

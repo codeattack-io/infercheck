@@ -10,12 +10,9 @@
 
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { cache } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
-import { db } from "@/lib/db";
-import { models } from "@/db/schema";
-import { eq, and } from "drizzle-orm";
+import { getCanonicalModelIds, getModelOffers } from "@/lib/models";
 import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import { getComplianceTier, isFullProvider, tierPillClasses, TIER_CLASSES } from "@/lib/compliance";
 import { formatContext, formatPrice } from "@/lib/format";
@@ -29,21 +26,16 @@ interface PageProps {
   params: Promise<{ locale: string; id: string }>;
 }
 
-// server-cache-react: wrap DB query so generateMetadata and the page body share
-// a single request-scoped hit. React.cache() deduplicates by argument identity.
-const getModelRows = cache(async (decoded: string) => {
-  return db
-    .select()
-    .from(models)
-    .where(and(eq(models.isActive, true), eq(models.canonicalModelId, decoded)))
-    .orderBy(models.providerSlug);
-});
+export async function generateStaticParams() {
+  const ids = await getCanonicalModelIds();
+  return ids.map((id) => ({ id }));
+}
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale, id } = await params;
   const decoded = decodeURIComponent(id);
 
-  const rows = await getModelRows(decoded);
+  const rows = await getModelOffers(decoded);
   const rawName =
     (rows.find((r) => r.isNativeModel === true) ?? rows.find((r) => r.providerSlug !== "amazon-bedrock") ?? rows[0])
       ?.displayName ?? decoded;
@@ -76,9 +68,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
   const decoded = decodeURIComponent(id);
 
   // Parallel: cached DB query + provider JSON load (async-parallel rule).
-  // getModelRows() is React.cache-wrapped — if generateMetadata already ran it,
-  // this hits the request-scoped cache instead of the DB (server-cache-react rule).
-  const [modelRows, allProviders] = await Promise.all([getModelRows(decoded), Promise.resolve(getAllProviders())]);
+  const [modelRows, allProviders] = await Promise.all([getModelOffers(decoded), Promise.resolve(getAllProviders())]);
 
   if (modelRows.length === 0) {
     notFound();

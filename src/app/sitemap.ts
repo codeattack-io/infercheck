@@ -6,11 +6,10 @@
 //   - /[locale]/model/[id]        — one per unique canonicalModelId in the DB
 
 import type { MetadataRoute } from "next";
+import { cacheLife } from "next/cache";
 import { getAllProviders } from "@/lib/providers";
 import { routing } from "@/i18n/routing";
-import { db } from "@/lib/db";
-import { models } from "@/db/schema";
-import { eq } from "drizzle-orm";
+import { getCanonicalModelIds } from "@/lib/models";
 
 const BASE_URL = "https://infercheck.eu";
 const LOCALES = routing.locales;
@@ -21,6 +20,9 @@ function alternates(path: string): Record<string, string> {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  "use cache";
+  cacheLife("hours");
+
   const now = new Date().toISOString();
 
   // Static pages — one entry per path with hreflang alternates for all locales
@@ -52,23 +54,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // Model pages — one entry per canonicalModelId with hreflang alternates
-  const activeModels = await db
-    .selectDistinct({ canonicalModelId: models.canonicalModelId })
-    .from(models)
-    .where(eq(models.isActive, true));
+  const canonicalModelIds = await getCanonicalModelIds();
 
-  const modelPages: MetadataRoute.Sitemap = activeModels
-    .filter((m) => m.canonicalModelId)
-    .map((m) => {
-      const encoded = encodeURIComponent(m.canonicalModelId!);
-      return {
-        url: `${BASE_URL}/${LOCALES[0]}/model/${encoded}`,
-        lastModified: now,
-        changeFrequency: "weekly" as const,
-        priority: 0.7,
-        alternates: { languages: alternates(`/model/${encoded}`) },
-      };
-    });
+  const modelPages: MetadataRoute.Sitemap = canonicalModelIds.map((id) => {
+    const encoded = encodeURIComponent(id);
+    return {
+      url: `${BASE_URL}/${LOCALES[0]}/model/${encoded}`,
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+      alternates: { languages: alternates(`/model/${encoded}`) },
+    };
+  });
 
   return [...staticPages, ...providerPages, ...modelPages];
 }

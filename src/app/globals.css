@@ -103,3 +103,14 @@ body {
 .search-clear-btn:hover {
   opacity: 1 !important;
 }
+
+/* Hidden until the client applies the URL's table state; shown after 3 s if scripts never run. */
+[data-url-pending] {
+  visibility: hidden;
+  animation: url-pending-reveal 0s 3s forwards;
+}
+@keyframes url-pending-reveal {
+  to {
+    visibility: visible;
+  }
+}

@@ -4,15 +4,11 @@
 // filters, and renders the model rows.
 //
 // Data is fetched server-side and passed as props — no client-side fetch.
-// Filter state lives entirely in URL params (shareable links requirement).
+// Search, filter and sort state lives in URL params (shareable links requirement)
+// and is written through the History API, so changing it never requests the server.
 // Search uses Fuse.js with a manual multi-token $and logical query so that
 // "claude 4.6" matches "Claude Sonnet 4.6" without spuriously matching any
 // model that happens to contain a standalone "4" or "6" elsewhere.
-//
-// Input state is LOCAL (useState) — never re-derived from the URL prop.
-// This prevents the input from remounting and losing focus on every keystroke.
-// The URL is written on change (for shareability) but never read back into the
-// input value after mount.
 //
 // Vercel rules applied:
 //   - rerender-derived-state-no-effect: filtered list derived during render
@@ -20,8 +16,7 @@
 //   - js-index-maps: provider lookup by slug via Map
 //   - rendering-conditional-render: ternary not &&
 
-import { useMemo, useCallback, useTransition, useState } from "react";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useMemo, useCallback, useEffect, useRef, useState } from "react";
 import Fuse, { type FuseResultMatch, type Expression } from "fuse.js";
 import { useTranslations } from "next-intl";
 import { ModelRow } from "@/components/ModelRow";
@@ -33,6 +28,7 @@ import {
 } from "@/lib/compliance";
 import type { ModelWithProvider } from "@/components/types";
 import type { AnyProvider } from "@/lib/compliance";
+import { writeSearchParams } from "@/lib/url-state";
 
 // Keys searched; displayName weighted highest since it's what users type.
 // We do NOT use useTokenSearch — it splits on whitespace and matches each
@@ -160,19 +156,39 @@ function rowKey(item: ModelWithProvider): string {
 
 interface ModelTableProps {
   items: ModelWithProvider[];
-  /** Initial search query from URL — used only at mount, never synced back */
-  searchQuery: string;
+  searchParams: URLSearchParams;
 }
 
-export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const [, startTransition] = useTransition();
+const SEARCH_URL_DEBOUNCE_MS = 300;
+
+export function ModelTable({ items, searchParams }: ModelTableProps) {
   const t = useTranslations("ModelTable");
 
-  // LOCAL input state — decoupled from URL after mount.
-  const [inputValue, setInputValue] = useState(initialQuery);
+  // The input is local state so typing never waits for the URL. `syncedQuery` is the
+  // URL query the input last agreed with; a URL change from elsewhere (hydration,
+  // back/forward) resets the input.
+  const urlQuery = searchParams.get("q") ?? "";
+  const [inputValue, setInputValue] = useState(urlQuery);
+  const [syncedQuery, setSyncedQuery] = useState(urlQuery);
+  if (urlQuery !== syncedQuery) {
+    setSyncedQuery(urlQuery);
+    setInputValue(urlQuery);
+  }
+
+  const debounceTimer = useRef<number | undefined>(undefined);
+  useEffect(() => () => window.clearTimeout(debounceTimer.current), []);
+
+  const writeQuery = useCallback((q: string) => {
+    window.clearTimeout(debounceTimer.current);
+    setSyncedQuery(q);
+    const params = new URLSearchParams(window.location.search);
+    if (q) {
+      params.set("q", q);
+    } else {
+      params.delete("q");
+    }
+    writeSearchParams(params, "replace");
+  }, []);
 
   // Sort state — persisted in URL
   const sortKey = (searchParams.get("sort") as SortKey) ?? "default";
@@ -180,7 +196,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
 
   const handleSort = useCallback(
     (key: SortKey) => {
-      const params = new URLSearchParams(searchParams.toString());
+      const params = new URLSearchParams(window.location.search);
       if (sortKey === key) {
         // Toggle direction if same key
         if (sortDir === "asc") {
@@ -194,9 +210,9 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
         params.set("sort", key);
         params.set("dir", "asc");
       }
-      startTransition(() => router.replace(`${pathname}?${params.toString()}`, { scroll: false }));
+      writeSearchParams(params, "replace");
     },
-    [searchParams, pathname, router, sortKey, sortDir]
+    [sortKey, sortDir]
   );
 
   // Derive filter state from URL params during render — no useEffect
@@ -212,34 +228,25 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
   // Build Fuse index once per items change — O(n) cost paid on data change, not per keystroke
   const fuse = useMemo(() => new Fuse(items, FUSE_OPTIONS), [items]);
 
-  // Search: update local state immediately (keeps input responsive), push URL
-  // in a transition so the RSC navigation doesn't block typing.
+  // Search filters on the local value immediately; the URL follows once typing pauses.
   const handleSearchChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const q = e.target.value;
       setInputValue(q);
-      const params = new URLSearchParams(searchParams.toString());
-      if (q) {
-        params.set("q", q);
-      } else {
-        params.delete("q");
-      }
-      startTransition(() => router.replace(`${pathname}?${params.toString()}`, { scroll: false }));
+      window.clearTimeout(debounceTimer.current);
+      debounceTimer.current = window.setTimeout(() => writeQuery(q), SEARCH_URL_DEBOUNCE_MS);
     },
-    [searchParams, pathname, router]
+    [writeQuery]
   );
 
-  // Clear search
   const handleClear = useCallback(() => {
     setInputValue("");
-    const params = new URLSearchParams(searchParams.toString());
-    params.delete("q");
-    startTransition(() => router.replace(`${pathname}?${params.toString()}`, { scroll: false }));
-  }, [searchParams, pathname, router]);
+    writeQuery("");
+  }, [writeQuery]);
 
   // Search + filter — derived during render (rerender-derived-state-no-effect)
   //
-  // inputValue drives filtering (local, instant), not the server-prop query.
+  // inputValue drives filtering (local, instant), not the debounced URL query.
   const { matching, nonMatching, matchMap } = useMemo(() => {
     const q = inputValue.trim();
     const matchMap: MatchMap = new Map();

@@ -1,23 +1,17 @@
 // Homepage: model-first search + compliance filter.
-// React Server Component — data fetched at request time, no client-side loading.
+// React Server Component — prerendered from the cached model catalog; search,
+// filters and sort run in the browser over the full list.
 //
 // Vercel rules applied:
 //   - async-parallel: DB query + provider JSON load run in parallel via Promise.all
 //   - server-hoist-static-io: getAllProviders() result is used once and indexed in Map
 //   - server-serialization: only serializable data passed to client components
-//   - server-cache-react: React.cache wraps DB calls to deduplicate within the request
 
-import { Suspense } from "react";
 import type { Metadata } from "next";
-import { cache } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
-import { FilterBar } from "@/components/FilterBar";
-import { filterStateFromSearchParams } from "@/lib/compliance";
-import { ModelTable } from "@/components/ModelTable";
-import { db } from "@/lib/db";
-import { models } from "@/db/schema";
-import { eq, and } from "drizzle-orm";
+import { ModelBrowser } from "@/components/ModelBrowser";
+import { getCatalogModels } from "@/lib/models";
 import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import type { ModelWithProvider } from "@/components/types";
 import type { AnyProvider } from "@/lib/compliance";
@@ -47,33 +41,20 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-// ─── Data fetching (React.cache for per-request deduplication) ────────────────
-
-const getActiveModels = cache(async () => {
-  return db
-    .select()
-    .from(models)
-    .where(and(eq(models.isActive, true)))
-    .orderBy(models.displayName);
-});
-
 // ─── Page ──────────────────────────────────────────────────────────────────────
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
-export default async function HomePage({ params, searchParams }: HomePageProps) {
+export default async function HomePage({ params }: HomePageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const sp = await searchParams;
-  const searchQuery = typeof sp.q === "string" ? sp.q : "";
   const t = await getTranslations("HomePage");
 
   // Parallel fetch: DB + file system — async-parallel rule
-  const [allModels, allProviders] = await Promise.all([getActiveModels(), Promise.resolve(getAllProviders())]);
+  const [allModels, allProviders] = await Promise.all([getCatalogModels(), Promise.resolve(getAllProviders())]);
 
   // Build provider lookup map — js-index-maps rule
   const providerMap = new Map<string, AnyProvider>(allProviders.map((p) => [p.slug, getLocalizedProvider(p, locale)]));
@@ -83,14 +64,6 @@ export default async function HomePage({ params, searchParams }: HomePageProps) 
     model,
     provider: providerMap.get(model.providerSlug) ?? null,
   }));
-
-  // Reconstruct URLSearchParams for FilterBar initial state
-  const urlSearchParams = new URLSearchParams(
-    Object.entries(sp)
-      .filter(([, v]) => typeof v === "string")
-      .map(([k, v]) => [k, v as string])
-  );
-  const filterState = filterStateFromSearchParams(urlSearchParams);
 
   // Homepage JSON-LD: Dataset schema
   const jsonLd = {
@@ -127,21 +100,7 @@ export default async function HomePage({ params, searchParams }: HomePageProps) 
           </p>
         </div>
 
-        {/* Filter bar — client component, gets initial state from server */}
-        <div className="mb-6">
-          <Suspense fallback={null}>
-            <FilterBar filterState={filterState} />
-          </Suspense>
-        </div>
-
-        {/* Model table — client component, data from server */}
-        <Suspense
-          fallback={
-            <div className="py-16 text-center font-body text-[0.9375rem] text-text-muted">{t("loadingModels")}</div>
-          }
-        >
-          <ModelTable items={items} searchQuery={searchQuery} />
-        </Suspense>
+        <ModelBrowser items={items} />
       </main>
     </>
   );
