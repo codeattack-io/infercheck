@@ -7,8 +7,8 @@
  *   - scripts/sync-models.ts (CLI / one-off)
  *
  * Sources:
- *   1. OpenRouter /api/v1/models  — covers 300+ models across major providers
- *   2. Per-provider adapters      — EU-native providers not on OpenRouter
+ *   1. OpenRouter model endpoints — models per serving host, for hosts listed in OPENROUTER_HOSTS
+ *   2. Per-provider adapters       — providers not covered by OpenRouter
  *      (Scaleway, Aleph Alpha, Berget AI, Stackit, OVHcloud, Mistral, Amazon Bedrock)
  */
 
