@@ -6,7 +6,9 @@
  */
 
 import type { ModelRow } from "../types";
-import { deriveCanonicalModelId } from "../utils";
+import { deriveCanonicalModelId, toPricePerMTokens } from "../utils";
+
+const PER_M_TOKENS_UNIT = "€ / M Token";
 
 export async function fetchBergetModels(): Promise<ModelRow[]> {
   console.log("Fetching Berget AI model catalog…");
@@ -19,7 +21,7 @@ export async function fetchBergetModels(): Promise<ModelRow[]> {
         name?: string;
         model_type?: string;
         capabilities?: { vision?: boolean; embeddings?: boolean };
-        pricing?: { input?: number; output?: number };
+        pricing?: { input?: number; output?: number; unit?: string };
       }>;
     };
     const now = new Date();
@@ -27,8 +29,7 @@ export async function fetchBergetModels(): Promise<ModelRow[]> {
       const isEmbedding = m.capabilities?.embeddings === true;
       const isVision = m.capabilities?.vision === true;
       const modality = isEmbedding ? "embedding" : isVision ? "multimodal" : "text";
-      const inputRaw = m.pricing?.input ?? null;
-      const outputRaw = m.pricing?.output ?? null;
+      const perMTokens = m.pricing?.unit === PER_M_TOKENS_UNIT;
       return {
         id: `berget/${m.id}`,
         providerSlug: "berget-ai",
@@ -36,8 +37,8 @@ export async function fetchBergetModels(): Promise<ModelRow[]> {
         displayName: m.name ?? m.id,
         modality,
         contextWindow: null,
-        inputPricePerMTokens: inputRaw != null ? (inputRaw * 1_000_000).toFixed(6) : null,
-        outputPricePerMTokens: outputRaw != null ? (outputRaw * 1_000_000).toFixed(6) : null,
+        inputPricePerMTokens: perMTokens ? toPricePerMTokens(m.pricing?.input) : null,
+        outputPricePerMTokens: perMTokens ? toPricePerMTokens(m.pricing?.output) : null,
         tokensPerSecond: null,
         syncSource: "provider_api",
         isActive: true,
