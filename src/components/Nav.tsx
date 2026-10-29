@@ -28,17 +28,11 @@ export function Nav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close mobile menu on route change.
-  // Synchronising component state to an external system (the router) is a
-  // valid effect use-case; the lint rule is suppressed intentionally here.
-  const prevPathname = useRef(pathname);
-  useEffect(() => {
-    if (prevPathname.current !== pathname) {
-      prevPathname.current = pathname;
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setMobileOpen(false);
-    }
-  }, [pathname]);
+  const [prevPathname, setPrevPathname] = useState(pathname);
+  if (prevPathname !== pathname) {
+    setPrevPathname(pathname);
+    setMobileOpen(false);
+  }
 
   useEffect(() => {
     if (!mobileOpen) {
