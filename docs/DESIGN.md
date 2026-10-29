@@ -228,7 +228,7 @@ Used in the model table on the homepage. Dense, scannable.
 | Model      | always       | Model name (semibold), gateway pill when a third party's model, provider name |
 | Compliance | `sm`         | Badge cluster from `getBadgeVariants`; "Unverified" without compliance data   |
 | Residency  | `md`         | "EU" for EU-only providers, else the provider's regions                       |
-| Price      | `lg`         | Input and output price per 1M tokens, monospace                               |
+| Price      | `lg`         | Input and output price per 1M tokens in the stored currency, monospace        |
 | Status     | `xl`         | Verification label: "AI draft · date" or "Verified date", monospace, muted    |
 | Details    | always       | Round +/− button that expands the row                                         |
 

@@ -32,6 +32,7 @@ Routes under `src/app/[locale]/`: `/` (model table), `/providers`, `/provider/[s
 
 - `canonical_model_id`: provider-independent id from `deriveCanonicalModelId` (`src/lib/sync/utils.ts`); groups offers of one model across providers and is the `/model/[id]` route key.
 - `input_price_per_m_tokens`, `output_price_per_m_tokens`, `price_currency`: `numeric(12,6)` prices per 1M tokens and their ISO 4217 code.
+- The UI formats each price with the row's own `price_currency`; the model page's JSON-LD offers carry it as `priceCurrency`.
 - `is_native_model`: `false` when the provider hosts a third-party model (shown as a gateway pill and notice).
 - `sync_source`: `openrouter`, `provider_api` or `manual`.
 - `is_active`: rows are deactivated, never deleted.
@@ -77,7 +78,7 @@ An adapter that returns no rows changes nothing in the database.
 
 **Per-adapter processing**
 
-1. The adapter returns `ModelRow[]`. Prices pass through `toPricePerMTokens`: missing, non-finite, negative, or above 10,000 per 1M tokens become `null` ("price unknown").
+1. The adapter returns `ModelRow[]`. Prices pass through `toPricePerMTokens`: missing, non-finite, negative, or above 10,000 per 1M tokens become `null` ("price unknown"). Each row carries its `priceCurrency`: `USD`, except Berget AI, whose API reports the currency (default `EUR`).
 2. Rows are grouped by `providerSlug` and written by `upsertModels` in batches of 100. If a batch fails, its rows are retried one by one; rows that still fail are collected and make the adapter fail after the others were written.
 3. A thrown error in one adapter is recorded in `failures` and `sync_log`; the remaining adapters still run.
 
