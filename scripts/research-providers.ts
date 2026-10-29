@@ -22,13 +22,9 @@ import { ProviderSchema, ProviderStubSchema } from "../data/schema";
 // Load .env.local
 config({ path: path.join(process.cwd(), ".env.local") });
 
-// ─── Config ───────────────────────────────────────────────────────────────────
-
 const PROVIDERS_DIR = path.join(process.cwd(), "data", "providers");
 const FAILED_DIR = path.join(PROVIDERS_DIR, "_failed");
 const TODAY = new Date().toISOString().slice(0, 10);
-
-// ─── CLI args ─────────────────────────────────────────────────────────────────
 
 const args = process.argv.slice(2);
 const runAll = args.includes("--all");
@@ -42,11 +38,7 @@ if (!runAll && !providerArg) {
   process.exit(1);
 }
 
-// ─── OpenAI client ────────────────────────────────────────────────────────────
-
 const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
-// ─── Provider JSON loading ────────────────────────────────────────────────────
 
 interface StubEntry {
   slug: string;
@@ -99,8 +91,6 @@ function loadSingleStub(slug: string): StubEntry | null {
   };
 }
 
-// ─── Prompt ───────────────────────────────────────────────────────────────────
-
 function buildPrompt(stub: StubEntry): string {
   return `You are a GDPR compliance researcher. Your task is to fill in factual compliance data for an AI inference provider.
 
@@ -134,7 +124,6 @@ Return ONLY a valid JSON object matching this exact schema. No markdown, no comm
   "type": "${stub.type}",
   "website": "${stub.website ?? ""}",
   "apiDocsUrl": "<url or null>",
-  "logoPath": "/logos/${stub.slug}.svg",
   "compliance": {
     "headquarters": "<ISO 3166-1 alpha-2 country code, e.g. US, DE, FR — or null if genuinely unknown>",
     "dataResidency": {
@@ -181,8 +170,6 @@ Rules:
 - Do not include any fields not in the schema above
 - certifications array must only contain certifications you can confirm from a source URL`;
 }
-
-// ─── Research a single provider ───────────────────────────────────────────────
 
 async function researchProvider(stub: StubEntry, dryRun: boolean): Promise<"success" | "failed" | "skipped"> {
   if (dryRun) {
@@ -242,8 +229,6 @@ async function researchProvider(stub: StubEntry, dryRun: boolean): Promise<"succ
     return "failed";
   }
 }
-
-// ─── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
   let stubs: StubEntry[];
