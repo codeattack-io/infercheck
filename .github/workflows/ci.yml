@@ -1,16 +1,3 @@
-# CI — Pull Request Checks
-#
-# Two jobs:
-#
-#   check  — always runs (including fork PRs)
-#            Validates provider JSON data and lints source code.
-#            No secrets required.
-#
-#   build  — skipped for fork PRs (they have no access to secrets)
-#            Builds the Next.js app, which requires a real DATABASE_URL
-#            because sitemap generation queries the DB at build time.
-#            Uses DATABASE_URL_DEV secret (a Neon dev/CI branch).
-
 name: CI
 
 on:
@@ -24,47 +11,48 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  # ── Validate + Lint ────────────────────────────────────────────────────────
-  # Runs for all PRs including forks. No secrets needed.
   check:
-    name: Validate · Lint
+    name: Validate · Lint · Typecheck
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version: 1.4.3
 
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      - name: Format
+        run: bunx prettier --check .
+
+      - name: Lint
+        run: bun run lint --max-warnings=0
+
+      - name: Typecheck
+        run: bunx tsc --noEmit
+
       - name: Validate data
         run: bun run validate
 
-      - name: Lint
-        run: bun run lint
-
-  # ── Build ──────────────────────────────────────────────────────────────────
-  # Skipped for fork PRs — they cannot access repository secrets, and the
-  # Next.js build queries the database at build time (sitemap generation).
-  # All first-party branches and PRs from this repo run the full build.
   build:
     name: Build
     runs-on: ubuntu-latest
+    # NOTE: fork PRs get no secrets, and next build queries the database for the sitemap.
     if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version: 1.4.3
 
       - name: Install dependencies
         run: bun install --frozen-lockfile

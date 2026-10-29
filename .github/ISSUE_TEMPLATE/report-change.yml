@@ -16,14 +16,10 @@ body:
       label: Provider
       description: Which provider does this report concern?
       options:
-        - 302-ai
         - abacus
         - aihubmix
         - aleph-alpha
         - alibaba
-        - alibaba-china
-        - alibaba-coding-plan
-        - alibaba-coding-plan-china
         - amazon-bedrock
         - anthropic
         - azure
@@ -39,44 +35,30 @@ body:
         - cloudflare-workers-ai
         - cohere
         - cortecs
-        - d-run-china
         - deep-infra
         - deepseek
         - dinference
         - evroc
-        - fastrouter
         - fireworks-ai
         - firmware
         - friendli
-        - github-copilot
         - github-models
-        - gitlab-duo
         - google
         - groq
         - helicone
         - hugging-face
-        - iflow
         - inception
         - inference
         - io-net
-        - jiekou-ai
         - kilo-gateway
-        - kimi-for-coding
-        - kuae-cloud-coding-plan
         - llama
         - llm-gateway
-        - lmstudio
         - lucidquery-ai
         - meganova
         - minimax-minimax-io
-        - minimax-minimaxi-com
-        - minimax-coding-plan-minimax-io
-        - minimax-coding-plan-minimaxi-com
         - mistral
-        - moark
-        - modelscope
+        - mixlayer
         - moonshot-ai
-        - moonshot-ai-china
         - morph
         - nanogpt
         - nebius-token-factory
@@ -85,30 +67,21 @@ body:
         - nvidia
         - ollama-cloud
         - openai
-        - opencode-go
-        - opencode-zen
         - openrouter
         - ovhcloud-ai-endpoints
         - perplexity
         - perplexity-agent
         - poe
         - privatemode-ai
-        - qihang
-        - qiniu
         - requesty
         - sap-ai-core
         - scaleway
         - siliconflow
-        - siliconflow-china
         - stackit
         - stepfun
-        - submodel
         - synthetic
-        - tencent-coding-plan-china
-        - the-grid-ai
         - together-ai
         - upstage
-        - v0
         - venice-ai
         - vercel-ai-gateway
         - vertex
@@ -118,14 +91,8 @@ body:
         - weights-biases
         - xai
         - xiaomi
-        - xiaomi-token-plan-china
-        - xiaomi-token-plan-europe
-        - xiaomi-token-plan-singapore
         - z-ai
-        - z-ai-coding-plan
         - zenmux
-        - zhipu-ai
-        - zhipu-ai-coding-plan
     validations:
       required: true
 

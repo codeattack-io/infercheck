@@ -20,13 +20,9 @@ const DATA_DIR = join(ROOT, "data", "providers");
 
 const VERBOSE = process.argv.includes("--verbose") || process.argv.includes("-v");
 
-// ─── Helpers ─────────────────────────────────────────────────────────────────
-
 function formatZodError(err: ZodError): string {
   return err.issues.map((issue) => `  - ${issue.path.join(".")}: ${issue.message}`).join("\n");
 }
-
-// ─── Main ─────────────────────────────────────────────────────────────────────
 
 function main() {
   let files: string[];
@@ -79,7 +75,6 @@ function main() {
     }
   }
 
-  // ── Summary ──
   if (errors.length > 0) {
     console.error(`Validation errors:\n`);
     for (const { file, message } of errors) {

@@ -27,17 +27,20 @@ export const models = pgTable(
     /** Maximum context length in tokens */
     contextWindow: integer("context_window"),
 
-    /** Cost per 1M input tokens in USD */
+    /** Cost per 1M input tokens in priceCurrency */
     inputPricePerMTokens: numeric("input_price_per_m_tokens", {
       precision: 12,
       scale: 6,
     }),
 
-    /** Cost per 1M output tokens in USD */
+    /** Cost per 1M output tokens in priceCurrency */
     outputPricePerMTokens: numeric("output_price_per_m_tokens", {
       precision: 12,
       scale: 6,
     }),
+
+    /** ISO 4217 currency code of both price columns, e.g. "USD" | "EUR" */
+    priceCurrency: text("price_currency").notNull().default("USD"),
 
     /** Benchmark throughput in tokens/sec (median, from source) */
     tokensPerSecond: numeric("tokens_per_second", { precision: 8, scale: 2 }),

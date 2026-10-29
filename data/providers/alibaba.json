@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://www.alibabacloud.com",
   "apiDocsUrl": "https://www.alibabacloud.com/help/en/model-studio/model-api-reference/",
-  "logoPath": "/logos/alibaba.svg",
   "compliance": {
     "headquarters": "CN",
     "dataResidency": {

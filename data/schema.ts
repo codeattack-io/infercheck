@@ -1,7 +1,5 @@
 import { z } from "zod";
 
-// ─── Enums ──────────────────────────────────────────────────────────────────
-
 export const ProviderTypeSchema = z.enum(["api_provider", "cloud_platform", "gateway"]);
 
 export const DpaSignedViaSchema = z.enum(["online_acceptance", "custom_contract", "not_available"]);
@@ -10,7 +8,6 @@ export const EuAiActStatusSchema = z.enum(["compliant", "monitoring", "unknown",
 
 export const PricingTierSchema = z.enum(["free_tier", "pay_per_use", "enterprise_only"]);
 
-// ─── Translation schema ───────────────────────────────────────────────────────
 // Holds locale-specific overrides for free-text fields only.
 // Structured fields (booleans, enums, URLs) are locale-independent.
 // Keys are BCP-47 locale codes, e.g. "de", "fr".
@@ -37,8 +34,6 @@ export const ProviderTranslationSchema = z.object({
 });
 
 export type ProviderTranslation = z.infer<typeof ProviderTranslationSchema>;
-
-// ─── Sub-schemas ─────────────────────────────────────────────────────────────
 
 export const DataResidencySchema = z.object({
   /** ISO 3166-1 alpha-2 country/region codes where data can be processed. Empty array = unknown. */
@@ -103,8 +98,6 @@ export const ComplianceSchema = z.object({
   adequacyDecision: z.boolean().nullable(),
 });
 
-// ─── Root Provider Schema ─────────────────────────────────────────────────────
-
 export const ProviderSchema = z.object({
   /** URL-safe identifier, matches filename without extension */
   slug: z.string().regex(/^[a-z0-9-]+$/, "Slug must be lowercase alphanumeric with hyphens"),
@@ -112,8 +105,6 @@ export const ProviderSchema = z.object({
   type: ProviderTypeSchema,
   website: z.string().url(),
   apiDocsUrl: z.string().url().nullable(),
-  /** Path to SVG logo in /public/logos/, e.g. "/logos/openai.svg" */
-  logoPath: z.string().nullable(),
   compliance: ComplianceSchema,
   /** null = unknown */
   pricingTier: PricingTierSchema.nullable(),
@@ -132,7 +123,6 @@ export const ProviderSchema = z.object({
   translations: z.record(z.string(), ProviderTranslationSchema).optional(),
 });
 
-// ─── Stub schema (used by import script for seed data) ───────────────────────
 // A stub has identity fields populated but compliance fields are null/unknown.
 
 export const ProviderStubSchema = z.object({
@@ -141,7 +131,6 @@ export const ProviderStubSchema = z.object({
   type: ProviderTypeSchema,
   website: z.string().url().nullable(),
   apiDocsUrl: z.string().url().nullable(),
-  logoPath: z.string().nullable(),
   compliance: z.null(),
   pricingTier: PricingTierSchema.nullable(),
   lastVerified: z.string().nullable(),
@@ -150,8 +139,6 @@ export const ProviderStubSchema = z.object({
   notes: z.string().nullable(),
   translations: z.record(z.string(), ProviderTranslationSchema).optional(),
 });
-
-// ─── TypeScript types ─────────────────────────────────────────────────────────
 
 export type ProviderType = z.infer<typeof ProviderTypeSchema>;
 export type Compliance = z.infer<typeof ComplianceSchema>;

@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://www.together.ai",
   "apiDocsUrl": "https://docs.together.ai/docs/serverless-models",
-  "logoPath": "/logos/together-ai.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

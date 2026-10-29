@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://cloud.siliconflow.com",
   "apiDocsUrl": "https://docs.siliconflow.com/en",
-  "logoPath": "/logos/siliconflow.svg",
   "compliance": {
     "headquarters": "SG",
     "dataResidency": {

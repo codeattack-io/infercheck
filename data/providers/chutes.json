@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://llm.chutes.ai",
   "apiDocsUrl": "https://docs.chutes.ai/",
-  "logoPath": "/logos/chutes.svg",
   "compliance": {
     "headquarters": null,
     "dataResidency": {

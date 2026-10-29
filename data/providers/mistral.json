@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://mistral.ai",
   "apiDocsUrl": "https://docs.mistral.ai/getting-started/models/",
-  "logoPath": "/logos/mistral.svg",
   "compliance": {
     "headquarters": "FR",
     "dataResidency": {

@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://llama.developer.meta.com",
   "apiDocsUrl": "https://llama.developer.meta.com/docs",
-  "logoPath": "/logos/llama.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

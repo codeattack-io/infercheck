@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://lucidquery.com",
   "apiDocsUrl": "https://lucidquery.com/api/docs",
-  "logoPath": "/logos/lucidquery-ai.svg",
   "compliance": {
     "headquarters": "FR",
     "dataResidency": {

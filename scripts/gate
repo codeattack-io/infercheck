@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+tier="${1:-}"
+
+fast() {
+  bunx prettier --check .
+  bun run lint --max-warnings=0
+  bunx tsc --noEmit
+  bun run validate
+}
+
+full() {
+  fast
+  if [ -f .env.local ]; then
+    set -a
+    # shellcheck disable=SC1091
+    . ./.env.local
+    set +a
+  fi
+  local log
+  log="$(mktemp)"
+  DATABASE_URL="${DATABASE_URL_DEV:-${DATABASE_URL:?DATABASE_URL or DATABASE_URL_DEV must be set}}" SENTRY_AUTH_TOKEN="" bun run build 2>&1 | tee "$log"
+  if grep -q MISSING_MESSAGE "$log"; then
+    echo "gate: next build logged MISSING_MESSAGE" >&2
+    exit 1
+  fi
+}
+
+case "$tier" in
+  fast) fast ;;
+  full) full ;;
+  *)
+    echo "usage: scripts/gate fast|full" >&2
+    exit 64
+    ;;
+esac

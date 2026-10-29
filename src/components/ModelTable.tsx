@@ -4,15 +4,11 @@
 // filters, and renders the model rows.
 //
 // Data is fetched server-side and passed as props — no client-side fetch.
-// Filter state lives entirely in URL params (shareable links requirement).
+// Search, filter and sort state lives in URL params (shareable links requirement)
+// and is written through the History API, so changing it never requests the server.
 // Search uses Fuse.js with a manual multi-token $and logical query so that
 // "claude 4.6" matches "Claude Sonnet 4.6" without spuriously matching any
 // model that happens to contain a standalone "4" or "6" elsewhere.
-//
-// Input state is LOCAL (useState) — never re-derived from the URL prop.
-// This prevents the input from remounting and losing focus on every keystroke.
-// The URL is written on change (for shareability) but never read back into the
-// input value after mount.
 //
 // Vercel rules applied:
 //   - rerender-derived-state-no-effect: filtered list derived during render
@@ -20,16 +16,19 @@
 //   - js-index-maps: provider lookup by slug via Map
 //   - rendering-conditional-render: ternary not &&
 
-import { useMemo, useCallback, useTransition, useState } from "react";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useMemo, useCallback, useEffect, useRef, useState } from "react";
 import Fuse, { type FuseResultMatch, type Expression } from "fuse.js";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ModelRow } from "@/components/ModelRow";
-import { providerMatchesFilter, filterStateFromSearchParams, getComplianceTier } from "@/lib/compliance";
+import {
+  PRESET_FILTERS,
+  providerMatchesFilter,
+  filterStateFromSearchParams,
+  getComplianceTier,
+} from "@/lib/compliance";
 import type { ModelWithProvider } from "@/components/types";
 import type { AnyProvider } from "@/lib/compliance";
-
-// ─── Fuse config ──────────────────────────────────────────────────────────────
+import { writeSearchParams } from "@/lib/url-state";
 
 // Keys searched; displayName weighted highest since it's what users type.
 // We do NOT use useTokenSearch — it splits on whitespace and matches each
@@ -106,10 +105,10 @@ function buildFuseQuery(raw: string): string | Expression {
   } as Expression;
 }
 
-// ─── Sort ──────────────────────────────────────────────────────────────────────
-
-export type SortKey = "compliance" | "price" | "provider" | "default";
+export type SortKey = "model" | "compliance" | "price" | "default";
 export type SortDir = "asc" | "desc";
+
+const SORT_KEYS: readonly SortKey[] = ["model", "compliance", "price"];
 
 const TIER_RANK: Record<string, number> = {
   compliant: 0,
@@ -118,7 +117,11 @@ const TIER_RANK: Record<string, number> = {
   unverified: 3,
 };
 
-function sortItems(items: ModelWithProvider[], key: SortKey, dir: SortDir): ModelWithProvider[] {
+function providerName(item: ModelWithProvider): string {
+  return item.provider?.name ?? item.model.providerSlug;
+}
+
+function sortItems(items: ModelWithProvider[], key: SortKey, dir: SortDir, locale: string): ModelWithProvider[] {
   if (key === "default") return items;
 
   const multiplier = dir === "asc" ? 1 : -1;
@@ -141,10 +144,10 @@ function sortItems(items: ModelWithProvider[], key: SortKey, dir: SortDir): Mode
       const pb = parseFloat(b.model.inputPricePerMTokens!);
       return (pa - pb) * multiplier;
     }
-    if (key === "provider") {
-      const na = (a.provider?.name ?? a.model.providerSlug).toLowerCase();
-      const nb = (b.provider?.name ?? b.model.providerSlug).toLowerCase();
-      return na < nb ? -1 * multiplier : na > nb ? 1 * multiplier : 0;
+    if (key === "model") {
+      const byModel = a.model.displayName.localeCompare(b.model.displayName, locale, { sensitivity: "base" });
+      if (byModel !== 0) return byModel * multiplier;
+      return providerName(a).localeCompare(providerName(b), locale, { sensitivity: "base" }) * multiplier;
     }
     return 0;
   });
@@ -157,31 +160,63 @@ function rowKey(item: ModelWithProvider): string {
   return `${item.model.id}::${item.model.providerSlug}`;
 }
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 interface ModelTableProps {
   items: ModelWithProvider[];
-  /** Initial search query from URL — used only at mount, never synced back */
-  searchQuery: string;
+  searchParams: URLSearchParams;
 }
 
-export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const [, startTransition] = useTransition();
-  const t = useTranslations("ModelTable");
+const SEARCH_URL_DEBOUNCE_MS = 300;
 
-  // LOCAL input state — decoupled from URL after mount.
-  const [inputValue, setInputValue] = useState(initialQuery);
+export function ModelTable({ items, searchParams }: ModelTableProps) {
+  const t = useTranslations("ModelTable");
+  const locale = useLocale();
+
+  // The input is local state so typing never waits for the URL. `syncedQuery` is the
+  // URL query the input last agreed with; a URL change from elsewhere (hydration,
+  // back/forward) resets the input.
+  const urlQuery = searchParams.get("q") ?? "";
+  const [inputValue, setInputValue] = useState(urlQuery);
+  const [syncedQuery, setSyncedQuery] = useState(urlQuery);
+  if (urlQuery !== syncedQuery) {
+    setSyncedQuery(urlQuery);
+    setInputValue(urlQuery);
+  }
+
+  const debounceTimer = useRef<number | undefined>(undefined);
+  useEffect(() => {
+    const handlePopState = () => {
+      window.clearTimeout(debounceTimer.current);
+      const q = new URLSearchParams(window.location.search).get("q") ?? "";
+      setInputValue(q);
+      setSyncedQuery(q);
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+      window.clearTimeout(debounceTimer.current);
+    };
+  }, []);
+
+  const writeQuery = useCallback((q: string) => {
+    window.clearTimeout(debounceTimer.current);
+    setSyncedQuery(q);
+    const params = new URLSearchParams(window.location.search);
+    if (q) {
+      params.set("q", q);
+    } else {
+      params.delete("q");
+    }
+    writeSearchParams(params, "replace");
+  }, []);
 
   // Sort state — persisted in URL
-  const sortKey = (searchParams.get("sort") as SortKey) ?? "default";
-  const sortDir = (searchParams.get("dir") as SortDir) ?? "asc";
+  const rawSort = searchParams.get("sort") as SortKey | null;
+  const sortKey: SortKey = rawSort !== null && SORT_KEYS.includes(rawSort) ? rawSort : "default";
+  const sortDir: SortDir = searchParams.get("dir") === "desc" ? "desc" : "asc";
 
   const handleSort = useCallback(
     (key: SortKey) => {
-      const params = new URLSearchParams(searchParams.toString());
+      const params = new URLSearchParams(window.location.search);
       if (sortKey === key) {
         // Toggle direction if same key
         if (sortDir === "asc") {
@@ -195,9 +230,9 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
         params.set("sort", key);
         params.set("dir", "asc");
       }
-      startTransition(() => router.replace(`${pathname}?${params.toString()}`, { scroll: false }));
+      writeSearchParams(params, "replace");
     },
-    [searchParams, pathname, router, sortKey, sortDir]
+    [sortKey, sortDir]
   );
 
   // Derive filter state from URL params during render — no useEffect
@@ -207,45 +242,31 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
   const activeFilter = useMemo(() => {
     if (!filterState.profile || filterState.profile === null) return null;
     if (filterState.profile === "custom") return filterState.custom;
-    const profileFilters: Record<string, ReturnType<typeof filterStateFromSearchParams>["custom"]> = {
-      "strict-eu": { euOnly: true, dpa: true, noTraining: true },
-      "eu-sccs": { dpa: true, sccs: true, noTraining: true },
-      "no-training": { noTraining: true },
-    };
-    return profileFilters[filterState.profile] ?? null;
+    return PRESET_FILTERS[filterState.profile] ?? null;
   }, [filterState]);
 
   // Build Fuse index once per items change — O(n) cost paid on data change, not per keystroke
   const fuse = useMemo(() => new Fuse(items, FUSE_OPTIONS), [items]);
 
-  // Search: update local state immediately (keeps input responsive), push URL
-  // in a transition so the RSC navigation doesn't block typing.
+  // Search filters on the local value immediately; the URL follows once typing pauses.
   const handleSearchChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       const q = e.target.value;
       setInputValue(q);
-      const params = new URLSearchParams(searchParams.toString());
-      if (q) {
-        params.set("q", q);
-      } else {
-        params.delete("q");
-      }
-      startTransition(() => router.replace(`${pathname}?${params.toString()}`, { scroll: false }));
+      window.clearTimeout(debounceTimer.current);
+      debounceTimer.current = window.setTimeout(() => writeQuery(q), SEARCH_URL_DEBOUNCE_MS);
     },
-    [searchParams, pathname, router]
+    [writeQuery]
   );
 
-  // Clear search
   const handleClear = useCallback(() => {
     setInputValue("");
-    const params = new URLSearchParams(searchParams.toString());
-    params.delete("q");
-    startTransition(() => router.replace(`${pathname}?${params.toString()}`, { scroll: false }));
-  }, [searchParams, pathname, router]);
+    writeQuery("");
+  }, [writeQuery]);
 
   // Search + filter — derived during render (rerender-derived-state-no-effect)
   //
-  // inputValue drives filtering (local, instant), not the server-prop query.
+  // inputValue drives filtering (local, instant), not the debounced URL query.
   const { matching, nonMatching, matchMap } = useMemo(() => {
     const q = inputValue.trim();
     const matchMap: MatchMap = new Map();
@@ -285,14 +306,14 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
       }
     }
 
-    // Apply sort — only when no active search query (Fuse rank is more useful then)
-    const shouldSort = sortKey !== "default" && q === "";
+    // An explicit sort overrides Fuse relevance order; without one, search results stay ranked.
+    const shouldSort = sortKey !== "default";
     return {
-      matching: shouldSort ? sortItems(matching, sortKey, sortDir) : matching,
-      nonMatching: shouldSort ? sortItems(nonMatching, sortKey, sortDir) : nonMatching,
+      matching: shouldSort ? sortItems(matching, sortKey, sortDir, locale) : matching,
+      nonMatching: shouldSort ? sortItems(nonMatching, sortKey, sortDir, locale) : nonMatching,
       matchMap,
     };
-  }, [items, inputValue, activeFilter, fuse, sortKey, sortDir]);
+  }, [items, inputValue, activeFilter, fuse, sortKey, sortDir, locale]);
 
   const totalVisible = matching.length + nonMatching.length;
   const hasFilter = activeFilter !== null;
@@ -365,11 +386,11 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
               <tr className="bg-surface-alt border-b border-border">
                 <SortableTh
                   label={t("columns.model")}
-                  sortKey="provider"
+                  sortKey="model"
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}
-                  style={{ width: "25%" }}
+                  className="w-[25%]"
                 />
                 <SortableTh
                   label={t("columns.compliance")}
@@ -377,8 +398,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}
-                  className="hidden sm:table-cell"
-                  style={{ width: "30%" }}
+                  className="hidden sm:table-cell w-[26%]"
                 />
                 <SortableTh
                   label={t("columns.residency")}
@@ -386,8 +406,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}
-                  className="hidden md:table-cell"
-                  style={{ width: "15%" }}
+                  className="hidden md:table-cell w-[15%]"
                   nonSortable
                 />
                 <SortableTh
@@ -396,20 +415,20 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}
-                  className="hidden lg:table-cell"
-                  style={{ width: "15%" }}
+                  className="hidden lg:table-cell w-[15%]"
                 />
                 <SortableTh
-                  label={t("columns.verified")}
+                  label={t("columns.status")}
                   sortKey="default"
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}
-                  className="hidden xl:table-cell"
-                  style={{ width: "10%" }}
+                  className="hidden xl:table-cell w-[14%]"
                   nonSortable
                 />
-                <th style={{ width: "5%" }} aria-hidden="true" />
+                <th className="w-[5%]">
+                  <span className="sr-only">{t("columns.details")}</span>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -434,8 +453,6 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
   );
 }
 
-// ─── SortableTh ───────────────────────────────────────────────────────────────
-
 interface SortableThProps {
   label: string;
   sortKey: SortKey;
@@ -443,7 +460,6 @@ interface SortableThProps {
   sortDir: SortDir;
   onSort: (key: SortKey) => void;
   className?: string;
-  style?: React.CSSProperties;
   nonSortable?: boolean;
 }
 
@@ -454,7 +470,6 @@ function SortableTh({
   sortDir,
   onSort,
   className,
-  style,
   nonSortable = false,
 }: SortableThProps) {
   const isActive = !nonSortable && activeSortKey === sortKey;
@@ -462,6 +477,7 @@ function SortableTh({
 
   return (
     <th
+      aria-sort={nonSortable ? undefined : isActive ? (sortDir === "desc" ? "descending" : "ascending") : "none"}
       className={[
         "px-4 py-[10px] text-left font-body text-xs font-semibold uppercase tracking-[0.05em] select-none",
         isActive ? "text-text-primary" : "text-text-secondary",
@@ -469,7 +485,6 @@ function SortableTh({
       ]
         .filter(Boolean)
         .join(" ")}
-      style={style}
     >
       {nonSortable ? (
         label

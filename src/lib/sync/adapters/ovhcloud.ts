@@ -7,7 +7,7 @@
  */
 
 import type { ModelRow } from "../types";
-import { deriveCanonicalModelId } from "../utils";
+import { deriveCanonicalModelId, toPricePerMTokens } from "../utils";
 
 const SEED = [
   { id: "meta-llama__Meta-Llama-3.1-8B-Instruct", name: "Llama 3.1 8B Instruct", i: 0.06, o: 0.06, ctx: 131072 },
@@ -29,8 +29,9 @@ export async function fetchOVHcloudModels(): Promise<ModelRow[]> {
     displayName: m.name,
     modality: "text",
     contextWindow: m.ctx,
-    inputPricePerMTokens: m.i.toFixed(6),
-    outputPricePerMTokens: m.o.toFixed(6),
+    inputPricePerMTokens: toPricePerMTokens(m.i),
+    outputPricePerMTokens: toPricePerMTokens(m.o),
+    priceCurrency: "EUR",
     tokensPerSecond: null,
     syncSource: "manual",
     isActive: true,

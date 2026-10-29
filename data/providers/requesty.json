@@ -4,7 +4,6 @@
   "type": "gateway",
   "website": "https://requesty.ai",
   "apiDocsUrl": "https://docs.requesty.ai/quickstart",
-  "logoPath": "/logos/requesty.svg",
   "compliance": {
     "headquarters": "GB",
     "dataResidency": {

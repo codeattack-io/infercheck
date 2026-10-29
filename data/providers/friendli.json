@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://friendli.ai",
   "apiDocsUrl": "https://friendli.ai/docs",
-  "logoPath": "/logos/friendli.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

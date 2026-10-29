@@ -5,13 +5,9 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
-// ─── Types ─────────────────────────────────────────────────────────────────────
-
 interface PageProps {
   params: Promise<{ locale: string }>;
 }
-
-// ─── Metadata ──────────────────────────────────────────────────────────────────
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
@@ -35,12 +31,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-// ─── Constants ─────────────────────────────────────────────────────────────────
-
 const GITHUB_REPO = process.env.NEXT_PUBLIC_GITHUB_REPO_URL ?? "#";
 const NEW_ISSUE_URL = `${GITHUB_REPO}/issues/new?template=report-change.yml`;
-
-// ─── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function AboutPage({ params }: PageProps) {
   const { locale } = await params;
@@ -51,17 +43,14 @@ export default async function AboutPage({ params }: PageProps) {
   return (
     <>
       <main className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 pt-14 pb-24">
-        {/* ── Page heading ── */}
         <h1 className="font-display text-[clamp(2rem,5vw,2.75rem)] font-normal text-heading leading-[1.15] mb-3 tracking-[-0.02em]">
           {t("heading")}
         </h1>
 
         <p className="font-body text-[1.0625rem] text-text-secondary leading-[1.65] mb-12">{t("subtitle")}</p>
 
-        {/* ── Divider ── */}
         <hr className="border-none border-t border-border mb-12" />
 
-        {/* ── Why this exists ── */}
         <section className="mb-12">
           <h2 className="font-display text-2xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("whyExistsHeading")}
@@ -73,7 +62,6 @@ export default async function AboutPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* ── Who built it ── */}
         <section className="mb-12 bg-surface border border-border rounded-lg px-8 py-7">
           <h2 className="font-display text-2xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("whoBuiltHeading")}
@@ -86,7 +74,6 @@ export default async function AboutPage({ params }: PageProps) {
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("whoBuiltPara2")}</p>
         </section>
 
-        {/* ── How data is maintained ── */}
         <section className="mb-12">
           <h2 className="font-display text-2xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("dataMaintenanceHeading")}
@@ -97,7 +84,6 @@ export default async function AboutPage({ params }: PageProps) {
           </div>
         </section>
 
-        {/* ── Report a change CTA ── */}
         <section className="mb-12 bg-accent-subtle border border-[#bfdbfe] rounded-lg px-8 py-7">
           <h2 className="font-display text-[1.375rem] font-normal text-heading mb-2.5 tracking-[-0.01em]">
             {t("seenChangeHeading")}
@@ -129,7 +115,6 @@ export default async function AboutPage({ params }: PageProps) {
           </p>
         </section>
 
-        {/* ── What this is not ── */}
         <section className="mb-12">
           <h2 className="font-display text-2xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("whatIsNotHeading")}
@@ -147,7 +132,6 @@ export default async function AboutPage({ params }: PageProps) {
           </ul>
         </section>
 
-        {/* ── Back link ── */}
         <div className="pt-2">
           <Link href="/" className="font-body text-sm font-medium text-link underline underline-offset-[3px]">
             {t("backLink")}

@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://aleph-alpha.com",
   "apiDocsUrl": "https://docs.aleph-alpha.com/",
-  "logoPath": "/logos/aleph-alpha.svg",
   "compliance": {
     "headquarters": "DE",
     "dataResidency": {

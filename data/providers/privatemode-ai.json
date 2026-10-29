@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://docs.privatemode.ai",
   "apiDocsUrl": "https://docs.privatemode.ai/quickstart/",
-  "logoPath": "/logos/privatemode-ai.svg",
   "compliance": {
     "headquarters": "DE",
     "dataResidency": {

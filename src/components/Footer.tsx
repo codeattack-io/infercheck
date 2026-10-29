@@ -15,7 +15,6 @@ export async function Footer() {
   return (
     <footer className="border-t border-border mt-auto px-4 sm:px-6 lg:px-10 py-6">
       <div className="max-w-[1200px] mx-auto">
-        {/* ── Top row: license + nav links ── */}
         <div className="flex flex-wrap gap-4 justify-between items-center">
           {/* Left: licensing */}
           <p className="font-body text-[0.8125rem] text-text-muted m-0">
@@ -41,7 +40,7 @@ export async function Footer() {
           </p>
 
           {/* Right: nav links */}
-          <nav aria-label="Footer navigation" className="flex gap-5 items-center">
+          <nav aria-label={t("navLabel")} className="flex gap-5 items-center">
             <Link href="/about" className="font-body text-[0.8125rem] text-text-muted no-underline">
               {t("nav.about")}
             </Link>
@@ -62,7 +61,6 @@ export async function Footer() {
           </nav>
         </div>
 
-        {/* ── Disclaimer ── */}
         <p role="note" className="font-body text-xs text-text-muted mt-4 leading-[1.5] border-t border-border pt-4">
           {t("disclaimer")}
         </p>

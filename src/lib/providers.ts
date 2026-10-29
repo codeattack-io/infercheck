@@ -5,14 +5,10 @@ import { ProviderSchema, ProviderStubSchema } from "@/../data/schema";
 import type { Provider, ProviderStub, AnyProvider } from "@/../data/schema";
 import { isFullProvider } from "@/lib/compliance";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 export type { Provider, ProviderStub, AnyProvider };
 
 // Re-export types that client components need from compliance.ts
 export type { ComplianceTier, ComplianceFilter, FilterProfile } from "@/lib/compliance";
-
-// ─── File loading ─────────────────────────────────────────────────────────────
 
 const PROVIDERS_DIR = path.join(process.cwd(), "data", "providers");
 
@@ -56,25 +52,17 @@ export function getAllProviders(): AnyProvider[] {
 }
 
 /**
- * Get only fully verified providers (those that pass the full ProviderSchema).
- */
-export function getFullProviders(): Provider[] {
-  return getAllProviders().filter(isFullProvider);
-}
-
-/**
- * Return a provider with locale-specific text fields overlaid from `translations[locale]`.
+ * Return a provider with locale-specific text fields overlaid from `translations[locale]`
+ * and without the `translations` map itself.
  * Falls back to English (the canonical base) for any field not yet translated.
- * For stubs or the "en" locale, returns the provider unchanged.
  */
 export function getLocalizedProvider(provider: AnyProvider, locale: string): AnyProvider {
-  if (locale === "en" || !isFullProvider(provider)) return provider;
-
   const t = provider.translations?.[locale];
-  if (!t) return provider;
+  if (locale === "en" || !t || !isFullProvider(provider)) return { ...provider, translations: undefined };
 
   return {
     ...provider,
+    translations: undefined,
     notes: t.notes ?? provider.notes,
     compliance: {
       ...provider.compliance,

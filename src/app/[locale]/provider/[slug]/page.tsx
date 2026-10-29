@@ -15,12 +15,14 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getProvider, getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import { getModelsByProvider } from "@/lib/models";
-import { getComplianceTier, isFullProvider } from "@/lib/compliance";
+import { getComplianceTier, isFullProvider, tierPillClasses, TIER_CLASSES } from "@/lib/compliance";
+import { getVerification } from "@/lib/verification";
 import type { ComplianceTier } from "@/lib/compliance";
-import { ComplianceBadge } from "@/components/ComplianceBadge";
+import { ComplianceBadgeList } from "@/components/ComplianceBadge";
+import { GatewayPill } from "@/components/GatewayPill";
+import { BooleanRow } from "@/components/BooleanRow";
 import { ProviderModelRow } from "@/components/ProviderModelRow";
-
-// ─── Static params (prerender all known providers × locales) ──────────────────
+import type { ProviderModel } from "@/components/types";
 
 export async function generateStaticParams() {
   const providers = getAllProviders();
@@ -30,8 +32,6 @@ export async function generateStaticParams() {
 // server-cache-react: wrap the synchronous fs read so generateMetadata and the
 // page body share one parse result within the same request context.
 const getCachedProvider = cache((slug: string) => getProvider(slug));
-
-// ─── Metadata ─────────────────────────────────────────────────────────────────
 
 interface PageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -45,18 +45,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const t = await getTranslations({ locale, namespace: "ProviderPage" });
 
   const title = t("title", { providerName: provider.name });
+  const tv = await getTranslations({ locale, namespace: "Verification" });
+  const { kind, date } = getVerification(provider);
+  const verificationStatus =
+    kind === "ai_draft" ? tv("aiDraft", { date: date ?? "" }) : tv("verified", { date: date ?? "" });
+  const trains = isFullProvider(provider) ? provider.compliance.dataUsage.trainsOnCustomerData : null;
   const description = isFullProvider(provider)
-    ? t("descriptionVerified", {
+    ? t("descriptionFull", {
         providerName: provider.name,
-        euOnly: provider.compliance.dataResidency.euOnly ? "✓" : "✗",
-        dpa: provider.compliance.dpa.available ? "available" : "not available",
-        training:
-          provider.compliance.dataUsage.trainsOnCustomerData === null
-            ? "unknown"
-            : provider.compliance.dataUsage.trainsOnCustomerData
-              ? "yes"
-              : "no",
-        date: provider.lastVerified ?? "",
+        euOnly: provider.compliance.dataResidency.euOnly ? t("meta.yes") : t("meta.no"),
+        dpa: provider.compliance.dpa.available ? t("meta.available") : t("meta.notAvailable"),
+        training: trains === null ? t("meta.unknown") : trains ? t("meta.yes") : t("meta.no"),
+        status: verificationStatus,
       })
     : t("descriptionUnverified", { providerName: provider.name });
 
@@ -79,40 +79,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
-const TIER_STYLE: Record<ComplianceTier, { color: string; bg: string; border: string }> = {
-  compliant: { color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" },
-  partial: { color: "#92400e", bg: "#fffbeb", border: "#fde68a" },
-  noncompliant: { color: "#b91c1c", bg: "#fef2f2", border: "#fecaca" },
-  unverified: { color: "#6b7280", bg: "#f8f8f7", border: "#e2e2de" },
-};
-
-const TIER_BORDER: Record<ComplianceTier, string> = {
-  compliant: "var(--color-compliant)",
-  partial: "var(--color-partial)",
-  noncompliant: "var(--color-noncompliant)",
-  unverified: "var(--color-unverified)",
-};
-
-function formatPrice(val: string | null | undefined): string {
-  if (!val) return "—";
-  const n = parseFloat(val);
-  if (isNaN(n)) return "—";
-  if (n === 0) return "free";
-  if (n < 0.01) return `$${n.toFixed(4)}`;
-  if (n < 1) return `$${n.toFixed(3)}`;
-  return `$${n.toFixed(2)}`;
+function euAiActTier(status: string): ComplianceTier {
+  if (status === "compliant") return "compliant";
+  if (status === "monitoring") return "partial";
+  return "unverified";
 }
-
-// EU AI Act status pill — color depends on status string at runtime
-function euAiActStyle(status: string): { color: string; bg: string; border: string } {
-  if (status === "compliant") return { color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" };
-  if (status === "monitoring") return { color: "#92400e", bg: "#fffbeb", border: "#fde68a" };
-  return { color: "#6b7280", bg: "#f8f8f7", border: "#e2e2de" };
-}
-
-// ─── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function ProviderProfilePage({ params }: PageProps) {
   const { locale, slug } = await params;
@@ -128,18 +99,19 @@ export default async function ProviderProfilePage({ params }: PageProps) {
   const provider = getLocalizedProvider(rawProvider, locale);
 
   const t = await getTranslations("ProviderPage");
+  const tType = await getTranslations("ProviderType");
 
-  const TIER_CONFIG: Record<ComplianceTier, { label: string; color: string; bg: string; border: string }> = {
-    compliant: { label: t("tiers.compliant"), ...TIER_STYLE.compliant },
-    partial: { label: t("tiers.partial"), ...TIER_STYLE.partial },
-    noncompliant: { label: t("tiers.noncompliant"), ...TIER_STYLE.noncompliant },
-    unverified: { label: t("tiers.unverified"), ...TIER_STYLE.unverified },
+  const tierLabel: Record<ComplianceTier, string> = {
+    compliant: t("tiers.compliant"),
+    partial: t("tiers.partial"),
+    noncompliant: t("tiers.noncompliant"),
+    unverified: t("tiers.unverified"),
   };
 
   const tier = getComplianceTier(provider);
-  const tierCfg = TIER_CONFIG[tier];
-  const tierBorder = TIER_BORDER[tier];
+  const tierClasses = TIER_CLASSES[tier];
   const verified = isFullProvider(provider);
+  const verification = getVerification(provider);
 
   // Await the model fetch started earlier
   const providerModels = await modelsPromise;
@@ -160,7 +132,10 @@ export default async function ProviderProfilePage({ params }: PageProps) {
     url: provider.website,
     ...(verified
       ? {
-          description: `AI inference provider. GDPR compliance tier: ${tier}. DPA: ${provider.compliance.dpa.available ? "available" : "not available"}.`,
+          description: t("jsonLdDescription", {
+            tier: tierLabel[tier],
+            dpa: provider.compliance.dpa.available ? t("meta.available") : t("meta.notAvailable"),
+          }),
         }
       : {}),
   };
@@ -171,7 +146,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
       <main className="max-w-[1200px] mx-auto flex-1 w-full box-border px-4 sm:px-6 lg:px-10 py-10">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-6">
+        <nav aria-label={t("breadcrumb.ariaLabel")} className="mb-6">
           <ol className="flex items-center gap-2 list-none p-0 m-0 font-body text-[0.8125rem] text-text-muted">
             <li>
               <Link href="/" className="text-link no-underline">
@@ -196,22 +171,16 @@ export default async function ProviderProfilePage({ params }: PageProps) {
               {provider.name}
             </h1>
             <div className="flex items-center gap-[10px] flex-wrap">
-              {/* Tier pill — colors are dynamic from tierCfg */}
               <span
-                className="inline-flex items-center gap-1.5 px-[10px] py-[3px] rounded font-body text-[0.8125rem] font-medium border"
-                style={{ backgroundColor: tierCfg.bg, borderColor: tierCfg.border, color: tierCfg.color }}
+                className={`inline-flex items-center gap-1.5 px-[10px] py-[3px] rounded font-body text-[0.8125rem] font-medium border ${tierPillClasses(tier)}`}
               >
-                <span
-                  className="w-[7px] h-[7px] rounded-full shrink-0"
-                  style={{ backgroundColor: tierCfg.color }}
-                  aria-hidden="true"
-                />
-                {tierCfg.label}
+                <span className={`w-[7px] h-[7px] rounded-full shrink-0 ${tierClasses.dotInk}`} aria-hidden="true" />
+                {tierLabel[tier]}
               </span>
 
               {/* Provider type */}
               <span className="font-body text-[0.8125rem] text-text-muted bg-surface-alt border border-border rounded px-2 py-[3px]">
-                {provider.type.replace(/_/g, " ")}
+                {tType(provider.type)}
               </span>
 
               {/* Website link */}
@@ -253,11 +222,9 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
         {/* Main content grid */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {/* ── Compliance card ── */}
           {verified ? (
             <section
-              className="bg-surface border border-border rounded px-6 py-5"
-              style={{ borderLeft: `3px solid ${tierBorder}` }}
+              className={`bg-surface border border-border border-l-[3px] ${tierClasses.accentBorder} rounded px-6 py-5`}
               aria-labelledby="compliance-heading"
             >
               <h2
@@ -268,30 +235,36 @@ export default async function ProviderProfilePage({ params }: PageProps) {
               </h2>
 
               <div className="flex flex-col gap-[10px]">
-                <ComplianceRow
+                <BooleanRow
+                  size="md"
                   label={t("compliance.euOnlyResidency")}
                   value={provider.compliance.dataResidency.euOnly}
                 />
-                <ComplianceRow
+                <BooleanRow
+                  size="md"
                   label={t("compliance.inferenceStaysInEu")}
                   value={
                     provider.compliance.dataResidency.dataLeavesEuAtInference === null
                       ? null
                       : !provider.compliance.dataResidency.dataLeavesEuAtInference
                   }
-                  note={provider.compliance.dataResidency.dataLeavesEuAtInference === null ? "unknown" : undefined}
+                  note={
+                    provider.compliance.dataResidency.dataLeavesEuAtInference === null ? t("meta.unknown") : undefined
+                  }
                 />
-                <ComplianceRow
+                <BooleanRow
+                  size="md"
                   label={t("compliance.dpa")}
                   value={provider.compliance.dpa.available}
                   href={provider.compliance.dpa.url ?? undefined}
                   secondary={
                     provider.compliance.dpa.signedVia !== "not_available"
-                      ? provider.compliance.dpa.signedVia.replace(/_/g, " ")
+                      ? t(`dpaSignedVia.${provider.compliance.dpa.signedVia}`)
                       : undefined
                   }
                 />
-                <ComplianceRow
+                <BooleanRow
+                  size="md"
                   label={t("compliance.noTraining")}
                   value={
                     provider.compliance.dataUsage.trainsOnCustomerData === null
@@ -299,34 +272,23 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                       : !provider.compliance.dataUsage.trainsOnCustomerData
                   }
                 />
-                <ComplianceRow label={t("compliance.optOut")} value={provider.compliance.dataUsage.optOutAvailable} />
-                <ComplianceRow label={t("compliance.sccs")} value={provider.compliance.sccs} />
-                <ComplianceRow label={t("compliance.adequacy")} value={provider.compliance.adequacyDecision} />
+                <BooleanRow
+                  size="md"
+                  label={t("compliance.optOut")}
+                  value={provider.compliance.dataUsage.optOutAvailable}
+                />
+                <BooleanRow size="md" label={t("compliance.sccs")} value={provider.compliance.sccs} />
+                <BooleanRow size="md" label={t("compliance.adequacy")} value={provider.compliance.adequacyDecision} />
               </div>
 
               {/* Compliance badges */}
               <div className="mt-4 pt-4 border-t border-border">
-                <div className="flex flex-wrap gap-1.5">
-                  {provider.compliance.dataResidency.euOnly ? (
-                    <ComplianceBadge variant="eu-only" />
-                  ) : provider.compliance.sccs ? (
-                    <ComplianceBadge variant="eu-sccs" />
-                  ) : null}
-                  {provider.compliance.dpa.available ? <ComplianceBadge variant="dpa" /> : null}
-                  {provider.compliance.dataUsage.trainsOnCustomerData === true ? (
-                    <ComplianceBadge variant="trains-on-data" />
-                  ) : provider.compliance.dataUsage.trainsOnCustomerData === false ? (
-                    <ComplianceBadge variant="no-training" />
-                  ) : (
-                    <ComplianceBadge variant="training-unknown" />
-                  )}
-                </div>
+                <ComplianceBadgeList compliance={provider.compliance} className="flex flex-wrap gap-1.5" />
               </div>
             </section>
           ) : (
             <section
-              className="bg-surface border border-border rounded px-6 py-5"
-              style={{ borderLeft: `3px solid ${tierBorder}` }}
+              className={`bg-surface border border-border border-l-[3px] ${tierClasses.accentBorder} rounded px-6 py-5`}
             >
               <h2 className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-3">
                 {t("sections.gdprCompliance")}
@@ -397,7 +359,9 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   <div className="flex items-center gap-2 font-body text-[0.8125rem] text-text-secondary">
                     {provider.compliance.subProcessors.disclosed ? (
                       <>
-                        <span className="text-compliant">✓</span>
+                        <span className="text-compliant" aria-hidden="true">
+                          ✓
+                        </span>
                         {provider.compliance.subProcessors.url ? (
                           <a
                             href={provider.compliance.subProcessors.url}
@@ -418,7 +382,9 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                       </>
                     ) : (
                       <>
-                        <span className="text-noncompliant">✗</span>
+                        <span className="text-noncompliant" aria-hidden="true">
+                          ✗
+                        </span>
                         {t("subProcessors.notDisclosed")}
                       </>
                     )}
@@ -428,7 +394,6 @@ export default async function ProviderProfilePage({ params }: PageProps) {
             </section>
           ) : null}
 
-          {/* ── Certifications + EU AI Act ── */}
           {verified ? (
             <section className="bg-surface border border-border rounded px-6 py-5" aria-labelledby="certs-heading">
               <h2
@@ -462,15 +427,10 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1.5">
                   {t("certs.euAiActStatus")}
                 </div>
-                {/* EU AI Act status pill — color depends on status string — kept as style */}
                 <span
-                  className="inline-block font-body text-[0.8125rem] font-medium rounded px-2 py-0.5 mb-1.5 border"
-                  style={(() => {
-                    const s = euAiActStyle(provider.compliance.euAiAct.status);
-                    return { color: s.color, backgroundColor: s.bg, borderColor: s.border };
-                  })()}
+                  className={`inline-block font-body text-[0.8125rem] font-medium rounded px-2 py-0.5 mb-1.5 border ${tierPillClasses(euAiActTier(provider.compliance.euAiAct.status))}`}
                 >
-                  {provider.compliance.euAiAct.status.replace(/_/g, " ")}
+                  {t(`euAiActStatus.${provider.compliance.euAiAct.status}`)}
                 </span>
                 {provider.compliance.euAiAct.details ? (
                   <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.6]">
@@ -481,7 +441,6 @@ export default async function ProviderProfilePage({ params }: PageProps) {
             </section>
           ) : null}
 
-          {/* ── Verification metadata ── */}
           <section className="bg-surface border border-border rounded px-6 py-5" aria-labelledby="verification-heading">
             <h2
               id="verification-heading"
@@ -492,25 +451,33 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
             <div className="flex flex-col gap-[10px]">
               <MetaRow
-                label={t("verification.lastVerified")}
-                value={provider.lastVerified ?? t("verification.notVerified")}
-                mono
-              />
-              <MetaRow
-                label={t("verification.verifiedBy")}
+                label={t("verification.status")}
                 value={
-                  provider.verifiedBy === "stub"
-                    ? t("verification.notYetVerified")
-                    : provider.verifiedBy === "ai_draft"
-                      ? t("verification.aiDraft")
-                      : provider.verifiedBy
+                  verification.kind === "none"
+                    ? t("verification.statusNone")
+                    : verification.kind === "ai_draft"
+                      ? t("verification.statusAiDraft")
+                      : t("verification.statusHuman", { name: provider.verifiedBy })
                 }
               />
+              {verification.date ? (
+                <MetaRow
+                  label={verification.kind === "ai_draft" ? t("verification.dateAiDraft") : t("verification.dateHuman")}
+                  value={verification.date}
+                  mono
+                />
+              ) : null}
               <MetaRow
                 label={t("verification.pricingTier")}
-                value={provider.pricingTier ? provider.pricingTier.replace(/_/g, " ") : t("verification.unknown")}
+                value={provider.pricingTier ? t(`pricingTiers.${provider.pricingTier}`) : t("verification.unknown")}
               />
             </div>
+
+            {verification.kind === "ai_draft" ? (
+              <p className="font-body text-[0.8125rem] text-text-secondary leading-relaxed mt-4 mb-0">
+                {t("verification.aiDraftNote")}
+              </p>
+            ) : null}
 
             {/* Source URLs */}
             {provider.sourceUrls && provider.sourceUrls.length > 0 ? (
@@ -547,7 +514,6 @@ export default async function ProviderProfilePage({ params }: PageProps) {
           </section>
         </div>
 
-        {/* ── Models offered section ── */}
         {providerModels.length > 0 ? (
           <section className="mt-8" aria-labelledby="models-heading">
             <h2 id="models-heading" className="font-body text-base font-semibold text-text-primary m-0 mb-4">
@@ -562,7 +528,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                     {t("models.nativeHeading")}
                   </div>
                 ) : null}
-                <ModelsTable models={nativeModels} providerSlug={slug} t={t} />
+                <ModelsTable models={nativeModels} t={t} />
               </div>
             ) : null}
 
@@ -573,21 +539,12 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   <span className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em]">
                     {t("models.gatewayHeading")}
                   </span>
-                  <span
-                    className="inline-flex items-center gap-[5px] px-[7px] py-px font-body text-[0.6875rem] font-medium rounded border whitespace-nowrap"
-                    style={{
-                      color: "var(--color-partial)",
-                      borderColor: "var(--color-partial)",
-                      backgroundColor: "color-mix(in srgb, var(--color-partial) 8%, transparent)",
-                    }}
-                  >
-                    via gateway
-                  </span>
+                  <GatewayPill />
                 </div>
                 <p className="font-body text-[0.8125rem] text-text-secondary mt-0 mb-3 leading-[1.5]">
                   {t("models.gatewayNote", { providerName: provider.name })}
                 </p>
-                <ModelsTable models={gatewayModels} providerSlug={slug} t={t} gateway />
+                <ModelsTable models={gatewayModels} t={t} gateway />
               </div>
             ) : null}
           </section>
@@ -604,24 +561,21 @@ export default async function ProviderProfilePage({ params }: PageProps) {
   );
 }
 
-// ─── Small helper components ──────────────────────────────────────────────────
-
 function ModelsTable({
   models: rows,
-  providerSlug,
   t,
   gateway = false,
 }: {
-  models: import("@/db/schema").Model[];
-  providerSlug: string;
+  models: ProviderModel[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   t: any;
   gateway?: boolean;
 }) {
   return (
     <div
-      className="border border-border rounded overflow-hidden"
-      style={gateway ? { borderColor: "color-mix(in srgb, var(--color-partial) 35%, var(--color-border))" } : undefined}
+      className={`border rounded overflow-hidden ${
+        gateway ? "border-[color-mix(in_srgb,var(--color-partial)_35%,var(--color-border))]" : "border-border"
+      }`}
     >
       <div className="overflow-x-auto">
         <table className="w-full border-collapse bg-surface">
@@ -649,49 +603,6 @@ function ModelsTable({
             ))}
           </tbody>
         </table>
-      </div>
-    </div>
-  );
-}
-
-function ComplianceRow({
-  label,
-  value,
-  href,
-  secondary,
-  note,
-}: {
-  label: string;
-  value: boolean | null;
-  href?: string;
-  secondary?: string;
-  note?: string;
-}) {
-  const positive = value === true;
-  const symbol = positive ? "✓" : value === false ? "✗" : "?";
-  const color = positive
-    ? "var(--color-compliant)"
-    : value === false
-      ? "var(--color-noncompliant)"
-      : "var(--color-text-muted)";
-
-  return (
-    <div className="flex items-start gap-[10px]">
-      <span className="font-mono text-[0.875rem] w-3.5 text-center shrink-0 mt-px" style={{ color }} aria-hidden="true">
-        {symbol}
-      </span>
-      <div>
-        <span className="font-body text-[0.875rem] text-text-secondary">
-          {href ? (
-            <a href={href} target="_blank" rel="noopener noreferrer" className="text-link no-underline">
-              {label} ↗
-            </a>
-          ) : (
-            label
-          )}
-        </span>
-        {secondary ? <span className="font-body text-xs text-text-muted ml-1.5">({secondary})</span> : null}
-        {note ? <span className="font-body text-xs text-text-muted italic ml-1.5">{note}</span> : null}
       </div>
     </div>
   );

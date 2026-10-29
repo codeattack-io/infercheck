@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://docs.x.ai",
   "apiDocsUrl": "https://docs.x.ai/docs",
-  "logoPath": "/logos/xai.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

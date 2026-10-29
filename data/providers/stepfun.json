@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://platform.stepfun.com",
   "apiDocsUrl": "https://platform.stepfun.com/docs/en/guide/openai",
-  "logoPath": "/logos/stepfun.svg",
   "compliance": {
     "headquarters": "CN",
     "dataResidency": {

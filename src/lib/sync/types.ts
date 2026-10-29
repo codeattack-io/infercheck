@@ -18,6 +18,8 @@ export interface ModelRow {
   contextWindow: number | null;
   inputPricePerMTokens: string | null;
   outputPricePerMTokens: string | null;
+  /** ISO 4217 currency code of both prices */
+  priceCurrency: string;
   tokensPerSecond: string | null;
   syncSource: string;
   isActive: boolean;
@@ -40,4 +42,9 @@ export interface SyncOptions {
   targetProvider?: string;
   /** Log what would happen without writing to DB */
   dryRun?: boolean;
+}
+
+export interface SyncResult {
+  /** Adapters whose fetch or upsert failed, with the error that caused it */
+  failures: Array<{ adapter: string; error: unknown }>;
 }

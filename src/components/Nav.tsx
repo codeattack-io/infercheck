@@ -10,6 +10,9 @@ export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const t = useTranslations("Nav");
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const drawerRef = useRef<HTMLElement>(null);
+  const wasOpen = useRef(false);
 
   const NAV_LINKS = [
     { href: "/", label: t("links.models") },
@@ -36,6 +39,33 @@ export function Nav() {
       setMobileOpen(false);
     }
   }, [pathname]);
+
+  useEffect(() => {
+    if (!mobileOpen) {
+      if (wasOpen.current) toggleRef.current?.focus();
+      wasOpen.current = false;
+      return;
+    }
+    wasOpen.current = true;
+    drawerRef.current?.querySelector<HTMLElement>("a, button")?.focus();
+
+    const background = document.querySelectorAll<HTMLElement>("main, footer");
+    background.forEach((el) => (el.inert = true));
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    const desktop = window.matchMedia("(min-width: 40rem)");
+    const handleDesktop = (e: MediaQueryListEvent) => {
+      if (e.matches) setMobileOpen(false);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    desktop.addEventListener("change", handleDesktop);
+    return () => {
+      background.forEach((el) => (el.inert = false));
+      document.removeEventListener("keydown", handleKeyDown);
+      desktop.removeEventListener("change", handleDesktop);
+    };
+  }, [mobileOpen]);
 
   return (
     <>
@@ -74,13 +104,13 @@ export function Nav() {
             </svg>
             {/* "Infer" in heading colour, "Check" in accent blue */}
             <span className="font-body text-[1.0625rem] font-semibold tracking-[-0.02em] leading-none">
-              <span style={{ color: "var(--color-text-primary)" }}>Infer</span>
-              <span style={{ color: "#1d4ed8" }}>Check</span>
+              <span className="text-text-primary">Infer</span>
+              <span className="text-accent">Check</span>
             </span>
           </Link>
 
           {/* Desktop nav */}
-          <nav aria-label="Main navigation" className="hidden sm:flex items-center gap-7">
+          <nav aria-label={t("mainNavigation")} className="hidden sm:flex items-center gap-7">
             {NAV_LINKS.map((link) => {
               const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
               return (
@@ -103,10 +133,12 @@ export function Nav() {
 
           {/* Mobile menu button */}
           <button
+            ref={toggleRef}
             className="sm:hidden bg-transparent border-none cursor-pointer p-2 text-text-primary"
             onClick={() => setMobileOpen((o) => !o)}
             aria-label={mobileOpen ? t("menuClose") : t("menuOpen")}
             aria-expanded={mobileOpen}
+            aria-controls="mobile-drawer"
           >
             {mobileOpen ? (
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
@@ -123,7 +155,12 @@ export function Nav() {
 
       {/* Mobile drawer */}
       {mobileOpen ? (
-        <div className="sm:hidden fixed top-14 right-0 bottom-0 w-60 bg-surface border-l border-border p-6 z-[49] flex flex-col gap-1">
+        <nav
+          id="mobile-drawer"
+          ref={drawerRef}
+          aria-label={t("mobileNavigation")}
+          className="sm:hidden fixed top-14 right-0 bottom-0 w-60 bg-surface border-l border-border p-6 z-[49] flex flex-col gap-1"
+        >
           {NAV_LINKS.map((link) => {
             const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
             return (
@@ -144,7 +181,7 @@ export function Nav() {
           <div className="mt-auto pt-4 border-t border-border">
             <LanguageSwitcher />
           </div>
-        </div>
+        </nav>
       ) : null}
 
       {/* Mobile overlay */}

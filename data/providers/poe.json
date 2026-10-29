@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://creator.poe.com",
   "apiDocsUrl": "https://creator.poe.com/docs/api",
-  "logoPath": "/logos/poe.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

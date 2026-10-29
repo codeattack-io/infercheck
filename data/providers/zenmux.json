@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://docs.zenmux.ai",
   "apiDocsUrl": "https://docs.zenmux.ai",
-  "logoPath": "/logos/zenmux.svg",
   "compliance": {
     "headquarters": "SG",
     "dataResidency": {

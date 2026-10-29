@@ -1,86 +1,106 @@
-import { eq, ilike, and, isNotNull, sql } from "drizzle-orm";
+import { eq, and, sql } from "drizzle-orm";
+import { cacheLife, cacheTag } from "next/cache";
 import { db } from "@/lib/db";
 import { models } from "@/db/schema";
-import type { Model } from "@/db/schema";
+import type { CatalogModel, ProviderModel } from "@/components/types";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
+/** Cache tag for every read of the `models` table; invalidated after a model sync. */
+export const MODELS_CACHE_TAG = "models";
 
-/** A model row enriched with its provider's compliance data (joined in-app). */
-export type ModelWithProvider = Model & {
-  // Provider compliance fields are loaded separately from JSON files
-  // and joined in application code — see getModelsForDisplay().
-};
+/** Active models with the columns the home page table renders. */
+export async function getCatalogModels(): Promise<CatalogModel[]> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag(MODELS_CACHE_TAG);
 
-// ─── Queries ──────────────────────────────────────────────────────────────────
-
-/**
- * Search for models by display name or model ID.
- * Returns all active rows matching the query, across all providers.
- * Used for the main search box.
- */
-export async function searchModels(query: string): Promise<Model[]> {
-  const term = `%${query}%`;
   return db
-    .select()
+    .select({
+      id: models.id,
+      providerSlug: models.providerSlug,
+      displayName: models.displayName,
+      canonicalModelId: models.canonicalModelId,
+      inputPricePerMTokens: models.inputPricePerMTokens,
+      outputPricePerMTokens: models.outputPricePerMTokens,
+      priceCurrency: models.priceCurrency,
+      isNativeModel: models.isNativeModel,
+    })
     .from(models)
-    .where(and(eq(models.isActive, true), ilike(models.displayName, term)))
-    .orderBy(models.displayName)
-    .limit(50);
+    .where(eq(models.isActive, true))
+    .orderBy(models.displayName);
 }
 
-/**
- * Get all active providers offering a model by its canonical ID.
- * Used for the /model/[id] detail page to show "available from these providers".
- *
- * canonicalModelId is a normalized, provider-agnostic slug (e.g. "claude-sonnet-4-6")
- * derived by deriveCanonicalModelId() during sync. All providers hosting the same
- * underlying model share the same canonicalModelId regardless of how they name it
- * in their own API (anthropic/claude-sonnet-4.6, bedrock/eu.anthropic.claude-sonnet-4-6, etc.).
- */
-export async function getProvidersByModelSuffix(canonicalId: string): Promise<Model[]> {
-  return db
-    .select()
-    .from(models)
-    .where(and(eq(models.isActive, true), eq(models.canonicalModelId, canonicalId)))
-    .orderBy(models.providerSlug);
-}
+/** Active models of one provider, for /provider/[slug]. */
+export async function getModelsByProvider(providerSlug: string): Promise<ProviderModel[]> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag(MODELS_CACHE_TAG);
 
-/**
- * Get all active models for a specific provider.
- * Used on the /provider/[slug] detail page.
- */
-export async function getModelsByProvider(providerSlug: string): Promise<Model[]> {
   return db
-    .select()
+    .select({
+      id: models.id,
+      providerSlug: models.providerSlug,
+      displayName: models.displayName,
+      canonicalModelId: models.canonicalModelId,
+      modality: models.modality,
+      contextWindow: models.contextWindow,
+      inputPricePerMTokens: models.inputPricePerMTokens,
+      outputPricePerMTokens: models.outputPricePerMTokens,
+      priceCurrency: models.priceCurrency,
+      isNativeModel: models.isNativeModel,
+    })
     .from(models)
     .where(and(eq(models.providerSlug, providerSlug), eq(models.isActive, true)))
     .orderBy(models.displayName);
 }
 
-/**
- * Get all unique active model display names for autocomplete suggestions.
- * Returns deduplicated names (since the same model appears at multiple providers).
- */
-export async function getAllModelSuggestions(): Promise<string[]> {
-  const rows = await db
-    .selectDistinct({ displayName: models.displayName })
+/** Active rows of one canonical model across all providers, for /model/[id]. */
+export async function getModelOffers(canonicalModelId: string) {
+  "use cache";
+  cacheLife("hours");
+  cacheTag(MODELS_CACHE_TAG);
+
+  return db
+    .select({
+      id: models.id,
+      providerSlug: models.providerSlug,
+      displayName: models.displayName,
+      contextWindow: models.contextWindow,
+      inputPricePerMTokens: models.inputPricePerMTokens,
+      outputPricePerMTokens: models.outputPricePerMTokens,
+      priceCurrency: models.priceCurrency,
+      isNativeModel: models.isNativeModel,
+    })
     .from(models)
-    .where(eq(models.isActive, true))
-    .orderBy(models.displayName)
-    .limit(500);
-  return rows.map((r) => r.displayName);
+    .where(and(eq(models.isActive, true), eq(models.canonicalModelId, canonicalModelId)))
+    .orderBy(models.providerSlug);
 }
 
-/**
- * Get the last successful sync timestamp for a provider.
- * Useful for showing data freshness on the UI.
- */
-export async function getLastSyncedAt(providerSlug: string): Promise<Date | null> {
+/** Distinct canonical ids of all active models. */
+export async function getCanonicalModelIds(): Promise<string[]> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag(MODELS_CACHE_TAG);
+
   const rows = await db
-    .select({ lastSyncedAt: models.lastSyncedAt })
+    .selectDistinct({ canonicalModelId: models.canonicalModelId })
     .from(models)
-    .where(and(eq(models.providerSlug, providerSlug), eq(models.isActive, true), isNotNull(models.lastSyncedAt)))
-    .orderBy(sql`${models.lastSyncedAt} DESC`)
-    .limit(1);
-  return rows[0]?.lastSyncedAt ?? null;
+    .where(eq(models.isActive, true));
+  return rows.flatMap((r) => (r.canonicalModelId ? [r.canonicalModelId] : []));
+}
+
+/** Number of active models per provider slug. */
+export async function getModelCountsByProvider(): Promise<Record<string, number>> {
+  "use cache";
+  cacheLife("hours");
+  cacheTag(MODELS_CACHE_TAG);
+
+  const rows = await db
+    .select({
+      providerSlug: models.providerSlug,
+      count: sql<number>`cast(count(*) as integer)`,
+    })
+    .from(models)
+    .where(eq(models.isActive, true))
+    .groupBy(models.providerSlug);
+  return Object.fromEntries(rows.map((r) => [r.providerSlug, r.count]));
 }

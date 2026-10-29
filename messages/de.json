@@ -16,7 +16,9 @@
       "about": "Info"
     },
     "menuOpen": "Menü öffnen",
-    "menuClose": "Menü schließen"
+    "menuClose": "Menü schließen",
+    "mainNavigation": "Hauptnavigation",
+    "mobileNavigation": "Mobile Navigation"
   },
   "Footer": {
     "license": "Daten lizenziert unter",
@@ -29,27 +31,27 @@
       "privacy": "Datenschutz",
       "github": "GitHub →"
     },
-    "disclaimer": "Dieses Verzeichnis stellt quellengestützte Informationen über die Datenpraktiken von KI-Anbietern bereit. Es handelt sich nicht um Rechtsberatung. Überprüfen Sie Angaben stets direkt beim Anbieter und konsultieren Sie rechtlichen Beistand für Compliance-Entscheidungen."
+    "disclaimer": "Dieses Verzeichnis stellt quellengestützte Informationen über die Datenpraktiken von KI-Anbietern bereit. Es handelt sich nicht um Rechtsberatung. Überprüfen Sie Angaben stets direkt beim Anbieter und konsultieren Sie rechtlichen Beistand für Compliance-Entscheidungen.",
+    "navLabel": "Fußnavigation"
   },
   "HomePage": {
     "title": "InferCheck — DSGVO-konforme KI-Inferenzanbieter finden",
-    "description": "KI-Inferenzanbieter nach DSGVO-Konformität filtern. EU-Datenhaltung, AVV-Verfügbarkeit, Trainingsrichtlinien und Preise von über 100 Anbietern vergleichen.",
+    "description": "KI-Inferenzanbieter nach DSGVO-Konformität filtern. EU-Datenhaltung, AVV-Verfügbarkeit, Trainingsrichtlinien und Preise von über 75 Anbietern vergleichen.",
     "ogTitle": "InferCheck — DSGVO-konforme KI-Inferenzanbieter finden",
-    "ogDescription": "KI-Inferenzanbieter nach DSGVO filtern. EU-Datenhaltung, AVV, Trainings-Opt-out und Preise von über 100 Anbietern vergleichen.",
+    "ogDescription": "KI-Inferenzanbieter nach DSGVO filtern. EU-Datenhaltung, AVV, Trainings-Opt-out und Preise von über 75 Anbietern vergleichen.",
     "heading1": "KI-Inferenzanbieter,",
     "heading2": "gefiltert nach DSGVO-Konformität.",
     "subheadingWithData": "{modelCount} Modelle bei {providerCount} Anbietern. Nach Compliance-Profil filtern, um geeignete Anbieter zu finden.",
-    "subheadingEmpty": "Anbieter und ihre Compliance-Haltung durchsuchen. Nach Datenhaltung, AVV-Verfügbarkeit und Trainingsrichtlinie filtern.",
-    "loadingModels": "Modelle werden geladen…"
+    "subheadingEmpty": "Anbieter und ihre Compliance-Haltung durchsuchen. Nach Datenhaltung, AVV-Verfügbarkeit und Trainingsrichtlinie filtern."
   },
   "ProvidersPage": {
     "title": "KI-Inferenzanbieter — DSGVO-Compliance-Verzeichnis",
-    "description": "Über 100 KI-Inferenzanbieter nach DSGVO-Konformitätsstufe durchsuchen. Nach EU-Datenhaltung, AVV-Verfügbarkeit, Trainingsrichtlinie und mehr filtern.",
+    "description": "Über 75 KI-Inferenzanbieter nach DSGVO-Konformitätsstufe durchsuchen. Nach EU-Datenhaltung, AVV-Verfügbarkeit, Trainingsrichtlinie und mehr filtern.",
     "ogTitle": "KI-Inferenzanbieter — DSGVO-Compliance-Verzeichnis",
     "ogDescription": "KI-Inferenzanbieter nach DSGVO-Compliance vergleichen: EU-exklusive Datenhaltung, AVV, Trainings-Opt-out und Zertifizierungen.",
     "heading1": "KI-Inferenzanbieter,",
     "heading2": "nach DSGVO-Konformitätsstufe.",
-    "subheading": "{providerCount} Anbieter indexiert. {verifiedCount} mit verifizierten Compliance-Daten. Auf einen Anbieter klicken für das vollständige Profil.",
+    "subheading": "{providerCount} Anbieter indexiert. {verifiedCount} mit recherchierten Compliance-Daten. Auf einen Anbieter klicken für das vollständige Profil.",
     "tiers": {
       "compliant": {
         "label": "EU-konform",
@@ -71,12 +73,13 @@
   },
   "ProviderPage": {
     "title": "{providerName} — DSGVO-Compliance-Profil",
-    "descriptionVerified": "{providerName} DSGVO-Compliance: EU-Datenhaltung {euOnly}, AVV {dpa}, Training mit Kundendaten {training}. Verifiziert am {date}.",
+    "descriptionFull": "{providerName} DSGVO-Compliance: EU-Datenhaltung {euOnly}, AVV {dpa}, Training mit Kundendaten {training}. {status}.",
     "descriptionUnverified": "{providerName} DSGVO-Compliance-Profil. Compliance-Daten stehen noch aus.",
     "ogTitle": "{providerName} — DSGVO-Compliance-Profil",
     "breadcrumb": {
       "models": "Modelle",
-      "providers": "Anbieter"
+      "providers": "Anbieter",
+      "ariaLabel": "Brotkrumennavigation"
     },
     "actions": {
       "apiDocs": "API-Dokumentation ↗",
@@ -117,12 +120,15 @@
       "noCerts": "Keine Zertifizierungen angegeben."
     },
     "verification": {
-      "lastVerified": "Zuletzt verifiziert",
-      "verifiedBy": "Verifiziert von",
+      "status": "Status",
+      "dateAiDraft": "Recherchiert am",
+      "dateHuman": "Zuletzt verifiziert",
+      "statusAiDraft": "KI-Entwurf (noch nicht manuell verifiziert)",
+      "statusHuman": "Verifiziert von {name}",
+      "statusNone": "Noch nicht recherchiert",
+      "aiDraftNote": "Dieser Eintrag wurde mit KI-Unterstützung recherchiert und noch nicht manuell gegen die Quellen geprüft. Bitte verstehen Sie ihn als Ausgangspunkt und bestätigen Sie kritische Angaben beim Anbieter.",
       "pricingTier": "Preismodell",
-      "notVerified": "Nicht verifiziert",
-      "notYetVerified": "Noch nicht verifiziert",
-      "aiDraft": "KI-gestützter Entwurf (ausstehende Überprüfung)",
+      "notResearched": "Nicht recherchiert",
       "unknown": "Unbekannt",
       "sources": "Quellen",
       "notes": "Hinweise"
@@ -141,13 +147,37 @@
         "output": "Ausgabe"
       }
     },
-    "unverifiedNotice": "Compliance-Daten für diesen Anbieter noch nicht verifiziert. Falls Sie Informationen haben, nutzen Sie bitte \u201eÄnderung melden\u201c.",
+    "unverifiedNotice": "Compliance-Daten für diesen Anbieter noch nicht verifiziert. Falls Sie Informationen haben, nutzen Sie bitte „Änderung melden“.",
     "backLink": "← Zurück zur Anbieterübersicht",
     "tiers": {
       "compliant": "EU-konform",
       "partial": "Teilweise (EU + SCC)",
       "noncompliant": "Nicht konform",
       "unverified": "Nicht verifiziert"
+    },
+    "meta": {
+      "yes": "ja",
+      "no": "nein",
+      "unknown": "unbekannt",
+      "available": "verfügbar",
+      "notAvailable": "nicht verfügbar"
+    },
+    "jsonLdDescription": "KI-Inferenzanbieter. DSGVO-Konformitätsstufe: {tier}. AVV: {dpa}.",
+    "dpaSignedVia": {
+      "online_acceptance": "Online-Annahme",
+      "custom_contract": "individueller Vertrag",
+      "not_available": "nicht verfügbar"
+    },
+    "euAiActStatus": {
+      "compliant": "konform",
+      "monitoring": "wird beobachtet",
+      "unknown": "unbekannt",
+      "not_applicable": "nicht anwendbar"
+    },
+    "pricingTiers": {
+      "free_tier": "kostenloses Kontingent",
+      "pay_per_use": "nutzungsbasiert",
+      "enterprise_only": "nur Enterprise"
     }
   },
   "ModelPage": {
@@ -156,7 +186,8 @@
     "ogTitle": "{modelName} — DSGVO-Compliance nach Anbieter",
     "ogDescription": "EU-Datenhaltung, AVV, Trainings-Opt-out und Preise für {modelName} bei allen anbietenden Providern.",
     "breadcrumb": {
-      "models": "Modelle"
+      "models": "Modelle",
+      "ariaLabel": "Brotkrumennavigation"
     },
     "availableFrom1": "Verfügbar bei 1 Anbieter",
     "availableFromN": "Verfügbar bei {count} Anbietern",
@@ -184,7 +215,6 @@
       "regions": "Regionen",
       "euOnly": "Nur EU"
     },
-    "verifiedDate": "Verifiziert am {date}",
     "backLink": "← Zurück zur Modellübersicht",
     "tiers": {
       "compliant": "EU-konform",
@@ -208,7 +238,7 @@
     "whoBuiltPara1": "Ich bin Carlo, ein Softwareentwickler aus <strong>Deutschland</strong>. Ich arbeite in der Unternehmens-IT und entwickle nebenbei SaaS-Produkte — das heißt, ich lebe täglich mit der DSGVO, sowohl auf der technischen als auch auf der Compliance-Seite.",
     "whoBuiltPara2": "Ich habe keine finanzielle Beziehung zu einem der hier gelisteten Anbieter. Das Verzeichnis ist unabhängig. Compliance-Metadaten spiegeln öffentlich nachprüfbare Informationen mit Quellenangaben wider — wenn etwas falsch ist oder sich geändert hat, möchte ich das wissen.",
     "dataMaintenanceHeading": "Wie die Daten gepflegt werden",
-    "dataMaintenancePara1": "Jeder Anbietereintrag ist eine flache JSON-Datei im öffentlichen GitHub-Repository. Jedes Feld hat eine Quellen-URL. Jeder Eintrag zeigt ein \u201eZuletzt verifiziert\u201c-Datum, damit Sie die Aktualität der Information einschätzen können.",
+    "dataMaintenancePara1": "Jeder Anbietereintrag ist eine flache JSON-Datei im öffentlichen GitHub-Repository. Jedes Feld hat eine Quellen-URL. Die Einträge werden mit KI-Unterstützung recherchiert und nach und nach geprüft. Jeder Eintrag ist mit Datum als KI-Entwurf oder als manuell verifiziert gekennzeichnet, damit Sie Verlässlichkeit und Aktualität der Information einschätzen können.",
     "dataMaintenancePara2": "Compliance-Bedingungen von Anbietern ändern sich — manchmal still und leise. Wenn Ihnen etwas Veraltetes oder Fehlendes auffällt, öffnen Sie bitte ein Issue auf GitHub. Die Issue-Vorlage fragt nach dem geänderten Feld und einem Link zum Quelldokument. Das hält Aktualisierungen nachvollziehbar und überprüfbar.",
     "seenChangeHeading": "Haben Sie eine Änderung bemerkt?",
     "seenChangePara": "Falls ein Anbieter seinen AVV aktualisiert, seine Datenhaltungsbedingungen geändert, EU-exklusives Routing eingeführt oder sonstige DSGVO-relevante Änderungen vorgenommen hat — bitte ein GitHub-Issue eröffnen. Die strukturierte Vorlage dauert unter zwei Minuten und hilft, diese Ressource für alle aktuell zu halten.",
@@ -224,7 +254,7 @@
     "notPaidTitle": "Kein bezahlter Platzierungsservice.",
     "notPaidBody": "Kein Anbieter hat dafür bezahlt, hier gelistet zu werden oder die Darstellung seiner Daten zu beeinflussen.",
     "notCurrentTitle": "Keine Aktualitätsgarantie.",
-    "notCurrentBody": "Anbieterbedingungen ändern sich. Das \u201eZuletzt verifiziert\u201c-Datum zeigt an, wann die Informationen zuletzt gegen Quelldokumente geprüft wurden.",
+    "notCurrentBody": "Anbieterbedingungen ändern sich. Das Datum bei jedem Eintrag zeigt an, wann er zuletzt recherchiert bzw. bei manuell verifizierten Einträgen zuletzt gegen Quelldokumente geprüft wurde.",
     "backLink": "← Zum Verzeichnis"
   },
   "FilterBar": {
@@ -248,7 +278,7 @@
     "searchLabel": "Modelle oder Anbieter suchen",
     "searchPlaceholder": "Modelle oder Anbieter suchen…",
     "clearSearch": "Suche zurücksetzen",
-    "noModelsFound": "Keine Modelle für \u201e{query}\u201c gefunden",
+    "noModelsFound": "Keine Modelle für „{query}“ gefunden",
     "resultCountFiltered": "{matching} von {total} Modellen entsprechen dem aktiven Filter",
     "resultCountSearch": "{total} von {all} Modellen",
     "resultCount": "{total} Modelle",
@@ -258,9 +288,15 @@
       "compliance": "Compliance",
       "residency": "Datenhaltung",
       "price": "Preis / 1 Mio. Token",
-      "verified": "Verifiziert"
+      "status": "Stand",
+      "details": "Details"
     },
     "sortBy": "Sortieren nach {label}"
+  },
+  "Verification": {
+    "aiDraft": "KI-Entwurf · {date}",
+    "verified": "Verifiziert {date}",
+    "aiDraftHint": "Mit KI-Unterstützung recherchiert; noch nicht manuell verifiziert."
   },
   "ModelRow": {
     "fullProviderProfile": "Vollständiges Anbieterprofil →",
@@ -279,7 +315,11 @@
     "euResidencyValue": "EU",
     "unverifiedNotice": "Compliance-Daten für diesen Anbieter noch nicht verifiziert.",
     "priceIn": "ein ",
-    "priceOut": "aus "
+    "priceOut": "aus ",
+    "gatewayTitle": "Dieses Modell stammt von einem Drittanbieter und wird über {providerName} bereitgestellt",
+    "gatewayNotice": "<strong>Drittanbieter-Modell, bereitgestellt über {providerName}.</strong> Dieses Modell stammt von einem anderen Unternehmen, wird aber über die Infrastruktur von {providerName} betrieben. Die hier gezeigten Compliance-Eigenschaften beschreiben den Umgang von <strong>{providerName}</strong> mit Daten – nicht den des ursprünglichen Modellherstellers.",
+    "dimmed": "Entspricht nicht dem aktiven Filter",
+    "toggleDetails": "Details zu {name}"
   },
   "ProviderCard": {
     "tiers": {
@@ -370,5 +410,27 @@
     "trainingUnknown": "Training unbekannt",
     "usOnly": "Nur USA",
     "unverified": "Nicht verifiziert"
+  },
+  "Format": {
+    "free": "kostenlos"
+  },
+  "GatewayPill": {
+    "label": "über Gateway"
+  },
+  "OgImage": {
+    "tagline": "DSGVO-konforme KI-Inferenzanbieter finden",
+    "euResidency": "EU-Datenhaltung",
+    "dpa": "AVV verfügbar",
+    "trainingOptOut": "Training-Opt-out"
+  },
+  "ProviderType": {
+    "api_provider": "API-Anbieter",
+    "cloud_platform": "Cloud-Plattform",
+    "gateway": "Gateway"
+  },
+  "BooleanRow": {
+    "yes": "ja",
+    "no": "nein",
+    "unknown": "unbekannt"
   }
 }
