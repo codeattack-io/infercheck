@@ -42,23 +42,35 @@ For each AI inference provider, the directory tracks:
 | **Translations**                | Locale-specific overrides for free-text fields (BCP-47 keys, e.g. "de") |
 | **Last verified**               | When was this entry last checked against source documents?              |
 
-Every claim links to a source document. No automated scoring, no legal judgments — structured facts with an evidence trail.
+Every entry lists the source documents it was researched from. No automated scoring, no legal judgments — structured facts with an evidence trail.
+
+### Verification status
+
+The `verifiedBy` field says who checked an entry:
+
+| Value                   | Meaning                                                                                | Shown on the site as       |
+| ----------------------- | -------------------------------------------------------------------------------------- | -------------------------- |
+| `ai_draft`              | Researched with AI assistance (`bun run research:providers`), not yet checked manually | "AI draft · date"          |
+| a name or GitHub handle | A person checked the entry against the sources on `lastVerified`                       | "Verified date"            |
+| `stub`                  | Identity only, no compliance data                                                      | nothing; tier "Unverified" |
+
+Every entry is currently an `ai_draft`. Treat them as a starting point and confirm critical details with the provider.
 
 ### Model catalog
 
 The model catalog answers the question users actually start with: **"I want to use claude-sonnet-4-6 — which providers offer it, at what price, and which of them are compliant for my situation?"**
 
-For each model at each provider, the catalog tracks: pricing (input/output per 1M tokens), context window, modality, and availability. The catalog is synced nightly from OpenRouter and individual provider APIs — it is not stored in the git repository.
+For each model at each provider, the catalog tracks: price per 1M input and output tokens (with its currency), context window, modality, and whether the provider built the model or hosts it for a third party. It is synced nightly from OpenRouter's per-model endpoints (attributed to the host that serves each model) and from the APIs or maintained price lists of Mistral, Scaleway, Stackit, Berget AI, OVHcloud and Amazon Bedrock. It is stored in a database, not in the git repository. How the sync works: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ---
 
 ## Provider Coverage
 
-The directory covers **75+ providers** across three categories:
+The directory covers **77 providers** across three categories:
 
-- **API providers** — OpenAI, Anthropic, Mistral, Cohere, Groq, Together AI, Scaleway, Nebius, Aleph Alpha, DeepSeek, Hugging Face, Fireworks AI, Perplexity, and more
-- **Cloud platforms** — Azure OpenAI, AWS Bedrock, Google Vertex AI, SAP AI Core
-- **Gateways** — OpenRouter, Cloudflare AI Gateway, Vercel AI Gateway, and others
+- **API providers** (69) — OpenAI, Anthropic, Mistral, Cohere, Groq, Together AI, Scaleway, Nebius, Aleph Alpha, DeepSeek, Hugging Face, Fireworks AI, Perplexity, and more
+- **Cloud platforms** (4) — Azure, Amazon Bedrock, Google Vertex AI, SAP AI Core
+- **Gateways** (4) — OpenRouter, Cloudflare AI Gateway, Helicone, Requesty
 
 EU-native providers (Mistral, Scaleway, Berget, Stackit, Aleph Alpha, evroc, CloudFerro) are included alongside major US and Chinese providers for a complete picture.
 
@@ -69,10 +81,13 @@ EU-native providers (Mistral, Scaleway, Berget, Stackit, Aleph Alpha, evroc, Clo
 - **Framework:** Next.js 16 (App Router)
 - **Language:** TypeScript
 - **Styling:** Tailwind CSS 4
+- **i18n:** next-intl (English and German)
 - **Validation:** Zod
 - **Compliance data:** Flat JSON files in `data/providers/` — git-auditable, community PR-able
 - **Model catalog:** Neon (Postgres) via Drizzle ORM — synced nightly, not stored in the repo
 - **Deployment:** Vercel
+
+Components, data flow, caching and CI/CD are described in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ---
 
@@ -80,112 +95,123 @@ EU-native providers (Mistral, Scaleway, Berget, Stackit, Aleph Alpha, evroc, Clo
 
 ### Provider compliance (`data/providers/{slug}.json`)
 
-Each provider is a single JSON file. The schema is defined in [`data/schema.ts`](data/schema.ts) and validated with Zod.
+Each provider is a single JSON file. The schema is defined in [`data/schema.ts`](data/schema.ts) and validated with Zod. This is `scaleway.json`, shortened:
 
 ```json
 {
-  "slug": "openai",
-  "name": "OpenAI",
+  "slug": "scaleway",
+  "name": "Scaleway",
   "type": "api_provider",
-  "website": "https://openai.com",
-  "apiDocsUrl": "https://platform.openai.com/docs",
-  "logoPath": "/logos/openai.svg",
+  "website": "https://www.scaleway.com",
+  "apiDocsUrl": "https://www.scaleway.com/en/docs/generative-apis/",
   "compliance": {
-    "headquarters": "US",
+    "headquarters": "FR",
     "dataResidency": {
-      "regions": ["US", "EU"],
-      "euOnly": false,
+      "regions": ["EU"],
+      "euOnly": true,
       "dataLeavesEuAtInference": null,
-      "euRegionDetails": "EU data residency available via eu.api.openai.com (EEA + Switzerland). Both regional storage and regional inference supported."
+      "euRegionDetails": "Generative APIs run exclusively in fr-par (Paris)."
     },
     "dpa": {
       "available": true,
-      "url": "https://openai.com/policies/data-processing-addendum",
+      "url": "https://www.scaleway.com/en/contracts/",
       "signedVia": "online_acceptance"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "API data not used for training by default since March 2023.",
-      "details": "ZDR and modified abuse monitoring require enterprise sales approval."
+      "retentionPolicy": "Prompts and completions not stored beyond request handling.",
+      "details": "Dedicated data privacy page at /docs/generative-apis/reference-content/data-privacy/ explicitly states no training on customer data."
     },
     "subProcessors": {
       "disclosed": true,
-      "url": "https://platform.openai.com/subprocessors",
-      "includesEuEntities": null
+      "url": "https://www.scaleway.com/en/contracts/",
+      "includesEuEntities": true
     },
-    "certifications": ["SOC2", "ISO27001", "ISO27701", "ISO42001"],
+    "certifications": ["ISO27001", "HDS"],
     "euAiAct": {
-      "status": "monitoring",
-      "details": "Holds ISO 42001 certification. Engaged with EU AI Office on GPAI obligations."
+      "status": "unknown",
+      "details": "Infrastructure provider and deployer of third-party open-weight models."
     },
-    "sccs": true,
-    "adequacyDecision": false
+    "sccs": false,
+    "adequacyDecision": true
   },
   "pricingTier": "pay_per_use",
   "lastVerified": "2026-04-07",
-  "verifiedBy": "carlo",
-  "sourceUrls": ["https://openai.com/policies/data-processing-addendum"],
-  "notes": "EU data controller is OpenAI Ireland Limited (Dublin).",
+  "verifiedBy": "ai_draft",
+  "sourceUrls": ["https://www.scaleway.com/en/docs/generative-apis/reference-content/data-privacy/"],
+  "notes": "Scaleway (Iliad Group) is 100% French-owned.",
   "translations": {
     "de": {
-      "notes": "EU-Verantwortlicher ist OpenAI Ireland Limited (Dublin)."
+      "notes": "Scaleway (Iliad Group) befindet sich zu 100 % in französischem Eigentum."
     }
   }
 }
 ```
 
-### Model catalog (Neon / Postgres)
+`translations` is optional and holds locale-specific versions of the free-text fields (`notes`, `euRegionDetails`, `retentionPolicy`, `details`) under BCP-47 keys.
 
-Models are not stored in the repo — they change too fast. The `models` table holds one row per `(model_id, provider_slug)` pair, e.g. `(anthropic/claude-sonnet-4-6, anthropic)` and `(anthropic/claude-sonnet-4-6, amazon-bedrock)` are separate purchasable options with different compliance properties.
+### Model catalog (Postgres)
+
+Models are not stored in the repo — they change too fast. The `models` table holds one row per `(id, provider_slug)` pair, e.g. `anthropic/claude-sonnet-4.6` at `anthropic` and at `amazon-bedrock` are separate rows with different compliance properties. Rows that disappear from a source are marked inactive, not deleted. The schema is in [`src/db/schema.ts`](src/db/schema.ts).
 
 ---
 
 ## Local Development
 
-**Prerequisites:** [Bun](https://bun.sh) and a [Neon](https://neon.tech) Postgres database.
+**Prerequisites:** [Bun](https://bun.sh) and a [Neon](https://neon.tech) Postgres database that you own, for development only.
 
 ```bash
-# Install dependencies
 bun install
 
-# Copy the env template and fill in your DATABASE_URL
+# Copy the env template and set DATABASE_URL to your development database
 cp .env.local.example .env.local
 
-# Apply the database schema (run once, or after schema changes)
-bun db:migrate
+# Create the tables in your development database (run once, and after schema changes)
+bun run db:migrate
 
-# Start the development server
-bun dev
+bun run dev
+```
 
+The site reads the model catalog from the database, so `DATABASE_URL` must be set to start it. A fresh database has no models until you run the sync:
+
+```bash
+# Logs what would be written; does not touch the database
+bun run sync:models:dry
+
+# Writes the model catalog into the database that DATABASE_URL points to
+bun run sync:models
+```
+
+`db:migrate` and `sync:models` write to whatever `DATABASE_URL` points at. Never point them at a database you do not own. Some sync sources need an API key, see `.env.local.example`; adapters without their key are skipped or fall back to their static list.
+
+Provider files need no database:
+
+```bash
 # Validate all provider JSON files against the schema
-bun validate
-
-# Seed new provider stubs from models.dev (identity + logos only)
-bun import
-
-# Sync the model catalog into Neon (dry run first)
-bun sync:models:dry
-bun sync:models
+bun run validate
 ```
 
 ### Available scripts
 
-| Script                    | Description                                                    |
-| ------------------------- | -------------------------------------------------------------- |
-| `bun dev`                 | Start Next.js development server                               |
-| `bun build`               | Production build                                               |
-| `bun validate`            | Validate all `data/providers/*.json` against the Zod schema    |
-| `bun import`              | Seed new provider stubs from models.dev (logos + identity)     |
-| `bun sync:models`         | Sync model catalog into Neon from OpenRouter + provider APIs   |
-| `bun sync:models:dry`     | Dry-run sync — logs what would be upserted without writing     |
-| `bun research:providers`  | AI-assisted research pass over all provider JSON files         |
-| `bun research:provider`   | AI-assisted research pass for a single provider                |
-| `bun translate:providers` | Generate locale translations for all provider free-text fields |
-| `bun translate:provider`  | Generate locale translations for a single provider             |
-| `bun db:generate`         | Generate Drizzle migration files after schema changes          |
-| `bun db:migrate`          | Apply pending migrations to the database                       |
-| `bun db:studio`           | Open Drizzle Studio to browse the database                     |
+| Script                        | Description                                                            |
+| ----------------------------- | ---------------------------------------------------------------------- |
+| `bun run dev`                 | Start the Next.js development server                                   |
+| `bun run build`               | Production build (reads the database for the sitemap and model pages)  |
+| `bun run start`               | Serve the production build                                             |
+| `bun run lint`                | ESLint                                                                 |
+| `bun run format`              | Prettier, write mode                                                   |
+| `bun run validate`            | Validate all `data/providers/*.json` against the Zod schema            |
+| `bun run import`              | Create stub files for providers from models.dev that have none yet     |
+| `bun run sync:models`         | Sync the model catalog from OpenRouter and provider sources            |
+| `bun run sync:models:dry`     | Dry-run sync — logs what would be upserted without writing             |
+| `bun run research:providers`  | AI-assisted research pass over all stub files (needs `OPENAI_API_KEY`) |
+| `bun run research:provider`   | AI-assisted research pass for a single provider                        |
+| `bun run translate:providers` | Generate German translations for all provider free-text fields         |
+| `bun run translate:provider`  | Generate German translations for a single provider                     |
+| `bun run db:generate`         | Generate Drizzle migration files after schema changes                  |
+| `bun run db:migrate`          | Apply pending migrations to the database                               |
+| `bun run db:studio`           | Open Drizzle Studio to browse the database                             |
 
 ---
 
@@ -199,12 +225,26 @@ If a provider's compliance terms have changed, [open a Report a Change issue](ht
 
 1. Fork the repository
 2. Add or edit a file in `data/providers/`
-3. Run `bun validate` to check your JSON against the schema
+3. Run `bun run validate` to check your JSON against the schema
 4. Open a pull request with links to the source documents you used
 
 All entries require source URLs. Compliance claims without an evidence trail will not be merged.
 
-**Note:** The model catalog (pricing, availability, latency) is managed by the nightly sync job and is not part of the provider JSON files. Do not add a `models` field to provider files.
+### Code changes
+
+Pull requests run these checks in CI, and all of them must pass:
+
+| Check         | Command                         |
+| ------------- | ------------------------------- |
+| Provider data | `bun run validate`              |
+| Lint          | `bun run lint --max-warnings=0` |
+| Formatting    | `bunx prettier --check .`       |
+| Types         | `bunx tsc --noEmit`             |
+| Build         | `bun run build`                 |
+
+The first four run locally without a database. The build job needs database access, so it is skipped for pull requests from forks; run `bun run build` against your own development database before you open one. New user-facing text goes into both `messages/en.json` and `messages/de.json` with identical keys.
+
+**Note:** The model catalog (pricing, availability) is managed by the nightly sync job and is not part of the provider JSON files. Do not add a `models` field to provider files.
 
 ---
 
