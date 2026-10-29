@@ -1,8 +1,8 @@
 /**
  * scripts/translate-providers.ts
  *
- * Generates German translations of free-text compliance fields for all fully-verified
- * providers, writing results into translations.de in each provider JSON file.
+ * Generates German translations of free-text compliance fields for all providers with a
+ * full compliance profile, writing results into translations.de in each provider JSON file.
  *
  * Uses an OpenAI model via the Vercel AI SDK — no web search needed, pure translation.
  * Uses legally precise German GDPR terminology throughout.
