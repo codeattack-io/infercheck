@@ -18,7 +18,7 @@ import { getModelsByProvider } from "@/lib/models";
 import { getComplianceTier, isFullProvider, tierPillClasses, TIER_CLASSES } from "@/lib/compliance";
 import { getVerification } from "@/lib/verification";
 import type { ComplianceTier } from "@/lib/compliance";
-import { ComplianceBadge } from "@/components/ComplianceBadge";
+import { ComplianceBadgeList } from "@/components/ComplianceBadge";
 import { ProviderModelRow } from "@/components/ProviderModelRow";
 
 export async function generateStaticParams() {
@@ -271,21 +271,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
               {/* Compliance badges */}
               <div className="mt-4 pt-4 border-t border-border">
-                <div className="flex flex-wrap gap-1.5">
-                  {provider.compliance.dataResidency.euOnly ? (
-                    <ComplianceBadge variant="eu-only" />
-                  ) : provider.compliance.sccs ? (
-                    <ComplianceBadge variant="eu-sccs" />
-                  ) : null}
-                  {provider.compliance.dpa.available ? <ComplianceBadge variant="dpa" /> : null}
-                  {provider.compliance.dataUsage.trainsOnCustomerData === true ? (
-                    <ComplianceBadge variant="trains-on-data" />
-                  ) : provider.compliance.dataUsage.trainsOnCustomerData === false ? (
-                    <ComplianceBadge variant="no-training" />
-                  ) : (
-                    <ComplianceBadge variant="training-unknown" />
-                  )}
-                </div>
+                <ComplianceBadgeList compliance={provider.compliance} className="flex flex-wrap gap-1.5" />
               </div>
             </section>
           ) : (

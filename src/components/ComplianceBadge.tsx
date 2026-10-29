@@ -7,6 +7,7 @@
 
 import { useTranslations } from "next-intl";
 import { TIER_CLASSES, type ComplianceTier } from "@/lib/compliance";
+import type { Compliance } from "@/../data/schema";
 
 export type BadgeVariant =
   "eu-only" | "dpa" | "eu-sccs" | "no-training" | "trains-on-data" | "training-unknown" | "us-only" | "unverified";
@@ -62,5 +63,38 @@ export function ComplianceBadge({ variant, size = "md" }: ComplianceBadgeProps) 
       <span className={["rounded-full shrink-0", tier.dot, sz.dot].join(" ")} aria-hidden="true" />
       {LABEL_MAP[variant]}
     </span>
+  );
+}
+
+export function getBadgeVariants(compliance: Compliance): BadgeVariant[] {
+  const variants: BadgeVariant[] = [];
+  if (compliance.dataResidency.euOnly) {
+    variants.push("eu-only");
+  } else if (compliance.sccs) {
+    variants.push("eu-sccs");
+  }
+  if (compliance.dpa.available) variants.push("dpa");
+  const trains = compliance.dataUsage.trainsOnCustomerData;
+  variants.push(trains === true ? "trains-on-data" : trains === false ? "no-training" : "training-unknown");
+  return variants;
+}
+
+interface ComplianceBadgeListProps {
+  compliance: Compliance;
+  size?: "sm" | "md";
+  className?: string;
+}
+
+export function ComplianceBadgeList({
+  compliance,
+  size,
+  className = "flex flex-wrap gap-1",
+}: ComplianceBadgeListProps) {
+  return (
+    <div className={className}>
+      {getBadgeVariants(compliance).map((variant) => (
+        <ComplianceBadge key={variant} variant={variant} size={size} />
+      ))}
+    </div>
   );
 }

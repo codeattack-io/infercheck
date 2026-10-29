@@ -10,7 +10,7 @@
 import { useState, memo, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import { ComplianceBadge } from "@/components/ComplianceBadge";
+import { ComplianceBadge, ComplianceBadgeList } from "@/components/ComplianceBadge";
 import { VerificationLabel } from "@/components/VerificationLabel";
 import { getVerification } from "@/lib/verification";
 import { formatPrice } from "@/lib/format";
@@ -137,21 +137,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
         {/* Compliance column */}
         <td className="p-3 px-4 align-middle hidden sm:table-cell">
           {isVerified && provider !== null && isFullProvider(provider) ? (
-            <div className="flex flex-wrap gap-1">
-              {provider.compliance.dataResidency.euOnly ? (
-                <ComplianceBadge variant="eu-only" size="sm" />
-              ) : provider.compliance.sccs ? (
-                <ComplianceBadge variant="eu-sccs" size="sm" />
-              ) : null}
-              {provider.compliance.dpa.available ? <ComplianceBadge variant="dpa" size="sm" /> : null}
-              {provider.compliance.dataUsage.trainsOnCustomerData === true ? (
-                <ComplianceBadge variant="trains-on-data" size="sm" />
-              ) : provider.compliance.dataUsage.trainsOnCustomerData === false ? (
-                <ComplianceBadge variant="no-training" size="sm" />
-              ) : (
-                <ComplianceBadge variant="training-unknown" size="sm" />
-              )}
-            </div>
+            <ComplianceBadgeList compliance={provider.compliance} size="sm" />
           ) : (
             <ComplianceBadge variant="unverified" size="sm" />
           )}

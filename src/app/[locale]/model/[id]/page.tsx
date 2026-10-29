@@ -21,7 +21,7 @@ import { getComplianceTier, isFullProvider, tierPillClasses, TIER_CLASSES } from
 import { formatContext, formatPrice } from "@/lib/format";
 import { VerificationLabel } from "@/components/VerificationLabel";
 import type { AnyProvider } from "@/lib/compliance";
-import { ComplianceBadge } from "@/components/ComplianceBadge";
+import { ComplianceBadgeList } from "@/components/ComplianceBadge";
 import type { ComplianceTier } from "@/lib/compliance";
 
 interface PageProps {
@@ -247,21 +247,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
                   {/* Badges */}
                   {verified && provider !== null && isFullProvider(provider) ? (
                     <DetailSection title={t("sections.complianceBadges")}>
-                      <div className="flex flex-wrap gap-1">
-                        {provider.compliance.dataResidency.euOnly ? (
-                          <ComplianceBadge variant="eu-only" />
-                        ) : provider.compliance.sccs ? (
-                          <ComplianceBadge variant="eu-sccs" />
-                        ) : null}
-                        {provider.compliance.dpa.available ? <ComplianceBadge variant="dpa" /> : null}
-                        {provider.compliance.dataUsage.trainsOnCustomerData === true ? (
-                          <ComplianceBadge variant="trains-on-data" />
-                        ) : provider.compliance.dataUsage.trainsOnCustomerData === false ? (
-                          <ComplianceBadge variant="no-training" />
-                        ) : (
-                          <ComplianceBadge variant="training-unknown" />
-                        )}
-                      </div>
+                      <ComplianceBadgeList compliance={provider.compliance} />
                       <p className="mt-2 mb-0">
                         <VerificationLabel provider={provider} className="font-mono text-xs text-text-muted" />
                       </p>

@@ -3,7 +3,7 @@
 
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
-import { ComplianceBadge } from "@/components/ComplianceBadge";
+import { ComplianceBadge, ComplianceBadgeList } from "@/components/ComplianceBadge";
 import { VerificationLabel } from "@/components/VerificationLabel";
 import { getComplianceTier, isFullProvider, TIER_CLASSES } from "@/lib/compliance";
 import type { AnyProvider, ComplianceTier } from "@/lib/compliance";
@@ -46,21 +46,7 @@ export async function ProviderCard({ provider, modelCount }: ProviderCardProps) 
 
       {/* Badges */}
       {verified ? (
-        <div className="flex flex-wrap gap-1 mb-[10px]">
-          {provider.compliance.dataResidency.euOnly ? (
-            <ComplianceBadge variant="eu-only" size="sm" />
-          ) : provider.compliance.sccs ? (
-            <ComplianceBadge variant="eu-sccs" size="sm" />
-          ) : null}
-          {provider.compliance.dpa.available ? <ComplianceBadge variant="dpa" size="sm" /> : null}
-          {provider.compliance.dataUsage.trainsOnCustomerData === true ? (
-            <ComplianceBadge variant="trains-on-data" size="sm" />
-          ) : provider.compliance.dataUsage.trainsOnCustomerData === false ? (
-            <ComplianceBadge variant="no-training" size="sm" />
-          ) : (
-            <ComplianceBadge variant="training-unknown" size="sm" />
-          )}
-        </div>
+        <ComplianceBadgeList compliance={provider.compliance} size="sm" className="flex flex-wrap gap-1 mb-[10px]" />
       ) : (
         <div className="mb-[10px]">
           <ComplianceBadge variant="unverified" size="sm" />
