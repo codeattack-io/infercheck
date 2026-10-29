@@ -44,7 +44,14 @@ export function BooleanRow({ label, value, href, secondary, note, size = "sm", c
         <div>
           {labelNode}
           {secondary ? <span className="font-body text-xs text-text-muted ml-1.5">({secondary})</span> : null}
-          {note ? <span className="font-body text-xs text-text-muted italic ml-1.5">{note}</span> : null}
+          {note ? (
+            <span
+              className="font-body text-xs text-text-muted italic ml-1.5"
+              aria-hidden={value === null ? "true" : undefined}
+            >
+              {note}
+            </span>
+          ) : null}
         </div>
       ) : (
         labelNode
