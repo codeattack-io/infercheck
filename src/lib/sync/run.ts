@@ -12,7 +12,7 @@
  *      (Scaleway, Aleph Alpha, Berget AI, Stackit, OVHcloud, Mistral, Amazon Bedrock)
  */
 
-import { getDb, upsertModels } from "./db";
+import { deactivateUnlistedProviders, getDb, upsertModels } from "./db";
 import type { ModelRow, SyncOptions, SyncResult } from "./types";
 import { fetchOpenRouterModels } from "./adapters/openrouter";
 import { fetchMistralModels } from "./adapters/mistral";
@@ -88,6 +88,10 @@ export async function runSync(options: SyncOptions = {}): Promise<SyncResult> {
         modelsUpserted += upserted;
         modelsDeactivated += deactivated;
         failedRows.push(...failed);
+      }
+
+      if (adapterKey === "openrouter") {
+        modelsDeactivated += await deactivateUnlistedProviders(db, "openrouter", [...byProvider.keys()]);
       }
 
       console.log(`  ${adapterKey}: upserted ${modelsUpserted}, deactivated ${modelsDeactivated}`);

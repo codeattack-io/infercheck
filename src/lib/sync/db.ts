@@ -79,3 +79,28 @@ export async function upsertModels(
 
   return { upserted, deactivated: result.rowCount ?? 0, failed };
 }
+
+/**
+ * Deactivates active rows from `syncSource` whose provider slug is not in
+ * `providerSlugs`, so providers an adapter stops emitting leave the catalog.
+ */
+export async function deactivateUnlistedProviders(
+  db: ReturnType<typeof getDb>,
+  syncSource: string,
+  providerSlugs: string[]
+): Promise<number> {
+  if (providerSlugs.length === 0) return 0;
+
+  const result = await db
+    .update(schema.models)
+    .set({ isActive: false })
+    .where(
+      and(
+        eq(schema.models.syncSource, syncSource),
+        notInArray(schema.models.providerSlug, providerSlugs),
+        eq(schema.models.isActive, true)
+      )
+    );
+
+  return result.rowCount ?? 0;
+}
