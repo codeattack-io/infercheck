@@ -1,7 +1,7 @@
 /**
  * scripts/research-providers.ts
  *
- * Uses a web-searching LLM (gpt-4.5 via Vercel AI SDK) to research stub providers
+ * Uses an OpenAI model with web search via the Vercel AI SDK to research stub providers
  * and fill in complete GDPR compliance data.
  *
  * Usage:

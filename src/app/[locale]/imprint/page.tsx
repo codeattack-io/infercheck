@@ -6,13 +6,9 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
-// ─── Types ─────────────────────────────────────────────────────────────────────
-
 interface PageProps {
   params: Promise<{ locale: string }>;
 }
-
-// ─── Metadata ──────────────────────────────────────────────────────────────────
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
@@ -36,8 +32,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-// ─── Page ──────────────────────────────────────────────────────────────────────
-
 export default async function ImprintPage({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -47,12 +41,10 @@ export default async function ImprintPage({ params }: PageProps) {
   return (
     <>
       <main className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 pt-14 pb-24">
-        {/* ── Page heading ── */}
         <h1 className="font-display text-[clamp(2rem,5vw,2.75rem)] font-normal text-heading leading-[1.15] mb-3 tracking-[-0.02em]">
           {t("heading")}
         </h1>
 
-        {/* ── Legal binding note ── */}
         <p className="font-body text-[0.9375rem] text-text-secondary leading-[1.65] mb-10">
           {t.rich("legalNote", {
             german: (chunks) =>
@@ -66,10 +58,8 @@ export default async function ImprintPage({ params }: PageProps) {
           })}
         </p>
 
-        {/* ── Divider ── */}
         <hr className="border-none border-t border-border mb-10" />
 
-        {/* ── Operator ── */}
         <section className="mb-10 bg-surface border border-border rounded-lg px-8 py-7">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("operatorHeading")}
@@ -83,7 +73,6 @@ export default async function ImprintPage({ params }: PageProps) {
           </address>
         </section>
 
-        {/* ── Contact ── */}
         <section className="mb-10">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("contactHeading")}
@@ -96,7 +85,6 @@ export default async function ImprintPage({ params }: PageProps) {
           </p>
         </section>
 
-        {/* ── Responsible for content ── */}
         <section className="mb-10">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("responsibleHeading")}
@@ -104,7 +92,6 @@ export default async function ImprintPage({ params }: PageProps) {
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("responsibleText")}</p>
         </section>
 
-        {/* ── EU Dispute resolution ── */}
         <section className="mb-10">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("disputeHeading")}
@@ -125,7 +112,6 @@ export default async function ImprintPage({ params }: PageProps) {
           </p>
         </section>
 
-        {/* ── Liability for content ── */}
         <section className="mb-10">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("liabilityContentHeading")}
@@ -133,7 +119,6 @@ export default async function ImprintPage({ params }: PageProps) {
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("liabilityContentText")}</p>
         </section>
 
-        {/* ── Liability for links ── */}
         <section className="mb-10">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("liabilityLinksHeading")}
@@ -141,7 +126,6 @@ export default async function ImprintPage({ params }: PageProps) {
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("liabilityLinksText")}</p>
         </section>
 
-        {/* ── Copyright ── */}
         <section className="mb-12">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("copyrightHeading")}
@@ -149,7 +133,6 @@ export default async function ImprintPage({ params }: PageProps) {
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("copyrightText")}</p>
         </section>
 
-        {/* ── Back link ── */}
         <div className="pt-2">
           <Link href="/" className="font-body text-sm font-medium text-link underline underline-offset-[3px]">
             {t("backLink")}
