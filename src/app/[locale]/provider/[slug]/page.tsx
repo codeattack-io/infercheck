@@ -99,6 +99,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
   const provider = getLocalizedProvider(rawProvider, locale);
 
   const t = await getTranslations("ProviderPage");
+  const tType = await getTranslations("ProviderType");
 
   const tierLabel: Record<ComplianceTier, string> = {
     compliant: t("tiers.compliant"),
@@ -145,7 +146,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
       <main className="max-w-[1200px] mx-auto flex-1 w-full box-border px-4 sm:px-6 lg:px-10 py-10">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-6">
+        <nav aria-label={t("breadcrumb.ariaLabel")} className="mb-6">
           <ol className="flex items-center gap-2 list-none p-0 m-0 font-body text-[0.8125rem] text-text-muted">
             <li>
               <Link href="/" className="text-link no-underline">
@@ -179,7 +180,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
               {/* Provider type */}
               <span className="font-body text-[0.8125rem] text-text-muted bg-surface-alt border border-border rounded px-2 py-[3px]">
-                {t(`providerTypes.${provider.type}`)}
+                {tType(provider.type)}
               </span>
 
               {/* Website link */}

@@ -9,7 +9,7 @@
 
 import { useState, memo, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ComplianceBadge, ComplianceBadgeList } from "@/components/ComplianceBadge";
 import { GatewayPill } from "@/components/GatewayPill";
 import { BooleanRow } from "@/components/BooleanRow";
@@ -82,6 +82,8 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
   const [expanded, setExpanded] = useState(false);
   const [hovered, setHovered] = useState(false);
   const t = useTranslations("ModelRow");
+  const locale = useLocale();
+  const priceFormat = { locale, freeLabel: useTranslations("Format")("free") };
 
   const tier = provider ? getComplianceTier(provider) : "unverified";
   const accentBorder = TIER_CLASSES[tier].accentBorder;
@@ -113,9 +115,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
             <span className="font-body text-[0.9375rem] font-semibold text-text-primary leading-[1.3]">
               {highlightText(model.displayName, matches, "model.displayName")}
             </span>
-            {!model.isNativeModel ? (
-              <GatewayPill title={`This model is made by a third party and hosted via ${providerName}`} />
-            ) : null}
+            {!model.isNativeModel ? <GatewayPill title={t("gatewayTitle", { providerName })} /> : null}
           </div>
           <div className="font-body text-[0.8125rem] text-text-secondary mt-0.5">
             {highlightText(providerName, matches, "provider.name")}
@@ -146,11 +146,11 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
             <div className="flex flex-col gap-0.5">
               <span className="font-mono text-[0.8125rem] text-text-secondary whitespace-nowrap">
                 <span className="text-text-muted text-xs">{t("priceIn")}</span>
-                {formatPrice(model.inputPricePerMTokens)}
+                {formatPrice(model.inputPricePerMTokens, priceFormat)}
               </span>
               <span className="font-mono text-[0.8125rem] text-text-secondary whitespace-nowrap">
                 <span className="text-text-muted text-xs">{t("priceOut")}</span>
-                {formatPrice(model.outputPricePerMTokens)}
+                {formatPrice(model.outputPricePerMTokens, priceFormat)}
               </span>
             </div>
           ) : (
@@ -212,10 +212,10 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
               {/* Gateway notice — full width, shown before the compliance grid */}
               {!model.isNativeModel ? (
                 <div className="rounded px-3.5 py-2.5 border font-body text-[0.8125rem] leading-[1.5] mb-4 text-partial border-partial bg-[color-mix(in_srgb,var(--color-partial)_6%,transparent)]">
-                  <span className="font-semibold">Third-party model hosted via {providerName}.</span> This model is made
-                  by another company but served through {providerName}&apos;s infrastructure. The compliance properties
-                  shown here reflect <span className="font-semibold">{providerName}</span>&apos;s data handling — not
-                  the original model creator&apos;s.
+                  {t.rich("gatewayNotice", {
+                    providerName,
+                    strong: (chunks) => <span className="font-semibold">{chunks}</span>,
+                  })}
                 </div>
               ) : null}
 

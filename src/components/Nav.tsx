@@ -80,7 +80,7 @@ export function Nav() {
           </Link>
 
           {/* Desktop nav */}
-          <nav aria-label="Main navigation" className="hidden sm:flex items-center gap-7">
+          <nav aria-label={t("mainNavigation")} className="hidden sm:flex items-center gap-7">
             {NAV_LINKS.map((link) => {
               const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
               return (

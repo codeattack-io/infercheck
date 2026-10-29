@@ -16,7 +16,9 @@
       "about": "Info"
     },
     "menuOpen": "Menü öffnen",
-    "menuClose": "Menü schließen"
+    "menuClose": "Menü schließen",
+    "mainNavigation": "Hauptnavigation",
+    "mobileNavigation": "Mobile Navigation"
   },
   "Footer": {
     "license": "Daten lizenziert unter",
@@ -29,7 +31,8 @@
       "privacy": "Datenschutz",
       "github": "GitHub →"
     },
-    "disclaimer": "Dieses Verzeichnis stellt quellengestützte Informationen über die Datenpraktiken von KI-Anbietern bereit. Es handelt sich nicht um Rechtsberatung. Überprüfen Sie Angaben stets direkt beim Anbieter und konsultieren Sie rechtlichen Beistand für Compliance-Entscheidungen."
+    "disclaimer": "Dieses Verzeichnis stellt quellengestützte Informationen über die Datenpraktiken von KI-Anbietern bereit. Es handelt sich nicht um Rechtsberatung. Überprüfen Sie Angaben stets direkt beim Anbieter und konsultieren Sie rechtlichen Beistand für Compliance-Entscheidungen.",
+    "navLabel": "Fußnavigation"
   },
   "HomePage": {
     "title": "InferCheck — DSGVO-konforme KI-Inferenzanbieter finden",
@@ -76,7 +79,8 @@
     "ogTitle": "{providerName} — DSGVO-Compliance-Profil",
     "breadcrumb": {
       "models": "Modelle",
-      "providers": "Anbieter"
+      "providers": "Anbieter",
+      "ariaLabel": "Brotkrumennavigation"
     },
     "actions": {
       "apiDocs": "API-Dokumentation ↗",
@@ -160,11 +164,6 @@
       "notAvailable": "nicht verfügbar"
     },
     "jsonLdDescription": "KI-Inferenzanbieter. DSGVO-Konformitätsstufe: {tier}. AVV: {dpa}.",
-    "providerTypes": {
-      "api_provider": "API-Anbieter",
-      "cloud_platform": "Cloud-Plattform",
-      "gateway": "Gateway"
-    },
     "dpaSignedVia": {
       "online_acceptance": "Online-Annahme",
       "custom_contract": "individueller Vertrag",
@@ -188,7 +187,8 @@
     "ogTitle": "{modelName} — DSGVO-Compliance nach Anbieter",
     "ogDescription": "EU-Datenhaltung, AVV, Trainings-Opt-out und Preise für {modelName} bei allen anbietenden Providern.",
     "breadcrumb": {
-      "models": "Modelle"
+      "models": "Modelle",
+      "ariaLabel": "Brotkrumennavigation"
     },
     "availableFrom1": "Verfügbar bei 1 Anbieter",
     "availableFromN": "Verfügbar bei {count} Anbietern",
@@ -315,7 +315,9 @@
     "euResidencyValue": "EU",
     "unverifiedNotice": "Compliance-Daten für diesen Anbieter noch nicht verifiziert.",
     "priceIn": "ein ",
-    "priceOut": "aus "
+    "priceOut": "aus ",
+    "gatewayTitle": "Dieses Modell stammt von einem Drittanbieter und wird über {providerName} bereitgestellt",
+    "gatewayNotice": "<strong>Drittanbieter-Modell, bereitgestellt über {providerName}.</strong> Dieses Modell stammt von einem anderen Unternehmen, wird aber über die Infrastruktur von {providerName} betrieben. Die hier gezeigten Compliance-Eigenschaften beschreiben den Umgang von <strong>{providerName}</strong> mit Daten – nicht den des ursprünglichen Modellherstellers."
   },
   "ProviderCard": {
     "tiers": {
@@ -406,5 +408,22 @@
     "trainingUnknown": "Training unbekannt",
     "usOnly": "Nur USA",
     "unverified": "Nicht verifiziert"
+  },
+  "Format": {
+    "free": "kostenlos"
+  },
+  "GatewayPill": {
+    "label": "über Gateway"
+  },
+  "OgImage": {
+    "tagline": "DSGVO-konforme KI-Inferenzanbieter finden",
+    "euResidency": "EU-Datenhaltung",
+    "dpa": "AVV verfügbar",
+    "trainingOptOut": "Training-Opt-out"
+  },
+  "ProviderType": {
+    "api_provider": "API-Anbieter",
+    "cloud_platform": "Cloud-Plattform",
+    "gateway": "Gateway"
   }
 }

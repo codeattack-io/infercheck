@@ -16,7 +16,9 @@
       "about": "About"
     },
     "menuOpen": "Open menu",
-    "menuClose": "Close menu"
+    "menuClose": "Close menu",
+    "mainNavigation": "Main navigation",
+    "mobileNavigation": "Mobile navigation"
   },
   "Footer": {
     "license": "Data licensed under",
@@ -29,7 +31,8 @@
       "privacy": "Privacy",
       "github": "GitHub →"
     },
-    "disclaimer": "This directory provides sourced information about AI providers' data practices. It is not legal advice. Always verify directly with the provider and consult legal counsel for compliance decisions."
+    "disclaimer": "This directory provides sourced information about AI providers' data practices. It is not legal advice. Always verify directly with the provider and consult legal counsel for compliance decisions.",
+    "navLabel": "Footer navigation"
   },
   "HomePage": {
     "title": "InferCheck — Find GDPR-compliant AI inference providers",
@@ -76,7 +79,8 @@
     "ogTitle": "{providerName} — GDPR Compliance Profile",
     "breadcrumb": {
       "models": "Models",
-      "providers": "Providers"
+      "providers": "Providers",
+      "ariaLabel": "Breadcrumb"
     },
     "actions": {
       "apiDocs": "API Docs ↗",
@@ -160,11 +164,6 @@
       "notAvailable": "not available"
     },
     "jsonLdDescription": "AI inference provider. GDPR compliance tier: {tier}. DPA: {dpa}.",
-    "providerTypes": {
-      "api_provider": "API provider",
-      "cloud_platform": "Cloud platform",
-      "gateway": "Gateway"
-    },
     "dpaSignedVia": {
       "online_acceptance": "online acceptance",
       "custom_contract": "custom contract",
@@ -188,7 +187,8 @@
     "ogTitle": "{modelName} — GDPR Compliance by Provider",
     "ogDescription": "EU data residency, DPA, training opt-out, and pricing for {modelName} across all providers offering it.",
     "breadcrumb": {
-      "models": "Models"
+      "models": "Models",
+      "ariaLabel": "Breadcrumb"
     },
     "availableFrom1": "Available from 1 provider",
     "availableFromN": "Available from {count} providers",
@@ -315,7 +315,9 @@
     "euResidencyValue": "EU",
     "unverifiedNotice": "Compliance data not yet verified for this provider.",
     "priceIn": "in ",
-    "priceOut": "out "
+    "priceOut": "out ",
+    "gatewayTitle": "This model is made by a third party and hosted via {providerName}",
+    "gatewayNotice": "<strong>Third-party model hosted via {providerName}.</strong> This model is made by another company but served through {providerName}'s infrastructure. The compliance properties shown here reflect <strong>{providerName}</strong>'s data handling — not the original model creator's."
   },
   "ProviderCard": {
     "tiers": {
@@ -406,5 +408,22 @@
     "trainingUnknown": "Training Unknown",
     "usOnly": "US Only",
     "unverified": "Unverified"
+  },
+  "Format": {
+    "free": "free"
+  },
+  "GatewayPill": {
+    "label": "via gateway"
+  },
+  "OgImage": {
+    "tagline": "Find GDPR-compliant AI inference providers",
+    "euResidency": "EU Data Residency",
+    "dpa": "DPA Available",
+    "trainingOptOut": "Training Opt-out"
+  },
+  "ProviderType": {
+    "api_provider": "API provider",
+    "cloud_platform": "Cloud platform",
+    "gateway": "Gateway"
   }
 }

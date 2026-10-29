@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useRouter } from "@/i18n/navigation";
 import type { ProviderModel } from "@/components/types";
 import { GatewayPill } from "@/components/GatewayPill";
+import { useLocale, useTranslations } from "next-intl";
 import { formatContext, formatPrice } from "@/lib/format";
 
 interface ProviderModelRowProps {
@@ -17,6 +18,8 @@ interface ProviderModelRowProps {
 export function ProviderModelRow({ model: m, gateway = false }: ProviderModelRowProps) {
   const [hovered, setHovered] = useState(false);
   const router = useRouter();
+  const locale = useLocale();
+  const priceFormat = { locale, freeLabel: useTranslations("Format")("free") };
 
   const href = `/model/${encodeURIComponent(m.canonicalModelId ?? m.id.split("/").pop() ?? m.id)}`;
 
@@ -46,13 +49,13 @@ export function ProviderModelRow({ model: m, gateway = false }: ProviderModelRow
       </td>
       <td className="px-4 py-[10px] font-body text-[0.8125rem] text-text-secondary">{m.modality}</td>
       <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
-        {formatContext(m.contextWindow)}
+        {formatContext(m.contextWindow, locale)}
       </td>
       <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
-        {formatPrice(m.inputPricePerMTokens)}
+        {formatPrice(m.inputPricePerMTokens, priceFormat)}
       </td>
       <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
-        {formatPrice(m.outputPricePerMTokens)}
+        {formatPrice(m.outputPricePerMTokens, priceFormat)}
       </td>
     </tr>
   );
