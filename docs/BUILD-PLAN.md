@@ -51,3 +51,6 @@ Temporary orchestration state. Deleted in the final task before the PR is opened
 - Delete the now unused `DATABASE_URL_DEV` GitHub secret after T2 is deployed.
 - Review the provider pruning commit from T4.
 - Pick a design direction from T7.
+- CI build still reads a database for the sitemap via secret `DATABASE_URL_DEV`; keep that secret until a read-only CI database URL replaces it.
+- Mark the CI checks as required status checks on `main` so automerged Renovate PRs cannot deploy without green CI.
+- Set `CRON_SECRET` in the Vercel project environment.
