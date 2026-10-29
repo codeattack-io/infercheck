@@ -21,6 +21,7 @@ export async function getCatalogModels(): Promise<CatalogModel[]> {
       canonicalModelId: models.canonicalModelId,
       inputPricePerMTokens: models.inputPricePerMTokens,
       outputPricePerMTokens: models.outputPricePerMTokens,
+      priceCurrency: models.priceCurrency,
       isNativeModel: models.isNativeModel,
     })
     .from(models)
@@ -44,6 +45,7 @@ export async function getModelsByProvider(providerSlug: string): Promise<Provide
       contextWindow: models.contextWindow,
       inputPricePerMTokens: models.inputPricePerMTokens,
       outputPricePerMTokens: models.outputPricePerMTokens,
+      priceCurrency: models.priceCurrency,
       isNativeModel: models.isNativeModel,
     })
     .from(models)
@@ -65,6 +67,7 @@ export async function getModelOffers(canonicalModelId: string) {
       contextWindow: models.contextWindow,
       inputPricePerMTokens: models.inputPricePerMTokens,
       outputPricePerMTokens: models.outputPricePerMTokens,
+      priceCurrency: models.priceCurrency,
       isNativeModel: models.isNativeModel,
     })
     .from(models)

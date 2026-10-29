@@ -68,7 +68,7 @@ export async function runSync(options: SyncOptions = {}): Promise<SyncResult> {
         console.log(`  [dry-run] ${adapterKey}: would upsert ${rows.length} rows`);
         for (const r of rows.slice(0, 3)) {
           console.log(
-            `    ${r.id} (${r.providerSlug}) — $${r.inputPricePerMTokens ?? "?"}/$${r.outputPricePerMTokens ?? "?"} per 1M`
+            `    ${r.id} (${r.providerSlug}) — ${r.inputPricePerMTokens ?? "?"}/${r.outputPricePerMTokens ?? "?"} ${r.priceCurrency} per 1M`
           );
         }
         if (rows.length > 3) console.log(`    … and ${rows.length - 3} more`);
