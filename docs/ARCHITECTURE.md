@@ -86,7 +86,7 @@ An adapter that returns no rows changes nothing in the database.
 
 - After upserting a provider, active rows of that provider whose id the adapter did not list are set inactive.
 - Ownership is split in two: OpenRouter rows (`sync_source = 'openrouter'`) are only deactivated by the `openrouter` adapter, all other rows only by the provider adapters. An OpenRouter row never overwrites an existing provider-adapter row with the same `(id, provider_slug)`.
-- After the OpenRouter run, active OpenRouter rows of providers the adapter no longer emits at all are set inactive (`deactivateUnlistedProviders`).
+- After the OpenRouter run, active OpenRouter rows of providers the adapter emitted no row for in this run are set inactive (`deactivateUnlistedProviders`).
 
 ### OpenRouter attribution
 
