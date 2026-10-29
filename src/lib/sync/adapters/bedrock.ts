@@ -20,7 +20,7 @@ import {
   type InferenceProfileSummary,
 } from "@aws-sdk/client-bedrock";
 import type { ModelRow, BedrockPricingSeed } from "../types";
-import { deriveCanonicalModelId } from "../utils";
+import { deriveCanonicalModelId, toPricePerMTokens } from "../utils";
 
 // ─── Pricing / context seed ───────────────────────────────────────────────────
 // Keyed by underlying foundation model ID (region prefix already stripped).
@@ -101,114 +101,109 @@ export async function fetchBedrockModels(): Promise<ModelRow[]> {
     return [];
   }
 
-  try {
-    const client = new BedrockClient({
-      region,
-      credentials: { accessKeyId, secretAccessKey },
-    });
+  const client = new BedrockClient({
+    region,
+    credentials: { accessKeyId, secretAccessKey },
+  });
 
-    // Fetch both sources in parallel
-    const [fmResp, profileResp] = await Promise.all([
-      client.send(new ListFoundationModelsCommand({ byInferenceType: "ON_DEMAND" })),
-      client.send(new ListInferenceProfilesCommand({ typeEquals: "SYSTEM_DEFINED" })),
-    ]);
+  // Fetch both sources in parallel
+  const [fmResp, profileResp] = await Promise.all([
+    client.send(new ListFoundationModelsCommand({ byInferenceType: "ON_DEMAND" })),
+    client.send(new ListInferenceProfilesCommand({ typeEquals: "SYSTEM_DEFINED" })),
+  ]);
 
-    const foundationModels: FoundationModelSummary[] = fmResp.modelSummaries ?? [];
-    const profiles: InferenceProfileSummary[] = profileResp.inferenceProfileSummaries ?? [];
+  const foundationModels: FoundationModelSummary[] = fmResp.modelSummaries ?? [];
+  const profiles: InferenceProfileSummary[] = profileResp.inferenceProfileSummaries ?? [];
 
-    const now = new Date();
+  const now = new Date();
 
-    // Strip region prefix from inference profile ID to get the underlying model ID.
-    // e.g. "eu.anthropic.claude-sonnet-4-20250514-v1:0" → "anthropic.claude-sonnet-4-20250514-v1:0"
-    const stripPrefix = (id: string) => id.replace(/^(?:eu|us|ap|global)\./, "");
+  // Strip region prefix from inference profile ID to get the underlying model ID.
+  // e.g. "eu.anthropic.claude-sonnet-4-20250514-v1:0" → "anthropic.claude-sonnet-4-20250514-v1:0"
+  const stripPrefix = (id: string) => id.replace(/^(?:eu|us|ap|global)\./, "");
 
-    // Build a map of underlying modelId → profile (prefer eu.* over global.*).
-    // Profiles expose the same model via cross-region routing.
-    const profileByModel = new Map<string, InferenceProfileSummary>();
-    for (const p of profiles) {
-      if (!p.inferenceProfileId || p.status !== "ACTIVE") continue;
-      const isEu = p.inferenceProfileId.startsWith("eu.");
-      const isGlobal = p.inferenceProfileId.startsWith("global.");
-      if (!isEu && !isGlobal) continue; // skip US-only profiles
+  // Build a map of underlying modelId → profile (prefer eu.* over global.*).
+  // Profiles expose the same model via cross-region routing.
+  const profileByModel = new Map<string, InferenceProfileSummary>();
+  for (const p of profiles) {
+    if (!p.inferenceProfileId || p.status !== "ACTIVE") continue;
+    const isEu = p.inferenceProfileId.startsWith("eu.");
+    const isGlobal = p.inferenceProfileId.startsWith("global.");
+    if (!isEu && !isGlobal) continue; // skip US-only profiles
 
-      const underlyingId = stripPrefix(p.inferenceProfileId);
-      const existing = profileByModel.get(underlyingId);
-      // eu.* takes priority over global.*
-      if (!existing || isEu) {
-        profileByModel.set(underlyingId, p);
-      }
+    const underlyingId = stripPrefix(p.inferenceProfileId);
+    const existing = profileByModel.get(underlyingId);
+    // eu.* takes priority over global.*
+    if (!existing || isEu) {
+      profileByModel.set(underlyingId, p);
     }
-
-    // Build a set of model IDs already covered by a profile
-    const coveredByProfile = new Set(profileByModel.keys());
-
-    // Derive modality from input modalities array
-    const toModality = (mods: string[]) => {
-      const hasImage = mods.includes("IMAGE");
-      const hasText = mods.includes("TEXT");
-      return hasImage ? "multimodal" : hasText ? "text" : "text";
-    };
-
-    // Derive provider name from model ID prefix (for foundation models that lack the field)
-    const providerFromId = (id: string) => id.split(".")[0];
-
-    const rows: ModelRow[] = [];
-
-    // 1. Inference profiles — primary source for cross-region models (Claude, Nova, Llama, Pixtral…)
-    for (const [underlyingId, profile] of profileByModel.entries()) {
-      const seed = BEDROCK_PRICING[underlyingId];
-      const fm = foundationModels.find((m) => m.modelId === underlyingId);
-      const mods = fm?.inputModalities ?? ["TEXT"];
-      const provider = providerFromId(underlyingId);
-
-      rows.push({
-        id: `bedrock/${profile.inferenceProfileId}`,
-        providerSlug: "amazon-bedrock",
-        canonicalModelId: deriveCanonicalModelId(`bedrock/${profile.inferenceProfileId}`),
-        displayName: profile.inferenceProfileName ?? underlyingId,
-        modality: toModality(mods),
-        contextWindow: seed?.ctx ?? null,
-        inputPricePerMTokens: seed?.i != null ? seed.i.toFixed(6) : null,
-        outputPricePerMTokens: seed?.o != null ? seed.o.toFixed(6) : null,
-        tokensPerSecond: null,
-        syncSource: "provider_api",
-        isActive: true,
-        isNativeModel: provider === "amazon",
-        lastSyncedAt: now,
-      });
-    }
-
-    // 2. Foundation models NOT covered by any inference profile (embeddings, rerank, Qwen, etc.)
-    for (const m of foundationModels) {
-      const raw = m.modelId ?? "";
-      if (coveredByProfile.has(raw)) continue; // already included via profile above
-
-      const seed = BEDROCK_PRICING[raw];
-      const mods = m.inputModalities ?? [];
-
-      rows.push({
-        id: `bedrock/${raw}`,
-        providerSlug: "amazon-bedrock",
-        canonicalModelId: deriveCanonicalModelId(`bedrock/${raw}`),
-        displayName: m.modelName ?? raw,
-        modality: toModality(mods),
-        contextWindow: seed?.ctx ?? null,
-        inputPricePerMTokens: seed?.i != null ? seed.i.toFixed(6) : null,
-        outputPricePerMTokens: seed?.o != null ? seed.o.toFixed(6) : null,
-        tokensPerSecond: null,
-        syncSource: "provider_api",
-        isActive: m.modelLifecycle?.status !== "LEGACY",
-        isNativeModel: m.providerName === "Amazon",
-        lastSyncedAt: now,
-      });
-    }
-
-    console.log(
-      `  Bedrock: ${rows.length} rows (${profileByModel.size} inference profiles + ${rows.length - profileByModel.size} foundation models)`
-    );
-    return rows;
-  } catch (e) {
-    console.warn(`  Bedrock adapter failed: ${e}`);
-    return [];
   }
+
+  // Build a set of model IDs already covered by a profile
+  const coveredByProfile = new Set(profileByModel.keys());
+
+  // Derive modality from input modalities array
+  const toModality = (mods: string[]) => {
+    const hasImage = mods.includes("IMAGE");
+    const hasText = mods.includes("TEXT");
+    return hasImage ? "multimodal" : hasText ? "text" : "text";
+  };
+
+  // Derive provider name from model ID prefix (for foundation models that lack the field)
+  const providerFromId = (id: string) => id.split(".")[0];
+
+  const rows: ModelRow[] = [];
+
+  // 1. Inference profiles — primary source for cross-region models (Claude, Nova, Llama, Pixtral…)
+  for (const [underlyingId, profile] of profileByModel.entries()) {
+    const seed = BEDROCK_PRICING[underlyingId];
+    const fm = foundationModels.find((m) => m.modelId === underlyingId);
+    const mods = fm?.inputModalities ?? ["TEXT"];
+    const provider = providerFromId(underlyingId);
+
+    rows.push({
+      id: `bedrock/${profile.inferenceProfileId}`,
+      providerSlug: "amazon-bedrock",
+      canonicalModelId: deriveCanonicalModelId(`bedrock/${profile.inferenceProfileId}`),
+      displayName: profile.inferenceProfileName ?? underlyingId,
+      modality: toModality(mods),
+      contextWindow: seed?.ctx ?? null,
+      inputPricePerMTokens: toPricePerMTokens(seed?.i),
+      outputPricePerMTokens: toPricePerMTokens(seed?.o),
+      tokensPerSecond: null,
+      syncSource: "provider_api",
+      isActive: true,
+      isNativeModel: provider === "amazon",
+      lastSyncedAt: now,
+    });
+  }
+
+  // 2. Foundation models NOT covered by any inference profile (embeddings, rerank, Qwen, etc.)
+  for (const m of foundationModels) {
+    const raw = m.modelId ?? "";
+    if (coveredByProfile.has(raw)) continue; // already included via profile above
+
+    const seed = BEDROCK_PRICING[raw];
+    const mods = m.inputModalities ?? [];
+
+    rows.push({
+      id: `bedrock/${raw}`,
+      providerSlug: "amazon-bedrock",
+      canonicalModelId: deriveCanonicalModelId(`bedrock/${raw}`),
+      displayName: m.modelName ?? raw,
+      modality: toModality(mods),
+      contextWindow: seed?.ctx ?? null,
+      inputPricePerMTokens: toPricePerMTokens(seed?.i),
+      outputPricePerMTokens: toPricePerMTokens(seed?.o),
+      tokensPerSecond: null,
+      syncSource: "provider_api",
+      isActive: m.modelLifecycle?.status !== "LEGACY",
+      isNativeModel: m.providerName === "Amazon",
+      lastSyncedAt: now,
+    });
+  }
+
+  console.log(
+    `  Bedrock: ${rows.length} rows (${profileByModel.size} inference profiles + ${rows.length - profileByModel.size} foundation models)`
+  );
+  return rows;
 }

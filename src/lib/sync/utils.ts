@@ -96,6 +96,22 @@ export function deriveCanonicalModelId(rawId: string): string {
   return CANONICAL_ID_ALIASES[s] ?? s;
 }
 
+/**
+ * Upper bound for a plausible price per 1M tokens. Far above any real model
+ * and far below the numeric(12,6) column limit of 999999.999999.
+ */
+export const MAX_PRICE_PER_M_TOKENS = 10_000;
+
+/**
+ * Formats a price per 1M tokens for the numeric(12,6) price columns.
+ * Missing, non-finite, negative or implausibly high values (router
+ * placeholders, unit errors) become null, meaning "price unknown".
+ */
+export function toPricePerMTokens(value: number | null | undefined): string | null {
+  if (value == null || !Number.isFinite(value) || value < 0 || value > MAX_PRICE_PER_M_TOKENS) return null;
+  return value.toFixed(6);
+}
+
 export function normaliseModality(raw: string | undefined): string {
   if (!raw) return "text";
   if (raw.includes("image") || raw.includes("audio")) {

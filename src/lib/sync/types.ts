@@ -41,3 +41,8 @@ export interface SyncOptions {
   /** Log what would happen without writing to DB */
   dryRun?: boolean;
 }
+
+export interface SyncResult {
+  /** Adapters whose fetch or upsert failed, with the error that caused it */
+  failures: Array<{ adapter: string; error: unknown }>;
+}

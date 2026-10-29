@@ -6,7 +6,7 @@
  */
 
 import type { ModelRow } from "../types";
-import { normaliseModality, deriveCanonicalModelId } from "../utils";
+import { normaliseModality, deriveCanonicalModelId, toPricePerMTokens } from "../utils";
 
 // OpenRouter provider prefix → our provider slug
 export const OPENROUTER_PREFIX_TO_SLUG: Record<string, string> = {
@@ -77,8 +77,8 @@ export async function fetchOpenRouterModels(): Promise<ModelRow[]> {
       displayName: m.name,
       modality: normaliseModality(m.architecture?.modality),
       contextWindow: m.context_length ?? null,
-      inputPricePerMTokens: inputRaw != null ? (inputRaw * 1_000_000).toFixed(6) : null,
-      outputPricePerMTokens: outputRaw != null ? (outputRaw * 1_000_000).toFixed(6) : null,
+      inputPricePerMTokens: toPricePerMTokens(inputRaw != null ? inputRaw * 1_000_000 : null),
+      outputPricePerMTokens: toPricePerMTokens(outputRaw != null ? outputRaw * 1_000_000 : null),
       tokensPerSecond: null,
       syncSource: "openrouter",
       isActive: true,
