@@ -4,30 +4,12 @@ import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { useCallback, useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
 import {
-  filterStateFromSearchParams,
+  PRESET_FILTERS,
+  type PresetProfile,
   type FilterProfile,
   type FilterState,
   type ComplianceFilter,
 } from "@/lib/compliance";
-
-// Re-export so existing imports of FilterState/filterStateFromSearchParams from
-// this file keep working during the transition. The canonical source is now
-// compliance.ts (no "use client" boundary).
-export type { FilterState };
-export { filterStateFromSearchParams };
-
-// Preset profile definitions (matches PLAN.md)
-const PRESET_IDS: Exclude<FilterProfile, "custom" | null>[] = ["strict-eu", "eu-sccs", "no-training"];
-
-const PRESET_FILTERS: Record<Exclude<FilterProfile, "custom" | null>, ComplianceFilter> = {
-  "strict-eu": { euOnly: true, dpa: true, noTraining: true },
-  "eu-sccs": { dpa: true, sccs: true, noTraining: true },
-  "no-training": { noTraining: true },
-};
-
-const CUSTOM_TOGGLE_KEYS: (keyof ComplianceFilter)[] = ["euOnly", "dpa", "noTraining", "sccs"];
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 interface FilterBarProps {
   /** Active filter state — derived from URL params by parent */
@@ -44,7 +26,7 @@ export function FilterBar({ filterState }: FilterBarProps) {
   );
   const t = useTranslations("FilterBar");
 
-  const PRESETS: { id: Exclude<FilterProfile, "custom" | null>; label: string; filter: ComplianceFilter }[] = [
+  const PRESETS: { id: PresetProfile; label: string; filter: ComplianceFilter }[] = [
     { id: "strict-eu", label: t("presets.strictEu"), filter: PRESET_FILTERS["strict-eu"] },
     { id: "eu-sccs", label: t("presets.euSccs"), filter: PRESET_FILTERS["eu-sccs"] },
     { id: "no-training", label: t("presets.noTraining"), filter: PRESET_FILTERS["no-training"] },
@@ -133,10 +115,6 @@ export function FilterBar({ filterState }: FilterBarProps) {
       setProfile("custom");
     }
   };
-
-  // Suppress unused variable warnings for PRESET_IDS / CUSTOM_TOGGLE_KEYS
-  void PRESET_IDS;
-  void CUSTOM_TOGGLE_KEYS;
 
   return (
     <div>

@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://inference-docs.cerebras.ai",
   "apiDocsUrl": "https://inference-docs.cerebras.ai",
-  "logoPath": "/logos/cerebras.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

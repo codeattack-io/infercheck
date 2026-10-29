@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://github.com",
   "apiDocsUrl": "https://vercel.com/docs/ai-gateway",
-  "logoPath": "/logos/vercel-ai-gateway.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

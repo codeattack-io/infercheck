@@ -4,7 +4,6 @@
   "type": "cloud_platform",
   "website": "https://cloud.google.com/vertex-ai",
   "apiDocsUrl": "https://cloud.google.com/vertex-ai/generative-ai/docs/models",
-  "logoPath": "/logos/vertex.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

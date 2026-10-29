@@ -74,8 +74,8 @@ export function Nav() {
             </svg>
             {/* "Infer" in heading colour, "Check" in accent blue */}
             <span className="font-body text-[1.0625rem] font-semibold tracking-[-0.02em] leading-none">
-              <span style={{ color: "var(--color-text-primary)" }}>Infer</span>
-              <span style={{ color: "#1d4ed8" }}>Check</span>
+              <span className="text-text-primary">Infer</span>
+              <span className="text-accent">Check</span>
             </span>
           </Link>
 

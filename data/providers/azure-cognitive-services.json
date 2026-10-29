@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://learn.microsoft.com",
   "apiDocsUrl": "https://learn.microsoft.com/en-us/azure/ai-services/",
-  "logoPath": "/logos/azure-cognitive-services.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

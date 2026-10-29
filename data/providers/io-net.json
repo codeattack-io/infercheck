@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://io.net",
   "apiDocsUrl": "https://io.net/docs/guides/intelligence/api-keys-and-secrets",
-  "logoPath": "/logos/io-net.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://docs.venice.ai",
   "apiDocsUrl": "https://docs.venice.ai/",
-  "logoPath": "/logos/venice-ai.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://platform.inceptionlabs.ai",
   "apiDocsUrl": "https://docs.inceptionlabs.ai/",
-  "logoPath": "/logos/inception.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

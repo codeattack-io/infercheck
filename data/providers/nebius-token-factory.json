@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://nebius.com",
   "apiDocsUrl": "https://docs.tokenfactory.nebius.com/",
-  "logoPath": "/logos/nebius-token-factory.svg",
   "compliance": {
     "headquarters": "NL",
     "dataResidency": {

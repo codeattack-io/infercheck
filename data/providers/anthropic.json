@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://anthropic.com",
   "apiDocsUrl": "https://docs.anthropic.com/en/docs/about-claude/models",
-  "logoPath": "/logos/anthropic.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

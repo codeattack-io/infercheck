@@ -6,6 +6,8 @@
 // client components).
 
 import { useTranslations } from "next-intl";
+import { TIER_CLASSES, type ComplianceTier } from "@/lib/compliance";
+import type { Compliance } from "@/../data/schema";
 
 export type BadgeVariant =
   "eu-only" | "dpa" | "eu-sccs" | "no-training" | "trains-on-data" | "training-unknown" | "us-only" | "unverified";
@@ -15,39 +17,15 @@ interface ComplianceBadgeProps {
   size?: "sm" | "md";
 }
 
-const BADGE_STYLE: Record<BadgeVariant, { classes: string; dotClasses: string }> = {
-  "eu-only": {
-    classes: "bg-compliant-bg border-[#bbf7d0] text-[#15803d]",
-    dotClasses: "bg-compliant",
-  },
-  dpa: {
-    classes: "bg-compliant-bg border-[#bbf7d0] text-[#15803d]",
-    dotClasses: "bg-compliant",
-  },
-  "eu-sccs": {
-    classes: "bg-partial-bg border-[#fde68a] text-[#92400e]",
-    dotClasses: "bg-partial",
-  },
-  "no-training": {
-    classes: "bg-compliant-bg border-[#bbf7d0] text-[#15803d]",
-    dotClasses: "bg-compliant",
-  },
-  "trains-on-data": {
-    classes: "bg-noncompliant-bg border-[#fecaca] text-[#b91c1c]",
-    dotClasses: "bg-noncompliant",
-  },
-  "training-unknown": {
-    classes: "bg-unverified-bg border-[#e2e2de] text-[#6b7280]",
-    dotClasses: "bg-unverified",
-  },
-  "us-only": {
-    classes: "bg-noncompliant-bg border-[#fecaca] text-[#b91c1c]",
-    dotClasses: "bg-noncompliant",
-  },
-  unverified: {
-    classes: "bg-unverified-bg border-[#e2e2de] text-[#6b7280]",
-    dotClasses: "bg-unverified",
-  },
+const BADGE_TIER: Record<BadgeVariant, ComplianceTier> = {
+  "eu-only": "compliant",
+  dpa: "compliant",
+  "eu-sccs": "partial",
+  "no-training": "compliant",
+  "trains-on-data": "noncompliant",
+  "training-unknown": "unverified",
+  "us-only": "noncompliant",
+  unverified: "unverified",
 };
 
 const SIZE_CLASSES = {
@@ -69,19 +47,54 @@ export function ComplianceBadge({ variant, size = "md" }: ComplianceBadgeProps) 
     unverified: t("unverified"),
   };
 
-  const style = BADGE_STYLE[variant];
+  const tier = TIER_CLASSES[BADGE_TIER[variant]];
   const sz = SIZE_CLASSES[size];
 
   return (
     <span
       className={[
         "inline-flex items-center gap-[5px] border rounded font-medium font-body whitespace-nowrap leading-[1.4]",
-        style.classes,
+        tier.bg,
+        tier.border,
+        tier.text,
         sz.badge,
       ].join(" ")}
     >
-      <span className={["rounded-full shrink-0", style.dotClasses, sz.dot].join(" ")} aria-hidden="true" />
+      <span className={["rounded-full shrink-0", tier.dot, sz.dot].join(" ")} aria-hidden="true" />
       {LABEL_MAP[variant]}
     </span>
+  );
+}
+
+export function getBadgeVariants(compliance: Compliance): BadgeVariant[] {
+  const variants: BadgeVariant[] = [];
+  if (compliance.dataResidency.euOnly) {
+    variants.push("eu-only");
+  } else if (compliance.sccs) {
+    variants.push("eu-sccs");
+  }
+  if (compliance.dpa.available) variants.push("dpa");
+  const trains = compliance.dataUsage.trainsOnCustomerData;
+  variants.push(trains === true ? "trains-on-data" : trains === false ? "no-training" : "training-unknown");
+  return variants;
+}
+
+interface ComplianceBadgeListProps {
+  compliance: Compliance;
+  size?: "sm" | "md";
+  className?: string;
+}
+
+export function ComplianceBadgeList({
+  compliance,
+  size,
+  className = "flex flex-wrap gap-1",
+}: ComplianceBadgeListProps) {
+  return (
+    <div className={className}>
+      {getBadgeVariants(compliance).map((variant) => (
+        <ComplianceBadge key={variant} variant={variant} size={size} />
+      ))}
+    </div>
   );
 }

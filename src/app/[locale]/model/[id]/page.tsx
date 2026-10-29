@@ -17,39 +17,13 @@ import { db } from "@/lib/db";
 import { models } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
-import { getComplianceTier, isFullProvider } from "@/lib/compliance";
+import { getComplianceTier, isFullProvider, tierPillClasses, TIER_CLASSES } from "@/lib/compliance";
+import { formatContext, formatPrice } from "@/lib/format";
+import { BooleanRow } from "@/components/BooleanRow";
 import { VerificationLabel } from "@/components/VerificationLabel";
 import type { AnyProvider } from "@/lib/compliance";
-import { ComplianceBadge } from "@/components/ComplianceBadge";
+import { ComplianceBadgeList } from "@/components/ComplianceBadge";
 import type { ComplianceTier } from "@/lib/compliance";
-
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
-function formatPrice(val: string | null | undefined): string {
-  if (!val) return "—";
-  const n = parseFloat(val);
-  if (isNaN(n)) return "—";
-  if (n === 0) return "free";
-  if (n < 0.01) return `$${n.toFixed(4)}`;
-  if (n < 1) return `$${n.toFixed(3)}`;
-  return `$${n.toFixed(2)}`;
-}
-
-function formatContext(n: number | null): string {
-  if (!n) return "—";
-  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
-  if (n >= 1_000) return `${(n / 1_000).toFixed(0)}K`;
-  return `${n}`;
-}
-
-const TIER_STYLE: Record<ComplianceTier, { color: string; bg: string; border: string }> = {
-  compliant: { color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" },
-  partial: { color: "#92400e", bg: "#fffbeb", border: "#fde68a" },
-  noncompliant: { color: "#b91c1c", bg: "#fef2f2", border: "#fecaca" },
-  unverified: { color: "#6b7280", bg: "#f8f8f7", border: "#e2e2de" },
-};
-
-// ─── Metadata ─────────────────────────────────────────────────────────────────
 
 interface PageProps {
   params: Promise<{ locale: string; id: string }>;
@@ -96,8 +70,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-// ─── Page ──────────────────────────────────────────────────────────────────────
-
 export default async function ModelDetailPage({ params }: PageProps) {
   const { locale, id } = await params;
   setRequestLocale(locale);
@@ -114,11 +86,11 @@ export default async function ModelDetailPage({ params }: PageProps) {
 
   const t = await getTranslations("ModelPage");
 
-  const TIER_CONFIG: Record<ComplianceTier, { label: string; color: string; bg: string; border: string }> = {
-    compliant: { label: t("tiers.compliant"), ...TIER_STYLE.compliant },
-    partial: { label: t("tiers.partial"), ...TIER_STYLE.partial },
-    noncompliant: { label: t("tiers.noncompliant"), ...TIER_STYLE.noncompliant },
-    unverified: { label: t("tiers.unverified"), ...TIER_STYLE.unverified },
+  const tierLabel: Record<ComplianceTier, string> = {
+    compliant: t("tiers.compliant"),
+    partial: t("tiers.partial"),
+    noncompliant: t("tiers.noncompliant"),
+    unverified: t("tiers.unverified"),
   };
 
   const providerMap = new Map<string, AnyProvider>(allProviders.map((p) => [p.slug, getLocalizedProvider(p, locale)]));
@@ -185,26 +157,13 @@ export default async function ModelDetailPage({ params }: PageProps) {
           {modelRows.map((row) => {
             const provider = providerMap.get(row.providerSlug) ?? null;
             const tier = provider ? getComplianceTier(provider) : "unverified";
-            const tierCfg = TIER_CONFIG[tier];
+            const tierClasses = TIER_CLASSES[tier];
             const verified = provider !== null && isFullProvider(provider);
 
             return (
               <div
                 key={`${row.id}::${row.providerSlug}`}
-                className="bg-surface border border-border rounded"
-                // borderLeft is dynamic (tier color) — kept as style
-                style={{
-                  borderLeft: `3px solid ${
-                    tier === "compliant"
-                      ? "var(--color-compliant)"
-                      : tier === "partial"
-                        ? "var(--color-partial)"
-                        : tier === "noncompliant"
-                          ? "var(--color-noncompliant)"
-                          : "var(--color-unverified)"
-                  }`,
-                  padding: "20px 24px",
-                }}
+                className={`bg-surface border border-border border-l-[3px] ${tierClasses.accentBorder} rounded px-6 py-5`}
               >
                 {/* Card header */}
                 <div className="flex items-start justify-between gap-4 flex-wrap mb-4">
@@ -212,21 +171,11 @@ export default async function ModelDetailPage({ params }: PageProps) {
                     <div className="font-body text-base font-semibold text-text-primary mb-1">
                       {provider?.name ?? row.providerSlug}
                     </div>
-                    {/* Tier pill — colors are dynamic from tierCfg */}
                     <div
-                      className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-body text-xs font-medium border"
-                      style={{
-                        backgroundColor: tierCfg.bg,
-                        borderColor: tierCfg.border,
-                        color: tierCfg.color,
-                      }}
+                      className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-body text-xs font-medium border ${tierPillClasses(tier)}`}
                     >
-                      <span
-                        className="w-1.5 h-1.5 rounded-full shrink-0"
-                        style={{ backgroundColor: tierCfg.color }}
-                        aria-hidden="true"
-                      />
-                      {tierCfg.label}
+                      <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${tierClasses.dotInk}`} aria-hidden="true" />
+                      {tierLabel[tier]}
                     </div>
                   </div>
 
@@ -239,7 +188,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
                 </div>
 
                 {/* Detail grid */}
-                <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))" }}>
+                <div className="grid gap-4 grid-cols-[repeat(auto-fit,minmax(180px,1fr))]">
                   {/* Pricing */}
                   <DetailSection title={t("sections.pricing")}>
                     <DetailRow label={t("pricing.input")} value={formatPrice(row.inputPricePerMTokens)} mono />
@@ -251,15 +200,18 @@ export default async function ModelDetailPage({ params }: PageProps) {
                   {verified && provider !== null && isFullProvider(provider) ? (
                     <DetailSection title={t("sections.gdprCompliance")}>
                       <BooleanRow
+                        className="mb-1"
                         label={t("compliance.euDataResidency")}
                         value={provider.compliance.dataResidency.euOnly}
                       />
                       <BooleanRow
+                        className="mb-1"
                         label={t("compliance.dpaAvailable")}
                         value={provider.compliance.dpa.available}
                         href={provider.compliance.dpa.url ?? undefined}
                       />
                       <BooleanRow
+                        className="mb-1"
                         label={t("compliance.noTrainingOnData")}
                         value={
                           provider.compliance.dataUsage.trainsOnCustomerData === null
@@ -267,7 +219,11 @@ export default async function ModelDetailPage({ params }: PageProps) {
                             : !provider.compliance.dataUsage.trainsOnCustomerData
                         }
                       />
-                      <BooleanRow label={t("compliance.sccsInPlace")} value={provider.compliance.sccs ?? false} />
+                      <BooleanRow
+                        className="mb-1"
+                        label={t("compliance.sccsInPlace")}
+                        value={provider.compliance.sccs ?? false}
+                      />
                     </DetailSection>
                   ) : (
                     <DetailSection title={t("sections.gdprCompliance")}>
@@ -299,21 +255,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
                   {/* Badges */}
                   {verified && provider !== null && isFullProvider(provider) ? (
                     <DetailSection title={t("sections.complianceBadges")}>
-                      <div className="flex flex-wrap gap-1">
-                        {provider.compliance.dataResidency.euOnly ? (
-                          <ComplianceBadge variant="eu-only" />
-                        ) : provider.compliance.sccs ? (
-                          <ComplianceBadge variant="eu-sccs" />
-                        ) : null}
-                        {provider.compliance.dpa.available ? <ComplianceBadge variant="dpa" /> : null}
-                        {provider.compliance.dataUsage.trainsOnCustomerData === true ? (
-                          <ComplianceBadge variant="trains-on-data" />
-                        ) : provider.compliance.dataUsage.trainsOnCustomerData === false ? (
-                          <ComplianceBadge variant="no-training" />
-                        ) : (
-                          <ComplianceBadge variant="training-unknown" />
-                        )}
-                      </div>
+                      <ComplianceBadgeList compliance={provider.compliance} />
                       <p className="mt-2 mb-0">
                         <VerificationLabel provider={provider} className="font-mono text-xs text-text-muted" />
                       </p>
@@ -336,8 +278,6 @@ export default async function ModelDetailPage({ params }: PageProps) {
   );
 }
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
 function DetailSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
@@ -355,33 +295,6 @@ function DetailRow({ label, value, mono = false }: { label: string; value: strin
       <span className="font-body text-[0.8125rem] text-text-secondary shrink-0">{label}</span>
       <span className={`text-[0.8125rem] text-text-primary text-right ${mono ? "font-mono" : "font-body"}`}>
         {value}
-      </span>
-    </div>
-  );
-}
-
-function BooleanRow({ label, value, href }: { label: string; value: boolean | null; href?: string }) {
-  const positive = value === true;
-  const symbol = positive ? "✓" : value === false ? "✗" : "?";
-  const color = positive
-    ? "var(--color-compliant)"
-    : value === false
-      ? "var(--color-noncompliant)"
-      : "var(--color-text-muted)";
-
-  return (
-    <div className="flex items-center gap-2 mb-1">
-      <span className="font-mono text-[0.8125rem] w-3.5 text-center shrink-0" style={{ color }} aria-hidden="true">
-        {symbol}
-      </span>
-      <span className="font-body text-[0.8125rem] text-text-secondary">
-        {href ? (
-          <a href={href} target="_blank" rel="noopener noreferrer" className="text-link no-underline">
-            {label} ↗
-          </a>
-        ) : (
-          label
-        )}
       </span>
     </div>
   );

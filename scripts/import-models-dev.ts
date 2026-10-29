@@ -2,8 +2,8 @@
  * scripts/import-models-dev.ts
  *
  * Imports provider identity data from the models.dev GitHub repo (dev branch).
- * Fetches each provider's provider.toml and logo.svg, then generates stub JSON
- * files in data/providers/ and copies logos to public/logos/.
+ * Fetches each provider's provider.toml, then generates stub JSON files in
+ * data/providers/.
  *
  * Model catalog is NOT imported here — it is managed separately by the nightly
  * sync job (scripts/sync-models.ts → src/lib/sync/run.ts → Neon DB).
@@ -27,7 +27,6 @@ const API_BASE = `https://api.github.com/repos/${REPO_OWNER}/${REPO_NAME}`;
 
 const ROOT = new URL("..", import.meta.url).pathname.replace(/\/$/, "");
 const DATA_DIR = join(ROOT, "data", "providers");
-const LOGOS_DIR = join(ROOT, "public", "logos");
 
 const FORCE = process.argv.includes("--force");
 
@@ -57,8 +56,6 @@ const GATEWAY_DIR_NAMES = new Set([
   "portkey",
   "weights-biases",
 ]);
-
-// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function slugify(name: string): string {
   return name
@@ -119,11 +116,8 @@ interface ProviderToml {
   api?: string;
 }
 
-// ─── Main ─────────────────────────────────────────────────────────────────────
-
 async function main() {
   mkdirSync(DATA_DIR, { recursive: true });
-  mkdirSync(LOGOS_DIR, { recursive: true });
 
   console.log("Fetching provider list from models.dev...");
   const entries = await fetchJson<GitHubEntry[]>(`${API_BASE}/contents/providers?ref=${REPO_BRANCH}`);
@@ -172,17 +166,6 @@ async function main() {
       continue;
     }
 
-    // Copy logo
-    let logoPath: string | null = null;
-    const logoContent = await fetchText(`${rawBase}/logo.svg`);
-    if (logoContent) {
-      const logoFile = join(LOGOS_DIR, `${slug}.svg`);
-      if (!existsSync(logoFile) || FORCE) {
-        writeFileSync(logoFile, logoContent, "utf-8");
-      }
-      logoPath = `/logos/${slug}.svg`;
-    }
-
     // Derive website from doc URL (strip path)
     let website: string | null = null;
     if (parsed.doc) {
@@ -201,7 +184,6 @@ async function main() {
       type: isGateway ? "gateway" : "api_provider",
       website,
       apiDocsUrl: parsed.doc ?? null,
-      logoPath,
       compliance: null,
       pricingTier: null,
       lastVerified: null,

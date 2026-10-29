@@ -10,25 +10,15 @@
 import { useState, memo, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import { ComplianceBadge } from "@/components/ComplianceBadge";
+import { ComplianceBadge, ComplianceBadgeList } from "@/components/ComplianceBadge";
+import { GatewayPill } from "@/components/GatewayPill";
+import { BooleanRow } from "@/components/BooleanRow";
 import { VerificationLabel } from "@/components/VerificationLabel";
 import { getVerification } from "@/lib/verification";
-import { isFullProvider, getComplianceTier } from "@/lib/compliance";
+import { formatPrice } from "@/lib/format";
+import { isFullProvider, getComplianceTier, TIER_CLASSES } from "@/lib/compliance";
 import type { ModelWithProvider } from "@/components/types";
 import type { FuseResultMatch } from "fuse.js";
-
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
-function formatPrice(val: string | null | undefined): string {
-  if (!val) return "—";
-  const n = parseFloat(val);
-  if (isNaN(n)) return "—";
-  if (n === 0) return "free";
-  // Show up to 4 significant figures
-  if (n < 0.01) return `$${n.toFixed(4)}`;
-  if (n < 1) return `$${n.toFixed(3)}`;
-  return `$${n.toFixed(2)}`;
-}
 
 // Renders `text` with character ranges in `indices` wrapped in <mark>.
 // `fuseKey` is the Fuse field key to look for in `matches`, e.g. "model.displayName".
@@ -68,11 +58,7 @@ function highlightText(text: string, matches: readonly FuseResultMatch[] | undef
       nodes.push(text.slice(cursor, start));
     }
     nodes.push(
-      <mark
-        key={start}
-        className="bg-accent-subtle text-accent rounded-[2px] px-px font-bold"
-        style={{ font: "inherit" }}
-      >
+      <mark key={start} className="bg-accent-subtle text-accent rounded-[2px] px-px [font:inherit]">
         {text.slice(start, end + 1)}
       </mark>
     );
@@ -83,17 +69,6 @@ function highlightText(text: string, matches: readonly FuseResultMatch[] | undef
   }
   return <>{nodes}</>;
 }
-
-// ─── Tier color map ───────────────────────────────────────────────────────────
-
-const TIER_COLOR: Record<string, string> = {
-  compliant: "var(--color-compliant)",
-  partial: "var(--color-partial)",
-  noncompliant: "var(--color-noncompliant)",
-  unverified: "var(--color-unverified)",
-};
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 interface ModelRowProps {
   item: ModelWithProvider;
@@ -109,7 +84,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
   const t = useTranslations("ModelRow");
 
   const tier = provider ? getComplianceTier(provider) : "unverified";
-  const tierColor = TIER_COLOR[tier];
+  const accentBorder = TIER_CLASSES[tier].accentBorder;
 
   const providerName = provider?.name ?? model.providerSlug;
   const isVerified = provider ? isFullProvider(provider) : false;
@@ -118,10 +93,9 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
     <>
       {/* Main row — opacity, borderLeft, backgroundColor are dynamic */}
       <tr
-        className="cursor-pointer transition-opacity duration-150 ease-in-out"
+        className={`cursor-pointer transition-opacity duration-150 ease-in-out border-l-2 ${accentBorder}`}
         style={{
           opacity: dimmed ? 0.35 : 1,
-          borderLeft: `2px solid ${tierColor}`,
           backgroundColor: expanded
             ? "var(--color-surface-alt)"
             : hovered
@@ -140,17 +114,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
               {highlightText(model.displayName, matches, "model.displayName")}
             </span>
             {!model.isNativeModel ? (
-              <span
-                className="inline-flex items-center gap-[5px] px-[7px] py-px font-body text-[0.6875rem] font-medium rounded border whitespace-nowrap"
-                style={{
-                  color: "var(--color-partial)",
-                  borderColor: "var(--color-partial)",
-                  backgroundColor: "color-mix(in srgb, var(--color-partial) 8%, transparent)",
-                }}
-                title={`This model is made by a third party and hosted via ${providerName}`}
-              >
-                via gateway
-              </span>
+              <GatewayPill title={`This model is made by a third party and hosted via ${providerName}`} />
             ) : null}
           </div>
           <div className="font-body text-[0.8125rem] text-text-secondary mt-0.5">
@@ -161,21 +125,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
         {/* Compliance column */}
         <td className="p-3 px-4 align-middle hidden sm:table-cell">
           {isVerified && provider !== null && isFullProvider(provider) ? (
-            <div className="flex flex-wrap gap-1">
-              {provider.compliance.dataResidency.euOnly ? (
-                <ComplianceBadge variant="eu-only" size="sm" />
-              ) : provider.compliance.sccs ? (
-                <ComplianceBadge variant="eu-sccs" size="sm" />
-              ) : null}
-              {provider.compliance.dpa.available ? <ComplianceBadge variant="dpa" size="sm" /> : null}
-              {provider.compliance.dataUsage.trainsOnCustomerData === true ? (
-                <ComplianceBadge variant="trains-on-data" size="sm" />
-              ) : provider.compliance.dataUsage.trainsOnCustomerData === false ? (
-                <ComplianceBadge variant="no-training" size="sm" />
-              ) : (
-                <ComplianceBadge variant="training-unknown" size="sm" />
-              )}
-            </div>
+            <ComplianceBadgeList compliance={provider.compliance} size="sm" />
           ) : (
             <ComplianceBadge variant="unverified" size="sm" />
           )}
@@ -231,12 +181,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
 
       {/* Inline expand panel — per DESIGN.md, no modals */}
       {expanded ? (
-        <tr
-          style={{
-            backgroundColor: "var(--color-surface-alt)",
-            borderLeft: `2px solid ${tierColor}`,
-          }}
-        >
+        <tr className={`bg-surface-alt border-l-2 ${accentBorder}`}>
           <td colSpan={6} className="p-0">
             <div className="px-4 pt-3.5 pb-[18px] border-t border-border">
               {/* Header row: provider name + profile link prominently together */}
@@ -266,14 +211,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
 
               {/* Gateway notice — full width, shown before the compliance grid */}
               {!model.isNativeModel ? (
-                <div
-                  className="rounded px-3.5 py-2.5 border font-body text-[0.8125rem] leading-[1.5] mb-4"
-                  style={{
-                    color: "var(--color-partial)",
-                    borderColor: "var(--color-partial)",
-                    backgroundColor: "color-mix(in srgb, var(--color-partial) 6%, transparent)",
-                  }}
-                >
+                <div className="rounded px-3.5 py-2.5 border font-body text-[0.8125rem] leading-[1.5] mb-4 text-partial border-partial bg-[color-mix(in_srgb,var(--color-partial)_6%,transparent)]">
                   <span className="font-semibold">Third-party model hosted via {providerName}.</span> This model is made
                   by another company but served through {providerName}&apos;s infrastructure. The compliance properties
                   shown here reflect <span className="font-semibold">{providerName}</span>&apos;s data handling — not
@@ -282,7 +220,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
               ) : null}
 
               {/* Compliance detail grid */}
-              <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))" }}>
+              <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(200px,1fr))]">
                 {isVerified && provider !== null && isFullProvider(provider) ? (
                   <>
                     <div>
@@ -290,16 +228,16 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                         {t("expandSections.compliance")}
                       </div>
                       <div className="flex flex-col gap-1.5">
-                        <ComplianceField
+                        <BooleanRow
                           label={t("complianceFields.euDataResidency")}
                           value={provider.compliance.dataResidency.euOnly}
                         />
-                        <ComplianceField
+                        <BooleanRow
                           label={t("complianceFields.dpaAvailable")}
                           value={provider.compliance.dpa.available}
                           href={provider.compliance.dpa.url ?? undefined}
                         />
-                        <ComplianceField
+                        <BooleanRow
                           label={
                             provider.compliance.dataUsage.trainsOnCustomerData === true
                               ? t("complianceFields.trainsOnCustomerData")
@@ -311,7 +249,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                               : !provider.compliance.dataUsage.trainsOnCustomerData
                           }
                         />
-                        <ComplianceField
+                        <BooleanRow
                           label={t("complianceFields.sccsInPlace")}
                           value={provider.compliance.sccs ?? false}
                         />
@@ -319,7 +257,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                     </div>
 
                     {provider.compliance.dataResidency.euRegionDetails ? (
-                      <div style={{ gridColumn: "span 2" }}>
+                      <div className="col-span-2">
                         <div className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] mb-2">
                           {t("expandSections.euRouting")}
                         </div>
@@ -347,40 +285,3 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
 export const ModelRow = memo(ModelRowInner, (prev, next) => {
   return prev.item === next.item && prev.dimmed === next.dimmed && prev.matches === next.matches;
 });
-
-// ─── ComplianceField helper ───────────────────────────────────────────────────
-
-function ComplianceField({ label, value, href }: { label: string; value: boolean | null; href?: string }) {
-  const positive = value === true;
-  const negative = value === false;
-
-  const symbol = positive ? "✓" : negative ? "✗" : "?";
-  const color = positive
-    ? "var(--color-compliant)"
-    : negative
-      ? "var(--color-noncompliant)"
-      : "var(--color-text-muted)";
-
-  return (
-    <div className="flex items-center gap-2">
-      <span className="font-mono text-[0.8125rem] w-3.5 text-center shrink-0" style={{ color }} aria-hidden="true">
-        {symbol}
-      </span>
-      <span className="font-body text-[0.8125rem] text-text-secondary">
-        {href ? (
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="text-link no-underline"
-          >
-            {label} ↗
-          </a>
-        ) : (
-          label
-        )}
-      </span>
-    </div>
-  );
-}

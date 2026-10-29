@@ -25,11 +25,14 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import Fuse, { type FuseResultMatch, type Expression } from "fuse.js";
 import { useTranslations } from "next-intl";
 import { ModelRow } from "@/components/ModelRow";
-import { providerMatchesFilter, filterStateFromSearchParams, getComplianceTier } from "@/lib/compliance";
+import {
+  PRESET_FILTERS,
+  providerMatchesFilter,
+  filterStateFromSearchParams,
+  getComplianceTier,
+} from "@/lib/compliance";
 import type { ModelWithProvider } from "@/components/types";
 import type { AnyProvider } from "@/lib/compliance";
-
-// ─── Fuse config ──────────────────────────────────────────────────────────────
 
 // Keys searched; displayName weighted highest since it's what users type.
 // We do NOT use useTokenSearch — it splits on whitespace and matches each
@@ -106,8 +109,6 @@ function buildFuseQuery(raw: string): string | Expression {
   } as Expression;
 }
 
-// ─── Sort ──────────────────────────────────────────────────────────────────────
-
 export type SortKey = "compliance" | "price" | "provider" | "default";
 export type SortDir = "asc" | "desc";
 
@@ -157,8 +158,6 @@ function rowKey(item: ModelWithProvider): string {
   return `${item.model.id}::${item.model.providerSlug}`;
 }
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 interface ModelTableProps {
   items: ModelWithProvider[];
   /** Initial search query from URL — used only at mount, never synced back */
@@ -207,12 +206,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
   const activeFilter = useMemo(() => {
     if (!filterState.profile || filterState.profile === null) return null;
     if (filterState.profile === "custom") return filterState.custom;
-    const profileFilters: Record<string, ReturnType<typeof filterStateFromSearchParams>["custom"]> = {
-      "strict-eu": { euOnly: true, dpa: true, noTraining: true },
-      "eu-sccs": { dpa: true, sccs: true, noTraining: true },
-      "no-training": { noTraining: true },
-    };
-    return profileFilters[filterState.profile] ?? null;
+    return PRESET_FILTERS[filterState.profile] ?? null;
   }, [filterState]);
 
   // Build Fuse index once per items change — O(n) cost paid on data change, not per keystroke
@@ -369,7 +363,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}
-                  style={{ width: "25%" }}
+                  className="w-[25%]"
                 />
                 <SortableTh
                   label={t("columns.compliance")}
@@ -377,8 +371,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}
-                  className="hidden sm:table-cell"
-                  style={{ width: "26%" }}
+                  className="hidden sm:table-cell w-[26%]"
                 />
                 <SortableTh
                   label={t("columns.residency")}
@@ -386,8 +379,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}
-                  className="hidden md:table-cell"
-                  style={{ width: "15%" }}
+                  className="hidden md:table-cell w-[15%]"
                   nonSortable
                 />
                 <SortableTh
@@ -396,8 +388,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}
-                  className="hidden lg:table-cell"
-                  style={{ width: "15%" }}
+                  className="hidden lg:table-cell w-[15%]"
                 />
                 <SortableTh
                   label={t("columns.status")}
@@ -405,11 +396,10 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}
-                  className="hidden xl:table-cell"
-                  style={{ width: "14%" }}
+                  className="hidden xl:table-cell w-[14%]"
                   nonSortable
                 />
-                <th style={{ width: "5%" }} aria-hidden="true" />
+                <th className="w-[5%]" aria-hidden="true" />
               </tr>
             </thead>
             <tbody>
@@ -434,8 +424,6 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
   );
 }
 
-// ─── SortableTh ───────────────────────────────────────────────────────────────
-
 interface SortableThProps {
   label: string;
   sortKey: SortKey;
@@ -443,7 +431,6 @@ interface SortableThProps {
   sortDir: SortDir;
   onSort: (key: SortKey) => void;
   className?: string;
-  style?: React.CSSProperties;
   nonSortable?: boolean;
 }
 
@@ -454,7 +441,6 @@ function SortableTh({
   sortDir,
   onSort,
   className,
-  style,
   nonSortable = false,
 }: SortableThProps) {
   const isActive = !nonSortable && activeSortKey === sortKey;
@@ -469,7 +455,6 @@ function SortableTh({
       ]
         .filter(Boolean)
         .join(" ")}
-      style={style}
     >
       {nonSortable ? (
         label

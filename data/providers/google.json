@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://ai.google.dev",
   "apiDocsUrl": "https://ai.google.dev/api",
-  "logoPath": "/logos/google.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

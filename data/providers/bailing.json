@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://alipaytbox.yuque.com",
   "apiDocsUrl": "https://help.aliyun.com/zh/model-studio/applicantion-api-reference/",
-  "logoPath": "/logos/bailing.svg",
   "compliance": {
     "headquarters": "SG",
     "dataResidency": {

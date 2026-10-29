@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://docs.aihubmix.com",
   "apiDocsUrl": "https://docs.aihubmix.com/en",
-  "logoPath": "/logos/aihubmix.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

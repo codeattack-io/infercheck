@@ -15,13 +15,13 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getProvider, getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import { getModelsByProvider } from "@/lib/models";
-import { getComplianceTier, isFullProvider } from "@/lib/compliance";
+import { getComplianceTier, isFullProvider, tierPillClasses, TIER_CLASSES } from "@/lib/compliance";
 import { getVerification } from "@/lib/verification";
 import type { ComplianceTier } from "@/lib/compliance";
-import { ComplianceBadge } from "@/components/ComplianceBadge";
+import { ComplianceBadgeList } from "@/components/ComplianceBadge";
+import { GatewayPill } from "@/components/GatewayPill";
+import { BooleanRow } from "@/components/BooleanRow";
 import { ProviderModelRow } from "@/components/ProviderModelRow";
-
-// ─── Static params (prerender all known providers × locales) ──────────────────
 
 export async function generateStaticParams() {
   const providers = getAllProviders();
@@ -31,8 +31,6 @@ export async function generateStaticParams() {
 // server-cache-react: wrap the synchronous fs read so generateMetadata and the
 // page body share one parse result within the same request context.
 const getCachedProvider = cache((slug: string) => getProvider(slug));
-
-// ─── Metadata ─────────────────────────────────────────────────────────────────
 
 interface PageProps {
   params: Promise<{ locale: string; slug: string }>;
@@ -84,30 +82,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
-const TIER_STYLE: Record<ComplianceTier, { color: string; bg: string; border: string }> = {
-  compliant: { color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" },
-  partial: { color: "#92400e", bg: "#fffbeb", border: "#fde68a" },
-  noncompliant: { color: "#b91c1c", bg: "#fef2f2", border: "#fecaca" },
-  unverified: { color: "#6b7280", bg: "#f8f8f7", border: "#e2e2de" },
-};
-
-const TIER_BORDER: Record<ComplianceTier, string> = {
-  compliant: "var(--color-compliant)",
-  partial: "var(--color-partial)",
-  noncompliant: "var(--color-noncompliant)",
-  unverified: "var(--color-unverified)",
-};
-
-// EU AI Act status pill — color depends on status string at runtime
-function euAiActStyle(status: string): { color: string; bg: string; border: string } {
-  if (status === "compliant") return { color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" };
-  if (status === "monitoring") return { color: "#92400e", bg: "#fffbeb", border: "#fde68a" };
-  return { color: "#6b7280", bg: "#f8f8f7", border: "#e2e2de" };
+function euAiActTier(status: string): ComplianceTier {
+  if (status === "compliant") return "compliant";
+  if (status === "monitoring") return "partial";
+  return "unverified";
 }
-
-// ─── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function ProviderProfilePage({ params }: PageProps) {
   const { locale, slug } = await params;
@@ -124,16 +103,15 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
   const t = await getTranslations("ProviderPage");
 
-  const TIER_CONFIG: Record<ComplianceTier, { label: string; color: string; bg: string; border: string }> = {
-    compliant: { label: t("tiers.compliant"), ...TIER_STYLE.compliant },
-    partial: { label: t("tiers.partial"), ...TIER_STYLE.partial },
-    noncompliant: { label: t("tiers.noncompliant"), ...TIER_STYLE.noncompliant },
-    unverified: { label: t("tiers.unverified"), ...TIER_STYLE.unverified },
+  const tierLabel: Record<ComplianceTier, string> = {
+    compliant: t("tiers.compliant"),
+    partial: t("tiers.partial"),
+    noncompliant: t("tiers.noncompliant"),
+    unverified: t("tiers.unverified"),
   };
 
   const tier = getComplianceTier(provider);
-  const tierCfg = TIER_CONFIG[tier];
-  const tierBorder = TIER_BORDER[tier];
+  const tierClasses = TIER_CLASSES[tier];
   const verified = isFullProvider(provider);
   const verification = getVerification(provider);
 
@@ -192,17 +170,11 @@ export default async function ProviderProfilePage({ params }: PageProps) {
               {provider.name}
             </h1>
             <div className="flex items-center gap-[10px] flex-wrap">
-              {/* Tier pill — colors are dynamic from tierCfg */}
               <span
-                className="inline-flex items-center gap-1.5 px-[10px] py-[3px] rounded font-body text-[0.8125rem] font-medium border"
-                style={{ backgroundColor: tierCfg.bg, borderColor: tierCfg.border, color: tierCfg.color }}
+                className={`inline-flex items-center gap-1.5 px-[10px] py-[3px] rounded font-body text-[0.8125rem] font-medium border ${tierPillClasses(tier)}`}
               >
-                <span
-                  className="w-[7px] h-[7px] rounded-full shrink-0"
-                  style={{ backgroundColor: tierCfg.color }}
-                  aria-hidden="true"
-                />
-                {tierCfg.label}
+                <span className={`w-[7px] h-[7px] rounded-full shrink-0 ${tierClasses.dotInk}`} aria-hidden="true" />
+                {tierLabel[tier]}
               </span>
 
               {/* Provider type */}
@@ -252,8 +224,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
           {/* ── Compliance card ── */}
           {verified ? (
             <section
-              className="bg-surface border border-border rounded px-6 py-5"
-              style={{ borderLeft: `3px solid ${tierBorder}` }}
+              className={`bg-surface border border-border border-l-[3px] ${tierClasses.accentBorder} rounded px-6 py-5`}
               aria-labelledby="compliance-heading"
             >
               <h2
@@ -264,11 +235,13 @@ export default async function ProviderProfilePage({ params }: PageProps) {
               </h2>
 
               <div className="flex flex-col gap-[10px]">
-                <ComplianceRow
+                <BooleanRow
+                  size="md"
                   label={t("compliance.euOnlyResidency")}
                   value={provider.compliance.dataResidency.euOnly}
                 />
-                <ComplianceRow
+                <BooleanRow
+                  size="md"
                   label={t("compliance.inferenceStaysInEu")}
                   value={
                     provider.compliance.dataResidency.dataLeavesEuAtInference === null
@@ -277,7 +250,8 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   }
                   note={provider.compliance.dataResidency.dataLeavesEuAtInference === null ? "unknown" : undefined}
                 />
-                <ComplianceRow
+                <BooleanRow
+                  size="md"
                   label={t("compliance.dpa")}
                   value={provider.compliance.dpa.available}
                   href={provider.compliance.dpa.url ?? undefined}
@@ -287,7 +261,8 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                       : undefined
                   }
                 />
-                <ComplianceRow
+                <BooleanRow
+                  size="md"
                   label={t("compliance.noTraining")}
                   value={
                     provider.compliance.dataUsage.trainsOnCustomerData === null
@@ -295,34 +270,23 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                       : !provider.compliance.dataUsage.trainsOnCustomerData
                   }
                 />
-                <ComplianceRow label={t("compliance.optOut")} value={provider.compliance.dataUsage.optOutAvailable} />
-                <ComplianceRow label={t("compliance.sccs")} value={provider.compliance.sccs} />
-                <ComplianceRow label={t("compliance.adequacy")} value={provider.compliance.adequacyDecision} />
+                <BooleanRow
+                  size="md"
+                  label={t("compliance.optOut")}
+                  value={provider.compliance.dataUsage.optOutAvailable}
+                />
+                <BooleanRow size="md" label={t("compliance.sccs")} value={provider.compliance.sccs} />
+                <BooleanRow size="md" label={t("compliance.adequacy")} value={provider.compliance.adequacyDecision} />
               </div>
 
               {/* Compliance badges */}
               <div className="mt-4 pt-4 border-t border-border">
-                <div className="flex flex-wrap gap-1.5">
-                  {provider.compliance.dataResidency.euOnly ? (
-                    <ComplianceBadge variant="eu-only" />
-                  ) : provider.compliance.sccs ? (
-                    <ComplianceBadge variant="eu-sccs" />
-                  ) : null}
-                  {provider.compliance.dpa.available ? <ComplianceBadge variant="dpa" /> : null}
-                  {provider.compliance.dataUsage.trainsOnCustomerData === true ? (
-                    <ComplianceBadge variant="trains-on-data" />
-                  ) : provider.compliance.dataUsage.trainsOnCustomerData === false ? (
-                    <ComplianceBadge variant="no-training" />
-                  ) : (
-                    <ComplianceBadge variant="training-unknown" />
-                  )}
-                </div>
+                <ComplianceBadgeList compliance={provider.compliance} className="flex flex-wrap gap-1.5" />
               </div>
             </section>
           ) : (
             <section
-              className="bg-surface border border-border rounded px-6 py-5"
-              style={{ borderLeft: `3px solid ${tierBorder}` }}
+              className={`bg-surface border border-border border-l-[3px] ${tierClasses.accentBorder} rounded px-6 py-5`}
             >
               <h2 className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-3">
                 {t("sections.gdprCompliance")}
@@ -458,13 +422,8 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1.5">
                   {t("certs.euAiActStatus")}
                 </div>
-                {/* EU AI Act status pill — color depends on status string — kept as style */}
                 <span
-                  className="inline-block font-body text-[0.8125rem] font-medium rounded px-2 py-0.5 mb-1.5 border"
-                  style={(() => {
-                    const s = euAiActStyle(provider.compliance.euAiAct.status);
-                    return { color: s.color, backgroundColor: s.bg, borderColor: s.border };
-                  })()}
+                  className={`inline-block font-body text-[0.8125rem] font-medium rounded px-2 py-0.5 mb-1.5 border ${tierPillClasses(euAiActTier(provider.compliance.euAiAct.status))}`}
                 >
                   {provider.compliance.euAiAct.status.replace(/_/g, " ")}
                 </span>
@@ -577,16 +536,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   <span className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em]">
                     {t("models.gatewayHeading")}
                   </span>
-                  <span
-                    className="inline-flex items-center gap-[5px] px-[7px] py-px font-body text-[0.6875rem] font-medium rounded border whitespace-nowrap"
-                    style={{
-                      color: "var(--color-partial)",
-                      borderColor: "var(--color-partial)",
-                      backgroundColor: "color-mix(in srgb, var(--color-partial) 8%, transparent)",
-                    }}
-                  >
-                    via gateway
-                  </span>
+                  <GatewayPill />
                 </div>
                 <p className="font-body text-[0.8125rem] text-text-secondary mt-0 mb-3 leading-[1.5]">
                   {t("models.gatewayNote", { providerName: provider.name })}
@@ -608,8 +558,6 @@ export default async function ProviderProfilePage({ params }: PageProps) {
   );
 }
 
-// ─── Small helper components ──────────────────────────────────────────────────
-
 function ModelsTable({
   models: rows,
   t,
@@ -622,8 +570,9 @@ function ModelsTable({
 }) {
   return (
     <div
-      className="border border-border rounded overflow-hidden"
-      style={gateway ? { borderColor: "color-mix(in srgb, var(--color-partial) 35%, var(--color-border))" } : undefined}
+      className={`border rounded overflow-hidden ${
+        gateway ? "border-[color-mix(in_srgb,var(--color-partial)_35%,var(--color-border))]" : "border-border"
+      }`}
     >
       <div className="overflow-x-auto">
         <table className="w-full border-collapse bg-surface">
@@ -651,49 +600,6 @@ function ModelsTable({
             ))}
           </tbody>
         </table>
-      </div>
-    </div>
-  );
-}
-
-function ComplianceRow({
-  label,
-  value,
-  href,
-  secondary,
-  note,
-}: {
-  label: string;
-  value: boolean | null;
-  href?: string;
-  secondary?: string;
-  note?: string;
-}) {
-  const positive = value === true;
-  const symbol = positive ? "✓" : value === false ? "✗" : "?";
-  const color = positive
-    ? "var(--color-compliant)"
-    : value === false
-      ? "var(--color-noncompliant)"
-      : "var(--color-text-muted)";
-
-  return (
-    <div className="flex items-start gap-[10px]">
-      <span className="font-mono text-[0.875rem] w-3.5 text-center shrink-0 mt-px" style={{ color }} aria-hidden="true">
-        {symbol}
-      </span>
-      <div>
-        <span className="font-body text-[0.875rem] text-text-secondary">
-          {href ? (
-            <a href={href} target="_blank" rel="noopener noreferrer" className="text-link no-underline">
-              {label} ↗
-            </a>
-          ) : (
-            label
-          )}
-        </span>
-        {secondary ? <span className="font-body text-xs text-text-muted ml-1.5">({secondary})</span> : null}
-        {note ? <span className="font-body text-xs text-text-muted italic ml-1.5">{note}</span> : null}
       </div>
     </div>
   );

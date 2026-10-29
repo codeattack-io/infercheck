@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://kilo.ai",
   "apiDocsUrl": "https://kilo.ai/docs/gateway/authentication",
-  "logoPath": "/logos/kilo-gateway.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

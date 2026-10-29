@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://www.stackit.de/en/",
   "apiDocsUrl": "https://docs.stackit.cloud/products/data-and-ai/ai-model-serving/basics/available-shared-models",
-  "logoPath": "/logos/stackit.svg",
   "compliance": {
     "headquarters": "DE",
     "dataResidency": {

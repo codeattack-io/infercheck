@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://platform.moonshot.ai",
   "apiDocsUrl": "https://platform.moonshot.ai/docs/overview",
-  "logoPath": "/logos/moonshot-ai.svg",
   "compliance": {
     "headquarters": "SG",
     "dataResidency": {

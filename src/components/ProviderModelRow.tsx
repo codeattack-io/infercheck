@@ -6,27 +6,8 @@
 import { useState } from "react";
 import { useRouter } from "@/i18n/navigation";
 import type { Model } from "@/db/schema";
-
-// ─── Helpers (duplicated from provider page to keep this component self-contained) ─
-
-function formatPrice(val: string | null | undefined): string {
-  if (!val) return "—";
-  const n = parseFloat(val);
-  if (isNaN(n)) return "—";
-  if (n === 0) return "free";
-  if (n < 0.01) return `$${n.toFixed(4)}`;
-  if (n < 1) return `$${n.toFixed(3)}`;
-  return `$${n.toFixed(2)}`;
-}
-
-function formatContext(ctx: number | null): string {
-  if (!ctx) return "—";
-  if (ctx >= 1_000_000) return `${(ctx / 1_000_000).toFixed(1)}M`;
-  if (ctx >= 1_000) return `${(ctx / 1_000).toFixed(0)}K`;
-  return `${ctx}`;
-}
-
-// ─── Component ────────────────────────────────────────────────────────────────
+import { GatewayPill } from "@/components/GatewayPill";
+import { formatContext, formatPrice } from "@/lib/format";
 
 interface ProviderModelRowProps {
   model: Model;
@@ -59,18 +40,7 @@ export function ProviderModelRow({ model: m, gateway = false }: ProviderModelRow
       <td className="px-4 py-[10px]">
         <div className="flex items-center gap-2 flex-wrap">
           <span className="font-body text-[0.875rem] font-medium text-text-primary">{m.displayName}</span>
-          {gateway ? (
-            <span
-              className="inline-flex items-center px-[6px] py-px font-body text-[0.625rem] font-medium rounded border whitespace-nowrap"
-              style={{
-                color: "var(--color-partial)",
-                borderColor: "var(--color-partial)",
-                backgroundColor: "color-mix(in srgb, var(--color-partial) 8%, transparent)",
-              }}
-            >
-              via gateway
-            </span>
-          ) : null}
+          {gateway ? <GatewayPill size="sm" /> : null}
         </div>
         <div className="font-mono text-xs text-text-muted mt-0.5">{m.id}</div>
       </td>

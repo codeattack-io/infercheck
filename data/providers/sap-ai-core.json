@@ -4,7 +4,6 @@
   "type": "cloud_platform",
   "website": "https://www.sap.com/products/artificial-intelligence/ai-core.html",
   "apiDocsUrl": "https://help.sap.com/docs/sap-ai-core",
-  "logoPath": null,
   "compliance": {
     "headquarters": "DE",
     "dataResidency": {

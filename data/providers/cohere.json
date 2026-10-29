@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://cohere.com",
   "apiDocsUrl": "https://docs.cohere.com/docs/models",
-  "logoPath": "/logos/cohere.svg",
   "compliance": {
     "headquarters": "CA",
     "dataResidency": {

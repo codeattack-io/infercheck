@@ -5,14 +5,10 @@ import { ProviderSchema, ProviderStubSchema } from "@/../data/schema";
 import type { Provider, ProviderStub, AnyProvider } from "@/../data/schema";
 import { isFullProvider } from "@/lib/compliance";
 
-// ─── Types ────────────────────────────────────────────────────────────────────
-
 export type { Provider, ProviderStub, AnyProvider };
 
 // Re-export types that client components need from compliance.ts
 export type { ComplianceTier, ComplianceFilter, FilterProfile } from "@/lib/compliance";
-
-// ─── File loading ─────────────────────────────────────────────────────────────
 
 const PROVIDERS_DIR = path.join(process.cwd(), "data", "providers");
 
@@ -53,13 +49,6 @@ export function getAllProviders(): AnyProvider[] {
     const p = getProvider(slug);
     return p ? [p] : [];
   });
-}
-
-/**
- * Get only fully verified providers (those that pass the full ProviderSchema).
- */
-export function getFullProviders(): Provider[] {
-  return getAllProviders().filter(isFullProvider);
 }
 
 /**

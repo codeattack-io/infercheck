@@ -6,13 +6,11 @@ import { cache } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ProviderCard } from "@/components/ProviderCard";
 import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
-import { getComplianceTier } from "@/lib/compliance";
+import { getComplianceTier, TIER_CLASSES } from "@/lib/compliance";
 import type { AnyProvider, ComplianceTier } from "@/lib/compliance";
 import { db } from "@/lib/db";
 import { models } from "@/db/schema";
 import { eq, sql } from "drizzle-orm";
-
-// ─── Metadata ─────────────────────────────────────────────────────────────────
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
@@ -36,8 +34,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-// ─── Data fetching ────────────────────────────────────────────────────────────
-
 const getModelCountsByProvider = cache(async (): Promise<Map<string, number>> => {
   const rows = await db
     .select({
@@ -51,18 +47,7 @@ const getModelCountsByProvider = cache(async (): Promise<Map<string, number>> =>
   return new Map(rows.map((r) => [r.providerSlug, r.count]));
 });
 
-// ─── Tier grouping config ──────────────────────────────────────────────────────
-
 const TIER_ORDER: ComplianceTier[] = ["compliant", "partial", "noncompliant", "unverified"];
-
-const TIER_COLOR: Record<ComplianceTier, string> = {
-  compliant: "var(--color-compliant)",
-  partial: "var(--color-partial)",
-  noncompliant: "var(--color-noncompliant)",
-  unverified: "var(--color-unverified)",
-};
-
-// ─── JSON-LD ──────────────────────────────────────────────────────────────────
 
 function buildJsonLd(allProviders: AnyProvider[]) {
   return {
@@ -85,8 +70,6 @@ function buildJsonLd(allProviders: AnyProvider[]) {
     })),
   };
 }
-
-// ─── Page ──────────────────────────────────────────────────────────────────────
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -123,27 +106,11 @@ export default async function ProvidersPage({ params }: PageProps) {
   const jsonLd = buildJsonLd(allProviders);
 
   // Build tier meta with translated strings
-  const TIER_META: Record<ComplianceTier, { label: string; description: string; color: string }> = {
-    compliant: {
-      label: t("tiers.compliant.label"),
-      description: t("tiers.compliant.description"),
-      color: TIER_COLOR.compliant,
-    },
-    partial: {
-      label: t("tiers.partial.label"),
-      description: t("tiers.partial.description"),
-      color: TIER_COLOR.partial,
-    },
-    noncompliant: {
-      label: t("tiers.noncompliant.label"),
-      description: t("tiers.noncompliant.description"),
-      color: TIER_COLOR.noncompliant,
-    },
-    unverified: {
-      label: t("tiers.unverified.label"),
-      description: t("tiers.unverified.description"),
-      color: TIER_COLOR.unverified,
-    },
+  const TIER_META: Record<ComplianceTier, { label: string; description: string }> = {
+    compliant: { label: t("tiers.compliant.label"), description: t("tiers.compliant.description") },
+    partial: { label: t("tiers.partial.label"), description: t("tiers.partial.description") },
+    noncompliant: { label: t("tiers.noncompliant.label"), description: t("tiers.noncompliant.description") },
+    unverified: { label: t("tiers.unverified.label"), description: t("tiers.unverified.description") },
   };
 
   return (
@@ -174,10 +141,8 @@ export default async function ProvidersPage({ params }: PageProps) {
               <section key={tier} aria-labelledby={`tier-${tier}`}>
                 {/* Tier header */}
                 <div className="flex items-baseline gap-3 mb-4 pb-3 border-b border-border">
-                  {/* Dot color is dynamic from meta.color — kept as style */}
                   <span
-                    className="inline-block w-2 h-2 rounded-full shrink-0 relative top-[-1px]"
-                    style={{ backgroundColor: meta.color }}
+                    className={`inline-block w-2 h-2 rounded-full shrink-0 relative top-[-1px] ${TIER_CLASSES[tier].dot}`}
                     aria-hidden="true"
                   />
                   <h2 id={`tier-${tier}`} className="font-body text-base font-semibold text-text-primary m-0">
@@ -188,7 +153,7 @@ export default async function ProvidersPage({ params }: PageProps) {
                 </div>
 
                 {/* Provider grid */}
-                <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))" }}>
+                <div className="grid gap-3 grid-cols-[repeat(auto-fill,minmax(280px,1fr))]">
                   {group.map((p) => (
                     <ProviderCard key={p.slug} provider={p} modelCount={modelCounts.get(p.slug)} />
                   ))}
