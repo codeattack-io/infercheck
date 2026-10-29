@@ -87,6 +87,7 @@ export async function fetchOpenRouterModels(): Promise<ModelRow[]> {
       contextWindow: m.context_length ?? null,
       inputPricePerMTokens: perTokenPrice(m.pricing?.prompt),
       outputPricePerMTokens: perTokenPrice(m.pricing?.completion),
+      priceCurrency: "USD",
       tokensPerSecond: null,
       syncSource: "openrouter",
       isActive: true,

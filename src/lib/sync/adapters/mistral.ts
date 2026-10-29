@@ -55,6 +55,7 @@ export async function fetchMistralModels(): Promise<ModelRow[]> {
         contextWindow: m.max_context_length ?? null,
         inputPricePerMTokens: null,
         outputPricePerMTokens: null,
+        priceCurrency: "USD",
         tokensPerSecond: null,
         syncSource: "provider_api",
         isActive: m.deprecation === null, // deprecated models → inactive

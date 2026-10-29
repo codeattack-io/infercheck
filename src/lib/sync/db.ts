@@ -50,6 +50,7 @@ export async function upsertModels(
           contextWindow: sql`excluded.context_window`,
           inputPricePerMTokens: sql`excluded.input_price_per_m_tokens`,
           outputPricePerMTokens: sql`excluded.output_price_per_m_tokens`,
+          priceCurrency: sql`excluded.price_currency`,
           tokensPerSecond: sql`excluded.tokens_per_second`,
           syncSource: sql`excluded.sync_source`,
           isActive: sql`excluded.is_active`,
