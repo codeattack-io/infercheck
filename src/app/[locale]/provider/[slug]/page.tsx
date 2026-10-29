@@ -222,7 +222,6 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
         {/* Main content grid */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {/* ── Compliance card ── */}
           {verified ? (
             <section
               className={`bg-surface border border-border border-l-[3px] ${tierClasses.accentBorder} rounded px-6 py-5`}
@@ -395,7 +394,6 @@ export default async function ProviderProfilePage({ params }: PageProps) {
             </section>
           ) : null}
 
-          {/* ── Certifications + EU AI Act ── */}
           {verified ? (
             <section className="bg-surface border border-border rounded px-6 py-5" aria-labelledby="certs-heading">
               <h2
@@ -443,7 +441,6 @@ export default async function ProviderProfilePage({ params }: PageProps) {
             </section>
           ) : null}
 
-          {/* ── Verification metadata ── */}
           <section className="bg-surface border border-border rounded px-6 py-5" aria-labelledby="verification-heading">
             <h2
               id="verification-heading"
@@ -517,7 +514,6 @@ export default async function ProviderProfilePage({ params }: PageProps) {
           </section>
         </div>
 
-        {/* ── Models offered section ── */}
         {providerModels.length > 0 ? (
           <section className="mt-8" aria-labelledby="models-heading">
             <h2 id="models-heading" className="font-body text-base font-semibold text-text-primary m-0 mb-4">

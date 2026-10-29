@@ -16,8 +16,6 @@ import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import type { ModelWithProvider } from "@/components/types";
 import type { AnyProvider } from "@/lib/compliance";
 
-// ─── Metadata ─────────────────────────────────────────────────────────────────
-
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "HomePage" });
@@ -40,8 +38,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     },
   };
 }
-
-// ─── Page ──────────────────────────────────────────────────────────────────────
 
 interface HomePageProps {
   params: Promise<{ locale: string }>;

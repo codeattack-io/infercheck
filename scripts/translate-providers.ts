@@ -4,7 +4,7 @@
  * Generates German translations of free-text compliance fields for all fully-verified
  * providers, writing results into translations.de in each provider JSON file.
  *
- * Uses gpt-4.5 via Vercel AI SDK — no web search needed, pure translation.
+ * Uses an OpenAI model via the Vercel AI SDK — no web search needed, pure translation.
  * Uses legally precise German GDPR terminology throughout.
  *
  * Usage:
@@ -27,11 +27,7 @@ import type { Provider } from "../data/schema";
 // Load .env.local
 config({ path: path.join(process.cwd(), ".env.local") });
 
-// ─── Config ───────────────────────────────────────────────────────────────────
-
 const PROVIDERS_DIR = path.join(process.cwd(), "data", "providers");
-
-// ─── CLI args ─────────────────────────────────────────────────────────────────
 
 const args = process.argv.slice(2);
 const runAll = args.includes("--all");
@@ -46,11 +42,7 @@ if (!runAll && !providerArg) {
   process.exit(1);
 }
 
-// ─── OpenAI client ────────────────────────────────────────────────────────────
-
 const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
-// ─── Provider loading ─────────────────────────────────────────────────────────
 
 function loadFullProviders(): Provider[] {
   const files = fs.readdirSync(PROVIDERS_DIR).filter((f) => f.endsWith(".json") && !f.startsWith("_"));
@@ -80,8 +72,6 @@ function loadSingleFullProvider(slug: string): Provider | null {
   return result.data;
 }
 
-// ─── Fields to translate ──────────────────────────────────────────────────────
-
 interface TranslatableFields {
   notes: string | null;
   euRegionDetails: string | null;
@@ -103,8 +93,6 @@ function extractTranslatableFields(p: Provider): TranslatableFields {
 function hasAnyContent(fields: TranslatableFields): boolean {
   return Object.values(fields).some((v) => v !== null && v.trim().length > 0);
 }
-
-// ─── Prompt ───────────────────────────────────────────────────────────────────
 
 function buildTranslationPrompt(provider: Provider, fields: TranslatableFields): string {
   const fieldLines = Object.entries(fields)
@@ -153,8 +141,6 @@ Example output structure:
   "euAiActDetails": "..."
 }`;
 }
-
-// ─── Translate a single provider ──────────────────────────────────────────────
 
 async function translateProvider(
   provider: Provider,
@@ -238,8 +224,6 @@ async function translateProvider(
     return "failed";
   }
 }
-
-// ─── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
   let providers: Provider[];

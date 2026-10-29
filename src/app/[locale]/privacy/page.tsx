@@ -6,13 +6,9 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 
-// ─── Types ─────────────────────────────────────────────────────────────────────
-
 interface PageProps {
   params: Promise<{ locale: string }>;
 }
-
-// ─── Metadata ──────────────────────────────────────────────────────────────────
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
@@ -36,8 +32,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-// ─── Page ──────────────────────────────────────────────────────────────────────
-
 export default async function PrivacyPage({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
@@ -50,14 +44,12 @@ export default async function PrivacyPage({ params }: PageProps) {
   return (
     <>
       <main className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 pt-14 pb-24">
-        {/* ── Page heading ── */}
         <h1 className="font-display text-[clamp(2rem,5vw,2.75rem)] font-normal text-heading leading-[1.15] mb-3 tracking-[-0.02em]">
           {t("heading")}
         </h1>
 
         <p className="font-body text-[0.8125rem] text-text-muted leading-[1.5] mb-2">{t("lastUpdated")}</p>
 
-        {/* ── Legal binding note ── */}
         <p className="font-body text-[0.9375rem] text-text-secondary leading-[1.65] mb-10">
           {t.rich("legalNote", {
             german: (chunks) =>
@@ -71,16 +63,13 @@ export default async function PrivacyPage({ params }: PageProps) {
           })}
         </p>
 
-        {/* ── Divider ── */}
         <hr className="border-none border-t border-border mb-10" />
 
-        {/* ── 1. Overview ── */}
         <section className="mb-10">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">{t("introHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("introText")}</p>
         </section>
 
-        {/* ── 2. Controller ── */}
         <section className="mb-10 bg-surface border border-border rounded-lg px-8 py-7">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("controllerHeading")}
@@ -97,7 +86,6 @@ export default async function PrivacyPage({ params }: PageProps) {
           </address>
         </section>
 
-        {/* ── 3. Hosting ── */}
         <section className="mb-10">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("hostingHeading")}
@@ -118,7 +106,6 @@ export default async function PrivacyPage({ params }: PageProps) {
           </p>
         </section>
 
-        {/* ── 4. Analytics ── */}
         <section className="mb-10">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("analyticsHeading")}
@@ -126,7 +113,6 @@ export default async function PrivacyPage({ params }: PageProps) {
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("analyticsText")}</p>
         </section>
 
-        {/* ── 5. Database ── */}
         <section className="mb-10">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("databaseHeading")}
@@ -147,7 +133,6 @@ export default async function PrivacyPage({ params }: PageProps) {
           </p>
         </section>
 
-        {/* ── 6. GitHub ── */}
         <section className="mb-10">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("githubHeading")}
@@ -168,7 +153,6 @@ export default async function PrivacyPage({ params }: PageProps) {
           </p>
         </section>
 
-        {/* ── 7. Error Tracking (GlitchTip) ── */}
         <section className="mb-10">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("errorTrackingHeading")}
@@ -189,7 +173,6 @@ export default async function PrivacyPage({ params }: PageProps) {
           </p>
         </section>
 
-        {/* ── 8. Your rights ── */}
         <section className="mb-10 bg-surface border border-border rounded-lg px-8 py-7">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("rightsHeading")}
@@ -214,7 +197,6 @@ export default async function PrivacyPage({ params }: PageProps) {
           </p>
         </section>
 
-        {/* ── 9. Cookies ── */}
         <section className="mb-10">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("cookiesHeading")}
@@ -222,7 +204,6 @@ export default async function PrivacyPage({ params }: PageProps) {
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("cookiesText")}</p>
         </section>
 
-        {/* ── 10. Changes ── */}
         <section className="mb-12">
           <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
             {t("changesHeading")}
@@ -230,7 +211,6 @@ export default async function PrivacyPage({ params }: PageProps) {
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("changesText")}</p>
         </section>
 
-        {/* ── Back link ── */}
         <div className="pt-2">
           <Link href="/" className="font-body text-sm font-medium text-link underline underline-offset-[3px]">
             {t("backLink")}
