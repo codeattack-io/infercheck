@@ -33,9 +33,9 @@
   },
   "HomePage": {
     "title": "InferCheck — Find GDPR-compliant AI inference providers",
-    "description": "Filter AI inference providers by GDPR compliance status. Compare EU data residency, DPA availability, training policies, and pricing across 100+ providers.",
+    "description": "Filter AI inference providers by GDPR compliance status. Compare EU data residency, DPA availability, training policies, and pricing across 75+ providers.",
     "ogTitle": "InferCheck — Find GDPR-compliant AI inference providers",
-    "ogDescription": "Filter AI inference providers by GDPR compliance. Compare EU data residency, DPA, training opt-out, and pricing across 100+ providers.",
+    "ogDescription": "Filter AI inference providers by GDPR compliance. Compare EU data residency, DPA, training opt-out, and pricing across 75+ providers.",
     "heading1": "AI inference providers,",
     "heading2": "filtered by GDPR compliance.",
     "subheadingWithData": "{modelCount} models across {providerCount} providers. Filter by compliance profile to find what passes your threshold.",
@@ -44,7 +44,7 @@
   },
   "ProvidersPage": {
     "title": "AI Inference Providers — InferCheck Compliance Directory",
-    "description": "Browse 100+ AI inference providers by GDPR compliance tier. Filter by EU data residency, DPA availability, training policy, and more.",
+    "description": "Browse 75+ AI inference providers by GDPR compliance tier. Filter by EU data residency, DPA availability, training policy, and more.",
     "ogTitle": "AI Inference Providers — InferCheck Compliance Directory",
     "ogDescription": "Compare AI inference providers by GDPR compliance: EU-only data residency, DPA, training opt-out, and certifications.",
     "heading1": "AI inference providers,",

@@ -33,9 +33,9 @@
   },
   "HomePage": {
     "title": "InferCheck — DSGVO-konforme KI-Inferenzanbieter finden",
-    "description": "KI-Inferenzanbieter nach DSGVO-Konformität filtern. EU-Datenhaltung, AVV-Verfügbarkeit, Trainingsrichtlinien und Preise von über 100 Anbietern vergleichen.",
+    "description": "KI-Inferenzanbieter nach DSGVO-Konformität filtern. EU-Datenhaltung, AVV-Verfügbarkeit, Trainingsrichtlinien und Preise von über 75 Anbietern vergleichen.",
     "ogTitle": "InferCheck — DSGVO-konforme KI-Inferenzanbieter finden",
-    "ogDescription": "KI-Inferenzanbieter nach DSGVO filtern. EU-Datenhaltung, AVV, Trainings-Opt-out und Preise von über 100 Anbietern vergleichen.",
+    "ogDescription": "KI-Inferenzanbieter nach DSGVO filtern. EU-Datenhaltung, AVV, Trainings-Opt-out und Preise von über 75 Anbietern vergleichen.",
     "heading1": "KI-Inferenzanbieter,",
     "heading2": "gefiltert nach DSGVO-Konformität.",
     "subheadingWithData": "{modelCount} Modelle bei {providerCount} Anbietern. Nach Compliance-Profil filtern, um geeignete Anbieter zu finden.",
@@ -44,7 +44,7 @@
   },
   "ProvidersPage": {
     "title": "KI-Inferenzanbieter — DSGVO-Compliance-Verzeichnis",
-    "description": "Über 100 KI-Inferenzanbieter nach DSGVO-Konformitätsstufe durchsuchen. Nach EU-Datenhaltung, AVV-Verfügbarkeit, Trainingsrichtlinie und mehr filtern.",
+    "description": "Über 75 KI-Inferenzanbieter nach DSGVO-Konformitätsstufe durchsuchen. Nach EU-Datenhaltung, AVV-Verfügbarkeit, Trainingsrichtlinie und mehr filtern.",
     "ogTitle": "KI-Inferenzanbieter — DSGVO-Compliance-Verzeichnis",
     "ogDescription": "KI-Inferenzanbieter nach DSGVO-Compliance vergleichen: EU-exklusive Datenhaltung, AVV, Trainings-Opt-out und Zertifizierungen.",
     "heading1": "KI-Inferenzanbieter,",
