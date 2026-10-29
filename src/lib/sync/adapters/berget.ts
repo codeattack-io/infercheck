@@ -20,7 +20,7 @@ export async function fetchBergetModels(): Promise<ModelRow[]> {
       name?: string;
       model_type?: string;
       capabilities?: { vision?: boolean; embeddings?: boolean };
-      pricing?: { input?: number; output?: number; unit?: string };
+      pricing?: { input?: number; output?: number; unit?: string; currency?: string };
     }>;
   };
   const now = new Date();
@@ -38,6 +38,7 @@ export async function fetchBergetModels(): Promise<ModelRow[]> {
       contextWindow: null,
       inputPricePerMTokens: perMTokens ? toPricePerMTokens(m.pricing?.input) : null,
       outputPricePerMTokens: perMTokens ? toPricePerMTokens(m.pricing?.output) : null,
+      priceCurrency: m.pricing?.currency ?? "EUR",
       tokensPerSecond: null,
       syncSource: "provider_api",
       isActive: true,

@@ -6,7 +6,7 @@
 
 import { neon } from "@neondatabase/serverless";
 import { drizzle } from "drizzle-orm/neon-http";
-import { eq, and, notInArray, sql } from "drizzle-orm";
+import { eq, ne, and, notInArray, sql } from "drizzle-orm";
 import * as schema from "@/db/schema";
 import type { ModelRow } from "./types";
 
@@ -16,6 +16,20 @@ export function getDb() {
   return drizzle(neon(url), { schema });
 }
 
+/**
+ * OpenRouter rows and provider-adapter rows of the same provider are owned
+ * separately: each side only deactivates its own rows.
+ */
+function ownedRows(syncSource: string) {
+  return syncSource === "openrouter"
+    ? eq(schema.models.syncSource, "openrouter")
+    : ne(schema.models.syncSource, "openrouter");
+}
+
+/**
+ * Upserts one adapter's rows for one provider. On an (id, provider_slug)
+ * conflict a provider-adapter row is never overwritten by an OpenRouter row.
+ */
 export async function upsertModels(
   db: ReturnType<typeof getDb>,
   rows: ModelRow[],
@@ -36,12 +50,14 @@ export async function upsertModels(
           contextWindow: sql`excluded.context_window`,
           inputPricePerMTokens: sql`excluded.input_price_per_m_tokens`,
           outputPricePerMTokens: sql`excluded.output_price_per_m_tokens`,
+          priceCurrency: sql`excluded.price_currency`,
           tokensPerSecond: sql`excluded.tokens_per_second`,
           syncSource: sql`excluded.sync_source`,
           isActive: sql`excluded.is_active`,
           isNativeModel: sql`excluded.is_native_model`,
           lastSyncedAt: sql`excluded.last_synced_at`,
         },
+        setWhere: sql`excluded.sync_source <> 'openrouter' or ${schema.models.syncSource} = 'openrouter'`,
       });
 
   const BATCH = 100;
@@ -72,6 +88,7 @@ export async function upsertModels(
     .where(
       and(
         eq(schema.models.providerSlug, providerSlug),
+        ownedRows(rows[0].syncSource),
         notInArray(schema.models.id, listedIds),
         eq(schema.models.isActive, true)
       )

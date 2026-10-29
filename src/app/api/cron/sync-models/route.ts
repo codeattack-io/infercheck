@@ -4,6 +4,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { MODELS_CACHE_TAG } from "@/lib/models";
 import { PROVIDER_ADAPTERS, runSync } from "@/lib/sync/run";
 
+// NOTE: 60 s is the highest value valid on the Hobby plan both with and without Fluid compute.
+export const maxDuration = 60;
+
 /**
  * GET /api/cron/sync-models
  *

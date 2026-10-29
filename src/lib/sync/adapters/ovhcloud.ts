@@ -31,6 +31,7 @@ export async function fetchOVHcloudModels(): Promise<ModelRow[]> {
     contextWindow: m.ctx,
     inputPricePerMTokens: toPricePerMTokens(m.i),
     outputPricePerMTokens: toPricePerMTokens(m.o),
+    priceCurrency: "EUR",
     tokensPerSecond: null,
     syncSource: "manual",
     isActive: true,

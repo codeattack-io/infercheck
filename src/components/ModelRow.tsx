@@ -85,7 +85,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
   const t = useTranslations("ModelRow");
   const locale = useLocale();
   const tf = useTranslations("Format");
-  const priceFormat = { locale, freeLabel: tf("free") };
+  const priceFormat = { locale, freeLabel: tf("free"), currency: model.priceCurrency };
 
   const tier = provider ? getComplianceTier(provider) : "unverified";
   const accentBorder = TIER_CLASSES[tier].accentBorder;

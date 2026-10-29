@@ -1,0 +1,1 @@
+ALTER TABLE "models" ADD COLUMN "price_currency" text DEFAULT 'USD' NOT NULL;

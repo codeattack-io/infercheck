@@ -20,7 +20,7 @@ export function ProviderModelRow({ model: m, gateway = false }: ProviderModelRow
   const router = useRouter();
   const locale = useLocale();
   const tf = useTranslations("Format");
-  const priceFormat = { locale, freeLabel: tf("free") };
+  const priceFormat = { locale, freeLabel: tf("free"), currency: m.priceCurrency };
 
   const href = `/model/${encodeURIComponent(m.canonicalModelId ?? m.id.split("/").pop() ?? m.id)}`;
 

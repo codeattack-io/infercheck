@@ -18,6 +18,8 @@ export interface ModelRow {
   contextWindow: number | null;
   inputPricePerMTokens: string | null;
   outputPricePerMTokens: string | null;
+  /** ISO 4217 currency code of both prices */
+  priceCurrency: string;
   tokensPerSecond: string | null;
   syncSource: string;
   isActive: boolean;

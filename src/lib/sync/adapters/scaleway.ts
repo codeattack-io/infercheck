@@ -41,6 +41,7 @@ export async function fetchScalewayModels(): Promise<ModelRow[]> {
         contextWindow: null,
         inputPricePerMTokens: null,
         outputPricePerMTokens: null,
+        priceCurrency: "USD",
         tokensPerSecond: null,
         syncSource: "provider_api",
         isActive: true,

@@ -13,6 +13,7 @@ export type CatalogModel = Pick<
   | "canonicalModelId"
   | "inputPricePerMTokens"
   | "outputPricePerMTokens"
+  | "priceCurrency"
   | "isNativeModel"
 >;
 

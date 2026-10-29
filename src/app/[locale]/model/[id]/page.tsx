@@ -111,7 +111,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
         "@type": "Offer",
         seller: { "@type": "Organization", name: provider?.name ?? row.providerSlug },
         price: row.inputPricePerMTokens ?? undefined,
-        priceCurrency: "USD",
+        priceCurrency: row.priceCurrency,
       };
     }),
   };
@@ -186,12 +186,12 @@ export default async function ModelDetailPage({ params }: PageProps) {
                   <DetailSection title={t("sections.pricing")}>
                     <DetailRow
                       label={t("pricing.input")}
-                      value={formatPrice(row.inputPricePerMTokens, priceFormat)}
+                      value={formatPrice(row.inputPricePerMTokens, { ...priceFormat, currency: row.priceCurrency })}
                       mono
                     />
                     <DetailRow
                       label={t("pricing.output")}
-                      value={formatPrice(row.outputPricePerMTokens, priceFormat)}
+                      value={formatPrice(row.outputPricePerMTokens, { ...priceFormat, currency: row.priceCurrency })}
                       mono
                     />
                     <DetailRow label={t("pricing.context")} value={formatContext(row.contextWindow, locale)} mono />
