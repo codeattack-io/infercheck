@@ -1,107 +1,59 @@
-# Deploy to Production
-#
-# Runs on every push to main. Steps in order:
-#   1. Run Drizzle migrations against prod DB
-#   2. Promote dev DB data to prod (pg_dump dev | pg_restore prod)
-#   3. Deploy to Vercel production
-#
-# ─── Required GitHub Secrets ──────────────────────────────────────────────────
-#
-#   DATABASE_URL           Neon prod connection string (used by Next.js build + promote target)
-#   DATABASE_URL_DEV       Neon dev connection string (promote source — data is copied from here)
-#   VERCEL_TOKEN           Vercel personal access token
-#                          → vercel.com/account/tokens
-#   VERCEL_ORG_ID          Vercel team/personal account ID
-#                          → vercel.com/<team>/settings → Team ID
-#                          → or: run `vercel link` locally, copy .vercel/project.json
-#   VERCEL_PROJECT_ID      Vercel project ID
-#                          → same .vercel/project.json → "projectId"
-#
-
 name: Deploy to Production
 
 on:
   push:
     branches:
       - main
-
-  # Allow manual trigger from Actions tab (useful for re-deploys without a code push)
   workflow_dispatch:
 
 concurrency:
   group: deploy-production
-  cancel-in-progress: false # never cancel a running deploy mid-flight
+  cancel-in-progress: false
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
 jobs:
-  promote:
-    name: Migrate → Promote
+  migrate:
+    name: Migrate
     runs-on: ubuntu-latest
     environment: production
     env:
       DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      DATABASE_URL_DEV: ${{ secrets.DATABASE_URL_DEV }}
 
     steps:
-      # ── Checkout ────────────────────────────────────────────────────────────
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
-      # ── Install Bun ─────────────────────────────────────────────────────────
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version: 1.4.3
 
-      # ── Install PostgreSQL 17 client (pg_dump / pg_restore) ────────────────
-      # Must match Neon's server major version (17) or pg_dump will refuse to connect.
-      - name: Install PostgreSQL 17 client
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends curl ca-certificates
-          sudo install -d /usr/share/postgresql-common/pgdg
-          sudo curl -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc --fail https://www.postgresql.org/media/keys/ACCC4CF8.asc
-          sudo sh -c 'echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends postgresql-client-17
-          # Prepend pg17 bin to PATH so it wins over the system pg16
-          echo "/usr/lib/postgresql/17/bin" >> $GITHUB_PATH
-
-      # ── Install Node deps ────────────────────────────────────────────────────
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      # ── Migrate and copy dev data → prod ───
-      - name: Promote dev DB data to prod
-        # --yes: skip interactive confirmation prompt (CI has no stdin)
-        # Script uses pg_dump --data-only | psql — never touches prod DDL/schema
-        run: bun run promote:prod --yes
+      - name: Run migrations
+        run: bun run db:migrate
 
   deploy:
-    name: → Deploy
+    name: Deploy
     runs-on: ubuntu-latest
     environment: production
-    needs: promote
-    steps:
-      # ── Checkout ────────────────────────────────────────────────────────────
-      - name: Checkout
-        uses: actions/checkout@v4
+    needs: migrate
 
-      # ── Install Bun ─────────────────────────────────────────────────────────
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version: 1.4.3
 
-      # ── Install Node deps ────────────────────────────────────────────────────
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
-
-      # ── Deploy to Vercel ─────────────────────────────────────────────
       - name: Install Vercel CLI
-        run: bun install -g vercel@latest
+        run: bun install -g vercel@65
+
       - name: Deploy to Vercel
         run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}

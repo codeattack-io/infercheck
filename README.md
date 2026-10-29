@@ -183,8 +183,6 @@ bun sync:models
 | `bun research:provider`   | AI-assisted research pass for a single provider                |
 | `bun translate:providers` | Generate locale translations for all provider free-text fields |
 | `bun translate:provider`  | Generate locale translations for a single provider             |
-| `bun promote:prod`        | Promote staged provider data to production                     |
-| `bun promote:prod:dry`    | Dry-run promote — shows what would change without writing      |
 | `bun db:generate`         | Generate Drizzle migration files after schema changes          |
 | `bun db:migrate`          | Apply pending migrations to the database                       |
 | `bun db:studio`           | Open Drizzle Studio to browse the database                     |
