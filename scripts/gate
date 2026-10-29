@@ -17,7 +17,13 @@ full() {
   # shellcheck disable=SC1091
   . ./.env.local
   set +a
-  DATABASE_URL="$DATABASE_URL_DEV" SENTRY_AUTH_TOKEN="" bun run build
+  local log
+  log="$(mktemp)"
+  DATABASE_URL="$DATABASE_URL_DEV" SENTRY_AUTH_TOKEN="" bun run build 2>&1 | tee "$log"
+  if grep -q MISSING_MESSAGE "$log"; then
+    echo "gate: next build logged MISSING_MESSAGE" >&2
+    exit 1
+  fi
 }
 
 case "$tier" in
