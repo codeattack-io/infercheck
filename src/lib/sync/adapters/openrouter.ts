@@ -1,41 +1,51 @@
 /**
  * src/lib/sync/adapters/openrouter.ts
  *
- * Fetches the OpenRouter model catalog and maps known provider prefixes
- * to their canonical provider slugs.
+ * Fetches the OpenRouter model catalog and attributes models to the author's
+ * own first-party API. The OpenRouter prefix names the model author, and the
+ * list price may come from any host serving that model.
  */
 
 import type { ModelRow } from "../types";
 import { normaliseModality, deriveCanonicalModelId, toPricePerMTokens } from "../utils";
 
-// OpenRouter provider prefix → our provider slug
+/**
+ * OpenRouter author prefix → provider slug, limited to authors whose own API
+ * serves their OpenRouter-listed models at the OpenRouter list price.
+ */
 export const OPENROUTER_PREFIX_TO_SLUG: Record<string, string> = {
   anthropic: "anthropic",
   openai: "openai",
-  google: "vertex",
-  "meta-llama": "together-ai",
+  google: "google",
   mistralai: "mistral",
   cohere: "cohere",
-  deepseek: "deepseek",
   "x-ai": "xai",
   perplexity: "perplexity",
-  // amazon: removed — Bedrock adapter owns all amazon-bedrock rows via ListFoundationModels
-  nvidia: "nvidia",
-  moonshotai: "moonshot-ai",
   minimax: "minimax-minimax-io",
   inception: "inception",
   upstage: "upstage",
-  "z-ai": "z-ai",
-  xiaomi: "xiaomi",
-  stepfun: "stepfun",
   morph: "morph",
-  qwen: "alibaba",
-  alibaba: "alibaba",
-  microsoft: "github-models",
-  // bytedance / bytedance-seed: Volcengine Ark API is China-only — not accessible to EU users
-  // bytedance: "bytedance",  // no international endpoint
-  // "bytedance-seed": "bytedance",
 };
+
+/**
+ * Models under a mapped prefix whose list price is not the author's: open
+ * weights priced by third-party hosts, and OpenRouter variants such as
+ * `:free` and `:batch`.
+ */
+const NOT_AUTHOR_PRICED_MODELS = [
+  /:/,
+  /^openai\/gpt-oss-/,
+  /^google\/gemma-/,
+  /^mistralai\/mistral-nemo$/,
+  /^mistralai\/mistral-small-.*24b-instruct/,
+  /^minimax\/minimax-m1$/,
+];
+
+/** OpenRouter lists zero for models it prices per request, image or audio. */
+function perTokenPrice(raw: string | undefined): string | null {
+  const perToken = raw ? parseFloat(raw) : NaN;
+  return perToken > 0 ? toPricePerMTokens(perToken * 1_000_000) : null;
+}
 
 export async function fetchOpenRouterModels(): Promise<ModelRow[]> {
   console.log("Fetching OpenRouter model catalog…");
@@ -66,9 +76,7 @@ export async function fetchOpenRouterModels(): Promise<ModelRow[]> {
     const [prefix] = m.id.split("/");
     const providerSlug = OPENROUTER_PREFIX_TO_SLUG[prefix];
     if (!providerSlug) continue;
-
-    const inputRaw = m.pricing?.prompt ? parseFloat(m.pricing.prompt) : null;
-    const outputRaw = m.pricing?.completion ? parseFloat(m.pricing.completion) : null;
+    if (NOT_AUTHOR_PRICED_MODELS.some((pattern) => pattern.test(m.id))) continue;
 
     rows.push({
       id: m.id,
@@ -77,8 +85,8 @@ export async function fetchOpenRouterModels(): Promise<ModelRow[]> {
       displayName: m.name,
       modality: normaliseModality(m.architecture?.modality),
       contextWindow: m.context_length ?? null,
-      inputPricePerMTokens: toPricePerMTokens(inputRaw != null ? inputRaw * 1_000_000 : null),
-      outputPricePerMTokens: toPricePerMTokens(outputRaw != null ? outputRaw * 1_000_000 : null),
+      inputPricePerMTokens: perTokenPrice(m.pricing?.prompt),
+      outputPricePerMTokens: perTokenPrice(m.pricing?.completion),
       tokensPerSecond: null,
       syncSource: "openrouter",
       isActive: true,
