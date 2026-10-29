@@ -151,6 +151,35 @@
       "partial": "Partial (EU + SCCs)",
       "noncompliant": "Non-compliant",
       "unverified": "Unverified"
+    },
+    "meta": {
+      "yes": "yes",
+      "no": "no",
+      "unknown": "unknown",
+      "available": "available",
+      "notAvailable": "not available"
+    },
+    "jsonLdDescription": "AI inference provider. GDPR compliance tier: {tier}. DPA: {dpa}.",
+    "providerTypes": {
+      "api_provider": "API provider",
+      "cloud_platform": "Cloud platform",
+      "gateway": "Gateway"
+    },
+    "dpaSignedVia": {
+      "online_acceptance": "online acceptance",
+      "custom_contract": "custom contract",
+      "not_available": "not available"
+    },
+    "euAiActStatus": {
+      "compliant": "compliant",
+      "monitoring": "monitoring",
+      "unknown": "unknown",
+      "not_applicable": "not applicable"
+    },
+    "pricingTiers": {
+      "free_tier": "free tier",
+      "pay_per_use": "pay per use",
+      "enterprise_only": "enterprise only"
     }
   },
   "ModelPage": {

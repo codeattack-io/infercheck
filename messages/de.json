@@ -144,13 +144,42 @@
         "output": "Ausgabe"
       }
     },
-    "unverifiedNotice": "Compliance-Daten für diesen Anbieter noch nicht verifiziert. Falls Sie Informationen haben, nutzen Sie bitte \u201eÄnderung melden\u201c.",
+    "unverifiedNotice": "Compliance-Daten für diesen Anbieter noch nicht verifiziert. Falls Sie Informationen haben, nutzen Sie bitte „Änderung melden“.",
     "backLink": "← Zurück zur Anbieterübersicht",
     "tiers": {
       "compliant": "EU-konform",
       "partial": "Teilweise (EU + SCC)",
       "noncompliant": "Nicht konform",
       "unverified": "Nicht verifiziert"
+    },
+    "meta": {
+      "yes": "ja",
+      "no": "nein",
+      "unknown": "unbekannt",
+      "available": "verfügbar",
+      "notAvailable": "nicht verfügbar"
+    },
+    "jsonLdDescription": "KI-Inferenzanbieter. DSGVO-Konformitätsstufe: {tier}. AVV: {dpa}.",
+    "providerTypes": {
+      "api_provider": "API-Anbieter",
+      "cloud_platform": "Cloud-Plattform",
+      "gateway": "Gateway"
+    },
+    "dpaSignedVia": {
+      "online_acceptance": "Online-Annahme",
+      "custom_contract": "individueller Vertrag",
+      "not_available": "nicht verfügbar"
+    },
+    "euAiActStatus": {
+      "compliant": "konform",
+      "monitoring": "wird beobachtet",
+      "unknown": "unbekannt",
+      "not_applicable": "nicht anwendbar"
+    },
+    "pricingTiers": {
+      "free_tier": "kostenloses Kontingent",
+      "pay_per_use": "nutzungsbasiert",
+      "enterprise_only": "nur Enterprise"
     }
   },
   "ModelPage": {
@@ -250,7 +279,7 @@
     "searchLabel": "Modelle oder Anbieter suchen",
     "searchPlaceholder": "Modelle oder Anbieter suchen…",
     "clearSearch": "Suche zurücksetzen",
-    "noModelsFound": "Keine Modelle für \u201e{query}\u201c gefunden",
+    "noModelsFound": "Keine Modelle für „{query}“ gefunden",
     "resultCountFiltered": "{matching} von {total} Modellen entsprechen dem aktiven Filter",
     "resultCountSearch": "{total} von {all} Modellen",
     "resultCount": "{total} Modelle",
