@@ -19,6 +19,8 @@ import { getComplianceTier, isFullProvider, tierPillClasses, TIER_CLASSES } from
 import { getVerification } from "@/lib/verification";
 import type { ComplianceTier } from "@/lib/compliance";
 import { ComplianceBadgeList } from "@/components/ComplianceBadge";
+import { GatewayPill } from "@/components/GatewayPill";
+import { BooleanRow } from "@/components/BooleanRow";
 import { ProviderModelRow } from "@/components/ProviderModelRow";
 
 export async function generateStaticParams() {
@@ -233,11 +235,13 @@ export default async function ProviderProfilePage({ params }: PageProps) {
               </h2>
 
               <div className="flex flex-col gap-[10px]">
-                <ComplianceRow
+                <BooleanRow
+                  size="md"
                   label={t("compliance.euOnlyResidency")}
                   value={provider.compliance.dataResidency.euOnly}
                 />
-                <ComplianceRow
+                <BooleanRow
+                  size="md"
                   label={t("compliance.inferenceStaysInEu")}
                   value={
                     provider.compliance.dataResidency.dataLeavesEuAtInference === null
@@ -246,7 +250,8 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   }
                   note={provider.compliance.dataResidency.dataLeavesEuAtInference === null ? "unknown" : undefined}
                 />
-                <ComplianceRow
+                <BooleanRow
+                  size="md"
                   label={t("compliance.dpa")}
                   value={provider.compliance.dpa.available}
                   href={provider.compliance.dpa.url ?? undefined}
@@ -256,7 +261,8 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                       : undefined
                   }
                 />
-                <ComplianceRow
+                <BooleanRow
+                  size="md"
                   label={t("compliance.noTraining")}
                   value={
                     provider.compliance.dataUsage.trainsOnCustomerData === null
@@ -264,9 +270,13 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                       : !provider.compliance.dataUsage.trainsOnCustomerData
                   }
                 />
-                <ComplianceRow label={t("compliance.optOut")} value={provider.compliance.dataUsage.optOutAvailable} />
-                <ComplianceRow label={t("compliance.sccs")} value={provider.compliance.sccs} />
-                <ComplianceRow label={t("compliance.adequacy")} value={provider.compliance.adequacyDecision} />
+                <BooleanRow
+                  size="md"
+                  label={t("compliance.optOut")}
+                  value={provider.compliance.dataUsage.optOutAvailable}
+                />
+                <BooleanRow size="md" label={t("compliance.sccs")} value={provider.compliance.sccs} />
+                <BooleanRow size="md" label={t("compliance.adequacy")} value={provider.compliance.adequacyDecision} />
               </div>
 
               {/* Compliance badges */}
@@ -526,16 +536,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   <span className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em]">
                     {t("models.gatewayHeading")}
                   </span>
-                  <span
-                    className="inline-flex items-center gap-[5px] px-[7px] py-px font-body text-[0.6875rem] font-medium rounded border whitespace-nowrap"
-                    style={{
-                      color: "var(--color-partial)",
-                      borderColor: "var(--color-partial)",
-                      backgroundColor: "color-mix(in srgb, var(--color-partial) 8%, transparent)",
-                    }}
-                  >
-                    via gateway
-                  </span>
+                  <GatewayPill />
                 </div>
                 <p className="font-body text-[0.8125rem] text-text-secondary mt-0 mb-3 leading-[1.5]">
                   {t("models.gatewayNote", { providerName: provider.name })}
@@ -599,49 +600,6 @@ function ModelsTable({
             ))}
           </tbody>
         </table>
-      </div>
-    </div>
-  );
-}
-
-function ComplianceRow({
-  label,
-  value,
-  href,
-  secondary,
-  note,
-}: {
-  label: string;
-  value: boolean | null;
-  href?: string;
-  secondary?: string;
-  note?: string;
-}) {
-  const positive = value === true;
-  const symbol = positive ? "✓" : value === false ? "✗" : "?";
-  const color = positive
-    ? "var(--color-compliant)"
-    : value === false
-      ? "var(--color-noncompliant)"
-      : "var(--color-text-muted)";
-
-  return (
-    <div className="flex items-start gap-[10px]">
-      <span className="font-mono text-[0.875rem] w-3.5 text-center shrink-0 mt-px" style={{ color }} aria-hidden="true">
-        {symbol}
-      </span>
-      <div>
-        <span className="font-body text-[0.875rem] text-text-secondary">
-          {href ? (
-            <a href={href} target="_blank" rel="noopener noreferrer" className="text-link no-underline">
-              {label} ↗
-            </a>
-          ) : (
-            label
-          )}
-        </span>
-        {secondary ? <span className="font-body text-xs text-text-muted ml-1.5">({secondary})</span> : null}
-        {note ? <span className="font-body text-xs text-text-muted italic ml-1.5">{note}</span> : null}
       </div>
     </div>
   );

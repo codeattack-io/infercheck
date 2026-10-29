@@ -6,6 +6,7 @@
 import { useState } from "react";
 import { useRouter } from "@/i18n/navigation";
 import type { Model } from "@/db/schema";
+import { GatewayPill } from "@/components/GatewayPill";
 import { formatContext, formatPrice } from "@/lib/format";
 
 interface ProviderModelRowProps {
@@ -39,18 +40,7 @@ export function ProviderModelRow({ model: m, gateway = false }: ProviderModelRow
       <td className="px-4 py-[10px]">
         <div className="flex items-center gap-2 flex-wrap">
           <span className="font-body text-[0.875rem] font-medium text-text-primary">{m.displayName}</span>
-          {gateway ? (
-            <span
-              className="inline-flex items-center px-[6px] py-px font-body text-[0.625rem] font-medium rounded border whitespace-nowrap"
-              style={{
-                color: "var(--color-partial)",
-                borderColor: "var(--color-partial)",
-                backgroundColor: "color-mix(in srgb, var(--color-partial) 8%, transparent)",
-              }}
-            >
-              via gateway
-            </span>
-          ) : null}
+          {gateway ? <GatewayPill size="sm" /> : null}
         </div>
         <div className="font-mono text-xs text-text-muted mt-0.5">{m.id}</div>
       </td>

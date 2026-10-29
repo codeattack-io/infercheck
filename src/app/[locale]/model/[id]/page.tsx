@@ -19,6 +19,7 @@ import { eq, and } from "drizzle-orm";
 import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import { getComplianceTier, isFullProvider, tierPillClasses, TIER_CLASSES } from "@/lib/compliance";
 import { formatContext, formatPrice } from "@/lib/format";
+import { BooleanRow } from "@/components/BooleanRow";
 import { VerificationLabel } from "@/components/VerificationLabel";
 import type { AnyProvider } from "@/lib/compliance";
 import { ComplianceBadgeList } from "@/components/ComplianceBadge";
@@ -199,15 +200,18 @@ export default async function ModelDetailPage({ params }: PageProps) {
                   {verified && provider !== null && isFullProvider(provider) ? (
                     <DetailSection title={t("sections.gdprCompliance")}>
                       <BooleanRow
+                        className="mb-1"
                         label={t("compliance.euDataResidency")}
                         value={provider.compliance.dataResidency.euOnly}
                       />
                       <BooleanRow
+                        className="mb-1"
                         label={t("compliance.dpaAvailable")}
                         value={provider.compliance.dpa.available}
                         href={provider.compliance.dpa.url ?? undefined}
                       />
                       <BooleanRow
+                        className="mb-1"
                         label={t("compliance.noTrainingOnData")}
                         value={
                           provider.compliance.dataUsage.trainsOnCustomerData === null
@@ -215,7 +219,11 @@ export default async function ModelDetailPage({ params }: PageProps) {
                             : !provider.compliance.dataUsage.trainsOnCustomerData
                         }
                       />
-                      <BooleanRow label={t("compliance.sccsInPlace")} value={provider.compliance.sccs ?? false} />
+                      <BooleanRow
+                        className="mb-1"
+                        label={t("compliance.sccsInPlace")}
+                        value={provider.compliance.sccs ?? false}
+                      />
                     </DetailSection>
                   ) : (
                     <DetailSection title={t("sections.gdprCompliance")}>
@@ -287,33 +295,6 @@ function DetailRow({ label, value, mono = false }: { label: string; value: strin
       <span className="font-body text-[0.8125rem] text-text-secondary shrink-0">{label}</span>
       <span className={`text-[0.8125rem] text-text-primary text-right ${mono ? "font-mono" : "font-body"}`}>
         {value}
-      </span>
-    </div>
-  );
-}
-
-function BooleanRow({ label, value, href }: { label: string; value: boolean | null; href?: string }) {
-  const positive = value === true;
-  const symbol = positive ? "✓" : value === false ? "✗" : "?";
-  const color = positive
-    ? "var(--color-compliant)"
-    : value === false
-      ? "var(--color-noncompliant)"
-      : "var(--color-text-muted)";
-
-  return (
-    <div className="flex items-center gap-2 mb-1">
-      <span className="font-mono text-[0.8125rem] w-3.5 text-center shrink-0" style={{ color }} aria-hidden="true">
-        {symbol}
-      </span>
-      <span className="font-body text-[0.8125rem] text-text-secondary">
-        {href ? (
-          <a href={href} target="_blank" rel="noopener noreferrer" className="text-link no-underline">
-            {label} ↗
-          </a>
-        ) : (
-          label
-        )}
       </span>
     </div>
   );

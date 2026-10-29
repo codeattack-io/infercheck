@@ -11,6 +11,8 @@ import { useState, memo, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { ComplianceBadge, ComplianceBadgeList } from "@/components/ComplianceBadge";
+import { GatewayPill } from "@/components/GatewayPill";
+import { BooleanRow } from "@/components/BooleanRow";
 import { VerificationLabel } from "@/components/VerificationLabel";
 import { getVerification } from "@/lib/verification";
 import { formatPrice } from "@/lib/format";
@@ -116,17 +118,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
               {highlightText(model.displayName, matches, "model.displayName")}
             </span>
             {!model.isNativeModel ? (
-              <span
-                className="inline-flex items-center gap-[5px] px-[7px] py-px font-body text-[0.6875rem] font-medium rounded border whitespace-nowrap"
-                style={{
-                  color: "var(--color-partial)",
-                  borderColor: "var(--color-partial)",
-                  backgroundColor: "color-mix(in srgb, var(--color-partial) 8%, transparent)",
-                }}
-                title={`This model is made by a third party and hosted via ${providerName}`}
-              >
-                via gateway
-              </span>
+              <GatewayPill title={`This model is made by a third party and hosted via ${providerName}`} />
             ) : null}
           </div>
           <div className="font-body text-[0.8125rem] text-text-secondary mt-0.5">
@@ -223,14 +215,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
 
               {/* Gateway notice — full width, shown before the compliance grid */}
               {!model.isNativeModel ? (
-                <div
-                  className="rounded px-3.5 py-2.5 border font-body text-[0.8125rem] leading-[1.5] mb-4"
-                  style={{
-                    color: "var(--color-partial)",
-                    borderColor: "var(--color-partial)",
-                    backgroundColor: "color-mix(in srgb, var(--color-partial) 6%, transparent)",
-                  }}
-                >
+                <div className="rounded px-3.5 py-2.5 border font-body text-[0.8125rem] leading-[1.5] mb-4 text-partial border-partial bg-[color-mix(in_srgb,var(--color-partial)_6%,transparent)]">
                   <span className="font-semibold">Third-party model hosted via {providerName}.</span> This model is made
                   by another company but served through {providerName}&apos;s infrastructure. The compliance properties
                   shown here reflect <span className="font-semibold">{providerName}</span>&apos;s data handling — not
@@ -239,7 +224,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
               ) : null}
 
               {/* Compliance detail grid */}
-              <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))" }}>
+              <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(200px,1fr))]">
                 {isVerified && provider !== null && isFullProvider(provider) ? (
                   <>
                     <div>
@@ -247,16 +232,16 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                         {t("expandSections.compliance")}
                       </div>
                       <div className="flex flex-col gap-1.5">
-                        <ComplianceField
+                        <BooleanRow
                           label={t("complianceFields.euDataResidency")}
                           value={provider.compliance.dataResidency.euOnly}
                         />
-                        <ComplianceField
+                        <BooleanRow
                           label={t("complianceFields.dpaAvailable")}
                           value={provider.compliance.dpa.available}
                           href={provider.compliance.dpa.url ?? undefined}
                         />
-                        <ComplianceField
+                        <BooleanRow
                           label={
                             provider.compliance.dataUsage.trainsOnCustomerData === true
                               ? t("complianceFields.trainsOnCustomerData")
@@ -268,7 +253,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                               : !provider.compliance.dataUsage.trainsOnCustomerData
                           }
                         />
-                        <ComplianceField
+                        <BooleanRow
                           label={t("complianceFields.sccsInPlace")}
                           value={provider.compliance.sccs ?? false}
                         />
@@ -276,7 +261,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                     </div>
 
                     {provider.compliance.dataResidency.euRegionDetails ? (
-                      <div style={{ gridColumn: "span 2" }}>
+                      <div className="col-span-2">
                         <div className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] mb-2">
                           {t("expandSections.euRouting")}
                         </div>
@@ -304,38 +289,3 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
 export const ModelRow = memo(ModelRowInner, (prev, next) => {
   return prev.item === next.item && prev.dimmed === next.dimmed && prev.matches === next.matches;
 });
-
-function ComplianceField({ label, value, href }: { label: string; value: boolean | null; href?: string }) {
-  const positive = value === true;
-  const negative = value === false;
-
-  const symbol = positive ? "✓" : negative ? "✗" : "?";
-  const color = positive
-    ? "var(--color-compliant)"
-    : negative
-      ? "var(--color-noncompliant)"
-      : "var(--color-text-muted)";
-
-  return (
-    <div className="flex items-center gap-2">
-      <span className="font-mono text-[0.8125rem] w-3.5 text-center shrink-0" style={{ color }} aria-hidden="true">
-        {symbol}
-      </span>
-      <span className="font-body text-[0.8125rem] text-text-secondary">
-        {href ? (
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="text-link no-underline"
-          >
-            {label} ↗
-          </a>
-        ) : (
-          label
-        )}
-      </span>
-    </div>
-  );
-}
