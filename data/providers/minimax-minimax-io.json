@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://platform.minimax.io",
   "apiDocsUrl": "https://platform.minimax.io/docs",
-  "logoPath": "/logos/minimax-minimax-io.svg",
   "compliance": {
     "headquarters": "SG",
     "dataResidency": {

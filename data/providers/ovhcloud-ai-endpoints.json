@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://www.ovhcloud.com",
   "apiDocsUrl": "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/catalog/",
-  "logoPath": "/logos/ovhcloud-ai-endpoints.svg",
   "compliance": {
     "headquarters": "FR",
     "dataResidency": {

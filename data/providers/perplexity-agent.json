@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://docs.perplexity.ai",
   "apiDocsUrl": "https://docs.perplexity.ai",
-  "logoPath": "/logos/perplexity-agent.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

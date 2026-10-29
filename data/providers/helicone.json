@@ -4,7 +4,6 @@
   "type": "gateway",
   "website": "https://helicone.ai",
   "apiDocsUrl": "https://docs.helicone.ai/getting-started/quick-start",
-  "logoPath": "/logos/helicone.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

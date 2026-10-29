@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://docs.sherlock.cloudferro.com",
   "apiDocsUrl": "https://docs.sherlock.cloudferro.com",
-  "logoPath": "/logos/cloudferro-sherlock.svg",
   "compliance": {
     "headquarters": "PL",
     "dataResidency": {

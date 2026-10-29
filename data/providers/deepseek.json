@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://www.deepseek.com",
   "apiDocsUrl": "https://api-docs.deepseek.com",
-  "logoPath": "/logos/deepseek.svg",
   "compliance": {
     "headquarters": "CN",
     "dataResidency": {

@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://developers.cloudflare.com",
   "apiDocsUrl": "https://developers.cloudflare.com/workers-ai/",
-  "logoPath": "/logos/cloudflare-workers-ai.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

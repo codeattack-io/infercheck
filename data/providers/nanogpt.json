@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://docs.nano-gpt.com",
   "apiDocsUrl": "https://docs.nano-gpt.com/",
-  "logoPath": "/logos/nanogpt.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

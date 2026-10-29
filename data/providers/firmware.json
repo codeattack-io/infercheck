@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://docs.frogbot.ai",
   "apiDocsUrl": "https://docs.frogbot.ai",
-  "logoPath": "/logos/firmware.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

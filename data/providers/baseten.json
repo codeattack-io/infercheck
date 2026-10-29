@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://docs.baseten.co",
   "apiDocsUrl": "https://docs.baseten.co/development/model-apis/overview",
-  "logoPath": "/logos/baseten.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://nova.amazon.com",
   "apiDocsUrl": "https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html",
-  "logoPath": "/logos/nova.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

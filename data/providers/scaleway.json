@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://www.scaleway.com",
   "apiDocsUrl": "https://www.scaleway.com/en/docs/generative-apis/",
-  "logoPath": "/logos/scaleway.svg",
   "compliance": {
     "headquarters": "FR",
     "dataResidency": {

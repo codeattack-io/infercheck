@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://cloud.google.com",
   "apiDocsUrl": "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/partner-models/use-claude",
-  "logoPath": "/logos/vertex-anthropic.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

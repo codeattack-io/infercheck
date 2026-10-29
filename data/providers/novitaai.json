@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://novita.ai",
   "apiDocsUrl": "https://novita.ai/docs/api-reference",
-  "logoPath": "/logos/novitaai.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

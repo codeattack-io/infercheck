@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://synthetic.new",
   "apiDocsUrl": "https://dev.synthetic.new/docs/api/overview",
-  "logoPath": "/logos/synthetic.svg",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {

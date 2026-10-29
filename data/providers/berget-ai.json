@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://www.berget.ai",
   "apiDocsUrl": "https://docs.berget.ai",
-  "logoPath": "/logos/berget-ai.svg",
   "compliance": {
     "headquarters": "SE",
     "dataResidency": {

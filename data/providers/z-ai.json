@@ -4,7 +4,6 @@
   "type": "api_provider",
   "website": "https://docs.z.ai",
   "apiDocsUrl": "https://docs.z.ai/api-reference/introduction",
-  "logoPath": "/logos/z-ai.svg",
   "compliance": {
     "headquarters": "SG",
     "dataResidency": {
