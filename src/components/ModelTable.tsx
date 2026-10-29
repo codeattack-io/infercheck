@@ -246,7 +246,7 @@ export function ModelTable({ items, searchParams }: ModelTableProps) {
 
   // Search + filter — derived during render (rerender-derived-state-no-effect)
   //
-  // inputValue drives filtering (local, instant), not the server-prop query.
+  // inputValue drives filtering (local, instant), not the debounced URL query.
   const { matching, nonMatching, matchMap } = useMemo(() => {
     const q = inputValue.trim();
     const matchMap: MatchMap = new Map();
