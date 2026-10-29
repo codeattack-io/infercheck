@@ -21,7 +21,7 @@ scripts/gate fast   # prettier --check, eslint --max-warnings=0, tsc --noEmit, b
 bun run build       # needs DATABASE_URL (reads the database for the sitemap and model pages)
 ```
 
-- `scripts/gate full` runs `fast` and then the build with `DATABASE_URL` taken from `DATABASE_URL_DEV` in `.env.local`; it fails when the build logs `MISSING_MESSAGE`.
+- `scripts/gate full` runs `fast` and then the build against `DATABASE_URL_DEV` if set, otherwise `DATABASE_URL`; it fails when the build logs `MISSING_MESSAGE`.
 - Run `scripts/gate fast` after multi-file changes and before reporting a task done.
 
 ## Database safety

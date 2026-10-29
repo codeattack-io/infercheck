@@ -13,13 +13,15 @@ fast() {
 
 full() {
   fast
-  set -a
-  # shellcheck disable=SC1091
-  . ./.env.local
-  set +a
+  if [ -f .env.local ]; then
+    set -a
+    # shellcheck disable=SC1091
+    . ./.env.local
+    set +a
+  fi
   local log
   log="$(mktemp)"
-  DATABASE_URL="$DATABASE_URL_DEV" SENTRY_AUTH_TOKEN="" bun run build 2>&1 | tee "$log"
+  DATABASE_URL="${DATABASE_URL_DEV:-${DATABASE_URL:?DATABASE_URL or DATABASE_URL_DEV must be set}}" SENTRY_AUTH_TOKEN="" bun run build 2>&1 | tee "$log"
   if grep -q MISSING_MESSAGE "$log"; then
     echo "gate: next build logged MISSING_MESSAGE" >&2
     exit 1
