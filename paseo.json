@@ -1,8 +1,5 @@
 {
   "worktree": {
-    "setup": [
-      "bun i",
-      "cp $PASEO_SOURCE_CHECKOUT_PATH/.env.local .env.local"
-    ]
+    "setup": ["bun i", "cp $PASEO_SOURCE_CHECKOUT_PATH/.env.local .env.local"]
   }
 }

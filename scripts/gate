@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+tier="${1:-}"
+
+fast() {
+  bunx prettier --check .
+  bun run lint --max-warnings=0
+  bunx tsc --noEmit
+  bun run validate
+}
+
+full() {
+  fast
+  set -a
+  # shellcheck disable=SC1091
+  . ./.env.local
+  set +a
+  DATABASE_URL="$DATABASE_URL_DEV" SENTRY_AUTH_TOKEN="" bun run build
+}
+
+case "$tier" in
+  fast) fast ;;
+  full) full ;;
+  *)
+    echo "usage: scripts/gate fast|full" >&2
+    exit 64
+    ;;
+esac

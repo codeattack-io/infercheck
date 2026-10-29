@@ -95,16 +95,6 @@ const TIER_BORDER: Record<ComplianceTier, string> = {
   unverified: "var(--color-unverified)",
 };
 
-function formatPrice(val: string | null | undefined): string {
-  if (!val) return "—";
-  const n = parseFloat(val);
-  if (isNaN(n)) return "—";
-  if (n === 0) return "free";
-  if (n < 0.01) return `$${n.toFixed(4)}`;
-  if (n < 1) return `$${n.toFixed(3)}`;
-  return `$${n.toFixed(2)}`;
-}
-
 // EU AI Act status pill — color depends on status string at runtime
 function euAiActStyle(status: string): { color: string; bg: string; border: string } {
   if (status === "compliant") return { color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" };
@@ -562,7 +552,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                     {t("models.nativeHeading")}
                   </div>
                 ) : null}
-                <ModelsTable models={nativeModels} providerSlug={slug} t={t} />
+                <ModelsTable models={nativeModels} t={t} />
               </div>
             ) : null}
 
@@ -587,7 +577,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 <p className="font-body text-[0.8125rem] text-text-secondary mt-0 mb-3 leading-[1.5]">
                   {t("models.gatewayNote", { providerName: provider.name })}
                 </p>
-                <ModelsTable models={gatewayModels} providerSlug={slug} t={t} gateway />
+                <ModelsTable models={gatewayModels} t={t} gateway />
               </div>
             ) : null}
           </section>
@@ -608,12 +598,10 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
 function ModelsTable({
   models: rows,
-  providerSlug,
   t,
   gateway = false,
 }: {
   models: import("@/db/schema").Model[];
-  providerSlug: string;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   t: any;
   gateway?: boolean;
