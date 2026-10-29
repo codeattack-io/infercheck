@@ -18,29 +18,11 @@ import { models } from "@/db/schema";
 import { eq, and } from "drizzle-orm";
 import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import { getComplianceTier, isFullProvider } from "@/lib/compliance";
+import { formatContext, formatPrice } from "@/lib/format";
 import { VerificationLabel } from "@/components/VerificationLabel";
 import type { AnyProvider } from "@/lib/compliance";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
 import type { ComplianceTier } from "@/lib/compliance";
-
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
-function formatPrice(val: string | null | undefined): string {
-  if (!val) return "—";
-  const n = parseFloat(val);
-  if (isNaN(n)) return "—";
-  if (n === 0) return "free";
-  if (n < 0.01) return `$${n.toFixed(4)}`;
-  if (n < 1) return `$${n.toFixed(3)}`;
-  return `$${n.toFixed(2)}`;
-}
-
-function formatContext(n: number | null): string {
-  if (!n) return "—";
-  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
-  if (n >= 1_000) return `${(n / 1_000).toFixed(0)}K`;
-  return `${n}`;
-}
 
 const TIER_STYLE: Record<ComplianceTier, { color: string; bg: string; border: string }> = {
   compliant: { color: "#15803d", bg: "#f0fdf4", border: "#bbf7d0" },
@@ -48,8 +30,6 @@ const TIER_STYLE: Record<ComplianceTier, { color: string; bg: string; border: st
   noncompliant: { color: "#b91c1c", bg: "#fef2f2", border: "#fecaca" },
   unverified: { color: "#6b7280", bg: "#f8f8f7", border: "#e2e2de" },
 };
-
-// ─── Metadata ─────────────────────────────────────────────────────────────────
 
 interface PageProps {
   params: Promise<{ locale: string; id: string }>;
@@ -95,8 +75,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
   };
 }
-
-// ─── Page ──────────────────────────────────────────────────────────────────────
 
 export default async function ModelDetailPage({ params }: PageProps) {
   const { locale, id } = await params;
@@ -335,8 +313,6 @@ export default async function ModelDetailPage({ params }: PageProps) {
     </>
   );
 }
-
-// ─── Helpers ──────────────────────────────────────────────────────────────────
 
 function DetailSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (

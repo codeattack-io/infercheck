@@ -6,27 +6,7 @@
 import { useState } from "react";
 import { useRouter } from "@/i18n/navigation";
 import type { Model } from "@/db/schema";
-
-// ─── Helpers (duplicated from provider page to keep this component self-contained) ─
-
-function formatPrice(val: string | null | undefined): string {
-  if (!val) return "—";
-  const n = parseFloat(val);
-  if (isNaN(n)) return "—";
-  if (n === 0) return "free";
-  if (n < 0.01) return `$${n.toFixed(4)}`;
-  if (n < 1) return `$${n.toFixed(3)}`;
-  return `$${n.toFixed(2)}`;
-}
-
-function formatContext(ctx: number | null): string {
-  if (!ctx) return "—";
-  if (ctx >= 1_000_000) return `${(ctx / 1_000_000).toFixed(1)}M`;
-  if (ctx >= 1_000) return `${(ctx / 1_000).toFixed(0)}K`;
-  return `${ctx}`;
-}
-
-// ─── Component ────────────────────────────────────────────────────────────────
+import { formatContext, formatPrice } from "@/lib/format";
 
 interface ProviderModelRowProps {
   model: Model;

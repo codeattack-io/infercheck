@@ -13,22 +13,10 @@ import { useTranslations } from "next-intl";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
 import { VerificationLabel } from "@/components/VerificationLabel";
 import { getVerification } from "@/lib/verification";
+import { formatPrice } from "@/lib/format";
 import { isFullProvider, getComplianceTier } from "@/lib/compliance";
 import type { ModelWithProvider } from "@/components/types";
 import type { FuseResultMatch } from "fuse.js";
-
-// ─── Helpers ──────────────────────────────────────────────────────────────────
-
-function formatPrice(val: string | null | undefined): string {
-  if (!val) return "—";
-  const n = parseFloat(val);
-  if (isNaN(n)) return "—";
-  if (n === 0) return "free";
-  // Show up to 4 significant figures
-  if (n < 0.01) return `$${n.toFixed(4)}`;
-  if (n < 1) return `$${n.toFixed(3)}`;
-  return `$${n.toFixed(2)}`;
-}
 
 // Renders `text` with character ranges in `indices` wrapped in <mark>.
 // `fuseKey` is the Fuse field key to look for in `matches`, e.g. "model.displayName".
@@ -84,16 +72,12 @@ function highlightText(text: string, matches: readonly FuseResultMatch[] | undef
   return <>{nodes}</>;
 }
 
-// ─── Tier color map ───────────────────────────────────────────────────────────
-
 const TIER_COLOR: Record<string, string> = {
   compliant: "var(--color-compliant)",
   partial: "var(--color-partial)",
   noncompliant: "var(--color-noncompliant)",
   unverified: "var(--color-unverified)",
 };
-
-// ─── Component ────────────────────────────────────────────────────────────────
 
 interface ModelRowProps {
   item: ModelWithProvider;
@@ -347,8 +331,6 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
 export const ModelRow = memo(ModelRowInner, (prev, next) => {
   return prev.item === next.item && prev.dimmed === next.dimmed && prev.matches === next.matches;
 });
-
-// ─── ComplianceField helper ───────────────────────────────────────────────────
 
 function ComplianceField({ label, value, href }: { label: string; value: boolean | null; href?: string }) {
   const positive = value === true;
