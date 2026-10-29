@@ -20,17 +20,13 @@ export async function upsertModels(
   db: ReturnType<typeof getDb>,
   rows: ModelRow[],
   providerSlug: string
-): Promise<{ upserted: number; deactivated: number }> {
-  if (rows.length === 0) return { upserted: 0, deactivated: 0 };
+): Promise<{ upserted: number; deactivated: number; failed: Array<{ id: string; error: unknown }> }> {
+  if (rows.length === 0) return { upserted: 0, deactivated: 0, failed: [] };
 
-  const BATCH = 100;
-  let upserted = 0;
-
-  for (let i = 0; i < rows.length; i += BATCH) {
-    const batch = rows.slice(i, i + BATCH);
-    await db
+  const upsert = (values: ModelRow[]) =>
+    db
       .insert(schema.models)
-      .values(batch)
+      .values(values)
       .onConflictDoUpdate({
         target: [schema.models.id, schema.models.providerSlug],
         set: {
@@ -47,25 +43,39 @@ export async function upsertModels(
           lastSyncedAt: sql`excluded.last_synced_at`,
         },
       });
-    upserted += batch.length;
+
+  const BATCH = 100;
+  let upserted = 0;
+  const failed: Array<{ id: string; error: unknown }> = [];
+
+  for (let i = 0; i < rows.length; i += BATCH) {
+    const batch = rows.slice(i, i + BATCH);
+    try {
+      await upsert(batch);
+      upserted += batch.length;
+    } catch {
+      for (const row of batch) {
+        try {
+          await upsert([row]);
+          upserted++;
+        } catch (error) {
+          failed.push({ id: row.id, error });
+        }
+      }
+    }
   }
 
-  const activeIds = rows.map((r) => r.id);
-  let deactivated = 0;
+  const listedIds = rows.map((r) => r.id);
+  const result = await db
+    .update(schema.models)
+    .set({ isActive: false })
+    .where(
+      and(
+        eq(schema.models.providerSlug, providerSlug),
+        notInArray(schema.models.id, listedIds),
+        eq(schema.models.isActive, true)
+      )
+    );
 
-  if (activeIds.length > 0) {
-    const result = await db
-      .update(schema.models)
-      .set({ isActive: false })
-      .where(
-        and(
-          eq(schema.models.providerSlug, providerSlug),
-          notInArray(schema.models.id, activeIds),
-          eq(schema.models.isActive, true)
-        )
-      );
-    deactivated = result.rowCount ?? 0;
-  }
-
-  return { upserted, deactivated };
+  return { upserted, deactivated: result.rowCount ?? 0, failed };
 }

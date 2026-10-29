@@ -13,7 +13,7 @@
  */
 
 import { getDb, upsertModels } from "./db";
-import type { ModelRow, SyncOptions } from "./types";
+import type { ModelRow, SyncOptions, SyncResult } from "./types";
 import { fetchOpenRouterModels } from "./adapters/openrouter";
 import { fetchMistralModels } from "./adapters/mistral";
 import { fetchScalewayModels } from "./adapters/scaleway";
@@ -24,7 +24,7 @@ import { fetchBedrockModels } from "./adapters/bedrock";
 import { fetchAlephAlphaModels } from "./adapters/aleph-alpha";
 import * as schema from "@/db/schema";
 
-export type { SyncOptions };
+export type { SyncOptions, SyncResult };
 
 // ─── Adapter registry ─────────────────────────────────────────────────────────
 
@@ -41,16 +41,17 @@ export const PROVIDER_ADAPTERS: Record<string, () => Promise<ModelRow[]>> = {
 
 // ─── Main export ──────────────────────────────────────────────────────────────
 
-export async function runSync(options: SyncOptions = {}): Promise<void> {
+export async function runSync(options: SyncOptions = {}): Promise<SyncResult> {
   const { targetProvider, dryRun = false } = options;
 
-  if (targetProvider && !PROVIDER_ADAPTERS[targetProvider]) {
+  if (targetProvider && !Object.hasOwn(PROVIDER_ADAPTERS, targetProvider)) {
     throw new Error(`Unknown provider: "${targetProvider}". Available: ${Object.keys(PROVIDER_ADAPTERS).join(", ")}`);
   }
 
   const adapters = targetProvider ? { [targetProvider]: PROVIDER_ADAPTERS[targetProvider] } : PROVIDER_ADAPTERS;
 
-  const db = getDb();
+  const db = dryRun ? null : getDb();
+  const failures: SyncResult["failures"] = [];
 
   console.log(`Starting model sync${dryRun ? " (DRY RUN — no DB writes)" : ""}…`);
 
@@ -63,7 +64,7 @@ export async function runSync(options: SyncOptions = {}): Promise<void> {
     try {
       const rows = await fetchFn();
 
-      if (dryRun) {
+      if (!db) {
         console.log(`  [dry-run] ${adapterKey}: would upsert ${rows.length} rows`);
         for (const r of rows.slice(0, 3)) {
           console.log(
@@ -81,19 +82,28 @@ export async function runSync(options: SyncOptions = {}): Promise<void> {
         byProvider.set(row.providerSlug, list);
       }
 
+      const failedRows: Array<{ id: string; error: unknown }> = [];
       for (const [slug, providerRows] of byProvider.entries()) {
-        const { upserted, deactivated } = await upsertModels(db, providerRows, slug);
+        const { upserted, deactivated, failed } = await upsertModels(db, providerRows, slug);
         modelsUpserted += upserted;
         modelsDeactivated += deactivated;
+        failedRows.push(...failed);
       }
 
       console.log(`  ${adapterKey}: upserted ${modelsUpserted}, deactivated ${modelsDeactivated}`);
+
+      if (failedRows.length > 0) {
+        throw new Error(`${failedRows.length} row(s) failed to upsert: ${failedRows.map((f) => f.id).join(", ")}`, {
+          cause: failedRows[0].error,
+        });
+      }
     } catch (e) {
       error = String(e);
-      console.error(`  ${adapterKey}: ERROR — ${error}`);
+      failures.push({ adapter: adapterKey, error: e });
+      console.error(`  ${adapterKey}: ERROR —`, e);
     }
 
-    if (!dryRun) {
+    if (db) {
       await db.insert(schema.syncLog).values({
         syncedAt: startedAt,
         providerSlug: adapterKey,
@@ -104,5 +114,6 @@ export async function runSync(options: SyncOptions = {}): Promise<void> {
     }
   }
 
-  console.log("Sync complete.");
+  console.log(failures.length > 0 ? `Sync finished with ${failures.length} failed adapter(s).` : "Sync complete.");
+  return { failures };
 }
