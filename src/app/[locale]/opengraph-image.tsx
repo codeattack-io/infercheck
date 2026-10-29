@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { getTranslations } from "next-intl/server";
 
 export const size = {
   width: 1200,
@@ -7,7 +8,10 @@ export const size = {
 
 export const contentType = "image/png";
 
-export default async function Image() {
+export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "OgImage" });
+
   return new ImageResponse(
     <div
       style={{
@@ -123,7 +127,7 @@ export default async function Image() {
           lineHeight: 1.4,
         }}
       >
-        Find GDPR-compliant AI inference providers
+        {t("tagline")}
       </p>
 
       {/* Bottom badge row */}
@@ -135,9 +139,9 @@ export default async function Image() {
         }}
       >
         {[
-          { label: "EU Data Residency", color: "#16a34a", bg: "#14532d30" },
-          { label: "DPA Available", color: "#3b82f6", bg: "#1e3a8a30" },
-          { label: "Training Opt-out", color: "#f59e0b", bg: "#78350f30" },
+          { label: t("euResidency"), color: "#16a34a", bg: "#14532d30" },
+          { label: t("dpa"), color: "#3b82f6", bg: "#1e3a8a30" },
+          { label: t("trainingOptOut"), color: "#f59e0b", bg: "#78350f30" },
         ].map(({ label, color, bg }) => (
           <div
             key={label}

@@ -15,7 +15,7 @@ import { Link } from "@/i18n/navigation";
 import { getCanonicalModelIds, getModelOffers } from "@/lib/models";
 import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import { getComplianceTier, isFullProvider, tierPillClasses, TIER_CLASSES } from "@/lib/compliance";
-import { formatContext, formatPrice } from "@/lib/format";
+import { formatContext, formatPrice, type PriceFormat } from "@/lib/format";
 import { BooleanRow } from "@/components/BooleanRow";
 import { VerificationLabel } from "@/components/VerificationLabel";
 import type { AnyProvider } from "@/lib/compliance";
@@ -83,6 +83,9 @@ export default async function ModelDetailPage({ params }: PageProps) {
     unverified: t("tiers.unverified"),
   };
 
+  const tf = await getTranslations("Format");
+  const priceFormat: PriceFormat = { locale, freeLabel: tf("free") };
+
   const providerMap = new Map<string, AnyProvider>(allProviders.map((p) => [p.slug, getLocalizedProvider(p, locale)]));
 
   // Prefer a non-gateway row's display name for the page heading so we get the
@@ -119,7 +122,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
 
       <main className="max-w-[1200px] mx-auto flex-1 w-full box-border px-4 sm:px-6 lg:px-10 py-10">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-6">
+        <nav aria-label={t("breadcrumb.ariaLabel")} className="mb-6">
           <ol className="flex items-center gap-2 list-none p-0 m-0 font-body text-[0.8125rem] text-text-muted">
             <li>
               <Link href="/" className="text-link no-underline">
@@ -181,9 +184,17 @@ export default async function ModelDetailPage({ params }: PageProps) {
                 <div className="grid gap-4 grid-cols-[repeat(auto-fit,minmax(180px,1fr))]">
                   {/* Pricing */}
                   <DetailSection title={t("sections.pricing")}>
-                    <DetailRow label={t("pricing.input")} value={formatPrice(row.inputPricePerMTokens)} mono />
-                    <DetailRow label={t("pricing.output")} value={formatPrice(row.outputPricePerMTokens)} mono />
-                    <DetailRow label={t("pricing.context")} value={formatContext(row.contextWindow)} mono />
+                    <DetailRow
+                      label={t("pricing.input")}
+                      value={formatPrice(row.inputPricePerMTokens, priceFormat)}
+                      mono
+                    />
+                    <DetailRow
+                      label={t("pricing.output")}
+                      value={formatPrice(row.outputPricePerMTokens, priceFormat)}
+                      mono
+                    />
+                    <DetailRow label={t("pricing.context")} value={formatContext(row.contextWindow, locale)} mono />
                   </DetailSection>
 
                   {/* Compliance summary */}

@@ -17,6 +17,7 @@ export async function ProviderCard({ provider, modelCount }: ProviderCardProps) 
   const tier = getComplianceTier(provider);
   const verified = isFullProvider(provider);
   const t = await getTranslations("ProviderCard");
+  const tType = await getTranslations("ProviderType");
 
   const tierLabel: Record<ComplianceTier, string> = {
     compliant: t("tiers.compliant"),
@@ -56,7 +57,7 @@ export async function ProviderCard({ provider, modelCount }: ProviderCardProps) 
       {/* Footer meta */}
       <div className="flex items-center justify-between gap-2 flex-wrap">
         <span className="font-body text-xs text-text-muted">
-          {provider.type.replace(/_/g, " ")}
+          {tType(provider.type)}
           {modelCount !== undefined
             ? ` · ${modelCount !== 1 ? t("modelCountPlural", { count: modelCount }) : t("modelCount", { count: modelCount })}`
             : ""}

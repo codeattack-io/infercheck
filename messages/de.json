@@ -16,7 +16,9 @@
       "about": "Info"
     },
     "menuOpen": "Menü öffnen",
-    "menuClose": "Menü schließen"
+    "menuClose": "Menü schließen",
+    "mainNavigation": "Hauptnavigation",
+    "mobileNavigation": "Mobile Navigation"
   },
   "Footer": {
     "license": "Daten lizenziert unter",
@@ -29,7 +31,8 @@
       "privacy": "Datenschutz",
       "github": "GitHub →"
     },
-    "disclaimer": "Dieses Verzeichnis stellt quellengestützte Informationen über die Datenpraktiken von KI-Anbietern bereit. Es handelt sich nicht um Rechtsberatung. Überprüfen Sie Angaben stets direkt beim Anbieter und konsultieren Sie rechtlichen Beistand für Compliance-Entscheidungen."
+    "disclaimer": "Dieses Verzeichnis stellt quellengestützte Informationen über die Datenpraktiken von KI-Anbietern bereit. Es handelt sich nicht um Rechtsberatung. Überprüfen Sie Angaben stets direkt beim Anbieter und konsultieren Sie rechtlichen Beistand für Compliance-Entscheidungen.",
+    "navLabel": "Fußnavigation"
   },
   "HomePage": {
     "title": "InferCheck — DSGVO-konforme KI-Inferenzanbieter finden",
@@ -39,8 +42,7 @@
     "heading1": "KI-Inferenzanbieter,",
     "heading2": "gefiltert nach DSGVO-Konformität.",
     "subheadingWithData": "{modelCount} Modelle bei {providerCount} Anbietern. Nach Compliance-Profil filtern, um geeignete Anbieter zu finden.",
-    "subheadingEmpty": "Anbieter und ihre Compliance-Haltung durchsuchen. Nach Datenhaltung, AVV-Verfügbarkeit und Trainingsrichtlinie filtern.",
-    "loadingModels": "Modelle werden geladen…"
+    "subheadingEmpty": "Anbieter und ihre Compliance-Haltung durchsuchen. Nach Datenhaltung, AVV-Verfügbarkeit und Trainingsrichtlinie filtern."
   },
   "ProvidersPage": {
     "title": "KI-Inferenzanbieter — DSGVO-Compliance-Verzeichnis",
@@ -76,7 +78,8 @@
     "ogTitle": "{providerName} — DSGVO-Compliance-Profil",
     "breadcrumb": {
       "models": "Modelle",
-      "providers": "Anbieter"
+      "providers": "Anbieter",
+      "ariaLabel": "Brotkrumennavigation"
     },
     "actions": {
       "apiDocs": "API-Dokumentation ↗",
@@ -144,13 +147,37 @@
         "output": "Ausgabe"
       }
     },
-    "unverifiedNotice": "Compliance-Daten für diesen Anbieter noch nicht verifiziert. Falls Sie Informationen haben, nutzen Sie bitte \u201eÄnderung melden\u201c.",
+    "unverifiedNotice": "Compliance-Daten für diesen Anbieter noch nicht verifiziert. Falls Sie Informationen haben, nutzen Sie bitte „Änderung melden“.",
     "backLink": "← Zurück zur Anbieterübersicht",
     "tiers": {
       "compliant": "EU-konform",
       "partial": "Teilweise (EU + SCC)",
       "noncompliant": "Nicht konform",
       "unverified": "Nicht verifiziert"
+    },
+    "meta": {
+      "yes": "ja",
+      "no": "nein",
+      "unknown": "unbekannt",
+      "available": "verfügbar",
+      "notAvailable": "nicht verfügbar"
+    },
+    "jsonLdDescription": "KI-Inferenzanbieter. DSGVO-Konformitätsstufe: {tier}. AVV: {dpa}.",
+    "dpaSignedVia": {
+      "online_acceptance": "Online-Annahme",
+      "custom_contract": "individueller Vertrag",
+      "not_available": "nicht verfügbar"
+    },
+    "euAiActStatus": {
+      "compliant": "konform",
+      "monitoring": "wird beobachtet",
+      "unknown": "unbekannt",
+      "not_applicable": "nicht anwendbar"
+    },
+    "pricingTiers": {
+      "free_tier": "kostenloses Kontingent",
+      "pay_per_use": "nutzungsbasiert",
+      "enterprise_only": "nur Enterprise"
     }
   },
   "ModelPage": {
@@ -159,7 +186,8 @@
     "ogTitle": "{modelName} — DSGVO-Compliance nach Anbieter",
     "ogDescription": "EU-Datenhaltung, AVV, Trainings-Opt-out und Preise für {modelName} bei allen anbietenden Providern.",
     "breadcrumb": {
-      "models": "Modelle"
+      "models": "Modelle",
+      "ariaLabel": "Brotkrumennavigation"
     },
     "availableFrom1": "Verfügbar bei 1 Anbieter",
     "availableFromN": "Verfügbar bei {count} Anbietern",
@@ -250,7 +278,7 @@
     "searchLabel": "Modelle oder Anbieter suchen",
     "searchPlaceholder": "Modelle oder Anbieter suchen…",
     "clearSearch": "Suche zurücksetzen",
-    "noModelsFound": "Keine Modelle für \u201e{query}\u201c gefunden",
+    "noModelsFound": "Keine Modelle für „{query}“ gefunden",
     "resultCountFiltered": "{matching} von {total} Modellen entsprechen dem aktiven Filter",
     "resultCountSearch": "{total} von {all} Modellen",
     "resultCount": "{total} Modelle",
@@ -260,7 +288,8 @@
       "compliance": "Compliance",
       "residency": "Datenhaltung",
       "price": "Preis / 1 Mio. Token",
-      "status": "Stand"
+      "status": "Stand",
+      "details": "Details"
     },
     "sortBy": "Sortieren nach {label}"
   },
@@ -286,7 +315,11 @@
     "euResidencyValue": "EU",
     "unverifiedNotice": "Compliance-Daten für diesen Anbieter noch nicht verifiziert.",
     "priceIn": "ein ",
-    "priceOut": "aus "
+    "priceOut": "aus ",
+    "gatewayTitle": "Dieses Modell stammt von einem Drittanbieter und wird über {providerName} bereitgestellt",
+    "gatewayNotice": "<strong>Drittanbieter-Modell, bereitgestellt über {providerName}.</strong> Dieses Modell stammt von einem anderen Unternehmen, wird aber über die Infrastruktur von {providerName} betrieben. Die hier gezeigten Compliance-Eigenschaften beschreiben den Umgang von <strong>{providerName}</strong> mit Daten – nicht den des ursprünglichen Modellherstellers.",
+    "dimmed": "Entspricht nicht dem aktiven Filter",
+    "toggleDetails": "Details zu {name}"
   },
   "ProviderCard": {
     "tiers": {
@@ -377,5 +410,27 @@
     "trainingUnknown": "Training unbekannt",
     "usOnly": "Nur USA",
     "unverified": "Nicht verifiziert"
+  },
+  "Format": {
+    "free": "kostenlos"
+  },
+  "GatewayPill": {
+    "label": "über Gateway"
+  },
+  "OgImage": {
+    "tagline": "DSGVO-konforme KI-Inferenzanbieter finden",
+    "euResidency": "EU-Datenhaltung",
+    "dpa": "AVV verfügbar",
+    "trainingOptOut": "Training-Opt-out"
+  },
+  "ProviderType": {
+    "api_provider": "API-Anbieter",
+    "cloud_platform": "Cloud-Plattform",
+    "gateway": "Gateway"
+  },
+  "BooleanRow": {
+    "yes": "ja",
+    "no": "nein",
+    "unknown": "unbekannt"
   }
 }

@@ -1,3 +1,5 @@
+import { useTranslations } from "next-intl";
+
 interface BooleanRowProps {
   label: string;
   value: boolean | null;
@@ -14,7 +16,9 @@ const SIZE_CLASSES = {
 };
 
 export function BooleanRow({ label, value, href, secondary, note, size = "sm", className }: BooleanRowProps) {
+  const t = useTranslations("BooleanRow");
   const sz = SIZE_CLASSES[size];
+  const valueText = value === true ? t("yes") : value === false ? t("no") : t("unknown");
   const symbol = value === true ? "✓" : value === false ? "✗" : "?";
   const symbolColor = value === true ? "text-compliant" : value === false ? "text-noncompliant" : "text-text-muted";
 
@@ -27,6 +31,7 @@ export function BooleanRow({ label, value, href, secondary, note, size = "sm", c
       ) : (
         label
       )}
+      <span className="sr-only">: {valueText}</span>
     </span>
   );
 
@@ -39,7 +44,14 @@ export function BooleanRow({ label, value, href, secondary, note, size = "sm", c
         <div>
           {labelNode}
           {secondary ? <span className="font-body text-xs text-text-muted ml-1.5">({secondary})</span> : null}
-          {note ? <span className="font-body text-xs text-text-muted italic ml-1.5">{note}</span> : null}
+          {note ? (
+            <span
+              className="font-body text-xs text-text-muted italic ml-1.5"
+              aria-hidden={value === null ? "true" : undefined}
+            >
+              {note}
+            </span>
+          ) : null}
         </div>
       ) : (
         labelNode

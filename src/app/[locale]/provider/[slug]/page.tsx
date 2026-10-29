@@ -49,17 +49,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { kind, date } = getVerification(provider);
   const verificationStatus =
     kind === "ai_draft" ? tv("aiDraft", { date: date ?? "" }) : tv("verified", { date: date ?? "" });
+  const trains = isFullProvider(provider) ? provider.compliance.dataUsage.trainsOnCustomerData : null;
   const description = isFullProvider(provider)
-    ? t("descriptionVerified", {
+    ? t("descriptionFull", {
         providerName: provider.name,
-        euOnly: provider.compliance.dataResidency.euOnly ? "✓" : "✗",
-        dpa: provider.compliance.dpa.available ? "available" : "not available",
-        training:
-          provider.compliance.dataUsage.trainsOnCustomerData === null
-            ? "unknown"
-            : provider.compliance.dataUsage.trainsOnCustomerData
-              ? "yes"
-              : "no",
+        euOnly: provider.compliance.dataResidency.euOnly ? t("meta.yes") : t("meta.no"),
+        dpa: provider.compliance.dpa.available ? t("meta.available") : t("meta.notAvailable"),
+        training: trains === null ? t("meta.unknown") : trains ? t("meta.yes") : t("meta.no"),
         status: verificationStatus,
       })
     : t("descriptionUnverified", { providerName: provider.name });
@@ -103,6 +99,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
   const provider = getLocalizedProvider(rawProvider, locale);
 
   const t = await getTranslations("ProviderPage");
+  const tType = await getTranslations("ProviderType");
 
   const tierLabel: Record<ComplianceTier, string> = {
     compliant: t("tiers.compliant"),
@@ -135,7 +132,10 @@ export default async function ProviderProfilePage({ params }: PageProps) {
     url: provider.website,
     ...(verified
       ? {
-          description: `AI inference provider. GDPR compliance tier: ${tier}. DPA: ${provider.compliance.dpa.available ? "available" : "not available"}.`,
+          description: t("jsonLdDescription", {
+            tier: tierLabel[tier],
+            dpa: provider.compliance.dpa.available ? t("meta.available") : t("meta.notAvailable"),
+          }),
         }
       : {}),
   };
@@ -146,7 +146,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
       <main className="max-w-[1200px] mx-auto flex-1 w-full box-border px-4 sm:px-6 lg:px-10 py-10">
         {/* Breadcrumb */}
-        <nav aria-label="Breadcrumb" className="mb-6">
+        <nav aria-label={t("breadcrumb.ariaLabel")} className="mb-6">
           <ol className="flex items-center gap-2 list-none p-0 m-0 font-body text-[0.8125rem] text-text-muted">
             <li>
               <Link href="/" className="text-link no-underline">
@@ -180,7 +180,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
               {/* Provider type */}
               <span className="font-body text-[0.8125rem] text-text-muted bg-surface-alt border border-border rounded px-2 py-[3px]">
-                {provider.type.replace(/_/g, " ")}
+                {tType(provider.type)}
               </span>
 
               {/* Website link */}
@@ -249,7 +249,9 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                       ? null
                       : !provider.compliance.dataResidency.dataLeavesEuAtInference
                   }
-                  note={provider.compliance.dataResidency.dataLeavesEuAtInference === null ? "unknown" : undefined}
+                  note={
+                    provider.compliance.dataResidency.dataLeavesEuAtInference === null ? t("meta.unknown") : undefined
+                  }
                 />
                 <BooleanRow
                   size="md"
@@ -258,7 +260,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   href={provider.compliance.dpa.url ?? undefined}
                   secondary={
                     provider.compliance.dpa.signedVia !== "not_available"
-                      ? provider.compliance.dpa.signedVia.replace(/_/g, " ")
+                      ? t(`dpaSignedVia.${provider.compliance.dpa.signedVia}`)
                       : undefined
                   }
                 />
@@ -358,7 +360,9 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   <div className="flex items-center gap-2 font-body text-[0.8125rem] text-text-secondary">
                     {provider.compliance.subProcessors.disclosed ? (
                       <>
-                        <span className="text-compliant">✓</span>
+                        <span className="text-compliant" aria-hidden="true">
+                          ✓
+                        </span>
                         {provider.compliance.subProcessors.url ? (
                           <a
                             href={provider.compliance.subProcessors.url}
@@ -379,7 +383,9 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                       </>
                     ) : (
                       <>
-                        <span className="text-noncompliant">✗</span>
+                        <span className="text-noncompliant" aria-hidden="true">
+                          ✗
+                        </span>
                         {t("subProcessors.notDisclosed")}
                       </>
                     )}
@@ -426,7 +432,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 <span
                   className={`inline-block font-body text-[0.8125rem] font-medium rounded px-2 py-0.5 mb-1.5 border ${tierPillClasses(euAiActTier(provider.compliance.euAiAct.status))}`}
                 >
-                  {provider.compliance.euAiAct.status.replace(/_/g, " ")}
+                  {t(`euAiActStatus.${provider.compliance.euAiAct.status}`)}
                 </span>
                 {provider.compliance.euAiAct.details ? (
                   <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.6]">
@@ -466,7 +472,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
               ) : null}
               <MetaRow
                 label={t("verification.pricingTier")}
-                value={provider.pricingTier ? provider.pricingTier.replace(/_/g, " ") : t("verification.unknown")}
+                value={provider.pricingTier ? t(`pricingTiers.${provider.pricingTier}`) : t("verification.unknown")}
               />
             </div>
 

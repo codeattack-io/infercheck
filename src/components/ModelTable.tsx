@@ -18,7 +18,7 @@
 
 import { useMemo, useCallback, useEffect, useRef, useState } from "react";
 import Fuse, { type FuseResultMatch, type Expression } from "fuse.js";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { ModelRow } from "@/components/ModelRow";
 import {
   PRESET_FILTERS,
@@ -105,8 +105,10 @@ function buildFuseQuery(raw: string): string | Expression {
   } as Expression;
 }
 
-export type SortKey = "compliance" | "price" | "provider" | "default";
+export type SortKey = "model" | "compliance" | "price" | "default";
 export type SortDir = "asc" | "desc";
+
+const SORT_KEYS: readonly SortKey[] = ["model", "compliance", "price"];
 
 const TIER_RANK: Record<string, number> = {
   compliant: 0,
@@ -115,7 +117,11 @@ const TIER_RANK: Record<string, number> = {
   unverified: 3,
 };
 
-function sortItems(items: ModelWithProvider[], key: SortKey, dir: SortDir): ModelWithProvider[] {
+function providerName(item: ModelWithProvider): string {
+  return item.provider?.name ?? item.model.providerSlug;
+}
+
+function sortItems(items: ModelWithProvider[], key: SortKey, dir: SortDir, locale: string): ModelWithProvider[] {
   if (key === "default") return items;
 
   const multiplier = dir === "asc" ? 1 : -1;
@@ -138,10 +144,10 @@ function sortItems(items: ModelWithProvider[], key: SortKey, dir: SortDir): Mode
       const pb = parseFloat(b.model.inputPricePerMTokens!);
       return (pa - pb) * multiplier;
     }
-    if (key === "provider") {
-      const na = (a.provider?.name ?? a.model.providerSlug).toLowerCase();
-      const nb = (b.provider?.name ?? b.model.providerSlug).toLowerCase();
-      return na < nb ? -1 * multiplier : na > nb ? 1 * multiplier : 0;
+    if (key === "model") {
+      const byModel = a.model.displayName.localeCompare(b.model.displayName, locale, { sensitivity: "base" });
+      if (byModel !== 0) return byModel * multiplier;
+      return providerName(a).localeCompare(providerName(b), locale, { sensitivity: "base" }) * multiplier;
     }
     return 0;
   });
@@ -163,6 +169,7 @@ const SEARCH_URL_DEBOUNCE_MS = 300;
 
 export function ModelTable({ items, searchParams }: ModelTableProps) {
   const t = useTranslations("ModelTable");
+  const locale = useLocale();
 
   // The input is local state so typing never waits for the URL. `syncedQuery` is the
   // URL query the input last agreed with; a URL change from elsewhere (hydration,
@@ -176,7 +183,19 @@ export function ModelTable({ items, searchParams }: ModelTableProps) {
   }
 
   const debounceTimer = useRef<number | undefined>(undefined);
-  useEffect(() => () => window.clearTimeout(debounceTimer.current), []);
+  useEffect(() => {
+    const handlePopState = () => {
+      window.clearTimeout(debounceTimer.current);
+      const q = new URLSearchParams(window.location.search).get("q") ?? "";
+      setInputValue(q);
+      setSyncedQuery(q);
+    };
+    window.addEventListener("popstate", handlePopState);
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+      window.clearTimeout(debounceTimer.current);
+    };
+  }, []);
 
   const writeQuery = useCallback((q: string) => {
     window.clearTimeout(debounceTimer.current);
@@ -191,8 +210,9 @@ export function ModelTable({ items, searchParams }: ModelTableProps) {
   }, []);
 
   // Sort state — persisted in URL
-  const sortKey = (searchParams.get("sort") as SortKey) ?? "default";
-  const sortDir = (searchParams.get("dir") as SortDir) ?? "asc";
+  const rawSort = searchParams.get("sort") as SortKey | null;
+  const sortKey: SortKey = rawSort !== null && SORT_KEYS.includes(rawSort) ? rawSort : "default";
+  const sortDir: SortDir = searchParams.get("dir") === "desc" ? "desc" : "asc";
 
   const handleSort = useCallback(
     (key: SortKey) => {
@@ -286,14 +306,14 @@ export function ModelTable({ items, searchParams }: ModelTableProps) {
       }
     }
 
-    // Apply sort — only when no active search query (Fuse rank is more useful then)
-    const shouldSort = sortKey !== "default" && q === "";
+    // An explicit sort overrides Fuse relevance order; without one, search results stay ranked.
+    const shouldSort = sortKey !== "default";
     return {
-      matching: shouldSort ? sortItems(matching, sortKey, sortDir) : matching,
-      nonMatching: shouldSort ? sortItems(nonMatching, sortKey, sortDir) : nonMatching,
+      matching: shouldSort ? sortItems(matching, sortKey, sortDir, locale) : matching,
+      nonMatching: shouldSort ? sortItems(nonMatching, sortKey, sortDir, locale) : nonMatching,
       matchMap,
     };
-  }, [items, inputValue, activeFilter, fuse, sortKey, sortDir]);
+  }, [items, inputValue, activeFilter, fuse, sortKey, sortDir, locale]);
 
   const totalVisible = matching.length + nonMatching.length;
   const hasFilter = activeFilter !== null;
@@ -366,7 +386,7 @@ export function ModelTable({ items, searchParams }: ModelTableProps) {
               <tr className="bg-surface-alt border-b border-border">
                 <SortableTh
                   label={t("columns.model")}
-                  sortKey="provider"
+                  sortKey="model"
                   activeSortKey={sortKey}
                   sortDir={sortDir}
                   onSort={handleSort}
@@ -406,7 +426,9 @@ export function ModelTable({ items, searchParams }: ModelTableProps) {
                   className="hidden xl:table-cell w-[14%]"
                   nonSortable
                 />
-                <th className="w-[5%]" aria-hidden="true" />
+                <th className="w-[5%]">
+                  <span className="sr-only">{t("columns.details")}</span>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -455,6 +477,7 @@ function SortableTh({
 
   return (
     <th
+      aria-sort={nonSortable ? undefined : isActive ? (sortDir === "desc" ? "descending" : "ascending") : "none"}
       className={[
         "px-4 py-[10px] text-left font-body text-xs font-semibold uppercase tracking-[0.05em] select-none",
         isActive ? "text-text-primary" : "text-text-secondary",

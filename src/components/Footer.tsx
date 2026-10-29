@@ -41,7 +41,7 @@ export async function Footer() {
           </p>
 
           {/* Right: nav links */}
-          <nav aria-label="Footer navigation" className="flex gap-5 items-center">
+          <nav aria-label={t("navLabel")} className="flex gap-5 items-center">
             <Link href="/about" className="font-body text-[0.8125rem] text-text-muted no-underline">
               {t("nav.about")}
             </Link>
