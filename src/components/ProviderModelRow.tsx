@@ -5,12 +5,12 @@
 
 import { useState } from "react";
 import { useRouter } from "@/i18n/navigation";
-import type { Model } from "@/db/schema";
+import type { ProviderModel } from "@/components/types";
 import { GatewayPill } from "@/components/GatewayPill";
 import { formatContext, formatPrice } from "@/lib/format";
 
 interface ProviderModelRowProps {
-  model: Model;
+  model: ProviderModel;
   gateway?: boolean;
 }
 

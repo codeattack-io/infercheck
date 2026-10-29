@@ -1,5 +1,7 @@
 import * as Sentry from "@sentry/nextjs";
+import { revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
+import { MODELS_CACHE_TAG } from "@/lib/models";
 import { PROVIDER_ADAPTERS, runSync } from "@/lib/sync/run";
 
 /**
@@ -10,6 +12,8 @@ import { PROVIDER_ADAPTERS, runSync } from "@/lib/sync/run";
  * token in the Authorization header. Without CRON_SECRET every request is rejected.
  * Responds with 500 when any adapter fails, so Vercel marks the cron run as failed;
  * the errors themselves go to Sentry.
+ * Unless every adapter failed, the cached model reads (tag `models`) are marked stale,
+ * so pages that list models regenerate on their next visit.
  *
  * Can also be triggered manually (e.g. for a first-time seed):
  *   curl -H "Authorization: Bearer $CRON_SECRET" https://your-domain.com/api/cron/sync-models
@@ -34,8 +38,12 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: "Unknown provider" }, { status: 400 });
   }
 
+  const adapterCount = provider ? 1 : Object.keys(PROVIDER_ADAPTERS).length;
+  let modelsMayHaveChanged = true;
+
   try {
     const { failures } = await runSync({ targetProvider: provider });
+    modelsMayHaveChanged = failures.length < adapterCount;
     if (failures.length === 0) return NextResponse.json({ ok: true });
 
     for (const { adapter, error } of failures) {
@@ -51,5 +59,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
     Sentry.captureException(e, { tags: { job: "sync-models" } });
     await Sentry.flush(2000);
     return NextResponse.json({ ok: false, error: "Sync failed" }, { status: 500 });
+  } finally {
+    if (modelsMayHaveChanged) revalidateTag(MODELS_CACHE_TAG, "max");
   }
 }

@@ -1,16 +1,13 @@
 // /providers — browsable list of all providers, grouped by compliance tier.
-// React Server Component — data loaded at request time via file-system + DB.
+// React Server Component — provider JSON plus cached model counts from the DB.
 
 import type { Metadata } from "next";
-import { cache } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ProviderCard } from "@/components/ProviderCard";
 import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import { getComplianceTier, TIER_CLASSES } from "@/lib/compliance";
 import type { AnyProvider, ComplianceTier } from "@/lib/compliance";
-import { db } from "@/lib/db";
-import { models } from "@/db/schema";
-import { eq, sql } from "drizzle-orm";
+import { getModelCountsByProvider } from "@/lib/models";
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale } = await params;
@@ -33,19 +30,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
   };
 }
-
-const getModelCountsByProvider = cache(async (): Promise<Map<string, number>> => {
-  const rows = await db
-    .select({
-      providerSlug: models.providerSlug,
-      count: sql<number>`cast(count(*) as integer)`,
-    })
-    .from(models)
-    .where(eq(models.isActive, true))
-    .groupBy(models.providerSlug);
-
-  return new Map(rows.map((r) => [r.providerSlug, r.count]));
-});
 
 const TIER_ORDER: ComplianceTier[] = ["compliant", "partial", "noncompliant", "unverified"];
 
@@ -155,7 +139,7 @@ export default async function ProvidersPage({ params }: PageProps) {
                 {/* Provider grid */}
                 <div className="grid gap-3 grid-cols-[repeat(auto-fill,minmax(280px,1fr))]">
                   {group.map((p) => (
-                    <ProviderCard key={p.slug} provider={p} modelCount={modelCounts.get(p.slug)} />
+                    <ProviderCard key={p.slug} provider={p} modelCount={modelCounts[p.slug]} />
                   ))}
                 </div>
               </section>
