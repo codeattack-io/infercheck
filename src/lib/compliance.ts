@@ -67,12 +67,22 @@ export interface ComplianceFilter {
 
 export type FilterProfile = "strict-eu" | "eu-sccs" | "no-training" | "custom" | null;
 
+export type PresetProfile = Exclude<FilterProfile, "custom" | null>;
+
+export const PRESET_FILTERS: Record<PresetProfile, ComplianceFilter> = {
+  "strict-eu": { euOnly: true, dpa: true, noTraining: true },
+  "eu-sccs": { dpa: true, sccs: true, noTraining: true },
+  "no-training": { noTraining: true },
+};
+
+export const PRESET_IDS = Object.keys(PRESET_FILTERS) as PresetProfile[];
+
 export interface FilterState {
   profile: FilterProfile;
   custom: ComplianceFilter;
 }
 
-const VALID_PROFILES: FilterProfile[] = ["strict-eu", "eu-sccs", "no-training", "custom", null];
+const VALID_PROFILES: FilterProfile[] = [...PRESET_IDS, "custom", null];
 
 /**
  * Parse filter state from URL search params.

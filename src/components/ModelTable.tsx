@@ -25,11 +25,14 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import Fuse, { type FuseResultMatch, type Expression } from "fuse.js";
 import { useTranslations } from "next-intl";
 import { ModelRow } from "@/components/ModelRow";
-import { providerMatchesFilter, filterStateFromSearchParams, getComplianceTier } from "@/lib/compliance";
+import {
+  PRESET_FILTERS,
+  providerMatchesFilter,
+  filterStateFromSearchParams,
+  getComplianceTier,
+} from "@/lib/compliance";
 import type { ModelWithProvider } from "@/components/types";
 import type { AnyProvider } from "@/lib/compliance";
-
-// ─── Fuse config ──────────────────────────────────────────────────────────────
 
 // Keys searched; displayName weighted highest since it's what users type.
 // We do NOT use useTokenSearch — it splits on whitespace and matches each
@@ -106,8 +109,6 @@ function buildFuseQuery(raw: string): string | Expression {
   } as Expression;
 }
 
-// ─── Sort ──────────────────────────────────────────────────────────────────────
-
 export type SortKey = "compliance" | "price" | "provider" | "default";
 export type SortDir = "asc" | "desc";
 
@@ -157,8 +158,6 @@ function rowKey(item: ModelWithProvider): string {
   return `${item.model.id}::${item.model.providerSlug}`;
 }
 
-// ─── Component ────────────────────────────────────────────────────────────────
-
 interface ModelTableProps {
   items: ModelWithProvider[];
   /** Initial search query from URL — used only at mount, never synced back */
@@ -207,12 +206,7 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
   const activeFilter = useMemo(() => {
     if (!filterState.profile || filterState.profile === null) return null;
     if (filterState.profile === "custom") return filterState.custom;
-    const profileFilters: Record<string, ReturnType<typeof filterStateFromSearchParams>["custom"]> = {
-      "strict-eu": { euOnly: true, dpa: true, noTraining: true },
-      "eu-sccs": { dpa: true, sccs: true, noTraining: true },
-      "no-training": { noTraining: true },
-    };
-    return profileFilters[filterState.profile] ?? null;
+    return PRESET_FILTERS[filterState.profile] ?? null;
   }, [filterState]);
 
   // Build Fuse index once per items change — O(n) cost paid on data change, not per keystroke
@@ -433,8 +427,6 @@ export function ModelTable({ items, searchQuery: initialQuery }: ModelTableProps
     </div>
   );
 }
-
-// ─── SortableTh ───────────────────────────────────────────────────────────────
 
 interface SortableThProps {
   label: string;
