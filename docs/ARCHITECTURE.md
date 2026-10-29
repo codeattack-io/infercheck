@@ -127,7 +127,7 @@ Names only; values live in `.env.local` (never committed), the Vercel project, a
 | `SENTRY_DSN`, `NEXT_PUBLIC_SENTRY_DSN`                            | instrumentation                  | Optional; unset disables error monitoring. The public one is needed at build time |
 | `SENTRY_URL`, `SENTRY_AUTH_TOKEN`, `SENTRY_ORG`, `SENTRY_PROJECT` | `next.config.ts`                 | Source map upload; all four must be set or the upload is skipped                  |
 
-GitHub Actions secrets used by the workflows: `DATABASE_URL` (deploy, in the `production` environment), `DATABASE_URL_DEV` (CI build), `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`, `RENOVATE_APP_ID`, `RENOVATE_APP_PRIVATE_KEY`.
+GitHub Actions secrets used by the workflows: `DATABASE_URL` (deploy, in the `production` environment), `DATABASE_URL_DEV` (CI build), `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`, `RENOVATE_APP_PRIVATE_KEY`; repository variable `RENOVATE_APP_CLIENT_ID`.
 
 Commands that write to the database (`sync:models` without `--dry-run`, `db:migrate`) change whatever `DATABASE_URL` points at.
 
@@ -143,7 +143,7 @@ Commands that write to the database (`sync:models` without `--dry-run`, `db:migr
 1. `migrate`: `bun run db:migrate` against the production database (`environment: production`).
 2. `deploy`: `vercel deploy --prod`, only after `migrate` succeeded.
 
-**`renovate.yml`** runs self-hosted Renovate every Monday 07:00 UTC, on edits of the dependency dashboard issue or Renovate pull requests, and on manual dispatch. It authenticates as a GitHub App (`RENOVATE_APP_ID`, `RENOVATE_APP_PRIVATE_KEY`). `.github/renovate.json` configures it:
+**`renovate.yml`** runs self-hosted Renovate every Monday 07:00 UTC, on edits of the dependency dashboard issue or Renovate pull requests, and on manual dispatch. It authenticates as a GitHub App (variable `RENOVATE_APP_CLIENT_ID`, secret `RENOVATE_APP_PRIVATE_KEY`). `.github/renovate.json` configures it:
 
 - Patch, minor, pin and digest updates automerge once checks pass; major updates need manual review.
 - `minimumReleaseAge` of 3 days; lockfile maintenance and vulnerability alerts automerge.
