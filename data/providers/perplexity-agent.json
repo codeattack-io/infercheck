@@ -2,8 +2,8 @@
   "slug": "perplexity-agent",
   "name": "Perplexity Agent",
   "type": "api_provider",
-  "website": "https://docs.perplexity.ai",
-  "apiDocsUrl": "https://docs.perplexity.ai",
+  "website": "https://www.perplexity.ai/api-platform",
+  "apiDocsUrl": "https://docs.perplexity.ai/docs/agent-api/quickstart",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
@@ -12,26 +12,27 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Perplexity’s DPA lists Amazon Web Services cloud infrastructure and third-party LLM providers as subprocessors with location stated as worldwide. No EU-only processing option was found in the API documentation or DPA."
+      "euRegionDetails": "No EU region or data residency option is documented. All listed sub-processors are located in the US, including AWS and the model providers OpenAI, Anthropic, Google and xAI that process requests to their models."
     },
     "dpa": {
       "available": true,
-      "url": "https://www.perplexity.ai/pl/hub/legal/dpa",
+      "url": "https://www.perplexity.ai/hub/legal/dpa",
       "signedVia": "online_acceptance"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
-      "optOutAvailable": null,
-      "retentionPolicy": "For the Sonar API, Perplexity states a zero data retention policy: it does not retain API prompt/response content and only collects billing metadata such as token counts, model used, timestamps, duration, and API key identification. The DPA also says personal data is deleted or returned within 30 days after termination of services unless law requires longer retention.",
-      "details": "Perplexity states that Sonar API customer data is not used to train models or for other purposes beyond processing the immediate request."
+      "optOutAvailable": false,
+      "retentionPolicy": "Zero data retention is not the default; it requires a written agreement and only works with models whose providers support it. The Agent API stores responses and conversation state on Perplexity's servers, and some third-party model providers require limited retention. Under the DPA, personal data in inputs is stored until the customer deletes it, at most until 30 days after the service ends.",
+      "details": "The API terms state that Perplexity does not use API inputs and outputs to train AI models and does not allow third parties to do so. Requests to third-party models are also subject to those providers' terms."
     },
     "subProcessors": {
       "disclosed": true,
-      "url": "https://www.perplexity.ai/pl/hub/legal/dpa",
-      "includesEuEntities": null
+      "url": "https://trust.perplexity.ai/subprocessors",
+      "includesEuEntities": false
     },
     "certifications": [
-      "SOC2"
+      "SOC2",
+      "ISO27001"
     ],
     "euAiAct": {
       "status": "unknown",
@@ -41,25 +42,30 @@
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://docs.perplexity.ai/docs/resources/privacy-security",
-    "https://www.perplexity.ai/pl/hub/legal/dpa",
-    "https://www.perplexity.ai/es/hub/legal/privacy-policy",
-    "https://www.perplexity.ai/enterprise/security",
-    "https://www.perplexity.ai/enterprise/pricing"
+    "https://docs.perplexity.ai/docs/agent-api/conversation-state",
+    "https://docs.perplexity.ai/docs/getting-started/pricing",
+    "https://www.perplexity.ai/hub/legal/perplexity-api-terms-of-service",
+    "https://www.perplexity.ai/hub/legal/dpa",
+    "https://www.perplexity.ai/hub/legal/privacy-notice",
+    "https://www.perplexity.ai/hub/security",
+    "https://trust.perplexity.ai/",
+    "https://trust.perplexity.ai/subprocessors",
+    "https://www.dataprivacyframework.gov/participant/9020"
   ],
-  "notes": "Perplexity’s API documentation is favorable on training and retention for Sonar API: it states zero retention of API content and no training on customer data. However, the public DPA indicates worldwide processing via AWS and third-party LLM providers, so EU-only inference/processing is not documented, and cross-border transfer mechanisms rely on SCCs and the EU-US Data Privacy Framework.",
+  "notes": "The Agent API runs Perplexity-hosted models and routes requests to models from OpenAI, Anthropic, Google and xAI, all listed as US sub-processors; no EU region is offered. The DPA is part of the API terms and includes the EU Standard Contractual Clauses. Perplexity AI, Inc. withdrew from the EU-US Data Privacy Framework on 21 October 2026.",
   "translations": {
     "de": {
-      "notes": "Die API-Dokumentation von Perplexity ist hinsichtlich Training und Speicherung für die Sonar API günstig: Sie gibt an, dass API-Inhalte keiner Speicherung unterliegen und dass kein Training mit Kundendaten erfolgt. Der öffentlich zugängliche Auftragsverarbeitungsvertrag (AVV) weist jedoch auf eine weltweite Verarbeitung über AWS und Drittanbieter-LLM-Anbieter hin; eine ausschließlich auf die EU beschränkte Inferenz/Verarbeitung ist daher nicht dokumentiert, und die Mechanismen für Drittlandübermittlung stützen sich auf Standardvertragsklauseln (SCC) und das EU-US Data Privacy Framework.",
+      "notes": "Die Agent API betreibt von Perplexity gehostete Modelle und leitet Anfragen an Modelle von OpenAI, Anthropic, Google und xAI weiter; diese Anbieter sind alle als Unterauftragsverarbeiter mit Sitz in den USA aufgeführt, eine EU-Region wird nicht angeboten. Der AVV ist Teil der API-Nutzungsbedingungen und enthält die EU-Standardvertragsklauseln. Perplexity AI, Inc. ist am 21. Oktober 2026 aus dem EU-US Data Privacy Framework ausgetreten.",
       "dataResidency": {
-        "euRegionDetails": "Der Auftragsverarbeitungsvertrag (AVV) von Perplexity führt die Cloud-Infrastruktur von Amazon Web Services sowie Drittanbieter-LLM-Anbieter als Unterauftragsverarbeiter auf, wobei als Standort weltweit angegeben ist. Weder in der API-Dokumentation noch im Auftragsverarbeitungsvertrag (AVV) wurde eine Option für eine ausschließlich in der EU erfolgende Verarbeitung gefunden."
+        "euRegionDetails": "Eine EU-Region oder eine Option zur Datenresidenz ist nicht dokumentiert. Alle aufgeführten Unterauftragsverarbeiter haben ihren Standort in den USA, darunter AWS sowie die Modellanbieter OpenAI, Anthropic, Google und xAI, die Anfragen an ihre Modelle verarbeiten."
       },
       "dataUsage": {
-        "retentionPolicy": "Für die Sonar API gibt Perplexity eine Richtlinie zur Datenspeicherung von null an: Inhalte von API-Prompts/Antworten werden nicht gespeichert, und es werden nur Abrechnungsmetadaten wie Token-Anzahlen, das verwendete Modell, Zeitstempel, Dauer und die Identifikation des API-Schlüssels erhoben. Der Auftragsverarbeitungsvertrag (AVV) besagt außerdem, dass personenbezogene Daten innerhalb von 30 Tagen nach Beendigung der Dienste gelöscht oder zurückgegeben werden, sofern keine gesetzlichen Aufbewahrungspflichten eine längere Speicherung erfordern.",
-        "details": "Perplexity gibt an, dass Kundendaten der Sonar API nicht zum Trainieren von Modellen oder für andere Zwecke verwendet werden, die über die Verarbeitung der unmittelbaren Anfrage hinausgehen."
+        "retentionPolicy": "Zero Data Retention ist nicht Standard; sie erfordert eine schriftliche Vereinbarung und funktioniert nur mit Modellen, deren Anbieter sie unterstützen. Die Agent API speichert Antworten und Gesprächsverläufe auf den Servern von Perplexity, und einige Drittanbieter von Modellen verlangen eine begrenzte Speicherung. Laut AVV werden personenbezogene Daten in Eingaben gespeichert, bis der Kunde sie löscht, längstens bis 30 Tage nach Ende der Leistungserbringung.",
+        "details": "Laut den API-Nutzungsbedingungen verwendet Perplexity API-Eingaben und -Ausgaben nicht zum Training von KI-Modellen und gestattet dies auch Dritten nicht. Anfragen an Modelle von Drittanbietern unterliegen zusätzlich deren Bedingungen."
       }
     }
   }

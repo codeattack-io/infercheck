@@ -3,17 +3,16 @@
   "name": "xAI",
   "type": "api_provider",
   "website": "https://docs.x.ai",
-  "apiDocsUrl": "https://docs.x.ai/docs",
+  "apiDocsUrl": "https://docs.x.ai/overview",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
       "regions": [
-        "US",
-        "UK"
+        "US"
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "xAI’s enterprise/API infrastructure is documented as built primarily on AWS, and current API docs explicitly show at least us-east-1 for available API clusters. The DPA states xAI may transfer and process personal data outside Europe, including the United States and other countries where xAI and its subprocessors operate. No EU-only processing option was found in the primary sources."
+      "euRegionDetails": "There is no EU endpoint. The default global endpoint may route requests between regions, so the processing location is not guaranteed; a separate US endpoint keeps request handling and inference in the United States. The DPA allows transfers of personal data outside Europe, including to the United States."
     },
     "dpa": {
       "available": true,
@@ -23,48 +22,56 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "For enterprise/API services, xAI says User Content is automatically deleted within 30 days unless legally required to retain it or it is flagged for safety, compliance, moderation, or possible Agreement/AUP violations. The DPA also says customers can delete data and that login data, prompt/response pairs, and billing information are typically deleted within 30 days after a deletion request; upon termination xAI deletes personal data except where retention is legally required.",
-      "details": "Enterprise Terms state xAI may use User Content to provide the services and for safety, compliance, abuse prevention, and moderation, but shall not use User Content for internal AI or other training purposes. xAI may continue to use de-identified or aggregated data and Feedback."
+      "retentionPolicy": "API requests and responses are deleted automatically within 30 days, unless longer retention is agreed, legally required or needed for safety or investigations. With Zero Data Retention, a team-wide setting, prompts and outputs are not stored and are deleted at the latest one hour after the request.",
+      "details": "xAI does not train on API inputs or outputs without the customer's explicit permission. Outside Zero Data Retention, it may use de-identified and aggregated data derived from API use for any lawful purpose. The DPA requires customers to send personal data only through the Zero Data Retention API."
     },
     "subProcessors": {
       "disclosed": true,
       "url": "https://x.ai/legal/subprocessor-list",
       "includesEuEntities": false
     },
-    "certifications": [],
+    "certifications": [
+      "SOC2"
+    ],
     "euAiAct": {
-      "status": "unknown",
-      "details": null
+      "status": "compliant",
+      "details": "xAI signed only the Safety and Security chapter of the EU General-Purpose AI Code of Practice, not the transparency and copyright chapters, so it has to show compliance with those obligations by other means. It publishes EU AI Act summaries of the training content of its models."
     },
     "sccs": true,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://docs.x.ai/docs",
+    "https://docs.x.ai/overview",
     "https://docs.x.ai/developers/faq/general",
+    "https://docs.x.ai/developers/faq/security",
+    "https://docs.x.ai/developers/advanced-api-usage/regions",
     "https://docs.x.ai/developers/models",
-    "https://docs.x.ai/developers/rate-limits",
+    "https://docs.x.ai/developers/pricing",
     "https://x.ai/legal",
     "https://x.ai/legal/privacy-policy",
     "https://x.ai/legal/europe-privacy-policy-addendum",
     "https://x.ai/legal/terms-of-service-enterprise",
     "https://x.ai/legal/data-processing-addendum",
     "https://x.ai/legal/subprocessor-list",
-    "https://x.ai/security"
+    "https://x.ai/security",
+    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
   ],
-  "notes": "xAI provides a public enterprise DPA, subprocessor list, and SCC-based transfer terms, but the available primary sources point to US-centric processing rather than EU-only residency. For API/enterprise use, xAI states it does not train on customer User Content, while retaining limited rights for service delivery, abuse prevention, safety/compliance, and de-identified/aggregated data use.",
+  "notes": "xAI now operates as SpaceX Super Intelligence LLC (SpaceXSI), a US company that is not certified under the EU-US Data Privacy Framework; transfers rely on the Standard Contractual Clauses in its DPA. There is no EU processing option, and the DPA requires personal data to be sent only through the Zero Data Retention API. API data is not used for training without explicit permission.",
   "translations": {
     "de": {
-      "notes": "xAI stellt einen öffentlichen Auftragsverarbeitungsvertrag (AVV), eine Liste der Unterauftragsverarbeiter sowie auf Standardvertragsklauseln (SCC) basierende Bedingungen für Drittlandübermittlungen bereit; die verfügbaren Primärquellen weisen jedoch eher auf eine US-zentrierte Verarbeitung als auf eine ausschließliche Datenhaltung in der EU hin. Für die API-/Enterprise-Nutzung gibt xAI an, Kundennutzerinhalte nicht zum Training zu verwenden, wobei begrenzte Rechte für die Leistungserbringung, Missbrauchsprävention, Sicherheit/Compliance sowie die Nutzung de-identifizierter/aggregierter Daten vorbehalten bleiben.",
+      "notes": "xAI firmiert inzwischen als SpaceX Super Intelligence LLC (SpaceXSI), ein US-Unternehmen ohne Zertifizierung nach dem EU-US Data Privacy Framework; Übermittlungen stützen sich auf die Standardvertragsklauseln im AVV. Eine Verarbeitung nur in der EU ist nicht möglich, und der AVV verlangt, personenbezogene Daten nur über die Zero-Data-Retention-API zu senden. API-Daten werden ohne ausdrückliche Zustimmung nicht für das Training genutzt.",
       "dataResidency": {
-        "euRegionDetails": "Die Enterprise-/API-Infrastruktur von xAI ist dokumentiert als primär auf AWS aufgebaut, und die aktuellen API-Dokumentationen weisen ausdrücklich mindestens us-east-1 als verfügbaren API-Cluster aus. Der Auftragsverarbeitungsvertrag (AVV) besagt, dass xAI personenbezogene Daten außerhalb Europas, einschließlich der Vereinigten Staaten und anderer Länder, in denen xAI und seine Unterauftragsverarbeiter tätig sind, übermitteln und verarbeiten darf. In den Primärquellen wurde keine Option für eine ausschließlich auf die EU beschränkte Verarbeitung gefunden."
+        "euRegionDetails": "Es gibt keinen EU-Endpunkt. Der globale Standard-Endpunkt kann Anfragen zwischen Regionen weiterleiten, der Verarbeitungsort ist daher nicht garantiert; ein eigener US-Endpunkt hält Anfragebearbeitung und Inferenz in den USA. Der AVV erlaubt Übermittlungen personenbezogener Daten außerhalb Europas, auch in die USA."
       },
       "dataUsage": {
-        "retentionPolicy": "Für Enterprise-/API-Dienste gibt xAI an, dass Nutzungsinhalte automatisch innerhalb von 30 Tagen gelöscht werden, sofern keine gesetzliche Aufbewahrungspflicht besteht oder diese Inhalte für Sicherheit, Compliance, Moderation oder mögliche Verstöße gegen die Vereinbarung/AUP gekennzeichnet wurden. Der Auftragsverarbeitungsvertrag (AVV) besagt ferner, dass Kunden Daten löschen können und dass Anmeldedaten, Prompt-/Response-Paare und Abrechnungsinformationen nach einem Löschungsersuchen typischerweise innerhalb von 30 Tagen gelöscht werden; bei Vertragsbeendigung löscht xAI personenbezogene Daten, außer soweit eine gesetzliche Aufbewahrung erforderlich ist.",
-        "details": "Die Enterprise-Bedingungen sehen vor, dass xAI Nutzungsinhalte zur Erbringung der Dienste sowie für Sicherheit, Compliance, Missbrauchsprävention und Moderation verwenden darf, diese Nutzungsinhalte jedoch nicht für interne KI- oder sonstige Trainingszwecke verwenden darf. xAI darf de-identifizierte oder aggregierte Daten sowie Feedback weiterhin verwenden."
+        "retentionPolicy": "API-Anfragen und -Antworten werden innerhalb von 30 Tagen automatisch gelöscht, sofern keine längere Aufbewahrung vereinbart, gesetzlich vorgeschrieben oder für Sicherheit oder Untersuchungen nötig ist. Mit Zero Data Retention, einer Einstellung für das ganze Team, werden Prompts und Ausgaben nicht gespeichert und spätestens eine Stunde nach der Anfrage gelöscht.",
+        "details": "xAI trainiert ohne ausdrückliche Zustimmung des Kunden nicht mit API-Eingaben oder -Ausgaben. Außerhalb von Zero Data Retention darf xAI aus der API-Nutzung abgeleitete de-identifizierte und aggregierte Daten für jeden rechtmäßigen Zweck nutzen. Der AVV verlangt, dass Kunden personenbezogene Daten nur über die Zero-Data-Retention-API senden."
+      },
+      "euAiAct": {
+        "details": "xAI hat nur das Kapitel Sicherheit und Gefahrenabwehr des EU-Verhaltenskodex für KI-Modelle mit allgemeinem Verwendungszweck unterzeichnet, nicht die Kapitel Transparenz und Urheberrecht, und muss die Einhaltung dieser Pflichten daher auf anderem Weg nachweisen. Für seine Modelle veröffentlicht xAI Zusammenfassungen der Trainingsinhalte nach dem EU AI Act."
       }
     }
   }
