@@ -13,7 +13,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": null,
-      "euRegionDetails": "Inference Endpoints let customers choose the cloud region for each endpoint; the only EU region is AWS eu-west-1 (Ireland), all other regions are in the US. Storing models and datasets in the EU (Storage Regions) needs a Team or Enterprise plan. Hugging Face makes no contractual commitment that an EU endpoint keeps all processing in the EU, and the location of its 30-day logs is not documented; the serverless Inference Providers API has no EU option."
+      "euRegionDetails": "Inference Endpoints let customers choose the cloud region for each endpoint; the only EU region is AWS eu-west-1 (Ireland), all other regions are in the US. Storing models and datasets in the EU (Storage Regions) needs a Team or Enterprise plan. Hugging Face makes no contractual commitment that an EU endpoint keeps all processing in the EU, and the location of its 30-day logs is not documented; the serverless Inference Providers API has no documented EU data-residency setting, although some selectable partners such as OVHcloud and Scaleway are European providers."
     },
     "dpa": {
       "available": true,
@@ -60,7 +60,7 @@
     "de": {
       "notes": "Der Eintrag beschreibt Inference Endpoints (dediziert); die serverlose API Inference Providers leitet Anfragen an Drittanbieter wie Together, Fireworks oder Groq weiter, die nicht auf den Unterauftragsverarbeiter-Listen von Hugging Face stehen. Hugging Face, Inc. (USA) ist nicht nach dem EU-US Data Privacy Framework zertifiziert; der Auftragsverarbeitungsvertrag, auf den die Nutzungsbedingungen für Inferenzdienste verweisen, nutzt die EU-Standardvertragsklauseln. Die EU-Niederlassung ist Hugging Face SAS in Paris, beaufsichtigt von der französischen Datenschutzbehörde CNIL.",
       "dataResidency": {
-        "euRegionDetails": "Bei Inference Endpoints wählt der Kunde die Cloud-Region pro Endpoint; einzige EU-Region ist AWS eu-west-1 (Irland), alle anderen Regionen liegen in den USA. Die Speicherung von Modellen und Datensätzen in der EU (Storage Regions) setzt einen Team- oder Enterprise-Plan voraus. Hugging Face sagt nicht vertraglich zu, dass ein EU-Endpoint die gesamte Verarbeitung in der EU hält, und wo die 30 Tage aufbewahrten Logs liegen, ist nicht dokumentiert; die serverlose API Inference Providers bietet keine EU-Option."
+        "euRegionDetails": "Bei Inference Endpoints wählt der Kunde die Cloud-Region pro Endpoint; einzige EU-Region ist AWS eu-west-1 (Irland), alle anderen Regionen liegen in den USA. Die Speicherung von Modellen und Datensätzen in der EU (Storage Regions) setzt einen Team- oder Enterprise-Plan voraus. Hugging Face sagt nicht vertraglich zu, dass ein EU-Endpoint die gesamte Verarbeitung in der EU hält, und wo die 30 Tage aufbewahrten Logs liegen, ist nicht dokumentiert; für die serverlose API Inference Providers ist keine EU-Datenresidenz dokumentiert, auch wenn einige wählbare Partner wie OVHcloud und Scaleway europäische Anbieter sind."
       },
       "dataUsage": {
         "retentionPolicy": "An Inference Endpoints gesendete Anfrage- und Antwortinhalte werden nicht gespeichert; Logs werden 30 Tage aufbewahrt.",
