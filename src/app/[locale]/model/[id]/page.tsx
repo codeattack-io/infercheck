@@ -14,13 +14,13 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getCanonicalModelIds, getModelOffers } from "@/lib/models";
 import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
-import { getComplianceTier, isFullProvider, tierPillClasses, TIER_CLASSES } from "@/lib/compliance";
+import { getComplianceTier, isFullProvider, TIER_CLASSES } from "@/lib/compliance";
 import { formatContext, formatPrice, type PriceFormat } from "@/lib/format";
-import { BooleanRow } from "@/components/BooleanRow";
+import { BooleanList, BooleanRow } from "@/components/BooleanRow";
 import { VerificationLabel } from "@/components/VerificationLabel";
 import type { AnyProvider } from "@/lib/compliance";
-import { ComplianceBadgeList } from "@/components/ComplianceBadge";
-import type { ComplianceTier } from "@/lib/compliance";
+import { ComplianceBadge } from "@/components/ComplianceBadge";
+import { buttonClass } from "@/lib/styles";
 
 interface PageProps {
   params: Promise<{ locale: string; id: string }>;
@@ -76,13 +76,6 @@ export default async function ModelDetailPage({ params }: PageProps) {
 
   const t = await getTranslations("ModelPage");
 
-  const tierLabel: Record<ComplianceTier, string> = {
-    compliant: t("tiers.compliant"),
-    partial: t("tiers.partial"),
-    noncompliant: t("tiers.noncompliant"),
-    unverified: t("tiers.unverified"),
-  };
-
   const tf = await getTranslations("Format");
   const priceFormat: PriceFormat = { locale, freeLabel: tf("free") };
 
@@ -120,7 +113,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <main className="max-w-[1200px] mx-auto flex-1 w-full box-border px-4 sm:px-6 lg:px-10 py-10">
+      <main className="page-width flex-1 py-10">
         {/* Breadcrumb */}
         <nav aria-label={t("breadcrumb.ariaLabel")} className="mb-6">
           <ol className="flex items-center gap-2 list-none p-0 m-0 font-body text-[0.8125rem] text-text-muted">
@@ -136,9 +129,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
 
         {/* Heading */}
         <div className="mb-8">
-          <h1 className="font-display text-[2rem] font-normal text-heading leading-[1.2] m-0 mb-2 tracking-[-0.02em]">
-            {modelName}
-          </h1>
+          <h1 className="m-0 mb-2">{modelName}</h1>
           <p className="font-body text-[0.9375rem] text-text-secondary m-0">
             {modelRows.length === 1 ? t("availableFrom1") : t("availableFromN", { count: modelRows.length })}
             {t("compareSubheading")}
@@ -156,7 +147,7 @@ export default async function ModelDetailPage({ params }: PageProps) {
             return (
               <div
                 key={`${row.id}::${row.providerSlug}`}
-                className={`bg-surface border border-border border-l-[3px] ${tierClasses.accentBorder} rounded px-6 py-5`}
+                className={`bg-surface border border-border border-l-3 ${tierClasses.line} rounded-card px-6 py-5`}
               >
                 {/* Card header */}
                 <div className="flex items-start justify-between gap-4 flex-wrap mb-4">
@@ -164,18 +155,17 @@ export default async function ModelDetailPage({ params }: PageProps) {
                     <div className="font-body text-base font-semibold text-text-primary mb-1">
                       {provider?.name ?? row.providerSlug}
                     </div>
-                    <div
-                      className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded font-body text-xs font-medium border ${tierPillClasses(tier)}`}
-                    >
-                      <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${tierClasses.dotInk}`} aria-hidden="true" />
-                      {tierLabel[tier]}
+                    <div className="flex flex-wrap items-center gap-2.5">
+                      <ComplianceBadge
+                        tier={tier}
+                        label="long"
+                        compliance={provider !== null && isFullProvider(provider) ? provider.compliance : null}
+                      />
+                      {provider ? <VerificationLabel provider={provider} className="text-14 text-text-muted" /> : null}
                     </div>
                   </div>
 
-                  <Link
-                    href={`/provider/${row.providerSlug}`}
-                    className="font-body text-[0.8125rem] font-medium text-accent no-underline inline-flex items-center gap-1 px-[10px] py-1 border border-accent rounded bg-accent-subtle whitespace-nowrap shrink-0"
-                  >
+                  <Link href={`/provider/${row.providerSlug}`} className={`${buttonClass("primary")} shrink-0`}>
                     {t("fullProviderProfile")}
                   </Link>
                 </div>
@@ -187,50 +177,43 @@ export default async function ModelDetailPage({ params }: PageProps) {
                     <DetailRow
                       label={t("pricing.input")}
                       value={formatPrice(row.inputPricePerMTokens, { ...priceFormat, currency: row.priceCurrency })}
-                      mono
+                      numeric
                     />
                     <DetailRow
                       label={t("pricing.output")}
                       value={formatPrice(row.outputPricePerMTokens, { ...priceFormat, currency: row.priceCurrency })}
-                      mono
+                      numeric
                     />
-                    <DetailRow label={t("pricing.context")} value={formatContext(row.contextWindow, locale)} mono />
+                    <DetailRow label={t("pricing.context")} value={formatContext(row.contextWindow, locale)} numeric />
                   </DetailSection>
 
                   {/* Compliance summary */}
                   {verified && provider !== null && isFullProvider(provider) ? (
                     <DetailSection title={t("sections.gdprCompliance")}>
-                      <BooleanRow
-                        className="mb-1"
-                        label={t("compliance.euDataResidency")}
-                        value={provider.compliance.dataResidency.euOnly}
-                      />
-                      <BooleanRow
-                        className="mb-1"
-                        label={t("compliance.dpaAvailable")}
-                        value={provider.compliance.dpa.available}
-                        href={provider.compliance.dpa.url ?? undefined}
-                      />
-                      <BooleanRow
-                        className="mb-1"
-                        label={t("compliance.noTrainingOnData")}
-                        value={
-                          provider.compliance.dataUsage.trainsOnCustomerData === null
-                            ? null
-                            : !provider.compliance.dataUsage.trainsOnCustomerData
-                        }
-                      />
-                      <BooleanRow
-                        className="mb-1"
-                        label={t("compliance.sccsInPlace")}
-                        value={provider.compliance.sccs ?? false}
-                      />
+                      <BooleanList>
+                        <BooleanRow
+                          label={t("compliance.euDataResidency")}
+                          value={provider.compliance.dataResidency.euOnly}
+                        />
+                        <BooleanRow
+                          label={t("compliance.dpaAvailable")}
+                          value={provider.compliance.dpa.available}
+                          href={provider.compliance.dpa.url ?? undefined}
+                        />
+                        <BooleanRow
+                          label={t("compliance.noTrainingOnData")}
+                          value={
+                            provider.compliance.dataUsage.trainsOnCustomerData === null
+                              ? null
+                              : !provider.compliance.dataUsage.trainsOnCustomerData
+                          }
+                        />
+                        <BooleanRow label={t("compliance.sccsInPlace")} value={provider.compliance.sccs ?? false} />
+                      </BooleanList>
                     </DetailSection>
                   ) : (
                     <DetailSection title={t("sections.gdprCompliance")}>
-                      <p className="font-body text-[0.8125rem] text-text-muted m-0 italic">
-                        {t("compliance.notYetVerified")}
-                      </p>
+                      <p className="text-[0.8125rem] text-text-muted m-0">{t("compliance.notYetVerified")}</p>
                     </DetailSection>
                   )}
 
@@ -250,16 +233,6 @@ export default async function ModelDetailPage({ params }: PageProps) {
                           {provider.compliance.dataResidency.euRegionDetails}
                         </p>
                       ) : null}
-                    </DetailSection>
-                  ) : null}
-
-                  {/* Badges */}
-                  {verified && provider !== null && isFullProvider(provider) ? (
-                    <DetailSection title={t("sections.complianceBadges")}>
-                      <ComplianceBadgeList compliance={provider.compliance} />
-                      <p className="mt-2 mb-0">
-                        <VerificationLabel provider={provider} className="font-mono text-xs text-text-muted" />
-                      </p>
                     </DetailSection>
                   ) : null}
                 </div>
@@ -282,21 +255,17 @@ export default async function ModelDetailPage({ params }: PageProps) {
 function DetailSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <div className="font-body text-[0.6875rem] font-semibold text-text-secondary uppercase tracking-[0.06em] mb-[10px]">
-        {title}
-      </div>
+      <div className="text-13 font-semibold text-text-muted mb-[10px]">{title}</div>
       {children}
     </div>
   );
 }
 
-function DetailRow({ label, value, mono = false }: { label: string; value: string; mono?: boolean }) {
+function DetailRow({ label, value, numeric = false }: { label: string; value: string; numeric?: boolean }) {
   return (
     <div className="flex items-baseline justify-between gap-2 mb-1">
       <span className="font-body text-[0.8125rem] text-text-secondary shrink-0">{label}</span>
-      <span className={`text-[0.8125rem] text-text-primary text-right ${mono ? "font-mono" : "font-body"}`}>
-        {value}
-      </span>
+      <span className={`text-[0.8125rem] text-text-primary text-right ${numeric ? "tabular-nums" : ""}`}>{value}</span>
     </div>
   );
 }

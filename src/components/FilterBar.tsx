@@ -121,7 +121,7 @@ export function FilterBar({ searchParams }: { searchParams: URLSearchParams }) {
               aria-pressed={isActive}
               className="inline-flex items-center gap-[6px] px-3 py-[5px] rounded font-body text-[0.8125rem] font-medium cursor-pointer transition-[border-color,background-color,color] duration-[120ms] ease-in-out whitespace-nowrap"
               style={{
-                border: `1px solid ${isActive ? "var(--color-accent)" : "#b8b5ac"}`,
+                border: `1px solid ${isActive ? "var(--color-accent)" : "var(--color-border-strong)"}`,
                 backgroundColor: isActive ? "var(--color-accent-subtle)" : "var(--color-surface)",
                 color: isActive ? "var(--color-accent)" : "var(--color-text-primary)",
                 boxShadow: isActive ? "none" : "0 1px 2px rgba(0,0,0,0.06)",
@@ -157,7 +157,7 @@ export function FilterBar({ searchParams }: { searchParams: URLSearchParams }) {
           aria-expanded={customOpen}
           className="inline-flex items-center gap-[6px] px-3 py-[5px] rounded font-body text-[0.8125rem] font-medium cursor-pointer transition-[border-color,background-color,color] duration-[120ms] ease-in-out"
           style={{
-            border: `1px solid ${customOpen ? "var(--color-accent)" : "#b8b5ac"}`,
+            border: `1px solid ${customOpen ? "var(--color-accent)" : "var(--color-border-strong)"}`,
             backgroundColor: customOpen ? "var(--color-accent-subtle)" : "var(--color-surface)",
             color: customOpen ? "var(--color-accent)" : "var(--color-text-primary)",
             boxShadow: customOpen ? "none" : "0 1px 2px rgba(0,0,0,0.06)",

@@ -29,7 +29,7 @@
       "about": "About",
       "imprint": "Imprint",
       "privacy": "Privacy",
-      "github": "GitHub →"
+      "github": "GitHub"
     },
     "disclaimer": "This directory provides sourced information about AI providers' data practices. It is not legal advice. Always verify directly with the provider and consult legal counsel for compliance decisions.",
     "navLabel": "Footer navigation"
@@ -149,12 +149,6 @@
     },
     "unverifiedNotice": "Compliance data not yet verified for this provider. If you have information, please use \"Report a change\" above.",
     "backLink": "← Back to all providers",
-    "tiers": {
-      "compliant": "EU Compliant",
-      "partial": "Partial (EU + SCCs)",
-      "noncompliant": "Non-compliant",
-      "unverified": "Unverified"
-    },
     "meta": {
       "yes": "yes",
       "no": "no",
@@ -196,8 +190,7 @@
     "sections": {
       "pricing": "Pricing (per 1M tokens)",
       "gdprCompliance": "GDPR Compliance",
-      "dataResidency": "Data Residency",
-      "complianceBadges": "Compliance Badges"
+      "dataResidency": "Data Residency"
     },
     "pricing": {
       "input": "Input",
@@ -215,13 +208,7 @@
       "regions": "Regions",
       "euOnly": "EU only"
     },
-    "backLink": "← Back to all models",
-    "tiers": {
-      "compliant": "EU Compliant",
-      "partial": "Partial (EU + SCCs)",
-      "noncompliant": "Non-compliant",
-      "unverified": "Unverified"
-    }
+    "backLink": "← Back to all models"
   },
   "AboutPage": {
     "title": "About — InferCheck",
@@ -294,7 +281,7 @@
     "sortBy": "Sort by {label}"
   },
   "Verification": {
-    "aiDraft": "AI draft · {date}",
+    "aiDraft": "<abbr>AI draft</abbr> · {date}",
     "verified": "Verified {date}",
     "aiDraftHint": "Researched with AI assistance; not yet manually verified."
   },
@@ -316,18 +303,11 @@
     "unverifiedNotice": "Compliance data not yet verified for this provider.",
     "priceIn": "in ",
     "priceOut": "out ",
-    "gatewayTitle": "This model is made by a third party and hosted via {providerName}",
     "gatewayNotice": "<strong>Third-party model hosted via {providerName}.</strong> This model is made by another company but served through {providerName}'s infrastructure. The compliance properties shown here reflect <strong>{providerName}</strong>'s data handling — not the original model creator's.",
     "dimmed": "Does not match the active filter",
     "toggleDetails": "Details for {name}"
   },
   "ProviderCard": {
-    "tiers": {
-      "compliant": "EU Compliant",
-      "partial": "EU + SCCs",
-      "noncompliant": "Non-compliant",
-      "unverified": "Unverified"
-    },
     "modelCount": "{count} model",
     "modelCountPlural": "{count} models"
   },
@@ -402,20 +382,33 @@
     "backLink": "← Back"
   },
   "ComplianceBadge": {
-    "euOnly": "EU Only",
-    "dpa": "DPA",
-    "euSccs": "EU + SCCs",
-    "noTraining": "No Training",
-    "trainsOnData": "Trains on Data",
-    "trainingUnknown": "Training Unknown",
-    "usOnly": "US Only",
-    "unverified": "Unverified"
+    "short": {
+      "compliant": "EU compliant",
+      "partial": "Partial",
+      "noncompliant": "Non-compliant",
+      "unverified": "Unverified"
+    },
+    "long": {
+      "compliant": "EU compliant",
+      "partial": "Partial (EU + SCCs)",
+      "noncompliant": "Non-compliant",
+      "unverified": "Unverified"
+    },
+    "properties": {
+      "euOnly": "EU Only",
+      "euSccs": "EU + SCCs",
+      "dpa": "DPA",
+      "noTraining": "No Training",
+      "trainsOnData": "Trains on Data",
+      "trainingUnknown": "Training Unknown"
+    }
   },
   "Format": {
     "free": "free"
   },
   "GatewayPill": {
-    "label": "via gateway"
+    "label": "via gateway",
+    "title": "This model is made by a third party and hosted via {providerName}"
   },
   "OgImage": {
     "tagline": "Find GDPR-compliant AI inference providers",

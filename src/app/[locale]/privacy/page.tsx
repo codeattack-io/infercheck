@@ -43,10 +43,8 @@ export default async function PrivacyPage({ params }: PageProps) {
 
   return (
     <>
-      <main className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 pt-14 pb-24">
-        <h1 className="font-display text-[clamp(2rem,5vw,2.75rem)] font-normal text-heading leading-[1.15] mb-3 tracking-[-0.02em]">
-          {t("heading")}
-        </h1>
+      <main className="page-width flex-1 pt-14 pb-24">
+        <h1 className="mb-3">{t("heading")}</h1>
 
         <p className="font-body text-[0.8125rem] text-text-muted leading-[1.5] mb-2">{t("lastUpdated")}</p>
 
@@ -66,14 +64,12 @@ export default async function PrivacyPage({ params }: PageProps) {
         <hr className="border-none border-t border-border mb-10" />
 
         <section className="mb-10">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">{t("introHeading")}</h2>
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("introHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("introText")}</p>
         </section>
 
-        <section className="mb-10 bg-surface border border-border rounded-lg px-8 py-7">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("controllerHeading")}
-          </h2>
+        <section className="mb-10 bg-surface border border-border rounded-card px-8 py-7">
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("controllerHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-secondary leading-[1.65] mb-4">{t("controllerText")}</p>
           <address className="not-italic font-body text-[0.9375rem] text-text-primary leading-[1.9]">
             <span className="font-semibold text-heading">{t("controllerName")}</span>
@@ -87,9 +83,7 @@ export default async function PrivacyPage({ params }: PageProps) {
         </section>
 
         <section className="mb-10">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("hostingHeading")}
-          </h2>
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("hostingHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
             {t.rich("hostingText", {
               link: (chunks) => (
@@ -107,16 +101,12 @@ export default async function PrivacyPage({ params }: PageProps) {
         </section>
 
         <section className="mb-10">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("analyticsHeading")}
-          </h2>
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("analyticsHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("analyticsText")}</p>
         </section>
 
         <section className="mb-10">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("databaseHeading")}
-          </h2>
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("databaseHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
             {t.rich("databaseText", {
               link: (chunks) => (
@@ -134,9 +124,7 @@ export default async function PrivacyPage({ params }: PageProps) {
         </section>
 
         <section className="mb-10">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("githubHeading")}
-          </h2>
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("githubHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
             {t.rich("githubText", {
               link: (chunks) => (
@@ -154,9 +142,7 @@ export default async function PrivacyPage({ params }: PageProps) {
         </section>
 
         <section className="mb-10">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("errorTrackingHeading")}
-          </h2>
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("errorTrackingHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
             {t.rich("errorTrackingText", {
               link: (chunks) => (
@@ -173,10 +159,8 @@ export default async function PrivacyPage({ params }: PageProps) {
           </p>
         </section>
 
-        <section className="mb-10 bg-surface border border-border rounded-lg px-8 py-7">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("rightsHeading")}
-          </h2>
+        <section className="mb-10 bg-surface border border-border rounded-card px-8 py-7">
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("rightsHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75] mb-4">{t("rightsText")}</p>
           <ul className="font-body text-[0.9375rem] text-text-primary leading-[1.75] pl-5 flex flex-col gap-1 mb-5 list-disc">
             {rightsList.map((right, i) => (
@@ -198,16 +182,12 @@ export default async function PrivacyPage({ params }: PageProps) {
         </section>
 
         <section className="mb-10">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("cookiesHeading")}
-          </h2>
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("cookiesHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("cookiesText")}</p>
         </section>
 
         <section className="mb-12">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("changesHeading")}
-          </h2>
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("changesHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("changesText")}</p>
         </section>
 

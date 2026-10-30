@@ -81,10 +81,10 @@ export default async function HomePage({ params }: HomePageProps) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <main className="max-w-[1200px] mx-auto flex-1 w-full box-border px-4 sm:px-6 lg:px-10 py-10">
+      <main className="page-width flex-1 py-10">
         {/* Page heading */}
         <div className="mb-8">
-          <h1 className="font-display text-[2.5rem] font-normal text-heading leading-[1.15] m-0 mb-3 tracking-[-0.02em]">
+          <h1 className="m-0 mb-3">
             {t("heading1")}
             <br />
             {t("heading2")}

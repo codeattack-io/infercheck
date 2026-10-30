@@ -3,59 +3,35 @@
 //
 // Types come directly from data/schema.ts (Zod-inferred, no runtime code).
 
-import type { Provider, AnyProvider } from "@/../data/schema";
+import type { Provider, AnyProvider, Compliance } from "@/../data/schema";
 
-export type { Provider, AnyProvider };
+export type { Provider, AnyProvider, Compliance };
 
 export type ComplianceTier = "compliant" | "partial" | "noncompliant" | "unverified";
 
 export interface TierClasses {
   text: string;
   bg: string;
-  border: string;
-  dot: string;
-  dotInk: string;
-  accentBorder: string;
+  line: string;
 }
 
 export const TIER_CLASSES: Record<ComplianceTier, TierClasses> = {
-  compliant: {
-    text: "text-compliant-text",
-    bg: "bg-compliant-bg",
-    border: "border-compliant-border",
-    dot: "bg-compliant",
-    dotInk: "bg-compliant-text",
-    accentBorder: "border-l-compliant",
-  },
-  partial: {
-    text: "text-partial-text",
-    bg: "bg-partial-bg",
-    border: "border-partial-border",
-    dot: "bg-partial",
-    dotInk: "bg-partial-text",
-    accentBorder: "border-l-partial",
-  },
-  noncompliant: {
-    text: "text-noncompliant-text",
-    bg: "bg-noncompliant-bg",
-    border: "border-noncompliant-border",
-    dot: "bg-noncompliant",
-    dotInk: "bg-noncompliant-text",
-    accentBorder: "border-l-noncompliant",
-  },
-  unverified: {
-    text: "text-unverified-text",
-    bg: "bg-unverified-bg",
-    border: "border-unverified-border",
-    dot: "bg-unverified",
-    dotInk: "bg-unverified-text",
-    accentBorder: "border-l-unverified",
-  },
+  compliant: { text: "text-compliant-text", bg: "bg-compliant-bg", line: "border-l-compliant-line" },
+  partial: { text: "text-partial-text", bg: "bg-partial-bg", line: "border-l-partial-line" },
+  noncompliant: { text: "text-noncompliant-text", bg: "bg-noncompliant-bg", line: "border-l-noncompliant-line" },
+  unverified: { text: "text-unverified-text", bg: "bg-unverified-bg", line: "border-l-unverified-line" },
 };
 
-export function tierPillClasses(tier: ComplianceTier): string {
-  const c = TIER_CLASSES[tier];
-  return `${c.bg} ${c.border} ${c.text}`;
+export type ComplianceProperty = "euOnly" | "euSccs" | "dpa" | "noTraining" | "trainsOnData" | "trainingUnknown";
+
+export function getComplianceProperties(c: Compliance): ComplianceProperty[] {
+  const properties: ComplianceProperty[] = [];
+  if (c.dataResidency.euOnly) properties.push("euOnly");
+  else if (c.sccs) properties.push("euSccs");
+  if (c.dpa.available) properties.push("dpa");
+  const trains = c.dataUsage.trainsOnCustomerData;
+  properties.push(trains === true ? "trainsOnData" : trains === false ? "noTraining" : "trainingUnknown");
+  return properties;
 }
 
 export interface ComplianceFilter {

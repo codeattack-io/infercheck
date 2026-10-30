@@ -479,7 +479,7 @@ function SortableTh({
     <th
       aria-sort={nonSortable ? undefined : isActive ? (sortDir === "desc" ? "descending" : "ascending") : "none"}
       className={[
-        "px-4 py-[10px] text-left font-body text-xs font-semibold uppercase tracking-[0.05em] select-none",
+        "px-4 py-[10px] text-left text-13 font-semibold uppercase tracking-[0.04em] select-none",
         isActive ? "text-text-primary" : "text-text-secondary",
         className,
       ]

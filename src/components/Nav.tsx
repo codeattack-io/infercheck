@@ -1,13 +1,23 @@
 "use client";
 
+import Image from "next/image";
 import { Link, usePathname } from "@/i18n/navigation";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useSyncExternalStore } from "react";
 import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
+function subscribeToScroll(onChange: () => void) {
+  window.addEventListener("scroll", onChange, { passive: true });
+  return () => window.removeEventListener("scroll", onChange);
+}
+
 export function Nav() {
   const pathname = usePathname();
-  const [scrolled, setScrolled] = useState(false);
+  const scrolled = useSyncExternalStore(
+    subscribeToScroll,
+    () => window.scrollY > 8,
+    () => false
+  );
   const [mobileOpen, setMobileOpen] = useState(false);
   const t = useTranslations("Nav");
   const toggleRef = useRef<HTMLButtonElement>(null);
@@ -15,18 +25,12 @@ export function Nav() {
   const wasOpen = useRef(false);
 
   const NAV_LINKS = [
-    { href: "/", label: t("links.models") },
-    { href: "/providers", label: t("links.providers") },
-    { href: "/about", label: t("links.about") },
+    { href: "/", label: t("links.models"), section: "/model/" },
+    { href: "/providers", label: t("links.providers"), section: "/provider/" },
+    { href: "/about", label: t("links.about"), section: "/about" },
   ];
-
-  // Show border on scroll — rerender-dependencies: use primitive in effect
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 8);
-    // Use passive listener for scroll performance
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const isCurrent = (link: (typeof NAV_LINKS)[number]) =>
+    pathname === link.href || pathname.startsWith(link.section) || pathname.startsWith(`${link.href}/`);
 
   const [prevPathname, setPrevPathname] = useState(pathname);
   if (prevPathname !== pathname) {
@@ -48,7 +52,7 @@ export function Nav() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setMobileOpen(false);
     };
-    const desktop = window.matchMedia("(min-width: 40rem)");
+    const desktop = window.matchMedia("(min-width: 48rem)");
     const handleDesktop = (e: MediaQueryListEvent) => {
       if (e.matches) setMobileOpen(false);
     };
@@ -63,125 +67,95 @@ export function Nav() {
 
   return (
     <>
-      {/* backgroundColor and backdropFilter depend on scroll state — kept as style */}
       <header
-        className="sticky top-0 z-50 transition-[border-color,backdrop-filter] duration-150 ease-in-out border-b"
-        style={{
-          backgroundColor: scrolled ? "rgba(245, 244, 239, 0.92)" : "var(--color-bg)",
-          backdropFilter: scrolled ? "blur(8px)" : "none",
-          borderBottomColor: scrolled ? "var(--color-border)" : "transparent",
-        }}
+        data-scrolled={scrolled ? "" : undefined}
+        className="sticky top-0 z-50 h-14 border-b border-transparent transition-[background-color,border-color] duration-150 ease-out data-scrolled:border-border data-scrolled:bg-bg/85 data-scrolled:backdrop-blur-sm md:h-15"
       >
-        <div className="max-w-[1200px] mx-auto h-14 flex items-center justify-between px-4 sm:px-6 lg:px-10">
-          {/* Wordmark */}
-          <Link href="/" className="flex items-center gap-2 no-underline" aria-label={t("wordmark")}>
-            {/* Favicon icon — 24 px, matches the favicon.svg design */}
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 32 32"
-              width="24"
-              height="24"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <rect x="0" y="0" width="32" height="32" rx="7" ry="7" fill="#1d4ed8" />
-              <circle cx="13" cy="13" r="8" fill="none" stroke="#ffffff" strokeWidth="2.5" />
-              <line x1="19" y1="19" x2="25" y2="25" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
-              <polyline
-                points="9,13 12,17 18,8"
-                fill="none"
-                stroke="#4ade80"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            {/* "Infer" in heading colour, "Check" in accent blue */}
-            <span className="font-body text-[1.0625rem] font-semibold tracking-[-0.02em] leading-none">
-              <span className="text-text-primary">Infer</span>
-              <span className="text-accent">Check</span>
+        <div className="page-width flex h-full items-center justify-between">
+          <Link
+            href="/"
+            aria-label={t("wordmark")}
+            className="inline-flex items-center gap-2.5 text-18 font-semibold text-text-primary no-underline"
+          >
+            <Image
+              src="/logos/infercheck/icon-color.svg"
+              alt=""
+              width={26}
+              height={26}
+              loading="eager"
+              className="block size-[26px]"
+            />
+            <span aria-hidden="true">
+              Infer<span className="text-accent">Check</span>
             </span>
           </Link>
 
-          {/* Desktop nav */}
-          <nav aria-label={t("mainNavigation")} className="hidden sm:flex items-center gap-7">
-            {NAV_LINKS.map((link) => {
-              const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
-              return (
+          <div className="hidden items-center md:flex">
+            <nav aria-label={t("mainNavigation")} className="flex items-center gap-7">
+              {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="font-body text-sm font-medium"
-                  style={{
-                    color: isActive ? "var(--color-text-primary)" : "var(--color-text-secondary)",
-                    textDecoration: isActive ? "underline" : "none",
-                    textUnderlineOffset: "3px",
-                  }}
+                  aria-current={isCurrent(link) ? "page" : undefined}
+                  className="text-15 leading-[1.4] text-text-secondary no-underline hover:text-text-primary aria-[current=page]:text-text-primary aria-[current=page]:underline aria-[current=page]:underline-offset-[0.35em]"
                 >
                   {link.label}
                 </Link>
-              );
-            })}
-            <LanguageSwitcher />
-          </nav>
+              ))}
+            </nav>
+            <LanguageSwitcher className="ml-3" />
+          </div>
 
-          {/* Mobile menu button */}
           <button
             ref={toggleRef}
-            className="sm:hidden bg-transparent border-none cursor-pointer p-2 text-text-primary"
+            type="button"
+            className="-mr-2 cursor-pointer rounded-button border-none bg-transparent p-2 text-text-primary md:hidden"
             onClick={() => setMobileOpen((o) => !o)}
             aria-label={mobileOpen ? t("menuClose") : t("menuOpen")}
             aria-expanded={mobileOpen}
             aria-controls="mobile-drawer"
           >
-            {mobileOpen ? (
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                <path d="M2 2L16 16M16 2L2 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-            ) : (
-              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-                <path d="M2 5H16M2 9H16M2 13H16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-              </svg>
-            )}
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              className="block size-6"
+              aria-hidden="true"
+            >
+              <path d={mobileOpen ? "M6 6l12 12M18 6 6 18" : "M4 7h16M4 12h16M4 17h16"} />
+            </svg>
           </button>
         </div>
       </header>
 
-      {/* Mobile drawer */}
       {mobileOpen ? (
         <nav
           id="mobile-drawer"
           ref={drawerRef}
           aria-label={t("mobileNavigation")}
-          className="sm:hidden fixed top-14 right-0 bottom-0 w-60 bg-surface border-l border-border p-6 z-[49] flex flex-col gap-1"
+          className="fixed top-14 right-0 bottom-0 z-[49] flex w-64 flex-col gap-1 border-l border-border bg-surface p-4 md:hidden"
         >
-          {NAV_LINKS.map((link) => {
-            const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-body text-[0.9375rem] no-underline px-3 py-[10px] rounded"
-                style={{
-                  fontWeight: isActive ? 600 : 400,
-                  color: isActive ? "var(--color-text-primary)" : "var(--color-text-secondary)",
-                  backgroundColor: isActive ? "var(--color-surface-alt)" : "transparent",
-                }}
-              >
-                {link.label}
-              </Link>
-            );
-          })}
-          <div className="mt-auto pt-4 border-t border-border">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              aria-current={isCurrent(link) ? "page" : undefined}
+              className="rounded-tab px-3 py-2.5 text-16 text-text-secondary no-underline aria-[current=page]:bg-surface-alt aria-[current=page]:font-medium aria-[current=page]:text-text-primary"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <div className="mt-auto border-t border-border pt-4">
             <LanguageSwitcher />
           </div>
         </nav>
       ) : null}
 
-      {/* Mobile overlay */}
       {mobileOpen ? (
         <div
-          className="sm:hidden fixed inset-0 top-14 bg-black/20 z-[48]"
+          className="fixed inset-0 top-14 z-[48] bg-text-primary/20 md:hidden"
           onClick={() => setMobileOpen(false)}
           aria-hidden="true"
         />

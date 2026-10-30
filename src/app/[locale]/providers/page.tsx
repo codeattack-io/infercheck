@@ -6,6 +6,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ProviderCard } from "@/components/ProviderCard";
 import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import { getComplianceTier, TIER_CLASSES } from "@/lib/compliance";
+import { TierIcon } from "@/components/ComplianceBadge";
 import type { AnyProvider, ComplianceTier } from "@/lib/compliance";
 import { getModelCountsByProvider } from "@/lib/models";
 
@@ -101,10 +102,10 @@ export default async function ProvidersPage({ params }: PageProps) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <main className="max-w-[1200px] mx-auto flex-1 w-full box-border px-4 sm:px-6 lg:px-10 py-10">
+      <main className="page-width flex-1 py-10">
         {/* Heading */}
         <div className="mb-8">
-          <h1 className="font-display text-[2.5rem] font-normal text-heading leading-[1.15] m-0 mb-3 tracking-[-0.02em]">
+          <h1 className="m-0 mb-3">
             {t("heading1")}
             <br />
             {t("heading2")}
@@ -125,10 +126,7 @@ export default async function ProvidersPage({ params }: PageProps) {
               <section key={tier} aria-labelledby={`tier-${tier}`}>
                 {/* Tier header */}
                 <div className="flex items-baseline gap-3 mb-4 pb-3 border-b border-border">
-                  <span
-                    className={`inline-block w-2 h-2 rounded-full shrink-0 relative top-[-1px] ${TIER_CLASSES[tier].dot}`}
-                    aria-hidden="true"
-                  />
+                  <TierIcon tier={tier} className={`size-3 shrink-0 ${TIER_CLASSES[tier].text}`} />
                   <h2 id={`tier-${tier}`} className="font-body text-base font-semibold text-text-primary m-0">
                     {meta.label}
                     <span className="font-body text-sm font-normal text-text-muted ml-2">({group.length})</span>

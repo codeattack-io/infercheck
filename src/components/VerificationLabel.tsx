@@ -13,8 +13,20 @@ export function VerificationLabel({ provider, className }: VerificationLabelProp
   if (kind === "none" || date === null) return null;
 
   return (
-    <time dateTime={date} className={className} title={kind === "ai_draft" ? t("aiDraftHint") : undefined}>
-      {kind === "ai_draft" ? t("aiDraft", { date }) : t("verified", { date })}
+    <time dateTime={date} className={className}>
+      {kind === "ai_draft"
+        ? t.rich("aiDraft", {
+            date,
+            abbr: (chunks) => (
+              <abbr
+                title={t("aiDraftHint")}
+                className="cursor-help underline decoration-dotted underline-offset-[0.2em]"
+              >
+                {chunks}
+              </abbr>
+            ),
+          })
+        : t("verified", { date })}
     </time>
   );
 }

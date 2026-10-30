@@ -1,100 +1,89 @@
-// Server component — no "use client" needed.
-// Renders a single compliance property badge.
-//
-// Uses useTranslations (sync) so it can be rendered from both server and
-// client component trees (async server components cannot be children of
-// client components).
-
 import { useTranslations } from "next-intl";
-import { TIER_CLASSES, type ComplianceTier } from "@/lib/compliance";
-import type { Compliance } from "@/../data/schema";
-
-export type BadgeVariant =
-  "eu-only" | "dpa" | "eu-sccs" | "no-training" | "trains-on-data" | "training-unknown" | "us-only" | "unverified";
+import { TIER_CLASSES, getComplianceProperties, type Compliance, type ComplianceTier } from "@/lib/compliance";
 
 interface ComplianceBadgeProps {
-  variant: BadgeVariant;
-  size?: "sm" | "md";
+  tier: ComplianceTier;
+  label?: "short" | "long";
+  compliance?: Compliance | null;
+  className?: string;
 }
 
-const BADGE_TIER: Record<BadgeVariant, ComplianceTier> = {
-  "eu-only": "compliant",
-  dpa: "compliant",
-  "eu-sccs": "partial",
-  "no-training": "compliant",
-  "trains-on-data": "noncompliant",
-  "training-unknown": "unverified",
-  "us-only": "noncompliant",
-  unverified: "unverified",
-};
-
-const SIZE_CLASSES = {
-  sm: { badge: "text-[0.6875rem] px-1.5 py-px", dot: "size-[5px]" },
-  md: { badge: "text-xs px-2 py-0.5", dot: "size-[6px]" },
-};
-
-export function ComplianceBadge({ variant, size = "md" }: ComplianceBadgeProps) {
+export function ComplianceBadge({ tier, label = "short", compliance, className }: ComplianceBadgeProps) {
   const t = useTranslations("ComplianceBadge");
-
-  const LABEL_MAP: Record<BadgeVariant, string> = {
-    "eu-only": t("euOnly"),
-    dpa: t("dpa"),
-    "eu-sccs": t("euSccs"),
-    "no-training": t("noTraining"),
-    "trains-on-data": t("trainsOnData"),
-    "training-unknown": t("trainingUnknown"),
-    "us-only": t("usOnly"),
-    unverified: t("unverified"),
-  };
-
-  const tier = TIER_CLASSES[BADGE_TIER[variant]];
-  const sz = SIZE_CLASSES[size];
+  const classes = TIER_CLASSES[tier];
+  const title = [
+    t(`long.${tier}`),
+    ...(compliance ? getComplianceProperties(compliance) : []).map((p) => t(`properties.${p}`)),
+  ].join(" · ");
 
   return (
     <span
+      title={title}
       className={[
-        "inline-flex items-center gap-[5px] border rounded font-medium font-body whitespace-nowrap leading-[1.4]",
-        tier.bg,
-        tier.border,
-        tier.text,
-        sz.badge,
+        "inline-flex items-center gap-1.5 rounded-full py-[3px] pr-2.5 pl-2 text-13 font-semibold whitespace-nowrap cursor-help",
+        classes.text,
+        classes.bg,
+        className ?? "",
       ].join(" ")}
     >
-      <span className={["rounded-full shrink-0", tier.dot, sz.dot].join(" ")} aria-hidden="true" />
-      {LABEL_MAP[variant]}
+      <TierIcon tier={tier} />
+      {t(`${label}.${tier}`)}
     </span>
   );
 }
 
-export function getBadgeVariants(compliance: Compliance): BadgeVariant[] {
-  const variants: BadgeVariant[] = [];
-  if (compliance.dataResidency.euOnly) {
-    variants.push("eu-only");
-  } else if (compliance.sccs) {
-    variants.push("eu-sccs");
+export function TierIcon({ tier, className = "size-3 shrink-0" }: { tier: ComplianceTier; className?: string }) {
+  switch (tier) {
+    case "compliant":
+      return (
+        <svg
+          viewBox="0 0 12 12"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className={className}
+          aria-hidden="true"
+        >
+          <path d="m2 6.5 2.6 2.5L10 3.5" />
+        </svg>
+      );
+    case "partial":
+      return (
+        <svg viewBox="0 0 12 12" className={className} aria-hidden="true">
+          <circle cx="6" cy="6" r="4.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
+          <path d="M6 1.5a4.5 4.5 0 0 1 0 9z" fill="currentColor" />
+        </svg>
+      );
+    case "noncompliant":
+      return (
+        <svg
+          viewBox="0 0 12 12"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          className={className}
+          aria-hidden="true"
+        >
+          <path d="m3 3 6 6M9 3 3 9" />
+        </svg>
+      );
+    case "unverified":
+      return (
+        <svg
+          viewBox="0 0 12 12"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.8"
+          strokeLinecap="round"
+          className={className}
+          aria-hidden="true"
+        >
+          <path d="M4.2 4.6a1.9 1.9 0 1 1 2.6 1.8c-.5.3-.8.7-.8 1.2" />
+          <circle cx="6" cy="9.6" r=".6" fill="currentColor" stroke="none" />
+        </svg>
+      );
   }
-  if (compliance.dpa.available) variants.push("dpa");
-  const trains = compliance.dataUsage.trainsOnCustomerData;
-  variants.push(trains === true ? "trains-on-data" : trains === false ? "no-training" : "training-unknown");
-  return variants;
-}
-
-interface ComplianceBadgeListProps {
-  compliance: Compliance;
-  size?: "sm" | "md";
-  className?: string;
-}
-
-export function ComplianceBadgeList({
-  compliance,
-  size,
-  className = "flex flex-wrap gap-1",
-}: ComplianceBadgeListProps) {
-  return (
-    <div className={className}>
-      {getBadgeVariants(compliance).map((variant) => (
-        <ComplianceBadge key={variant} variant={variant} size={size} />
-      ))}
-    </div>
-  );
 }

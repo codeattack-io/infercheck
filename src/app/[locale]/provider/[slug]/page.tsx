@@ -15,12 +15,13 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { getProvider, getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import { getModelsByProvider } from "@/lib/models";
-import { getComplianceTier, isFullProvider, tierPillClasses, TIER_CLASSES } from "@/lib/compliance";
+import { getComplianceTier, isFullProvider, TIER_CLASSES } from "@/lib/compliance";
 import { getVerification } from "@/lib/verification";
-import type { ComplianceTier } from "@/lib/compliance";
-import { ComplianceBadgeList } from "@/components/ComplianceBadge";
+import { ComplianceBadge } from "@/components/ComplianceBadge";
 import { GatewayPill } from "@/components/GatewayPill";
-import { BooleanRow } from "@/components/BooleanRow";
+import { BooleanList, BooleanRow } from "@/components/BooleanRow";
+import { NeutralPill } from "@/components/NeutralPill";
+import { buttonClass } from "@/lib/styles";
 import { ProviderModelRow } from "@/components/ProviderModelRow";
 import type { ProviderModel } from "@/components/types";
 
@@ -48,7 +49,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const tv = await getTranslations({ locale, namespace: "Verification" });
   const { kind, date } = getVerification(provider);
   const verificationStatus =
-    kind === "ai_draft" ? tv("aiDraft", { date: date ?? "" }) : tv("verified", { date: date ?? "" });
+    kind === "ai_draft"
+      ? tv.markup("aiDraft", { date: date ?? "", abbr: (chunks) => chunks })
+      : tv("verified", { date: date ?? "" });
   const trains = isFullProvider(provider) ? provider.compliance.dataUsage.trainsOnCustomerData : null;
   const description = isFullProvider(provider)
     ? t("descriptionFull", {
@@ -79,12 +82,6 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-function euAiActTier(status: string): ComplianceTier {
-  if (status === "compliant") return "compliant";
-  if (status === "monitoring") return "partial";
-  return "unverified";
-}
-
 export default async function ProviderProfilePage({ params }: PageProps) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
@@ -100,13 +97,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
   const t = await getTranslations("ProviderPage");
   const tType = await getTranslations("ProviderType");
-
-  const tierLabel: Record<ComplianceTier, string> = {
-    compliant: t("tiers.compliant"),
-    partial: t("tiers.partial"),
-    noncompliant: t("tiers.noncompliant"),
-    unverified: t("tiers.unverified"),
-  };
+  const tBadge = await getTranslations("ComplianceBadge");
 
   const tier = getComplianceTier(provider);
   const tierClasses = TIER_CLASSES[tier];
@@ -133,7 +124,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
     ...(verified
       ? {
           description: t("jsonLdDescription", {
-            tier: tierLabel[tier],
+            tier: tBadge(`long.${tier}`),
             dpa: provider.compliance.dpa.available ? t("meta.available") : t("meta.notAvailable"),
           }),
         }
@@ -144,7 +135,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <main className="max-w-[1200px] mx-auto flex-1 w-full box-border px-4 sm:px-6 lg:px-10 py-10">
+      <main className="page-width flex-1 py-10">
         {/* Breadcrumb */}
         <nav aria-label={t("breadcrumb.ariaLabel")} className="mb-6">
           <ol className="flex items-center gap-2 list-none p-0 m-0 font-body text-[0.8125rem] text-text-muted">
@@ -167,21 +158,14 @@ export default async function ProviderProfilePage({ params }: PageProps) {
         {/* Header */}
         <div className="flex items-start justify-between flex-wrap gap-4 mb-8">
           <div>
-            <h1 className="font-display text-[2rem] font-normal text-heading leading-[1.2] m-0 mb-[10px] tracking-[-0.02em]">
-              {provider.name}
-            </h1>
+            <h1 className="m-0 mb-[10px]">{provider.name}</h1>
             <div className="flex items-center gap-[10px] flex-wrap">
-              <span
-                className={`inline-flex items-center gap-1.5 px-[10px] py-[3px] rounded font-body text-[0.8125rem] font-medium border ${tierPillClasses(tier)}`}
-              >
-                <span className={`w-[7px] h-[7px] rounded-full shrink-0 ${tierClasses.dotInk}`} aria-hidden="true" />
-                {tierLabel[tier]}
-              </span>
-
-              {/* Provider type */}
-              <span className="font-body text-[0.8125rem] text-text-muted bg-surface-alt border border-border rounded px-2 py-[3px]">
-                {tType(provider.type)}
-              </span>
+              <ComplianceBadge
+                tier={tier}
+                label="long"
+                compliance={isFullProvider(provider) ? provider.compliance : null}
+              />
+              <span className="text-15 text-text-muted">{tType(provider.type)}</span>
 
               {/* Website link */}
               {provider.website ? (
@@ -189,7 +173,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   href={provider.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-body text-[0.8125rem] text-link no-underline"
+                  className="text-15 text-link no-underline hover:underline"
                 >
                   {provider.website.replace(/^https?:\/\//, "")} ↗
                 </a>
@@ -204,67 +188,49 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 href={provider.apiDocsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 px-3.5 py-1.5 font-body text-[0.8125rem] font-medium text-text-secondary border border-border rounded bg-surface no-underline whitespace-nowrap"
+                className={buttonClass("secondary")}
               >
                 {t("actions.apiDocs")}
               </a>
             ) : null}
-            <a
-              href={reportUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 px-3.5 py-1.5 font-body text-[0.8125rem] font-medium text-accent border border-accent rounded bg-accent-subtle no-underline whitespace-nowrap"
-            >
+            <a href={reportUrl} target="_blank" rel="noopener noreferrer" className={buttonClass("primary")}>
               {t("actions.reportChange")}
             </a>
           </div>
         </div>
 
         {/* Main content grid */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {verified ? (
             <section
-              className={`bg-surface border border-border border-l-[3px] ${tierClasses.accentBorder} rounded px-6 py-5`}
+              className={`bg-surface border border-border border-l-3 ${tierClasses.line} rounded-card px-6 py-5`}
               aria-labelledby="compliance-heading"
             >
-              <h2
-                id="compliance-heading"
-                className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-4"
-              >
+              <h2 id="compliance-heading" className="text-17 font-semibold text-text-primary m-0 mb-3">
                 {t("sections.gdprCompliance")}
               </h2>
 
-              <div className="flex flex-col gap-[10px]">
+              <BooleanList>
+                <BooleanRow label={t("compliance.euOnlyResidency")} value={provider.compliance.dataResidency.euOnly} />
                 <BooleanRow
-                  size="md"
-                  label={t("compliance.euOnlyResidency")}
-                  value={provider.compliance.dataResidency.euOnly}
-                />
-                <BooleanRow
-                  size="md"
                   label={t("compliance.inferenceStaysInEu")}
                   value={
                     provider.compliance.dataResidency.dataLeavesEuAtInference === null
                       ? null
                       : !provider.compliance.dataResidency.dataLeavesEuAtInference
                   }
-                  note={
-                    provider.compliance.dataResidency.dataLeavesEuAtInference === null ? t("meta.unknown") : undefined
-                  }
                 />
                 <BooleanRow
-                  size="md"
                   label={t("compliance.dpa")}
                   value={provider.compliance.dpa.available}
                   href={provider.compliance.dpa.url ?? undefined}
-                  secondary={
+                  valueText={
                     provider.compliance.dpa.signedVia !== "not_available"
-                      ? t(`dpaSignedVia.${provider.compliance.dpa.signedVia}`)
+                      ? `${provider.compliance.dpa.available ? t("meta.yes") : t("meta.no")}, ${t(`dpaSignedVia.${provider.compliance.dpa.signedVia}`)}`
                       : undefined
                   }
                 />
                 <BooleanRow
-                  size="md"
                   label={t("compliance.noTraining")}
                   value={
                     provider.compliance.dataUsage.trainsOnCustomerData === null
@@ -272,40 +238,26 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                       : !provider.compliance.dataUsage.trainsOnCustomerData
                   }
                 />
-                <BooleanRow
-                  size="md"
-                  label={t("compliance.optOut")}
-                  value={provider.compliance.dataUsage.optOutAvailable}
-                />
-                <BooleanRow size="md" label={t("compliance.sccs")} value={provider.compliance.sccs} />
-                <BooleanRow size="md" label={t("compliance.adequacy")} value={provider.compliance.adequacyDecision} />
-              </div>
-
-              {/* Compliance badges */}
-              <div className="mt-4 pt-4 border-t border-border">
-                <ComplianceBadgeList compliance={provider.compliance} className="flex flex-wrap gap-1.5" />
-              </div>
+                <BooleanRow label={t("compliance.optOut")} value={provider.compliance.dataUsage.optOutAvailable} />
+                <BooleanRow label={t("compliance.sccs")} value={provider.compliance.sccs} />
+                <BooleanRow label={t("compliance.adequacy")} value={provider.compliance.adequacyDecision} />
+              </BooleanList>
             </section>
           ) : (
             <section
-              className={`bg-surface border border-border border-l-[3px] ${tierClasses.accentBorder} rounded px-6 py-5`}
+              className={`bg-surface border border-border border-l-3 ${tierClasses.line} rounded-card px-6 py-5`}
             >
-              <h2 className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-3">
-                {t("sections.gdprCompliance")}
-              </h2>
-              <p className="font-body text-[0.875rem] text-text-muted m-0 italic">{t("unverifiedNotice")}</p>
+              <h2 className="text-17 font-semibold text-text-primary m-0 mb-3">{t("sections.gdprCompliance")}</h2>
+              <p className="text-15 text-text-muted m-0">{t("unverifiedNotice")}</p>
             </section>
           )}
 
           {verified ? (
             <section
-              className="bg-surface border border-border rounded px-6 py-5"
+              className="bg-surface border border-border rounded-card px-6 py-5"
               aria-labelledby="data-handling-heading"
             >
-              <h2
-                id="data-handling-heading"
-                className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-4"
-              >
+              <h2 id="data-handling-heading" className="text-17 font-semibold text-text-primary m-0 mb-3">
                 {t("sections.dataHandling")}
               </h2>
 
@@ -315,7 +267,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1">
                     {t("dataHandlingLabels.regions")}
                   </div>
-                  <div className="font-mono text-[0.8125rem] text-text-primary">
+                  <div className="text-[0.8125rem] text-text-primary">
                     {provider.compliance.dataResidency.euOnly
                       ? t("dataHandlingLabels.euOnly")
                       : provider.compliance.dataResidency.regions.join(", ") || "—"}
@@ -359,7 +311,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   <div className="flex items-center gap-2 font-body text-[0.8125rem] text-text-secondary">
                     {provider.compliance.subProcessors.disclosed ? (
                       <>
-                        <span className="text-compliant" aria-hidden="true">
+                        <span className="text-compliant-text" aria-hidden="true">
                           ✓
                         </span>
                         {provider.compliance.subProcessors.url ? (
@@ -382,7 +334,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                       </>
                     ) : (
                       <>
-                        <span className="text-noncompliant" aria-hidden="true">
+                        <span className="text-noncompliant-text" aria-hidden="true">
                           ✗
                         </span>
                         {t("subProcessors.notDisclosed")}
@@ -395,11 +347,8 @@ export default async function ProviderProfilePage({ params }: PageProps) {
           ) : null}
 
           {verified ? (
-            <section className="bg-surface border border-border rounded px-6 py-5" aria-labelledby="certs-heading">
-              <h2
-                id="certs-heading"
-                className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-4"
-              >
+            <section className="bg-surface border border-border rounded-card px-6 py-5" aria-labelledby="certs-heading">
+              <h2 id="certs-heading" className="text-17 font-semibold text-text-primary m-0 mb-3">
                 {t("sections.certsAndEuAiAct")}
               </h2>
 
@@ -410,28 +359,23 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {provider.compliance.certifications.map((cert) => (
-                      <span
-                        key={cert}
-                        className="font-mono text-xs font-medium text-text-secondary bg-surface-alt border border-border rounded-[3px] px-2 py-0.5"
-                      >
+                      <NeutralPill key={cert} surface="alt">
                         {cert}
-                      </span>
+                      </NeutralPill>
                     ))}
                   </div>
                 </div>
               ) : (
-                <p className="font-body text-[0.8125rem] text-text-muted m-0 mb-4 italic">{t("certs.noCerts")}</p>
+                <p className="text-[0.8125rem] text-text-muted m-0 mb-4">{t("certs.noCerts")}</p>
               )}
 
               <div>
                 <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1.5">
                   {t("certs.euAiActStatus")}
                 </div>
-                <span
-                  className={`inline-block font-body text-[0.8125rem] font-medium rounded px-2 py-0.5 mb-1.5 border ${tierPillClasses(euAiActTier(provider.compliance.euAiAct.status))}`}
-                >
+                <NeutralPill surface="alt" className="mb-1.5">
                   {t(`euAiActStatus.${provider.compliance.euAiAct.status}`)}
-                </span>
+                </NeutralPill>
                 {provider.compliance.euAiAct.details ? (
                   <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.6]">
                     {provider.compliance.euAiAct.details}
@@ -441,11 +385,11 @@ export default async function ProviderProfilePage({ params }: PageProps) {
             </section>
           ) : null}
 
-          <section className="bg-surface border border-border rounded px-6 py-5" aria-labelledby="verification-heading">
-            <h2
-              id="verification-heading"
-              className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] m-0 mb-4"
-            >
+          <section
+            className="bg-surface border border-border rounded-card px-6 py-5"
+            aria-labelledby="verification-heading"
+          >
+            <h2 id="verification-heading" className="text-17 font-semibold text-text-primary m-0 mb-3">
               {t("sections.verification")}
             </h2>
 
@@ -464,7 +408,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
                 <MetaRow
                   label={verification.kind === "ai_draft" ? t("verification.dateAiDraft") : t("verification.dateHuman")}
                   value={verification.date}
-                  mono
+                  numeric
                 />
               ) : null}
               <MetaRow
@@ -482,9 +426,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
             {/* Source URLs */}
             {provider.sourceUrls && provider.sourceUrls.length > 0 ? (
               <div className="mt-4">
-                <div className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] mb-2">
-                  {t("verification.sources")}
-                </div>
+                <div className="text-13 font-semibold text-text-muted mb-2">{t("verification.sources")}</div>
                 <ul className="list-none p-0 m-0 flex flex-col gap-1">
                   {provider.sourceUrls.map((url, i) => (
                     <li key={i}>
@@ -505,9 +447,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
             {/* Notes */}
             {provider.notes ? (
               <div className="mt-4">
-                <div className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] mb-2">
-                  {t("verification.notes")}
-                </div>
+                <div className="text-13 font-semibold text-text-muted mb-2">{t("verification.notes")}</div>
                 <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.6]">{provider.notes}</p>
               </div>
             ) : null}
@@ -516,7 +456,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 
         {providerModels.length > 0 ? (
           <section className="mt-8" aria-labelledby="models-heading">
-            <h2 id="models-heading" className="font-body text-base font-semibold text-text-primary m-0 mb-4">
+            <h2 id="models-heading" className="text-20 font-semibold text-text-primary m-0 mb-4">
               {t("models.heading", { count: providerModels.length })}
             </h2>
 
@@ -524,9 +464,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
             {nativeModels.length > 0 ? (
               <div className={gatewayModels.length > 0 ? "mb-8" : ""}>
                 {gatewayModels.length > 0 ? (
-                  <div className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] mb-3">
-                    {t("models.nativeHeading")}
-                  </div>
+                  <div className="text-13 font-semibold text-text-muted mb-3">{t("models.nativeHeading")}</div>
                 ) : null}
                 <ModelsTable models={nativeModels} t={t} />
               </div>
@@ -536,15 +474,13 @@ export default async function ProviderProfilePage({ params }: PageProps) {
             {gatewayModels.length > 0 ? (
               <div>
                 <div className="flex items-center gap-3 mb-3">
-                  <span className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em]">
-                    {t("models.gatewayHeading")}
-                  </span>
-                  <GatewayPill />
+                  <span className="text-13 font-semibold text-text-muted">{t("models.gatewayHeading")}</span>
+                  <GatewayPill providerName={provider.name} />
                 </div>
                 <p className="font-body text-[0.8125rem] text-text-secondary mt-0 mb-3 leading-[1.5]">
                   {t("models.gatewayNote", { providerName: provider.name })}
                 </p>
-                <ModelsTable models={gatewayModels} t={t} gateway />
+                <ModelsTable models={gatewayModels} t={t} gatewayProviderName={provider.name} />
               </div>
             ) : null}
           </section>
@@ -564,19 +500,15 @@ export default async function ProviderProfilePage({ params }: PageProps) {
 function ModelsTable({
   models: rows,
   t,
-  gateway = false,
+  gatewayProviderName,
 }: {
   models: ProviderModel[];
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   t: any;
-  gateway?: boolean;
+  gatewayProviderName?: string;
 }) {
   return (
-    <div
-      className={`border rounded overflow-hidden ${
-        gateway ? "border-[color-mix(in_srgb,var(--color-partial)_35%,var(--color-border))]" : "border-border"
-      }`}
-    >
+    <div className="border border-border rounded-card overflow-hidden">
       <div className="overflow-x-auto">
         <table className="w-full border-collapse bg-surface">
           <thead>
@@ -590,7 +522,7 @@ function ModelsTable({
               ].map((h: string) => (
                 <th
                   key={h}
-                  className="px-4 py-2 text-left font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.05em] whitespace-nowrap"
+                  className="px-4 py-3 text-left text-13 font-semibold text-text-muted uppercase tracking-[0.04em] whitespace-nowrap"
                 >
                   {h}
                 </th>
@@ -599,7 +531,11 @@ function ModelsTable({
           </thead>
           <tbody>
             {rows.map((m) => (
-              <ProviderModelRow key={`${m.id}::${m.providerSlug}`} model={m} gateway={gateway} />
+              <ProviderModelRow
+                key={`${m.id}::${m.providerSlug}`}
+                model={m}
+                gatewayProviderName={gatewayProviderName}
+              />
             ))}
           </tbody>
         </table>
@@ -608,13 +544,11 @@ function ModelsTable({
   );
 }
 
-function MetaRow({ label, value, mono = false }: { label: string; value: string; mono?: boolean }) {
+function MetaRow({ label, value, numeric = false }: { label: string; value: string; numeric?: boolean }) {
   return (
     <div className="flex justify-between gap-4 flex-wrap">
       <span className="font-body text-[0.8125rem] text-text-secondary">{label}</span>
-      <span className={`text-[0.8125rem] text-text-primary font-medium ${mono ? "font-mono" : "font-body"}`}>
-        {value}
-      </span>
+      <span className={`text-[0.8125rem] text-text-primary font-medium ${numeric ? "tabular-nums" : ""}`}>{value}</span>
     </div>
   );
 }

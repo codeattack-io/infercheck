@@ -4,6 +4,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { buttonClass } from "@/lib/styles";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -42,19 +43,15 @@ export default async function AboutPage({ params }: PageProps) {
 
   return (
     <>
-      <main className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 pt-14 pb-24">
-        <h1 className="font-display text-[clamp(2rem,5vw,2.75rem)] font-normal text-heading leading-[1.15] mb-3 tracking-[-0.02em]">
-          {t("heading")}
-        </h1>
+      <main className="page-width flex-1 pt-14 pb-24">
+        <h1 className="mb-3">{t("heading")}</h1>
 
         <p className="font-body text-[1.0625rem] text-text-secondary leading-[1.65] mb-12">{t("subtitle")}</p>
 
         <hr className="border-none border-t border-border mb-12" />
 
         <section className="mb-12">
-          <h2 className="font-display text-2xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("whyExistsHeading")}
-          </h2>
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("whyExistsHeading")}</h2>
           <div className="font-body text-[0.9375rem] text-text-primary leading-[1.75] flex flex-col gap-4">
             <p>{t("whyExistsPara1")}</p>
             <p>{t("whyExistsPara2")}</p>
@@ -62,10 +59,8 @@ export default async function AboutPage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="mb-12 bg-surface border border-border rounded-lg px-8 py-7">
-          <h2 className="font-display text-2xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("whoBuiltHeading")}
-          </h2>
+        <section className="mb-12 bg-surface border border-border rounded-card px-8 py-7">
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("whoBuiltHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75] mb-4">
             {t.rich("whoBuiltPara1", {
               strong: (chunks) => <strong className="text-heading font-semibold">{chunks}</strong>,
@@ -75,21 +70,17 @@ export default async function AboutPage({ params }: PageProps) {
         </section>
 
         <section className="mb-12">
-          <h2 className="font-display text-2xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("dataMaintenanceHeading")}
-          </h2>
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("dataMaintenanceHeading")}</h2>
           <div className="font-body text-[0.9375rem] text-text-primary leading-[1.75] flex flex-col gap-4">
             <p>{t("dataMaintenancePara1")}</p>
             <p>{t("dataMaintenancePara2")}</p>
           </div>
         </section>
 
-        <section className="mb-12 bg-accent-subtle border border-[#bfdbfe] rounded-lg px-8 py-7">
-          <h2 className="font-display text-[1.375rem] font-normal text-heading mb-2.5 tracking-[-0.01em]">
-            {t("seenChangeHeading")}
-          </h2>
+        <section className="mb-12 bg-surface border border-border rounded-card px-8 py-7">
+          <h2 className="text-20 font-semibold text-text-primary mb-2.5">{t("seenChangeHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.7] mb-5">{t("seenChangePara")}</p>
-          <a href={NEW_ISSUE_URL} target="_blank" rel="noopener noreferrer" className="about-gh-btn">
+          <a href={NEW_ISSUE_URL} target="_blank" rel="noopener noreferrer" className={buttonClass("primary")}>
             {/* GitHub mark icon */}
             <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
               <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
@@ -116,9 +107,7 @@ export default async function AboutPage({ params }: PageProps) {
         </section>
 
         <section className="mb-12">
-          <h2 className="font-display text-2xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("whatIsNotHeading")}
-          </h2>
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("whatIsNotHeading")}</h2>
           <ul className="font-body text-[0.9375rem] text-text-primary leading-[1.75] pl-5 flex flex-col gap-2">
             <li>
               <strong className="font-semibold">{t("notLegalAdviceTitle")}</strong> {t("notLegalAdviceBody")}
