@@ -23,7 +23,7 @@
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
       "retentionPolicy": "Self-hosted deployments: the customer controls storage and retention. No retention period is published for hosted services or the Kolibri API.",
-      "details": "Aleph Alpha states that documents and prompts in its hosted assistant are not used for training and that proprietary data stays with customers. Contract terms for the Kolibri API are not public."
+      "details": "Aleph Alpha states that documents and prompts in its hosted assistant are not used for training and that customers' production data in its forward-deployed services is never used for training. Contract terms for the Kolibri API are not public."
     },
     "subProcessors": {
       "disclosed": false,
@@ -55,18 +55,20 @@
     "https://aleph-alpha.com/en/news/cohere-agreement-transatlantic-sovereign-ai/",
     "https://aleph-alpha.com/en/news/kolibri-sovereign-ai-made-in-germany/",
     "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
-    "https://aleph-alpha.com/downloads/Kolibri_1_-_Sufficiently_Detailed_Summary.pdf"
+    "https://aleph-alpha.com/downloads/Kolibri_1_-_Sufficiently_Detailed_Summary.pdf",
+    "https://aleph-alpha.com/en/forward-deployed-services/",
+    "https://www.dqsglobal.com/en/customer-database/aleph-alpha-gmbh2"
   ],
   "notes": "Aleph Alpha sells sovereign AI to the public sector and regulated industries: the Kolibri model (open weights), a platform for on-premises, air-gapped or hosted use, and PhariaAI on STACKIT; API access to Kolibri requires sign-up, with no public pricing or published API terms. In September 2026 Aleph Alpha signed an agreement to combine with Cohere (Canada) under the Cohere name; until regulatory approval and closing it operates independently. No customer DPA or sub-processor list is published.",
   "translations": {
     "de": {
-      "notes": "Aleph Alpha bietet souveräne KI für öffentliche Verwaltung und regulierte Branchen an: das Modell Kolibri (offene Gewichte), eine Plattform für On-Premises-, Air-Gapped- oder gehosteten Betrieb sowie PhariaAI auf STACKIT; der API-Zugang zu Kolibri erfordert eine Registrierung, öffentliche Preise oder API-Bedingungen gibt es nicht. Im September 2026 hat Aleph Alpha eine Vereinbarung über den Zusammenschluss mit Cohere (Kanada) unter dem Namen Cohere unterzeichnet; bis zur behördlichen Genehmigung und zum Vollzug arbeitet das Unternehmen eigenständig weiter. Ein Auftragsverarbeitungsvertrag für Kunden oder eine Liste der Unterauftragsverarbeiter ist nicht veröffentlicht.",
+      "notes": "Aleph Alpha bietet souveräne KI für den öffentlichen Sektor und regulierte Branchen an: das Modell Kolibri (offene Gewichte), eine Plattform für On-Premises-, Air-Gapped- oder gehosteten Betrieb sowie PhariaAI auf STACKIT; der API-Zugang zu Kolibri erfordert eine Registrierung, öffentliche Preise oder API-Bedingungen gibt es nicht. Im September 2026 hat Aleph Alpha eine Vereinbarung über den Zusammenschluss mit Cohere (Kanada) unter dem Namen Cohere unterzeichnet; bis zur behördlichen Genehmigung und zum Vollzug arbeitet das Unternehmen eigenständig weiter. Weder ein Auftragsverarbeitungsvertrag (AVV) für Kunden noch eine Liste der Unterauftragsverarbeiter ist veröffentlicht.",
       "dataResidency": {
         "euRegionDetails": "Die Software kann On-Premises oder air-gapped in der Umgebung des Kunden betrieben werden. Der gehostete Assistent von Aleph Alpha läuft bei STACKIT in Deutschland; der Hosting-Standort der Kolibri-API ist nicht veröffentlicht."
       },
       "dataUsage": {
         "retentionPolicy": "Selbst gehostete Installationen: Der Kunde bestimmt Speicherung und Aufbewahrung. Für gehostete Dienste und die Kolibri-API ist keine Aufbewahrungsfrist veröffentlicht.",
-        "details": "Laut Aleph Alpha werden Dokumente und Eingaben im gehosteten Assistenten nicht für das Training genutzt, und proprietäre Daten verbleiben beim Kunden. Die Vertragsbedingungen der Kolibri-API sind nicht öffentlich."
+        "details": "Laut Aleph Alpha werden Dokumente und Eingaben im gehosteten Assistenten nicht für das Training genutzt, und Produktionsdaten von Kunden aus den Forward-Deployed-Services werden nie für das Training verwendet. Die Vertragsbedingungen der Kolibri-API sind nicht öffentlich."
       },
       "euAiAct": {
         "details": "Aleph Alpha ist von der Europäischen Kommission als Unterzeichner des GPAI-Verhaltenskodex gelistet. Für das Modell Kolibri-1 (veröffentlicht im Oktober 2026) hat das Unternehmen die Zusammenfassung der Trainingsdaten nach dem AI Act (Art. 53 Abs. 1 lit. d) veröffentlicht."
