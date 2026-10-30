@@ -8,26 +8,27 @@
     "headquarters": "US",
     "dataResidency": {
       "regions": [
-        "US"
+        "US",
+        "CA"
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": null,
-      "euRegionDetails": "AWS and GCP infrastructure, US-based. No EU region publicly available."
+      "euRegionDetails": "No EU region. Inference runs in DeepInfra data centers in the United States and, since July 2026, in Toronto, Canada. The documentation offers no region choice for serverless or dedicated deployments."
     },
     "dpa": {
-      "available": false,
-      "url": null,
-      "signedVia": "not_available"
+      "available": true,
+      "url": "https://trust.deepinfra.com",
+      "signedVia": "online_acceptance"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "ZDR by default — volatile memory only, deleted post-inference. Exception: image outputs stored briefly; bulk inference API stores encrypted on disk until results are returned. Google/Anthropic passthrough models: those providers' policies apply.",
-      "details": "Named DPO: Nikola Borisov (dpo@deepinfra.com). GDPR compliance listed as 'In Progress' on Trust Center as of verification date."
+      "retentionPolicy": "Under the terms of service, inputs and outputs stay in memory only while a request is processed and are then deleted; only metadata is logged. Exceptions are batch requests, image and other asynchronous outputs, optional paid prompt-cache retention, and data kept with the customer's written consent for support, which is deleted within 30 days after the issue is resolved.",
+      "details": "The terms rule out using customer data to train or improve models except to provide the service, such as a customer's own fine-tuning. Requests to Google or Anthropic models are passed to those companies under their policies. The trust center lists GDPR as in progress."
     },
     "subProcessors": {
       "disclosed": true,
-      "url": "https://deepinfra.com/docs/misc/subprocessors",
+      "url": "https://trust.deepinfra.com/subprocessors",
       "includesEuEntities": false
     },
     "certifications": [
@@ -38,26 +39,32 @@
       "status": "unknown",
       "details": null
     },
-    "sccs": null,
+    "sccs": true,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-07",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://deepinfra.com/docs/misc/subprocessors",
-    "https://deepinfra.com/privacy"
+    "https://deepinfra.com/privacy",
+    "https://deepinfra.com/terms",
+    "https://trust.deepinfra.com",
+    "https://trust.deepinfra.com/subprocessors",
+    "https://docs.deepinfra.com/account/data-privacy",
+    "https://docs.deepinfra.com/account/subprocessors",
+    "https://deepinfra.com/media-center",
+    "https://deepinfra.com/pricing"
   ],
-  "notes": "Headquartered in San Francisco, CA. Has the only public sub-processor list and strongest security certifications (SOC2, ISO27001) of the three US inference providers (DeepInfra, Fireworks, Together), but lacks a public DPA and has GDPR formally marked as 'In Progress'. SCCs not confirmed. Sub-processors are all US-based (Stripe, AWS, GCP).",
+  "notes": "Deep Infra Inc. is based in Palo Alto, California, and is not certified under the EU-US Data Privacy Framework. Its data processing agreement with EU standard contractual clauses is published in the trust center and is accepted with the terms of service. Data protection officer: Nikola Borisov (dpo@deepinfra.com).",
   "translations": {
     "de": {
-      "notes": "Hauptsitz in San Francisco, Kalifornien. Verfügt über die einzige öffentliche Liste der Unterauftragsverarbeiter und die stärksten Sicherheitszertifizierungen (SOC 2, ISO 27001) unter den drei US-Inferenzanbietern (DeepInfra, Fireworks, Together), es fehlt jedoch ein öffentlich verfügbarer Auftragsverarbeitungsvertrag (AVV), und die DSGVO-Compliance ist formal als „In Progress“ gekennzeichnet. Standardvertragsklauseln (SCC) nicht bestätigt. Die Unterauftragsverarbeiter haben sämtlich ihren Sitz in den USA (Stripe, AWS, GCP).",
+      "notes": "Deep Infra Inc. hat ihren Sitz in Palo Alto, Kalifornien, und ist nicht unter dem EU-US Data Privacy Framework zertifiziert. Der Auftragsverarbeitungsvertrag mit EU-Standardvertragsklauseln ist im Trust Center veröffentlicht und gilt mit Annahme der Nutzungsbedingungen. Datenschutzbeauftragter: Nikola Borisov (dpo@deepinfra.com).",
       "dataResidency": {
-        "euRegionDetails": "AWS- und GCP-Infrastruktur, mit Standort in den USA. Keine EU-Region öffentlich verfügbar."
+        "euRegionDetails": "Keine EU-Region. Die Inferenz läuft in Rechenzentren von DeepInfra in den USA und seit Juli 2026 in Toronto (Kanada). Die Dokumentation bietet weder für Serverless- noch für dedizierte Deployments eine Regionswahl."
       },
       "dataUsage": {
-        "retentionPolicy": "ZDR standardmäßig — nur flüchtiger Speicher, Löschung nach der Inferenz. Ausnahme: Bildausgaben werden kurzzeitig gespeichert; die Bulk-Inference-API speichert verschlüsselt auf Datenträger, bis die Ergebnisse zurückgegeben werden. Für Passthrough-Modelle von Google/Anthropic gelten die Richtlinien dieser Anbieter.",
-        "details": "Benannter Datenschutzbeauftragter: Nikola Borisov (dpo@deepinfra.com). DSGVO-Compliance zum Verifizierungsdatum im Trust Center als „In Progress“ aufgeführt."
+        "retentionPolicy": "Laut Nutzungsbedingungen liegen Ein- und Ausgaben nur während der Verarbeitung einer Anfrage im Arbeitsspeicher und werden danach gelöscht; protokolliert werden nur Metadaten. Ausnahmen sind Batch-Anfragen, Bild- und andere asynchrone Ausgaben, optionales kostenpflichtiges Prompt-Caching sowie Daten, die mit schriftlicher Zustimmung des Kunden für den Support aufbewahrt und spätestens 30 Tage nach Lösung des Problems gelöscht werden.",
+        "details": "Die Nutzungsbedingungen schließen aus, dass Kundendaten zum Training oder zur Verbesserung von Modellen genutzt werden, außer zur Erbringung des Dienstes, etwa beim Fine-Tuning für den Kunden selbst. Anfragen an Modelle von Google oder Anthropic werden an diese Unternehmen weitergegeben und unterliegen deren Richtlinien. Im Trust Center ist die DSGVO als „in Arbeit“ aufgeführt."
       }
     }
   }
