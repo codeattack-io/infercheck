@@ -59,7 +59,7 @@
   "notes": "The Agent API runs Perplexity-hosted models and routes requests to models from OpenAI, Anthropic, Google and xAI, all listed as US sub-processors; no EU region is offered. The DPA is part of the API terms and includes the EU Standard Contractual Clauses. Perplexity AI, Inc. withdrew from the EU-US Data Privacy Framework on 21 October 2026.",
   "translations": {
     "de": {
-      "notes": "Die Agent API betreibt von Perplexity gehostete Modelle und leitet Anfragen an Modelle von OpenAI, Anthropic, Google und xAI weiter, die alle als Unterauftragsverarbeiter mit Sitz in den USA aufgeführt sind; eine EU-Region wird nicht angeboten. Der AVV ist Teil der API-Nutzungsbedingungen und enthält die EU-Standardvertragsklauseln. Perplexity AI, Inc. ist am 21. Oktober 2026 aus dem EU-US Data Privacy Framework ausgetreten.",
+      "notes": "Die Agent API betreibt von Perplexity gehostete Modelle und leitet Anfragen an Modelle von OpenAI, Anthropic, Google und xAI weiter; diese Anbieter sind alle als Unterauftragsverarbeiter mit Sitz in den USA aufgeführt, eine EU-Region wird nicht angeboten. Der AVV ist Teil der API-Nutzungsbedingungen und enthält die EU-Standardvertragsklauseln. Perplexity AI, Inc. ist am 21. Oktober 2026 aus dem EU-US Data Privacy Framework ausgetreten.",
       "dataResidency": {
         "euRegionDetails": "Eine EU-Region oder eine Option zur Datenresidenz ist nicht dokumentiert. Alle aufgeführten Unterauftragsverarbeiter haben ihren Standort in den USA, darunter AWS sowie die Modellanbieter OpenAI, Anthropic, Google und xAI, die Anfragen an ihre Modelle verarbeiten."
       },
