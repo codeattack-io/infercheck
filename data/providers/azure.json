@@ -23,7 +23,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": false,
-      "euRegionDetails": "Each deployment has a type. Global types may process prompts and responses in any Azure region where the model is deployed, including outside the EU; Data Zone EU processes within the EU Data Boundary (EU plus EFTA countries such as Norway and Switzerland); Standard and Regional Provisioned process within the resource's Azure geography. Data at rest stays in the resource's geography. Global Standard is the recommended default, and Sora, the codex and pro models and most audio, realtime and image models are offered to EU resources only as Global deployments; administrators can block Global types with Azure Policy."
+      "euRegionDetails": "Each deployment has a type. Global types may process prompts and responses in any Azure region where the model is deployed, including outside the EU; Data Zone EU processes within the EU Data Boundary (EU plus EFTA countries such as Norway and Switzerland); Standard and Regional Provisioned process within the resource's Azure geography. Data at rest stays in the resource's geography, except that fine-tuned model weights on Global deployments may be stored temporarily elsewhere. Global Standard is the recommended default, and Sora, the pro models, most codex models and most audio, realtime and image models are offered to EU resources only as Global deployments; administrators can block Global types with Azure Policy."
     },
     "dpa": {
       "available": true,
@@ -33,13 +33,13 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "Models are stateless and do not store prompts or completions. Abuse monitoring reviews flagged content automatically by default; content that needs human review is kept in a store in the resource's geography, with no retention period stated. Stateful features such as the Responses API, Assistants threads, uploaded files, stored completions and fine-tuning data stay in the resource's geography until the customer deletes them; after a subscription ends, stored data is kept for 90 days before deletion.",
+      "retentionPolicy": "Models are stateless and do not store prompts or completions. Abuse monitoring reviews flagged content automatically by default; content that needs human review is kept in a store in the resource's geography, with no retention period stated. Stateful features such as the Responses API, Assistants threads, uploaded files, stored completions and fine-tuning data stay in the resource's geography until the customer deletes them; after a subscription ends, stored data is kept for 90 days for export and then deleted within a further 90 days.",
       "details": "Prompts, completions, embeddings and training data are not shared with OpenAI or other model providers and are not used to train foundation models without the customer's permission. Modified abuse monitoring, which turns off storage and human review, is available only after approval to customers managed by a Microsoft account team or in an eligible program. Human reviewers for deployments in the EEA are located in the EEA."
     },
     "subProcessors": {
       "disclosed": true,
       "url": "https://go.microsoft.com/fwlink/?linkid=2096306",
-      "includesEuEntities": null
+      "includesEuEntities": true
     },
     "certifications": [
       "SOC2",
@@ -86,17 +86,18 @@
     "https://learn.microsoft.com/en-us/compliance/regulatory/offering-hds-france",
     "https://www.microsoft.com/en-us/trust-center/compliance/eu-ai-act",
     "https://www.microsoft.com/en-us/privacy/privacystatement",
-    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
+    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
+    "https://aka.ms/AzureCompliance"
   ],
   "notes": "Azure OpenAI is part of Microsoft Foundry (formerly Azure AI Foundry); Microsoft hosts the models, which do not interact with services operated by OpenAI. EU processing requires a Data Zone EU or Standard deployment in an EU region, because Global deployments, the recommended default, can process data outside the EU. Microsoft Corporation is certified under the EU-US Data Privacy Framework and also uses the 2021 SCCs.",
   "translations": {
     "de": {
       "notes": "Azure OpenAI ist Teil von Microsoft Foundry (früher Azure AI Foundry); Microsoft betreibt die Modelle selbst, sie interagieren nicht mit Diensten von OpenAI. Für eine Verarbeitung in der EU ist eine Data-Zone-EU- oder Standard-Bereitstellung in einer EU-Region nötig, denn globale Bereitstellungen, die empfohlene Voreinstellung, können Daten außerhalb der EU verarbeiten. Microsoft Corporation ist nach dem EU-US Data Privacy Framework zertifiziert und nutzt zusätzlich die Standardvertragsklauseln von 2021.",
       "dataResidency": {
-        "euRegionDetails": "Jede Bereitstellung hat einen Typ. Globale Typen können Prompts und Antworten in jeder Azure-Region verarbeiten, in der das Modell bereitgestellt ist, auch außerhalb der EU; Data Zone EU verarbeitet innerhalb der EU Data Boundary (EU sowie EFTA-Staaten wie Norwegen und die Schweiz); Standard und Regional Provisioned verarbeiten innerhalb der Azure-Geografie der Ressource. Gespeicherte Daten bleiben in der Geografie der Ressource. Global Standard ist die empfohlene Voreinstellung, und Sora, die Codex- und Pro-Modelle sowie die meisten Audio-, Realtime- und Bildmodelle gibt es für EU-Ressourcen nur als globale Bereitstellung; Administratoren können globale Typen per Azure Policy sperren."
+        "euRegionDetails": "Jede Bereitstellung hat einen Typ. Globale Typen können Prompts und Antworten in jeder Azure-Region verarbeiten, in der das Modell bereitgestellt ist, auch außerhalb der EU; Data Zone EU verarbeitet innerhalb der EU Data Boundary (EU sowie EFTA-Staaten wie Norwegen und die Schweiz); Standard und Regional Provisioned verarbeiten innerhalb der Azure-Geografie der Ressource. Gespeicherte Daten bleiben in der Geografie der Ressource; nur die Gewichte feinabgestimmter Modelle können bei globalen Bereitstellungen vorübergehend anderswo gespeichert werden. Global Standard ist die empfohlene Voreinstellung, und Sora, die Pro-Modelle, die meisten Codex-Modelle sowie die meisten Audio-, Realtime- und Bildmodelle gibt es für EU-Ressourcen nur als globale Bereitstellung; Administratoren können globale Typen per Azure Policy sperren."
       },
       "dataUsage": {
-        "retentionPolicy": "Die Modelle sind zustandslos und speichern keine Prompts oder Antworten. Die Missbrauchsüberwachung prüft markierte Inhalte standardmäßig automatisiert; Inhalte, die eine menschliche Prüfung erfordern, werden in einem Speicher in der Geografie der Ressource abgelegt, eine Aufbewahrungsfrist wird nicht genannt. Zustandsbehaftete Funktionen wie die Responses API, Assistants-Threads, hochgeladene Dateien, gespeicherte Completions und Fine-Tuning-Daten bleiben in der Geografie der Ressource, bis der Kunde sie löscht; nach Ende eines Abonnements werden gespeicherte Daten noch 90 Tage aufbewahrt und dann gelöscht.",
+        "retentionPolicy": "Die Modelle sind zustandslos und speichern keine Prompts oder Antworten. Die Missbrauchsüberwachung prüft markierte Inhalte standardmäßig automatisiert; Inhalte, die eine menschliche Prüfung erfordern, werden in einem Speicher in der Geografie der Ressource abgelegt, eine Aufbewahrungsfrist wird nicht genannt. Zustandsbehaftete Funktionen wie die Responses API, Assistants-Threads, hochgeladene Dateien, gespeicherte Completions und Fine-Tuning-Daten bleiben in der Geografie der Ressource, bis der Kunde sie löscht; nach Ende eines Abonnements werden gespeicherte Daten noch 90 Tage für den Export aufbewahrt und danach innerhalb weiterer 90 Tage gelöscht.",
         "details": "Prompts, Antworten, Embeddings und Trainingsdaten werden nicht an OpenAI oder andere Modellanbieter weitergegeben und ohne Erlaubnis des Kunden nicht zum Training von Basismodellen verwendet. Die modifizierte Missbrauchsüberwachung, die Speicherung und menschliche Prüfung abschaltet, gibt es nur nach Freigabe für Kunden, die von einem Microsoft-Account-Team betreut werden oder an einem berechtigten Programm teilnehmen. Menschliche Prüfer für Bereitstellungen im EWR sitzen im EWR."
       },
       "euAiAct": {
