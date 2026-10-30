@@ -12,7 +12,7 @@
       ],
       "euOnly": true,
       "dataLeavesEuAtInference": false,
-      "euRegionDetails": "Generative APIs (serverless) run in a Paris data centre operated by OPCORE, and Scaleway states that serverless models will stay hosted in Europe if locations are added. Dedicated Deployment (formerly Managed Inference) is available only in the Paris region. The DPA states that Scaleway services are located in the EU by default."
+      "euRegionDetails": "Generative APIs Serverless (api.scaleway.ai) has no region choice: all serverless models run in a Paris data centre operated by OPCORE, and Scaleway's documentation guarantees that they remain hosted in Europe, with notice to customers if the location changes. Dedicated Deployment (formerly Managed Inference) runs in the region chosen when the deployment is created, currently only Paris; Scaleway recommends it to keep processing in a single region. Batch processing reads and writes files in an Object Storage bucket the customer chooses. The DPA itself only says that Scaleway services are located in the EU by default and allows storage outside the EU after informing the customer; all Scaleway regions and listed data-centre sub-processors are in the EU."
     },
     "dpa": {
       "available": true,
@@ -62,7 +62,7 @@
     "de": {
       "notes": "Französischer Cloud-Anbieter und Tochtergesellschaft der iliad-Gruppe; der AVV sieht für jede Übermittlung außerhalb der EU die EU-Standardvertragsklauseln vor. Die HDS-Zertifizierung für Gesundheitsdaten umfasst Infrastrukturdienste wie Instances, Kapsule und Object Storage, nicht aber die Generative APIs.",
       "dataResidency": {
-        "euRegionDetails": "Generative APIs (Serverless) laufen in einem von OPCORE betriebenen Rechenzentrum in Paris; laut Scaleway bleiben Serverless-Modelle auch bei zusätzlichen Standorten in Europa gehostet. Dedicated Deployment (früher Managed Inference) ist nur in der Region Paris verfügbar. Laut AVV befinden sich die Dienste von Scaleway standardmäßig in der EU."
+        "euRegionDetails": "Generative APIs Serverless (api.scaleway.ai) bietet keine Regionswahl: Alle Serverless-Modelle laufen in einem von OPCORE betriebenen Rechenzentrum in Paris, und die Dokumentation von Scaleway garantiert, dass sie in Europa gehostet bleiben und Kunden über einen Standortwechsel informiert werden. Dedicated Deployment (früher Managed Inference) läuft in der beim Anlegen gewählten Region, derzeit nur Paris; Scaleway empfiehlt es, damit die Verarbeitung in einer einzigen Region bleibt. Die Batch-Verarbeitung liest und schreibt Dateien in einem Object-Storage-Bucket, den der Kunde auswählt. Der AVV selbst sagt nur, dass sich die Dienste von Scaleway standardmäßig in der EU befinden, und erlaubt eine Speicherung außerhalb der EU nach vorheriger Information des Kunden; alle Scaleway-Regionen und die gelisteten Rechenzentrums-Unterauftragsverarbeiter liegen in der EU."
       },
       "dataUsage": {
         "retentionPolicy": "Standardmäßig Zero Data Retention: Prompts und Ausgaben werden nach der Verarbeitung nicht gespeichert. Bei Fehlern oder Verdacht auf Missbrauch kann der Anfrageinhalt bis zu zwei Wochen zur Untersuchung aufbewahrt werden. Batch-Eingaben werden bis zu 24 Stunden gespeichert, aggregierte, anonymisierte Nutzungsdaten bis zu 6 Monate.",
