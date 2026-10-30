@@ -13,9 +13,9 @@ Temporary orchestration state. Deleted before the PR is opened.
 | b1    | amazon-bedrock azure azure-cognitive-services vertex vertex-anthropic google sap-ai-core cloudflare-workers-ai  | verifying                                                        |
 | b2    | aleph-alpha cloudferro-sherlock cortecs evroc ovhcloud-ai-endpoints stackit privatemode-ai nebius-token-factory | verifying                                                        |
 | b3    | anthropic cohere xai perplexity perplexity-agent inception upstage morph                                        | verifying                                                        |
-| b4    | moonshot-ai minimax-minimax-io z-ai xiaomi stepfun siliconflow bailing novitaai                                 | researching                                                      |
+| b4    | moonshot-ai minimax-minimax-io z-ai xiaomi stepfun siliconflow bailing novitaai                                 | verifying                                                        |
 | b5    | together-ai fireworks-ai groq cerebras deep-infra baseten friendli nvidia                                       | researching                                                      |
-| b6    | hugging-face llama chutes inference io-net venice-ai vultr weights-biases                                       | queued                                                           |
+| b6    | hugging-face llama chutes inference io-net venice-ai vultr weights-biases                                       | researching                                                      |
 | b7    | openrouter cloudflare-ai-gateway vercel-ai-gateway helicone requesty kilo-gateway llm-gateway zenmux            | queued                                                           |
 | b8    | abacus aihubmix clarifai dinference firmware github-models lucidquery-ai meganova                               | queued                                                           |
 | b9    | mixlayer nanogpt nova ollama-cloud poe synthetic vivgrid                                                        | queued                                                           |
@@ -25,3 +25,4 @@ Temporary orchestration state. Deleted before the PR is opened.
 - Field rules for adequacy, EU AI Act status, training default (paying API customers), opt-out, regions, EEA+CH, evidence fallbacks, pricing tier and certification scope were fixed after the pilot (see the research brief).
 - Rule 8 (pricing tier) revised after p0 verification: pay per use whenever self-serve paid usage exists.
 - Open for Carlo: Mistral `trainsOnCustomerData` stays null (official sources conflict for paid self-serve); an account check of the "Anonymous improvement data" toggle would settle it.
+- Rule 11 (what counts as a DPA) added after b4 research.
