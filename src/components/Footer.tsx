@@ -5,8 +5,12 @@ const GITHUB_REPO = process.env.NEXT_PUBLIC_GITHUB_REPO_URL ?? "#";
 
 const LINK_CLASS = "text-text-muted underline underline-offset-[0.15em] hover:text-text-secondary";
 
-function Separator() {
-  return <span aria-hidden="true">·</span>;
+function Separator({ className }: { className?: string }) {
+  return (
+    <span aria-hidden="true" className={className}>
+      ·
+    </span>
+  );
 }
 
 export async function Footer() {
@@ -18,7 +22,7 @@ export async function Footer() {
         {t("disclaimer")}
       </p>
       <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
-        <span>
+        <span className="max-md:w-full">
           {t("license")}{" "}
           <a
             href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
@@ -29,15 +33,15 @@ export async function Footer() {
             {t("licenseName")}
           </a>
         </span>
-        <Separator />
-        <span>
+        <Separator className="max-md:hidden" />
+        <span className="max-md:w-full">
           {t("codeLicense")}{" "}
           <a href={`${GITHUB_REPO}/blob/main/LICENSE`} target="_blank" rel="noopener noreferrer" className={LINK_CLASS}>
             {t("codeLicenseName")}
           </a>
         </span>
-        <Separator />
-        <nav aria-label={t("navLabel")} className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
+        <Separator className="max-md:hidden" />
+        <nav aria-label={t("navLabel")} className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 max-md:w-full">
           <Link href="/about" className={LINK_CLASS}>
             {t("nav.about")}
           </Link>
