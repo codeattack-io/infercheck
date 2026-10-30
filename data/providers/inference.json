@@ -12,60 +12,61 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Inference states in its Terms that personal information may be transferred to and/or processed in the United States. Public docs reviewed do not describe an EU-only region or EU-only routing guarantee. The marketing site says deployments can run across public cloud, private cloud, or hybrid environments, but no primary-source EU residency commitment was found."
+      "euRegionDetails": "There is no EU region. The standard API endpoint does not document where requests are processed; a separate US-only endpoint keeps requests on US edge, routing and GPU capacity. Enterprise contracts offer dedicated infrastructure, but no EU location is documented."
     },
     "dpa": {
-      "available": false,
+      "available": true,
       "url": null,
-      "signedVia": "not_available"
+      "signedVia": "custom_contract"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
-      "optOutAvailable": null,
-      "retentionPolicy": "Documentation says request data is not used for model training by default; retention should match operational need; customers needing a specific policy or no-retention handling must contact the team. No fixed default retention period was publicly stated in the sources reviewed.",
-      "details": "Privacy Policy says they do not use customer data to train AI models and only use data to provide AI inference services and debug issues. Docs also say request data is not used for model training by default."
+      "optOutAvailable": false,
+      "retentionPolicy": "Zero Data Retention is on by default for new teams: prompts and outputs are not stored, only request metadata is kept. If a team turns it off, or uses the batch and async APIs, requests and results are stored. The pricing page lists 14 days of data retention on the pay-as-you-go plan and unlimited retention on the Growth plan.",
+      "details": "The privacy policy and the Zero Data Retention policy state that customer data is not used to train models. Closed models such as GPT, Claude and Gemini are forwarded to their providers under those providers' terms. For ad-supported models, a sample of full prompts and responses goes to the advertising partner Gravity, even with Zero Data Retention on."
     },
     "subProcessors": {
-      "disclosed": false,
-      "url": null,
+      "disclosed": true,
+      "url": "https://trust.inference.net/subprocessors",
       "includesEuEntities": null
     },
     "certifications": [
       "SOC2"
     ],
     "euAiAct": {
-      "status": "monitoring",
-      "details": "Inference publishes EU AI Act governance content and says its maturity model maps to the EU AI Act, but no explicit statement was found that the provider or service is EU AI Act compliant."
+      "status": "unknown",
+      "details": "No official statement on the EU AI Act was found, and Inference is not a signatory of the GPAI Code of Practice. The site only has a general article on AI governance."
     },
     "sccs": null,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://inference.net/",
     "https://inference.net/privacy-policy/",
     "https://inference.net/terms-of-service/",
-    "https://docs.inference.net/introduction",
-    "https://docs.inference.net/api/data-retention",
-    "https://docs.inference.net/api/overview",
-    "https://inference.net/content/ai-governance-maturity-model",
-    "https://inference.net/blog/seed-round/"
+    "https://inference.net/zero-data-retention/",
+    "https://inference.net/pricing/",
+    "https://trust.inference.net/",
+    "https://trust.inference.net/subprocessors",
+    "https://docs.inference.net/api/api-quickstart",
+    "https://docs.inference.net/api/data-retention"
   ],
-  "notes": "Inference is a US provider (Inference R&D, Inc.) with public privacy policy, terms, API docs, and a documented data-retention page. Public sources reviewed state they do not train on customer data and advertise SOC 2, but no public DPA, sub-processor list, SCC statement, or EU-only processing commitment was found; the Terms expressly say personal information may be transferred to and/or processed in the United States.",
+  "notes": "US provider (Inference R&D, Inc., San Francisco) that is not certified under the EU-US Data Privacy Framework; its terms say personal data may be processed in the United States. A data processing agreement is available on request, and the published sub-processor list names only AWS, although other pages name Cloudflare, Gravity and closed-model providers as recipients. Self-serve use is billed per token; enterprise contracts add dedicated infrastructure.",
   "translations": {
     "de": {
-      "notes": "Inference ist ein US-amerikanischer Anbieter (Inference R&D, Inc.) mit öffentlich zugänglicher Datenschutzerklärung, Nutzungsbedingungen, API-Dokumentation und einer dokumentierten Seite zur Datenspeicherung. In den geprüften öffentlichen Quellen wird angegeben, dass keine Nutzung von Kundendaten zum Training erfolgt und SOC 2 beworben wird; es wurde jedoch kein öffentlich zugänglicher Auftragsverarbeitungsvertrag (AVV), keine Liste von Unterauftragsverarbeitern, keine Erklärung zu Standardvertragsklauseln (SCC) und keine Verpflichtung zur ausschließlich in der EU erfolgenden Verarbeitung gefunden; in den Nutzungsbedingungen wird ausdrücklich erklärt, dass personenbezogene Daten in die Vereinigten Staaten übermittelt und/oder dort verarbeitet werden können.",
+      "notes": "US-Anbieter (Inference R&D, Inc., San Francisco) ohne Zertifizierung nach dem EU-US Data Privacy Framework; laut Nutzungsbedingungen können personenbezogene Daten in den USA verarbeitet werden. Ein Auftragsverarbeitungsvertrag ist auf Anfrage erhältlich, und die veröffentlichte Liste der Unterauftragsverarbeiter nennt nur AWS, obwohl andere Seiten Cloudflare, Gravity und Anbieter geschlossener Modelle als Empfänger nennen. Self-Service wird pro Token abgerechnet; Enterprise-Verträge bieten dedizierte Infrastruktur.",
       "dataResidency": {
-        "euRegionDetails": "Inference erklärt in seinen Nutzungsbedingungen, dass personenbezogene Daten in die Vereinigten Staaten übermittelt und/oder dort verarbeitet werden können. In den geprüften öffentlichen Dokumenten werden weder eine ausschließlich auf die EU beschränkte Region noch eine Garantie für ein ausschließlich auf die EU beschränktes Routing beschrieben. Auf der Marketing-Website wird angegeben, dass Bereitstellungen über Public-Cloud-, Private-Cloud- oder Hybrid-Umgebungen erfolgen können, es wurde jedoch keine Primärquellen-Zusage zur Datenhaltung ausschließlich in der EU gefunden."
+        "euRegionDetails": "Es gibt keine EU-Region. Für den Standard-API-Endpunkt ist nicht dokumentiert, wo Anfragen verarbeitet werden; ein separater US-Endpunkt hält Anfragen vollständig in US-Rechenzentren. Enterprise-Verträge bieten dedizierte Infrastruktur, ein EU-Standort ist jedoch nicht dokumentiert."
       },
       "dataUsage": {
-        "retentionPolicy": "In der Dokumentation wird angegeben, dass Anfragedaten standardmäßig nicht für das Modelltraining verwendet werden; die Datenspeicherung soll dem betrieblichen Bedarf entsprechen; Kunden, die eine spezifische Richtlinie oder eine Verarbeitung ohne Speicherung benötigen, müssen das Team kontaktieren. In den geprüften Quellen wurde kein fester standardmäßiger Speicherzeitraum öffentlich angegeben.",
-        "details": "Laut Datenschutzerklärung werden Kundendaten nicht zum Training von KI-Modellen verwendet und Daten werden ausschließlich zur Bereitstellung von KI-Inferenzdiensten und zur Fehlerbehebung genutzt. In der Dokumentation wird zudem angegeben, dass Anfragedaten standardmäßig nicht für das Modelltraining verwendet werden."
+        "retentionPolicy": "Für neue Teams ist Zero Data Retention standardmäßig aktiv: Prompts und Antworten werden nicht gespeichert, nur Metadaten der Anfragen bleiben erhalten. Schaltet ein Team dies ab oder nutzt es die Batch- und Async-APIs, werden Anfragen und Ergebnisse gespeichert. Laut Preisseite gilt im Pay-as-you-go-Tarif eine Aufbewahrung von 14 Tagen, im Growth-Tarif eine unbegrenzte.",
+        "details": "Laut Datenschutzerklärung und Zero-Data-Retention-Richtlinie werden Kundendaten nicht zum Training von Modellen verwendet. Anfragen an geschlossene Modelle wie GPT, Claude oder Gemini werden an deren Anbieter weitergeleitet und unterliegen deren Bedingungen. Bei werbefinanzierten Modellen gehen Stichproben vollständiger Prompts und Antworten an den Werbepartner Gravity, auch bei aktivem Zero Data Retention."
       },
       "euAiAct": {
-        "details": "Inference veröffentlicht Inhalte zur Governance nach dem EU AI Act und gibt an, dass sein Reifegradmodell auf den EU AI Act abgestimmt ist, es wurde jedoch keine ausdrückliche Erklärung gefunden, dass der Anbieter oder der Dienst den EU AI Act einhält."
+        "details": "Es wurde keine offizielle Erklärung zum EU AI Act gefunden, und Inference hat den GPAI-Verhaltenskodex nicht unterzeichnet. Die Website enthält nur einen allgemeinen Artikel zu KI-Governance."
       }
     }
   }
