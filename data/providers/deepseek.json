@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": null,
-      "euRegionDetails": "All API data processed and stored in the People's Republic of China. No non-China infrastructure option exists."
+      "euRegionDetails": "Per the privacy policy, personal data is collected, processed and stored in the People's Republic of China. No EU or other non-China region is offered."
     },
     "dpa": {
       "available": false,
@@ -21,43 +21,47 @@
     },
     "dataUsage": {
       "trainsOnCustomerData": true,
-      "optOutAvailable": false,
-      "retentionPolicy": "Not publicly disclosed for API customers. Consumer privacy policy indicates PRC server storage with broad data use for service improvement.",
-      "details": "Subject to PRC laws including PIPL, DSL, and NSL, which create government access rights structurally incompatible with GDPR Article 44+ transfer requirements."
+      "optOutAvailable": true,
+      "retentionPolicy": "No fixed period. Per the privacy policy, account, input and payment data are kept for as long as the account exists, and longer where needed for legal obligations or legitimate interests.",
+      "details": "The Terms of Use, which also cover the API, allow DeepSeek to use de-identified inputs and outputs to improve its services; users can opt out by turning off the \"Improve the model for everyone\" setting. No page states whether that setting also covers API traffic. The contract is governed by PRC law."
     },
     "subProcessors": {
       "disclosed": false,
       "url": null,
-      "includesEuEntities": false
+      "includesEuEntities": null
     },
     "certifications": [],
     "euAiAct": {
       "status": "unknown",
-      "details": "No public statement. Open-weight model variants re-hosted by EU/US providers (Azure, Bedrock, Groq, Scaleway, etc.) have their own separate compliance posture under those providers."
+      "details": "No public statement found, and DeepSeek is not listed as a signatory of the EU GPAI Code of Practice. Open-weight DeepSeek models re-hosted by other providers fall under those providers' own compliance posture."
     },
     "sccs": false,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-07",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://api-docs.deepseek.com",
-    "https://www.deepseek.com/privacy_policy"
+    "https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html",
+    "https://cdn.deepseek.com/policies/en-US/deepseek-terms-of-use.html",
+    "https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html",
+    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
+    "https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/10098477"
   ],
-  "notes": "HIGH GDPR RISK. Operated by Hangzhou DeepSeek Artificial Intelligence Co., Ltd. (PRC). All data processed in China. No adequacy decision, no SCCs, no BCRs, no DPA. Italy's Garante issued a provisional access restriction in 2025. PRC security laws (PIPL/DSL/NSL) create an irreconcilable conflict with GDPR Chapter V transfer rules. EU organisations should use DeepSeek models via re-hosting providers (Azure, Bedrock, Groq, Scaleway, etc.) rather than the direct DeepSeek API.",
+  "notes": "Operated by Hangzhou DeepSeek Artificial Intelligence Co., Ltd. (China); data is processed and stored in the PRC, and no DPA, SCCs or sub-processor list is published. The privacy policy names Prighter as EU and UK representative under Art. 27 GDPR. In January 2025 Italy's data protection authority (Garante) ordered DeepSeek, with immediate effect, to limit the processing of personal data of people in Italy.",
   "translations": {
     "de": {
-      "notes": "HOHES DSGVO-RISIKO. Betrieben von Hangzhou DeepSeek Artificial Intelligence Co., Ltd. (VR China). Sämtliche Daten werden in China verarbeitet. Kein Angemessenheitsbeschluss, keine Standardvertragsklauseln (SCC), keine BCRs, kein Auftragsverarbeitungsvertrag (AVV). Die italienische Datenschutzaufsichtsbehörde Garante erließ 2025 eine vorläufige Zugangsbeschränkung. Die chinesischen Sicherheitsgesetze der VR China (PIPL/DSL/NSL) begründen einen unauflösbaren Konflikt mit den Vorschriften der DSGVO in Kapitel V zur Drittlandübermittlung. EU-Organisationen sollten DeepSeek-Modelle über Re-Hosting-Anbieter (Azure, Bedrock, Groq, Scaleway usw.) statt über die direkte DeepSeek-API nutzen.",
+      "notes": "Betrieben von Hangzhou DeepSeek Artificial Intelligence Co., Ltd. (China); Daten werden in der VR China verarbeitet und gespeichert, ein AVV, Standardvertragsklauseln oder eine Liste der Unterauftragsverarbeiter werden nicht veröffentlicht. Die Datenschutzrichtlinie benennt Prighter als Vertreter in der EU und im Vereinigten Königreich nach Art. 27 DSGVO. Im Januar 2025 ordnete die italienische Datenschutzbehörde (Garante) mit sofortiger Wirkung an, die Verarbeitung personenbezogener Daten von Personen in Italien zu beschränken.",
       "dataResidency": {
-        "euRegionDetails": "Sämtliche API-Daten werden in der Volksrepublik China verarbeitet und gespeichert. Es besteht keine Infrastruktur-Option außerhalb Chinas."
+        "euRegionDetails": "Laut Datenschutzrichtlinie werden personenbezogene Daten in der Volksrepublik China erhoben, verarbeitet und gespeichert. Eine EU-Region oder eine andere Region außerhalb Chinas wird nicht angeboten."
       },
       "dataUsage": {
-        "retentionPolicy": "Für API-Kunden nicht öffentlich offengelegt. Die Datenschutzrichtlinie für Verbraucher weist auf eine Speicherung auf Servern in der VR China mit umfassender Datennutzung zur Verbesserung des Dienstes hin.",
-        "details": "Unterliegt den Gesetzen der VR China, einschließlich PIPL, DSL und NSL, die staatliche Zugriffsrechte begründen, welche strukturell mit den Anforderungen der DSGVO an Drittlandübermittlungen nach Artikel 44 ff. unvereinbar sind."
+        "retentionPolicy": "Keine feste Frist. Laut Datenschutzrichtlinie werden Konto-, Eingabe- und Zahlungsdaten so lange gespeichert, wie das Konto besteht, und darüber hinaus, soweit rechtliche Pflichten oder berechtigte Interessen es erfordern.",
+        "details": "Die Nutzungsbedingungen, die auch für die API gelten, erlauben DeepSeek, de-identifizierte Ein- und Ausgaben zur Verbesserung der Dienste zu nutzen; Nutzer können dem widersprechen, indem sie die Einstellung „Improve the model for everyone“ deaktivieren. Ob diese Einstellung auch für API-Anfragen gilt, steht auf keiner Seite. Der Vertrag unterliegt dem Recht der VR China."
       },
       "euAiAct": {
-        "details": "Keine öffentliche Erklärung. Von EU-/US-Anbietern (Azure, Bedrock, Groq, Scaleway usw.) re-hostete Open-Weight-Modellvarianten unterliegen im Rahmen dieser Anbieter jeweils einer eigenen, separaten Compliance-Bewertung."
+        "details": "Keine öffentliche Erklärung gefunden; DeepSeek ist nicht als Unterzeichner des EU-Verhaltenskodex für GPAI-Modelle (Code of Practice) gelistet. Von anderen Anbietern gehostete Open-Weight-Modelle von DeepSeek unterliegen deren eigener Compliance-Ausgestaltung."
       }
     }
   }
