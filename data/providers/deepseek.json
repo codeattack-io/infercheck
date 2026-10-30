@@ -11,7 +11,7 @@
         "CN"
       ],
       "euOnly": false,
-      "dataLeavesEuAtInference": null,
+      "dataLeavesEuAtInference": true,
       "euRegionDetails": "Per the privacy policy, personal data is collected, processed and stored in the People's Republic of China. No EU or other non-China region is offered."
     },
     "dpa": {
@@ -23,7 +23,7 @@
       "trainsOnCustomerData": true,
       "optOutAvailable": true,
       "retentionPolicy": "No fixed period. Per the privacy policy, account, input and payment data are kept for as long as the account exists, and longer where needed for legal obligations or legitimate interests.",
-      "details": "The Terms of Use, which also cover the API, allow DeepSeek to use de-identified inputs and outputs to improve its services; users can opt out by turning off the \"Improve the model for everyone\" setting. No page states whether that setting also covers API traffic. The contract is governed by PRC law."
+      "details": "The API terms say nothing on training, but the general Terms of Use, which also cover APIs, allow DeepSeek to use de-identified inputs and outputs to improve its services, and its published training-content summaries state that user inputs and prompts were used for training. Users can opt out by turning off the \"Improve the model for everyone\" setting or by request to privacy@deepseek.com; DeepSeek does not state whether the setting also covers API traffic. The contract is governed by PRC law."
     },
     "subProcessors": {
       "disclosed": false,
@@ -33,7 +33,7 @@
     "certifications": [],
     "euAiAct": {
       "status": "unknown",
-      "details": "No public statement found, and DeepSeek is not listed as a signatory of the EU GPAI Code of Practice. Open-weight DeepSeek models re-hosted by other providers fall under those providers' own compliance posture."
+      "details": "No AI Act compliance statement found, and DeepSeek is not a signatory of the EU GPAI Code of Practice. It publishes public summaries of training content in the EU AI Office template for its V3.1/V3.2, V4 and V4.1 models and names Prighter as its authorised representative in the EU."
     },
     "sccs": false,
     "adequacyDecision": false
@@ -43,25 +43,29 @@
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://api-docs.deepseek.com",
+    "https://api-docs.deepseek.com/quick_start/pricing",
     "https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html",
     "https://cdn.deepseek.com/policies/en-US/deepseek-terms-of-use.html",
     "https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html",
+    "https://cdn.deepseek.com/policies/en-US/model-algorithm-disclosure.html",
+    "https://cdn.deepseek.com/policies/DeepSeek-V4.1-public-summary-of-training-content.pdf",
     "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
+    "https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/adequacy-decisions_en",
     "https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/10098477"
   ],
-  "notes": "Operated by Hangzhou DeepSeek Artificial Intelligence Co., Ltd. (China); data is processed and stored in the PRC, and no DPA, SCCs or sub-processor list is published. The privacy policy names Prighter as EU and UK representative under Art. 27 GDPR. In January 2025 Italy's data protection authority (Garante) ordered DeepSeek, with immediate effect, to limit the processing of personal data of people in Italy.",
+  "notes": "Operated by Hangzhou DeepSeek Artificial Intelligence Co., Ltd. (China); data is processed and stored in the PRC, and no DPA, SCCs or sub-processor list is published. The privacy policy names Prighter as its privacy representative in the EU and UK. In January 2025 Italy's data protection authority (Garante) ordered DeepSeek, with immediate effect, to limit the processing of personal data of people in Italy.",
   "translations": {
     "de": {
-      "notes": "Betrieben von Hangzhou DeepSeek Artificial Intelligence Co., Ltd. (China); Daten werden in der VR China verarbeitet und gespeichert, ein AVV, Standardvertragsklauseln oder eine Liste der Unterauftragsverarbeiter werden nicht veröffentlicht. Die Datenschutzrichtlinie benennt Prighter als Vertreter in der EU und im Vereinigten Königreich nach Art. 27 DSGVO. Im Januar 2025 ordnete die italienische Datenschutzbehörde (Garante) mit sofortiger Wirkung an, die Verarbeitung personenbezogener Daten von Personen in Italien zu beschränken.",
+      "notes": "Betrieben von Hangzhou DeepSeek Artificial Intelligence Co., Ltd. (China); Daten werden in der VR China verarbeitet und gespeichert, und weder ein AVV noch Standardvertragsklauseln oder eine Liste der Unterauftragsverarbeiter sind veröffentlicht. Die Datenschutzrichtlinie benennt Prighter als Datenschutzvertreter in der EU und im Vereinigten Königreich. Im Januar 2025 ordnete die italienische Datenschutzbehörde (Garante) mit sofortiger Wirkung an, die Verarbeitung personenbezogener Daten von Personen in Italien zu beschränken.",
       "dataResidency": {
         "euRegionDetails": "Laut Datenschutzrichtlinie werden personenbezogene Daten in der Volksrepublik China erhoben, verarbeitet und gespeichert. Eine EU-Region oder eine andere Region außerhalb Chinas wird nicht angeboten."
       },
       "dataUsage": {
         "retentionPolicy": "Keine feste Frist. Laut Datenschutzrichtlinie werden Konto-, Eingabe- und Zahlungsdaten so lange gespeichert, wie das Konto besteht, und darüber hinaus, soweit rechtliche Pflichten oder berechtigte Interessen es erfordern.",
-        "details": "Die Nutzungsbedingungen, die auch für die API gelten, erlauben DeepSeek, de-identifizierte Ein- und Ausgaben zur Verbesserung der Dienste zu nutzen; Nutzer können dem widersprechen, indem sie die Einstellung „Improve the model for everyone“ deaktivieren. Ob diese Einstellung auch für API-Anfragen gilt, steht auf keiner Seite. Der Vertrag unterliegt dem Recht der VR China."
+        "details": "Die API-Bedingungen äußern sich nicht zum Training, die allgemeinen Nutzungsbedingungen, die auch für APIs gelten, erlauben DeepSeek jedoch, de-identifizierte Ein- und Ausgaben zur Verbesserung der Dienste zu nutzen; laut den veröffentlichten Zusammenfassungen der Trainingsinhalte wurden Nutzereingaben und Prompts für das Training verwendet. Nutzer können widersprechen, indem sie die Einstellung „Improve the model for everyone“ deaktivieren oder sich an privacy@deepseek.com wenden; ob die Einstellung auch für API-Anfragen gilt, gibt DeepSeek nicht an. Der Vertrag unterliegt dem Recht der VR China."
       },
       "euAiAct": {
-        "details": "Keine öffentliche Erklärung gefunden; DeepSeek ist nicht als Unterzeichner des EU-Verhaltenskodex für GPAI-Modelle (Code of Practice) gelistet. Von anderen Anbietern gehostete Open-Weight-Modelle von DeepSeek unterliegen deren eigener Compliance-Ausgestaltung."
+        "details": "Keine Erklärung zur Einhaltung des AI Act gefunden; DeepSeek hat den EU-Verhaltenskodex für KI-Modelle mit allgemeinem Verwendungszweck (GPAI Code of Practice) nicht unterzeichnet. DeepSeek veröffentlicht für seine Modelle V3.1/V3.2, V4 und V4.1 Zusammenfassungen der Trainingsinhalte nach der Vorlage des EU-Büros für Künstliche Intelligenz und benennt Prighter als bevollmächtigten Vertreter in der EU."
       }
     }
   }
