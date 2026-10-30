@@ -14,11 +14,11 @@ Temporary orchestration state. Deleted before the PR is opened.
 | b2    | aleph-alpha cloudferro-sherlock cortecs evroc ovhcloud-ai-endpoints stackit privatemode-ai nebius-token-factory | merged                                                           |
 | b3    | anthropic cohere xai perplexity perplexity-agent inception upstage morph                                        | merged                                                           |
 | b4    | moonshot-ai minimax-minimax-io z-ai xiaomi stepfun siliconflow bailing novitaai                                 | merged                                                           |
-| b5    | together-ai fireworks-ai groq cerebras deep-infra baseten friendli nvidia                                       | verifying                                                        |
-| b6    | hugging-face llama chutes inference io-net venice-ai vultr weights-biases                                       | verifying                                                        |
-| b7    | openrouter cloudflare-ai-gateway vercel-ai-gateway helicone requesty kilo-gateway llm-gateway zenmux            | researching                                                      |
-| b8    | abacus aihubmix clarifai dinference firmware github-models lucidquery-ai meganova                               | researching                                                      |
-| b9    | mixlayer nanogpt nova ollama-cloud poe synthetic vivgrid                                                        | researching                                                      |
+| b5    | together-ai fireworks-ai groq cerebras deep-infra baseten friendli nvidia                                       | merged                                                           |
+| b6    | hugging-face llama chutes inference io-net venice-ai vultr weights-biases                                       | merged                                                           |
+| b7    | openrouter cloudflare-ai-gateway vercel-ai-gateway helicone requesty kilo-gateway llm-gateway zenmux            | verifying                                                        |
+| b8    | abacus aihubmix clarifai dinference firmware github-models lucidquery-ai meganova                               | verifying                                                        |
+| b9    | mixlayer nanogpt nova ollama-cloud poe synthetic vivgrid                                                        | verifying                                                        |
 
 ## Decisions
 
