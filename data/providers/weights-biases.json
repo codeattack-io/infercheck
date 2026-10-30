@@ -38,7 +38,7 @@
     ],
     "euAiAct": {
       "status": "unknown",
-      "details": "No official statement from W&B or CoreWeave on their own status under the EU AI Act was found, and neither is on the EU list of GPAI Code of Practice signatories. W&B's AI Act materials are guidance for customers."
+      "details": "Neither W&B nor CoreWeave has published an official statement on its own status under the EU AI Act, and neither is on the EU list of GPAI Code of Practice signatories. W&B's AI Act materials are guidance for customers."
     },
     "sccs": true,
     "adequacyDecision": false
@@ -75,7 +75,7 @@
         "details": "Die Vertragsbedingungen behandeln Prompts und Ausgaben als Kundendaten und erlauben W&B, Kundendaten zur Bereitstellung und Verbesserung der Dienste, zur Entwicklung neuer Produkte und zur Verbesserung von KI-Funktionen zu nutzen. Forge hat eine Datenschutzeinstellung „Allow model training on Customer Data“ auf Organisationsebene, deren Standardwert und Geltung für Serverless Inference aber nicht dokumentiert sind. Eine offizielle Aussage, ob Prompts aus Serverless Inference für Training genutzt werden, gibt es nicht."
       },
       "euAiAct": {
-        "details": "Eine offizielle Aussage von W&B oder CoreWeave zum eigenen Status unter dem EU AI Act wurde nicht gefunden, und keines der beiden Unternehmen steht auf der EU-Liste der Unterzeichner des GPAI-Verhaltenskodex. Die AI-Act-Materialien von W&B sind Leitfäden für Kunden."
+        "details": "Weder W&B noch CoreWeave hat eine offizielle Aussage zum eigenen Status unter dem EU AI Act veröffentlicht, und keines der beiden Unternehmen steht auf der EU-Liste der Unterzeichner des GPAI-Verhaltenskodex. Die AI-Act-Materialien von W&B sind Leitfäden für Kunden."
       }
     }
   }

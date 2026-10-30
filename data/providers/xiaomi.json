@@ -34,7 +34,7 @@
     "certifications": [],
     "euAiAct": {
       "status": "unknown",
-      "details": "No AI Act compliance statement found, and Xiaomi states that it is not a signatory of the EU GPAI Code of Practice. It publishes public summaries of training content in the EU AI Office template for its MiMo V2, V2.5 and V2.6 models, naming Xiaomi Technologies Singapore Pte. Ltd. as provider and no authorised representative in the EU."
+      "details": "Xiaomi has published no AI Act compliance statement and states that it is not a signatory of the EU GPAI Code of Practice. It publishes public summaries of training content in the EU AI Office template for its MiMo V2, V2.5 and V2.6 models, naming Xiaomi Technologies Singapore Pte. Ltd. as provider and no authorised representative in the EU."
     },
     "sccs": true,
     "adequacyDecision": false
@@ -65,7 +65,7 @@
         "details": "Laut MiMo-Datenschutzrichtlinie verwendet Xiaomi Inhalte, die über die API oder MiMo Code übermittelt werden, weder für das Modelltraining noch für andere Zwecke. Der Dienstvertrag enthält kurze Datenschutzbestimmungen, die Xiaomi als Auftragsverarbeiter benennen und Sicherheitsmaßnahmen, die Vertraulichkeit des Personals und die Löschung regeln, nicht aber die Verarbeitung nach Weisung, Unterauftragsverarbeiter, Unterstützungspflichten oder Prüfrechte. In den Zusammenfassungen der Trainingsinhalte für MiMo V2, V2.5 und V2.6 gibt Xiaomi an, dass keine Daten aus Nutzerinteraktionen für das Training verwendet wurden."
       },
       "euAiAct": {
-        "details": "Keine Erklärung zur Einhaltung des AI Act gefunden; Xiaomi gibt an, den EU-Verhaltenskodex für KI-Modelle mit allgemeinem Verwendungszweck (GPAI Code of Practice) nicht unterzeichnet zu haben. Xiaomi veröffentlicht für seine Modelle MiMo V2, V2.5 und V2.6 Zusammenfassungen der Trainingsinhalte nach der Vorlage des EU-Büros für Künstliche Intelligenz, nennt darin Xiaomi Technologies Singapore Pte. Ltd. als Anbieter und keinen bevollmächtigten Vertreter in der EU."
+        "details": "Xiaomi hat keine Erklärung zur Einhaltung des AI Act veröffentlicht und gibt an, den EU-Verhaltenskodex für KI-Modelle mit allgemeinem Verwendungszweck (GPAI Code of Practice) nicht unterzeichnet zu haben. Xiaomi veröffentlicht für seine Modelle MiMo V2, V2.5 und V2.6 Zusammenfassungen der Trainingsinhalte nach der Vorlage des EU-Büros für Künstliche Intelligenz, nennt darin Xiaomi Technologies Singapore Pte. Ltd. als Anbieter und keinen bevollmächtigten Vertreter in der EU."
       }
     }
   }

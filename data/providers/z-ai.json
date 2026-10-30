@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Z.AI states it generally provides services from Singapore, and its group companies and designated service providers are typically located in Singapore. The DPA says customer data is generally processed in Singapore, and no EU-only processing option was found in the official documentation reviewed."
+      "euRegionDetails": "Z.AI states it generally provides services from Singapore, and its group companies and designated service providers are typically located in Singapore. The DPA says customer data is generally processed in Singapore, and the official documentation describes no EU-only processing option."
     },
     "dpa": {
       "available": false,
@@ -54,7 +54,7 @@
     "de": {
       "notes": "Die internationale Plattform Z.ai wird von der JINGSHENG HENGXING TECHNOLOGY PTE. LTD in Singapur betrieben; API-Kundendaten werden in der Regel in Singapur verarbeitet, eine Verarbeitung in der EU wird nicht angeboten. Der Zusatz zur Auftragsverarbeitung in den API-Bedingungen enthält keine Regeln zu Unterauftragsverarbeitern oder Prüfrechten und nennt keine Standardvertragsklauseln; veröffentlicht sind weder eine Liste der Unterauftragsverarbeiter noch Sicherheitszertifizierungen. Einige Modelle sind kostenlos, andere werden pro Token abgerechnet.",
       "dataResidency": {
-        "euRegionDetails": "Z.AI gibt an, Dienste in der Regel von Singapur aus bereitzustellen, und seine Konzerngesellschaften sowie benannten Dienstleister befinden sich typischerweise in Singapur. Der Auftragsverarbeitungsvertrag (AVV) besagt, dass Kundendaten in der Regel in Singapur verarbeitet werden, und in der geprüften offiziellen Dokumentation wurde keine Option für eine ausschließlich in der EU erfolgende Verarbeitung gefunden."
+        "euRegionDetails": "Z.AI gibt an, Dienste in der Regel von Singapur aus bereitzustellen, und seine Konzerngesellschaften sowie benannten Dienstleister befinden sich typischerweise in Singapur. Der Auftragsverarbeitungsvertrag (AVV) besagt, dass Kundendaten in der Regel in Singapur verarbeitet werden, und die offizielle Dokumentation beschreibt keine Option für eine ausschließlich in der EU erfolgende Verarbeitung."
       },
       "dataUsage": {
         "retentionPolicy": "Laut Auftragsverarbeitungsvertrag für die API werden Prompts und Ausgaben in Echtzeit verarbeitet und nicht auf den Servern von Z.AI gespeichert. Andere Kundendaten werden aufbewahrt, solange sie für den Dienst nötig sind, und nach Vertragsende gelöscht, sofern das Gesetz nichts anderes verlangt. Laut FAQ von Z.AI können Teile einer Anfrage für das Context Caching zwischengespeichert werden; die Aufbewahrungsdauer des Caches ist nicht veröffentlicht.",

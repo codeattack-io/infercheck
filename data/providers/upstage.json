@@ -38,7 +38,7 @@
     ],
     "euAiAct": {
       "status": "unknown",
-      "details": "No official EU AI Act statement was found, and Upstage is not listed as a signatory of the GPAI Code of Practice."
+      "details": "Upstage has published no official EU AI Act statement and is not listed as a signatory of the GPAI Code of Practice."
     },
     "sccs": true,
     "adequacyDecision": true
@@ -58,10 +58,10 @@
     "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
     "https://www.upstage.ai/products/studio"
   ],
-  "notes": "South Korea has an EU adequacy decision; for transfers to other countries, including the United States, Upstage relies on Standard Contractual Clauses. No public DPA was found. The Terms of Service exclude paid API data from training unless the customer consents separately, while free services may be used for training.",
+  "notes": "South Korea has an EU adequacy decision; for transfers to other countries, including the United States, Upstage relies on Standard Contractual Clauses. Upstage publishes no DPA. The Terms of Service exclude paid API data from training unless the customer consents separately, while free services may be used for training.",
   "translations": {
     "de": {
-      "notes": "Für Südkorea besteht ein Angemessenheitsbeschluss der EU; für Übermittlungen in andere Länder, darunter die USA, stützt sich Upstage auf Standardvertragsklauseln. Ein öffentlicher AVV wurde nicht gefunden. Die Nutzungsbedingungen schließen Daten aus der kostenpflichtigen API-Nutzung vom Training aus, sofern der Kunde nicht gesondert einwilligt; Daten aus kostenlosen Diensten können für das Training verwendet werden.",
+      "notes": "Für Südkorea besteht ein Angemessenheitsbeschluss der EU; für Übermittlungen in andere Länder, darunter die USA, stützt sich Upstage auf Standardvertragsklauseln. Einen AVV veröffentlicht Upstage nicht. Die Nutzungsbedingungen schließen Daten aus der kostenpflichtigen API-Nutzung vom Training aus, sofern der Kunde nicht gesondert einwilligt; Daten aus kostenlosen Diensten können für das Training verwendet werden.",
       "dataResidency": {
         "euRegionDetails": "Upstage hat seinen Sitz in Südkorea. Die Datenschutzerklärung nennt koreanische Anbieter (NAVER Cloud, VESSL AI, FuriosaAI) und mehrere US-Anbieter (etwa RunPod und Crusoe) für die Modellinferenz in seinen Diensten und übermittelt Dienstdaten an Amazon Web Services in den USA. Eine EU-Region oder eine Option für eine ausschließliche Verarbeitung in der EU ist nicht dokumentiert; eine On-Premises-Bereitstellung in der eigenen Infrastruktur des Kunden wird gesondert angeboten."
       },
@@ -70,7 +70,7 @@
         "details": "Laut Nutzungsbedingungen verwendet Upstage Ein- und Ausgabedaten von Mitgliedern ohne vorherige gesonderte Einwilligung weder zur Verbesserung des Dienstes noch zum Modelltraining. Daten aus kostenlos angebotenen Diensten, einschließlich des Playground, können für Forschung und Modelltraining verwendet werden."
       },
       "euAiAct": {
-        "details": "Es wurde keine offizielle Erklärung zum EU AI Act gefunden, und Upstage ist nicht als Unterzeichner des GPAI-Verhaltenskodex aufgeführt."
+        "details": "Upstage hat keine offizielle Erklärung zum EU AI Act veröffentlicht und ist nicht als Unterzeichner des GPAI-Verhaltenskodex aufgeführt."
       }
     }
   }

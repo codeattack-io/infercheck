@@ -33,7 +33,7 @@
     "certifications": [],
     "euAiAct": {
       "status": "unknown",
-      "details": "No AI Act compliance statement found, and MiniMax is not listed as a signatory of the GPAI Code of Practice. It publishes training-data summaries for its models under Article 53(1)(d) of the AI Act and names Prighter GmbH as its authorised representative in the EU."
+      "details": "MiniMax has published no AI Act compliance statement and is not listed as a signatory of the GPAI Code of Practice. It publishes training-data summaries for its models under Article 53(1)(d) of the AI Act and names Prighter GmbH as its authorised representative in the EU."
     },
     "sccs": null,
     "adequacyDecision": false
@@ -64,7 +64,7 @@
         "euRegionDetails": "Eine EU-Region wird nicht angeboten. Laut API-Datenschutzerklärung werden personenbezogene Daten, auch solche in API-Eingaben und -Ausgaben, in einem Rechenzentrum in den USA gespeichert und von MiniMax oder Drittanbietern verarbeitet."
       },
       "euAiAct": {
-        "details": "Keine Erklärung zur Einhaltung des AI Act gefunden; MiniMax ist nicht als Unterzeichner des GPAI-Verhaltenskodex gelistet. MiniMax veröffentlicht nach Artikel 53 Abs. 1 lit. d AI Act Zusammenfassungen der Trainingsdaten seiner Modelle und benennt die Prighter GmbH als Bevollmächtigten in der EU."
+        "details": "MiniMax hat keine Erklärung zur Einhaltung des AI Act veröffentlicht und ist nicht als Unterzeichner des GPAI-Verhaltenskodex gelistet. MiniMax veröffentlicht nach Artikel 53 Abs. 1 lit. d AI Act Zusammenfassungen der Trainingsdaten seiner Modelle und benennt die Prighter GmbH als Bevollmächtigten in der EU."
       }
     }
   }

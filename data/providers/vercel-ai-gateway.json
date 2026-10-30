@@ -39,7 +39,7 @@
     ],
     "euAiAct": {
       "status": "unknown",
-      "details": "No official Vercel statement on EU AI Act compliance or GPAI provider status was found, and Vercel is not a signatory of the GPAI Code of Practice. Vercel's acceptable use policy prohibits using its AI services in high-risk areas under the EU AI Act."
+      "details": "Vercel has published no official statement on EU AI Act compliance or GPAI provider status and is not a signatory of the GPAI Code of Practice. Vercel's acceptable use policy prohibits using its AI services in high-risk areas under the EU AI Act."
     },
     "sccs": true,
     "adequacyDecision": true
@@ -78,7 +78,7 @@
         "details": "Laut Vercel wird mit Prompts aus AI Gateway nicht trainiert; nach den Nutzungsbedingungen ist Vercels eigenes Modelltraining im bezahlten Pro-Tarif nur nach Zustimmung erlaubt, im Hobby- und im Pro-Testtarif standardmäßig erlaubt und für Enterprise vertraglich ausgeschlossen. Standardmäßig berücksichtigt das Routing nicht, ob ein Anbieter trainiert, und Vercel geht bei Anbietern ohne Vereinbarung gegen Training davon aus, dass sie mit Eingaben trainieren; kostenpflichtige Modelle können an solche Anbieter gehen, etwa DeepSeek V4 Pro über die eigene API von DeepSeek oder Metas Contributor-Modelle, deren Eingaben Meta zum Training und zur Verbesserung seiner Modelle nutzt. Die Einstellung gegen Training pro Anfrage (alle Tarife) oder Zero Data Retention (Pro und Enterprise) beschränkt das Routing auf Anbieter mit einer Vereinbarung ohne Training."
       },
       "euAiAct": {
-        "details": "Eine offizielle Aussage von Vercel zur Einhaltung des EU AI Act oder zum Status als GPAI-Anbieter wurde nicht gefunden; Vercel hat den GPAI-Verhaltenskodex nicht unterzeichnet. Vercels Acceptable Use Policy untersagt die Nutzung der KI-Dienste in Hochrisikobereichen nach dem EU AI Act."
+        "details": "Vercel hat keine offizielle Aussage zur Einhaltung des EU AI Act oder zum Status als GPAI-Anbieter veröffentlicht und den GPAI-Verhaltenskodex nicht unterzeichnet. Vercels Acceptable Use Policy untersagt die Nutzung der KI-Dienste in Hochrisikobereichen nach dem EU AI Act."
       }
     }
   }

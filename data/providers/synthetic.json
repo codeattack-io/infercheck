@@ -52,10 +52,10 @@
     "https://status.synthetic.new/",
     "https://status-proxied.synthetic.new/"
   ],
-  "notes": "Synthetic is operated by Synthetic Lab, Co. in San Francisco under California law. No DPA, sub-processor list, standard contractual clauses, certifications or EU processing option were found in its official sources. API access is offered through monthly subscriptions or usage-based per-token pricing.",
+  "notes": "Synthetic is operated by Synthetic Lab, Co. in San Francisco under California law. Its official sources contain no DPA, sub-processor list, standard contractual clauses, certifications or EU processing option. API access is offered through monthly subscriptions or usage-based per-token pricing.",
   "translations": {
     "de": {
-      "notes": "Synthetic wird von Synthetic Lab, Co. in San Francisco nach kalifornischem Recht betrieben. In den offiziellen Quellen wurden kein Auftragsverarbeitungsvertrag, keine Liste der Unterauftragsverarbeiter, keine Standardvertragsklauseln, keine Zertifizierungen und keine Option zur Verarbeitung in der EU gefunden. Der API-Zugang wird über Monatsabonnements oder nutzungsbasierte Abrechnung pro Token angeboten.",
+      "notes": "Synthetic wird von Synthetic Lab, Co. in San Francisco nach kalifornischem Recht betrieben. Die offiziellen Quellen enthalten keinen Auftragsverarbeitungsvertrag, keine Liste der Unterauftragsverarbeiter, keine Standardvertragsklauseln, keine Zertifizierungen und keine Option zur Verarbeitung in der EU. Der API-Zugang wird über Monatsabonnements oder nutzungsbasierte Abrechnung pro Token angeboten.",
       "dataResidency": {
         "euRegionDetails": "Laut Datenschutzerklärung von Synthetic werden personenbezogene Daten in den USA verarbeitet; eine EU-Region oder eine Option zur Verarbeitung in der EU ist nicht dokumentiert. Die Modellliste führt die Chat-Modelle als von Synthetic gehostet und das Embedding-Modell als von Fireworks bereitgestellt; eine eigene Statusseite betrifft Modelle, die über nicht namentlich genannte externe Inferenzanbieter weitergeleitet werden."
       },

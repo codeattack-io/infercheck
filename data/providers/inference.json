@@ -35,7 +35,7 @@
     ],
     "euAiAct": {
       "status": "unknown",
-      "details": "No official statement on the EU AI Act was found, and Inference is not a signatory of the GPAI Code of Practice. The site only has a general article on AI governance."
+      "details": "Inference has published no official statement on the EU AI Act and is not a signatory of the GPAI Code of Practice. The site only has a general article on AI governance."
     },
     "sccs": null,
     "adequacyDecision": false
@@ -66,7 +66,7 @@
         "details": "Laut Datenschutzerklärung und Zero-Data-Retention-Richtlinie werden Kundendaten nicht zum Training von Modellen verwendet. Anfragen an geschlossene Modelle wie GPT, Claude oder Gemini werden an deren Anbieter weitergeleitet und unterliegen deren Bedingungen. Bei werbefinanzierten Modellen gehen Stichproben vollständiger Prompts und Antworten an den Werbepartner Gravity, auch bei aktivem Zero Data Retention. Ein Auftragsverarbeitungsvertrag ist auf Anfrage erhältlich; sein Text ist nicht öffentlich."
       },
       "euAiAct": {
-        "details": "Es wurde keine offizielle Erklärung zum EU AI Act gefunden, und Inference hat den GPAI-Verhaltenskodex nicht unterzeichnet. Die Website enthält nur einen allgemeinen Artikel zu KI-Governance."
+        "details": "Inference hat keine offizielle Erklärung zum EU AI Act veröffentlicht und den GPAI-Verhaltenskodex nicht unterzeichnet. Die Website enthält nur einen allgemeinen Artikel zu KI-Governance."
       }
     }
   }
