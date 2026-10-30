@@ -11,47 +11,60 @@
         "US"
       ],
       "euOnly": false,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": null
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "No EU region or data residency option is documented. All listed sub-processors, including the cloud providers AWS, Google Cloud and Microsoft Azure, are located in the US."
     },
     "dpa": {
-      "available": false,
-      "url": null,
-      "signedVia": "not_available"
+      "available": true,
+      "url": "https://www.perplexity.ai/hub/legal/dpa",
+      "signedVia": "online_acceptance"
     },
     "dataUsage": {
-      "trainsOnCustomerData": true,
+      "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": null,
-      "details": "No API-specific data policy found. Values set conservatively based on absence of documentation — verify directly before processing personal data."
+      "retentionPolicy": "Zero data retention is not the default and is only available to eligible customers under a written agreement. Under the DPA, personal data in inputs is stored until the customer deletes it, at most until 30 days after the service ends. Perplexity also keeps usage metadata such as token counts, model, timestamps and API key for billing.",
+      "details": "The API terms state that Perplexity does not use API inputs and outputs to train AI models and does not allow third parties to do so. According to the DPA, the Search and Embeddings APIs may operate under different, product-specific data terms."
     },
     "subProcessors": {
-      "disclosed": false,
-      "url": null,
-      "includesEuEntities": null
+      "disclosed": true,
+      "url": "https://trust.perplexity.ai/subprocessors",
+      "includesEuEntities": false
     },
-    "certifications": [],
+    "certifications": [
+      "SOC2",
+      "ISO27001"
+    ],
     "euAiAct": {
       "status": "unknown",
       "details": null
     },
-    "sccs": null,
+    "sccs": true,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-07",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://docs.perplexity.ai",
-    "https://www.perplexity.ai/hub/faq/pplx-api"
+    "https://docs.perplexity.ai/docs/getting-started/overview",
+    "https://docs.perplexity.ai/docs/resources/privacy-security",
+    "https://docs.perplexity.ai/docs/agent-api/migrate-from-sonar/overview",
+    "https://docs.perplexity.ai/docs/getting-started/pricing",
+    "https://www.perplexity.ai/hub/legal/perplexity-api-terms-of-service",
+    "https://www.perplexity.ai/hub/legal/dpa",
+    "https://trust.perplexity.ai/",
+    "https://trust.perplexity.ai/subprocessors",
+    "https://www.dataprivacyframework.gov/participant/9020"
   ],
-  "notes": "GDPR posture materially undocumented. No DPA, no sub-processor list, no certifications found. API offers search-augmented LLM inference with real-time web grounding. EU organisations should conduct independent due diligence before using this API to process personal data. trainsOnCustomerData and optOutAvailable values are conservative defaults pending policy verification.",
+  "notes": "Perplexity ended support for Sonar Chat Completions on 27 September 2026 and now serves the Sonar model through the Agent API. The DPA is part of the API terms and includes the EU Standard Contractual Clauses; all listed sub-processors are in the US and no EU region is offered. Perplexity AI, Inc. withdrew from the EU-US Data Privacy Framework on 21 October 2026.",
   "translations": {
     "de": {
-      "notes": "Die DSGVO-Compliance-Position ist in wesentlichen Teilen nicht dokumentiert. Es wurden kein Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter und keine Zertifizierungen gefunden. Die API bietet suchaugmentierte LLM-Inferenz mit Web-Grounding in Echtzeit. Organisationen in der EU sollten vor der Nutzung dieser API zur Verarbeitung personenbezogener Daten eine unabhängige Due-Diligence-Prüfung durchführen. Die Werte für trainsOnCustomerData und optOutAvailable sind konservative Standardannahmen bis zur Verifizierung der Richtlinien.",
+      "notes": "Perplexity hat die Unterstützung für Sonar Chat Completions am 27. September 2026 beendet und stellt das Sonar-Modell seitdem über die Agent API bereit. Der AVV ist Teil der API-Nutzungsbedingungen und enthält die EU-Standardvertragsklauseln; alle aufgeführten Unterauftragsverarbeiter sitzen in den USA, eine EU-Region wird nicht angeboten. Perplexity AI, Inc. ist am 21. Oktober 2026 aus dem EU-US Data Privacy Framework ausgetreten.",
+      "dataResidency": {
+        "euRegionDetails": "Eine EU-Region oder eine Option zur Datenresidenz ist nicht dokumentiert. Alle aufgeführten Unterauftragsverarbeiter, darunter die Cloud-Anbieter AWS, Google Cloud und Microsoft Azure, haben ihren Standort in den USA."
+      },
       "dataUsage": {
-        "retentionPolicy": null,
-        "details": "Es wurde keine API-spezifische Richtlinie zur Datennutzung gefunden. Die Werte wurden aufgrund des Fehlens entsprechender Dokumentation konservativ festgelegt — vor der Verarbeitung personenbezogener Daten direkt verifizieren."
+        "retentionPolicy": "Zero Data Retention ist nicht Standard und nur für berechtigte Kunden mit schriftlicher Vereinbarung verfügbar. Laut AVV werden personenbezogene Daten in Eingaben gespeichert, bis der Kunde sie löscht, längstens bis 30 Tage nach Ende der Leistungserbringung. Zusätzlich speichert Perplexity Nutzungsmetadaten wie Token-Anzahl, Modell, Zeitstempel und API-Schlüssel für die Abrechnung.",
+        "details": "Laut den API-Nutzungsbedingungen verwendet Perplexity API-Eingaben und -Ausgaben nicht zum Training von KI-Modellen und gestattet dies auch Dritten nicht. Laut AVV können für die Search- und Embeddings-API abweichende, produktspezifische Datenbedingungen gelten."
       }
     }
   }
