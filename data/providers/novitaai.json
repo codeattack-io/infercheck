@@ -10,7 +10,7 @@
       "regions": [],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Novita does not say where its model API runs inference and offers no EU-only option. Its trust center says the platform is hosted on AWS, its privacy policy says personal information may be transferred to other countries including the United States, and API inputs may be passed to third-party model providers for integrated models. The regional locations Novita lists, including Germany and the UK, apply to its GPU instances."
+      "euRegionDetails": "Novita does not say where its model API runs inference and offers no EU-only option. Its trust center says the platform is hosted on AWS, its privacy policy says personal information may be transferred to other countries including the United States, and API inputs may be passed to third-party model providers for integrated models; these model providers are not named in its sub-processor list. The regional locations Novita lists, including Germany and the UK, apply to its GPU instances."
     },
     "dpa": {
       "available": true,
@@ -20,7 +20,7 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "The terms set zero data retention as the default: prompts and outputs are not kept beyond the time needed to generate and deliver the output, unless law requires otherwise. The trust center says request metadata is kept for 6 months; the privacy policy says account information is kept while the account is active plus 7 years.",
+      "retentionPolicy": "The terms set zero data retention as the default: prompts and outputs are not kept beyond the time needed to generate and deliver the output, unless law requires it or it is needed to provide the service or technical support. The trust center says request metadata is kept for 6 months; the privacy policy says account information is kept while the account is active plus 7 years.",
       "details": "The terms say Novita does not use customer content to train its own models or improve its services by default. Content may pass through automated safety screening, and for integrated third-party models the model provider processes the inputs and outputs."
     },
     "subProcessors": {
@@ -56,10 +56,10 @@
     "de": {
       "notes": "Die Nutzungsbedingungen von Novita unterliegen dem Recht von Delaware und nennen als Betreiber nur Novita AI; Novita ist nicht im EU-US Data Privacy Framework gelistet. Laut Trust Center erhalten Enterprise-Kunden auf Anfrage einen Auftragsverarbeitungsvertrag mit Standardvertragsklauseln, und es liegt ein SOC-2-Type-II-Audit vor, dessen Bericht unter NDA erhältlich ist. Die Modell-API wird nach Verbrauch abgerechnet; wo die Inferenz läuft, ist nicht dokumentiert.",
       "dataResidency": {
-        "euRegionDetails": "Novita gibt nicht an, wo seine Modell-API die Inferenz ausführt, und bietet keine reine EU-Option an. Laut Trust Center läuft die Plattform auf AWS, laut Datenschutzrichtlinie können personenbezogene Daten in andere Länder einschließlich der USA übermittelt werden, und bei eingebundenen Modellen von Drittanbietern können API-Eingaben an diese weitergegeben werden. Die von Novita genannten regionalen Standorte, darunter Deutschland und Großbritannien, gelten für seine GPU-Instanzen."
+        "euRegionDetails": "Novita gibt nicht an, wo seine Modell-API die Inferenz ausführt, und bietet keine reine EU-Option an. Laut Trust Center läuft die Plattform auf AWS, laut Datenschutzrichtlinie können personenbezogene Daten in andere Länder einschließlich der USA übermittelt werden, und bei eingebundenen Modellen von Drittanbietern können API-Eingaben an diese weitergegeben werden; diese Modellanbieter sind in der Liste der Unterauftragsverarbeiter nicht genannt. Die von Novita genannten regionalen Standorte, darunter Deutschland und Großbritannien, gelten für seine GPU-Instanzen."
       },
       "dataUsage": {
-        "retentionPolicy": "Laut Nutzungsbedingungen gilt standardmäßig Zero Data Retention: Prompts und Ausgaben werden nicht länger aufbewahrt, als zum Erzeugen und Ausliefern der Ausgabe nötig ist, sofern das Gesetz nichts anderes verlangt. Laut Trust Center werden Anfrage-Metadaten 6 Monate aufbewahrt; laut Datenschutzrichtlinie werden Kontodaten für die Dauer des Kontos plus 7 Jahre aufbewahrt.",
+        "retentionPolicy": "Laut Nutzungsbedingungen gilt standardmäßig Zero Data Retention: Prompts und Ausgaben werden nicht länger aufbewahrt, als zum Erzeugen und Ausliefern der Ausgabe nötig ist, es sei denn, das Gesetz verlangt es oder es ist für die Erbringung des Dienstes oder den technischen Support erforderlich. Laut Trust Center werden Anfrage-Metadaten 6 Monate aufbewahrt; laut Datenschutzrichtlinie werden Kontodaten für die Dauer des Kontos plus 7 Jahre aufbewahrt.",
         "details": "Laut Nutzungsbedingungen verwendet Novita Kundeninhalte standardmäßig nicht zum Training eigener Modelle oder zur Verbesserung seiner Dienste. Inhalte können automatisiert auf Sicherheit geprüft werden, und bei eingebundenen Modellen von Drittanbietern verarbeitet der Modellanbieter die Eingaben und Ausgaben."
       },
       "euAiAct": {
