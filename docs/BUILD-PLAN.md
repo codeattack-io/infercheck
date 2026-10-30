@@ -19,3 +19,7 @@ Temporary orchestration state. Deleted before the PR is opened.
 | b7    | openrouter cloudflare-ai-gateway vercel-ai-gateway helicone requesty kilo-gateway llm-gateway zenmux            | queued |
 | b8    | abacus aihubmix clarifai dinference firmware github-models lucidquery-ai meganova                               | queued |
 | b9    | mixlayer nanogpt nova ollama-cloud poe synthetic vivgrid                                                        | queued |
+
+## Decisions
+
+- Field rules for adequacy, EU AI Act status, training default (paying API customers), opt-out, regions, EEA+CH, evidence fallbacks, pricing tier and certification scope were fixed after the pilot (see the research brief).
