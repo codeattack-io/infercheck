@@ -43,7 +43,7 @@
     ],
     "euAiAct": {
       "status": "unknown",
-      "details": "No EU AI Act statement found. The Token Factory terms make the customer the provider of AI systems it builds on the API."
+      "details": "Nebius has published no EU AI Act statement. The Token Factory terms make the customer the provider of AI systems it builds on the API."
     },
     "sccs": true,
     "adequacyDecision": true
@@ -77,7 +77,7 @@
         "details": "Laut AVV und Legal Quick Guide werden Kundeninhalte nicht zum Training oder zur Verbesserung von Modellen genutzt; die Token Factory Supplemental Terms erlauben Nebius jedoch, Ein- und Ausgaben zum Training kleinerer Draft-Modelle für Speculative Decoding zu verwenden. Diese Nutzung ist standardmäßig aktiv und endet, wenn Zero Data Retention aktiviert wird."
       },
       "euAiAct": {
-        "details": "Keine Erklärung zum EU AI Act gefunden. Die Token-Factory-Bedingungen weisen dem Kunden die Anbieterrolle für KI-Systeme zu, die er auf der API aufbaut."
+        "details": "Nebius hat keine Erklärung zum EU AI Act veröffentlicht. Die Token-Factory-Bedingungen weisen dem Kunden die Anbieterrolle für KI-Systeme zu, die er auf der API aufbaut."
       }
     }
   }

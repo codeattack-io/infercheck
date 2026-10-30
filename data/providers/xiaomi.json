@@ -33,7 +33,7 @@
     },
     "certifications": [],
     "euAiAct": {
-      "status": "unknown",
+      "status": "monitoring",
       "details": "Xiaomi has published no AI Act compliance statement and states that it is not a signatory of the EU GPAI Code of Practice. It publishes public summaries of training content in the EU AI Office template for its MiMo V2, V2.5 and V2.6 models, naming Xiaomi Technologies Singapore Pte. Ltd. as provider and no authorised representative in the EU."
     },
     "sccs": true,

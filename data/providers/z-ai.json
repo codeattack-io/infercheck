@@ -32,8 +32,8 @@
     },
     "certifications": [],
     "euAiAct": {
-      "status": "unknown",
-      "details": null
+      "status": "monitoring",
+      "details": "Z.AI is not listed as a signatory of the GPAI Code of Practice and has published no AI Act compliance statement. It publishes the AI Act public summary of training content for the GLM-5 model family, naming JINGSHENG HENGXING TECHNOLOGY PTE. LTD. as provider and no authorised representative in the EU."
     },
     "sccs": null,
     "adequacyDecision": false
@@ -47,7 +47,8 @@
     "https://docs.z.ai/api-reference/introduction",
     "https://docs.z.ai/guides/overview/pricing",
     "https://docs.z.ai/help/faq",
-    "https://docs.z.ai/devpack/teamplan"
+    "https://docs.z.ai/devpack/teamplan",
+    "https://cdn.bigmodel.cn/static/glm5.3/The%20Public%20Summary%20of%20Training%20Content%20for%20the%20GLM5%20Family.pdf"
   ],
   "notes": "The international Z.ai platform is operated by JINGSHENG HENGXING TECHNOLOGY PTE. LTD in Singapore, and API customer data is generally processed in Singapore, with no EU processing option. The data processing addendum in the API terms has no rules on sub-processors or audits and names no standard contractual clauses; no sub-processor list or security certifications are published. Some models are free to use; others are billed per token.",
   "translations": {
@@ -59,6 +60,9 @@
       "dataUsage": {
         "retentionPolicy": "Laut Auftragsverarbeitungsvertrag für die API werden Prompts und Ausgaben in Echtzeit verarbeitet und nicht auf den Servern von Z.AI gespeichert. Andere Kundendaten werden aufbewahrt, solange sie für den Dienst nötig sind, und nach Vertragsende gelöscht, sofern das Gesetz nichts anderes verlangt. Laut FAQ von Z.AI können Teile einer Anfrage für das Context Caching zwischengespeichert werden; die Aufbewahrungsdauer des Caches ist nicht veröffentlicht.",
         "details": "Laut API-Bedingungen nutzt Z.AI Inhalte von API-Kunden nicht zur Entwicklung oder Verbesserung seiner Dienste, sofern der Kunde nicht ausdrücklich zustimmt. Für Einzelnutzer der Plattform erlauben die Bedingungen die Nutzung von Inhalten zur Verbesserung der Dienste; beim GLM Coding Team Plan sind Inhalte standardmäßig vom Training ausgeschlossen. Die API-Bedingungen enthalten einen kurzen Zusatz zur Auftragsverarbeitung, der Z.AI an die schriftlichen Weisungen des Kunden bindet und Sicherheit, Unterstützung und Löschung regelt, nicht aber Unterauftragsverarbeiter, Prüfrechte oder die Vertraulichkeit des Personals."
+      },
+      "euAiAct": {
+        "details": "Z.AI ist nicht als Unterzeichner des GPAI-Verhaltenskodex gelistet und hat keine Erklärung zur Einhaltung des AI Act veröffentlicht. Für die Modellfamilie GLM-5 veröffentlicht Z.AI die Zusammenfassung der Trainingsinhalte nach dem AI Act; darin ist JINGSHENG HENGXING TECHNOLOGY PTE. LTD. als Anbieter genannt und kein bevollmächtigter Vertreter in der EU."
       }
     }
   }

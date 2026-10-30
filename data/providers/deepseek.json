@@ -32,8 +32,8 @@
     },
     "certifications": [],
     "euAiAct": {
-      "status": "unknown",
-      "details": "No AI Act compliance statement found, and DeepSeek is not a signatory of the EU GPAI Code of Practice. It publishes public summaries of training content in the EU AI Office template for its V3.1/V3.2, V4 and V4.1 models and names Prighter as its authorised representative in the EU."
+      "status": "monitoring",
+      "details": "DeepSeek has published no AI Act compliance statement and is not a signatory of the EU GPAI Code of Practice. It publishes public summaries of training content in the EU AI Office template for its V3.1/V3.2, V4 and V4.1 models and names Prighter as its authorised representative in the EU."
     },
     "sccs": false,
     "adequacyDecision": false
@@ -65,7 +65,7 @@
         "details": "Die API-Bedingungen äußern sich nicht zum Training, die allgemeinen Nutzungsbedingungen, die auch für APIs gelten, erlauben DeepSeek jedoch, de-identifizierte Ein- und Ausgaben zur Verbesserung der Dienste zu nutzen; laut den veröffentlichten Zusammenfassungen der Trainingsinhalte wurden Nutzereingaben und Prompts für das Training verwendet. Nutzer können widersprechen, indem sie die Einstellung „Improve the model for everyone“ deaktivieren oder sich an privacy@deepseek.com wenden; ob die Einstellung auch für API-Anfragen gilt, gibt DeepSeek nicht an. Der Vertrag unterliegt dem Recht der VR China."
       },
       "euAiAct": {
-        "details": "Keine Erklärung zur Einhaltung des AI Act gefunden; DeepSeek hat den EU-Verhaltenskodex für KI-Modelle mit allgemeinem Verwendungszweck (GPAI Code of Practice) nicht unterzeichnet. DeepSeek veröffentlicht für seine Modelle V3.1/V3.2, V4 und V4.1 Zusammenfassungen der Trainingsinhalte nach der Vorlage des EU-Büros für Künstliche Intelligenz und benennt Prighter als bevollmächtigten Vertreter in der EU."
+        "details": "DeepSeek hat keine Erklärung zur Einhaltung des AI Act veröffentlicht und den EU-Verhaltenskodex für KI-Modelle mit allgemeinem Verwendungszweck (GPAI Code of Practice) nicht unterzeichnet. DeepSeek veröffentlicht für seine Modelle V3.1/V3.2, V4 und V4.1 Zusammenfassungen der Trainingsinhalte nach der Vorlage des EU-Büros für Künstliche Intelligenz und benennt Prighter als bevollmächtigten Vertreter in der EU."
       }
     }
   }
