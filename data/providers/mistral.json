@@ -23,8 +23,8 @@
     "dataUsage": {
       "trainsOnCustomerData": null,
       "optOutAvailable": true,
-      "retentionPolicy": "API inputs and outputs are kept for 30 rolling days for abuse monitoring unless zero data retention is active. Zero data retention is available on request, only for pay-as-you-go and stateless API calls. Fine-tuning data is kept until the customer deletes it.",
-      "details": "Sources conflict: the API product page says API data is not used for training, while the help center says Studio Free mode, the default for new accounts, may use inputs and outputs for training, and pay-as-you-go customers can opt out. The DPA lets Mistral train on customer data as controller unless the customer has opted out; feedback and Labs or preview models can always be used for training."
+      "retentionPolicy": "API inputs and outputs are kept for 30 rolling days for abuse monitoring unless zero data retention is active. Agents API data is kept until the account is closed and fine-tuning data until the customer deletes it. Zero data retention is granted on request at Mistral's discretion, only for pay-as-you-go and stateless API calls.",
+      "details": "Studio Free mode, the default for new accounts, may use API inputs and outputs for training unless the customer opts out. For paid use, official sources conflict: the API product page says API data is not used for training, while the help center and pricing page only state that paying customers can opt out. The DPA allows Mistral to train as controller unless the customer has opted out; feedback and Labs or preview models can always be used for training."
     },
     "subProcessors": {
       "disclosed": true,
@@ -43,7 +43,7 @@
     "sccs": true,
     "adequacyDecision": true
   },
-  "pricingTier": "pay_per_use",
+  "pricingTier": "free_tier",
   "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
@@ -58,7 +58,9 @@
     "https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models",
     "https://help.mistral.ai/en/articles/455207-can-i-opt-out-of-my-input-or-output-data-being-used-for-training",
     "https://help.mistral.ai/en/articles/347612-can-i-activate-zero-data-retention-zdr",
-    "https://mistral.ai/cloud/inference/"
+    "https://mistral.ai/cloud/inference/",
+    "https://mistral.ai/pricing",
+    "https://docs.mistral.ai/admin/billing-usage/usage-limits"
   ],
   "notes": "French company headquartered in Paris; the DPA uses SCCs for transfers to non-EU sub-processors. EU processing is guaranteed only on the optional EU endpoint api.eu.mistral.ai; the default global endpoint has no location commitment. Whether paid API traffic is excluded from training by default is not consistently documented.",
   "translations": {
@@ -68,8 +70,8 @@
         "euRegionDetails": "Der globale Standard-Endpunkt (api.mistral.ai) sagt keinen Ort für die Inferenz zu. Der optionale EU-Endpunkt (api.eu.mistral.ai, abgerechnet zum 1,1-Fachen des Listenpreises) verarbeitet die Inferenz in Rechenzentren in EU- und EFTA-Staaten; Agents, Batch, die Files API und Tools außer Function Calling sind davon nicht erfasst. Zusätzlich gibt es einen US-Endpunkt (api.us.mistral.ai)."
       },
       "dataUsage": {
-        "retentionPolicy": "API-Ein- und -Ausgaben werden 30 Tage (rollierend) zur Missbrauchsüberwachung gespeichert, sofern Zero Data Retention nicht aktiv ist. Zero Data Retention gibt es auf Antrag, nur für Pay-as-you-go und zustandslose API-Aufrufe. Fine-Tuning-Daten werden gespeichert, bis der Kunde sie löscht.",
-        "details": "Die Quellen widersprechen sich: Die API-Produktseite sagt, API-Daten würden nicht für das Training genutzt; laut Hilfe-Center kann Mistral im Studio-Free-Mode, dem Standard für neue Konten, Ein- und Ausgaben für das Training verwenden, und Pay-as-you-go-Kunden können widersprechen. Laut AVV darf Mistral Kundendaten als Verantwortlicher für das Training nutzen, sofern der Kunde nicht widersprochen hat; Feedback sowie Labs- und Preview-Modelle können immer für das Training genutzt werden."
+        "retentionPolicy": "API-Ein- und -Ausgaben werden 30 Tage (rollierend) zur Missbrauchsüberwachung gespeichert, sofern Zero Data Retention nicht aktiv ist. Daten der Agents API bleiben bis zur Schließung des Kontos gespeichert, Fine-Tuning-Daten bis der Kunde sie löscht. Zero Data Retention gewährt Mistral auf Antrag nach eigenem Ermessen, nur für Pay-as-you-go und zustandslose API-Aufrufe.",
+        "details": "Im Studio-Free-Mode, dem Standard für neue Konten, kann Mistral API-Ein- und -Ausgaben für das Training verwenden, sofern der Kunde nicht widerspricht. Für die kostenpflichtige Nutzung widersprechen sich die offiziellen Quellen: Laut API-Produktseite werden API-Daten nicht für das Training genutzt, Hilfe-Center und Preisseite sagen dagegen nur, dass zahlende Kunden widersprechen können. Laut AVV darf Mistral als Verantwortlicher trainieren, sofern der Kunde nicht widersprochen hat; Feedback sowie Labs- und Preview-Modelle können immer für das Training genutzt werden."
       },
       "euAiAct": {
         "details": "Hat den EU-Verhaltenskodex für KI-Modelle mit allgemeinem Verwendungszweck (GPAI Code of Practice) unterzeichnet. Veröffentlicht auf legal.mistral.ai Dokumentation nach Artikel 53 für seine GPAI-Modelle und gibt an, dass keines seiner Modelle ein GPAI-Modell mit systemischem Risiko ist."
