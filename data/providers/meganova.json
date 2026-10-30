@@ -22,8 +22,8 @@
     "dataUsage": {
       "trainsOnCustomerData": null,
       "optOutAvailable": null,
-      "retentionPolicy": "The FAQ says prompts and outputs are not stored beyond temporary processing. On the enterprise endpoint, provider-side caching is off and message content is kept out of MegaNova's logs, except that Anthropic may keep Claude Fable 5 and 5.1 requests for up to 60 days. Other personal data is kept as long as needed for the service, records, legal duties and security.",
-      "details": "For the self-serve enterprise endpoint, MegaNova states that inputs and outputs are never used to train models. For the standard endpoint there is no training statement, and the published terms grant MegaNova a broad licence to submitted content, including to improve its services. The privacy policy lists prompts and files among the data used to improve and develop the services."
+      "retentionPolicy": "The FAQ says prompts and outputs are not stored beyond temporary processing. On the enterprise endpoint, provider-side caching is off and message content is redacted from MegaNova's logs; Anthropic may still keep requests to Claude Fable 5 and 5.1 for up to 60 days, and Qwen3.5-Plus has no zero-retention commitment. Other personal data is kept as long as needed for the service, records, legal duties, disputes, security and product improvement.",
+      "details": "For the self-serve enterprise endpoint, MegaNova states that inputs and outputs are never used to train models. For the standard endpoint there is no training statement; the published terms grant MegaNova a broad licence to submitted content and allow it to review content \"especially to improve our services\". The privacy policy counts prompts and files as personal information and says personal information is used to improve and develop the services."
     },
     "subProcessors": {
       "disclosed": false,
@@ -60,8 +60,8 @@
         "euRegionDetails": "Eine Verarbeitung in der EU ist nicht dokumentiert. Laut Datenschutzerklärung können Daten in den USA und anderen Ländern verarbeitet werden; die FAQ erwähnen eigene Regionen für Enterprise-Kunden, ohne diese zu nennen."
       },
       "dataUsage": {
-        "retentionPolicy": "Laut FAQ werden Prompts und Ausgaben nur vorübergehend zur Verarbeitung gespeichert. Am Enterprise-Endpunkt ist das Caching beim Anbieter abgeschaltet und Nachrichteninhalte erscheinen nicht in MegaNovas Protokollen; Ausnahme: Anthropic kann Anfragen an Claude Fable 5 und 5.1 bis zu 60 Tage speichern. Andere personenbezogene Daten werden so lange gespeichert, wie es für Dienst, Unterlagen, gesetzliche Pflichten und Sicherheit nötig ist.",
-        "details": "Für den selbst buchbaren Enterprise-Endpunkt erklärt MegaNova, dass Ein- und Ausgaben nie zum Training von Modellen verwendet werden. Für den Standard-Endpunkt gibt es keine Aussage zum Training, und die veröffentlichten Bedingungen räumen MegaNova eine weitgehende Lizenz an eingereichten Inhalten ein, auch zur Verbesserung der Dienste. Laut Datenschutzerklärung gehören Prompts und Dateien zu den Daten, die zur Verbesserung und Entwicklung der Dienste genutzt werden."
+        "retentionPolicy": "Laut FAQ werden Prompts und Ausgaben nur vorübergehend zur Verarbeitung gespeichert. Am Enterprise-Endpunkt ist das Caching beim Anbieter abgeschaltet und Nachrichteninhalte werden aus MegaNovas Protokollen entfernt; Anthropic kann Anfragen an Claude Fable 5 und 5.1 jedoch bis zu 60 Tage speichern, und für Qwen3.5-Plus gibt es keine Zusage ohne Datenspeicherung. Andere personenbezogene Daten werden so lange gespeichert, wie es für Dienst, Unterlagen, gesetzliche Pflichten, Streitigkeiten, Sicherheit und Produktverbesserung nötig ist.",
+        "details": "Für den selbst buchbaren Enterprise-Endpunkt erklärt MegaNova, dass Ein- und Ausgaben nie zum Training von Modellen verwendet werden. Für den Standard-Endpunkt gibt es keine Aussage zum Training; die veröffentlichten Bedingungen räumen MegaNova eine weitgehende Lizenz an eingereichten Inhalten ein und erlauben, Inhalte „insbesondere zur Verbesserung unserer Dienste“ zu prüfen. Laut Datenschutzerklärung zählen Prompts und Dateien zu den personenbezogenen Daten, und personenbezogene Daten werden zur Verbesserung und Entwicklung der Dienste genutzt."
       }
     }
   }
