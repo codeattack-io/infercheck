@@ -7,12 +7,10 @@
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
-      "regions": [
-        "US"
-      ],
+      "regions": [],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "IO.NET's privacy policy says data covered by the policy is stored in the United States, and its network/inference documentation describes a decentralized, geo-distributed/global GPU network with workers in multiple countries rather than an EU-only region option. No primary-source commitment to EU-only processing was found."
+      "euRegionDetails": "The IO Intelligence API has no region choice and no EU-only option. IO.NET says the models run on its own GPU network, which draws on independent data centres, crypto miners and other GPU suppliers in many countries, but it does not say where API requests are processed; some requests can also be routed through Portkey to OpenRouter or other providers. The privacy policy says the data it covers is stored in the United States; EU regions are offered only for renting GPUs on IO Cloud."
     },
     "dpa": {
       "available": false,
@@ -22,8 +20,8 @@
     "dataUsage": {
       "trainsOnCustomerData": null,
       "optOutAvailable": null,
-      "retentionPolicy": "The privacy policy states that the service may retain information it collects about users for as long as they maintain an account, and that blockchain-stored data may not be deletable.",
-      "details": "For Confidential Chat, IO.NET states messages are never saved, conversation content is never written to logs, and messages exist only in the browser and TEE during processing. This appears to be feature-specific and not a general API-wide statement about model training or all inference data."
+      "retentionPolicy": "The privacy policy says IO.NET may keep the information it collects for as long as the account exists, and data written to a blockchain cannot be deleted. IO.NET publishes no retention period for regular API prompts and outputs. Only its confidential-compute models are documented as storing no prompts or responses and recording only token counts for billing.",
+      "details": "IO.NET does not state whether API prompts or outputs are used for training; its terms give it a broad, perpetual licence to use content users submit or process. Prompts run on GPUs supplied by independent data centres, miners and other operators in its network, which IO.NET does not list as sub-processors. Models marked Secure AI run in hardware-isolated environments (TEE) with no storage of prompts or responses."
     },
     "subProcessors": {
       "disclosed": false,
@@ -41,29 +39,32 @@
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://io.net/privacy",
     "https://io.net/terms",
+    "https://trust.io.net",
+    "https://io.net/docs/guides/intelligence/io-intelligence-apis",
+    "https://io.net/docs/guides/intelligence/responses-api",
     "https://io.net/docs/guides/intelligence/api-keys-and-secrets",
     "https://io.net/docs/guides/payment/io-intelligence-payments",
-    "https://io.net/docs/guides/confidential-inference/confidential-chat",
     "https://io.net/docs/guides/confidential-inference/overview",
-    "https://io.net/docs/guides/clouds/confidential-compute-overview",
+    "https://io.net/docs/guides/confidential-inference/confidential-chat",
+    "https://io.net/docs/guides/faq",
     "https://io.net/docs/guides/explorer/network-map-page",
-    "https://blog.io.net/article/io-net-achieves-soc-2-compliance-to-reinforce-its-enterprise-ready-infrastructure"
+    "https://io.net/p/faq-is-io-net-secure-for-enterprise-workloads"
   ],
-  "notes": "IO.NET publishes a privacy policy and terms, and it publicly states SOC 2 compliance, but no public DPA/AVV, SCC commitment, sub-processor list, or explicit API-data training statement was found in primary sources reviewed. Its own materials indicate data is stored in the US and that compute/inference can run on a decentralized global GPU network, so EU-only processing could not be confirmed.",
+  "notes": "IO.NET Inc. is a US (Delaware) company that is not certified under the EU-US Data Privacy Framework; it publishes no data processing agreement, no sub-processor list and no statement on training with API data. The IO Intelligence API runs open models on IO.NET's decentralised GPU network with no region choice, and a free daily allowance sits alongside pay-as-you-go billing. Its trust centre and website show a SOC 2 badge, but another IO.NET page describes the SOC 2 Type II audit as still in progress.",
   "translations": {
     "de": {
-      "notes": "IO.NET veröffentlicht eine Datenschutzrichtlinie und Nutzungsbedingungen und gibt öffentlich die Einhaltung von SOC 2 an, jedoch wurde in den geprüften Primärquellen kein öffentlicher Auftragsverarbeitungsvertrag (AVV), keine Zusage zu Standardvertragsklauseln (SCC), keine Liste der Unterauftragsverarbeiter und keine ausdrückliche Aussage zur Nutzung von API-Daten für Trainingszwecke gefunden. Die eigenen Unterlagen des Unternehmens weisen darauf hin, dass Daten in den USA gespeichert werden und dass Rechenverarbeitung/Inferenz in einem dezentralen globalen GPU-Netzwerk stattfinden kann; eine ausschließlich auf die EU beschränkte Verarbeitung konnte daher nicht bestätigt werden.",
+      "notes": "IO.NET Inc. ist ein US-Unternehmen (Delaware) ohne Zertifizierung nach dem EU-US Data Privacy Framework; es veröffentlicht weder einen Auftragsverarbeitungsvertrag noch eine Liste der Unterauftragsverarbeiter noch eine Aussage zum Training mit API-Daten. Die IO-Intelligence-API betreibt offene Modelle auf dem dezentralen GPU-Netzwerk von IO.NET ohne Regionswahl; neben der nutzungsbasierten Abrechnung gibt es ein kostenloses Tageskontingent. Trust Center und Website zeigen ein SOC-2-Siegel, eine andere IO.NET-Seite beschreibt die SOC-2-Type-II-Prüfung jedoch als noch laufend.",
       "dataResidency": {
-        "euRegionDetails": "Laut der Datenschutzrichtlinie von IO.NET werden die von der Richtlinie erfassten Daten in den Vereinigten Staaten gespeichert; zudem beschreibt die Netzwerk-/Inferenzdokumentation ein dezentrales, geografisch verteiltes/globales GPU-Netzwerk mit Workern in mehreren Ländern und nicht eine ausschließlich auf die EU beschränkte Regionsoption. Eine Zusage aus Primärquellen zu einer ausschließlich in der EU erfolgenden Verarbeitung wurde nicht gefunden."
+        "euRegionDetails": "Die IO-Intelligence-API bietet keine Regionswahl und keine reine EU-Option. IO.NET gibt an, dass die Modelle auf seinem eigenen GPU-Netzwerk laufen, das auf unabhängige Rechenzentren, Krypto-Miner und andere GPU-Anbieter in vielen Ländern zurückgreift, nennt aber nicht, wo API-Anfragen verarbeitet werden; manche Anfragen können zudem über Portkey an OpenRouter oder andere Anbieter weitergeleitet werden. Laut Datenschutzrichtlinie werden die darin erfassten Daten in den USA gespeichert; EU-Regionen gibt es nur bei der Miete von GPUs über IO Cloud."
       },
       "dataUsage": {
-        "retentionPolicy": "Die Datenschutzrichtlinie besagt, dass der Dienst die über Nutzer erhobenen Informationen so lange speichern kann, wie diese ein Konto unterhalten, und dass auf der Blockchain gespeicherte Daten möglicherweise nicht löschbar sind.",
-        "details": "Für Confidential Chat gibt IO.NET an, dass Nachrichten niemals gespeichert werden, Gesprächsinhalte niemals in Protokolle geschrieben werden und Nachrichten während der Verarbeitung nur im Browser und in der TEE vorhanden sind. Dies scheint funktionsspezifisch zu sein und keine allgemeine, API-weite Aussage zum Modelltraining oder zu sämtlichen Inferenzdaten darzustellen."
+        "retentionPolicy": "Laut Datenschutzrichtlinie kann IO.NET erhobene Informationen so lange speichern, wie das Konto besteht; auf eine Blockchain geschriebene Daten lassen sich nicht löschen. Für normale API-Prompts und -Antworten nennt IO.NET keine Speicherdauer. Nur für die Confidential-Compute-Modelle ist dokumentiert, dass Prompts und Antworten nicht gespeichert und lediglich Token-Zahlen für die Abrechnung erfasst werden.",
+        "details": "IO.NET sagt nicht, ob API-Prompts oder -Antworten für Training genutzt werden; die Nutzungsbedingungen räumen IO.NET eine weitreichende, unbefristete Lizenz an Inhalten ein, die Nutzer einreichen oder verarbeiten. Prompts laufen auf GPUs unabhängiger Rechenzentren, Miner und anderer Betreiber im Netzwerk, die IO.NET nicht als Unterauftragsverarbeiter aufführt. Als Secure AI gekennzeichnete Modelle laufen in hardwareisolierten Umgebungen (TEE), ohne dass Prompts oder Antworten gespeichert werden."
       }
     }
   }
