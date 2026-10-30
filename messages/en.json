@@ -47,6 +47,12 @@
     "ogTitle": "AI Inference Providers — InferCheck Compliance Directory",
     "ogDescription": "Compare AI inference providers by GDPR compliance: EU-only data residency, DPA, training opt-out, and certifications.",
     "heading": "AI inference providers, by GDPR compliance tier.",
+    "searchLabel": "Search providers",
+    "searchPlaceholder": "Search providers…",
+    "countAll": "{count, plural, one {# provider} other {# providers}}",
+    "countFiltered": "{matching} of {total} providers",
+    "noProvidersFound": "No providers found for \"{query}\"",
+    "resetFilters": "Reset filters",
     "tableLabel": "AI inference providers with GDPR compliance tier",
     "columns": {
       "provider": "Provider",
@@ -382,6 +388,7 @@
   },
   "ProviderRow": {
     "euResidency": "EU",
-    "modelCount": "{count, plural, one {# model} other {# models}}"
+    "modelCount": "{count, plural, one {# model} other {# models}}",
+    "dimmed": "Does not match the active filter."
   }
 }

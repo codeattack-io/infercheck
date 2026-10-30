@@ -47,6 +47,12 @@
     "ogTitle": "KI-Inferenzanbieter — DSGVO-Compliance-Verzeichnis",
     "ogDescription": "KI-Inferenzanbieter nach DSGVO-Compliance vergleichen: EU-exklusive Datenhaltung, AVV, Trainings-Opt-out und Zertifizierungen.",
     "heading": "KI-Inferenzanbieter, nach DSGVO-Konformitätsstufe.",
+    "searchLabel": "Anbieter suchen",
+    "searchPlaceholder": "Anbieter suchen…",
+    "countAll": "{count} Anbieter",
+    "countFiltered": "{matching} von {total} Anbietern",
+    "noProvidersFound": "Keine Anbieter für „{query}“ gefunden",
+    "resetFilters": "Filter zurücksetzen",
     "tableLabel": "KI-Inferenzanbieter mit DSGVO-Konformitätsstufe",
     "columns": {
       "provider": "Anbieter",
@@ -382,6 +388,7 @@
   },
   "ProviderRow": {
     "euResidency": "EU",
-    "modelCount": "{count, plural, one {# Modell} other {# Modelle}}"
+    "modelCount": "{count, plural, one {# Modell} other {# Modelle}}",
+    "dimmed": "Entspricht nicht dem aktiven Filter."
   }
 }

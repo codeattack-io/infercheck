@@ -4,6 +4,7 @@ import {
   filterStateFromSearchParams,
   getComplianceTier,
   providerMatchesFilter,
+  type AnyProvider,
   type ComplianceFilter,
   type ComplianceTier,
 } from "@/lib/compliance";
@@ -70,12 +71,12 @@ export function createModelSearch(items: ModelWithProvider[]): Fuse<ModelWithPro
 const SEARCH_KEYS = ["model.displayName", "provider.name", "model.id"];
 
 // Version-like tokens ("4.6", "120") match literally; words match fuzzily. Every token must match.
-function buildFuseQuery(query: string): Expression {
+export function buildFuseQuery(query: string, keys: readonly string[]): Expression {
   const tokens = query.trim().split(/\s+/);
   return {
     $and: tokens.map((token) => {
       const pattern = /^[\d.-]+$/.test(token) ? `'${token}` : token;
-      return { $or: SEARCH_KEYS.map((key): Expression => ({ [key]: pattern })) };
+      return { $or: keys.map((key): Expression => ({ [key]: pattern })) };
     }),
   };
 }
@@ -83,7 +84,7 @@ function buildFuseQuery(query: string): Expression {
 export function searchModels(fuse: Fuse<ModelWithProvider>, query: string) {
   const items: ModelWithProvider[] = [];
   const matches: MatchMap = new Map();
-  for (const result of fuse.search(buildFuseQuery(query))) {
+  for (const result of fuse.search(buildFuseQuery(query, SEARCH_KEYS))) {
     items.push(result.item);
     if (result.matches?.length) matches.set(rowKey(result.item), result.matches);
   }
@@ -134,10 +135,13 @@ function priceOf(item: ModelWithProvider): number | null {
 }
 
 /** Splits rows into those that pass the filter and those that are shown dimmed, keeping their order. */
-export function partitionByFilter(items: ModelWithProvider[], filter: ComplianceFilter | null) {
+export function partitionByFilter<T extends { provider: AnyProvider | null }>(
+  items: T[],
+  filter: ComplianceFilter | null
+): { matching: T[]; dimmed: T[] } {
   if (filter === null) return { matching: items, dimmed: [] };
-  const matching: ModelWithProvider[] = [];
-  const dimmed: ModelWithProvider[] = [];
+  const matching: T[] = [];
+  const dimmed: T[] = [];
   for (const item of items) {
     (item.provider !== null && providerMatchesFilter(item.provider, filter) ? matching : dimmed).push(item);
   }
