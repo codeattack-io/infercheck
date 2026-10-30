@@ -22,7 +22,7 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "CloudFerro states a zero-storage policy for Sherlock: prompts and outputs are not retained, and only billing and performance metrics are logged. Documents uploaded to knowledge bases and Playground assistant conversations are kept in the console until the customer deletes them.",
+      "retentionPolicy": "CloudFerro states a zero-storage policy for Sherlock: prompts and outputs are not retained, and only billing and performance metrics are logged. Documents uploaded to knowledge bases and Playground assistant conversations are stored in the console, where the customer can delete them.",
       "details": "CloudFerro states that Sherlock customer data is never used for model training or improvement. The no-training and zero-storage statements appear on product pages, not in the Sherlock terms of service."
     },
     "subProcessors": {
@@ -39,7 +39,7 @@
     ],
     "euAiAct": {
       "status": "unknown",
-      "details": "No formal EU AI Act statement found; the Sherlock platform page only claims adherence to the upcoming AI Act. The Sherlock terms of service (July 2026) split AI Act obligations between CloudFerro and the customer and commit CloudFerro to provide documentation that supports compliance."
+      "details": "No formal EU AI Act statement found; the Sherlock platform page only claims adherence to the upcoming AI Act. The Sherlock terms of service split AI Act obligations between CloudFerro and the customer and commit CloudFerro to provide documentation that supports compliance."
     },
     "sccs": null,
     "adequacyDecision": true
@@ -62,16 +62,16 @@
   "notes": "Sherlock is CloudFerro's OpenAI-compatible inference API, run from its WAW3-2 region in Poland. The no-training and zero-retention commitments appear on product pages, but not in the Sherlock terms of service. No public DPA or sub-processor list was found.",
   "translations": {
     "de": {
-      "notes": "Sherlock ist die OpenAI-kompatible Inferenz-API von CloudFerro und läuft in der Region WAW3-2 in Polen. Die Zusagen zu No-Training und Zero-Retention stehen auf Produktseiten, nicht aber in den Sherlock-Nutzungsbedingungen. Ein öffentlicher Auftragsverarbeitungsvertrag (AVV) oder eine Liste der Unterauftragsverarbeiter wurde nicht gefunden.",
+      "notes": "Sherlock ist die OpenAI-kompatible Inferenz-API von CloudFerro und läuft in der Region WAW3-2 in Polen. Die Zusagen zu No-Training und Zero-Retention stehen auf Produktseiten, nicht aber in den Sherlock-Nutzungsbedingungen. Weder ein öffentlicher Auftragsverarbeitungsvertrag (AVV) noch eine Liste der Unterauftragsverarbeiter wurde gefunden.",
       "dataResidency": {
         "euRegionDetails": "Laut CloudFerro läuft die gesamte Verarbeitung von Sherlock in der Region WAW3-2 in Polen. Die öffentlichen Cloud-Dienste von CloudFerro werden ausschließlich in Rechenzentren in der EU betrieben."
       },
       "dataUsage": {
-        "retentionPolicy": "CloudFerro gibt für Sherlock eine Zero-Storage-Policy an: Prompts und Ausgaben werden nicht aufbewahrt, protokolliert werden nur Abrechnungs- und Leistungsmetriken. In Wissensdatenbanken hochgeladene Dokumente und Unterhaltungen mit Playground-Assistenten bleiben in der Konsole gespeichert, bis der Kunde sie löscht.",
+        "retentionPolicy": "CloudFerro gibt für Sherlock eine Zero-Storage-Policy an: Prompts und Ausgaben werden nicht aufbewahrt, protokolliert werden nur Abrechnungs- und Leistungsmetriken. In Wissensdatenbanken hochgeladene Dokumente und Unterhaltungen mit Playground-Assistenten werden in der Konsole gespeichert, wo der Kunde sie löschen kann.",
         "details": "Laut CloudFerro werden Sherlock-Kundendaten nie für das Training oder die Verbesserung von Modellen verwendet. Die Aussagen zu No-Training und Zero-Storage stehen auf Produktseiten, nicht in den Sherlock-Nutzungsbedingungen."
       },
       "euAiAct": {
-        "details": "Keine formelle Erklärung zum EU AI Act gefunden; die Sherlock-Plattformseite behauptet lediglich die Einhaltung des kommenden AI Act. Die Sherlock-Nutzungsbedingungen (Juli 2026) teilen die Pflichten nach dem AI Act zwischen CloudFerro und dem Kunden auf und verpflichten CloudFerro, Dokumentation zur Unterstützung der Compliance bereitzustellen."
+        "details": "Keine formelle Erklärung zum EU AI Act gefunden; die Sherlock-Plattformseite behauptet lediglich die Einhaltung des kommenden AI Act. Die Sherlock-Nutzungsbedingungen teilen die Pflichten nach dem AI Act zwischen CloudFerro und dem Kunden auf und verpflichten CloudFerro, Dokumentation zur Unterstützung der Compliance bereitzustellen."
       }
     }
   }
