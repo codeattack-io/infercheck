@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Open-weight models in the RouteLLM API run on servers in the United States. Requests to proprietary models are passed to their providers. The DPA lists sub-processor regions in the US, Canada, the EU and Asia, but there is no EU-only option for the API. Enterprise deployments in a dedicated or customer-owned cloud environment are available on request."
+      "euRegionDetails": "Open-weight models in the RouteLLM API run on servers in the United States. Requests to proprietary models are passed to their providers. The DPA lists sub-processor regions in the US, Canada, the EU and Asia, but there is no EU-only option for the API. For its enterprise platform, Abacus also describes single-tenant and customer-owned cloud deployments."
     },
     "dpa": {
       "available": true,
@@ -51,14 +51,15 @@
     "https://abacus.ai/help/chatllm-ai-super-assistant/faqs/data-security",
     "https://abacus.ai/help/chatllm-ai-super-assistant/faqs/billing",
     "https://abacus.ai/help/route-llm/",
-    "https://abacus.ai/help/api/ref/llm_apps/getLLMAppResponse"
+    "https://abacus.ai/help/api/ref/llm_apps/getLLMAppResponse",
+    "https://abacus.ai/enterprise"
   ],
-  "notes": "Abacus offers the RouteLLM API as part of its paid ChatLLM subscription and runs open-weight models in the United States. A DPA with standard contractual clauses and a list of sub-processors is available for signature. Abacus.AI is not listed under the EU-US Data Privacy Framework, and its privacy policy still refers to the invalidated Privacy Shield.",
+  "notes": "Abacus offers the RouteLLM API as part of its paid ChatLLM subscription, with usage billed in credits, and runs open-weight models in the United States. Its published DPA becomes part of the customer agreement once incorporated, lists sub-processors and refers to standard contractual clauses that are not attached to the public copy. Abacus.AI is not listed under the EU-US Data Privacy Framework, and its privacy policy still refers to the invalidated Privacy Shield.",
   "translations": {
     "de": {
-      "notes": "Abacus bietet die RouteLLM-API als Teil seines kostenpflichtigen ChatLLM-Abos an und betreibt Open-Weight-Modelle in den USA. Ein Auftragsverarbeitungsvertrag mit Standardvertragsklauseln und einer Liste der Unterauftragsverarbeiter ist zur Unterzeichnung verfügbar. Abacus.AI ist nicht unter dem EU-US Data Privacy Framework gelistet, und seine Datenschutzerklärung verweist weiterhin auf den für ungültig erklärten Privacy Shield.",
+      "notes": "Abacus bietet die RouteLLM-API als Teil seines kostenpflichtigen ChatLLM-Abos an, die Nutzung wird in Credits abgerechnet; Open-Weight-Modelle betreibt Abacus in den USA. Der veröffentlichte Auftragsverarbeitungsvertrag wird Teil des Kundenvertrags, sobald er einbezogen ist, nennt die Unterauftragsverarbeiter und verweist auf Standardvertragsklauseln, die der öffentlichen Fassung nicht beiliegen. Abacus.AI ist nicht unter dem EU-US Data Privacy Framework gelistet, und seine Datenschutzerklärung verweist weiterhin auf den für ungültig erklärten Privacy Shield.",
       "dataResidency": {
-        "euRegionDetails": "Open-Weight-Modelle in der RouteLLM-API laufen auf Servern in den USA. Anfragen an proprietäre Modelle werden an deren Anbieter weitergeleitet. Der AVV nennt Regionen von Unterauftragsverarbeitern in den USA, Kanada, der EU und Asien, eine reine EU-Option für die API gibt es aber nicht. Enterprise-Bereitstellungen in einer dedizierten oder kundeneigenen Cloud-Umgebung sind auf Anfrage möglich."
+        "euRegionDetails": "Open-Weight-Modelle in der RouteLLM-API laufen auf Servern in den USA. Anfragen an proprietäre Modelle werden an deren Anbieter weitergeleitet. Der AVV nennt Regionen von Unterauftragsverarbeitern in den USA, Kanada, der EU und Asien, eine reine EU-Option für die API gibt es aber nicht. Für seine Enterprise-Plattform beschreibt Abacus zudem Single-Tenant-Bereitstellungen und Bereitstellungen in kundeneigenen Cloud-Umgebungen."
       },
       "dataUsage": {
         "retentionPolicy": "Abacus gibt an, mit den genutzten Drittanbietern von Modellen Vereinbarungen ohne Datenspeicherung (Zero Retention) zu haben. Laut Sicherheitsseite werden Kundendaten bis zu 30 Tage nach Ende des Dienstes aufbewahrt und danach gelöscht. Die Datenschutzerklärung erlaubt zudem, Kontodaten und Nutzerinhalte für einen wirtschaftlich angemessenen Zeitraum für Sicherung, Archivierung und Prüfungen aufzubewahren.",
