@@ -21,7 +21,7 @@
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
       "retentionPolicy": "SiliconFlow's website says no data is stored. The terms say it has no obligation to store prompts and outputs and may delete them when the contract ends. Account and other personal data is kept as long as needed for its purpose or required by law.",
-      "details": "The terms say SiliconFlow does not access prompts and outputs, does not use or disclose them without authorization, and uses them only to provide the service. The terms do not mention model training explicitly."
+      "details": "The terms say SiliconFlow does not access prompts and outputs, does not use or disclose them without authorization, and uses them only to provide the service. The terms do not say explicitly whether SiliconFlow trains models on this data."
     },
     "subProcessors": {
       "disclosed": false,
@@ -46,16 +46,16 @@
     "https://www.siliconflow.com/",
     "https://www.siliconflow.com/pricing"
   ],
-  "notes": "The international SiliconFlow platform is operated by SILICONFLOW LABS PTE. LTD. in Singapore; mainland China users are served separately through siliconflow.cn. No data processing agreement, sub-processor list, transfer safeguards, processing locations or security certifications are published. Usage is billed per token, with $1 in free starting credits.",
+  "notes": "The international SiliconFlow platform is operated by SILICONFLOW LABS PTE. LTD. in Singapore; mainland China users are served separately through siliconflow.cn. No data processing agreement, sub-processor list, transfer safeguards, processing locations or security certifications are published. Usage is billed pay-as-you-go, with $1 in free starting credits.",
   "translations": {
     "de": {
-      "notes": "Die internationale Plattform von SiliconFlow wird von der SILICONFLOW LABS PTE. LTD. in Singapur betrieben; Nutzer in Festlandchina werden separat über siliconflow.cn bedient. Ein Auftragsverarbeitungsvertrag, eine Liste der Unterauftragsverarbeiter, Garantien für Datenübermittlungen, Verarbeitungsorte und Sicherheitszertifizierungen werden nicht veröffentlicht. Die Nutzung wird pro Token abgerechnet; zum Start gibt es 1 US-Dollar Gratisguthaben.",
+      "notes": "Die internationale Plattform von SiliconFlow wird von der SILICONFLOW LABS PTE. LTD. in Singapur betrieben; Nutzer in Festlandchina werden separat über siliconflow.cn bedient. Ein Auftragsverarbeitungsvertrag, eine Liste der Unterauftragsverarbeiter, Garantien für Datenübermittlungen, Verarbeitungsorte und Sicherheitszertifizierungen werden nicht veröffentlicht. Die Nutzung wird nach Verbrauch abgerechnet; zum Start gibt es 1 US-Dollar Gratisguthaben.",
       "dataResidency": {
         "euRegionDetails": "SiliconFlow gibt nicht an, wo seine internationale API Daten verarbeitet, und bietet keine EU-Region an. Laut Datenschutzerklärung dürfen personenbezogene Daten an verbundene Unternehmen und Dienstleister innerhalb oder außerhalb Singapurs übermittelt werden."
       },
       "dataUsage": {
-        "retentionPolicy": "Laut Website von SiliconFlow werden keine Daten gespeichert. Laut Nutzungsbedingungen ist SiliconFlow nicht verpflichtet, Prompts und Ausgaben zu speichern, und kann sie nach Vertragsende löschen. Konto- und andere personenbezogene Daten werden so lange aufbewahrt, wie es für ihren Zweck nötig oder gesetzlich vorgeschrieben ist.",
-        "details": "Laut Nutzungsbedingungen greift SiliconFlow nicht auf Prompts und Ausgaben zu, nutzt oder gibt sie nicht ohne Erlaubnis weiter und verwendet sie nur zur Erbringung des Dienstes. Modelltraining wird in den Bedingungen nicht ausdrücklich erwähnt."
+        "retentionPolicy": "Laut der Website von SiliconFlow werden keine Daten gespeichert. Laut Nutzungsbedingungen ist SiliconFlow nicht verpflichtet, Prompts und Ausgaben zu speichern, und kann sie nach Vertragsende löschen. Konto- und andere personenbezogene Daten werden so lange aufbewahrt, wie es für ihren Zweck nötig oder gesetzlich vorgeschrieben ist.",
+        "details": "Laut Nutzungsbedingungen greift SiliconFlow nicht auf Prompts und Ausgaben zu, verwendet oder offenbart sie nicht ohne Erlaubnis und nutzt sie nur zur Erbringung des Dienstes. Ob SiliconFlow mit diesen Daten Modelle trainiert, sagen die Bedingungen nicht ausdrücklich."
       }
     }
   }
