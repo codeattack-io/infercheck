@@ -11,8 +11,8 @@
         "US"
       ],
       "euOnly": false,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": "SaaS platform infrastructure is US-only (Google Cloud US-Central). Private and third-party cloud deployments (AWS, Azure, GCP, OCI) can be configured for EU regions by the customer — in those cases Cohere never receives customer data."
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "The Cohere API platform runs only in the US (Google Cloud, US-Central); there is no EU region. In private deployments and on third-party clouds (AWS, Azure, OCI), Cohere receives no prompts or outputs, so the customer controls where data is processed."
     },
     "dpa": {
       "available": true,
@@ -22,8 +22,8 @@
     "dataUsage": {
       "trainsOnCustomerData": true,
       "optOutAvailable": true,
-      "retentionPolicy": "Enterprise customers can opt out of training via Data Controls toggle in dashboard. Trial users opted in by default. Zero Data Retention available for enterprise customers. Prompts and generations auto-deleted after 30 days unless flagged.",
-      "details": "PII is filtered/stripped from prompts before use in training if opted in. Private and third-party cloud deployments: Cohere never receives any customer prompts or generations."
+      "retentionPolicy": "Prompts and outputs are deleted after 30 days unless flagged for misuse or required by law or contract. Paying customers can turn off training use under Data Controls in the dashboard. Zero data retention is available to enterprise customers on request.",
+      "details": "If training use is on, Cohere filters common personal information out of prompts and outputs before training. Inputs from free trial keys may be used for research and model improvement. In private deployments and on third-party clouds, Cohere receives no prompts or outputs."
     },
     "subProcessors": {
       "disclosed": true,
@@ -36,34 +36,38 @@
       "ISO42001"
     ],
     "euAiAct": {
-      "status": "monitoring",
-      "details": "Holds ISO 42001 (AI Management System) certification. No specific EU AI Act compliance declaration found. As a Canadian company placing models on the EU market, EU AI Act GPAI obligations apply."
+      "status": "compliant",
+      "details": "Cohere is listed by the European Commission as a signatory of the General-Purpose AI Code of Practice. It also signed the EU Code of Practice on transparency of AI-generated content in July 2026."
     },
     "sccs": true,
-    "adequacyDecision": false
+    "adequacyDecision": true
   },
-  "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-07",
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://cohere.com/privacy",
     "https://cohere.com/enterprise-data-commitments",
+    "https://cohere.com/saas-agreement",
     "https://trustcenter.cohere.com/",
-    "https://trustcenter.cohere.com/subprocessors"
+    "https://trustcenter.cohere.com/subprocessors",
+    "https://docs.cohere.com/docs/rate-limits",
+    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
+    "https://cohere.com/blog/cohere-signs-eu-code-of-practice"
   ],
-  "notes": "Headquartered in Toronto, Canada. DPA requires NDA and is not publicly downloadable — request via privacy@cohere.com. All SaaS infrastructure is US-based; EU-to-US transfers rely on SCCs. All listed sub-processors are US-based. Enterprise customers have strong opt-out controls including ZDR.",
+  "notes": "Headquartered in Toronto, Canada; EU data reaches Cohere under the EU adequacy decision for Canada, and onward transfers to its US infrastructure rely on Google Cloud's Data Privacy Framework certification and Standard Contractual Clauses. The DPA is not public and is sent on request to privacy@cohere.com after an NDA. All listed sub-processors are in the US.",
   "translations": {
     "de": {
-      "notes": "Hauptsitz in Toronto, Kanada. Für den Auftragsverarbeitungsvertrag (AVV) ist eine NDA erforderlich, und er steht nicht öffentlich zum Download zur Verfügung — Anforderung über privacy@cohere.com. Die gesamte SaaS-Infrastruktur ist in den USA angesiedelt; EU-US-Drittlandübermittlungen stützen sich auf Standardvertragsklauseln (SCC). Alle aufgeführten Unterauftragsverarbeiter haben ihren Sitz in den USA. Unternehmenskunden verfügen über umfassende Opt-out-Kontrollen, einschließlich ZDR.",
+      "notes": "Hauptsitz in Toronto, Kanada; EU-Daten gelangen auf Grundlage des EU-Angemessenheitsbeschlusses für Kanada zu Cohere, die Weiterübermittlung an die US-Infrastruktur stützt sich auf die Data-Privacy-Framework-Zertifizierung von Google Cloud und Standardvertragsklauseln. Der AVV ist nicht öffentlich und wird nach Abschluss einer NDA auf Anfrage an privacy@cohere.com gesendet. Alle aufgeführten Unterauftragsverarbeiter haben ihren Sitz in den USA.",
       "dataResidency": {
-        "euRegionDetails": "Die Infrastruktur der SaaS-Plattform ist ausschließlich in den USA angesiedelt (Google Cloud US-Central). Private und Drittanbieter-Cloud-Bereitstellungen (AWS, Azure, GCP, OCI) können vom Kunden für EU-Regionen konfiguriert werden — in diesen Fällen erhält Cohere niemals Kundendaten."
+        "euRegionDetails": "Die Cohere-API-Plattform läuft ausschließlich in den USA (Google Cloud, US-Central); eine EU-Region gibt es nicht. Bei privaten Bereitstellungen und über Drittanbieter-Clouds (AWS, Azure, OCI) erhält Cohere keine Prompts oder Ausgaben, der Kunde bestimmt also selbst, wo die Daten verarbeitet werden."
       },
       "dataUsage": {
-        "retentionPolicy": "Unternehmenskunden können das Training über den Schalter „Data Controls“ im Dashboard per Opt-out deaktivieren. Testnutzer sind standardmäßig einbezogen. Zero Data Retention ist für Unternehmenskunden verfügbar. Prompts und Generierungen werden nach 30 Tagen automatisch gelöscht, sofern sie nicht markiert wurden.",
-        "details": "PII wird vor der Verwendung für das Training aus Prompts herausgefiltert bzw. entfernt, sofern ein Opt-in erfolgt ist. Bei privaten und Drittanbieter-Cloud-Bereitstellungen erhält Cohere niemals Kunden-Prompts oder -Generierungen."
+        "retentionPolicy": "Prompts und Ausgaben werden nach 30 Tagen gelöscht, sofern sie nicht wegen Missbrauchsverdacht markiert sind oder Gesetz oder Vertrag eine längere Aufbewahrung verlangen. Zahlende Kunden können die Nutzung für das Training im Dashboard unter „Data Controls“ abschalten. Zero Data Retention ist für Unternehmenskunden auf Anfrage verfügbar.",
+        "details": "Ist die Trainingsnutzung aktiviert, filtert Cohere gängige personenbezogene Daten vor dem Training aus Prompts und Ausgaben heraus. Eingaben über kostenlose Test-Schlüssel können für Forschung und Modellverbesserung genutzt werden. Bei privaten Bereitstellungen und über Drittanbieter-Clouds erhält Cohere keine Prompts oder Ausgaben."
       },
       "euAiAct": {
-        "details": "Verfügt über die Zertifizierung ISO 42001 (AI Management System). Es wurde keine spezifische Konformitätserklärung zum EU AI Act gefunden. Als kanadisches Unternehmen, das Modelle auf dem EU-Markt bereitstellt, gelten die GPAI-Verpflichtungen des EU AI Act."
+        "details": "Cohere wird von der Europäischen Kommission als Unterzeichner des Verhaltenskodex für KI-Modelle mit allgemeinem Verwendungszweck geführt. Im Juli 2026 hat Cohere außerdem den EU-Verhaltenskodex zur Transparenz KI-generierter Inhalte unterzeichnet."
       }
     }
   }
