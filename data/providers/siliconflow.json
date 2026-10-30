@@ -3,16 +3,14 @@
   "name": "SiliconFlow",
   "type": "api_provider",
   "website": "https://cloud.siliconflow.com",
-  "apiDocsUrl": "https://docs.siliconflow.com/en",
+  "apiDocsUrl": "https://docs.siliconflow.com/en/userguide/introduction",
   "compliance": {
     "headquarters": "SG",
     "dataResidency": {
-      "regions": [
-        "SG"
-      ],
+      "regions": [],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "The public privacy policy is written for SILICONFLOW TECHNOLOGY PTE. LTD. and says personal data may be disclosed to affiliates, service providers, and authorities \"within or outside Singapore.\" No EU-only region or EU routing commitment was found in the provider's primary documentation."
+      "euRegionDetails": "SiliconFlow does not say where its international API processes data and offers no EU region. Its privacy policy allows personal data to be transferred to affiliates and service providers within or outside Singapore."
     },
     "dpa": {
       "available": false,
@@ -20,10 +18,10 @@
       "signedVia": "not_available"
     },
     "dataUsage": {
-      "trainsOnCustomerData": null,
-      "optOutAvailable": null,
-      "retentionPolicy": "The privacy policy says SiliconFlow may retain personal data as long as necessary for the purpose collected or as required/permitted by law, and will stop retaining or de-identify it when no longer needed for legal or business purposes. For interaction data, the policy says customers are responsible for storing it, SiliconFlow only provides storage where required by law or specific service rules, and otherwise has no obligation to store it.",
-      "details": "The privacy policy states Interaction Data is the customer's business and customer data, and if it contains personal data SiliconFlow will process it strictly in accordance with the customer's instructions as a neutral technology service provider. No explicit statement was found in primary documentation confirming whether API/customer data is or is not used for model training."
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "SiliconFlow's website says no data is stored. The terms say it has no obligation to store prompts and outputs and may delete them when the contract ends. Account and other personal data is kept as long as needed for its purpose or required by law.",
+      "details": "The terms say SiliconFlow does not access prompts and outputs, does not use or disclose them without authorization, and uses them only to provide the service. The terms do not say explicitly whether SiliconFlow trains models on this data."
     },
     "subProcessors": {
       "disclosed": false,
@@ -39,25 +37,25 @@
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://docs.siliconflow.com/en/legals/privacy-policy",
     "https://docs.siliconflow.com/en/legals/terms-of-service",
-    "https://docs.siliconflow.com/en/legals/agreement-for-account-ownership-transfer",
-    "https://docs.siliconflow.com/en",
+    "https://docs.siliconflow.com/en/legals/privacy-policy",
+    "https://docs.siliconflow.com/en/userguide/introduction",
+    "https://www.siliconflow.com/",
     "https://www.siliconflow.com/pricing"
   ],
-  "notes": "SiliconFlow's primary legal documents identify the contracting entity as SILICONFLOW TECHNOLOGY PTE. LTD. in Singapore and allow disclosures/transfers of personal data within or outside Singapore, with no published EU-only residency commitment found. No public DPA/AVV, sub-processor list, SCC statement, or confirmed security certifications were found in primary-source documentation, so those fields are left null or marked unavailable.",
+  "notes": "The international SiliconFlow platform is operated by SILICONFLOW LABS PTE. LTD. in Singapore; mainland China users are served separately through siliconflow.cn. No data processing agreement, sub-processor list, transfer safeguards, processing locations or security certifications are published. Usage is billed pay-as-you-go, with $1 in free starting credits.",
   "translations": {
     "de": {
-      "notes": "In den primären Rechtsdokumenten von SiliconFlow wird die vertragsschließende Einheit als SILICONFLOW TECHNOLOGY PTE. LTD. in Singapur bezeichnet; zudem wird die Offenlegung/Übermittlung personenbezogener Daten innerhalb oder außerhalb Singapurs zugelassen. Eine veröffentlichte Zusage zur ausschließlichen Datenhaltung in der EU wurde nicht gefunden. In den Primärquellen wurden kein öffentlicher Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Erklärung zu Standardvertragsklauseln (SCC) und keine bestätigten Sicherheitszertifizierungen gefunden; diese Felder bleiben daher null oder sind als nicht verfügbar gekennzeichnet.",
+      "notes": "Die internationale Plattform von SiliconFlow wird von der SILICONFLOW LABS PTE. LTD. in Singapur betrieben; Nutzer in Festlandchina werden separat über siliconflow.cn bedient. Ein Auftragsverarbeitungsvertrag, eine Liste der Unterauftragsverarbeiter, Garantien für Datenübermittlungen, Verarbeitungsorte und Sicherheitszertifizierungen werden nicht veröffentlicht. Die Nutzung wird nach Verbrauch abgerechnet; zum Start gibt es 1 US-Dollar Gratisguthaben.",
       "dataResidency": {
-        "euRegionDetails": "Die öffentliche Datenschutzerklärung ist für SILICONFLOW TECHNOLOGY PTE. LTD. formuliert und besagt, dass personenbezogene Daten an verbundene Unternehmen, Dienstleister und Behörden „innerhalb oder außerhalb Singapurs“ offengelegt werden können. In der primären Dokumentation des Anbieters wurde weder eine auf die EU beschränkte Region noch eine Verpflichtung zum EU-Routing gefunden."
+        "euRegionDetails": "SiliconFlow gibt nicht an, wo seine internationale API Daten verarbeitet, und bietet keine EU-Region an. Laut Datenschutzerklärung dürfen personenbezogene Daten an verbundene Unternehmen und Dienstleister innerhalb oder außerhalb Singapurs übermittelt werden."
       },
       "dataUsage": {
-        "retentionPolicy": "Laut Datenschutzerklärung kann SiliconFlow personenbezogene Daten so lange speichern, wie es für den Erhebungszweck erforderlich ist oder gesetzlich vorgeschrieben/zulässig ist, und wird die Speicherung beenden oder die Daten de-identifizieren, wenn sie für rechtliche oder geschäftliche Zwecke nicht mehr benötigt werden. Für Interaktionsdaten besagt die Richtlinie, dass Kunden für deren Speicherung verantwortlich sind, SiliconFlow eine Speicherung nur bereitstellt, soweit dies gesetzlich erforderlich ist oder besondere Dienstregeln dies vorsehen, und im Übrigen keine Verpflichtung zur Speicherung besteht.",
-        "details": "Die Datenschutzerklärung besagt, dass Interaction Data die Geschäfts- und Kundendaten des Kunden sind und dass SiliconFlow, sofern diese personenbezogene Daten enthalten, diese als neutraler Technologiedienstleister strikt gemäß den Anweisungen des Kunden verarbeitet. In der primären Dokumentation wurde keine ausdrückliche Erklärung dazu gefunden, ob API-/Kundendaten für das Modelltraining verwendet werden oder nicht."
+        "retentionPolicy": "Laut der Website von SiliconFlow werden keine Daten gespeichert. Laut Nutzungsbedingungen ist SiliconFlow nicht verpflichtet, Prompts und Ausgaben zu speichern, und kann sie nach Vertragsende löschen. Konto- und andere personenbezogene Daten werden so lange aufbewahrt, wie es für ihren Zweck nötig oder gesetzlich vorgeschrieben ist.",
+        "details": "Laut Nutzungsbedingungen greift SiliconFlow nicht auf Prompts und Ausgaben zu, verwendet oder offenbart sie nicht ohne Erlaubnis und nutzt sie nur zur Erbringung des Dienstes. Ob SiliconFlow mit diesen Daten Modelle trainiert, sagen die Bedingungen nicht ausdrücklich."
       }
     }
   }
