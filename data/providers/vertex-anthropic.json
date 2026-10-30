@@ -15,7 +15,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": false,
-      "euRegionDetails": "Claude 4.7 and newer run on the EU multi-region endpoint (eu), older Claude 4.x models on the Belgium region (europe-west1); Google documents that ML processing then stays in the EU. The global endpoint can process requests in any region and gives no residency guarantee. Regional and multi-region endpoints cost 10% more than the global endpoint."
+      "euRegionDetails": "Claude 4.7 and newer run on the EU multi-region endpoint (eu), older Claude models on the Belgium region (europe-west1); Google documents that ML processing then stays in the EU. The global endpoint can process requests in any region and gives no residency guarantee. Regional and multi-region endpoints cost 10% more than the global endpoint."
     },
     "dpa": {
       "available": true,
@@ -25,7 +25,7 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "Claude Fable and Mythos models, and Opus/Sonnet under Anthropic's Cyber Verification Program, log prompts and responses for up to 30 days for abuse monitoring in the customer's selected region; for Fable 5 and Mythos 5 this data must be shared with Anthropic. Optional request-response logging keeps data for 30 days. Deleted customer data is removed within 180 days.",
+      "retentionPolicy": "Claude Fable and Mythos models, and Claude Opus 4.7+ and Sonnet 5+ used in Anthropic's Cyber Verification Program, log prompts and responses for up to 30 days for abuse monitoring in the customer's selected region; for Fable 5 and Mythos 5 this data must be shared with Anthropic. Optional request-response logging keeps data for 30 days. Deleted customer data is removed within 180 days.",
       "details": "Google's training restriction covers Claude on Google Cloud; Google, not Anthropic, is the data processor for the Google-managed service. Model use is governed by Anthropic's commercial terms."
     },
     "subProcessors": {
@@ -78,15 +78,15 @@
     "https://policies.google.com/privacy/frameworks",
     "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
   ],
-  "notes": "Google-managed Claude runs on Google Cloud (Gemini Enterprise Agent Platform, formerly Vertex AI) with Google as the sole data processor under its Cloud DPA with SCCs; Google LLC is certified under the EU-US Data Privacy Framework. EU processing needs the eu multi-region or the Belgium region; the global endpoint has no residency guarantee. The separate Anthropic-managed Claude offering on Google Cloud runs on Anthropic infrastructure and is not covered by this entry.",
+  "notes": "Google-managed Claude runs on Google Cloud (Gemini Enterprise Agent Platform, formerly Vertex AI) with Google as data processor under its Cloud DPA with SCCs; Google LLC is certified under the EU-US Data Privacy Framework. EU processing needs the eu multi-region or the Belgium region; the global endpoint has no residency guarantee. The separate Anthropic-managed Claude offering on Google Cloud runs on Anthropic infrastructure and is not covered by this entry.",
   "translations": {
     "de": {
-      "notes": "Das von Google betriebene Claude läuft auf Google Cloud (Gemini Enterprise Agent Platform, früher Vertex AI) mit Google als einzigem Auftragsverarbeiter nach dem Cloud-AVV mit Standardvertragsklauseln; Google LLC ist nach dem EU-US Data Privacy Framework zertifiziert. EU-Verarbeitung erfordert die eu-Multi-Region oder die Region Belgien; der globale Endpunkt gibt keine Residenzgarantie. Das separate, von Anthropic betriebene Claude-Angebot auf Google Cloud läuft auf Infrastruktur von Anthropic und ist nicht Gegenstand dieses Eintrags.",
+      "notes": "Das von Google betriebene Claude läuft auf Google Cloud (Gemini Enterprise Agent Platform, früher Vertex AI) mit Google als Auftragsverarbeiter nach dem Cloud-AVV mit Standardvertragsklauseln; Google LLC ist nach dem EU-US Data Privacy Framework zertifiziert. EU-Verarbeitung erfordert die eu-Multi-Region oder die Region Belgien; der globale Endpunkt bietet keine Garantie für die Datenresidenz. Das separate, von Anthropic betriebene Claude-Angebot auf Google Cloud läuft auf Infrastruktur von Anthropic und ist nicht Gegenstand dieses Eintrags.",
       "dataResidency": {
-        "euRegionDetails": "Claude 4.7 und neuere Modelle laufen über den EU-Multi-Region-Endpunkt (eu), ältere Claude-4.x-Modelle über die Region Belgien (europe-west1); Google dokumentiert, dass die ML-Verarbeitung dann in der EU bleibt. Der globale Endpunkt kann Anfragen in jeder Region verarbeiten und gibt keine Residenzgarantie. Regionale und Multi-Region-Endpunkte kosten 10 % mehr als der globale Endpunkt."
+        "euRegionDetails": "Claude 4.7 und neuere Modelle laufen über den EU-Multi-Region-Endpunkt (eu), ältere Claude-Modelle über die Region Belgien (europe-west1); laut Google bleibt die ML-Verarbeitung dann in der EU. Der globale Endpunkt kann Anfragen in jeder Region verarbeiten und bietet keine Garantie für die Datenresidenz. Regionale und Multi-Region-Endpunkte kosten 10 % mehr als der globale Endpunkt."
       },
       "dataUsage": {
-        "retentionPolicy": "Claude-Fable- und Mythos-Modelle sowie Opus/Sonnet im Cyber Verification Program von Anthropic protokollieren Prompts und Antworten bis zu 30 Tage zur Missbrauchsüberwachung in der vom Kunden gewählten Region; bei Fable 5 und Mythos 5 müssen diese Daten mit Anthropic geteilt werden. Die optionale Anfrage-Antwort-Protokollierung speichert Daten 30 Tage. Gelöschte Kundendaten werden innerhalb von 180 Tagen entfernt.",
+        "retentionPolicy": "Claude-Fable- und Mythos-Modelle sowie Claude Opus ab 4.7 und Sonnet ab 5 im Cyber Verification Program von Anthropic protokollieren Prompts und Antworten bis zu 30 Tage zur Missbrauchsüberwachung in der vom Kunden gewählten Region; bei Fable 5 und Mythos 5 müssen diese Daten mit Anthropic geteilt werden. Die optionale Anfrage-Antwort-Protokollierung speichert Daten 30 Tage. Gelöschte Kundendaten werden innerhalb von 180 Tagen entfernt.",
         "details": "Die Trainingsbeschränkung von Google gilt für Claude auf Google Cloud; Auftragsverarbeiter des von Google betriebenen Dienstes ist Google, nicht Anthropic. Die Modellnutzung richtet sich nach den kommerziellen Bedingungen von Anthropic."
       },
       "euAiAct": {
