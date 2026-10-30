@@ -12,60 +12,64 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Friendli's public privacy policy states that site connections go through servers located in the United States and information provided is maintained on web servers and systems within the U.S. Public product pages also describe multi-cloud, multi-region infrastructure, but no primary-source documentation guaranteeing EU-only processing for the managed API was found. Friendli Container can be deployed in the customer's own environment, including private or air-gapped setups."
+      "euRegionDetails": "FriendliAI publishes no region list for Model APIs or Dedicated Endpoints, and self-serve customers cannot select an EU region; all listed sub-processors, including infrastructure providers, are given as located in the United States. Custom region, VPC and on-premises deployments are available under an Enterprise contract, and with BYOG FriendliAI runs its inference stack in the customer's own cloud account."
     },
     "dpa": {
-      "available": false,
-      "url": null,
-      "signedVia": "not_available"
+      "available": true,
+      "url": "https://friendli.ai/dpa",
+      "signedVia": "online_acceptance"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "Friendli states it does not use inference request/response contents for any purpose other than providing the Dedicated Endpoints or Serverless Endpoints service, including not using those contents for model training. The public privacy policy also states site visitor information is maintained on U.S. systems, and for Korean residents certain log/service-usage data is retained until five days after withdrawal from membership.",
-      "details": "Public docs distinguish managed inference products from self-hosted Container. Friendli Container is marketed as keeping data and models within the customer's infrastructure, including air-gapped environments."
+      "retentionPolicy": "Under the terms of service, inputs and outputs of API requests are not stored beyond the time needed to process the request unless the customer opts in to longer retention; this does not apply to services provided free of charge. The privacy policy states that inference data is kept for up to one day after the organization or project is deleted.",
+      "details": "By default, request and response contents are not used to train models. Content sent to services that FriendliAI provides free of charge may be used to improve its products, and customers can opt in to broader retention and use in the console."
     },
     "subProcessors": {
-      "disclosed": false,
-      "url": null,
-      "includesEuEntities": null
+      "disclosed": true,
+      "url": "https://friendli.ai/subprocessors",
+      "includesEuEntities": false
     },
     "certifications": [
-      "SOC2",
-      "HIPAA"
+      "SOC2"
     ],
     "euAiAct": {
       "status": "unknown",
       "details": null
     },
-    "sccs": null,
+    "sccs": true,
     "adequacyDecision": false
   },
-  "pricingTier": "free_tier",
-  "lastVerified": "2026-04-11",
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://friendli.ai/",
     "https://friendli.ai/privacypolicy",
-    "https://friendli.ai/docs",
+    "https://friendli.ai/terms-of-service",
+    "https://friendli.ai/dpa",
+    "https://friendli.ai/subprocessors",
+    "https://trust.friendli.ai/",
     "https://friendli.ai/docs/guides/data-handling",
-    "https://friendli.ai/docs/guides/serverless_endpoints/pricing#usage-tiers",
-    "https://friendli.ai/product/serverless-endpoints",
-    "https://friendli.ai/products/dedicated-endpoints/",
-    "https://friendli.ai/products/container",
-    "https://friendli.ai/blog/SOC2-Type-II-HIPAA",
-    "https://friendli.ai/blog/SOC2-Type-II-HIPPA"
+    "https://friendli.ai/docs/guides/suite/enterprise-plan",
+    "https://friendli.ai/docs/guides/suite/credits",
+    "https://friendli.ai/docs/guides/model-apis/rate-limits",
+    "https://friendli.ai/pricing",
+    "https://friendli.ai/product/model-apis",
+    "https://friendli.ai/product/dedicated-endpoints",
+    "https://friendli.ai/product/bring-your-own-gpu-byog",
+    "https://friendli.ai/blog/SOC2-Type-II-HIPAA"
   ],
-  "notes": "Friendli provides a public privacy policy and explicit documentation that managed inference request/response contents are not used for training. Public primary sources did not reveal a downloadable DPA/AVV, SCC commitment, or a public sub-processor list, and no EU-only managed API processing guarantee was found. Managed services appear U.S.-anchored, while Friendli Container offers customer-controlled deployment for stricter residency needs.",
+  "notes": "FriendliAI Corp. is based in California with a hub in Seoul and is not certified under the EU-US Data Privacy Framework; its terms incorporate a DPA with EU standard contractual clauses. Pay-per-token access is self-serve with prepaid credits. Friendli describes itself as HIPAA compliant; health data requires a separate business associate agreement.",
   "translations": {
     "de": {
-      "notes": "Friendli stellt eine öffentliche Datenschutzerklärung sowie eine ausdrückliche Dokumentation bereit, aus der hervorgeht, dass Inhalte von Anfragen/Antworten im Rahmen verwalteter Inferenz nicht für das Training verwendet werden. In öffentlich zugänglichen Primärquellen wurden weder ein herunterladbarer Auftragsverarbeitungsvertrag (AVV), eine Zusage zu Standardvertragsklauseln (SCC) noch eine öffentliche Liste von Unterauftragsverarbeitern gefunden; ebenso wurde keine Garantie für eine ausschließliche Verarbeitung der verwalteten API in der EU gefunden. Verwaltete Dienste scheinen in den USA verankert zu sein, während Friendli Container eine kundenseitig kontrollierte Bereitstellung für strengere Anforderungen an die Datenhaltung ermöglicht.",
+      "notes": "FriendliAI Corp. hat seinen Sitz in Kalifornien und einen Standort in Seoul und ist nicht unter dem EU-US Data Privacy Framework zertifiziert; die Nutzungsbedingungen beinhalten einen Auftragsverarbeitungsvertrag mit EU-Standardvertragsklauseln. Der Zugang mit Abrechnung pro Token ist per Self-Service mit Prepaid-Guthaben möglich. Friendli bezeichnet sich als HIPAA-konform; für Gesundheitsdaten ist ein gesondertes Business Associate Agreement nötig.",
       "dataResidency": {
-        "euRegionDetails": "Laut der öffentlichen Datenschutzerklärung von Friendli werden Verbindungen zur Website über Server in den Vereinigten Staaten geleitet, und bereitgestellte Informationen werden auf Webservern und Systemen innerhalb der USA gespeichert. Öffentliche Produktseiten beschreiben zudem eine Multi-Cloud- und Multi-Region-Infrastruktur; es wurde jedoch keine Primärquellen-Dokumentation gefunden, die eine ausschließliche Verarbeitung der verwalteten API in der EU garantiert. Friendli Container kann in der eigenen Umgebung des Kunden bereitgestellt werden, einschließlich privater oder Air-Gap-Setups."
+        "euRegionDetails": "FriendliAI veröffentlicht keine Regionsliste für Model APIs oder Dedicated Endpoints, und Self-Service-Kunden können keine EU-Region wählen; alle gelisteten Unterauftragsverarbeiter, auch die Infrastrukturanbieter, sind mit Standort USA angegeben. Bereitstellungen in bestimmten Regionen, in einer VPC oder On-Premises gibt es mit einem Enterprise-Vertrag, und mit BYOG betreibt FriendliAI seinen Inferenz-Stack im eigenen Cloud-Konto des Kunden."
       },
       "dataUsage": {
-        "retentionPolicy": "Friendli erklärt, dass Inhalte von Anfragen/Antworten im Rahmen der Inferenz zu keinem anderen Zweck als zur Bereitstellung des Dedicated Endpoints- oder Serverless Endpoints-Dienstes verwendet werden, einschließlich der Nichtverwendung dieser Inhalte für das Modelltraining. Die öffentliche Datenschutzerklärung besagt ferner, dass Informationen von Website-Besuchern auf Systemen in den USA gespeichert werden, und dass für in Korea ansässige Personen bestimmte Protokoll-/Dienstnutzungsdaten bis fünf Tage nach dem Austritt aus der Mitgliedschaft aufbewahrt werden.",
-        "details": "Öffentliche Dokumentationen unterscheiden zwischen verwalteten Inferenzprodukten und selbst gehostetem Container. Friendli Container wird damit beworben, Daten und Modelle innerhalb der Infrastruktur des Kunden zu halten, einschließlich in Air-Gap-Umgebungen."
+        "retentionPolicy": "Laut Nutzungsbedingungen werden Ein- und Ausgaben von API-Anfragen nicht länger gespeichert, als für die Bearbeitung nötig ist, sofern der Kunde nicht einer längeren Aufbewahrung zustimmt; das gilt nicht für kostenlos bereitgestellte Dienste. Laut Datenschutzerklärung werden Inferenzdaten bis zu einen Tag nach dem Löschen der Organisation oder des Projekts aufbewahrt.",
+        "details": "Standardmäßig werden Inhalte von Anfragen und Antworten nicht zum Training von Modellen genutzt. Inhalte, die an kostenlos bereitgestellte Dienste von FriendliAI gesendet werden, dürfen zur Produktverbesserung genutzt werden, und Kunden können in der Konsole einer weitergehenden Aufbewahrung und Nutzung zustimmen."
       }
     }
   }
