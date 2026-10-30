@@ -22,7 +22,7 @@
     "dataUsage": {
       "trainsOnCustomerData": true,
       "optOutAvailable": null,
-      "retentionPolicy": "The service agreement says the provider is not obliged to store inputs or outputs. The privacy policy says personal information is kept only as long as needed for the stated purposes and as required by law, and is deleted or anonymised after account deletion unless a legal retention period applies.",
+      "retentionPolicy": "The service agreement says inputs are received and recorded, but the provider is not obliged to store inputs or outputs; no retention period for them is stated. The privacy policy says personal information is kept only as long as needed for the stated purposes and as required by law, and is deleted or anonymised after account deletion unless a legal retention period applies.",
       "details": "The service agreement allows inputs and outputs to be used to develop and improve the services after de-identification or with the user's authorisation. The privacy policy says de-identified inputs and outputs may be used for model design, training and optimisation without further notice or consent. No opt-out was found."
     },
     "subProcessors": {
@@ -53,12 +53,12 @@
   "notes": "Bailing is Ant Group's Ling (百灵) model family, offered through the Ant Ling API (api.ant-ling.com) operated by Ant Intelligence (Hangzhou) Technology Co., Ltd. in China; it is not Alibaba Cloud Model Studio (Bailian). The service agreement says the service is mainly provided to users in mainland China, and billing is pay-as-you-go via Alipay with a recurring free quota. No DPA, sub-processor list, SCC statement or certification was found.",
   "translations": {
     "de": {
-      "notes": "Bailing ist die Ling-Modellfamilie (百灵) der Ant Group, angeboten über die Ant-Ling-API (api.ant-ling.com), die von Ant Intelligence (Hangzhou) Technology Co., Ltd. in China betrieben wird; es handelt sich nicht um Alibaba Cloud Model Studio (Bailian). Laut Nutzungsvereinbarung richtet sich der Dienst vor allem an Nutzer in Festlandchina; abgerechnet wird nach Verbrauch über Alipay, mit einem wiederkehrenden Freikontingent. Weder ein Auftragsverarbeitungsvertrag noch eine Liste der Unterauftragsverarbeiter, eine Aussage zu Standardvertragsklauseln oder eine Zertifizierung wurde gefunden.",
+      "notes": "Bailing ist die Ling-Modellfamilie (百灵) der Ant Group, angeboten über die Ant-Ling-API (api.ant-ling.com), die von Ant Intelligence (Hangzhou) Technology Co., Ltd. in China betrieben wird; es handelt sich nicht um Alibaba Cloud Model Studio (Bailian). Laut Nutzungsvereinbarung richtet sich der Dienst vor allem an Nutzer in Festlandchina; abgerechnet wird nach Verbrauch über Alipay, mit einem wiederkehrenden Freikontingent. Ein Auftragsverarbeitungsvertrag, eine Liste der Unterauftragsverarbeiter, eine Aussage zu Standardvertragsklauseln oder eine Zertifizierung wurden nicht gefunden.",
       "dataResidency": {
         "euRegionDetails": "Eine EU-Region gibt es nicht. Laut Datenschutzrichtlinie werden in Festlandchina erhobene und erzeugte personenbezogene Daten in Festlandchina gespeichert; laut Nutzungsvereinbarung richtet sich der Dienst vor allem an Nutzer in Festlandchina."
       },
       "dataUsage": {
-        "retentionPolicy": "Laut Nutzungsvereinbarung ist der Anbieter nicht verpflichtet, Eingaben oder Ausgaben zu speichern. Laut Datenschutzrichtlinie werden personenbezogene Daten nur so lange aufbewahrt, wie es für die genannten Zwecke nötig und gesetzlich vorgeschrieben ist, und nach Löschung des Kontos gelöscht oder anonymisiert, sofern keine gesetzliche Aufbewahrungsfrist gilt.",
+        "retentionPolicy": "Laut Nutzungsvereinbarung werden Eingaben empfangen und aufgezeichnet, der Anbieter ist aber nicht verpflichtet, Eingaben oder Ausgaben zu speichern; eine Aufbewahrungsfrist dafür wird nicht genannt. Laut Datenschutzrichtlinie werden personenbezogene Daten nur so lange aufbewahrt, wie es für die genannten Zwecke nötig und gesetzlich vorgeschrieben ist, und nach Löschung des Kontos gelöscht oder anonymisiert, sofern keine gesetzliche Aufbewahrungsfrist gilt.",
         "details": "Die Nutzungsvereinbarung erlaubt, Eingaben und Ausgaben nach De-Identifizierung oder mit Zustimmung des Nutzers zur Entwicklung und Verbesserung der Dienste zu verwenden. Laut Datenschutzrichtlinie dürfen de-identifizierte Eingaben und Ausgaben ohne weitere Benachrichtigung oder Einwilligung für Modelldesign, Training und Optimierung genutzt werden. Eine Opt-out-Möglichkeit wurde nicht gefunden."
       }
     }
