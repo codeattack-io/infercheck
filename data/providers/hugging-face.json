@@ -11,20 +11,20 @@
         "US",
         "EU"
       ],
-      "euOnly": true,
+      "euOnly": false,
       "dataLeavesEuAtInference": null,
-      "euRegionDetails": "EU region available on Team and Enterprise plans. Inference Endpoints can be deployed on AWS or GCP EU regions. Models, datasets, and endpoints can be pinned to EU datacentres. Enterprise Hub storage regions feature available."
+      "euRegionDetails": "Inference Endpoints let customers choose the cloud region for each endpoint; the only EU region is AWS eu-west-1 (Ireland), all other regions are in the US. Storing models and datasets in the EU (Storage Regions) needs a Team or Enterprise plan. The serverless Inference Providers API forwards requests to third-party providers and has no documented EU option."
     },
     "dpa": {
       "available": true,
-      "url": "https://huggingface.co/enterprise",
-      "signedVia": "custom_contract"
+      "url": "https://cdn-media.huggingface.co/landing/assets/Data+Processing+Agreement.pdf",
+      "signedVia": "online_acceptance"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "Payload data (prompts/tokens) not stored on Inference Endpoints. Logs retained 30 days.",
-      "details": "Security documentation states Hugging Face does not store any customer data in terms of payloads or tokens. No training on inference endpoint data."
+      "retentionPolicy": "Request and response payloads sent to Inference Endpoints are not stored; logs are kept for 30 days.",
+      "details": "Hugging Face does not store prompts or outputs sent to Inference Endpoints, and its data processing agreement limits use of personal data to providing the service. The inference terms ask customers not to give Hugging Face access to personal data in Inference Endpoints unless agreed otherwise in writing. With Inference Providers, the chosen third-party provider processes the request under its own data policy."
     },
     "subProcessors": {
       "disclosed": true,
@@ -35,34 +35,39 @@
       "SOC2"
     ],
     "euAiAct": {
-      "status": "monitoring",
-      "details": "EU legal entity (HF SAS, Paris) is subject to EU AI Act as a provider. No formal certification published as of verification date."
+      "status": "unknown",
+      "details": "Hugging Face is not on the EU list of signatories of the GPAI Code of Practice and has published no official EU AI Act statement for its inference services."
     },
     "sccs": true,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-07",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://huggingface.co/docs/inference-endpoints/en/guides/security",
+    "https://huggingface.co/docs/inference-endpoints/en/faq",
     "https://huggingface.co/privacy",
-    "https://huggingface.co/enterprise",
-    "https://huggingface.co/docs/hub/storage-regions"
+    "https://huggingface.co/terms-of-service",
+    "https://cdn-media.huggingface.co/landing/assets/Supplemental+Terms+-+Inference+Services.pdf",
+    "https://cdn-media.huggingface.co/landing/assets/Data+Processing+Agreement.pdf",
+    "https://cdn-media.huggingface.co/landing/assets/Subprocessors.pdf",
+    "https://huggingface.co/docs/hub/storage-regions",
+    "https://huggingface.co/docs/inference-providers/en/security"
   ],
-  "notes": "Scope is Inference Endpoints (dedicated), NOT Inference Providers (shared/serverless). HQ: Hugging Face Inc. (New York, US). EU controller: Hugging Face SAS (Paris, France), supervised by CNIL. Sub-processors include OVHcloud (FR), AWS, GCP. EU residency and DPA require Team or Enterprise plan. Any model on the Hub can be deployed via Inference Endpoints.",
+  "notes": "Covers Inference Endpoints (dedicated); the serverless Inference Providers API forwards requests to third-party providers such as Together, Fireworks or Groq, which are not on Hugging Face's sub-processor lists. Hugging Face, Inc. (US) is not certified under the EU-US Data Privacy Framework; its data processing agreement, which the inference terms incorporate, uses the EU Standard Contractual Clauses. Its EU establishment is Hugging Face SAS in Paris, supervised by the French data protection authority CNIL.",
   "translations": {
     "de": {
-      "notes": "Der Geltungsbereich umfasst Inference Endpoints (dediziert), NICHT Inference Providers (gemeinsam/serverless). Hauptsitz: Hugging Face Inc. (New York, USA). EU-Verantwortlicher: Hugging Face SAS (Paris, Frankreich), beaufsichtigt durch die CNIL. Zu den Unterauftragsverarbeitern gehören OVHcloud (FR), AWS und GCP. EU-Datenhaltung und Auftragsverarbeitungsvertrag (AVV) erfordern einen Team- oder Enterprise-Plan. Jedes Modell auf dem Hub kann über Inference Endpoints bereitgestellt werden.",
+      "notes": "Der Eintrag beschreibt Inference Endpoints (dediziert); die serverlose API Inference Providers leitet Anfragen an Drittanbieter wie Together, Fireworks oder Groq weiter, die nicht auf den Unterauftragsverarbeiter-Listen von Hugging Face stehen. Hugging Face, Inc. (USA) ist nicht nach dem EU-US Data Privacy Framework zertifiziert; der Auftragsverarbeitungsvertrag, auf den die Nutzungsbedingungen für Inferenzdienste verweisen, nutzt die EU-Standardvertragsklauseln. Die EU-Niederlassung ist Hugging Face SAS in Paris, beaufsichtigt von der französischen Datenschutzbehörde CNIL.",
       "dataResidency": {
-        "euRegionDetails": "Eine EU-Region ist in Team- und Enterprise-Plänen verfügbar. Inference Endpoints können in EU-Regionen von AWS oder GCP bereitgestellt werden. Modelle, Datensätze und Endpunkte können auf EU-Rechenzentren festgelegt werden. Die Funktion für Enterprise Hub-Speicherregionen ist verfügbar."
+        "euRegionDetails": "Bei Inference Endpoints wählt der Kunde die Cloud-Region pro Endpoint; einzige EU-Region ist AWS eu-west-1 (Irland), alle anderen Regionen liegen in den USA. Die Speicherung von Modellen und Datensätzen in der EU (Storage Regions) setzt einen Team- oder Enterprise-Plan voraus. Die serverlose API Inference Providers leitet Anfragen an Drittanbieter weiter und bietet keine dokumentierte EU-Option."
       },
       "dataUsage": {
-        "retentionPolicy": "Payload-Daten (Prompts/Tokens) werden auf Inference Endpoints nicht gespeichert. Protokolle werden 30 Tage aufbewahrt.",
-        "details": "Laut Sicherheitsdokumentation speichert Hugging Face keine Kundendaten in Form von Payloads oder Tokens. Kein Training auf Daten aus Inference Endpoints."
+        "retentionPolicy": "An Inference Endpoints gesendete Anfrage- und Antwortinhalte werden nicht gespeichert; Logs werden 30 Tage aufbewahrt.",
+        "details": "Hugging Face speichert keine an Inference Endpoints gesendeten Prompts oder Ausgaben, und der Auftragsverarbeitungsvertrag beschränkt die Nutzung personenbezogener Daten auf die Erbringung des Dienstes. Laut den Nutzungsbedingungen für Inferenzdienste sollen Kunden Hugging Face bei Inference Endpoints ohne schriftliche Vereinbarung keinen Zugriff auf personenbezogene Daten geben. Bei Inference Providers verarbeitet der gewählte Drittanbieter die Anfrage nach seinen eigenen Datenrichtlinien."
       },
       "euAiAct": {
-        "details": "Die EU-Rechtseinheit (HF SAS, Paris) unterliegt als Anbieter dem EU AI Act. Zum Zeitpunkt der Verifizierung war keine formale Zertifizierung veröffentlicht."
+        "details": "Hugging Face steht nicht auf der EU-Liste der Unterzeichner des GPAI-Verhaltenskodex und hat keine offizielle Erklärung zum EU AI Act für seine Inferenzdienste veröffentlicht."
       }
     }
   }
