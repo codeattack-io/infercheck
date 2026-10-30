@@ -2,8 +2,8 @@
   "slug": "poe",
   "name": "Poe",
   "type": "api_provider",
-  "website": "https://creator.poe.com",
-  "apiDocsUrl": "https://creator.poe.com/docs/api",
+  "website": "https://poe.com",
+  "apiDocsUrl": "https://creator.poe.com/docs/external-applications/openai-compatible-api",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Poe states that chats are shared with AI model providers and, for half-shield bots/apps, with third-party developers. The creator docs also state that creators may host inference on external providers such as Fireworks, Together, or Replicate, or host their own inference. No EU-only processing or EU region guarantee was found in Poe/Quora primary documentation."
+      "euRegionDetails": "No EU region or EU-only option is offered. Requests are passed to the AI model providers behind each bot (for example OpenAI, Anthropic, Google, Meta or Fireworks AI) and, for half-shield bots, also to the third-party developer. Quora says it relies on Standard Contractual Clauses for transfers out of the EEA."
     },
     "dpa": {
       "available": false,
@@ -20,10 +20,10 @@
       "signedVia": "not_available"
     },
     "dataUsage": {
-      "trainsOnCustomerData": null,
-      "optOutAvailable": null,
-      "retentionPolicy": "Poe says that when a user deletes chats, chats and personal data associated with the account are deleted from Poe’s systems and will not be used for any other purpose. On account deletion, Quora says the account is deactivated immediately, can be reactivated within 14 days, and after the 14-day grace period content/profile are permanently deleted and personal data is removed from Quora’s databases, except data that may be preserved to comply with legal obligations. Poe also says each AI model provider sets its own retention schedule.",
-      "details": "Poe says official Poe bots and user-created prompt bots using OpenAI, Anthropic, Google, and Meta models do not train on chats and cannot access chats except to produce the requested response. Poe also states third-party developer bots and apps can use chats to train their AI models, and developers using APIs may view and store chats on their own servers to train their models."
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "Deleted chats and the personal data tied to an account are removed from Poe's systems; Memory summaries can persist until the user deletes them in settings. Account deletion takes effect after a 14-day grace period, with exceptions for legal obligations. Each AI model provider applies its own retention, for example 30 days at OpenAI and Anthropic.",
+      "details": "Poe says official bots and prompt bots built on OpenAI, Anthropic, Google and Meta models do not train on chats, and fully shielded bots are not used by model providers for training. Third-party developer bots and apps (half shield) may use chats for training, so the default only holds when calling official models. Quora, Inc. acts as data controller; no processor terms are offered."
     },
     "subProcessors": {
       "disclosed": false,
@@ -35,33 +35,36 @@
       "status": "unknown",
       "details": null
     },
-    "sccs": null,
+    "sccs": true,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://poe.com/pages/privacy",
     "https://poe.com/pages/privacy-center",
+    "https://poe.com/pages/tos",
+    "https://poe.com/pages/terms-of-sale",
     "https://poe.com/api_terms",
-    "https://creator.poe.com/docs/api",
-    "https://creator.poe.com/docs/how-we-cover-your-costs",
-    "https://creator.poe.com/docs/external-applications/videos-api",
-    "https://poe.com/blog/introducing-the-poe-api",
-    "https://poe.com/blog/introducing-transparent-usd-pricing-and-api-tool-calling",
-    "https://help.quora.com/hc/en-us/articles/115004250866-How-do-I-delete-my-Quora-account-"
+    "https://poe.com/subscription_plans",
+    "https://www.quora.com/about/privacy",
+    "https://help.poe.com/hc/en-us/articles/19944206309524-Poe-FAQs",
+    "https://help.quora.com/hc/en-us/articles/115004250866-How-do-I-delete-my-Quora-account-",
+    "https://creator.poe.com/api-reference/overview",
+    "https://creator.poe.com/docs/external-applications/openai-compatible-api",
+    "https://creator.poe.com/docs/external-applications/external-application-guide"
   ],
-  "notes": "Poe is operated by Quora, Inc. in the United States, so there is no EU adequacy decision for the headquarters country. Primary-source documentation confirms sharing of chats with underlying model providers and, in some cases, third-party developers, but no public DPA, sub-processor list, SCC statement, or EU-only processing commitment was found in the consulted primary sources.",
+  "notes": "Poe is operated by Quora, Inc. (Mountain View, California), which is not certified under the EU-US Data Privacy Framework. The API at api.poe.com is paid with Poe points from a subscription or add-on purchase; free accounts can only call free models. There is no DPA, sub-processor list or security certification.",
   "translations": {
     "de": {
-      "notes": "Poe wird von Quora, Inc. in den Vereinigten Staaten betrieben, daher besteht für das Land des Hauptsitzes kein EU-Angemessenheitsbeschluss. Primärquellen-Dokumentation bestätigt die Weitergabe von Chats an zugrunde liegende Modellanbieter und in einigen Fällen an Drittentwickler; in den konsultierten Primärquellen wurden jedoch weder ein öffentlicher Auftragsverarbeitungsvertrag (AVV), noch eine Liste der Unterauftragsverarbeiter, noch eine Erklärung zu Standardvertragsklauseln (SCC), noch eine Verpflichtung zur ausschließlich in der EU erfolgenden Verarbeitung gefunden.",
+      "notes": "Poe wird von Quora, Inc. (Mountain View, Kalifornien) betrieben, das nicht unter dem EU-US Data Privacy Framework zertifiziert ist. Die API unter api.poe.com wird mit Poe-Punkten aus einem Abonnement oder zugekauften Punkten bezahlt; kostenlose Konten können nur kostenlose Modelle aufrufen. Es gibt keinen AVV, keine Liste der Unterauftragsverarbeiter und keine Sicherheitszertifizierung.",
       "dataResidency": {
-        "euRegionDetails": "Poe gibt an, dass Chats mit KI-Modellanbietern und bei Half-Shield-Bots/-Apps mit Drittentwicklern geteilt werden. Die Dokumentation für Ersteller gibt ferner an, dass Ersteller die Inferenz bei externen Anbietern wie Fireworks, Together oder Replicate hosten oder ihre eigene Inferenz hosten können. In der Primärdokumentation von Poe/Quora wurde weder eine ausschließlich in der EU erfolgende Verarbeitung noch eine Garantie für eine EU-Region gefunden."
+        "euRegionDetails": "Es gibt keine EU-Region und keine Option für ausschließliche Verarbeitung in der EU. Anfragen gehen an die KI-Modellanbieter hinter dem jeweiligen Bot (zum Beispiel OpenAI, Anthropic, Google, Meta oder Fireworks AI) und bei Half-Shield-Bots zusätzlich an den Drittentwickler. Quora stützt Übermittlungen aus dem EWR nach eigenen Angaben auf Standardvertragsklauseln."
       },
       "dataUsage": {
-        "retentionPolicy": "Poe gibt an, dass beim Löschen von Chats durch einen Nutzer die Chats und die mit dem Konto verbundenen personenbezogenen Daten aus den Systemen von Poe gelöscht werden und nicht für andere Zwecke verwendet werden. Bei Löschung des Kontos wird das Konto nach Angaben von Quora sofort deaktiviert, kann innerhalb von 14 Tagen reaktiviert werden, und nach Ablauf der 14-tägigen Karenzfrist werden Inhalte/Profil dauerhaft gelöscht und personenbezogene Daten aus den Datenbanken von Quora entfernt, mit Ausnahme von Daten, die zur Erfüllung rechtlicher Verpflichtungen aufbewahrt werden können. Poe gibt außerdem an, dass jeder KI-Modellanbieter seinen eigenen Aufbewahrungszeitraum festlegt.",
-        "details": "Poe gibt an, dass offizielle Poe-Bots und von Nutzern erstellte Prompt-Bots unter Verwendung von Modellen von OpenAI, Anthropic, Google und Meta nicht mit Chats trainiert werden und auf Chats nicht zugreifen können, außer zur Erstellung der angeforderten Antwort. Poe erklärt ferner, dass Bots und Apps von Drittentwicklern Chats zum Training ihrer KI-Modelle verwenden können und dass Entwickler, die APIs nutzen, Chats auf ihren eigenen Servern einsehen und speichern können, um ihre Modelle zu trainieren."
+        "retentionPolicy": "Gelöschte Chats und die mit einem Konto verknüpften personenbezogenen Daten werden aus den Systemen von Poe entfernt; Memory-Zusammenfassungen können bestehen bleiben, bis der Nutzer sie in den Einstellungen löscht. Die Kontolöschung wird nach einer Frist von 14 Tagen wirksam, mit Ausnahmen für gesetzliche Pflichten. Jeder KI-Modellanbieter hat eigene Aufbewahrungsfristen, bei OpenAI und Anthropic zum Beispiel 30 Tage.",
+        "details": "Laut Poe trainieren offizielle Bots und Prompt-Bots auf Basis von Modellen von OpenAI, Anthropic, Google und Meta nicht mit Chats, und vollständig geschützte Bots werden von den Modellanbietern nicht für Training genutzt. Bots und Apps von Drittentwicklern (Half Shield) dürfen Chats für Training verwenden; die Voreinstellung gilt also nur beim Aufruf offizieller Modelle. Quora, Inc. ist Verantwortlicher; Auftragsverarbeitungsbedingungen werden nicht angeboten."
       }
     }
   }
