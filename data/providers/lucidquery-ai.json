@@ -45,12 +45,13 @@
     "https://lucidquery.com/pricing",
     "https://lucidquery.com/privacy",
     "https://lucidquery.com/terms",
-    "https://lucidquery.com/blog/introducing-agi-01-swift-world-engine"
+    "https://lucidquery.com/blog/introducing-agi-01-swift-world-engine",
+    "https://lucidquery.com/status"
   ],
-  "notes": "LucidQuery, SAS (Paris, France) sells pay-as-you-go access to its AGI 01 models through an OpenAI-compatible API and says they are built on open-source models inside its own orchestration layer. The website publishes no company address or registration number, no data processing agreement, no sub-processor list and no hosting or inference location. Free and Premium subscriptions cover the chat, LucidArc and LucidCode products; API use is billed separately per token.",
+  "notes": "LucidQuery, SAS (Paris, France) sells pay-as-you-go access to its AGI 01 models through an OpenAI-compatible API and says AGI 01 Swift is built on open-source models inside its own orchestration layer. The website publishes no company address or registration number, no data processing agreement, no sub-processor list and no documented hosting or inference location; only its status page mentions an EU-West region for the API. Free and Premium subscriptions cover the chat, LucidArc and LucidCode products; API use is billed separately per token.",
   "translations": {
     "de": {
-      "notes": "LucidQuery, SAS (Paris, Frankreich) bietet seine AGI-01-Modelle über eine OpenAI-kompatible API mit nutzungsabhängiger Abrechnung an und baut sie nach eigenen Angaben auf Open-Source-Modellen in einer eigenen Orchestrierungsschicht auf. Die Website nennt weder Firmenanschrift noch Registernummer und veröffentlicht keinen Auftragsverarbeitungsvertrag, keine Liste der Unterauftragsverarbeiter und keinen Hosting- oder Inferenzstandort. Kostenloser und Premium-Tarif gelten für Chat, LucidArc und LucidCode; die API wird separat pro Token abgerechnet.",
+      "notes": "LucidQuery, SAS (Paris, Frankreich) bietet seine AGI-01-Modelle über eine OpenAI-kompatible API mit nutzungsabhängiger Abrechnung an und baut AGI 01 Swift nach eigenen Angaben auf Open-Source-Modellen in einer eigenen Orchestrierungsschicht auf. Die Website nennt weder Firmenanschrift noch Registernummer und veröffentlicht weder einen Auftragsverarbeitungsvertrag noch eine Liste der Unterauftragsverarbeiter oder einen dokumentierten Hosting- oder Inferenzstandort; nur die Statusseite erwähnt eine Region EU-West für die API. Kostenloser und Premium-Tarif gelten für Chat, LucidArc und LucidCode; die API wird separat pro Token abgerechnet.",
       "dataUsage": {
         "retentionPolicy": "LucidQuery nennt keine Aufbewahrungsfrist für Prompts und Ausgaben der API. Laut den Nutzungsbedingungen kann LucidQuery Kontodaten nach einer Kündigung löschen.",
         "details": "Die Nutzungsbedingungen räumen LucidQuery eine Lizenz ein, Kundeninhalte ausschließlich zur Bereitstellung und Verbesserung der Dienste zu nutzen, zu kopieren, zu ändern und zu verarbeiten, ohne zu sagen, ob dies Modelltraining einschließt. Sie halten außerdem fest, dass LucidQuery personenbezogene Daten im Auftrag des Kunden verarbeitet; ein Auftragsverarbeitungsvertrag ist jedoch nicht veröffentlicht."
