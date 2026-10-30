@@ -144,9 +144,9 @@ export default async function ProviderProfilePage({ params }: PageProps) {
           current={provider.name}
         />
 
-        <div className="mt-5 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+        <div className="mt-5 grid grid-cols-1 gap-y-2.5 md:grid-cols-[minmax(0,1fr)_auto] md:items-center md:gap-x-6">
           <h1 className="m-0">{provider.name}</h1>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 max-md:order-last max-md:mt-1.5 md:col-start-2 md:row-start-1">
             {provider.apiDocsUrl ? (
               <a
                 href={provider.apiDocsUrl}
@@ -161,20 +161,20 @@ export default async function ProviderProfilePage({ params }: PageProps) {
               {t("actions.reportChange")}
             </a>
           </div>
-        </div>
-        <div className="mt-2.5 flex flex-wrap items-center gap-2.5">
-          <ComplianceBadge tier={tier} label="long" compliance={compliance} />
-          <span className="text-15 text-text-muted">{tType(provider.type)}</span>
-          {provider.website ? (
-            <a
-              href={provider.website}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-15 text-link hover:text-link-hover"
-            >
-              {provider.website.replace(/^https?:\/\//, "").replace(/\/$/, "")} ↗
-            </a>
-          ) : null}
+          <div className="flex flex-wrap items-center gap-2.5">
+            <ComplianceBadge tier={tier} label="long" compliance={compliance} />
+            <span className="text-15 text-text-muted">{tType(provider.type)}</span>
+            {provider.website ? (
+              <a
+                href={provider.website}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-15 text-link hover:text-link-hover"
+              >
+                {provider.website.replace(/^https?:\/\//, "").replace(/\/$/, "")} ↗
+              </a>
+            ) : null}
+          </div>
         </div>
 
         {compliance === null ? <p className="m-0 mt-7 text-15 text-text-muted">{t("noComplianceData")}</p> : null}

@@ -19,7 +19,7 @@ export function Breadcrumb({ trail, current }: BreadcrumbProps) {
             <li>
               <Link
                 href={item.href}
-                className="text-text-muted underline underline-offset-[0.2em] transition-colors duration-100 ease-out hover:text-text-primary"
+                className="text-text-muted underline underline-offset-[0.15em] transition-colors duration-100 ease-out hover:text-text-primary"
               >
                 {item.label}
               </Link>
