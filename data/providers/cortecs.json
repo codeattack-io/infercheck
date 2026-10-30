@@ -34,7 +34,7 @@
       "ISO27001"
     ],
     "euAiAct": {
-      "status": "not_applicable",
+      "status": "unknown",
       "details": "Cortecs describes its service as an AI gateway and routing infrastructure for third-party models. It withdrew its Code of Conduct, which contained its AI Act provider statement, on 12 August 2026 pending revision."
     },
     "sccs": false,

@@ -40,7 +40,7 @@
     ],
     "euAiAct": {
       "status": "monitoring",
-      "details": "OVHcloud has signed the European Commission's voluntary AI Pact pledges. AI Endpoints serves third-party open-weight models; no AI Act statement specific to AI Endpoints was found."
+      "details": "OVHcloud has signed the European Commission's voluntary AI Pact pledges. AI Endpoints serves third-party open-weight models; OVHcloud has published no AI Act statement specific to AI Endpoints."
     },
     "sccs": true,
     "adequacyDecision": true
@@ -73,7 +73,7 @@
         "details": "OVHcloud handelt gemäß seinem AVV als Auftragsverarbeiter. Laut den AI-Endpoints-Bedingungen verwendet OVHcloud Eingaben und Ausgaben in keiner Weise weiter, und OVHcloud erklärt, dass Kundendaten nie zum Training von Modellen genutzt werden."
       },
       "euAiAct": {
-        "details": "OVHcloud hat die freiwilligen AI-Pact-Zusagen der Europäischen Kommission unterzeichnet. AI Endpoints stellt Open-Weight-Modelle Dritter bereit; eine AI-Endpoints-spezifische Erklärung zum AI Act wurde nicht gefunden."
+        "details": "OVHcloud hat die freiwilligen AI-Pact-Zusagen der Europäischen Kommission unterzeichnet. AI Endpoints stellt Open-Weight-Modelle Dritter bereit; eine eigene Erklärung zum AI Act für AI Endpoints hat OVHcloud nicht veröffentlicht."
       }
     }
   }
