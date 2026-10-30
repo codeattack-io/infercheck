@@ -21,7 +21,7 @@
       "trainsOnCustomerData": null,
       "optOutAvailable": null,
       "retentionPolicy": "The privacy policy says IO.NET may keep the information it collects for as long as the account exists, and data written to a blockchain cannot be deleted. IO.NET publishes no retention period for regular API prompts and outputs. Only its confidential-compute models are documented as storing no prompts or responses and recording only token counts for billing.",
-      "details": "IO.NET does not state whether API prompts or outputs are used for training; its terms give it a broad, perpetual licence to use content users submit or process. Prompts run on GPUs supplied by independent data centres, miners and other operators in its network, which IO.NET does not list as sub-processors. Models marked Secure AI run in hardware-isolated environments (TEE) with no storage of prompts or responses."
+      "details": "IO.NET does not state whether API prompts or outputs are used for training; its terms give it a broad, perpetual licence to use content users submit or process. The API models run on \"io.net hardware\", which IO.NET describes as a network of GPUs from independent data centres, crypto miners and other suppliers that it does not list as sub-processors. Models marked Secure AI run in hardware-isolated environments (TEE) with no storage of prompts or responses."
     },
     "subProcessors": {
       "disclosed": false,
@@ -64,7 +64,7 @@
       },
       "dataUsage": {
         "retentionPolicy": "Laut Datenschutzrichtlinie kann IO.NET erhobene Informationen so lange speichern, wie das Konto besteht; auf eine Blockchain geschriebene Daten lassen sich nicht löschen. Für normale API-Prompts und -Antworten nennt IO.NET keine Speicherdauer. Nur für die Confidential-Compute-Modelle ist dokumentiert, dass Prompts und Antworten nicht gespeichert und lediglich Token-Zahlen für die Abrechnung erfasst werden.",
-        "details": "IO.NET sagt nicht, ob API-Prompts oder -Antworten für Training genutzt werden; die Nutzungsbedingungen räumen IO.NET eine weitreichende, unbefristete Lizenz an Inhalten ein, die Nutzer einreichen oder verarbeiten. Prompts laufen auf GPUs unabhängiger Rechenzentren, Miner und anderer Betreiber im Netzwerk, die IO.NET nicht als Unterauftragsverarbeiter aufführt. Als Secure AI gekennzeichnete Modelle laufen in hardwareisolierten Umgebungen (TEE), ohne dass Prompts oder Antworten gespeichert werden."
+        "details": "IO.NET sagt nicht, ob API-Prompts oder -Antworten für Training genutzt werden; die Nutzungsbedingungen räumen IO.NET eine weitreichende, unbefristete Lizenz an Inhalten ein, die Nutzer einreichen oder verarbeiten. Die API-Modelle laufen auf „io.net hardware“, die IO.NET als Netzwerk von GPUs unabhängiger Rechenzentren, Krypto-Miner und anderer Anbieter beschreibt, die es nicht als Unterauftragsverarbeiter aufführt. Als Secure AI gekennzeichnete Modelle laufen in hardwareisolierten Umgebungen (TEE), ohne dass Prompts oder Antworten gespeichert werden."
       }
     }
   }
