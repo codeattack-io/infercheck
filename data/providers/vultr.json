@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Vultr Serverless Inference has no region choice, and Vultr's public model catalog lists every model as running in a US data centre. Customers can pick EU data centres only for other Vultr products such as cloud compute, GPU servers and storage."
+      "euRegionDetails": "Vultr Serverless Inference has no region choice, and Vultr's public model catalog lists every model as running in a US data centre. The product page mentions running Serverless Inference on private GPU clusters for data-residency needs, but no EU location for the API is documented."
     },
     "dpa": {
       "available": true,
@@ -22,8 +22,8 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "The Responses endpoint stores nothing. Uploaded files expire after 30 days, and generated videos and songs are deleted 7 days after completion. Vultr publishes no retention period for chat prompts, outputs or request logs.",
-      "details": "Vultr acts as processor for customer content and states that it does not use or share that content except where required by law or for security. Its documents contain no statement on model training that is specific to Serverless Inference. A DPA is available on request and signed via DocuSign; its text is not public."
+      "retentionPolicy": "Vultr says inference data is processed in memory and not stored persistently by default. The Responses endpoint stores nothing; uploaded files expire after 30 days, and generated videos and songs are deleted 7 days after completion. Vultr publishes no retention period for request logs.",
+      "details": "Vultr acts as processor for customer content and states that it does not use or share that content except where required by law or for security; its terms license customer content to Vultr only to provide the services. The Serverless Inference product page says documents uploaded to its vector store can't be used for model training; there is no equivalent statement for prompts and outputs. A DPA is available on request and signed via DocuSign; its text is not public."
     },
     "subProcessors": {
       "disclosed": true,
@@ -68,18 +68,20 @@
     "https://www.vultr.com/pricing/",
     "https://www.dataprivacyframework.gov/list",
     "https://docs.vultr.com/support/platform/compliance/how-to-delete-or-retrieve-data-on-vultr",
-    "https://docs.vultr.com/support/platform/profile/can-i-delete-or-close-my-vultr-account"
+    "https://docs.vultr.com/support/platform/profile/can-i-delete-or-close-my-vultr-account",
+    "https://www.vultr.com/products/cloud-inference/",
+    "https://docs.vultr.com/support/products/serverless/how-secure-is-my-data-using-vultr-serverless-inference"
   ],
   "notes": "Vultr Serverless Inference is billed per token, and its public model catalog lists only US data centres. A DPA is available on request and signed via DocuSign; transfers rely on standard contractual clauses. Vultr's privacy policy claims participation in the EU-U.S. Data Privacy Framework, but Vultr is not on the official DPF list (checked 2026-10-30).",
   "translations": {
     "de": {
       "notes": "Vultr Serverless Inference wird pro Token abgerechnet; der öffentliche Modellkatalog führt nur Rechenzentren in den USA. Ein AVV ist auf Anfrage erhältlich und wird über DocuSign unterzeichnet; Übermittlungen stützen sich auf Standardvertragsklauseln. Laut Datenschutzerklärung nimmt Vultr am EU-U.S. Data Privacy Framework teil, auf der offiziellen DPF-Liste ist Vultr jedoch nicht verzeichnet (Stand 30.10.2026).",
       "dataResidency": {
-        "euRegionDetails": "Bei Vultr Serverless Inference lässt sich keine Region wählen; der öffentliche Modellkatalog von Vultr führt jedes Modell mit einem Rechenzentrum in den USA. EU-Rechenzentren können Kunden nur für andere Vultr-Produkte wie Cloud-Server, GPU-Server und Speicher wählen."
+        "euRegionDetails": "Bei Vultr Serverless Inference lässt sich keine Region wählen; der öffentliche Modellkatalog von Vultr führt jedes Modell mit einem Rechenzentrum in den USA. Die Produktseite erwähnt den Betrieb auf privaten GPU-Clustern für Anforderungen an die Datenresidenz, ein EU-Standort für die API ist jedoch nicht dokumentiert."
       },
       "dataUsage": {
-        "retentionPolicy": "Der Responses-Endpunkt speichert nichts. Hochgeladene Dateien laufen nach 30 Tagen ab, erzeugte Videos und Musikstücke werden 7 Tage nach Fertigstellung gelöscht. Für Chat-Prompts, Ausgaben und Request-Logs nennt Vultr keine Aufbewahrungsfrist.",
-        "details": "Vultr handelt für Kundeninhalte als Auftragsverarbeiter und erklärt, diese Inhalte nur zu nutzen oder weiterzugeben, wenn das Gesetz oder die Sicherheit es erfordert. Eine eigene Aussage zum Modelltraining speziell für Serverless Inference enthalten die Dokumente nicht. Ein AVV ist auf Anfrage erhältlich und wird über DocuSign unterzeichnet; sein Text ist nicht öffentlich."
+        "retentionPolicy": "Laut Vultr werden Inferenzdaten im Arbeitsspeicher verarbeitet und standardmäßig nicht dauerhaft gespeichert. Der Responses-Endpunkt speichert nichts; hochgeladene Dateien laufen nach 30 Tagen ab, erzeugte Videos und Musikstücke werden 7 Tage nach Fertigstellung gelöscht. Für Request-Logs nennt Vultr keine Aufbewahrungsfrist.",
+        "details": "Vultr handelt für Kundeninhalte als Auftragsverarbeiter und erklärt, diese Inhalte nur zu nutzen oder weiterzugeben, wenn das Gesetz oder die Sicherheit es erfordert; die Nutzungsbedingungen räumen Vultr Rechte an Kundeninhalten nur zur Erbringung der Dienste ein. Laut Produktseite von Serverless Inference können in den Vektorspeicher hochgeladene Dokumente nicht für Modelltraining genutzt werden; eine entsprechende Aussage für Prompts und Ausgaben fehlt. Ein AVV ist auf Anfrage erhältlich und wird über DocuSign unterzeichnet; sein Text ist nicht öffentlich."
       }
     }
   }
