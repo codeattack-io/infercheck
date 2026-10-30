@@ -8,11 +8,11 @@
     "headquarters": "SG",
     "dataResidency": {
       "regions": [
-        "SG"
+        "US"
       ],
       "euOnly": false,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": null
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "No EU region is offered. According to the API privacy policy, personal data, including API inputs and outputs, is stored in a US data center and processed by MiniMax or third-party vendors."
     },
     "dpa": {
       "available": false,
@@ -22,8 +22,8 @@
     "dataUsage": {
       "trainsOnCustomerData": null,
       "optOutAvailable": null,
-      "retentionPolicy": "The published privacy policy says personal data may be retained as long as necessary or permitted by law to fulfill the purpose for which it was collected, and will cease to be retained as soon as it is reasonable that the data is no longer required.",
-      "details": "MiniMax’s published privacy materials are general app/web policies for its services and do not provide a specific API-data training commitment or API-specific processing terms."
+      "retentionPolicy": "No fixed period. The API privacy policy says personal data is kept as long as necessary or permitted by law for the purpose it was collected for, then deleted or anonymised.",
+      "details": "The Open Platform terms let MiniMax use inputs and generated content to provide, maintain, develop and improve its services, and the API privacy policy only rules out training to profile or target consumers. MiniMax's EU training-data summaries for its current models state that data from user interactions with the model was not used for training. No opt-out for API data is documented."
     },
     "subProcessors": {
       "disclosed": false,
@@ -33,32 +33,37 @@
     "certifications": [],
     "euAiAct": {
       "status": "unknown",
-      "details": null
+      "details": "No AI Act compliance statement found, and MiniMax is not listed as a signatory of the GPAI Code of Practice. It publishes training-data summaries for its models under Article 53(1)(d) of the AI Act and names Prighter GmbH as its authorised representative in the EU."
     },
     "sccs": null,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://platform.minimax.io/docs",
+    "https://platform.minimax.io/protocol/privacy-policy",
+    "https://platform.minimax.io/protocol/terms-of-service",
+    "https://www.minimax.io/privacy-policy-v2.html",
+    "https://platform.minimax.io/docs/guides/transparency",
+    "https://file.cdn.minimax.io/public/m3-training-summary-20261019/M3-Public-Summary-of-Training-Content-for-General-V2.pdf",
     "https://platform.minimax.io/docs/pricing/overview",
-    "https://platform.minimax.io/docs/solutions/audiobook?key=68bc2a4f95a600dbfc92c7c8",
-    "https://www.minimax.io/audio/doc/privacy-policy.html",
-    "https://agent.minimax.io/doc/en/privacy-policy.html",
-    "https://www.minimax.io/protocol/cookie-policy",
-    "https://ir.minimax.io/corporate-information/company-profile",
-    "https://www.minimax.io/news/official-rules-mac-mini-giveaway",
-    "https://platform.minimax.io/docs/token-plan/promotion"
+    "https://platform.minimax.io/docs/guides/models-intro",
+    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
   ],
-  "notes": "MiniMax publicly provides a general privacy policy and an EU representative contact, but no primary-source DPA/AVV, sub-processor list, SCC statement, API-data training commitment, or EU-only processing guarantee was found on its official materials reviewed. Headquarters evidence points to Singapore (Nanonoble Pte. Ltd.), which does not have an EU adequacy decision.",
+  "notes": "The international API platform (platform.minimax.io) is operated by Nanonoble Pte. Ltd. in Singapore; according to its API privacy policy, personal data including API inputs and outputs is stored in a US data center, and no EU region is offered. No DPA, sub-processor list or certification is published, and the policy names its EU representative only by an email address. Billing is self-serve pay-as-you-go, with M Plan subscriptions as an alternative.",
   "translations": {
     "de": {
-      "notes": "MiniMax veröffentlicht öffentlich eine allgemeine Datenschutzerklärung sowie die Kontaktdaten eines EU-Vertreters, jedoch wurden in den geprüften offiziellen Unterlagen keine Primärquellen zu einem Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Erklärung zu Standardvertragsklauseln (SCC), keine Zusage zum Training mit API-Daten und keine Garantie für eine ausschließlich in der EU erfolgende Verarbeitung gefunden. Hinweise zum Hauptsitz verweisen auf Singapur (Nanonoble Pte. Ltd.), für das kein EU-Angemessenheitsbeschluss besteht.",
+      "notes": "Die internationale API-Plattform (platform.minimax.io) wird von der Nanonoble Pte. Ltd. in Singapur betrieben; laut API-Datenschutzerklärung werden personenbezogene Daten einschließlich API-Eingaben und -Ausgaben in einem Rechenzentrum in den USA gespeichert, eine EU-Region wird nicht angeboten. Weder ein Auftragsverarbeitungsvertrag noch eine Liste der Unterauftragsverarbeiter oder eine Zertifizierung ist veröffentlicht, und für ihren EU-Vertreter nennt die Erklärung nur eine E-Mail-Adresse. Abgerechnet wird per Selbstbedienung nach Verbrauch; alternativ gibt es M-Plan-Abonnements.",
       "dataUsage": {
-        "retentionPolicy": "Die veröffentlichte Datenschutzerklärung besagt, dass personenbezogene Daten so lange aufbewahrt werden können, wie es erforderlich oder gesetzlich zulässig ist, um den Zweck zu erfüllen, für den sie erhoben wurden, und dass die Aufbewahrung beendet wird, sobald vernünftigerweise davon ausgegangen werden kann, dass die Daten nicht mehr benötigt werden.",
-        "details": "Die von MiniMax veröffentlichten Datenschutzunterlagen sind allgemeine Richtlinien für Apps/Webdienste für seine Services und enthalten weder eine spezifische Zusage zum Training mit API-Daten noch API-spezifische Verarbeitungsbedingungen."
+        "retentionPolicy": "Keine feste Frist. Laut API-Datenschutzerklärung werden personenbezogene Daten so lange gespeichert, wie es für den Erhebungszweck erforderlich oder gesetzlich zulässig ist, und danach gelöscht oder anonymisiert.",
+        "details": "Die Nutzungsbedingungen der Open Platform erlauben MiniMax, Eingaben und erzeugte Inhalte zur Bereitstellung, Wartung, Entwicklung und Verbesserung seiner Dienste zu nutzen; die API-Datenschutzerklärung schließt nur Training zur Profilbildung oder gezielten Ansprache von Verbrauchern aus. Laut den EU-Zusammenfassungen der Trainingsdaten für die aktuellen Modelle wurden Daten aus Nutzerinteraktionen mit dem Modell nicht für das Training verwendet. Eine Opt-out-Möglichkeit für API-Daten ist nicht dokumentiert."
+      },
+      "dataResidency": {
+        "euRegionDetails": "Eine EU-Region wird nicht angeboten. Laut API-Datenschutzerklärung werden personenbezogene Daten einschließlich API-Eingaben und -Ausgaben in einem Rechenzentrum in den USA gespeichert und von MiniMax oder Drittanbietern verarbeitet."
+      },
+      "euAiAct": {
+        "details": "Keine Erklärung zur Einhaltung des AI Act gefunden; MiniMax ist nicht als Unterzeichner des GPAI-Verhaltenskodex gelistet. MiniMax veröffentlicht nach Artikel 53 Abs. 1 lit. d AI Act Zusammenfassungen der Trainingsdaten seiner Modelle und benennt die Prighter GmbH als Bevollmächtigten in der EU."
       }
     }
   }
