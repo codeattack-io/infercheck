@@ -1,68 +1,61 @@
-"use client";
-
-// ProviderModelRow: a single row in the provider page model table.
-// Client component so we can handle hover state and row-level navigation.
-
-import { useState } from "react";
-import { Link, useRouter } from "@/i18n/navigation";
-import type { ProviderModel } from "@/components/types";
-import { GatewayPill } from "@/components/GatewayPill";
 import { useLocale, useTranslations } from "next-intl";
-import { formatContext, formatPrice } from "@/lib/format";
+import { Link } from "@/i18n/navigation";
+import { GatewayPill } from "@/components/GatewayPill";
+import { Price } from "@/components/Price";
+import { formatContext, modelDisplayName } from "@/lib/format";
+import type { ProviderModel } from "@/components/types";
 
 interface ProviderModelRowProps {
   model: ProviderModel;
-  gateway?: boolean;
+  /** Marks the row as a third-party model served through this provider. */
+  gatewayProviderName?: string;
 }
 
-export function ProviderModelRow({ model: m, gateway = false }: ProviderModelRowProps) {
-  const [hovered, setHovered] = useState(false);
-  const router = useRouter();
-  const locale = useLocale();
-  const tf = useTranslations("Format");
-  const priceFormat = { locale, freeLabel: tf("free"), currency: m.priceCurrency };
+const TD_CLASS = "border-b border-border px-4 py-3 align-middle text-15 max-md:border-0 max-md:p-0";
 
+export function ProviderModelRow({ model: m, gatewayProviderName }: ProviderModelRowProps) {
+  const t = useTranslations("ProviderPage.models");
+  const locale = useLocale();
+  const modality = t.has(`modality.${m.modality}`) ? t(`modality.${m.modality}`) : m.modality;
   const href = `/model/${encodeURIComponent(m.canonicalModelId ?? m.id.split("/").pop() ?? m.id)}`;
 
-  function handleClick() {
-    router.push(href);
-  }
-
   return (
-    <tr
-      key={`${m.id}::${m.providerSlug}`}
-      className="border-b border-border last:border-b-0 cursor-pointer transition-colors duration-100 ease-in-out"
-      style={{
-        backgroundColor: hovered
-          ? "color-mix(in srgb, var(--color-surface-alt) 60%, var(--color-surface))"
-          : "var(--color-surface)",
-      }}
-      onClick={handleClick}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <td className="px-4 py-[10px]">
-        <div className="flex items-center gap-2 flex-wrap">
+    <tr className="group relative transition-colors duration-150 ease-out hover:bg-row-hover max-md:grid max-md:grid-cols-[minmax(0,1fr)_auto] max-md:items-baseline max-md:gap-x-3 max-md:gap-y-1.5 max-md:border-b max-md:border-b-border max-md:px-3.5 max-md:py-3">
+      <td className={`${TD_CLASS} pl-5 max-md:col-span-full`}>
+        <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
           <Link
             href={href}
-            onClick={(e) => e.stopPropagation()}
-            className="font-body text-[0.875rem] font-medium text-text-primary no-underline"
+            className="text-16 leading-[1.35] font-medium text-pretty text-text-primary no-underline after:absolute after:inset-0 after:content-[''] focus-visible:rounded-[3px] focus-visible:outline-offset-3"
           >
-            {m.displayName}
+            {modelDisplayName(m.displayName)}
           </Link>
-          {gateway ? <GatewayPill size="sm" /> : null}
-        </div>
-        <div className="font-mono text-xs text-text-muted mt-0.5">{m.id}</div>
+          {gatewayProviderName ? <GatewayPill providerName={gatewayProviderName} className="relative" /> : null}
+        </span>
+        <span className="mt-0.5 block text-14 text-text-muted [overflow-wrap:anywhere]">{m.id}</span>
       </td>
-      <td className="px-4 py-[10px] font-body text-[0.8125rem] text-text-secondary">{m.modality}</td>
-      <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
+      <td className={`${TD_CLASS} text-text-secondary max-md:hidden`}>{modality}</td>
+      <td
+        className={`${TD_CLASS} text-right whitespace-nowrap text-text-secondary tabular-nums max-md:order-last max-md:text-14 max-md:text-text-muted`}
+      >
+        <span className="md:hidden">{modality} · </span>
         {formatContext(m.contextWindow, locale)}
       </td>
-      <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
-        {formatPrice(m.inputPricePerMTokens, priceFormat)}
+      <td className={`${TD_CLASS} text-right whitespace-nowrap tabular-nums max-md:text-left max-md:text-16`}>
+        <Price model={m} />
       </td>
-      <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
-        {formatPrice(m.outputPricePerMTokens, priceFormat)}
+      <td className="w-11 border-b border-border py-3 pr-3.5 pl-0 text-right align-middle max-md:hidden">
+        <svg
+          viewBox="0 0 18 18"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+          className="inline-block size-[18px] align-middle text-text-muted"
+        >
+          <path d="M3.5 9h11M10 4.5 14.5 9 10 13.5" />
+        </svg>
       </td>
     </tr>
   );

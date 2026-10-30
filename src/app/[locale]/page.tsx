@@ -12,7 +12,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { ModelBrowser } from "@/components/ModelBrowser";
 import { getCatalogModels } from "@/lib/models";
-import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
+import { getAllProviders, getLocalizedProvider, getPanelProvider } from "@/lib/providers";
 import type { ModelWithProvider } from "@/components/types";
 import type { AnyProvider } from "@/lib/compliance";
 
@@ -53,7 +53,9 @@ export default async function HomePage({ params }: HomePageProps) {
   const [allModels, allProviders] = await Promise.all([getCatalogModels(), Promise.resolve(getAllProviders())]);
 
   // Build provider lookup map — js-index-maps rule
-  const providerMap = new Map<string, AnyProvider>(allProviders.map((p) => [p.slug, getLocalizedProvider(p, locale)]));
+  const providerMap = new Map<string, AnyProvider>(
+    allProviders.map((p) => [p.slug, getPanelProvider(getLocalizedProvider(p, locale))])
+  );
 
   // Serialize: only pass what client components need — server-serialization rule
   const items: ModelWithProvider[] = allModels.map((model) => ({
@@ -81,22 +83,9 @@ export default async function HomePage({ params }: HomePageProps) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <main className="max-w-[1200px] mx-auto flex-1 w-full box-border px-4 sm:px-6 lg:px-10 py-10">
-        {/* Page heading */}
-        <div className="mb-8">
-          <h1 className="font-display text-[2.5rem] font-normal text-heading leading-[1.15] m-0 mb-3 tracking-[-0.02em]">
-            {t("heading1")}
-            <br />
-            {t("heading2")}
-          </h1>
-          <p className="font-body text-[0.9375rem] text-text-secondary m-0 max-w-[55ch] leading-[1.6]">
-            {items.length > 0
-              ? t("subheadingWithData", { modelCount: allModels.length, providerCount: providerMap.size })
-              : t("subheadingEmpty")}
-          </p>
-        </div>
-
-        <ModelBrowser items={items} />
+      <main className="page-width flex-1">
+        <h1 className="m-0 pt-7 pb-5 max-md:pt-5 max-md:pb-3.5">{t("heading")}</h1>
+        <ModelBrowser items={items} providerCount={allProviders.length} />
       </main>
     </>
   );

@@ -1,43 +1,66 @@
 "use client";
 
-// ModelBrowser: the filter bar and model table, driven by the URL query string.
-//
-// The page is prerendered without query state. On a full page load of a shared
-// link, an inline script hides this block before first paint until the client
-// has rendered the URL's search, filter and sort state.
-
-import { useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
+import { useTranslations } from "next-intl";
 import { FilterBar } from "@/components/FilterBar";
-import { ModelTable } from "@/components/ModelTable";
+import { ModelTable, useModelList, useUrlSort } from "@/components/ModelTable";
+import { SearchField, useSearchQuery } from "@/components/SearchField";
+import { UrlStateBlock } from "@/components/UrlStateBlock";
+import { activeFilterFromSearchParams, FILTER_PARAMS } from "@/lib/model-list";
+import { FINDER_CLASS } from "@/lib/styles";
 import { useUrlSearchParams } from "@/lib/url-state";
 import type { ModelWithProvider } from "@/components/types";
 
-const TABLE_URL_PARAMS = ["q", "profile", "sort", "euOnly", "dpa", "noTraining", "sccs"];
-const PENDING_ATTRIBUTE = "data-url-pending";
-const PENDING_SCRIPT = `(function(){var s=new URLSearchParams(location.search);if(${JSON.stringify(TABLE_URL_PARAMS)}.some(function(k){return s.has(k)}))document.currentScript.parentElement.setAttribute("${PENDING_ATTRIBUTE}","")})()`;
+const URL_PARAMS = ["q", "sort", ...FILTER_PARAMS];
 
-export function ModelBrowser({ items }: { items: ModelWithProvider[] }) {
+interface ModelBrowserProps {
+  items: ModelWithProvider[];
+  providerCount: number;
+}
+
+export function ModelBrowser({ items, providerCount }: ModelBrowserProps) {
+  const t = useTranslations("Finder");
   const searchParams = useUrlSearchParams();
-  const ref = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  useLayoutEffect(() => {
-    if (searchParams.toString() === new URLSearchParams(window.location.search).toString()) {
-      ref.current?.removeAttribute(PENDING_ATTRIBUTE);
-    }
-  }, [searchParams]);
+  const search = useSearchQuery(searchParams);
+  const filter = activeFilterFromSearchParams(searchParams);
+  const { sort, onSort } = useUrlSort(searchParams);
+  const list = useModelList(items, { query: search.value, filter, sort });
+
+  const narrowed = search.value.trim() !== "" || filter !== null;
+  const count = narrowed
+    ? t("countFiltered", { matching: list.matching.length, total: items.length })
+    : t("countAll", { models: items.length, providers: providerCount });
+
+  const reset = () => {
+    const params = new URLSearchParams(window.location.search);
+    for (const key of ["q", ...FILTER_PARAMS]) params.delete(key);
+    search.clear(params);
+    inputRef.current?.focus();
+  };
 
   return (
-    <div ref={ref} suppressHydrationWarning>
-      {/* NOTE: client renders must not emit an executable script; React warns and never runs it. */}
-      <script
-        type={typeof window === "undefined" ? "text/javascript" : "text/plain"}
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{ __html: PENDING_SCRIPT }}
+    <UrlStateBlock params={URL_PARAMS} searchParams={searchParams}>
+      <section aria-label={t("label")} className={FINDER_CLASS}>
+        <SearchField
+          id="model-search"
+          search={search}
+          inputRef={inputRef}
+          label={t("searchLabel")}
+          placeholder={t("searchPlaceholder")}
+          clearLabel={t("clearSearch")}
+        />
+        <FilterBar searchParams={searchParams} count={count} />
+      </section>
+      <ModelTable
+        {...list}
+        sort={sort}
+        onSort={onSort}
+        query={search.value}
+        onReset={reset}
+        className="mt-5 max-md:mt-4"
       />
-      <div className="mb-6">
-        <FilterBar searchParams={searchParams} />
-      </div>
-      <ModelTable items={items} searchParams={searchParams} />
-    </div>
+    </UrlStateBlock>
   );
 }
