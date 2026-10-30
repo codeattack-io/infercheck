@@ -9,9 +9,7 @@
     "dataResidency": {
       "regions": [
         "US",
-        "BE",
-        "DE",
-        "IS",
+        "EU",
         "SG"
       ],
       "euOnly": false,
@@ -46,14 +44,14 @@
       "details": "GitHub states it is committed to safe, secure, and trustworthy AI, follows Microsoft's Responsible AI Standard, aligns implementation with the NIST AI RMF, and has completed Responsible AI Impact Assessment plus security and privacy reviews. No explicit statement claiming EU AI Act compliance for GitHub Models was found."
     },
     "sccs": true,
-    "adequacyDecision": false
+    "adequacyDecision": true
   },
-  "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "pricingTier": null,
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://docs.github.com/en/github-models",
-    "https://docs.github.com/en/billing/concepts/product-billing/github-models",
+    "https://github.blog/changelog/2026-07-30-github-models-is-now-retired/",
     "https://github.com/customer-terms",
     "https://docs.github.com/en/site-policy/privacy-policies/github-subprocessors",
     "https://github.com/trust-center/privacy",
@@ -61,12 +59,13 @@
     "https://docs.github.com/en/enterprise-cloud@latest/admin/overview/accessing-compliance-reports-for-your-enterprise",
     "https://github.com/trust-center",
     "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service",
-    "https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement"
+    "https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement",
+    "https://www.dataprivacyframework.gov/participant/6174"
   ],
-  "notes": "GitHub Models is documented as a metered GitHub service, but the most specific processor/privacy terms GitHub publishes are generally at the GitHub platform, Enterprise/Copilot, and subprocessor-list level rather than a dedicated GitHub Models DPA or residency page. Primary sources reviewed do not provide an EU-only inference guarantee, and the disclosed AI subprocessors include both EU and non-EU processing locations.",
+  "notes": "GitHub retired GitHub Models on 30 July 2026; the playground, model catalog, inference API and bring-your-own-key (BYOK) access are no longer available to any customer. The compliance details describe the service as it was offered before retirement, based on GitHub platform documents; GitHub, Inc. is certified under the EU-US Data Privacy Framework. GitHub points to Azure AI Foundry and GitHub Copilot as alternatives.",
   "translations": {
     "de": {
-      "notes": "GitHub Models ist als nutzungsabhängiger GitHub-Dienst dokumentiert, jedoch veröffentlicht GitHub die spezifischsten Auftragsverarbeiter-/Datenschutzbedingungen in der Regel auf der Ebene der GitHub-Plattform, von Enterprise/Copilot sowie der Liste der Unterauftragsverarbeiter und nicht in Form eines speziellen Auftragsverarbeitungsvertrags (AVV) oder einer speziellen Seite zur Datenhaltung für GitHub Models. Die geprüften Primärquellen enthalten keine Garantie für eine ausschließlich in der EU erfolgende Inferenz, und die offengelegten KI-Unterauftragsverarbeiter umfassen sowohl Verarbeitungsstandorte in der EU als auch außerhalb der EU.",
+      "notes": "GitHub hat GitHub Models am 30. Juli 2026 eingestellt; Playground, Modellkatalog, Inferenz-API und Bring Your Own Key (BYOK) stehen keinem Kunden mehr zur Verfügung. Die Compliance-Angaben beschreiben den Dienst, wie er vor der Einstellung angeboten wurde, auf Grundlage der GitHub-Plattformdokumente; GitHub, Inc. ist unter dem EU-US Data Privacy Framework zertifiziert. Als Alternativen verweist GitHub auf Azure AI Foundry und GitHub Copilot.",
       "dataResidency": {
         "euRegionDetails": "GitHub legt öffentlich Unterauftragsverarbeiter für KI-Inferenz/Datenhosting mit Verarbeitungsstandorten offen, darunter die Vereinigten Staaten, Belgien, Deutschland, Island und Singapur. Die geprüfte Dokumentation zu GitHub Models enthielt weder eine Option für eine ausschließlich in der EU erfolgende Datenhaltung noch eine Garantie für ein kundenseitig wählbares Routing der Inferenz ausschließlich innerhalb der EU."
       },

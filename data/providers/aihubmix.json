@@ -2,7 +2,7 @@
   "slug": "aihubmix",
   "name": "AIHubMix",
   "type": "api_provider",
-  "website": "https://docs.aihubmix.com",
+  "website": "https://aihubmix.com",
   "apiDocsUrl": "https://docs.aihubmix.com/en",
   "compliance": {
     "headquarters": "US",
@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "AIHubMix states its servers and databases are located on Microsoft Azure in the USA. Its documentation also says requests may be routed to multiple third-party AI providers and that OpenAI requests may be randomly routed to Azure OpenAI for content review, so EU-only processing is not offered in the reviewed primary sources."
+      "euRegionDetails": "No EU processing option is offered. AIHubMix runs on Google Cloud in the US and forwards requests to the selected model provider, which may process them in other countries."
     },
     "dpa": {
       "available": false,
@@ -20,10 +20,10 @@
       "signedVia": "not_available"
     },
     "dataUsage": {
-      "trainsOnCustomerData": null,
-      "optOutAvailable": null,
-      "retentionPolicy": "AIHubMix says it retains personal information as long as necessary for the purposes in its privacy policy, then securely deletes or anonymizes it. It says it does not actively store prompts or model responses, but stores request metadata, and may retain prompt/response-related information when an account is banned and a compliance notification is received. It also says downstream model providers have their own logging and retention policies.",
-      "details": "AIHubMix says user input and model output are not stored for normal API usage and are used solely for billing and service optimization, not content analysis or third-party sharing. However, downstream providers may log access for security or compliance, and their own retention/training terms apply."
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "Zero data retention is on by default: AIHubMix keeps request metadata but not prompts or outputs. Content is kept only if the customer opts out of zero data retention, in a debugging mode the customer requests, or when an account is banned after a compliance notification. Upstream model providers apply their own retention, from none to 55 days or unknown, according to the AIHubMix vendor table.",
+      "details": "AIHubMix does not store or train on prompts and outputs by default. Customers who opt out of zero data retention in exchange for discounts allow their de-identified data to be used for training. The AIHubMix vendor table marks some upstream model providers as possibly using requests for training, including Chutes, DeepSeek, Ideogram, Jina AI, MiniMax and Nvidia."
     },
     "subProcessors": {
       "disclosed": false,
@@ -39,25 +39,27 @@
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
+    "https://aihubmix.com/about",
+    "https://aihubmix.com/legal/privacy",
+    "https://aihubmix.com/legal/terms",
+    "https://aihubmix.com/legal/zdr",
     "https://docs.aihubmix.com/en",
-    "https://docs.aihubmix.com/en/terms-and-privacy/Privacy",
-    "https://docs.aihubmix.com/en/terms-and-privacy/Terms",
     "https://docs.aihubmix.com/en/api/Data-Pravicy",
-    "https://docs.aihubmix.com/en/FAQs/Faq"
+    "https://docs.aihubmix.com/en/console/billing"
   ],
-  "notes": "Primary-source materials reviewed show a US-based provider with servers/databases in the USA and no published DPA, SCC, sub-processor list, or security certification evidence found in the official docs reviewed. AIHubMix says it does not actively store prompts/responses in normal operation, but downstream model-provider policies apply and some compliance-triggered retention may occur.",
+  "notes": "AIHubMix is an API gateway run by AIHubMix, LLC (Delaware) on Google Cloud in the US, with disputes settled by arbitration in Singapore. Zero data retention is the default, but there is no DPA, sub-processor list or named transfer mechanism, and the privacy policy calls AIHubMix a controller under the GDPR. Each upstream model provider's own data policy also applies.",
   "translations": {
     "de": {
-      "notes": "Die geprüften Primärquellen weisen auf einen in den USA ansässigen Anbieter mit Servern/Datenbanken in den USA hin; in den geprüften offiziellen Unterlagen wurden weder ein veröffentlichter Auftragsverarbeitungsvertrag (AVV), Standardvertragsklauseln (SCC), eine Liste der Unterauftragsverarbeiter noch Nachweise über Sicherheitszertifizierungen gefunden. AIHubMix gibt an, Prompts/Antworten im Normalbetrieb nicht aktiv zu speichern; es gelten jedoch die Richtlinien nachgelagerter Modellanbieter, und eine gewisse, durch Compliance-Anforderungen ausgelöste Aufbewahrung kann erfolgen.",
+      "notes": "AIHubMix ist ein API-Gateway der AIHubMix, LLC (Delaware) auf Google Cloud in den USA; Streitigkeiten werden per Schiedsverfahren in Singapur entschieden. Zero Data Retention ist Standard, es gibt aber keinen AVV, keine Liste der Unterauftragsverarbeiter und keinen benannten Übermittlungsmechanismus, und die Datenschutzerklärung bezeichnet AIHubMix als Verantwortlichen im Sinne der DSGVO. Zusätzlich gelten die Datenrichtlinien der jeweiligen Modellanbieter.",
       "dataResidency": {
-        "euRegionDetails": "AIHubMix gibt an, dass sich seine Server und Datenbanken auf Microsoft Azure in den USA befinden. In der Dokumentation wird außerdem ausgeführt, dass Anfragen an mehrere Drittanbieter von KI weitergeleitet werden können und dass OpenAI-Anfragen zur Inhaltsprüfung nach dem Zufallsprinzip an Azure OpenAI weitergeleitet werden können; eine ausschließlich auf die EU beschränkte Verarbeitung wird in den geprüften Primärquellen daher nicht angeboten."
+        "euRegionDetails": "Eine Verarbeitung in der EU wird nicht angeboten. AIHubMix läuft auf Google Cloud in den USA und leitet Anfragen an den gewählten Modellanbieter weiter, der sie auch in anderen Ländern verarbeiten kann."
       },
       "dataUsage": {
-        "retentionPolicy": "AIHubMix gibt an, personenbezogene Informationen so lange aufzubewahren, wie dies für die in seiner Datenschutzerklärung genannten Zwecke erforderlich ist, und diese anschließend sicher zu löschen oder zu anonymisieren. Ferner wird angegeben, dass Prompts oder Modellantworten nicht aktiv gespeichert werden, jedoch Metadaten zu Anfragen gespeichert werden und dass bei Sperrung eines Kontos sowie Eingang einer Compliance-Benachrichtigung Informationen im Zusammenhang mit Prompts/Antworten aufbewahrt werden können. Außerdem wird darauf hingewiesen, dass nachgelagerte Modellanbieter über eigene Protokollierungs- und Aufbewahrungsrichtlinien verfügen.",
-        "details": "AIHubMix gibt an, dass Benutzereingaben und Modellausgaben bei normaler API-Nutzung nicht gespeichert und ausschließlich für die Abrechnung und Serviceoptimierung verwendet werden, nicht jedoch für Inhaltsanalysen oder die Weitergabe an Dritte. Nachgelagerte Anbieter können Zugriffe jedoch zu Sicherheits- oder Compliance-Zwecken protokollieren, und es gelten deren eigene Bedingungen zur Aufbewahrung und zum Training."
+        "retentionPolicy": "Standardmäßig gilt Zero Data Retention: AIHubMix speichert Metadaten zu Anfragen, aber keine Prompts oder Ausgaben. Inhalte werden nur gespeichert, wenn der Kunde auf Zero Data Retention verzichtet, in einem vom Kunden angeforderten Debug-Modus oder wenn ein Konto nach einer Compliance-Meldung gesperrt wird. Die vorgelagerten Modellanbieter haben laut der Anbietertabelle von AIHubMix eigene Aufbewahrungsfristen: von keiner Speicherung bis zu 55 Tagen, teils auch unbekannt.",
+        "details": "AIHubMix speichert Prompts und Ausgaben standardmäßig nicht und trainiert nicht damit. Kunden, die gegen Rabatte auf Zero Data Retention verzichten, erlauben die Nutzung ihrer anonymisierten Daten für das Training. Laut der Anbietertabelle von AIHubMix können einige vorgelagerte Modellanbieter Anfragen zum Training verwenden, darunter Chutes, DeepSeek, Ideogram, Jina AI, MiniMax und Nvidia."
       }
     }
   }

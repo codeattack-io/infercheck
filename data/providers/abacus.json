@@ -3,7 +3,7 @@
   "name": "Abacus",
   "type": "api_provider",
   "website": "https://abacus.ai",
-  "apiDocsUrl": "https://abacus.ai/help/api/ref/llm_apps/getLLMAppResponse",
+  "apiDocsUrl": "https://abacus.ai/help/route-llm/",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Primary documentation states open-source models are hosted on secure US-based servers and RouteLLM documentation states open-weight LLMs are hosted on servers in the United States. A secure deployment options document says enterprise deployments can be hosted on AWS, GCP, or Azure of the customer's choice, including customer-owned storage/VPC options, but no primary source found guarantees EU-only inference for the public API."
+      "euRegionDetails": "Open-weight models in the RouteLLM API run on servers in the United States. Requests to proprietary models are passed to their providers. The DPA lists sub-processor regions in the US, Canada, the EU and Asia, but there is no EU-only option for the API. For its enterprise platform, Abacus also describes single-tenant and customer-owned cloud deployments."
     },
     "dpa": {
       "available": true,
@@ -21,18 +21,17 @@
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
-      "optOutAvailable": null,
-      "retentionPolicy": "Abacus states it does not use customer data, prompts, uploads, or API data to train models. It says third-party/foundation model exchanges are zero-retention and deleted immediately after processing, but account/profile content and user content may be retained for a commercially reasonable time after termination for backup, archival, and audit purposes.",
+      "optOutAvailable": false,
+      "retentionPolicy": "Abacus says it has zero-retention agreements with the third-party model providers it uses. Its security page says customer data is kept for up to 30 days after the service ends and then deleted. The privacy policy also allows keeping account data and user content for a commercially reasonable time for backup, archiving and audits.",
       "details": "Abacus says user data is used solely to execute user-initiated queries and tasks, and that it has enterprise agreements with providers such as OpenAI, Anthropic, and Google to prevent customer data from being used for training."
     },
     "subProcessors": {
-      "disclosed": false,
-      "url": null,
-      "includesEuEntities": null
+      "disclosed": true,
+      "url": "https://static.abacus.ai/security/Abacus_dpa.pdf",
+      "includesEuEntities": true
     },
     "certifications": [
-      "SOC2",
-      "HIPAA"
+      "SOC2"
     ],
     "euAiAct": {
       "status": "unknown",
@@ -41,28 +40,29 @@
     "sccs": true,
     "adequacyDecision": false
   },
-  "pricingTier": "free_tier",
-  "lastVerified": "2026-04-11",
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://abacus.ai/privacy",
+    "https://abacus.ai/privacy-policy",
     "https://static.abacus.ai/security/Abacus_dpa.pdf",
     "https://abacus.ai/security",
     "https://static.abacus.ai/security/AbacusSecureDeploymentOptions.pdf",
     "https://abacus.ai/help/chatllm-ai-super-assistant/faqs/data-security",
-    "https://abacus.ai/help/developer-platform/route-llm/api",
+    "https://abacus.ai/help/chatllm-ai-super-assistant/faqs/billing",
+    "https://abacus.ai/help/route-llm/",
     "https://abacus.ai/help/api/ref/llm_apps/getLLMAppResponse",
-    "https://abacus.ai/help/chatllm-ai-super-assistant/purchase-domains"
+    "https://abacus.ai/enterprise"
   ],
-  "notes": "Abacus publishes a privacy policy and a public DPA that includes SCCs. Primary-source materials clearly say customer/API data is not used for training and that third-party model use is zero-retention, but public documentation does not provide a public sub-processor list or a guaranteed EU-only inference commitment for the general API; available public docs point mainly to US hosting.",
+  "notes": "Abacus offers the RouteLLM API as part of its paid ChatLLM subscription, with usage billed in credits, and runs open-weight models in the United States. Its published DPA becomes part of the customer agreement once incorporated, lists sub-processors and refers to standard contractual clauses that are not attached to the public copy. Abacus.AI is not listed under the EU-US Data Privacy Framework, and its privacy policy still refers to the invalidated Privacy Shield.",
   "translations": {
     "de": {
-      "notes": "Abacus veröffentlicht eine Datenschutzerklärung und einen öffentlichen Auftragsverarbeitungsvertrag (AVV), der Standardvertragsklauseln (SCC) enthält. Primärquellen stellen eindeutig fest, dass Kunden-/API-Daten nicht für das Training verwendet werden und dass die Nutzung von Drittanbieter-Modellen ohne Datenspeicherung erfolgt (Zero-Retention), jedoch enthalten die öffentlich zugänglichen Unterlagen weder eine öffentliche Liste der Unterauftragsverarbeiter noch eine garantierte Verpflichtung zur ausschließlich in der EU erfolgenden Inferenz für die allgemeine API; die verfügbaren öffentlichen Unterlagen verweisen hauptsächlich auf Hosting in den USA.",
+      "notes": "Abacus bietet die RouteLLM-API als Teil seines kostenpflichtigen ChatLLM-Abos an, die Nutzung wird in Credits abgerechnet; Open-Weight-Modelle betreibt Abacus in den USA. Der veröffentlichte Auftragsverarbeitungsvertrag wird Teil des Kundenvertrags, sobald er einbezogen ist, nennt die Unterauftragsverarbeiter und verweist auf Standardvertragsklauseln, die der öffentlichen Fassung nicht beiliegen. Abacus.AI ist nicht unter dem EU-US Data Privacy Framework gelistet, und seine Datenschutzerklärung verweist weiterhin auf den für ungültig erklärten Privacy Shield.",
       "dataResidency": {
-        "euRegionDetails": "Die Primärdokumentation gibt an, dass Open-Source-Modelle auf sicheren, in den USA befindlichen Servern gehostet werden, und die RouteLLM-Dokumentation gibt an, dass Open-Weight-LLMs auf Servern in den Vereinigten Staaten gehostet werden. Ein Dokument zu sicheren Bereitstellungsoptionen besagt, dass Enterprise-Bereitstellungen auf AWS, GCP oder Azure nach Wahl des Kunden gehostet werden können, einschließlich kundeneigener Speicher-/VPC-Optionen, jedoch wurde keine Primärquelle gefunden, die für die öffentliche API eine ausschließlich in der EU erfolgende Inferenz garantiert."
+        "euRegionDetails": "Open-Weight-Modelle in der RouteLLM-API laufen auf Servern in den USA. Anfragen an proprietäre Modelle werden an deren Anbieter weitergeleitet. Der AVV nennt Regionen von Unterauftragsverarbeitern in den USA, Kanada, der EU und Asien, eine reine EU-Option für die API gibt es aber nicht. Für seine Enterprise-Plattform beschreibt Abacus zudem Single-Tenant-Bereitstellungen und Bereitstellungen in kundeneigenen Cloud-Umgebungen."
       },
       "dataUsage": {
-        "retentionPolicy": "Abacus gibt an, dass Kundendaten, Prompts, Uploads oder API-Daten nicht zum Training von Modellen verwendet werden. Es wird angegeben, dass der Austausch mit Drittanbieter-/Foundation-Modellen ohne Datenspeicherung erfolgt (Zero-Retention) und unmittelbar nach der Verarbeitung gelöscht wird, jedoch können Konto-/Profilinhalte und Nutzerinhalte nach Vertragsbeendigung für einen kommerziell angemessenen Zeitraum zu Sicherungs-, Archivierungs- und Prüfzwecken aufbewahrt werden.",
+        "retentionPolicy": "Abacus gibt an, mit den genutzten Drittanbietern von Modellen Vereinbarungen ohne Datenspeicherung (Zero Retention) zu haben. Laut Sicherheitsseite werden Kundendaten bis zu 30 Tage nach Ende des Dienstes aufbewahrt und danach gelöscht. Die Datenschutzerklärung erlaubt zudem, Kontodaten und Nutzerinhalte für einen wirtschaftlich angemessenen Zeitraum für Sicherung, Archivierung und Prüfungen aufzubewahren.",
         "details": "Abacus gibt an, dass Nutzerdaten ausschließlich zur Ausführung von durch den Nutzer initiierten Abfragen und Aufgaben verwendet werden und dass mit Anbietern wie OpenAI, Anthropic und Google Enterprise-Vereinbarungen bestehen, um zu verhindern, dass Kundendaten für das Training verwendet werden."
       }
     }
