@@ -38,8 +38,8 @@
       "C5"
     ],
     "euAiAct": {
-      "status": "unknown",
-      "details": "STACKIT has published no formal EU AI Act statement for AI Model Serving, which serves third-party open-source models. Its Terms of Use prohibit using its services for practices banned under Art. 5 of the AI Act."
+      "status": "monitoring",
+      "details": "STACKIT's AI Act knowledge page states that its cloud infrastructure meets the key requirements of the AI Act; STACKIT has published no formal AI Act statement for AI Model Serving, which serves third-party open-source models. Its Terms of Use prohibit using its services for practices banned under Art. 5 of the AI Act."
     },
     "sccs": false,
     "adequacyDecision": true
@@ -57,7 +57,9 @@
     "https://stackit.com/en/asset/download/34346/file/Service_Certificate_STACKIT_AI_Model_Serving.pdf",
     "https://stackit.com/en/asset/download/34542/file/Terms_of_use_STACKIT_Cloud.pdf",
     "https://docs.stackit.cloud/products/data-and-ai/ai-model-serving/faq/",
-    "https://docs.stackit.cloud/platform/regions/"
+    "https://docs.stackit.cloud/platform/regions/",
+    "https://stackit.com/en/learn/knowledge/cloud/cloud-ai/ai-act",
+    "https://docs.stackit.cloud/platform/customer-accounts/how-tos/create-a-customer-account/"
   ],
   "notes": "STACKIT is the cloud brand of Schwarz Digits Cloud GmbH & Co. KG, part of the Schwarz Group (Lidl, Kaufland). AI Model Serving offers open-source chat and embedding models through an OpenAI-compatible API and is listed in STACKIT's BSI C5 Type 2 scope. New customer accounts are self-service for Germany, Austria and Switzerland and go through sales elsewhere.",
   "translations": {
@@ -71,7 +73,7 @@
         "details": "STACKIT gibt an, dass Anfragen an AI Model Serving weder gespeichert noch zum Training von Modellen verwendet werden und außer abrechnungsrelevanten Daten keine Kundendaten erhoben werden."
       },
       "euAiAct": {
-        "details": "STACKIT hat für AI Model Serving, das Open-Source-Modelle Dritter bereitstellt, keine formelle Erklärung zum EU AI Act veröffentlicht. Die Nutzungsbedingungen verbieten die Nutzung der Dienste für nach Art. 5 AI Act verbotene Praktiken."
+        "details": "Laut der AI-Act-Wissensseite von STACKIT erfüllt die Cloud-Infrastruktur die wesentlichen Anforderungen des AI Act; eine formelle Erklärung zum AI Act für AI Model Serving, das Open-Source-Modelle Dritter bereitstellt, hat STACKIT nicht veröffentlicht. Die Nutzungsbedingungen verbieten die Nutzung der Dienste für nach Art. 5 AI Act verbotene Praktiken."
       }
     }
   }
