@@ -86,7 +86,7 @@ export default async function ProvidersPage({ params }: PageProps) {
       />
       <main className="page-width flex-1">
         <h1 className="m-0 pt-5 pb-3.5 md:pt-7 md:pb-5">{t("heading")}</h1>
-        <div className="rounded-card border border-border bg-surface">
+        <div className="overflow-hidden rounded-card border border-border bg-surface">
           <table className="w-full border-separate border-spacing-0 max-md:block" aria-label={t("tableLabel")}>
             <colgroup>
               <col className="w-[40%]" />
