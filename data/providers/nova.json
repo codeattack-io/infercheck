@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Amazon states that Amazon Nova, including the Nova API, is operated in the United States and that information may be stored on servers outside the user's country. There is no EU processing option; EU processing of Nova models is only available through Amazon Bedrock under separate AWS terms."
+      "euRegionDetails": "Amazon documents no EU processing option for the Nova API. The Nova.amazon.com Terms of Use on amazon.com (December 2025) state that Amazon Nova is operated in the United States; the EU version of the terms (May 2026) names no processing location. EU processing of Nova models is only available through Amazon Bedrock under separate AWS terms."
     },
     "dpa": {
       "available": false,
@@ -44,6 +44,7 @@
   "sourceUrls": [
     "https://nova.amazon.com",
     "https://www.amazon.com/gp/help/customer/display.html?nodeId=Tsn7s47ytlgjRBHozK",
+    "https://nova.amazon.com/term-of-use-EU",
     "https://www.amazon.com/gp/help/customer/display.html?nodeId=GX7NJQ4ZB8MHFRNJ",
     "https://docs.aws.amazon.com/nova/latest/nova2-userguide/getting-started-nova-2.html",
     "https://docs.aws.amazon.com/nova/latest/nova2-userguide/getting-started-api.html",
@@ -51,19 +52,19 @@
     "https://www.dataprivacyframework.gov/participant/5776",
     "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
   ],
-  "notes": "This entry covers the free Nova API at nova.amazon.com (Build with Nova, api.nova.amazon.com), run by Amazon.com Services LLC under the Nova.amazon.com Terms of Use rather than the AWS Customer Agreement. Amazon describes it as an environment for experimentation with daily rate limits that does not support production-scale deployments; the same models are available through Amazon Bedrock under AWS terms. Amazon.com Services LLC is covered by Amazon.com, Inc.'s certification under the EU-US Data Privacy Framework.",
+  "notes": "This entry covers the free Nova API at nova.amazon.com (Build with Nova, api.nova.amazon.com), governed by the Nova.amazon.com Terms of Use rather than the AWS Customer Agreement; users in the EEA and the UK contract with Amazon Media EU S.à r.l. in Luxembourg, other users with Amazon.com Services LLC. Amazon describes it as an environment for experimentation with daily rate limits that does not support production-scale deployments; the same models are available through Amazon Bedrock under AWS terms. Amazon.com Services LLC is covered by Amazon.com, Inc.'s certification under the EU-US Data Privacy Framework.",
   "translations": {
     "de": {
-      "notes": "Dieser Eintrag betrifft die kostenlose Nova-API auf nova.amazon.com (Build with Nova, api.nova.amazon.com), die Amazon.com Services LLC nach den Nova.amazon.com-Nutzungsbedingungen betreibt, nicht nach dem AWS-Kundenvertrag. Amazon beschreibt sie als Umgebung zum Experimentieren mit täglichen Nutzungslimits, die keinen Produktivbetrieb in größerem Umfang unterstützt; dieselben Modelle gibt es über Amazon Bedrock zu den AWS-Bedingungen. Amazon.com Services LLC ist von der Zertifizierung der Amazon.com, Inc. nach dem EU-US Data Privacy Framework erfasst.",
+      "notes": "Dieser Eintrag betrifft die kostenlose Nova-API auf nova.amazon.com (Build with Nova, api.nova.amazon.com), für die die Nova.amazon.com-Nutzungsbedingungen gelten, nicht der AWS-Kundenvertrag; Vertragspartner für Nutzer im EWR und im Vereinigten Königreich ist die Amazon Media EU S.à r.l. in Luxemburg, für alle anderen die Amazon.com Services LLC. Amazon beschreibt die API als Umgebung zum Experimentieren mit täglichen Nutzungslimits, die keinen Produktivbetrieb in größerem Umfang unterstützt; dieselben Modelle gibt es über Amazon Bedrock zu den AWS-Bedingungen. Die Amazon.com Services LLC ist von der Zertifizierung der Amazon.com, Inc. nach dem EU-US Data Privacy Framework erfasst.",
       "dataResidency": {
-        "euRegionDetails": "Laut Amazon wird Amazon Nova einschließlich der Nova-API in den USA betrieben, und Daten können auf Servern außerhalb des Wohnsitzlandes gespeichert werden. Eine EU-Verarbeitung lässt sich nicht wählen; Nova-Modelle mit Verarbeitung in der EU gibt es nur über Amazon Bedrock zu gesonderten AWS-Bedingungen."
+        "euRegionDetails": "Amazon dokumentiert für die Nova-API keine Verarbeitung in der EU. Laut den Nova.amazon.com-Nutzungsbedingungen auf amazon.com (Dezember 2025) wird Amazon Nova in den USA betrieben; die EU-Fassung der Bedingungen (Mai 2026) nennt keinen Verarbeitungsort. Nova-Modelle mit Verarbeitung in der EU gibt es nur über Amazon Bedrock zu gesonderten AWS-Bedingungen."
       },
       "dataUsage": {
-        "retentionPolicy": "Laut den Nutzungsbedingungen speichert Amazon Nova-Interaktionen in der Cloud, nennt aber keine Aufbewahrungsfrist.",
-        "details": "Nach den Nova.amazon.com-Nutzungsbedingungen zeichnet Amazon Eingaben, hochgeladene Dateien und Ausgaben auf, verarbeitet und speichert sie, um seine Dienste einschließlich KI-Modellen bereitzustellen, zu entwickeln und zu verbessern, und kann sie manuell prüfen. Amazon rät davon ab, personenbezogene, vertrauliche oder sensible Daten einzugeben. Die Bedingungen sehen keinen Widerspruch gegen das Training vor und enthalten keinen Auftragsverarbeitungsvertrag."
+        "retentionPolicy": "Laut den Nutzungsbedingungen zeichnet Amazon die Nova-Interaktionen auf und speichert sie in der Cloud; eine Aufbewahrungsfrist nennen die Bedingungen nicht.",
+        "details": "Nach den Nova.amazon.com-Nutzungsbedingungen zeichnet Amazon Eingaben, hochgeladene Dateien und Ausgaben auf, verarbeitet und speichert sie, um seine Dienste einschließlich KI-Modellen bereitzustellen, zu entwickeln und zu verbessern, und kann sie manuell prüfen. Amazon rät davon ab, personenbezogene, vertrauliche oder sensible Daten einzugeben. Die Bedingungen nennen keine Möglichkeit, der Nutzung für das Training zu widersprechen, und enthalten keinen Auftragsverarbeitungsvertrag."
       },
       "euAiAct": {
-        "details": "Amazon, Anbieter der Nova-Modelle, steht auf der Liste der Unterzeichner des GPAI-Verhaltenskodex der EU-Kommission."
+        "details": "Amazon, der Anbieter der Nova-Modelle, steht auf der Liste der Unterzeichner des GPAI-Verhaltenskodex der EU-Kommission."
       }
     }
   }
