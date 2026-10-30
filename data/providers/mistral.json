@@ -43,7 +43,7 @@
     "sccs": true,
     "adequacyDecision": true
   },
-  "pricingTier": "free_tier",
+  "pricingTier": "pay_per_use",
   "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
