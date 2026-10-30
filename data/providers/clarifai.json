@@ -32,7 +32,7 @@
       "includesEuEntities": null
     },
     "certifications": [
-      "SOC2 Type II",
+      "SOC2",
       "ISO27001"
     ],
     "euAiAct": {
@@ -42,23 +42,19 @@
     "sccs": true,
     "adequacyDecision": false
   },
-  "pricingTier": "free_tier",
-  "lastVerified": "2026-04-11",
+  "pricingTier": null,
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://docs.clarifai.com/",
-    "https://api.clarifai.com",
-    "https://docs.clarifai.com/resources/privacy-security/",
-    "https://www.clarifai.com/company/privacy-policy",
-    "https://www.clarifai.com/company/data-processing",
-    "https://www.clarifai.com/company/terms",
-    "https://www.clarifai.com/pricing",
-    "https://www.clarifai.com/hubfs/whitepaper-machine-learning-visual-similarity-search.pdf"
+    "https://nebius.com/newsroom/nebius-welcomes-clarifai-s-core-team-and-licenses-inference-ip-to-strengthen-nebius-token-factory",
+    "https://web.archive.org/web/20260813093543/https://clarifai.com/",
+    "https://web.archive.org/web/20260710205236/https://clarifai.com/company/data-processing",
+    "https://www.dataprivacyframework.gov/participant/4415"
   ],
-  "notes": "Clarifai provides a public DPA with SCC language and states private customer data is not used for training unless shared to the Community. However, no public sub-processor list or EU-only processing guarantee was found, and the DPA expressly allows global transfers including to the United States, so EU inference confinement could not be established.",
+  "notes": "Clarifai's core team and inference technology moved to Nebius in May 2026, and platform credit purchases ended on 18 June 2026. The Clarifai website, documentation and API endpoint are no longer reachable, so the service is treated as discontinued; the compliance details describe the service before shutdown. Nebius offers inference through its own Nebius Token Factory service.",
   "translations": {
     "de": {
-      "notes": "Clarifai stellt einen öffentlichen Auftragsverarbeitungsvertrag (AVV) mit Standardvertragsklauseln (SCC) bereit und erklärt, dass private Kundendaten nicht für das Training verwendet werden, es sei denn, sie werden mit der Community geteilt. Es wurde jedoch weder eine öffentliche Liste der Unterauftragsverarbeiter noch eine Garantie für eine ausschließlich in der EU erfolgende Verarbeitung gefunden, und der AVV erlaubt ausdrücklich weltweite Übermittlungen einschließlich in die Vereinigten Staaten, sodass eine Beschränkung der Inferenz auf die EU nicht festgestellt werden konnte.",
+      "notes": "Das Kernteam und die Inferenztechnologie von Clarifai sind im Mai 2026 zu Nebius gewechselt, und seit dem 18. Juni 2026 lassen sich keine Plattform-Credits mehr kaufen. Website, Dokumentation und API-Endpunkt von Clarifai sind nicht mehr erreichbar, der Dienst gilt daher als eingestellt; die Compliance-Angaben beschreiben den Dienst vor der Einstellung. Nebius bietet Inferenz über seinen eigenen Dienst Nebius Token Factory an.",
       "dataResidency": {
         "euRegionDetails": "Clarifai gibt an, dass Teams auf einer gemeinsam genutzten oder dedizierten Cloud, innerhalb ihrer eigenen VPC, On-Premise oder am Edge bereitstellen können. Der AVV besagt jedoch, dass personenbezogene Daten weltweit übermittelt werden können, einschließlich an Clarifai in den Vereinigten Staaten sowie an verbundene Unternehmen und Unterauftragsverarbeiter in anderen Rechtsordnungen. Eine Garantie aus Primärquellen für eine ausschließlich in der EU gehostete Verarbeitung wurde nicht gefunden."
       },
