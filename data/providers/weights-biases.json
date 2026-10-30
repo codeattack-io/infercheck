@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": null,
-      "euRegionDetails": "W&B Serverless Inference, now part of CoreWeave Forge, has no EU region or EU data residency option. Forge runs in Google Cloud regions in North America, the listed sub-processors are in the United States, and the location of the inference GPUs is not documented. W&B Dedicated Cloud offers EU regions for the W&B platform, but Serverless Inference is not available there."
+      "euRegionDetails": "W&B Serverless Inference, now part of CoreWeave Forge, has no EU region or EU data residency option. Forge runs in Google Cloud regions in North America, the sub-processor list gives the United States as location, for some entries alongside the customer's choice or other countries, and the location of the inference GPUs is not documented. W&B Dedicated Cloud offers EU regions for the W&B platform, but Serverless Inference is not available there."
     },
     "dpa": {
       "available": true,
@@ -63,12 +63,12 @@
     "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
     "https://www.dataprivacyframework.gov/list"
   ],
-  "notes": "W&B Inference is now CoreWeave Serverless Inference within CoreWeave Forge, and the contracting party under the terms and DPA is Weights and Biases, LLC, a CoreWeave affiliate. It offers an online-accepted DPA with Standard Contractual Clauses but no EU region, and Weights & Biases is no longer active under the EU-US Data Privacy Framework. Free accounts get limited credits; paid use is billed per token.",
+  "notes": "W&B Inference is now CoreWeave Serverless Inference within CoreWeave Forge, and the contracting party under the terms and DPA is Weights and Biases, LLC, a CoreWeave affiliate. It offers an online-accepted DPA with Standard Contractual Clauses but no EU region, and Weights & Biases is not certified under the EU-US Data Privacy Framework (its listing has been inactive since 2021). Free accounts get limited credits; paid use is billed per token.",
   "translations": {
     "de": {
-      "notes": "W&B Inference heißt heute CoreWeave Serverless Inference und gehört zu CoreWeave Forge; Vertragspartner laut Nutzungsbedingungen und AVV ist Weights and Biases, LLC, ein mit CoreWeave verbundenes Unternehmen. Es gibt einen online abschließbaren AVV mit Standardvertragsklauseln, aber keine EU-Region, und Weights & Biases ist unter dem EU-US Data Privacy Framework nicht mehr aktiv. Kostenlose Konten erhalten begrenzte Guthaben, bezahlte Nutzung wird pro Token abgerechnet.",
+      "notes": "W&B Inference heißt heute CoreWeave Serverless Inference und gehört zu CoreWeave Forge; Vertragspartner laut Nutzungsbedingungen und AVV ist Weights and Biases, LLC, ein mit CoreWeave verbundenes Unternehmen. Es gibt einen online abschließbaren AVV mit Standardvertragsklauseln, aber keine EU-Region, und Weights & Biases ist nicht nach dem EU-US Data Privacy Framework zertifiziert (der Eintrag ist seit 2021 inaktiv). Kostenlose Konten erhalten begrenzte Guthaben, bezahlte Nutzung wird pro Token abgerechnet.",
       "dataResidency": {
-        "euRegionDetails": "W&B Serverless Inference, heute Teil von CoreWeave Forge, bietet keine EU-Region und keine EU-Datenresidenz. Forge läuft in Google-Cloud-Regionen in Nordamerika, die gelisteten Unterauftragsverarbeiter sitzen in den USA, und der Standort der Inferenz-GPUs ist nicht dokumentiert. W&B Dedicated Cloud bietet EU-Regionen für die W&B-Plattform, Serverless Inference ist dort aber nicht verfügbar."
+        "euRegionDetails": "W&B Serverless Inference, heute Teil von CoreWeave Forge, bietet keine EU-Region und keine EU-Datenresidenz. Forge läuft in Google-Cloud-Regionen in Nordamerika, die Liste der Unterauftragsverarbeiter nennt die USA als Standort, bei einigen Einträgen zusätzlich vom Kunden gewählte oder weitere Länder, und der Standort der Inferenz-GPUs ist nicht dokumentiert. W&B Dedicated Cloud bietet EU-Regionen für die W&B-Plattform, Serverless Inference ist dort aber nicht verfügbar."
       },
       "dataUsage": {
         "retentionPolicy": "Für Prompts und Ausgaben von Serverless Inference ist keine Aufbewahrungsfrist veröffentlicht. Laut AVV werden personenbezogene Daten auf Anfrage oder bei Vertragsende gelöscht oder zurückgegeben; Kopien in Backups werden isoliert und später gelöscht.",
