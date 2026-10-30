@@ -13,9 +13,9 @@
         "SG",
         "TW"
       ],
-      "euOnly": false,
+      "euOnly": true,
       "dataLeavesEuAtInference": false,
-      "euRegionDetails": "Claude 4.7 and newer run on the EU multi-region endpoint (eu), older Claude models on the Belgium region (europe-west1); Google documents that ML processing then stays in the EU. The global endpoint can process requests in any region and gives no residency guarantee. Regional and multi-region endpoints cost 10% more than the global endpoint."
+      "euRegionDetails": "Use the EU multi-region endpoint (eu) for Claude 4.7 and newer or the Belgium region (europe-west1) for older Claude models; Google's Service Specific Terms commit to storing data and running ML processing only in the selected multi-region. The global endpoint can process requests in any region and is excluded. Claude Fable 5 and Mythos 5 are also excluded, because their prompts and responses must be shared with Anthropic for abuse monitoring and Google does not state where Anthropic stores them. Regional and multi-region endpoints cost 10% more than the global endpoint."
     },
     "dpa": {
       "available": true,
@@ -83,7 +83,7 @@
     "de": {
       "notes": "Das von Google betriebene Claude läuft auf Google Cloud (Gemini Enterprise Agent Platform, früher Vertex AI) mit Google als Auftragsverarbeiter nach dem Cloud-AVV mit Standardvertragsklauseln; Google LLC ist nach dem EU-US Data Privacy Framework zertifiziert. EU-Verarbeitung erfordert die eu-Multi-Region oder die Region Belgien; der globale Endpunkt bietet keine Garantie für die Datenresidenz. Das separate, von Anthropic betriebene Claude-Angebot auf Google Cloud läuft auf Infrastruktur von Anthropic und ist nicht Gegenstand dieses Eintrags.",
       "dataResidency": {
-        "euRegionDetails": "Claude 4.7 und neuere Modelle laufen über den EU-Multi-Region-Endpunkt (eu), ältere Claude-Modelle über die Region Belgien (europe-west1); laut Google bleibt die ML-Verarbeitung dann in der EU. Der globale Endpunkt kann Anfragen in jeder Region verarbeiten und bietet keine Garantie für die Datenresidenz. Regionale und Multi-Region-Endpunkte kosten 10 % mehr als der globale Endpunkt."
+        "euRegionDetails": "Für die Verarbeitung in der EU wird für Claude 4.7 und neuer der EU-Multi-Region-Endpunkt (eu) genutzt, für ältere Claude-Modelle die Region Belgien (europe-west1); in seinen Service Specific Terms sagt Google zu, Daten nur in der gewählten Multi-Region zu speichern und dort auch die ML-Verarbeitung auszuführen. Der globale Endpunkt kann Anfragen in jeder Region verarbeiten und ist ausgenommen. Ebenfalls ausgenommen sind Claude Fable 5 und Mythos 5, weil Prompts und Antworten dafür zur Missbrauchsüberwachung mit Anthropic geteilt werden müssen und Google nicht angibt, wo Anthropic sie speichert. Regionale und Multi-Region-Endpunkte kosten 10 % mehr als der globale Endpunkt."
       },
       "dataUsage": {
         "retentionPolicy": "Claude-Fable- und Mythos-Modelle sowie Claude Opus ab 4.7 und Sonnet ab 5 im Cyber Verification Program von Anthropic protokollieren Prompts und Antworten bis zu 30 Tage zur Missbrauchsüberwachung in der vom Kunden gewählten Region; bei Fable 5 und Mythos 5 müssen diese Daten mit Anthropic geteilt werden. Die optionale Anfrage-Antwort-Protokollierung speichert Daten 30 Tage. Gelöschte Kundendaten werden innerhalb von 180 Tagen entfernt.",
