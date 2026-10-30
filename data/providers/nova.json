@@ -3,80 +3,68 @@
   "name": "Nova",
   "type": "api_provider",
   "website": "https://nova.amazon.com",
-  "apiDocsUrl": "https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html",
+  "apiDocsUrl": "https://nova.amazon.com/dev/documentation",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
       "regions": [
-        "EU",
         "US"
       ],
       "euOnly": false,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": "Amazon Nova is served through Amazon Bedrock. AWS states it will not move customer content from the AWS Regions selected by the customer except as necessary to comply with law or a binding governmental order, and Nova understanding models are available through European regional and cross-region inference profiles in Europe (for example Frankfurt, Ireland, Paris, Stockholm). However, the consulted primary sources do not provide an explicit EU-only processing guarantee for all Nova inference scenarios."
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Amazon documents no EU processing option for the Nova API. The Nova.amazon.com Terms of Use on amazon.com (December 2025) state that Amazon Nova is operated in the United States; the EU version of the terms (May 2026) names no processing location. EU processing of Nova models is only available through Amazon Bedrock under separate AWS terms."
     },
     "dpa": {
-      "available": true,
-      "url": "https://docs.aws.amazon.com/whitepapers/latest/navigating-gdpr-compliance/aws-data-processing-addendum-dpa.html",
-      "signedVia": "online_acceptance"
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
     },
     "dataUsage": {
-      "trainsOnCustomerData": false,
+      "trainsOnCustomerData": true,
       "optOutAvailable": null,
-      "retentionPolicy": "Amazon Bedrock states it does not store or log prompts and completions, and does not use prompts and completions to train AWS models or distribute them to third parties. AWS customers may choose to store metadata, prompts, and completions in their own encrypted Amazon S3 bucket.",
-      "details": "Amazon Nova is available in Amazon Bedrock. AWS states model providers do not have access to Amazon Bedrock logs or to customer prompts and completions, and prompts/outputs for Amazon foundation models are not used to train underlying Amazon foundation models unless a customer consents."
+      "retentionPolicy": "The terms state that Amazon records and retains Nova interactions in the cloud but give no retention period.",
+      "details": "Under the Nova.amazon.com Terms of Use, Amazon records, processes and retains inputs, uploaded files and outputs to provide, develop and improve its services, including AI models, and may review them manually. Amazon advises against submitting personal, confidential or sensitive information. The terms describe no training opt-out and contain no data processing agreement."
     },
     "subProcessors": {
-      "disclosed": true,
-      "url": "https://aws.amazon.com/compliance/sub-processors/",
-      "includesEuEntities": true
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
     },
-    "certifications": [
-      "SOC2",
-      "ISO27001",
-      "ISO27701",
-      "HDS"
-    ],
+    "certifications": [],
     "euAiAct": {
-      "status": "monitoring",
-      "details": "AWS publishes Responsible AI materials for Amazon Nova and Bedrock, but no consulted primary source expressly states that Amazon Nova is EU AI Act compliant. Public materials indicate responsible AI governance and controls rather than a formal AI Act conformity claim."
+      "status": "compliant",
+      "details": "Amazon, the provider of the Nova models, is on the EU Commission's list of signatories of the General-Purpose AI Code of Practice."
     },
-    "sccs": true,
-    "adequacyDecision": false
+    "sccs": null,
+    "adequacyDecision": true
   },
-  "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "pricingTier": "free_tier",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://docs.aws.amazon.com/nova/latest/userguide/what-is-nova.html",
-    "https://docs.aws.amazon.com/nova/latest/nova2-userguide/responsible-use.html",
-    "https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html",
-    "https://aws.amazon.com/bedrock/titan/privacy/",
-    "https://docs.aws.amazon.com/whitepapers/latest/navigating-gdpr-compliance/aws-data-processing-addendum-dpa.html",
-    "https://aws.amazon.com/compliance/europe-digital-sovereignty/faq/",
-    "https://aws.amazon.com/agreement/",
-    "https://aws.amazon.com/compliance/sub-processors/",
-    "https://aws.amazon.com/compliance/iso-certified/",
-    "https://aws.amazon.com/compliance/hds/",
-    "https://aws.amazon.com/bedrock/security-compliance/",
-    "https://aws.amazon.com/about-aws/whats-new/2025/02/amazon-nova-understanding-models-europe-asia-pacific",
-    "https://docs.aws.amazon.com/nova/latest/nova2-userguide/on-demand-inference.html",
-    "https://aws.amazon.com/bedrock/pricing/",
-    "https://aws.amazon.com/privacy/app/"
+    "https://nova.amazon.com",
+    "https://www.amazon.com/gp/help/customer/display.html?nodeId=Tsn7s47ytlgjRBHozK",
+    "https://nova.amazon.com/term-of-use-EU",
+    "https://www.amazon.com/gp/help/customer/display.html?nodeId=GX7NJQ4ZB8MHFRNJ",
+    "https://docs.aws.amazon.com/nova/latest/nova2-userguide/getting-started-nova-2.html",
+    "https://docs.aws.amazon.com/nova/latest/nova2-userguide/getting-started-api.html",
+    "https://docs.aws.amazon.com/nova-act/latest/userguide/step-2-develop-locally.html",
+    "https://www.dataprivacyframework.gov/participant/5776",
+    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
   ],
-  "notes": "Amazon Nova is offered via Amazon Bedrock and inherits AWS’s GDPR DPA, SCCs, regional controls, and Bedrock privacy posture. Primary sources clearly state Bedrock does not use prompts/completions to train AWS models and does not store or log them, but the reviewed sources do not provide a blanket EU-only processing guarantee for all Nova inference paths, so EU-only was set to false and inference egress to null.",
+  "notes": "This entry covers the free Nova API at nova.amazon.com (Build with Nova, api.nova.amazon.com), governed by the Nova.amazon.com Terms of Use rather than the AWS Customer Agreement; users in the EEA and the UK contract with Amazon Media EU S.à r.l. in Luxembourg, other users with Amazon.com Services LLC. Amazon describes it as an environment for experimentation with daily rate limits that does not support production-scale deployments; the same models are available through Amazon Bedrock under AWS terms. Amazon.com Services LLC is covered by Amazon.com, Inc.'s certification under the EU-US Data Privacy Framework.",
   "translations": {
     "de": {
-      "notes": "Amazon Nova wird über Amazon Bedrock angeboten und übernimmt den AWS-Auftragsverarbeitungsvertrag (AVV) gemäß DSGVO, die Standardvertragsklauseln (SCC), regionale Kontrollmechanismen und die Datenschutzposition von Bedrock. Primärquellen stellen klar fest, dass Bedrock Prompts/Completions nicht zum Trainieren von AWS-Modellen verwendet und diese weder speichert noch protokolliert; die geprüften Quellen enthalten jedoch keine pauschale Garantie einer ausschließlich EU-internen Verarbeitung für alle Nova-Inferenzpfade, sodass „EU-only“ auf false und „inference egress“ auf null gesetzt wurde.",
+      "notes": "Dieser Eintrag betrifft die kostenlose Nova-API auf nova.amazon.com (Build with Nova, api.nova.amazon.com), für die die Nova.amazon.com-Nutzungsbedingungen gelten, nicht der AWS-Kundenvertrag; Vertragspartner für Nutzer im EWR und im Vereinigten Königreich ist die Amazon Media EU S.à r.l. in Luxemburg, für alle anderen die Amazon.com Services LLC. Amazon beschreibt die API als Umgebung zum Experimentieren mit täglichen Nutzungslimits, die keinen Produktivbetrieb in größerem Umfang unterstützt; dieselben Modelle gibt es über Amazon Bedrock zu den AWS-Bedingungen. Die Amazon.com Services LLC ist von der Zertifizierung der Amazon.com, Inc. nach dem EU-US Data Privacy Framework erfasst.",
       "dataResidency": {
-        "euRegionDetails": "Amazon Nova wird über Amazon Bedrock bereitgestellt. AWS erklärt, dass Kundendaten nicht aus den vom Kunden ausgewählten AWS-Regionen verlagert werden, außer soweit dies zur Einhaltung gesetzlicher Anforderungen oder einer verbindlichen behördlichen Anordnung erforderlich ist; zudem sind Nova-Verständnismodelle über europäische regionale und regionenübergreifende Inferenzprofile in Europa verfügbar (beispielsweise Frankfurt, Irland, Paris, Stockholm). Die konsultierten Primärquellen enthalten jedoch keine ausdrückliche Garantie einer ausschließlich EU-internen Verarbeitung für alle Nova-Inferenzszenarien."
+        "euRegionDetails": "Amazon dokumentiert für die Nova-API keine Verarbeitung in der EU. Laut den Nova.amazon.com-Nutzungsbedingungen auf amazon.com (Dezember 2025) wird Amazon Nova in den USA betrieben; die EU-Fassung der Bedingungen (Mai 2026) nennt keinen Verarbeitungsort. Nova-Modelle mit Verarbeitung in der EU gibt es nur über Amazon Bedrock zu gesonderten AWS-Bedingungen."
       },
       "dataUsage": {
-        "retentionPolicy": "Amazon Bedrock erklärt, dass Prompts und Completions weder gespeichert noch protokolliert werden und dass Prompts und Completions weder zum Trainieren von AWS-Modellen verwendet noch an Dritte weitergegeben werden. AWS-Kunden können Metadaten, Prompts und Completions nach eigener Wahl in ihrem eigenen verschlüsselten Amazon-S3-Bucket speichern.",
-        "details": "Amazon Nova ist in Amazon Bedrock verfügbar. AWS erklärt, dass Modellanbieter weder Zugriff auf Amazon-Bedrock-Protokolle noch auf Kunden-Prompts und -Completions haben und dass Prompts/Outputs für Amazon-Foundation-Modelle nicht zum Trainieren der zugrunde liegenden Amazon-Foundation-Modelle verwendet werden, es sei denn, ein Kunde willigt ein."
+        "retentionPolicy": "Laut den Nutzungsbedingungen zeichnet Amazon die Nova-Interaktionen auf und speichert sie in der Cloud; eine Aufbewahrungsfrist nennen die Bedingungen nicht.",
+        "details": "Nach den Nova.amazon.com-Nutzungsbedingungen zeichnet Amazon Eingaben, hochgeladene Dateien und Ausgaben auf, verarbeitet und speichert sie, um seine Dienste einschließlich KI-Modellen bereitzustellen, zu entwickeln und zu verbessern, und kann sie manuell prüfen. Amazon rät davon ab, personenbezogene, vertrauliche oder sensible Daten einzugeben. Die Bedingungen nennen keine Möglichkeit, der Nutzung für das Training zu widersprechen, und enthalten keinen Auftragsverarbeitungsvertrag."
       },
       "euAiAct": {
-        "details": "AWS veröffentlicht Materialien zu Responsible AI für Amazon Nova und Bedrock; keine der konsultierten Primärquellen stellt jedoch ausdrücklich fest, dass Amazon Nova mit dem EU AI Act konform ist. Öffentlich verfügbare Materialien weisen auf Governance und Kontrollmechanismen für verantwortungsvolle KI hin, nicht jedoch auf eine formelle Konformitätsbehauptung zum AI Act."
+        "details": "Amazon, der Anbieter der Nova-Modelle, steht auf der Liste der Unterzeichner des GPAI-Verhaltenskodex der EU-Kommission."
       }
     }
   }

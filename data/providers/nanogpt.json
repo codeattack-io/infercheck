@@ -2,17 +2,21 @@
   "slug": "nanogpt",
   "name": "NanoGPT",
   "type": "api_provider",
-  "website": "https://docs.nano-gpt.com",
+  "website": "https://nano-gpt.com",
   "apiDocsUrl": "https://docs.nano-gpt.com/",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
       "regions": [
-        "US"
+        "US",
+        "EU",
+        "AE",
+        "SG",
+        "JP"
       ],
       "euOnly": false,
-      "dataLeavesEuAtInference": true,
-      "euRegionDetails": "NanoGPT states it is a U.S.-incorporated company. Its privacy policy says prompts are passed directly to the selected third-party model provider, and user-uploaded/cloud-stored media may be stored in AWS S3. No EU-only routing or EU region guarantee was found in the provider's official documentation."
+      "dataLeavesEuAtInference": null,
+      "euRegionDetails": "NanoGPT routes each request to a third-party model provider, and processing locations depend on the provider route; many routes state no location. Some routes that customers can pin with provider selection run inference in the EU (for example IONOS in Germany, Entrim in Slovenia or SCX (EU only)), but NanoGPT states that an EU inference option does not by itself keep account, billing, support or other processing stages in the EU. NanoGPT publishes no contractual EU data residency commitment and asks customers who need one to contact it."
     },
     "dpa": {
       "available": false,
@@ -21,14 +25,14 @@
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
-      "optOutAvailable": null,
-      "retentionPolicy": "By default, NanoGPT says it does not store prompt or conversation content on its servers. If conversation sync or sharing is enabled, necessary content is stored. For the OpenAI-compatible Responses API, storage defaults to true; when enabled, request/response data is stored encrypted for up to 7 days, the retention period is configurable, and users can set store=false to disable persistence entirely. Personal information is otherwise retained only as long as necessary to provide the services or comply with legal obligations.",
-      "details": "NanoGPT's terms say it does not train on customer input or output and does not sell content. Its privacy policy also says selected third-party model providers may store/process prompts under their own policies, and specifically warns that prompts sent to OpenAI models are retained indefinitely by OpenAI following a court-order-related policy update."
+      "optOutAvailable": false,
+      "retentionPolicy": "NanoGPT does not store prompt or response content by default. Optional API request logging keeps encrypted request and response bodies for 1 to 30 days, and Responses API storage, which is off by default, keeps records for 7 days unless retention is set between 0 and 365 days. Account, payment, usage and security records are kept as long as needed for their purpose.",
+      "details": "NanoGPT's terms and privacy policy state that it does not train on customer input or output. Prompts are forwarded to the selected model provider, whose own retention and training terms apply; an optional setting restricts routing to providers that declare zero data retention. On supported OpenAI-model routes, NanoGPT shares a hashed account or session identifier with the provider for abuse prevention. Some routes are not classified as zero data retention, and some providers' terms, such as LongCat's, permit use of inputs and outputs."
     },
     "subProcessors": {
-      "disclosed": false,
-      "url": null,
-      "includesEuEntities": null
+      "disclosed": true,
+      "url": "https://nano-gpt.com/legal/privacy-policy",
+      "includesEuEntities": true
     },
     "certifications": [],
     "euAiAct": {
@@ -39,24 +43,29 @@
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://docs.nano-gpt.com/",
     "https://nano-gpt.com/legal/privacy-policy",
     "https://nano-gpt.com/legal/terms-of-service",
-    "https://nano-gpt.com/blog/subscription-signups-paused"
+    "https://docs.nano-gpt.com/",
+    "https://docs.nano-gpt.com/api-reference/endpoint/responses",
+    "https://docs.nano-gpt.com/api-reference/miscellaneous/provider-selection",
+    "https://docs.nano-gpt.com/volume-pricing",
+    "https://nano-gpt.com/blog/zero-data-retention-routing-controls",
+    "https://nano-gpt.com/subscription",
+    "https://nano-gpt.com/pricing"
   ],
-  "notes": "NanoGPT publishes a privacy policy and terms with relatively specific product-level data handling statements, including a default no-storage posture for prompts and a 7-day configurable retention window for stored Responses API data. However, no public DPA/AVV, SCC commitment, sub-processor list, EU-only processing guarantee, or security certification evidence was found in NanoGPT primary sources, and inference can leave the EU because prompts are forwarded to selected third-party model providers.",
+  "notes": "NanoGPT LLC is a U.S. company that routes API requests to many third-party model providers, which its privacy policy names together with their data handling. No public DPA, standard contractual clauses or security certifications were found, and the terms ask customers who need a data processing agreement or data residency commitment to contact NanoGPT. API use is prepaid pay-as-you-go; a monthly subscription for personal use is also offered.",
   "translations": {
     "de": {
-      "notes": "NanoGPT veröffentlicht eine Datenschutzerklärung und Nutzungsbedingungen mit vergleichsweise spezifischen Aussagen zur Datenverarbeitung auf Produktebene, darunter eine standardmäßige Nichtspeicherung von Prompts sowie ein konfigurierbares Aufbewahrungsfenster von 7 Tagen für gespeicherte Daten der Responses API. In den primären Quellen von NanoGPT wurden jedoch kein öffentlich verfügbarer Auftragsverarbeitungsvertrag (AVV), keine Zusage zu Standardvertragsklauseln (SCC), keine Liste von Unterauftragsverarbeitern, keine Garantie für eine ausschließlich EU-interne Verarbeitung und keine Nachweise zu Sicherheitszertifizierungen gefunden; zudem kann die Inferenz die EU verlassen, da Prompts an ausgewählte Drittanbieter von Modellen weitergeleitet werden.",
+      "notes": "NanoGPT LLC ist ein US-Unternehmen, das API-Anfragen an viele externe Modellanbieter weiterleitet; die Datenschutzerklärung nennt diese Anbieter und deren Umgang mit Daten. Weder ein öffentlicher Auftragsverarbeitungsvertrag noch Standardvertragsklauseln oder Sicherheitszertifizierungen wurden gefunden; laut Nutzungsbedingungen sollen sich Kunden, die einen Auftragsverarbeitungsvertrag oder eine Zusage zur Datenresidenz benötigen, an NanoGPT wenden. Die API wird per Vorauszahlung nutzungsbasiert abgerechnet; zusätzlich gibt es ein Monatsabonnement für die private Nutzung.",
       "dataResidency": {
-        "euRegionDetails": "NanoGPT gibt an, ein in den USA gegründetes Unternehmen zu sein. Laut Datenschutzerklärung werden Prompts direkt an den ausgewählten Drittanbieter des Modells weitergeleitet, und von Nutzern hochgeladene bzw. in der Cloud gespeicherte Medien können in AWS S3 gespeichert werden. In der offiziellen Dokumentation des Anbieters wurde weder eine ausschließlich EU-interne Weiterleitung noch eine Garantie für eine EU-Region gefunden."
+        "euRegionDetails": "NanoGPT leitet jede Anfrage an einen externen Modellanbieter weiter; wo verarbeitet wird, hängt vom jeweiligen Anbieter ab, und für viele Anbieter ist kein Standort angegeben. Einige Anbieter, die Kunden über die Anbieterauswahl festlegen können, führen die Inferenz in der EU aus (etwa IONOS in Deutschland, Entrim in Slowenien oder SCX (EU only)), doch laut NanoGPT bleiben Konto-, Abrechnungs-, Support- und andere Verarbeitungsschritte durch eine EU-Inferenzoption nicht automatisch in der EU. NanoGPT veröffentlicht keine vertragliche Zusage zur Datenhaltung in der EU und bittet Kunden, die eine solche benötigen, um Kontaktaufnahme."
       },
       "dataUsage": {
-        "retentionPolicy": "NanoGPT gibt an, standardmäßig keine Prompt- oder Gesprächsinhalte auf seinen Servern zu speichern. Wenn die Synchronisierung oder Freigabe von Gesprächen aktiviert ist, werden die hierfür erforderlichen Inhalte gespeichert. Für die OpenAI-kompatible Responses API ist die Speicherung standardmäßig auf true gesetzt; wenn sie aktiviert ist, werden Anfrage-/Antwortdaten verschlüsselt für bis zu 7 Tage gespeichert, die Aufbewahrungsfrist ist konfigurierbar, und Nutzer können durch Setzen von store=false die Persistenz vollständig deaktivieren. Personenbezogene Daten werden im Übrigen nur so lange aufbewahrt, wie dies zur Erbringung der Dienste oder zur Erfüllung gesetzlicher Verpflichtungen erforderlich ist.",
-        "details": "Nach den Nutzungsbedingungen von NanoGPT erfolgt kein Training auf Kunden-Eingaben oder -Ausgaben, und Inhalte werden nicht verkauft. In der Datenschutzerklärung heißt es ferner, dass ausgewählte Drittanbieter von Modellen Prompts nach ihren eigenen Richtlinien speichern/verarbeiten können; ausdrücklich wird darauf hingewiesen, dass an OpenAI-Modelle gesendete Prompts von OpenAI infolge einer richtlinienbezogenen Aktualisierung im Zusammenhang mit einer gerichtlichen Anordnung auf unbestimmte Zeit aufbewahrt werden."
+        "retentionPolicy": "NanoGPT speichert Prompt- und Antwortinhalte standardmäßig nicht. Die optionale Protokollierung von API-Anfragen bewahrt verschlüsselte Anfrage- und Antwortinhalte 1 bis 30 Tage auf; die standardmäßig deaktivierte Speicherung der Responses API bewahrt Datensätze 7 Tage auf, sofern keine Aufbewahrungsdauer zwischen 0 und 365 Tagen festgelegt wird. Konto-, Zahlungs-, Nutzungs- und Sicherheitsdaten werden so lange aufbewahrt, wie es ihr Zweck erfordert.",
+        "details": "Laut Nutzungsbedingungen und Datenschutzerklärung trainiert NanoGPT nicht mit Kundeneingaben oder -ausgaben. Prompts werden an den gewählten Modellanbieter weitergeleitet, für den dessen eigene Aufbewahrungs- und Trainingsbedingungen gelten; eine optionale Einstellung beschränkt das Routing auf Anbieter, die nach eigener Angabe keine Daten speichern (Zero Data Retention). Bei unterstützten OpenAI-Modellen übermittelt NanoGPT zur Missbrauchsabwehr eine gehashte Konto- oder Sitzungskennung an den Anbieter. Einige Anbieterwege gelten nicht als Zero Data Retention, und die Bedingungen mancher Anbieter, etwa LongCat, erlauben die Nutzung von Ein- und Ausgaben."
       }
     }
   }
