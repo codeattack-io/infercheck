@@ -12,8 +12,8 @@
         "US"
       ],
       "euOnly": false,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": "Helicone documents regional availability in EU and US, and EU API keys route requests to the EU region. However, Helicone's privacy policy also states data may be transferred to and processed in the United States, and no primary-source statement was found guaranteeing EU-only processing for the hosted service."
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Customers can use Helicone's EU region (eu.helicone.ai, API keys with the prefix eu-), where logged requests are stored. The gateway itself runs on Cloudflare's global edge network, cached responses are kept in Cloudflare Workers KV, and with Helicone-managed provider keys requests go to global or US provider endpoints. Inference stays in the EU only if the customer routes to their own EU deployment (for example Azure in Frankfurt) with their own key; there is no contractual EU-only commitment."
     },
     "dpa": {
       "available": false,
@@ -23,8 +23,8 @@
     "dataUsage": {
       "trainsOnCustomerData": null,
       "optOutAvailable": null,
-      "retentionPolicy": "Website privacy policy says personal data is kept only as long as necessary for the stated purposes, and usage data is generally kept for a shorter period unless needed for security, functionality, or legal obligations. Product pricing states hosted log retention by plan is 7 days, 1 month, 3 months, or forever on Enterprise, with configurable retention on Enterprise. Helicone also offers omit-logs modes where request/response bodies are only kept in memory and not stored long-term, or logging can be fully disabled in async mode.",
-      "details": "Helicone logs requests and extracts usage data for observability. Docs say omitted request/response content can still be sent to Helicone's backend in proxy mode but not stored long-term, while async mode can omit content from being sent or disable logging entirely."
+      "retentionPolicy": "Logged requests are kept for 7 days on Hobby, 1 month on Pro, 3 months on Team and indefinitely on Enterprise; Team and Enterprise can configure retention. Request and response bodies can be left out of storage per request, or not sent at all with async logging. When caching is turned on, responses are cached for 7 days by default and up to 365 days.",
+      "details": "In proxy and gateway mode, Helicone logs full requests and responses by default; omit headers keep bodies out of storage, but they still pass through Helicone's backend. Helicone makes no statement on training, while its terms grant it a licence to content posted through the service and its privacy policy says data is used to provide and improve the service. With Helicone credits, the gateway routes to the cheapest of about 20 upstream providers, among them OpenRouter, DeepInfra, Novita and Chutes, with no documented no-training or retention terms; customers can lock or exclude providers or use their own keys."
     },
     "subProcessors": {
       "disclosed": false,
@@ -42,30 +42,35 @@
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://www.helicone.ai/privacy",
     "https://www.helicone.ai/terms",
     "https://www.helicone.ai/pricing",
-    "https://www.helicone.ai/contact",
-    "https://www.helicone.ai/blog/joining-mintlify",
+    "https://us.helicone.ai/signup",
+    "http://web.archive.org/web/20261003140627/https://www.helicone.ai/blog/joining-mintlify",
+    "https://www.mintlify.com/blog/mintlify-acquires-helicone",
     "https://docs.helicone.ai/getting-started/quick-start",
     "https://docs.helicone.ai/references/data-autonomy",
     "https://docs.helicone.ai/helicone-headers/helicone-auth",
     "https://docs.helicone.ai/features/advanced-usage/omit-logs",
+    "https://docs.helicone.ai/features/advanced-usage/caching",
+    "https://docs.helicone.ai/references/proxy-vs-async",
+    "https://docs.helicone.ai/references/latency-affect",
+    "https://docs.helicone.ai/gateway/provider-routing",
     "https://docs.helicone.ai/faq/soc2"
   ],
-  "notes": "Helicone is a US-headquartered gateway/observability provider with documented EU and US regional options and self-hosting/on-prem deployment for stronger data sovereignty. Public primary sources confirm SOC 2 compliance and configurable hosted retention by plan, but no public DPA, SCC commitment, sub-processor list, or explicit statement about model-training on customer data or EU-only hosted inference was found.",
+  "notes": "Helicone, Inc. (US) is an LLM observability platform and AI gateway. Mintlify acquired it in March 2026 and ran it in maintenance mode; in October 2026 its website stated that Helicone is no longer part of Mintlify, without naming a new owner, and new signups are disabled. It offers an EU region for stored logs and self-hosting, and claims SOC 2 compliance and HIPAA support, but publishes no DPA, no sub-processor list and no statement on whether customer data is used for training.",
   "translations": {
     "de": {
-      "notes": "Helicone ist ein Anbieter von Gateway-/Observability-Diensten mit Hauptsitz in den USA und dokumentierten regionalen Optionen in der EU und den USA sowie Self-Hosting-/On-Prem-Deployment für eine stärkere Datensouveränität. Öffentliche Primärquellen bestätigen die SOC 2-Compliance und eine je nach Tarif konfigurierbare Speicherdauer bei gehosteten Diensten, jedoch wurden weder ein öffentlich verfügbarer Auftragsverarbeitungsvertrag (AVV), eine Zusage zu Standardvertragsklauseln (SCC), eine Liste der Unterauftragsverarbeiter noch eine ausdrückliche Aussage zur Nutzung von Kundendaten für das Modelltraining oder zu einer ausschließlich in der EU gehosteten Inferenz gefunden.",
+      "notes": "Helicone, Inc. (USA) ist eine Observability-Plattform und ein AI-Gateway für LLMs. Mintlify hat Helicone im März 2026 übernommen und im Wartungsmodus weiterbetrieben; im Oktober 2026 heißt es auf der Website, Helicone gehöre nicht mehr zu Mintlify, ohne einen neuen Eigentümer zu nennen, und Neuregistrierungen sind deaktiviert. Helicone bietet eine EU-Region für gespeicherte Logs und Self-Hosting und nennt SOC-2-Konformität sowie HIPAA-Unterstützung, veröffentlicht aber keinen AVV, keine Liste der Unterauftragsverarbeiter und keine Aussage dazu, ob Kundendaten für Training genutzt werden.",
       "dataResidency": {
-        "euRegionDetails": "Helicone dokumentiert die regionale Verfügbarkeit in der EU und den USA, und EU-API-Schlüssel leiten Anfragen an die EU-Region weiter. Allerdings erklärt die Datenschutzerklärung von Helicone auch, dass Daten in die Vereinigten Staaten übermittelt und dort verarbeitet werden können, und es wurde keine Aussage aus Primärquellen gefunden, die eine ausschließlich in der EU erfolgende Verarbeitung für den gehosteten Dienst garantiert."
+        "euRegionDetails": "Kunden können die EU-Region von Helicone nutzen (eu.helicone.ai, API-Schlüssel mit dem Präfix eu-), in der protokollierte Anfragen gespeichert werden. Das Gateway selbst läuft im weltweiten Edge-Netz von Cloudflare, zwischengespeicherte Antworten liegen in Cloudflare Workers KV, und mit den von Helicone verwalteten Anbieter-Schlüsseln gehen Anfragen an globale oder US-Endpunkte der Modellanbieter. Die Inferenz bleibt nur in der EU, wenn der Kunde mit eigenem Schlüssel an ein eigenes EU-Deployment routet (etwa Azure in Frankfurt); eine vertragliche Zusage zur ausschließlichen Verarbeitung in der EU gibt es nicht."
       },
       "dataUsage": {
-        "retentionPolicy": "Laut Datenschutzerklärung auf der Website werden personenbezogene Daten nur so lange aufbewahrt, wie es für die angegebenen Zwecke erforderlich ist, und Nutzungsdaten werden grundsätzlich für einen kürzeren Zeitraum aufbewahrt, es sei denn, sie werden für Sicherheit, Funktionalität oder rechtliche Verpflichtungen benötigt. Laut Produktpreisangaben beträgt die Speicherdauer gehosteter Logs je nach Tarif 7 Tage, 1 Monat, 3 Monate oder bei Enterprise unbegrenzt, wobei bei Enterprise eine konfigurierbare Speicherdauer vorgesehen ist. Helicone bietet zudem Modi zum Weglassen von Logs an, bei denen Request-/Response-Bodies nur im Arbeitsspeicher vorgehalten und nicht langfristig gespeichert werden, oder bei denen die Protokollierung im Async-Modus vollständig deaktiviert werden kann.",
-        "details": "Helicone protokolliert Anfragen und extrahiert Nutzungsdaten für Observability-Zwecke. Die Dokumentation besagt, dass ausgelassene Request-/Response-Inhalte im Proxy-Modus dennoch an das Backend von Helicone gesendet, aber nicht langfristig gespeichert werden können, während im Async-Modus Inhalte vom Versand ausgenommen oder die Protokollierung vollständig deaktiviert werden können."
+        "retentionPolicy": "Protokollierte Anfragen werden im Hobby-Tarif 7 Tage, bei Pro 1 Monat, bei Team 3 Monate und bei Enterprise unbegrenzt gespeichert; Team und Enterprise können die Speicherdauer anpassen. Anfrage- und Antwortinhalte lassen sich pro Anfrage von der Speicherung ausnehmen oder mit asynchronem Logging gar nicht erst übertragen. Ist Caching aktiviert, werden Antworten standardmäßig 7 Tage und höchstens 365 Tage zwischengespeichert.",
+        "details": "Im Proxy- und Gateway-Modus protokolliert Helicone standardmäßig vollständige Anfragen und Antworten; mit Omit-Headern werden Inhalte nicht gespeichert, laufen aber weiterhin über das Backend von Helicone. Zur Nutzung für Training äußert sich Helicone nicht, die Nutzungsbedingungen räumen Helicone jedoch eine Lizenz an über den Dienst eingestellten Inhalten ein, und laut Datenschutzerklärung werden Daten zur Bereitstellung und Verbesserung des Dienstes genutzt. Mit Helicone-Guthaben routet das Gateway zum günstigsten von rund 20 Modellanbietern, darunter OpenRouter, DeepInfra, Novita und Chutes, ohne dokumentierte Zusagen zu Training oder Speicherdauer; Kunden können Anbieter festlegen oder ausschließen oder eigene Schlüssel verwenden."
       }
     }
   }
