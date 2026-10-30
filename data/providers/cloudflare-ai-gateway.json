@@ -2,7 +2,7 @@
   "slug": "cloudflare-ai-gateway",
   "name": "Cloudflare AI Gateway",
   "type": "gateway",
-  "website": "https://developers.cloudflare.com",
+  "website": "https://www.cloudflare.com/products/ai-gateway/",
   "apiDocsUrl": "https://developers.cloudflare.com/ai-gateway/",
   "compliance": {
     "headquarters": "US",
@@ -15,7 +15,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Cloudflare documents EU data-localization controls for metadata/logs via Customer Metadata Boundary, which can keep Customer Logs in the EU. However, AI Gateway also uses third-party AI Gateway sub-processors located in the United States and OpenAI is described as operating servers globally, so EU-only processing for AI Gateway inference is not guaranteed from the cited primary sources."
+      "euRegionDetails": "AI Gateway cannot be restricted to EU data centres: it is not compatible with Cloudflare's Regional Services, and the model providers it forwards requests to are located mainly in the US or worldwide. Enterprise customers with the paid Data Localization Suite can keep analytics metadata in the EU through the Customer Metadata Boundary. Cloudflare states that storage location restrictions for AI Gateway logs are not supported yet."
     },
     "dpa": {
       "available": true,
@@ -25,8 +25,8 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "AI Gateway logs are enabled by default and persist until the customer deletes older logs or disables logging; storage is capped by plan limits (for example 100,000 logs on Workers Free across all gateways and 10,000,000 logs per gateway on Workers Paid). Customers can opt out of log collection at the gateway level or per request.",
-      "details": "Cloudflare's Workers AI data-usage documentation states Cloudflare does not use customer content to train AI models or improve Cloudflare or third-party services without explicit consent. AI Gateway documentation states prompts/responses may be logged by default for observability, with logging configurable or disabled."
+      "retentionPolicy": "Logging is on by default and stores prompts, responses and metadata; customers can turn it off per gateway or per request, or keep metadata only. Accounts that created their first gateway on or after 24 September 2026 keep logs for 3 days on the free Workers plan and 7 days on Workers Paid; older accounts keep logs until deleted, up to 100,000 logs (free) or 10 million per gateway (paid). Response caching is off by default and keeps cached responses for at most one month.",
+      "details": "Cloudflare's terms for AI Gateway state that it does not use customer content to train generative AI and uses it only to provide and improve the service. Requests are forwarded to the model provider the customer selects, whose own terms apply; for third-party products used through AI Gateway, Cloudflare's DPA does not apply. For requests paid with Cloudflare credits, an optional zero-data-retention setting sends them only to provider endpoints that do not keep prompts or responses."
     },
     "subProcessors": {
       "disclosed": true,
@@ -34,21 +34,21 @@
       "includesEuEntities": true
     },
     "certifications": [
-      "SOC 2 Type II",
-      "ISO 27001",
-      "ISO 27701",
-      "ISO 27018",
+      "SOC2",
+      "ISO27001",
+      "ISO27701",
+      "ISO27018",
       "C5"
     ],
     "euAiAct": {
-      "status": "monitoring",
-      "details": "Cloudflare states it is fully committed to developing AI-powered products in ways that align with the EU AI Act, says it does not provide high-risk AI systems, and says GPAI models offered on Workers AI are provided by third parties responsible for their own AI Act compliance."
+      "status": "not_applicable",
+      "details": "Cloudflare states it does not provide general-purpose AI models trained by Cloudflare and offers no high-risk AI systems. AI Gateway forwards requests to models from Workers AI and other providers; Cloudflare says the third-party providers of the models on Workers AI are responsible for their AI Act compliance."
     },
     "sccs": true,
-    "adequacyDecision": false
+    "adequacyDecision": true
   },
-  "pricingTier": "free_tier",
-  "lastVerified": "2026-04-11",
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://developers.cloudflare.com/ai-gateway/",
@@ -62,24 +62,35 @@
     "https://www.cloudflare.com/cloudflare-customer-dpa/",
     "https://www.cloudflare.com/gdpr/subprocessors/",
     "https://www.cloudflare.com/gdpr/subprocessors/cloudflare-services/",
-    "https://developers.cloudflare.com/fundamentals/reference/policies-compliances/compliance-docs/",
     "https://www.cloudflare.com/trust-hub/gdpr/",
     "https://www.cloudflare.com/trust-hub/responsible-ai/",
-    "https://www.cloudflare.com/trust-hub/compliance-resources/eu-cloud-code-of-conduct/"
+    "https://www.cloudflare.com/trust-hub/compliance-resources/eu-cloud-code-of-conduct/",
+    "https://www.cloudflare.com/products/ai-gateway/",
+    "https://www.cloudflare.com/service-specific-terms-developer-platform/",
+    "https://www.cloudflare.com/terms/",
+    "https://developers.cloudflare.com/data-localization/",
+    "https://developers.cloudflare.com/data-localization/compatibility/",
+    "https://developers.cloudflare.com/ai-gateway/features/unified-billing/",
+    "https://developers.cloudflare.com/ai-gateway/observability/logging/legacy-logs/",
+    "https://developers.cloudflare.com/workers/observability/logs/workers-logs/",
+    "https://developers.cloudflare.com/ai-gateway/features/caching/",
+    "https://www.cloudflare.com/trust-hub/compliance-resources/soc-2/",
+    "https://www.cloudflare.com/trust-hub/compliance-resources/c5/",
+    "https://www.cloudflare.com/trust-hub/compliance-resources/iso-certifications/"
   ],
-  "notes": "Cloudflare provides a public DPA, public sub-processor disclosures, SCC-based transfer language, and documented EU metadata-localization controls. For AI Gateway specifically, the cited primary sources do not guarantee EU-only inference processing, and listed AI Gateway sub-processors include U.S.-based providers, so EU companies should treat inference-related cross-border transfers as possible.",
+  "notes": "AI Gateway's core features are free; paid self-serve options include Workers Paid for longer log retention and prepaid Unified Billing credits for third-party models (5% fee). Cloudflare is certified under the EU-US Data Privacy Framework and does not train generative AI on customer content, but AI Gateway cannot be restricted to EU data centres and forwards requests to model providers located mainly in the US. Cloudflare's terms state that its DPA does not cover third-party AI products used through AI Gateway.",
   "translations": {
     "de": {
-      "notes": "Cloudflare stellt einen öffentlichen Auftragsverarbeitungsvertrag (AVV), öffentliche Offenlegungen zu Unterauftragsverarbeitern, auf Standardvertragsklauseln (SCC) basierende Regelungen zu Übermittlungen sowie dokumentierte EU-Kontrollen zur Lokalisierung von Metadaten bereit. Speziell für AI Gateway gewährleisten die angeführten Primärquellen jedoch keine ausschließlich in der EU erfolgende Inferenzverarbeitung, und die aufgeführten Unterauftragsverarbeiter von AI Gateway umfassen in den USA ansässige Anbieter, sodass EU-Unternehmen davon ausgehen sollten, dass grenzüberschreitende Übermittlungen im Zusammenhang mit Inferenz möglich sind.",
+      "notes": "Die Kernfunktionen von AI Gateway sind kostenlos; kostenpflichtige Self-Service-Optionen sind Workers Paid für längere Protokollaufbewahrung und vorausbezahltes Unified-Billing-Guthaben für Drittanbietermodelle (5 % Gebühr). Cloudflare ist nach dem EU-US Data Privacy Framework zertifiziert und trainiert keine generative KI mit Kundeninhalten, AI Gateway lässt sich jedoch nicht auf EU-Rechenzentren beschränken und leitet Anfragen an Modellanbieter weiter, die überwiegend in den USA sitzen. Laut den Bedingungen von Cloudflare gilt der Auftragsverarbeitungsvertrag nicht für Drittanbieter-KI-Produkte, die über AI Gateway genutzt werden.",
       "dataResidency": {
-        "euRegionDetails": "Cloudflare dokumentiert EU-Kontrollen zur Datenlokalisierung für Metadaten/Protokolle über die Customer Metadata Boundary, durch die Customer Logs in der EU gehalten werden können. AI Gateway nutzt jedoch auch externe Unterauftragsverarbeiter von AI Gateway mit Sitz in den Vereinigten Staaten, und OpenAI wird als Betreiber von Servern weltweit beschrieben, sodass eine ausschließlich in der EU erfolgende Verarbeitung für AI-Gateway-Inferenz auf Grundlage der angeführten Primärquellen nicht gewährleistet ist."
+        "euRegionDetails": "AI Gateway lässt sich nicht auf EU-Rechenzentren beschränken: Der Dienst ist nicht mit den Regional Services von Cloudflare kompatibel, und die Modellanbieter, an die er Anfragen weiterleitet, sitzen überwiegend in den USA oder arbeiten weltweit. Enterprise-Kunden mit der kostenpflichtigen Data Localization Suite können Analysemetadaten über die Customer Metadata Boundary in der EU halten. Laut Cloudflare werden Vorgaben zum Speicherort für AI-Gateway-Protokolle noch nicht unterstützt."
       },
       "dataUsage": {
-        "retentionPolicy": "AI-Gateway-Protokolle sind standardmäßig aktiviert und bleiben bestehen, bis der Kunde ältere Protokolle löscht oder die Protokollierung deaktiviert; die Speicherung ist durch planbezogene Limits begrenzt (beispielsweise 100.000 Protokolle bei Workers Free über alle Gateways hinweg und 10.000.000 Protokolle pro Gateway bei Workers Paid). Kunden können auf Gateway-Ebene oder pro Anfrage ein Opt-out von der Protokollerfassung vornehmen.",
-        "details": "Die Dokumentation von Cloudflare zu Workers AI zur Datennutzung besagt, dass Cloudflare Kundeninhalte nicht zur Schulung von KI-Modellen oder zur Verbesserung von Diensten von Cloudflare oder Dritten ohne ausdrückliche Einwilligung verwendet. Die Dokumentation zu AI Gateway besagt, dass Prompts/Responses standardmäßig zu Zwecken der Beobachtbarkeit protokolliert werden können, wobei die Protokollierung konfigurierbar oder deaktivierbar ist."
+        "retentionPolicy": "Die Protokollierung ist standardmäßig aktiv und speichert Prompts, Antworten und Metadaten; Kunden können sie pro Gateway oder pro Anfrage abschalten oder auf Metadaten beschränken. Konten, die ihr erstes Gateway am oder nach dem 24. September 2026 angelegt haben, behalten Protokolle im kostenlosen Workers-Tarif 3 Tage und bei Workers Paid 7 Tage; ältere Konten behalten Protokolle bis zur Löschung, bis zu 100.000 Protokolle (kostenlos) bzw. 10 Millionen pro Gateway (kostenpflichtig). Das Zwischenspeichern von Antworten ist standardmäßig aus und hält Antworten höchstens einen Monat vor.",
+        "details": "Laut den Bedingungen von Cloudflare für AI Gateway werden Kundeninhalte nicht zum Training generativer KI verwendet, sondern nur zur Bereitstellung und Verbesserung des Dienstes. Anfragen gehen an den vom Kunden gewählten Modellanbieter, dessen eigene Bedingungen gelten; für Drittanbieterprodukte, die über AI Gateway genutzt werden, gilt der Auftragsverarbeitungsvertrag von Cloudflare nicht. Für Anfragen, die mit Cloudflare-Guthaben bezahlt werden, leitet eine optionale Zero-Data-Retention-Einstellung sie nur an Anbieter-Endpunkte weiter, die Prompts und Antworten nicht speichern."
       },
       "euAiAct": {
-        "details": "Cloudflare erklärt, uneingeschränkt der Entwicklung KI-gestützter Produkte in einer Weise verpflichtet zu sein, die mit dem EU AI Act im Einklang steht, erklärt, keine Hochrisiko-KI-Systeme bereitzustellen, und erklärt, dass über Workers AI angebotene GPAI-Modelle von Dritten bereitgestellt werden, die für ihre eigene Compliance mit dem AI Act verantwortlich sind."
+        "details": "Cloudflare erklärt, keine selbst trainierten KI-Modelle mit allgemeinem Verwendungszweck anzubieten und keine Hochrisiko-KI-Systeme bereitzustellen. AI Gateway leitet Anfragen an Modelle von Workers AI und anderen Anbietern weiter; für die Modelle auf Workers AI sind laut Cloudflare die jeweiligen Drittanbieter für die Einhaltung des AI Act verantwortlich."
       }
     }
   }
