@@ -364,7 +364,7 @@ Used in the expanded panel and on the provider page.
   `"model comp" "num num"`, columns `minmax(0, 1fr) auto`, gaps 6px × 12px, padding 12px 14px 12px 13px, 1px bottom
   border, 3px tier bar on the left.
 - Line 1: model name (16px / 500) and provider below it (15px muted) on the left; the tier pill top right. The gateway
-  label follows the provider name instead of the model name.
+  label sits at the right end of line 2 instead of after the model name.
 - Line 2: the prices, left-aligned, 16px, tabular: "$3.00 · $15.00" (input first), or "Price not published".
 - Residency, the chevron and the status are not shown in the row; residency and status are in the panel. The whole row
   is the tap target (the model button's `::after` covers the row, `position: relative` on the row).

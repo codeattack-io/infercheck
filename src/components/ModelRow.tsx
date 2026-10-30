@@ -110,12 +110,7 @@ function ModelRowInner({ item, dimmed = false, matches, primary = "model" }: Mod
             </button>
             {viaGateway ? <GatewayPill providerName={providerName} className="max-md:hidden" /> : null}
           </span>
-          {secondary ? (
-            <span className="mt-0.5 block text-14 text-text-muted max-md:text-15">
-              {secondary}
-              {viaGateway ? <GatewayPill providerName={providerName} className="ml-2 md:hidden" /> : null}
-            </span>
-          ) : null}
+          {secondary ? <span className="mt-0.5 block text-14 text-text-muted max-md:text-15">{secondary}</span> : null}
         </td>
         <td className="border-b border-border px-4 py-3 align-middle max-md:block max-md:self-start max-md:border-0 max-md:p-0 max-md:[grid-area:comp]">
           <ComplianceBadge tier={tier} compliance={compliance} />
@@ -127,8 +122,9 @@ function ModelRowInner({ item, dimmed = false, matches, primary = "model" }: Mod
               ? t("euResidency")
               : compliance.dataResidency.regions.join(", ") || "—"}
         </td>
-        <td className="border-b border-border px-4 py-3 text-right align-middle text-15 whitespace-nowrap tabular-nums max-md:block max-md:border-0 max-md:p-0 max-md:text-left max-md:text-16 max-md:[grid-area:num]">
+        <td className="border-b border-border px-4 py-3 text-right align-middle text-15 whitespace-nowrap tabular-nums max-md:flex max-md:items-center max-md:border-0 max-md:p-0 max-md:text-left max-md:text-16 max-md:[grid-area:num]">
           <Price model={model} />
+          {viaGateway ? <GatewayPill providerName={providerName} className="ml-auto md:hidden" /> : null}
         </td>
         <td className="w-11 border-b border-border py-3 pr-3.5 pl-0 text-right align-middle max-md:hidden">
           <svg
