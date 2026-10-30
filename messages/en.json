@@ -229,8 +229,7 @@
     "notPaidTitle": "Not a paid placement service.",
     "notPaidBody": "No provider has paid to appear here or to influence how their data is presented.",
     "notCurrentTitle": "Not guaranteed to be current.",
-    "notCurrentBody": "Provider terms change. The date on each entry tells you when it was last researched or, for manually verified entries, last confirmed against source documents.",
-    "backLink": "← Browse the directory"
+    "notCurrentBody": "Provider terms change. The date on each entry tells you when it was last researched or, for manually verified entries, last confirmed against source documents."
   },
   "FilterBar": {
     "filterLabel": "Filter:",
@@ -318,8 +317,7 @@
     "liabilityLinksHeading": "Liability for links",
     "liabilityLinksText": "Our website contains links to external third-party websites over whose content we have no influence. Therefore, we cannot assume any liability for this external content. The respective provider or operator of the pages is always responsible for the content of the linked pages. The linked pages were checked for possible legal violations at the time of linking. Illegal content was not recognizable at the time of linking. However, a permanent content control of the linked pages is not reasonable without concrete evidence of a violation. If we become aware of any infringements, we will remove such links immediately.",
     "copyrightHeading": "Copyright",
-    "copyrightText": "The content and works created by the site operators on these pages are subject to German copyright law. The reproduction, editing, distribution and any kind of exploitation outside the limits of copyright require the written consent of the respective author or creator. Downloads and copies of this site are only permitted for private, non-commercial use. Insofar as the content on this site was not created by the operator, the copyrights of third parties are respected. In particular, third-party content is marked as such. Should you nevertheless become aware of a copyright infringement, please inform us accordingly. If we become aware of any infringements, we will remove such content immediately.",
-    "backLink": "← Back"
+    "copyrightText": "The content and works created by the site operators on these pages are subject to German copyright law. The reproduction, editing, distribution and any kind of exploitation outside the limits of copyright require the written consent of the respective author or creator. Downloads and copies of this site are only permitted for private, non-commercial use. Insofar as the content on this site was not created by the operator, the copyrights of third parties are respected. In particular, third-party content is marked as such. Should you nevertheless become aware of a copyright infringement, please inform us accordingly. If we become aware of any infringements, we will remove such content immediately."
   },
   "PrivacyPage": {
     "title": "Privacy Policy — InferCheck",
@@ -362,8 +360,7 @@
     "cookiesHeading": "9. Cookies",
     "cookiesText": "This website does not use cookies for tracking or advertising. A session cookie may be set by the hosting infrastructure (Vercel) for technical routing purposes only. No persistent tracking cookies are set.",
     "changesHeading": "10. Changes to this Policy",
-    "changesText": "We may update this privacy policy from time to time. The current version is always available at this URL. Material changes will be reflected in the \"last updated\" date above.",
-    "backLink": "← Back"
+    "changesText": "We may update this privacy policy from time to time. The current version is always available at this URL. Material changes will be reflected in the \"last updated\" date above."
   },
   "ComplianceBadge": {
     "short": {

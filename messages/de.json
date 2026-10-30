@@ -229,8 +229,7 @@
     "notPaidTitle": "Kein bezahlter Platzierungsservice.",
     "notPaidBody": "Kein Anbieter hat dafür bezahlt, hier gelistet zu werden oder die Darstellung seiner Daten zu beeinflussen.",
     "notCurrentTitle": "Keine Aktualitätsgarantie.",
-    "notCurrentBody": "Anbieterbedingungen ändern sich. Das Datum bei jedem Eintrag zeigt an, wann er zuletzt recherchiert bzw. bei manuell verifizierten Einträgen zuletzt gegen Quelldokumente geprüft wurde.",
-    "backLink": "← Zum Verzeichnis"
+    "notCurrentBody": "Anbieterbedingungen ändern sich. Das Datum bei jedem Eintrag zeigt an, wann er zuletzt recherchiert bzw. bei manuell verifizierten Einträgen zuletzt gegen Quelldokumente geprüft wurde."
   },
   "FilterBar": {
     "filterLabel": "Filter:",
@@ -318,8 +317,7 @@
     "liabilityLinksHeading": "Haftung für Links",
     "liabilityLinksText": "Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.",
     "copyrightHeading": "Urheberrecht",
-    "copyrightText": "Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.",
-    "backLink": "← Zurück"
+    "copyrightText": "Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen."
   },
   "PrivacyPage": {
     "title": "Datenschutzerklärung — InferCheck",
@@ -362,8 +360,7 @@
     "cookiesHeading": "9. Cookies",
     "cookiesText": "Diese Website verwendet keine Cookies für Tracking oder Werbung. Ein Session-Cookie kann von der Hosting-Infrastruktur (Vercel) ausschließlich für technische Routing-Zwecke gesetzt werden. Es werden keine dauerhaften Tracking-Cookies gesetzt.",
     "changesHeading": "10. Änderungen dieser Datenschutzerklärung",
-    "changesText": "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Die jeweils aktuelle Version ist stets unter dieser URL verfügbar. Wesentliche Änderungen werden durch eine Aktualisierung des obigen Datums kenntlich gemacht.",
-    "backLink": "← Zurück"
+    "changesText": "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Die jeweils aktuelle Version ist stets unter dieser URL verfügbar. Wesentliche Änderungen werden durch eine Aktualisierung des obigen Datums kenntlich gemacht."
   },
   "ComplianceBadge": {
     "short": {

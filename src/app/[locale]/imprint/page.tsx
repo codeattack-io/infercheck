@@ -1,10 +1,7 @@
-// Imprint (Impressum) page — legally required for German-operated websites (§ 5 TMG).
-// The German version is legally binding; English is a convenience translation.
-// React Server Component — no client-side data needed.
-
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { LongformPage, LongformSection, LONGFORM_LINK_CLASS } from "@/components/Longform";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -39,90 +36,71 @@ export default async function ImprintPage({ params }: PageProps) {
   const t = await getTranslations("ImprintPage");
 
   return (
-    <>
-      <main className="page-width flex-1 pt-14 pb-24">
-        <h1 className="mb-3">{t("heading")}</h1>
+    <LongformPage heading={t("heading")}>
+      <p>
+        {t.rich("legalNote", {
+          german: (chunks) =>
+            locale === "en" ? (
+              <Link href="/imprint" locale="de" className={LONGFORM_LINK_CLASS}>
+                {chunks}
+              </Link>
+            ) : (
+              <strong className="font-semibold text-text-primary">{chunks}</strong>
+            ),
+        })}
+      </p>
 
-        <p className="font-body text-[0.9375rem] text-text-secondary leading-[1.65] mb-10">
-          {t.rich("legalNote", {
-            german: (chunks) =>
-              locale === "en" ? (
-                <Link href="/imprint" locale="de" className="text-link underline underline-offset-[3px]">
-                  {chunks}
-                </Link>
-              ) : (
-                <strong className="text-heading font-semibold">{chunks}</strong>
-              ),
+      <LongformSection heading={t("operatorHeading")}>
+        <address className="not-italic">
+          <span className="font-semibold text-text-primary">{t("name")}</span>
+          <br />
+          {t("address")}
+          <br />
+          {t("city")}
+        </address>
+      </LongformSection>
+
+      <LongformSection heading={t("contactHeading")}>
+        <p>
+          {t("emailLabel")}:{" "}
+          <a href={`mailto:${t("email")}`} className={LONGFORM_LINK_CLASS}>
+            {t("email")}
+          </a>
+        </p>
+      </LongformSection>
+
+      <LongformSection heading={t("responsibleHeading")}>
+        <p>{t("responsibleText")}</p>
+      </LongformSection>
+
+      <LongformSection heading={t("disputeHeading")}>
+        <p>
+          {t.rich("disputeText", {
+            link: (chunks) => (
+              <a
+                href={String(chunks)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${LONGFORM_LINK_CLASS} wrap-anywhere`}
+              >
+                {chunks}
+              </a>
+            ),
           })}
         </p>
+      </LongformSection>
 
-        <hr className="border-none border-t border-border mb-10" />
+      <LongformSection heading={t("liabilityContentHeading")}>
+        <p>{t("liabilityContentText")}</p>
+      </LongformSection>
 
-        <section className="mb-10 bg-surface border border-border rounded-card px-8 py-7">
-          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("operatorHeading")}</h2>
-          <address className="not-italic font-body text-[0.9375rem] text-text-primary leading-[1.9]">
-            <span className="font-semibold text-heading">{t("name")}</span>
-            <br />
-            {t("address")}
-            <br />
-            {t("city")}
-          </address>
-        </section>
+      <LongformSection heading={t("liabilityLinksHeading")}>
+        <p>{t("liabilityLinksText")}</p>
+      </LongformSection>
 
-        <section className="mb-10">
-          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("contactHeading")}</h2>
-          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
-            {t("emailLabel")}:{" "}
-            <a href={`mailto:${t("email")}`} className="text-link underline underline-offset-[3px]">
-              {t("email")}
-            </a>
-          </p>
-        </section>
-
-        <section className="mb-10">
-          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("responsibleHeading")}</h2>
-          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("responsibleText")}</p>
-        </section>
-
-        <section className="mb-10">
-          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("disputeHeading")}</h2>
-          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
-            {t.rich("disputeText", {
-              link: (chunks) => (
-                <a
-                  href={String(chunks)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-link underline underline-offset-[3px] break-all"
-                >
-                  {chunks}
-                </a>
-              ),
-            })}
-          </p>
-        </section>
-
-        <section className="mb-10">
-          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("liabilityContentHeading")}</h2>
-          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("liabilityContentText")}</p>
-        </section>
-
-        <section className="mb-10">
-          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("liabilityLinksHeading")}</h2>
-          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("liabilityLinksText")}</p>
-        </section>
-
-        <section className="mb-12">
-          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("copyrightHeading")}</h2>
-          <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("copyrightText")}</p>
-        </section>
-
-        <div className="pt-2">
-          <Link href="/" className="font-body text-sm font-medium text-link underline underline-offset-[3px]">
-            {t("backLink")}
-          </Link>
-        </div>
-      </main>
-    </>
+      <LongformSection heading={t("copyrightHeading")}>
+        <p>{t("copyrightText")}</p>
+      </LongformSection>
+    </LongformPage>
   );
 }
