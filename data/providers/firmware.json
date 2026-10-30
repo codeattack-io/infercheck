@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Firmware states customer data and content are stored and processed in the geographic region specified on the order form or otherwise agreed in writing, and customers may request a separate specific geographic region where supported. However, the public subprocessor list names only US-located subprocessors (AWS, MongoDB, Google Cloud, OpenAI), and the DPA states customers may transfer personal data to Firmware in the United States."
+      "euRegionDetails": "No EU processing option is offered. Data is hosted in the US, and the API routes requests to model providers such as AWS Bedrock, OpenAI, Google, xAI and Fireworks AI. A different storage region can be requested by contract on a best-effort basis."
     },
     "dpa": {
       "available": true,
@@ -21,9 +21,9 @@
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
-      "optOutAvailable": null,
-      "retentionPolicy": "Privacy Policy: personal data is retained as long as necessary for the stated purposes; if a customer has a Customer Agreement, deletion follows that agreement; when no ongoing legitimate business need or legal reason remains, data is deleted or anonymized, or securely isolated until deletion is possible. DPA: on termination of the services or upon reasonable request, Firmware will return or delete DPA data unless retention is legally required.",
-      "details": "Firmware says customer data/content received through the services is processed on behalf of customers under the customer agreement. The website states 'Your data stays yours—never used for training.' Firmware separately says it uses publicly available legal information to develop and improve its AI platform."
+      "optOutAvailable": false,
+      "retentionPolicy": "Customer data and content are deleted within 30 days after termination unless the customer instructs otherwise. Under the DPA, data is returned or deleted at the end of the service or on reasonable request, unless the law requires retention.",
+      "details": "The terms state that neither FrogBot nor its sub-processors train AI models on customer content or customer data, and that sub-processors do not retain or log this content for human review."
     },
     "subProcessors": {
       "disclosed": true,
@@ -32,40 +32,41 @@
     },
     "certifications": [],
     "euAiAct": {
-      "status": "monitoring",
-      "details": "The DPA says that if new legislation and regulations specifically governing AI are implemented, the parties will review the DPA to ensure compliance and negotiate necessary amendments."
+      "status": "unknown",
+      "details": null
     },
-    "sccs": true,
+    "sccs": null,
     "adequacyDecision": false
   },
-  "pricingTier": "free_tier",
-  "lastVerified": "2026-04-11",
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://docs.frogbot.ai",
+    "https://docs.frogbot.ai/subscription-intro",
+    "https://docs.frogbot.ai/api-reference/models",
+    "https://docs.frogbot.ai/balance-usage-pricing",
+    "https://www.frogbot.ai/legal/terms",
+    "https://www.frogbot.ai/legal/privacy",
     "https://firmware.ai",
     "https://firmware.ai/pricing",
     "https://firmware.ai/legal",
+    "https://firmware.ai/legal/terms",
     "https://firmware.ai/legal/privacy",
-    "https://firmware.ai/legal/privacy-center",
     "https://firmware.ai/legal/data-processing-addendum",
     "https://firmware.ai/legal/security-addendum",
-    "https://firmware.ai/legal/service-provider-list",
     "https://firmware.ai/legal/subprocessor-list"
   ],
-  "notes": "Firmware publishes a privacy policy, DPA, security addendum, and public subprocessor list. Public materials indicate US headquarters and US-based subprocessors, with regional hosting only by order form or written agreement; there is no public guarantee of EU-only inference, and the DPA expressly contemplates transfers to the US using data transfer mechanisms including the EEA SCCs.",
+  "notes": "Firmware's hosted model API now operates as FrogBot (FrogBot Corporation, Delaware), and its terms incorporate the DPA, security addendum and sub-processor list published on firmware.ai. Data is processed in the US, and the published sub-processor list does not name every model provider the API routes to, such as xAI and Fireworks AI. The DPA refers to a data transfers addendum for EU transfers, but that page is not published.",
   "translations": {
     "de": {
-      "notes": "Firmware veröffentlicht eine Datenschutzrichtlinie, einen Auftragsverarbeitungsvertrag (AVV), einen Sicherheitsnachtrag und eine öffentliche Liste der Unterauftragsverarbeiter. Den öffentlich zugänglichen Unterlagen zufolge befinden sich der Hauptsitz in den USA sowie Unterauftragsverarbeiter in den USA; eine regionale Datenhaltung wird nur per Bestellformular oder schriftlicher Vereinbarung vorgesehen. Es gibt keine öffentliche Garantie für eine ausschließlich auf die EU beschränkte Inferenz, und der AVV sieht Drittlandübermittlungen in die USA unter Verwendung von Datenübermittlungsmechanismen, einschließlich der Standardvertragsklauseln (SCC) des EWR, ausdrücklich vor.",
+      "notes": "Die gehostete Modell-API von Firmware läuft inzwischen unter dem Namen FrogBot (FrogBot Corporation, Delaware); ihre Nutzungsbedingungen beziehen den AVV, den Sicherheitsnachtrag und die Liste der Unterauftragsverarbeiter von firmware.ai ein. Die Verarbeitung erfolgt in den USA, und die veröffentlichte Liste nennt nicht alle Modellanbieter, an die die API Anfragen weiterleitet, etwa xAI und Fireworks AI. Der AVV verweist für EU-Übermittlungen auf einen Nachtrag zu Datenübermittlungen, der nicht veröffentlicht ist.",
       "dataResidency": {
-        "euRegionDetails": "Firmware erklärt, dass Kundendaten und -inhalte in der im Bestellformular angegebenen geografischen Region oder anderweitig schriftlich vereinbarten Region gespeichert und verarbeitet werden, und dass Kunden, soweit unterstützt, eine gesonderte spezifische geografische Region anfordern können. Die öffentliche Liste der Unterauftragsverarbeiter nennt jedoch ausschließlich in den USA ansässige Unterauftragsverarbeiter (AWS, MongoDB, Google Cloud, OpenAI), und der AVV besagt, dass Kunden personenbezogene Daten an Firmware in den Vereinigten Staaten übermitteln können."
+        "euRegionDetails": "Eine Verarbeitung in der EU wird nicht angeboten. Daten werden in den USA gehostet, und die API leitet Anfragen an Modellanbieter wie AWS Bedrock, OpenAI, Google, xAI und Fireworks AI weiter. Eine andere Speicherregion kann vertraglich angefragt werden, ohne feste Zusage."
       },
       "dataUsage": {
-        "retentionPolicy": "Datenschutzrichtlinie: Personenbezogene Daten werden so lange gespeichert, wie es für die angegebenen Zwecke erforderlich ist; sofern ein Kunde über einen Customer Agreement verfügt, erfolgt die Löschung gemäß dieser Vereinbarung; besteht kein fortlaufender berechtigter geschäftlicher Bedarf oder rechtlicher Grund mehr, werden die Daten gelöscht oder anonymisiert oder bis zur möglichen Löschung sicher isoliert. AVV: Bei Beendigung der Dienste oder auf angemessene Anfrage wird Firmware die dem AVV unterliegenden Daten zurückgeben oder löschen, sofern keine gesetzliche Aufbewahrungspflicht besteht.",
-        "details": "Firmware gibt an, dass über die Dienste erhaltene Kundendaten/-inhalte im Auftrag der Kunden gemäß dem Customer Agreement verarbeitet werden. Auf der Website heißt es: „Ihre Daten bleiben Ihre Daten — niemals für das Training verwendet.“ Firmware erklärt gesondert, dass öffentlich zugängliche rechtliche Informationen genutzt werden, um seine KI-Plattform zu entwickeln und zu verbessern."
-      },
-      "euAiAct": {
-        "details": "Der AVV besagt, dass die Parteien, falls neue Rechtsvorschriften und Regelungen eingeführt werden, die speziell KI regeln, den AVV überprüfen werden, um die Einhaltung sicherzustellen, und erforderliche Änderungen verhandeln werden."
+        "retentionPolicy": "Kundendaten und Inhalte werden innerhalb von 30 Tagen nach Vertragsende gelöscht, sofern der Kunde nichts anderes anweist. Laut AVV werden Daten bei Vertragsende oder auf begründete Anfrage zurückgegeben oder gelöscht, sofern keine gesetzliche Aufbewahrungspflicht besteht.",
+        "details": "Laut den Nutzungsbedingungen trainieren weder FrogBot noch seine Unterauftragsverarbeiter KI-Modelle mit Kundeninhalten oder Kundendaten, und Unterauftragsverarbeiter speichern oder protokollieren diese Inhalte nicht zur Prüfung durch Menschen."
       }
     }
   }
