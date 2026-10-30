@@ -17,7 +17,7 @@
     },
     "dpa": {
       "available": true,
-      "url": "https://www.clarifai.com/company/data-processing",
+      "url": "https://web.archive.org/web/20260710205236/https://clarifai.com/company/data-processing",
       "signedVia": "online_acceptance"
     },
     "dataUsage": {
@@ -32,8 +32,7 @@
       "includesEuEntities": null
     },
     "certifications": [
-      "SOC2",
-      "ISO27001"
+      "SOC2"
     ],
     "euAiAct": {
       "status": "unknown",
@@ -51,10 +50,10 @@
     "https://web.archive.org/web/20260710205236/https://clarifai.com/company/data-processing",
     "https://www.dataprivacyframework.gov/participant/4415"
   ],
-  "notes": "Clarifai's core team and inference technology moved to Nebius in May 2026, and platform credit purchases ended on 18 June 2026. The Clarifai website, documentation and API endpoint are no longer reachable, so the service is treated as discontinued; the compliance details describe the service before shutdown. Nebius offers inference through its own Nebius Token Factory service.",
+  "notes": "In May 2026 Clarifai's core engineering and research team joined Nebius, which licensed Clarifai's inference and compute orchestration technology for its Nebius Token Factory service; platform credit purchases ended after 18 June 2026. The Clarifai website, documentation and API endpoint are no longer reachable, so the service is treated as discontinued; the compliance details describe the service before shutdown, based on archived copies of its documents. The archived DPA attributes ISO 27001 only to Clarifai's infrastructure providers, so only SOC 2 is listed.",
   "translations": {
     "de": {
-      "notes": "Das Kernteam und die Inferenztechnologie von Clarifai sind im Mai 2026 zu Nebius gewechselt, und seit dem 18. Juni 2026 lassen sich keine Plattform-Credits mehr kaufen. Website, Dokumentation und API-Endpunkt von Clarifai sind nicht mehr erreichbar, der Dienst gilt daher als eingestellt; die Compliance-Angaben beschreiben den Dienst vor der Einstellung. Nebius bietet Inferenz über seinen eigenen Dienst Nebius Token Factory an.",
+      "notes": "Im Mai 2026 ist das Kernteam aus Entwicklung und Forschung von Clarifai zu Nebius gewechselt; Nebius hat die Inferenz- und Orchestrierungstechnologie von Clarifai für seinen Dienst Nebius Token Factory lizenziert. Plattform-Credits ließen sich nach dem 18. Juni 2026 nicht mehr kaufen. Website, Dokumentation und API-Endpunkt von Clarifai sind nicht mehr erreichbar, der Dienst gilt daher als eingestellt; die Compliance-Angaben beschreiben den Dienst vor der Einstellung anhand archivierter Fassungen seiner Dokumente, und ISO 27001 wird im archivierten AVV nur den Infrastrukturanbietern zugeschrieben.",
       "dataResidency": {
         "euRegionDetails": "Clarifai gibt an, dass Teams auf einer gemeinsam genutzten oder dedizierten Cloud, innerhalb ihrer eigenen VPC, On-Premise oder am Edge bereitstellen können. Der AVV besagt jedoch, dass personenbezogene Daten weltweit übermittelt werden können, einschließlich an Clarifai in den Vereinigten Staaten sowie an verbundene Unternehmen und Unterauftragsverarbeiter in anderen Rechtsordnungen. Eine Garantie aus Primärquellen für eine ausschließlich in der EU gehostete Verarbeitung wurde nicht gefunden."
       },
