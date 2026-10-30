@@ -35,7 +35,7 @@
       "status": "not_applicable",
       "details": "Berget AI's Acceptable Use Policy states that it acts solely as an infrastructure and service provider, not as a provider or deployer of AI systems under the EU AI Act, and makes customers responsible for AI Act compliance."
     },
-    "sccs": false,
+    "sccs": true,
     "adequacyDecision": true
   },
   "pricingTier": "pay_per_use",

@@ -41,7 +41,7 @@
       "status": "compliant",
       "details": "STACKIT's AI Act knowledge page states that its cloud infrastructure meets the key requirements of the AI Act; STACKIT has published no formal AI Act statement for AI Model Serving, which serves third-party open-source models. Its Terms of Use prohibit using its services for practices banned under Art. 5 of the AI Act."
     },
-    "sccs": false,
+    "sccs": true,
     "adequacyDecision": true
   },
   "pricingTier": "pay_per_use",
