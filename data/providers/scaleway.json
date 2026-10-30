@@ -11,8 +11,8 @@
         "EU"
       ],
       "euOnly": true,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": "Generative APIs run exclusively in fr-par (Paris). Managed Inference supports fr-par (Paris), nl-ams (Amsterdam), and pl-waw (Warsaw). No data leaves the EU. Datacentres: DC2/DC3/DC5 (Paris), AMS1/AMS2 (Amsterdam), WAW1/WAW2 (Warsaw)."
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "Generative APIs Serverless (api.scaleway.ai) has no region choice: all serverless models run in a Paris data centre operated by OPCORE, and Scaleway's documentation guarantees that they remain hosted in Europe, with notice to customers if the location changes. Dedicated Deployment (formerly Managed Inference) runs in the region chosen when the deployment is created, currently only Paris; Scaleway recommends it to keep processing in a single region. Batch processing reads and writes files in an Object Storage bucket the customer chooses. The DPA itself only says that Scaleway services are located in the EU by default and allows storage outside the EU after informing the customer; all Scaleway regions and listed data-centre sub-processors are in the EU."
     },
     "dpa": {
       "available": true,
@@ -22,47 +22,54 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "Prompts and completions not stored beyond request handling per explicit data privacy documentation. Account and billing data retained for contract duration plus legal archiving period.",
-      "details": "Dedicated data privacy page at /docs/generative-apis/reference-content/data-privacy/ explicitly states no training on customer data."
+      "retentionPolicy": "Zero data retention by default: prompts and outputs are not kept after processing. After errors or suspected misuse, request content may be kept for up to two weeks for investigation. Batch inputs are kept for up to 24 hours, and aggregated, anonymised usage data for up to 6 months.",
+      "details": "Scaleway's Generative APIs privacy documentation and its Specific Conditions for AI Services state that prompts and outputs are not used to train or improve models and are not accessible to model providers or third-party services."
     },
     "subProcessors": {
       "disclosed": true,
-      "url": "https://www.scaleway.com/en/contracts/",
+      "url": "https://www.scaleway.com/en/subprocessorlist/",
       "includesEuEntities": true
     },
     "certifications": [
-      "ISO27001",
-      "HDS"
+      "ISO27001"
     ],
     "euAiAct": {
-      "status": "unknown",
-      "details": "Infrastructure provider and deployer of third-party open-weight models. No published EU AI Act compliance statement specific to Generative APIs. As deployer, primary obligations fall on model developers."
+      "status": "compliant",
+      "details": "Scaleway states that it complies with the AI Act within its scope of responsibilities as a platform for third-party models and that customers are likely to be AI system providers or deployers under the Act."
     },
-    "sccs": false,
+    "sccs": true,
     "adequacyDecision": true
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-07",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://www.scaleway.com/en/docs/generative-apis/reference-content/data-privacy/",
+    "https://www.scaleway.com/en/docs/generative-apis/reference-content/security-and-reliability/",
+    "https://www.scaleway.com/en/docs/generative-apis/faq/",
     "https://www.scaleway.com/en/contracts/",
+    "https://www-uploads.scaleway.com/DPA_2024_ENG_b0abb5cc26.pdf",
+    "https://www-uploads.scaleway.com/Specific_Conditions_AI_Services_275907180f.pdf",
+    "https://www.scaleway.com/en/subprocessorlist/",
     "https://www.scaleway.com/en/privacy-policy/",
-    "https://www.scaleway.com/en/generative-apis/"
+    "https://www.scaleway.com/en/generative-apis/",
+    "https://www.scaleway.com/en/product-availability-by-region/",
+    "https://security.scaleway.com/",
+    "https://www.scaleway.com/en/about-us/"
   ],
-  "notes": "Scaleway (Iliad Group) is 100% French-owned. France is an EU member state — adequacyDecision is true in that no cross-border GDPR transfer concern exists for EU customers. HDS certification (French health data hosting) is a differentiator for healthcare use cases. ISO 27001 covers datacentres and cloud platform.",
+  "notes": "French cloud provider and subsidiary of the iliad Group; the DPA applies the EU Standard Contractual Clauses to any transfer outside the EU. Its HDS certification for health data covers infrastructure services such as Instances, Kapsule and Object Storage, not Generative APIs.",
   "translations": {
     "de": {
-      "notes": "Scaleway (Iliad Group) befindet sich zu 100 % in französischem Eigentum. Frankreich ist ein EU-Mitgliedstaat — adequacyDecision ist insoweit true, als für EU-Kunden keine Bedenken im Hinblick auf grenzüberschreitende DSGVO-Übermittlungen bestehen. Die HDS-Zertifizierung (französische Zertifizierung für das Hosting von Gesundheitsdaten) ist ein Unterscheidungsmerkmal für Anwendungsfälle im Gesundheitswesen. ISO 27001 deckt Rechenzentren und die Cloud-Plattform ab.",
+      "notes": "Französischer Cloud-Anbieter und Tochtergesellschaft der iliad-Gruppe; der AVV sieht für jede Übermittlung außerhalb der EU die EU-Standardvertragsklauseln vor. Die HDS-Zertifizierung für Gesundheitsdaten umfasst Infrastrukturdienste wie Instances, Kapsule und Object Storage, nicht aber die Generative APIs.",
       "dataResidency": {
-        "euRegionDetails": "Generative APIs werden ausschließlich in fr-par (Paris) ausgeführt. Managed Inference unterstützt fr-par (Paris), nl-ams (Amsterdam) und pl-waw (Warschau). Es verlassen keine Daten die EU. Rechenzentren: DC2/DC3/DC5 (Paris), AMS1/AMS2 (Amsterdam), WAW1/WAW2 (Warschau)."
+        "euRegionDetails": "Generative APIs Serverless (api.scaleway.ai) bietet keine Regionswahl: Alle Serverless-Modelle laufen in einem von OPCORE betriebenen Rechenzentrum in Paris, und die Dokumentation von Scaleway garantiert, dass sie in Europa gehostet bleiben und Kunden über einen Standortwechsel informiert werden. Dedicated Deployment (früher Managed Inference) läuft in der beim Anlegen gewählten Region, derzeit nur Paris; Scaleway empfiehlt es, damit die Verarbeitung in einer einzigen Region bleibt. Die Batch-Verarbeitung liest und schreibt Dateien in einem Object-Storage-Bucket, den der Kunde auswählt. Der AVV selbst sagt nur, dass sich die Dienste von Scaleway standardmäßig in der EU befinden, und erlaubt eine Speicherung außerhalb der EU nach vorheriger Information des Kunden; alle Scaleway-Regionen und die gelisteten Rechenzentrums-Unterauftragsverarbeiter liegen in der EU."
       },
       "dataUsage": {
-        "retentionPolicy": "Prompts und Completions werden gemäß der ausdrücklichen Datenschutzdokumentation nicht über die Bearbeitung der Anfrage hinaus gespeichert. Konto- und Abrechnungsdaten werden für die Vertragsdauer zuzüglich der gesetzlichen Archivierungsfrist aufbewahrt.",
-        "details": "Eine eigene Datenschutzseite unter /docs/generative-apis/reference-content/data-privacy/ stellt ausdrücklich klar, dass kein Training auf Kundendaten erfolgt."
+        "retentionPolicy": "Standardmäßig Zero Data Retention: Prompts und Ausgaben werden nach der Verarbeitung nicht gespeichert. Bei Fehlern oder Verdacht auf Missbrauch kann der Anfrageinhalt bis zu zwei Wochen zur Untersuchung aufbewahrt werden. Batch-Eingaben werden bis zu 24 Stunden gespeichert, aggregierte, anonymisierte Nutzungsdaten bis zu 6 Monate.",
+        "details": "Die Datenschutzdokumentation zu den Generative APIs und die Besonderen Bedingungen für KI-Dienste von Scaleway halten fest, dass Prompts und Ausgaben nicht zum Training oder zur Verbesserung von Modellen genutzt werden und weder Modellanbietern noch Diensten Dritter zugänglich sind."
       },
       "euAiAct": {
-        "details": "Infrastrukturanbieter und Deployer von Open-Weight-Modellen Dritter. Es liegt keine veröffentlichte Konformitätserklärung zum EU AI Act vor, die spezifisch auf die Generative APIs bezogen ist. Als Deployer fallen die primären Verpflichtungen den Modellentwicklern zu."
+        "details": "Scaleway erklärt, den AI Act in seinem Verantwortungsbereich als Plattform für Modelle Dritter einzuhalten; Kunden gelten nach Angaben von Scaleway voraussichtlich als Anbieter oder Betreiber von KI-Systemen im Sinne des AI Act."
       }
     }
   }

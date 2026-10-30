@@ -3,61 +3,69 @@
   "name": "Together AI",
   "type": "api_provider",
   "website": "https://www.together.ai",
-  "apiDocsUrl": "https://docs.together.ai/docs/serverless-models",
+  "apiDocsUrl": "https://docs.together.ai/docs/serverless/models",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
       "regions": [
-        "US"
+        "US",
+        "EU"
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": null,
-      "euRegionDetails": "No dedicated EU region for serverless inference. All infrastructure is US-based."
+      "euRegionDetails": "The serverless API has no EU option: the standard endpoint makes no commitment on the processing region, and the only selectable geography is a US endpoint for some models. Together states that dedicated endpoints and private or VPC deployments can run in EU data centers, arranged with sales; the public documentation names no EU region and does not say where stored prompts and logs are kept."
     },
     "dpa": {
       "available": true,
-      "url": "https://www.together.ai/privacy",
-      "signedVia": "online_acceptance"
+      "url": "https://trust.together.ai/resources",
+      "signedVia": "custom_contract"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
-      "optOutAvailable": true,
-      "retentionPolicy": "No training without explicit opt-in. Zero Data Retention mode available via Settings > Profile.",
-      "details": "Policy explicitly states no training without explicit opt-in. ZDR available in platform settings."
+      "optOutAvailable": false,
+      "retentionPolicy": "By default, prompts and responses are stored and may be used for product improvements until the customer deletes them. Organization admins can enable zero data retention, after which request content is not stored; usage metadata and uploaded files are still kept.",
+      "details": "Training on customer data is opt-in and off by default. Passthrough models, enabled by default, forward requests to third-party providers under their own data policies; admins can switch them off."
     },
     "subProcessors": {
-      "disclosed": false,
-      "url": null,
-      "includesEuEntities": null
+      "disclosed": true,
+      "url": "https://trust.together.ai/subprocessors",
+      "includesEuEntities": true
     },
     "certifications": [
-      "SOC2"
+      "SOC2",
+      "ISO27001"
     ],
     "euAiAct": {
       "status": "unknown",
       "details": null
     },
-    "sccs": true,
+    "sccs": null,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-07",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://www.together.ai/privacy",
     "https://www.together.ai/terms-of-service",
-    "https://trust.together.ai"
+    "https://trust.together.ai",
+    "https://trust.together.ai/subprocessors",
+    "https://docs.together.ai/docs/privacy-and-security",
+    "https://docs.together.ai/docs/zero-data-retention",
+    "https://docs.together.ai/docs/serverless/geo-specific-inference",
+    "https://docs.together.ai/docs/dedicated-endpoints/manage",
+    "https://support.together.ai/articles/8079447813-eu-data-centers-and-dedicated-model-deployment"
   ],
-  "notes": "Delaware corp, headquartered in San Francisco, CA. SCCs referenced for EEA/UK transfers. No EU infrastructure. ZDR mode available. Sub-processor list not publicly disclosed.",
+  "notes": "Together Computer, Inc. is a Delaware corporation based in San Francisco and is not certified under the EU-US Data Privacy Framework. Its privacy policy names EU standard contractual clauses for transfers from the EEA, Switzerland and the UK. The data processing addendum is not public and is provided on request through the trust center.",
   "translations": {
     "de": {
-      "notes": "Gesellschaft nach dem Recht des US-Bundesstaats Delaware mit Hauptsitz in San Francisco, Kalifornien. Für Übermittlungen in den EWR/das Vereinigte Königreich wird auf Standardvertragsklauseln (SCC) Bezug genommen. Keine EU-Infrastruktur. ZDR-Modus verfügbar. Liste der Unterauftragsverarbeiter wird nicht öffentlich offengelegt.",
+      "notes": "Together Computer, Inc. ist eine Gesellschaft nach dem Recht von Delaware mit Sitz in San Francisco und nicht unter dem EU-US Data Privacy Framework zertifiziert. Die Datenschutzerklärung nennt EU-Standardvertragsklauseln für Übermittlungen aus dem EWR, der Schweiz und dem Vereinigten Königreich. Der Auftragsverarbeitungsvertrag ist nicht öffentlich und wird auf Anfrage über das Trust Center bereitgestellt.",
       "dataResidency": {
-        "euRegionDetails": "Keine dedizierte EU-Region für serverlose Inferenz. Die gesamte Infrastruktur ist in den USA angesiedelt."
+        "euRegionDetails": "Die serverlose API bietet keine EU-Option: Der Standard-Endpunkt sagt keine Verarbeitungsregion zu, wählbar ist nur ein US-Endpunkt für einige Modelle. Laut Together können dedizierte Endpunkte sowie private oder VPC-Bereitstellungen nach Absprache mit dem Vertrieb in EU-Rechenzentren laufen; die öffentliche Dokumentation nennt keine EU-Region und gibt nicht an, wo gespeicherte Prompts und Logs liegen."
       },
       "dataUsage": {
-        "retentionPolicy": "Keine Nutzung für Training ohne ausdrückliches Opt-in. Ein Zero Data Retention-Modus ist über Einstellungen > Profil verfügbar.",
-        "details": "Die Richtlinie stellt ausdrücklich klar, dass keine Nutzung für Training ohne ausdrückliches Opt-in erfolgt. ZDR ist in den Plattformeinstellungen verfügbar."
+        "retentionPolicy": "Standardmäßig werden Prompts und Antworten gespeichert und können zur Produktverbesserung genutzt werden, bis der Kunde sie löscht. Organisations-Admins können Zero Data Retention aktivieren; danach werden Anfrageinhalte nicht gespeichert, Nutzungsmetadaten und hochgeladene Dateien bleiben erhalten.",
+        "details": "Training mit Kundendaten erfolgt nur nach Opt-in und ist standardmäßig deaktiviert. Standardmäßig aktivierte Passthrough-Modelle leiten Anfragen an Drittanbieter weiter, für die deren eigene Datenrichtlinien gelten; Admins können sie abschalten."
       }
     }
   }

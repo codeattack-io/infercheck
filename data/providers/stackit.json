@@ -2,8 +2,8 @@
   "slug": "stackit",
   "name": "STACKIT",
   "type": "api_provider",
-  "website": "https://www.stackit.de/en/",
-  "apiDocsUrl": "https://docs.stackit.cloud/products/data-and-ai/ai-model-serving/basics/available-shared-models",
+  "website": "https://stackit.com/en",
+  "apiDocsUrl": "https://docs.stackit.cloud/products/data-and-ai/ai-model-serving/basics/available-shared-models/",
   "compliance": {
     "headquarters": "DE",
     "dataResidency": {
@@ -11,58 +11,70 @@
         "EU"
       ],
       "euOnly": true,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": "100% EU data residency. STACKIT operates its own datacentres — not hosted on US hyperscalers. Regions: eu01 (Neckarsulm, Germany), eu02 (Ellhofen, Germany), eu03 (Ostermiething, Austria). Fifth DC under construction in Lübbenau, Germany."
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "EU processing is the only mode: all AI Model Serving shared chat and embedding models are served in region EU01 (Germany) through a single endpoint, with no region choice and no model excluded. STACKIT hosts its regions only in Germany (eu01) and Austria (eu02), and the DPA requires processing within the EU/EEA unless processing outside the EEA is expressly agreed, for example in a service certificate; the AI Model Serving service certificate contains no such agreement. Request content is not stored; the user's e-mail address and subject ID are kept in the service logs for 30 days."
     },
     "dpa": {
       "available": true,
-      "url": "https://www.stackit.de/en/gtc",
+      "url": "https://stackit.com/en/asset/download/34534/file/STACKIT_data_processing_agreement.pdf",
       "signedVia": "online_acceptance"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "No training on customer inference data. Specific AI inference retention terms per GTC and DPA.",
-      "details": "STACKIT's sovereign cloud positioning and DPA framework guarantee customer data stays in EU-owned infrastructure."
+      "retentionPolicy": "Prompts and completions are not stored or backed up. The service keeps the user's e-mail address and subject ID in its logs for 30 days.",
+      "details": "STACKIT states that requests to AI Model Serving are not stored and not used to train models, and that it collects no customer data beyond billing-relevant data."
     },
     "subProcessors": {
       "disclosed": true,
-      "url": "https://www.stackit.de/en/data-protection-notice",
+      "url": "https://stackit.com/en/asset/download/34534/file/STACKIT_data_processing_agreement.pdf",
       "includesEuEntities": true
     },
     "certifications": [
       "ISO27001",
+      "ISO27017",
+      "ISO27018",
+      "ISO22301",
       "C5"
     ],
     "euAiAct": {
-      "status": "unknown",
-      "details": "No specific EU AI Act compliance statement published. As a German company actively targeting public sector, EU AI Act readiness is a stated priority. AI Model Serving is a deployer product."
+      "status": "compliant",
+      "details": "STACKIT's AI Act knowledge page states that its cloud infrastructure meets the key requirements of the AI Act; STACKIT has published no formal AI Act statement for AI Model Serving, which serves third-party open-source models. Its Terms of Use prohibit using its services for practices banned under Art. 5 of the AI Act."
     },
-    "sccs": false,
+    "sccs": true,
     "adequacyDecision": true
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-07",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://www.stackit.de/en/",
-    "https://www.stackit.de/en/products/data-ai/stackit-ai-model-serving",
-    "https://www.stackit.de/en/why-stackit/benefits/certificates",
-    "https://www.stackit.de/en/gtc"
+    "https://stackit.com/en",
+    "https://stackit.com/en/imprint",
+    "https://stackit.com/en/products/data-ai/stackit-ai-model-serving",
+    "https://stackit.com/en/why-stackit/benefits/certificates",
+    "https://stackit.com/en/gtc/cloud-services",
+    "https://stackit.com/en/asset/download/34534/file/STACKIT_data_processing_agreement.pdf",
+    "https://stackit.com/en/asset/download/34346/file/Service_Certificate_STACKIT_AI_Model_Serving.pdf",
+    "https://stackit.com/en/asset/download/34130/file/Service_certificate_STACKIT_Compute_Engine_GPU.pdf",
+    "https://stackit.com/en/asset/download/34542/file/Terms_of_use_STACKIT_Cloud.pdf",
+    "https://docs.stackit.cloud/products/data-and-ai/ai-model-serving/faq/",
+    "https://docs.stackit.cloud/platform/regions/",
+    "https://stackit.com/en/learn/knowledge/cloud/cloud-ai/ai-act",
+    "https://docs.stackit.cloud/platform/customer-accounts/how-tos/create-a-customer-account/"
   ],
-  "notes": "STACKIT is the cloud arm of the Schwarz Group (Lidl, Kaufland — Europe's largest retailer group). Germany is an EU member state — no cross-border GDPR transfer concern for EU customers. BSI C5 (German Federal Office for Information Security Cloud Computing Compliance Controls Catalogue) is a key differentiator for German public sector, equivalent in rigour to SOC2 Type II. Partnership with Aleph Alpha. TISAX certification for automotive sector customers. DORA compliance as ICT provider for financial sector.",
+  "notes": "STACKIT is the cloud brand of Schwarz Digits Cloud GmbH & Co. KG, part of the Schwarz Group (Lidl, Kaufland). AI Model Serving offers open-source chat and embedding models through an OpenAI-compatible API and is listed in STACKIT's BSI C5 Type 2 scope. New customer accounts are self-service for Germany, Austria and Switzerland and go through sales elsewhere.",
   "translations": {
     "de": {
-      "notes": "STACKIT ist der Cloud-Bereich der Schwarz Group (Lidl, Kaufland — Europas größte Einzelhandelsgruppe). Deutschland ist Mitgliedstaat der EU — für EU-Kunden besteht kein grenzüberschreitendes Problem im Hinblick auf DSGVO-Übermittlungen. BSI C5 (Cloud Computing Compliance Controls Catalogue des Bundesamts für Sicherheit in der Informationstechnik) ist ein wesentliches Unterscheidungsmerkmal für den deutschen öffentlichen Sektor und in der Strenge mit SOC 2 Type II vergleichbar. Partnerschaft mit Aleph Alpha. TISAX-Zertifizierung für Kunden aus dem Automobilsektor. DORA-Compliance als IKT-Anbieter für den Finanzsektor.",
+      "notes": "STACKIT ist die Cloud-Marke der Schwarz Digits Cloud GmbH & Co. KG, die zur Schwarz Gruppe (Lidl, Kaufland) gehört. AI Model Serving bietet Open-Source-Chat- und Embedding-Modelle über eine OpenAI-kompatible API an und gehört zum BSI-C5-Type-2-Prüfumfang von STACKIT. Kundenkonten lassen sich in Deutschland, Österreich und der Schweiz selbst anlegen, in anderen Ländern über den Vertrieb.",
       "dataResidency": {
-        "euRegionDetails": "100 % Datenhaltung in der EU. STACKIT betreibt eigene Rechenzentren — kein Hosting auf US-Hyperscalern. Regionen: eu01 (Neckarsulm, Deutschland), eu02 (Ellhofen, Deutschland), eu03 (Ostermiething, Österreich). Ein fünftes Rechenzentrum befindet sich in Lübbenau, Deutschland, im Bau."
+        "euRegionDetails": "Die Verarbeitung in der EU ist der einzige Modus: Alle Shared Chat- und Embedding-Modelle von AI Model Serving laufen in der Region EU01 (Deutschland) über einen einzigen Endpunkt, ohne Regionswahl und ohne ausgenommene Modelle. STACKIT betreibt seine Regionen nur in Deutschland (eu01) und Österreich (eu02), und der AVV verlangt die Verarbeitung in der EU/im EWR, sofern eine Verarbeitung außerhalb des EWR nicht ausdrücklich vereinbart ist, etwa in einem Leistungsschein; der Leistungsschein für AI Model Serving enthält keine solche Vereinbarung. Anfrageinhalte werden nicht gespeichert; E-Mail-Adresse und Subject-ID des Nutzers bleiben 30 Tage in den Logs des Dienstes."
       },
       "dataUsage": {
-        "retentionPolicy": "Kein Training auf Inferenzdaten von Kunden. Spezifische Aufbewahrungsbedingungen für KI-Inferenzen gemäß AGB und Auftragsverarbeitungsvertrag (AVV).",
-        "details": "Die Positionierung von STACKIT als souveräne Cloud und das Rahmenwerk des Auftragsverarbeitungsvertrags (AVV) gewährleisten, dass Kundendaten in einer Infrastruktur in EU-Eigentum verbleiben."
+        "retentionPolicy": "Prompts und Antworten werden weder gespeichert noch gesichert. Der Dienst speichert E-Mail-Adresse und Subject-ID des Nutzers 30 Tage lang in seinen Logs.",
+        "details": "STACKIT gibt an, dass Anfragen an AI Model Serving weder gespeichert noch zum Training von Modellen verwendet werden und außer abrechnungsrelevanten Daten keine Kundendaten erhoben werden."
       },
       "euAiAct": {
-        "details": "Es wurde keine spezifische Erklärung zur Compliance mit dem EU AI Act veröffentlicht. Für ein deutsches Unternehmen mit aktiver Ausrichtung auf den öffentlichen Sektor ist die Bereitschaft für den EU AI Act eine erklärte Priorität. AI Model Serving ist ein Deployer-Produkt."
+        "details": "Laut der AI-Act-Wissensseite von STACKIT erfüllt die Cloud-Infrastruktur die wesentlichen Anforderungen des AI Act; eine formelle Erklärung zum AI Act für AI Model Serving, das Open-Source-Modelle Dritter bereitstellt, hat STACKIT nicht veröffentlicht. Die Nutzungsbedingungen verbieten die Nutzung der Dienste für nach Art. 5 AI Act verbotene Praktiken."
       }
     }
   }

@@ -1,29 +1,30 @@
 {
   "slug": "zenmux",
   "name": "ZenMux",
-  "type": "api_provider",
-  "website": "https://docs.zenmux.ai",
-  "apiDocsUrl": "https://docs.zenmux.ai",
+  "type": "gateway",
+  "website": "https://zenmux.ai",
+  "apiDocsUrl": "https://zenmux.ai/docs/",
   "compliance": {
     "headquarters": "SG",
     "dataResidency": {
       "regions": [
-        "SG"
+        "SG",
+        "MY"
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "ZenMux says data related to account and product services is generally stored in Singapore. Its multi-provider architecture can route requests to third-party providers such as Anthropic, Google Vertex AI, and Amazon Bedrock, so EU-only processing is not guaranteed."
+      "euRegionDetails": "ZenMux offers no EU region or EU-only routing. Its own storage is in Singapore, with some data stored or processed in Malaysia, and traffic passes through Cloudflare's global edge network. Requests go to upstream providers such as Anthropic, OpenAI, Google Vertex AI, Amazon Bedrock, Azure and Chinese clouds (for example Alibaba Cloud, Volcengine, Baidu); customers can pin a provider per request, but ZenMux does not document where the upstream inference runs."
     },
     "dpa": {
-      "available": true,
-      "url": "https://docs.zenmux.ai/compliance.html",
+      "available": false,
+      "url": null,
       "signedVia": "not_available"
     },
     "dataUsage": {
-      "trainsOnCustomerData": null,
+      "trainsOnCustomerData": true,
       "optOutAvailable": null,
-      "retentionPolicy": "ZenMux says it retains personal information only as long as necessary for the purposes in its policy and as required by law. After service termination it stops collecting personal information, but may retain data where legally required; if it ceases operations it says it will delete or anonymize retained personal information.",
-      "details": "The privacy policy states that ZenMux may store, transfer, or train on anonymized User Content to improve its model. It also states that data uploaded or transferred for account and product services is generally stored in Singapore."
+      "retentionPolicy": "With the Data Services setting on, ZenMux stores full request and response content for its logs and quality-compensation checks; with it off, request content is not kept on its servers. Usage data such as model, time and token counts stays viewable for 180 days, and ZenMux may keep data longer for legal, enforcement or security reasons. No fixed deletion period for stored content is published.",
+      "details": "The privacy policy says ZenMux may store, transfer or train on anonymized prompts and outputs to improve its model, with no exception for paid API use and no documented opt-out; switching Data Services off stops server-side storage of request content, but the documentation does not say whether this excludes training. By default, requests go to the fastest of several upstream providers, whose training and retention terms ZenMux does not publish. The privacy policy only says ZenMux acts on the customer's instructions as a service provider; no data processing agreement text is published."
     },
     "subProcessors": {
       "disclosed": false,
@@ -32,35 +33,38 @@
     },
     "certifications": [],
     "euAiAct": {
-      "status": "monitoring",
-      "details": "ZenMux's compliance page says GDPR is 'In progress' and describes support for global regulatory frameworks, but no specific EU AI Act compliance commitment or certification is published in the consulted primary sources."
+      "status": "unknown",
+      "details": "ZenMux publishes no statement on the EU AI Act and is not a signatory of the EU code of practice for general-purpose AI models."
     },
     "sccs": null,
     "adequacyDecision": false
   },
-  "pricingTier": "free_tier",
-  "lastVerified": "2026-04-11",
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://docs.zenmux.ai/privacy",
-    "https://docs.zenmux.ai/terms-of-service",
-    "https://docs.zenmux.ai/compliance.html",
-    "https://docs.zenmux.ai/about/models-and-providers.html",
-    "https://docs.zenmux.ai/guide/subscription.html"
+    "https://zenmux.ai/docs/privacy.html",
+    "https://zenmux.ai/docs/terms-of-service.html",
+    "https://zenmux.ai/docs/compliance.html",
+    "https://zenmux.ai/docs/guide/advanced/data-services.html",
+    "https://zenmux.ai/docs/guide/advanced/provider-routing.html",
+    "https://zenmux.ai/docs/guide/pay-as-you-go.html",
+    "https://zenmux.ai/docs/guide/subscription.html",
+    "https://zenmux.ai/api/v1/models"
   ],
-  "notes": "ZenMux provides a public privacy policy and a compliance page stating that a DPA is offered, but no direct DPA text, SCC language, or public sub-processor list was found in the consulted primary sources. Data is generally stored in Singapore, and ZenMux's multi-provider routing to services such as Vertex AI and Amazon Bedrock means EU-only inference processing is not guaranteed.",
+  "notes": "ZenMux is a model gateway run by NexaMind Singapore Pte. Ltd.; its compliance page mentions a data processing agreement, but no agreement text, sub-processor list or EU routing option is published, and SOC 2, ISO 27001 and GDPR are listed as in progress. Requests go to upstream providers including US model vendors and Chinese cloud platforms, whose processing locations ZenMux does not document. API use is pay-as-you-go or by subscription; the free plan covers web chat only.",
   "translations": {
     "de": {
-      "notes": "ZenMux stellt eine öffentliche Datenschutzrichtlinie und eine Compliance-Seite bereit, auf der angegeben wird, dass ein Auftragsverarbeitungsvertrag (AVV) angeboten wird; in den konsultierten Primärquellen wurden jedoch weder ein direkter AVV-Text noch Formulierungen zu Standardvertragsklauseln (SCC) oder eine öffentliche Liste von Unterauftragsverarbeitern gefunden. Daten werden im Allgemeinen in Singapur gespeichert, und aufgrund der Multi-Provider-Routing-Architektur von ZenMux zu Diensten wie Vertex AI und Amazon Bedrock ist eine ausschließlich in der EU erfolgende Inferenzverarbeitung nicht gewährleistet.",
+      "notes": "ZenMux ist ein Modell-Gateway der NexaMind Singapore Pte. Ltd.; die Compliance-Seite erwähnt einen Auftragsverarbeitungsvertrag, veröffentlicht sind aber weder Vertragstext noch Liste der Unterauftragsverarbeiter oder eine EU-Routing-Option, und SOC 2, ISO 27001 und DSGVO werden als „in Arbeit“ geführt. Anfragen gehen an Upstream-Anbieter, darunter US-Modellanbieter und chinesische Cloud-Plattformen, deren Verarbeitungsorte ZenMux nicht dokumentiert. Die API wird nach Verbrauch oder im Abonnement abgerechnet; der kostenlose Tarif umfasst nur den Web-Chat.",
       "dataResidency": {
-        "euRegionDetails": "ZenMux gibt an, dass Daten im Zusammenhang mit Konto- und Produktdiensten im Allgemeinen in Singapur gespeichert werden. Aufgrund seiner Multi-Provider-Architektur können Anfragen an Drittanbieter wie Anthropic, Google Vertex AI und Amazon Bedrock weitergeleitet werden, sodass eine ausschließlich in der EU erfolgende Verarbeitung nicht gewährleistet ist."
+        "euRegionDetails": "ZenMux bietet keine EU-Region und kein reines EU-Routing. Eigene Daten speichert ZenMux in Singapur, einzelne Daten werden auch in Malaysia gespeichert oder verarbeitet, und der Datenverkehr läuft über das globale Edge-Netz von Cloudflare. Anfragen gehen an Upstream-Anbieter wie Anthropic, OpenAI, Google Vertex AI, Amazon Bedrock, Azure und chinesische Clouds (etwa Alibaba Cloud, Volcengine, Baidu); Kunden können pro Anfrage einen Anbieter festlegen, ZenMux dokumentiert aber nicht, wo die Inferenz bei diesen Anbietern läuft."
       },
       "dataUsage": {
-        "retentionPolicy": "ZenMux gibt an, personenbezogene Daten nur so lange aufzubewahren, wie es für die in seiner Richtlinie genannten Zwecke und gesetzlich erforderlich ist. Nach Beendigung des Dienstes stellt ZenMux die Erhebung personenbezogener Daten ein, kann Daten jedoch aufbewahren, sofern dies gesetzlich vorgeschrieben ist; falls das Unternehmen seinen Betrieb einstellt, gibt es an, aufbewahrte personenbezogene Daten zu löschen oder zu anonymisieren.",
-        "details": "Laut der Datenschutzrichtlinie kann ZenMux anonymisierte Nutzerinhalte speichern, übermitteln oder zum Training seines Modells verwenden, um dieses zu verbessern. Ferner wird angegeben, dass für Konto- und Produktdienste hochgeladene oder übermittelte Daten im Allgemeinen in Singapur gespeichert werden."
+        "retentionPolicy": "Ist die Einstellung „Data Services“ aktiv, speichert ZenMux vollständige Anfragen und Antworten für seine Logs und die Qualitätsentschädigung; ist sie aus, werden Anfrageinhalte nicht auf den Servern gespeichert. Nutzungsdaten wie Modell, Zeitpunkt und Tokenzahl bleiben 180 Tage einsehbar, und ZenMux kann Daten aus rechtlichen Gründen, zur Durchsetzung der Nutzungsbedingungen oder aus Sicherheitsgründen länger aufbewahren. Eine feste Löschfrist für gespeicherte Inhalte wird nicht genannt.",
+        "details": "Laut Datenschutzrichtlinie darf ZenMux anonymisierte Eingaben und Ausgaben speichern, übermitteln und zum Training seines Modells nutzen, ohne Ausnahme für die bezahlte API und ohne dokumentierte Widerspruchsmöglichkeit; das Abschalten von „Data Services“ beendet die serverseitige Speicherung von Anfrageinhalten, ob damit auch das Training ausgeschlossen ist, sagt die Dokumentation nicht. Standardmäßig gehen Anfragen an den schnellsten von mehreren Upstream-Anbietern, deren Trainings- und Aufbewahrungsbedingungen ZenMux nicht veröffentlicht. Die Datenschutzrichtlinie sagt nur, dass ZenMux als Dienstleister nach Weisung des Kunden handelt; ein Auftragsverarbeitungsvertrag ist nicht veröffentlicht."
       },
       "euAiAct": {
-        "details": "Auf der Compliance-Seite von ZenMux wird die DSGVO als „In progress“ bezeichnet und Unterstützung für globale regulatorische Rahmenwerke beschrieben; in den konsultierten Primärquellen wurde jedoch keine spezifische Verpflichtung zur Einhaltung des EU AI Act und keine entsprechende Zertifizierung veröffentlicht."
+        "details": "ZenMux veröffentlicht keine Aussage zum EU AI Act und hat den EU-Verhaltenskodex für KI-Modelle mit allgemeinem Verwendungszweck nicht unterzeichnet."
       }
     }
   }

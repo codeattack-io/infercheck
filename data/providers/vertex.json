@@ -2,28 +2,31 @@
   "slug": "vertex",
   "name": "Google Vertex AI",
   "type": "cloud_platform",
-  "website": "https://cloud.google.com/vertex-ai",
-  "apiDocsUrl": "https://cloud.google.com/vertex-ai/generative-ai/docs/models",
+  "website": "https://cloud.google.com/products/gemini-enterprise-agent-platform",
+  "apiDocsUrl": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/google-models",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
       "regions": [
-        "US",
         "EU",
-        "BE",
-        "NL",
-        "DE",
+        "US",
         "GB",
-        "FI",
-        "PL",
-        "IT",
-        "ES",
-        "FR",
-        "CH"
+        "CA",
+        "BR",
+        "IN",
+        "SG",
+        "HK",
+        "TW",
+        "JP",
+        "AU",
+        "KR",
+        "IL",
+        "QA",
+        "SA"
       ],
       "euOnly": true,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": "10 European regions: Belgium (europe-west1), Netherlands (europe-west4), Frankfurt/Germany (europe-west3), London/UK (europe-west2), Finland (europe-north1), Warsaw/Poland (europe-central2), Milan/Italy (europe-west8), Madrid/Spain (europe-southwest1), Paris/France (europe-west9), Zürich/Switzerland (europe-west6). Google stores and processes data only in the specified region. IMPORTANT: the global endpoint does NOT guarantee data residency — use specific regional endpoints for GDPR compliance."
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "Send requests to the EU multi-region endpoint (eu, for Gemini 3 and newer) or to a regional endpoint in an EU country such as europe-west1, europe-west3, europe-west4 or europe-west9 (for Gemini 2.5 and older); the eu multi-region excludes the UK and Switzerland. Google's Service Specific Terms commit to storing data and running ML processing only in the selected multi-region for the models listed in Google's ML-processing tables. Excluded are the global endpoint, which can process requests anywhere, models without an EU entry in those tables (for example most open models such as DeepSeek, Llama, Qwen, gpt-oss and Kimi, and models offered only on the global endpoint), Grounding with Google Search, Web Grounding for Enterprise, Grounding with Google Maps and RAG Engine."
     },
     "dpa": {
       "available": true,
@@ -33,8 +36,8 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "Customer data processed only per customer instructions. Data deletion instruction results in deletion from all Google systems within maximum 180 days. Zero Data Retention (ZDR) available for specific Vertex AI Generative AI requests where no input/output is logged.",
-      "details": "Google Cloud CDPA explicitly states data is processed only per customer instructions and not used to train or improve Google's AI models. ZDR is available for qualifying API calls — neither input nor output is logged or stored."
+      "retentionPolicy": "Gemini models cache data for up to 24 hours by default (can be switched off per project). The Interactions API stores prompts, responses and conversation state by default unless store is set to false. Prompts flagged by abuse classifiers may be logged for up to 90 days in the selected region for customers on the online terms. Grounding with Google Search keeps query logs for 3 days and Google Maps grounding for 30 days. Deleted customer data is removed within 180 days.",
+      "details": "The Service Specific Terms forbid Google from training or fine-tuning models on customer data without permission. Abuse-monitoring logs are not used for training. Customers with a Google Cloud Master Agreement are exempt from prompt logging for abuse monitoring by default."
     },
     "subProcessors": {
       "disclosed": true,
@@ -46,38 +49,56 @@
       "ISO27001",
       "ISO27017",
       "ISO27018",
-      "ISO27701"
+      "ISO27701",
+      "ISO42001",
+      "C5",
+      "HDS"
     ],
     "euAiAct": {
-      "status": "monitoring",
-      "details": "Google Cloud maintains ISO 27701 and has a general AI responsibility framework (Secure AI Framework / SAIF). No specific published EU AI Act provider-role compliance declaration for Vertex AI found as of verification date."
+      "status": "compliant",
+      "details": "Google, the developer of the Gemini models, is on the EU Commission's list of signatories of the General-Purpose AI Code of Practice. Google Cloud runs an EU AI Act page and publishes material to support customer compliance."
     },
     "sccs": true,
-    "adequacyDecision": false
+    "adequacyDecision": true
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-07",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://cloud.google.com/privacy/gdpr",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/vertex-ai-name-changes",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/locations",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/data-residency",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/supported-capabilities",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/zero-data-retention",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/abuse-monitoring",
+    "https://cloud.google.com/terms/service-terms",
+    "https://cloud.google.com/terms/data-residency",
     "https://cloud.google.com/terms/data-processing-addendum",
     "https://cloud.google.com/terms/subprocessors",
-    "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/data-residency",
-    "https://cloud.google.com/vertex-ai/generative-ai/docs/vertex-ai-zero-data-retention"
+    "https://cloud.google.com/privacy/gdpr",
+    "https://cloud.google.com/security/compliance/services-in-scope",
+    "https://cloud.google.com/security/compliance/iso-27701",
+    "https://cloud.google.com/security/compliance/iso-42001",
+    "https://cloud.google.com/security/compliance/bsi-c5",
+    "https://cloud.google.com/security/compliance/hds",
+    "https://cloud.google.com/security/compliance/eu-ai-act",
+    "https://cloud.google.com/model-garden/pricing",
+    "https://policies.google.com/privacy/frameworks",
+    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
   ],
-  "notes": "Most EU regional coverage of the three cloud platforms (10 European regions). Zero Data Retention (ZDR) is unique among the three — qualifying API calls store nothing, not even logs. Sub-processors for Gen AI include data labelling firms (Cognizant, GlobalLogic, Teleperformance, Uber) that may process in India, but only when the customer explicitly opts into data labelling services. CDPA accepted via online click-through in Google Cloud console. SCCs automatically incorporated. ISO 27701 held as PII processor.",
+  "notes": "Google has renamed Vertex AI to Gemini Enterprise Agent Platform. EU processing needs the eu multi-region or an EU regional endpoint; the global endpoint and several global-only models fall outside it. Google Cloud's DPA with SCCs and its sub-processor list apply, and Google LLC is certified under the EU-US Data Privacy Framework.",
   "translations": {
     "de": {
-      "notes": "Die umfassendste EU-Regionalabdeckung der drei Cloud-Plattformen (10 europäische Regionen). Zero Data Retention (ZDR) ist unter den drei einzigartig — qualifizierende API-Aufrufe speichern keinerlei Daten, nicht einmal Protokolle. Zu den Unterauftragsverarbeitern für Gen AI gehören Datenkennzeichnungsunternehmen (Cognizant, GlobalLogic, Teleperformance, Uber), die eine Verarbeitung in Indien vornehmen können, jedoch nur, wenn der Kunde ausdrücklich Datenkennzeichnungsdienste per Opt-out auswählt. Der Auftragsverarbeitungsvertrag (AVV) wird über eine Online-Click-through-Annahme in der Google Cloud Console akzeptiert. Standardvertragsklauseln (SCC) werden automatisch einbezogen. ISO 27701 wird in der Rolle als Auftragsverarbeiter für personenbezogene Daten gehalten.",
+      "notes": "Google hat Vertex AI in Gemini Enterprise Agent Platform umbenannt. EU-Verarbeitung erfordert die eu-Multi-Region oder einen regionalen EU-Endpunkt; der globale Endpunkt und mehrere nur global angebotene Modelle fallen nicht darunter. Es gelten der AVV von Google Cloud mit Standardvertragsklauseln und die Liste der Unterauftragsverarbeiter; Google LLC ist nach dem EU-US Data Privacy Framework zertifiziert.",
       "dataResidency": {
-        "euRegionDetails": "10 europäische Regionen: Belgien (europe-west1), Niederlande (europe-west4), Frankfurt/Deutschland (europe-west3), London/Vereinigtes Königreich (europe-west2), Finnland (europe-north1), Warschau/Polen (europe-central2), Mailand/Italien (europe-west8), Madrid/Spanien (europe-southwest1), Paris/Frankreich (europe-west9), Zürich/Schweiz (europe-west6). Google speichert und verarbeitet Daten ausschließlich in der angegebenen Region. WICHTIG: Der globale Endpoint garantiert KEINE Datenhaltung — für die DSGVO-Compliance sind spezifische regionale Endpoints zu verwenden."
+        "euRegionDetails": "Für die Verarbeitung in der EU gehen Anfragen an den EU-Multi-Region-Endpunkt (eu, für Gemini 3 und neuer) oder an einen regionalen Endpunkt in einem EU-Land wie europe-west1, europe-west3, europe-west4 oder europe-west9 (für Gemini 2.5 und älter); die eu-Multi-Region umfasst weder das Vereinigte Königreich noch die Schweiz. In seinen Service Specific Terms sagt Google für die in seinen Tabellen zur ML-Verarbeitung aufgeführten Modelle zu, Daten nur in der gewählten Multi-Region zu speichern und dort auch die ML-Verarbeitung auszuführen. Ausgenommen sind der globale Endpunkt, der Anfragen überall verarbeiten kann, Modelle ohne EU-Eintrag in diesen Tabellen (etwa die meisten offenen Modelle wie DeepSeek, Llama, Qwen, gpt-oss und Kimi sowie nur global angebotene Modelle), Grounding mit der Google Suche, Web Grounding for Enterprise, Grounding mit Google Maps und die RAG Engine."
       },
       "dataUsage": {
-        "retentionPolicy": "Kundendaten werden ausschließlich gemäß den Weisungen des Kunden verarbeitet. Eine Löschungsanweisung führt zur Löschung aus allen Google-Systemen innerhalb von maximal 180 Tagen. Zero Data Retention (ZDR) ist für bestimmte Vertex AI Generative AI-Anfragen verfügbar, bei denen weder Eingaben noch Ausgaben protokolliert werden.",
-        "details": "Das Google Cloud CDPA legt ausdrücklich fest, dass Daten ausschließlich gemäß den Weisungen des Kunden verarbeitet und nicht zum Trainieren oder Verbessern der KI-Modelle von Google verwendet werden. ZDR ist für qualifizierende API-Aufrufe verfügbar — weder Eingaben noch Ausgaben werden protokolliert oder gespeichert."
+        "retentionPolicy": "Gemini-Modelle cachen Daten standardmäßig bis zu 24 Stunden (pro Projekt abschaltbar). Die Interactions API speichert Prompts, Antworten und den Gesprächsverlauf standardmäßig, sofern store nicht auf false gesetzt wird. Von Missbrauchsklassifikatoren markierte Prompts können bei Kunden unter den Online-Nutzungsbedingungen bis zu 90 Tage in der gewählten Region protokolliert werden. Grounding mit der Google Suche speichert Abfrageprotokolle 3 Tage, Grounding mit Google Maps 30 Tage. Gelöschte Kundendaten werden innerhalb von 180 Tagen entfernt.",
+        "details": "Die Service Specific Terms untersagen Google, Modelle ohne Erlaubnis mit Kundendaten zu trainieren oder feinabzustimmen. Protokolle zur Missbrauchsüberwachung werden nicht für das Training verwendet. Kunden mit einem Google Cloud Master Agreement sind standardmäßig von der Prompt-Protokollierung zur Missbrauchsüberwachung ausgenommen."
       },
       "euAiAct": {
-        "details": "Google Cloud unterhält ISO 27701 und verfügt über ein allgemeines Rahmenwerk für KI-Verantwortung (Secure AI Framework / SAIF). Eine spezifische veröffentlichte Compliance-Erklärung zur Anbieterrolle nach dem EU AI Act für Vertex AI wurde zum Verifizierungsdatum nicht gefunden."
+        "details": "Google als Entwickler der Gemini-Modelle steht auf der Liste der Unterzeichner des GPAI-Verhaltenskodex der EU-Kommission. Google Cloud betreibt eine Seite zum EU AI Act und veröffentlicht Material zur Unterstützung der Compliance von Kunden."
       }
     }
   }

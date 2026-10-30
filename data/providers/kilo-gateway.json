@@ -1,65 +1,82 @@
 {
   "slug": "kilo-gateway",
   "name": "Kilo Gateway",
-  "type": "api_provider",
+  "type": "gateway",
   "website": "https://kilo.ai",
   "apiDocsUrl": "https://kilo.ai/docs/gateway/authentication",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
       "regions": [
-        "US"
+        "US",
+        "EU",
+        "CN",
+        "SG",
+        "ID"
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Kilo's privacy policy states the services are hosted in the United States and personal information is stored and processed on servers in the United States. No EU-only processing option was found in the provider's primary-source documentation reviewed."
+      "euRegionDetails": "Kilo Gateway is hosted in the United States, and self-serve accounts have no EU-only mode. Customers can use EU-hosted providers such as Inceptron through Kilo Gateway or with their own provider key (BYOK), but those requests still pass through the US-hosted gateway. Enterprise customers can agree a contractual EU data-residency setup with EU cloud compute and provider allowlists; its scope is set per contract and depends on the products, providers and endpoints chosen."
     },
     "dpa": {
-      "available": false,
+      "available": true,
       "url": null,
-      "signedVia": "not_available"
+      "signedVia": "custom_contract"
     },
     "dataUsage": {
-      "trainsOnCustomerData": null,
-      "optOutAvailable": null,
-      "retentionPolicy": "Kilo says it retains information for as long as the account is active or as needed to provide services, comply with legal obligations, resolve disputes, preserve legal rights, or enforce agreements. It also says limited personal information may be retained indefinitely for open-source community integrity and nonrepudiation.",
-      "details": "The Terms state customer data is licensed to Kilo to provide and improve the service and Kilo's other products and services, including development, diagnostic, and corrective purposes, and that AI model providers may use customer data under their own terms. The Terms also say if a customer does not grant an AI model a training license, some AI models may be unavailable."
+      "trainsOnCustomerData": true,
+      "optOutAvailable": true,
+      "retentionPolicy": "Kilo says paid plans support no retention of AI prompts and outputs. Account data is kept while the account is active or as needed for contractual and legal purposes; after account deletion Kilo removes prompts, conversation history and account metadata. Data already sent to model providers follows their retention rules.",
+      "details": "Kilo states that it does not train on code or prompts, but its terms grant it a broad licence to use customer data to provide and improve its services. Data sent to a model is used under that provider's terms; Kilo's own model catalogue marks several paid and many free models as possibly training on prompts, and individual accounts have no data-collection block by default. Organisations (Teams and Enterprise) can set a deny policy for data collection, and a DPA is available on request or under Enterprise contracts."
     },
     "subProcessors": {
       "disclosed": true,
-      "url": "https://kilo.ai/privacy",
-      "includesEuEntities": null
+      "url": "https://trust.kilo.ai",
+      "includesEuEntities": true
     },
-    "certifications": [],
+    "certifications": [
+      "SOC2"
+    ],
     "euAiAct": {
-      "status": "unknown",
-      "details": null
+      "status": "not_applicable",
+      "details": "Kilo states it is not a model provider and does not host, serve or operate AI models; it routes requests to third-party providers. Kilo and Anaconda are not signatories of the EU GPAI Code of Practice."
     },
-    "sccs": true,
+    "sccs": null,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://kilo.ai/privacy",
     "https://kilo.ai/terms",
     "https://kilo.ai/gateway",
     "https://kilo.ai/pricing",
+    "https://kilo.ai/eu",
+    "https://kilo.ai/security-and-compliance",
+    "https://kilo.ai/contact-sales",
     "https://kilo.ai/docs/gateway/authentication",
     "https://kilo.ai/docs/gateway/usage-and-billing",
-    "https://kilo.ai/about"
+    "https://kilo.ai/docs/gateway/models-and-providers",
+    "https://trust.kilo.ai",
+    "https://www.anaconda.com/legal/terms/kilo-code",
+    "https://legal.anaconda.com/policies/en/",
+    "https://ai-gateway.kilo.ai/api/v1/models",
+    "https://ai-gateway.kilo.ai/api/v1/providers"
   ],
-  "notes": "Kilo publicly provides a privacy policy and states services are hosted in the United States, with SCC-based safeguards for transfers from the EEA/UK/Switzerland. No public DPA/AVV, EU-only residency option, or public security certification evidence was found in the primary sources reviewed. The Terms also permit Kilo to use customer data to provide and improve its services, so GDPR-sensitive customers should clarify DPA terms and model-provider data-use settings before adoption.",
+  "notes": "Kilo Gateway is the model routing service of Kilo Code, which Anaconda acquired in 2026; the terms are now with Anaconda, Inc. (US). Anaconda's EU-US Data Privacy Framework listing does not cover Kilo Code Inc., the controller named in Kilo's privacy policy, and both companies' privacy policies rely on SCCs. The gateway routes requests to third-party model providers, partly through OpenRouter, and offers pay-as-you-go credits alongside free models; a DPA, the SOC 2 Type 1 report and an EU data-residency setup are available on request or for Enterprise customers.",
   "translations": {
     "de": {
-      "notes": "Kilo stellt öffentlich eine Datenschutzerklärung bereit und gibt an, dass die Dienste in den Vereinigten Staaten gehostet werden, mit auf Standardvertragsklauseln (SCC) gestützten Schutzmaßnahmen für Übermittlungen aus dem EWR/Vereinigten Königreich/der Schweiz. In den geprüften Primärquellen wurden kein öffentlicher Auftragsverarbeitungsvertrag (AVV), keine Option zur ausschließlichen Datenhaltung in der EU und keine öffentlich zugänglichen Nachweise zu Sicherheitszertifizierungen gefunden. Die Nutzungsbedingungen erlauben Kilo außerdem, Kundendaten zur Bereitstellung und Verbesserung seiner Dienste zu verwenden, sodass Kunden mit besonderer DSGVO-Sensibilität die Bedingungen des Auftragsverarbeitungsvertrags (AVV) sowie die Einstellungen zur Datennutzung durch Modellanbieter vor der Einführung klären sollten.",
+      "notes": "Kilo Gateway ist der Modell-Routing-Dienst von Kilo Code, das 2026 von Anaconda übernommen wurde; Vertragspartner ist nun die Anaconda, Inc. (USA). Anacondas Eintrag im EU-US Data Privacy Framework umfasst nicht die Kilo Code Inc., die in Kilos Datenschutzerklärung als Verantwortliche genannt ist, und die Datenschutzerklärungen beider Unternehmen stützen sich auf Standardvertragsklauseln. Das Gateway leitet Anfragen an externe Modellanbieter weiter, teils über OpenRouter, und bietet neben kostenlosen Modellen nutzungsbasierte Credits an; ein AVV, der SOC-2-Type-1-Bericht und eine EU-Datenresidenz sind auf Anfrage bzw. für Enterprise-Kunden erhältlich.",
       "dataResidency": {
-        "euRegionDetails": "Laut der Datenschutzerklärung von Kilo werden die Dienste in den Vereinigten Staaten gehostet, und personenbezogene Informationen werden auf Servern in den Vereinigten Staaten gespeichert und verarbeitet. In der geprüften Primärdokumentation des Anbieters wurde keine Option für eine ausschließlich in der EU erfolgende Verarbeitung gefunden."
+        "euRegionDetails": "Kilo Gateway wird in den USA betrieben; für Self-Service-Konten gibt es keinen reinen EU-Modus. Kunden können in der EU gehostete Anbieter wie Inceptron über Kilo Gateway oder mit eigenem Anbieter-Schlüssel (BYOK) nutzen, die Anfragen laufen aber weiterhin über das in den USA betriebene Gateway. Enterprise-Kunden können eine vertraglich abgesicherte EU-Datenresidenz mit EU-Cloud-Rechenleistung und Anbieter-Freigabelisten vereinbaren; ihr Umfang wird je Vertrag festgelegt und hängt von den gewählten Produkten, Anbietern und Endpunkten ab."
       },
       "dataUsage": {
-        "retentionPolicy": "Kilo gibt an, Informationen so lange aufzubewahren, wie das Konto aktiv ist oder wie es erforderlich ist, um Dienste bereitzustellen, rechtlichen Verpflichtungen nachzukommen, Streitigkeiten beizulegen, Rechtsansprüche zu wahren oder Vereinbarungen durchzusetzen. Ferner wird angegeben, dass begrenzte personenbezogene Informationen zum Zweck der Integrität der Open-Source-Community und der Nichtabstreitbarkeit unbefristet aufbewahrt werden können.",
-        "details": "Die Nutzungsbedingungen sehen vor, dass Kundendaten Kilo lizenziert werden, um den Dienst und die sonstigen Produkte und Dienste von Kilo bereitzustellen und zu verbessern, einschließlich zu Entwicklungs-, Diagnose- und Korrekturzwecken, und dass Anbieter von KI-Modellen Kundendaten nach ihren eigenen Bedingungen verwenden können. Die Nutzungsbedingungen besagen außerdem, dass bestimmte KI-Modelle möglicherweise nicht verfügbar sind, wenn ein Kunde einem KI-Modell keine Trainingslizenz erteilt."
+        "retentionPolicy": "Laut Kilo ist in kostenpflichtigen Tarifen eine Nutzung ohne Speicherung von KI-Prompts und -Ausgaben möglich. Kontodaten werden aufbewahrt, solange das Konto aktiv ist oder es für vertragliche und rechtliche Zwecke nötig ist; nach der Kontolöschung entfernt Kilo Prompts, Gesprächsverläufe und Kontometadaten. Für Daten, die bereits an Modellanbieter übermittelt wurden, gelten deren Aufbewahrungsregeln.",
+        "details": "Kilo erklärt, nicht mit Code oder Prompts zu trainieren, die Nutzungsbedingungen räumen Kilo aber eine weitreichende Lizenz ein, Kundendaten zur Bereitstellung und Verbesserung seiner Dienste zu nutzen. An ein Modell gesendete Daten unterliegen den Bedingungen des jeweiligen Anbieters; Kilos eigener Modellkatalog kennzeichnet mehrere kostenpflichtige und viele kostenlose Modelle als möglicherweise mit Prompts trainierend, und für Einzelkonten ist standardmäßig keine Sperre der Datenerhebung gesetzt. Organisationen (Teams und Enterprise) können eine Richtlinie zur Ablehnung der Datenerhebung festlegen, und ein AVV ist auf Anfrage bzw. im Enterprise-Vertrag erhältlich."
+      },
+      "euAiAct": {
+        "details": "Kilo erklärt, kein Modellanbieter zu sein und keine KI-Modelle zu hosten, bereitzustellen oder zu betreiben; Anfragen werden an Drittanbieter weitergeleitet. Kilo und Anaconda haben den GPAI-Verhaltenskodex der EU nicht unterzeichnet."
       }
     }
   }

@@ -2,8 +2,8 @@
   "slug": "moonshot-ai",
   "name": "Moonshot AI",
   "type": "api_provider",
-  "website": "https://platform.moonshot.ai",
-  "apiDocsUrl": "https://platform.moonshot.ai/docs/overview",
+  "website": "https://platform.kimi.ai",
+  "apiDocsUrl": "https://platform.kimi.ai/docs/introduction",
   "compliance": {
     "headquarters": "SG",
     "dataResidency": {
@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Moonshot AI states its servers are located in Singapore and that personal data may be transferred to and stored on servers outside the user's country of residence. No EU region or EU-only processing option was found in the provider's primary documentation."
+      "euRegionDetails": "Moonshot AI states its servers are located in Singapore and that personal data may be transferred to and stored on servers outside the user's country of residence. Its documentation describes no EU region or EU-only processing option."
     },
     "dpa": {
       "available": false,
@@ -20,10 +20,10 @@
       "signedVia": "not_available"
     },
     "dataUsage": {
-      "trainsOnCustomerData": true,
+      "trainsOnCustomerData": null,
       "optOutAvailable": null,
-      "retentionPolicy": "The privacy policy says information is stored as long as necessary to provide the services, fulfill the stated purposes, other legitimate business purposes, and legal obligations. It says account, input, and payment information are retained while the account is active; violation-related information is retained until the violation is resolved.",
-      "details": "The privacy policy says user content includes prompts and generated content, and that this information helps optimize their models. The terms also say content may be used to provide, maintain, develop, and improve the services."
+      "retentionPolicy": "The privacy policy says account, input and payment information is kept while the account is active, and other data as long as needed for the stated purposes and legal obligations. Enterprise customers can request zero data retention, under which prompts and responses are deleted once the response is returned; it excludes batch jobs and is not guaranteed for images and videos uploaded through the file API.",
+      "details": "The privacy policy says prompts and generated content help optimize the models, and the platform terms allow customer content to be used to improve the services unless otherwise agreed in writing; limits on training need an enterprise arrangement. The help center for the international API says API inputs and outputs are not used for training, and the zero-data-retention page says enterprise customer data is not used for training by default."
     },
     "subProcessors": {
       "disclosed": false,
@@ -33,33 +33,36 @@
     "certifications": [],
     "euAiAct": {
       "status": "monitoring",
-      "details": "Moonshot AI's terms contain usage restrictions aligned with some prohibited-use themes under the EU AI Act, but no explicit claim of EU AI Act compliance or conformity documentation was found in the primary sources reviewed."
+      "details": "Moonshot AI has published no AI Act compliance statement and is not listed as a signatory of the GPAI Code of Practice. It publishes a public summary of the training content for Kimi K3 in the EU AI Office template."
     },
     "sccs": null,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://platform.moonshot.ai/",
-    "https://platform.moonshot.ai/docs/overview",
-    "https://platform.moonshot.ai/docs/agreement/modeluse.en-US",
-    "https://platform.kimi.ai/docs/agreement/userprivacy"
+    "https://platform.kimi.ai/docs/agreement/userprivacy",
+    "https://platform.kimi.ai/docs/agreement/modeluse",
+    "https://platform.kimi.ai/docs/guide/zero-data-retention",
+    "https://www.kimi.ai/help/kimi-api/api-data-security",
+    "https://platform.kimi.ai/docs/pricing/limits",
+    "https://www.kimi.ai/tns/transparency",
+    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
   ],
-  "notes": "Primary-source documentation confirms Moonshot AI PTE. LTD. is based in Singapore and stores/processes personal data on servers in Singapore, with no documented EU-only processing option. The published privacy policy indicates customer content may be used to improve and train underlying technology, and no public DPA, SCC statement, or sub-processor list was found in the reviewed primary sources.",
+  "notes": "The international Kimi Open Platform (platform.kimi.ai, formerly platform.moonshot.ai) is operated by Moonshot AI PTE. LTD. in Singapore, and its privacy policy says data is stored on servers in Singapore. Its terms allow customer content to be used to improve the services unless otherwise agreed in writing, while its help center says API data is not used for training; zero data retention is available to enterprise customers on request. Moonshot AI publishes no DPA, sub-processor list or named certification, and the API is pay-as-you-go with a minimum top-up of $1.",
   "translations": {
     "de": {
-      "notes": "Die Primärquellen-Dokumentation bestätigt, dass Moonshot AI PTE. LTD. in Singapur ansässig ist und personenbezogene Daten auf Servern in Singapur speichert/verarbeitet; eine dokumentierte Option für eine ausschließlich in der EU erfolgende Verarbeitung wurde nicht gefunden. Die veröffentlichte Datenschutzrichtlinie weist darauf hin, dass Kundeninhalte zur Verbesserung und zum Training der zugrunde liegenden Technologie verwendet werden können, und in den geprüften Primärquellen wurden weder ein öffentlicher Auftragsverarbeitungsvertrag (AVV), eine Erklärung zu Standardvertragsklauseln (SCC) noch eine Liste von Unterauftragsverarbeitern gefunden.",
+      "notes": "Die internationale Kimi Open Platform (platform.kimi.ai, früher platform.moonshot.ai) wird von Moonshot AI PTE. LTD. in Singapur betrieben; laut Datenschutzrichtlinie werden Daten auf Servern in Singapur gespeichert. Die Bedingungen erlauben die Nutzung von Kundeninhalten zur Verbesserung der Dienste, sofern nichts anderes schriftlich vereinbart ist, während laut Hilfe-Center API-Daten nicht zum Training verwendet werden; Zero Data Retention steht Enterprise-Kunden auf Anfrage zur Verfügung. Moonshot AI veröffentlicht weder einen Auftragsverarbeitungsvertrag noch eine Liste der Unterauftragsverarbeiter oder eine konkret genannte Zertifizierung; die API wird nach Verbrauch abgerechnet, die Mindestaufladung beträgt 1 US-Dollar.",
       "dataResidency": {
-        "euRegionDetails": "Moonshot AI gibt an, dass sich seine Server in Singapur befinden und dass personenbezogene Daten auf Server außerhalb des Wohnsitzlandes des Nutzers übermittelt und dort gespeichert werden können. In der Primärdokumentation des Anbieters wurde weder eine EU-Region noch eine Option für eine ausschließlich in der EU erfolgende Verarbeitung gefunden."
+        "euRegionDetails": "Moonshot AI gibt an, dass sich seine Server in Singapur befinden und dass personenbezogene Daten auf Server außerhalb des Wohnsitzlandes des Nutzers übermittelt und dort gespeichert werden können. Die Dokumentation beschreibt weder eine EU-Region noch eine Option für eine ausschließlich in der EU erfolgende Verarbeitung."
       },
       "dataUsage": {
-        "retentionPolicy": "Laut Datenschutzrichtlinie werden Informationen so lange gespeichert, wie dies zur Erbringung der Dienste, zur Erfüllung der angegebenen Zwecke, für andere berechtigte Geschäftszwecke und zur Erfüllung rechtlicher Verpflichtungen erforderlich ist. Dort heißt es, dass Konto-, Eingabe- und Zahlungsinformationen aufbewahrt werden, solange das Konto aktiv ist; Informationen im Zusammenhang mit Verstößen werden aufbewahrt, bis der Verstoß geklärt ist.",
-        "details": "Laut Datenschutzrichtlinie umfassen Nutzerinhalte Prompts und generierte Inhalte, und diese Informationen helfen bei der Optimierung ihrer Modelle. In den Bedingungen heißt es außerdem, dass Inhalte zur Bereitstellung, Aufrechterhaltung, Entwicklung und Verbesserung der Dienste verwendet werden können."
+        "retentionPolicy": "Laut Datenschutzrichtlinie werden Konto-, Eingabe- und Zahlungsdaten aufbewahrt, solange das Konto aktiv ist, andere Daten so lange, wie es für die genannten Zwecke und rechtlichen Pflichten nötig ist. Enterprise-Kunden können Zero Data Retention beantragen; dabei werden Prompts und Antworten gelöscht, sobald die Antwort zurückgegeben wurde. Batch-Jobs sind ausgenommen, und für über die Datei-API hochgeladene Bilder und Videos ist dies nicht garantiert.",
+        "details": "Laut Datenschutzrichtlinie helfen Prompts und generierte Inhalte bei der Optimierung der Modelle, und die Plattformbedingungen erlauben die Nutzung von Kundeninhalten zur Verbesserung der Dienste, sofern nichts anderes schriftlich vereinbart ist; Einschränkungen beim Training erfordern eine Enterprise-Vereinbarung. Laut Hilfe-Center der internationalen API werden API-Eingaben und -Ausgaben nicht zum Training verwendet, und laut der Seite zu Zero Data Retention werden Daten von Enterprise-Kunden standardmäßig nicht zum Training verwendet."
       },
       "euAiAct": {
-        "details": "Die Bedingungen von Moonshot AI enthalten Nutzungsbeschränkungen, die mit einigen Themen verbotener Nutzungen nach dem EU AI Act im Einklang stehen, jedoch wurde in den geprüften Primärquellen keine ausdrückliche Erklärung zur Einhaltung des EU AI Act oder Konformitätsdokumentation gefunden."
+        "details": "Moonshot AI hat keine Erklärung zur Einhaltung des AI Act veröffentlicht und ist nicht als Unterzeichner des GPAI-Verhaltenskodex gelistet. Moonshot AI veröffentlicht für Kimi K3 eine Zusammenfassung der Trainingsinhalte nach der Vorlage des EU-Büros für Künstliche Intelligenz."
       }
     }
   }

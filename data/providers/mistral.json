@@ -3,16 +3,17 @@
   "name": "Mistral",
   "type": "api_provider",
   "website": "https://mistral.ai",
-  "apiDocsUrl": "https://docs.mistral.ai/getting-started/models/",
+  "apiDocsUrl": "https://docs.mistral.ai/models",
   "compliance": {
     "headquarters": "FR",
     "dataResidency": {
       "regions": [
-        "EU"
+        "EU",
+        "US"
       ],
       "euOnly": true,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": "Mistral AI is a French company and infrastructure is EU-hosted. La Plateforme (AI Studio) runs in EU. Models also available via Azure, AWS Bedrock, GCP Vertex, and Outscale (French sovereign cloud) for customers needing specific cloud regions."
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "The EU endpoint api.eu.mistral.ai keeps inference in data centres in EU and EFTA countries and is billed at 1.1× list price; the default global endpoint (api.mistral.ai) has no location commitment, and a US endpoint also exists. The EU endpoint serves only models hosted in the EU region, function calling is the only supported tool, and Agents, Batch and the Files API are not available there. Account, billing, API-key and usage data may be handled outside the EU. Mistral states that customer data is hosted in the EU unless the US endpoint is used."
     },
     "dpa": {
       "available": true,
@@ -20,10 +21,10 @@
       "signedVia": "online_acceptance"
     },
     "dataUsage": {
-      "trainsOnCustomerData": false,
+      "trainsOnCustomerData": null,
       "optOutAvailable": true,
-      "retentionPolicy": "Paid API and Le Chat Enterprise/Team are opted out of training by default. Free/trial users opted in by default but can opt out. Zero Data Retention available. API inputs/outputs retained up to 30 rolling days for abuse monitoring unless ZDR is active.",
-      "details": "DPA explicitly states Mistral AI acts as Processor for commercial API customers and will not use Customer Data for model training for paid/opted-out plans. Fine-tuning data retained until deleted by customer."
+      "retentionPolicy": "API inputs and outputs are kept for 30 rolling days for abuse monitoring unless zero data retention is active. Agents API data is kept until the account is closed and fine-tuning data until the customer deletes it. Zero data retention is granted on request at Mistral's discretion, only for pay-as-you-go and stateless API calls.",
+      "details": "Studio Free mode, the default for new accounts, may use API inputs and outputs for training unless the customer opts out. For paid use, official sources conflict: the API product page says API data is not used for training, while the help center and pricing page only state that paying customers can opt out. The DPA allows Mistral to train as controller unless the customer has opted out; feedback and Labs or preview models can always be used for training."
     },
     "subProcessors": {
       "disclosed": true,
@@ -32,38 +33,49 @@
     },
     "certifications": [
       "ISO27001",
-      "ISO27701"
+      "ISO27701",
+      "SOC2"
     ],
     "euAiAct": {
       "status": "compliant",
-      "details": "Mistral AI has a dedicated AI Governance hub at legal.mistral.ai. Publishes model documentation per Article 53 GPAI requirements. Has signed the EU AI Act Code of Practice. Operates as a Provider under the AI Act and maintains GPAI model documentation for frontier models."
+      "details": "Signed the EU General-Purpose AI Code of Practice. Publishes Article 53 documentation for its general-purpose AI models on legal.mistral.ai and states that none of its models is a GPAI model with systemic risk."
     },
     "sccs": true,
     "adequacyDecision": true
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-07",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://legal.mistral.ai/terms/data-processing-addendum/",
     "https://legal.mistral.ai/terms/privacy-policy/",
+    "https://legal.mistral.ai/terms/commercial-terms-of-service",
     "https://trust.mistral.ai/subprocessors",
     "https://trust.mistral.ai/",
-    "https://legal.mistral.ai/"
+    "https://legal.mistral.ai/",
+    "https://docs.mistral.ai/inference/regional-inference",
+    "https://docs.mistral.ai/admin/billing-usage/subscriptions",
+    "https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models",
+    "https://help.mistral.ai/en/articles/455207-can-i-opt-out-of-my-input-or-output-data-being-used-for-training",
+    "https://help.mistral.ai/en/articles/347612-can-i-activate-zero-data-retention-zdr",
+    "https://mistral.ai/cloud/inference/",
+    "https://mistral.ai/pricing",
+    "https://docs.mistral.ai/admin/billing-usage/usage-limits",
+    "https://help.mistral.ai/en/articles/347629-where-do-you-store-my-data-or-my-organization-s-data"
   ],
-  "notes": "EU-native company (French SAS, Paris). France is an EU member state — adequacyDecision is true in the sense that no cross-border transfer concern exists for EU customers; SCCs are still used for any non-EU sub-processors. Paid API customers opted out of training by default. ISO 27701 (privacy information management) confirmed. Most proactive EU AI Act posture of any provider in this directory.",
+  "notes": "French company headquartered in Paris; the DPA uses SCCs for transfers to non-EU sub-processors. EU processing is guaranteed only on the optional EU endpoint api.eu.mistral.ai; the default global endpoint has no location commitment. Whether paid API traffic is excluded from training by default is not consistently documented.",
   "translations": {
     "de": {
-      "notes": "EU-ansässiges Unternehmen (französische SAS, Paris). Frankreich ist ein EU-Mitgliedstaat — adequacyDecision ist im Sinne dessen, dass für EU-Kunden kein grenzüberschreitendes Übermittlungsproblem besteht, true; für etwaige nicht in der EU ansässige Unterauftragsverarbeiter werden weiterhin Standardvertragsklauseln (SCC) verwendet. Zahlende API-Kunden sind standardmäßig vom Training ausgenommen. ISO 27701 (Privacy Information Management) bestätigt. Die proaktivste EU-AI-Act-Positionierung aller Anbieter in diesem Verzeichnis.",
+      "notes": "Französisches Unternehmen mit Sitz in Paris; für Übermittlungen an Unterauftragsverarbeiter außerhalb der EU nutzt der AVV Standardvertragsklauseln (SCC). EU-Verarbeitung ist nur beim optionalen EU-Endpunkt api.eu.mistral.ai garantiert; der globale Standard-Endpunkt sagt keinen Verarbeitungsort zu. Ob kostenpflichtiger API-Verkehr standardmäßig vom Training ausgenommen ist, wird nicht einheitlich dokumentiert.",
       "dataResidency": {
-        "euRegionDetails": "Mistral AI ist ein französisches Unternehmen, und die Infrastruktur wird in der EU gehostet. La Plateforme (AI Studio) wird in der EU betrieben. Modelle sind außerdem über Azure, AWS Bedrock, GCP Vertex und Outscale (französische souveräne Cloud) für Kunden verfügbar, die bestimmte Cloud-Regionen benötigen."
+        "euRegionDetails": "Der EU-Endpunkt api.eu.mistral.ai hält die Inferenz in Rechenzentren in EU- und EFTA-Staaten und wird zum 1,1-Fachen des Listenpreises abgerechnet; der globale Standard-Endpunkt (api.mistral.ai) sagt keinen Verarbeitungsort zu, zudem gibt es einen US-Endpunkt. Der EU-Endpunkt stellt nur in der EU-Region gehostete Modelle bereit, Function Calling ist das einzige unterstützte Tool, und Agents, Batch und die Files API sind dort nicht verfügbar. Konto-, Abrechnungs-, API-Schlüssel- und Nutzungsdaten können außerhalb der EU verarbeitet werden. Laut Mistral werden Kundendaten in der EU gespeichert, sofern nicht der US-Endpunkt genutzt wird."
       },
       "dataUsage": {
-        "retentionPolicy": "Paid API und Le Chat Enterprise/Team sind standardmäßig vom Training ausgenommen. Free-/Trial-Nutzer sind standardmäßig einbezogen, können jedoch ein Opt-out vornehmen. Zero Data Retention ist verfügbar. API-Eingaben/-Ausgaben werden zum Zwecke der Missbrauchsüberwachung für bis zu 30 gleitende Tage gespeichert, sofern ZDR nicht aktiv ist.",
-        "details": "Der Auftragsverarbeitungsvertrag (AVV) stellt ausdrücklich fest, dass Mistral AI für kommerzielle API-Kunden als Auftragsverarbeiter handelt und Kundendaten bei kostenpflichtigen bzw. per Opt-out ausgeschlossenen Plänen nicht für das Modelltraining verwenden wird. Fine-Tuning-Daten werden gespeichert, bis sie vom Kunden gelöscht werden."
+        "retentionPolicy": "API-Ein- und -Ausgaben werden 30 Tage (rollierend) zur Missbrauchsüberwachung gespeichert, sofern Zero Data Retention nicht aktiv ist. Daten der Agents API bleiben bis zur Schließung des Kontos gespeichert, Fine-Tuning-Daten bis der Kunde sie löscht. Zero Data Retention gewährt Mistral auf Antrag nach eigenem Ermessen, nur für Pay-as-you-go und zustandslose API-Aufrufe.",
+        "details": "Im Studio-Free-Mode, dem Standard für neue Konten, kann Mistral API-Ein- und -Ausgaben für das Training verwenden, sofern der Kunde nicht widerspricht. Für die kostenpflichtige Nutzung widersprechen sich die offiziellen Quellen: Laut API-Produktseite werden API-Daten nicht für das Training genutzt, Hilfe-Center und Preisseite sagen dagegen nur, dass zahlende Kunden widersprechen können. Laut AVV darf Mistral als Verantwortlicher trainieren, sofern der Kunde nicht widersprochen hat; Feedback sowie Labs- und Preview-Modelle können immer für das Training genutzt werden."
       },
       "euAiAct": {
-        "details": "Mistral AI verfügt unter legal.mistral.ai über ein eigenes AI Governance Hub. Veröffentlicht Modelldokumentation gemäß den GPAI-Anforderungen nach Artikel 53. Hat den EU AI Act Code of Practice unterzeichnet. Agiert unter dem AI Act als Provider und unterhält GPAI-Modelldokumentation für Frontier-Modelle."
+        "details": "Hat den EU-Verhaltenskodex für KI-Modelle mit allgemeinem Verwendungszweck (GPAI Code of Practice) unterzeichnet. Veröffentlicht auf legal.mistral.ai Dokumentation nach Artikel 53 für seine GPAI-Modelle und gibt an, dass keines seiner Modelle ein GPAI-Modell mit systemischem Risiko ist."
       }
     }
   }

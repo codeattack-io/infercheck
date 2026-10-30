@@ -3,36 +3,46 @@
   "name": "Amazon Bedrock",
   "type": "cloud_platform",
   "website": "https://aws.amazon.com/bedrock/",
-  "apiDocsUrl": "https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html",
+  "apiDocsUrl": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-cards.html",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
       "regions": [
         "US",
+        "CA",
+        "MX",
+        "BR",
         "EU",
-        "DE",
-        "IE",
         "GB",
-        "FR",
-        "ES",
-        "IT",
-        "SE",
-        "CH"
+        "IL",
+        "AE",
+        "BH",
+        "ZA",
+        "IN",
+        "JP",
+        "KR",
+        "TW",
+        "SG",
+        "ID",
+        "MY",
+        "TH",
+        "AU",
+        "NZ"
       ],
       "euOnly": true,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": "EU regions: Frankfurt (eu-central-1), Ireland (eu-west-1), London (eu-west-2), Milan (eu-south-1), Paris (eu-west-3), Spain (eu-south-2), Stockholm (eu-north-1), Zurich (eu-central-2). Customer content is encrypted and stored at rest in the AWS Region where it is used — it does NOT move outside the selected region. AWS European Sovereign Cloud (separate product, Germany-based, AWS entities exclusively in EU) available for maximum data sovereignty."
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "Call Bedrock in an EU/EEA Region (Frankfurt, Ireland, Milan, Paris, Spain, Stockholm) or in Zurich, either in-Region with the plain model ID or with the EU inference profile (eu.*), which then routes only among these Regions; the AWS DPA and Customer Agreement commit AWS not to move customer data out of the Regions the customer selects. London is a UK Region, and the EU profile called from London can route there. Models offered in EU Regions only through the global profile (for example Claude Fable, GPT-6 and Grok) can process data in any commercial AWS Region and are outside the EU configuration. The AWS European Sovereign Cloud (Brandenburg, Germany) offers Bedrock with in-Region inference only."
     },
     "dpa": {
       "available": true,
-      "url": "https://d1.awsstatic.com/legal/aws-gdpr/AWS_GDPR_DPA.pdf",
+      "url": "https://d1.awsstatic.com/legal/aws-dpa/aws-dpa.pdf",
       "signedVia": "online_acceptance"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "No customer inputs or model outputs stored or used to train models. Data not shared with third-party model providers. This is contractually guaranteed — no opt-out required because no training occurs by default.",
-      "details": "AWS explicitly states: customer inputs to and outputs from Amazon Bedrock are not used to train Amazon Nova, Amazon Titan, or any third-party models. Fine-tuning data remains encrypted in the AWS Region and is not used to improve base models."
+      "retentionPolicy": "For abuse detection, AWS keeps classifier-flagged traffic of OpenAI GPT models (except gpt-oss) and all traffic of Claude Fable 5 and 5.1 for up to 30 days, in the Region where the request was processed. Customers can set zero data retention per Region, which blocks models that require retention; model invocation logging is off by default.",
+      "details": "AWS states that Bedrock inputs and outputs are not used to train Amazon or third-party models and are not shared with model providers; models run in AWS-operated deployment accounts that providers cannot access. Claude Fable 5 and 5.1 can only be used after opting in to retention with possible human review by AWS."
     },
     "subProcessors": {
       "disclosed": true,
@@ -45,38 +55,61 @@
       "ISO27017",
       "ISO27018",
       "ISO27701",
-      "C5"
+      "ISO42001",
+      "C5",
+      "HDS"
     ],
     "euAiAct": {
-      "status": "monitoring",
-      "details": "AWS has a general EU AI Act compliance page. No specific published EU AI Act provider-role compliance declaration for Bedrock as of verification date. Monitoring status reflects absence of a published compliance declaration equivalent to Microsoft's."
+      "status": "compliant",
+      "details": "Amazon is on the EU Commission's list of signatories of the General-Purpose AI Code of Practice. AWS states it is committed to making its AI services meet the EU AI Act and announced ISO/IEC 42001 certification covering Amazon Bedrock."
     },
     "sccs": true,
-    "adequacyDecision": false
+    "adequacyDecision": true
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-07",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://aws.amazon.com/bedrock/security-compliance/",
     "https://aws.amazon.com/bedrock/faqs/",
+    "https://aws.amazon.com/bedrock/pricing/",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/model-cards.html",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/models-region-compatibility.html",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/geographic-cross-region-inference.html",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles-support.html",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/abuse-detection.html",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/data-retention.html",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/model-invocation-logging.html",
+    "https://aws.amazon.com/service-terms/",
+    "https://d1.awsstatic.com/legal/aws-dpa/aws-dpa.pdf",
     "https://aws.amazon.com/compliance/gdpr-center/",
     "https://aws.amazon.com/compliance/sub-processors/",
-    "https://d1.awsstatic.com/legal/aws-gdpr/AWS_GDPR_DPA.pdf"
+    "https://aws.amazon.com/compliance/services-in-scope/SOC/",
+    "https://aws.amazon.com/compliance/iso-certified/",
+    "https://aws.amazon.com/compliance/services-in-scope/C5/",
+    "https://aws.amazon.com/compliance/hds/",
+    "https://aws.amazon.com/compliance/services-in-scope/CISPE/",
+    "https://aws.amazon.com/compliance/eu-us-data-privacy-framework/",
+    "https://aws.amazon.com/blogs/machine-learning/building-trust-in-ai-the-aws-approach-to-the-eu-ai-act/",
+    "https://aws.amazon.com/blogs/security/run-open-weight-models-on-aws-bedrock-in-aws-european-sovereign-cloud/",
+    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
+    "https://aws.amazon.com/agreement/",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-fable-5-1.md"
   ],
-  "notes": "Broadest model marketplace of the three cloud platforms, offering models from 13+ providers including Anthropic, Meta, Mistral, Cohere, DeepSeek, and Amazon's own Nova series. Customer data never leaves the selected AWS Region and is never shared with model providers — contractually guaranteed without requiring any opt-out. CISPE Code of Conduct adherence provides additional EU-specific cloud privacy certification. AWS European Sovereign Cloud (separate product) provides dedicated EU-only infrastructure with EU-only AWS entities. Sub-processors page lists extensive EU infrastructure entities. SCCs are automatically incorporated into AWS Service Terms.",
+  "notes": "Bedrock offers models from about 20 providers, including Anthropic, OpenAI, Meta, Mistral, DeepSeek and Amazon Nova; Bedrock Marketplace models are outside AWS's certification scope. Customers choose per request between single-Region, geographic (e.g. EU) and global routing; only single-Region calls in an EU Region and the EU profile called from an EU Region keep processing in the EU. The DPA and SCCs are part of the AWS Service Terms, Amazon.com, Inc. (including AWS) is certified under the EU-US Data Privacy Framework, and Bedrock adheres to the CISPE Code of Conduct.",
   "translations": {
     "de": {
-      "notes": "Der umfassendste Modell-Marktplatz der drei Cloud-Plattformen mit Modellen von mehr als 13 Anbietern, darunter Anthropic, Meta, Mistral, Cohere, DeepSeek sowie Amazons eigene Nova-Serie. Kundendaten verlassen niemals die ausgewählte AWS-Region und werden niemals an Modellanbieter weitergegeben — vertraglich garantiert, ohne dass ein Opt-out erforderlich ist. Die Einhaltung des CISPE Code of Conduct bietet eine zusätzliche EU-spezifische Cloud-Datenschutz-Zertifizierung. Die AWS European Sovereign Cloud (separates Produkt) bietet dedizierte Infrastruktur ausschließlich in der EU mit AWS-Gesellschaften ausschließlich in der EU. Auf der Seite zu Unterauftragsverarbeitern sind umfangreiche EU-Infrastrukturgesellschaften aufgeführt. Standardvertragsklauseln (SCC) sind automatisch in die AWS Service Terms einbezogen.",
+      "notes": "Bedrock bietet Modelle von rund 20 Anbietern, darunter Anthropic, OpenAI, Meta, Mistral, DeepSeek und Amazon Nova; Modelle aus dem Bedrock Marketplace liegen außerhalb des Zertifizierungsumfangs von AWS. Kunden wählen pro Anfrage zwischen Verarbeitung in einer Region, geografischem (z. B. EU) und globalem Routing; nur Aufrufe in einer EU-Region und das aus einer EU-Region aufgerufene EU-Profil halten die Verarbeitung in der EU. AVV und Standardvertragsklauseln sind Teil der AWS Service Terms, Amazon.com, Inc. (einschließlich AWS) ist nach dem EU-US Data Privacy Framework zertifiziert, und Bedrock hält den CISPE-Verhaltenskodex ein.",
       "dataResidency": {
-        "euRegionDetails": "EU-Regionen: Frankfurt (eu-central-1), Irland (eu-west-1), London (eu-west-2), Mailand (eu-south-1), Paris (eu-west-3), Spanien (eu-south-2), Stockholm (eu-north-1), Zürich (eu-central-2). Kundeninhalte werden verschlüsselt und in der AWS-Region gespeichert, in der sie verwendet werden — sie werden NICHT außerhalb der ausgewählten Region verschoben. Die AWS European Sovereign Cloud (separates Produkt, mit Sitz in Deutschland, AWS-Gesellschaften ausschließlich in der EU) ist für maximale Datensouveränität verfügbar."
+        "euRegionDetails": "Für die Verarbeitung in der EU wird Bedrock in einer EU/EWR-Region (Frankfurt, Irland, Mailand, Paris, Spanien, Stockholm) oder in Zürich aufgerufen, entweder direkt in der Region mit der einfachen Modell-ID oder über das EU-Inferenzprofil (eu.*), das Anfragen dann nur zwischen diesen Regionen verteilt; im AWS-AVV und im Kundenvertrag verpflichtet sich AWS, Kundendaten nicht aus den vom Kunden gewählten Regionen zu verlagern. London ist eine UK-Region, und das von London aus aufgerufene EU-Profil kann Anfragen dorthin leiten. Modelle, die es in EU-Regionen nur über das globale Profil gibt (zum Beispiel Claude Fable, GPT-6 und Grok), können Daten in jeder kommerziellen AWS-Region verarbeiten und gehören nicht zur EU-Konfiguration. Die AWS European Sovereign Cloud (Brandenburg, Deutschland) bietet Bedrock ausschließlich mit Inferenz innerhalb der Region an."
       },
       "dataUsage": {
-        "retentionPolicy": "Es werden keine Kundeneingaben oder Modellausgaben gespeichert oder zum Trainieren von Modellen verwendet. Daten werden nicht an Drittanbieter von Modellen weitergegeben. Dies ist vertraglich garantiert — kein Opt-out erforderlich, da standardmäßig kein Training erfolgt.",
-        "details": "AWS erklärt ausdrücklich: Kundeneingaben in Amazon Bedrock sowie Ausgaben aus Amazon Bedrock werden nicht zum Trainieren von Amazon Nova, Amazon Titan oder Modellen Dritter verwendet. Fine-Tuning-Daten bleiben in der AWS-Region verschlüsselt und werden nicht zur Verbesserung von Basismodellen verwendet."
+        "retentionPolicy": "Zur Missbrauchserkennung bewahrt AWS bei OpenAI-GPT-Modellen (außer gpt-oss) vom Klassifikator markierte Anfragen und bei Claude Fable 5 und 5.1 den gesamten Datenverkehr bis zu 30 Tage auf, und zwar in der Region, in der die Anfrage verarbeitet wurde. Kunden können pro Region Zero Data Retention einstellen; Modelle, die eine Aufbewahrung voraussetzen, sind dann gesperrt. Die Protokollierung von Modellaufrufen ist standardmäßig deaktiviert.",
+        "details": "Laut AWS werden Ein- und Ausgaben in Bedrock weder zum Training von Amazon- noch von Drittanbietermodellen verwendet und nicht an Modellanbieter weitergegeben; die Modelle laufen in von AWS betriebenen Deployment-Konten, auf die die Anbieter keinen Zugriff haben. Claude Fable 5 und 5.1 lassen sich nur nach Zustimmung zur Aufbewahrung mit möglicher menschlicher Prüfung durch AWS nutzen."
       },
       "euAiAct": {
-        "details": "AWS verfügt über eine allgemeine Seite zur Einhaltung des EU AI Act. Zum Verifizierungsdatum liegt keine spezifisch veröffentlichte Erklärung zur Einhaltung des EU AI Act in Bezug auf die Anbieterrolle für Bedrock vor. Der Überwachungsstatus spiegelt das Fehlen einer veröffentlichten Compliance-Erklärung wider, die derjenigen von Microsoft entspricht."
+        "details": "Amazon steht auf der Liste der Unterzeichner des GPAI-Verhaltenskodex der EU-Kommission. AWS erklärt, seine KI-Dienste an den Anforderungen des EU AI Act auszurichten, und hat eine ISO/IEC-42001-Zertifizierung angekündigt, die Amazon Bedrock umfasst."
       }
     }
   }
