@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "MegaNova's privacy policy states it is based in the United States and that information may be transferred to and processed in the U.S. and other countries. Enterprise documentation says customers can choose where data is processed and stored and FAQ mentions custom regions for Enterprise, but no primary-source document found guarantees an EU-only region or states that inference always stays in the EU."
+      "euRegionDetails": "No EU processing option is documented. The privacy policy says data may be processed in the US and other countries, and the FAQ mentions custom regions for enterprise customers without naming any."
     },
     "dpa": {
       "available": false,
@@ -22,17 +22,15 @@
     "dataUsage": {
       "trainsOnCustomerData": null,
       "optOutAvailable": null,
-      "retentionPolicy": "Privacy policy says personal information is retained as long as necessary to provide the services and for legitimate purposes such as business/financial records, legal compliance, dispute resolution, enforcing agreements, and safety/security/auditing/product improvement. FAQ says user prompts and outputs are not stored beyond temporary processing and there is no long-term storage of prompts/outputs.",
-      "details": "Privacy policy says they collect content users upload or generate, including prompts, files, messages, model preferences, and usage settings. It also says they use personal information to improve, research, and develop the services, including analytics, quality assurance, safety systems, testing, anonymization/aggregation, and new features, but it does not explicitly state whether API customer data is used to train models."
+      "retentionPolicy": "The FAQ says prompts and outputs are not stored beyond temporary processing. On the enterprise endpoint, provider-side caching is off and message content is kept out of MegaNova's logs, except that Anthropic may keep Claude Fable 5 and 5.1 requests for up to 60 days. Other personal data is kept as long as needed for the service, records, legal duties and security.",
+      "details": "For the self-serve enterprise endpoint, MegaNova states that inputs and outputs are never used to train models. For the standard endpoint there is no training statement, and the published terms grant MegaNova a broad licence to submitted content, including to improve its services. The privacy policy lists prompts and files among the data used to improve and develop the services."
     },
     "subProcessors": {
       "disclosed": false,
       "url": null,
       "includesEuEntities": null
     },
-    "certifications": [
-      "SOC2"
-    ],
+    "certifications": [],
     "euAiAct": {
       "status": "unknown",
       "details": null
@@ -40,28 +38,30 @@
     "sccs": true,
     "adequacyDecision": false
   },
-  "pricingTier": "free_tier",
-  "lastVerified": "2026-04-11",
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://docs.meganova.ai/legal-docs/privacy-policy",
+    "https://docs.meganova.ai/legal-docs/terms-of-service",
     "https://docs.meganova.ai/faq/security-and-support",
+    "https://docs.meganova.ai/faq/pricing-and-fees",
     "https://docs.meganova.ai/enterprise",
+    "https://docs.meganova.ai/enterprise/enterprise-endpoint",
     "https://docs.meganova.ai/api-reference",
     "https://docs.meganova.ai/tiers",
-    "https://www.meganova.ai/pricing",
-    "https://www.meganova.ai/terms"
+    "https://www.meganova.ai/pricing"
   ],
-  "notes": "Primary-source privacy documentation exists and identifies the company as US-based (Nebula Nova Inc., Delaware) with SCCs referenced for international transfers. Public docs mention temporary processing for prompts/outputs and Enterprise data residency/custom regions, but no public DPA, sub-processor list, or explicit statement confirming EU-only inference or no-training-on-customer-data was found.",
+  "notes": "MegaNova is operated by Nebula Nova Inc., a Delaware corporation; the website also lists Montréal, Canada. The privacy policy refers to Standard Contractual Clauses, but there is no DPA, sub-processor list or EU region. A free tier exists alongside pay-as-you-go billing, and an opt-in enterprise endpoint offers zero data retention and no training.",
   "translations": {
     "de": {
-      "notes": "Es liegt Datenschutzdokumentation aus Primärquellen vor, die das Unternehmen als in den USA ansässig ausweist (Nebula Nova Inc., Delaware); für internationale Übermittlungen werden Standardvertragsklauseln (SCC) genannt. Öffentliche Dokumente erwähnen eine vorübergehende Verarbeitung von Prompts/Outputs sowie Datenhaltung und benutzerdefinierte Regionen für Enterprise, jedoch wurde weder ein öffentlich zugänglicher Auftragsverarbeitungsvertrag (AVV), noch eine Liste der Unterauftragsverarbeiter, noch eine ausdrückliche Aussage gefunden, die eine ausschließlich in der EU erfolgende Inferenz oder die Nichtverwendung von Kundendaten zu Trainingszwecken bestätigt.",
+      "notes": "MegaNova wird von der Nebula Nova Inc. betrieben, einer Gesellschaft aus Delaware; die Website nennt zusätzlich Montréal, Kanada. Die Datenschutzerklärung verweist auf Standardvertragsklauseln, es gibt aber keinen AVV, keine Liste der Unterauftragsverarbeiter und keine EU-Region. Neben einer kostenlosen Stufe gibt es nutzungsbasierte Abrechnung sowie einen optionalen Enterprise-Endpunkt ohne Datenspeicherung und ohne Training.",
       "dataResidency": {
-        "euRegionDetails": "Die Datenschutzerklärung von MegaNova besagt, dass das Unternehmen in den Vereinigten Staaten ansässig ist und dass Informationen in die USA und andere Länder übermittelt und dort verarbeitet werden können. In der Enterprise-Dokumentation wird ausgeführt, dass Kunden wählen können, wo Daten verarbeitet und gespeichert werden, und in den FAQ werden benutzerdefinierte Regionen für Enterprise erwähnt; es wurde jedoch kein Primärquellendokument gefunden, das eine ausschließlich auf die EU beschränkte Region garantiert oder besagt, dass die Inferenz stets in der EU verbleibt."
+        "euRegionDetails": "Eine Verarbeitung in der EU ist nicht dokumentiert. Laut Datenschutzerklärung können Daten in den USA und anderen Ländern verarbeitet werden; die FAQ erwähnen eigene Regionen für Enterprise-Kunden, ohne diese zu nennen."
       },
       "dataUsage": {
-        "retentionPolicy": "Laut Datenschutzerklärung werden personenbezogene Daten so lange aufbewahrt, wie dies zur Erbringung der Dienste und für berechtigte Zwecke erforderlich ist, etwa für geschäftliche/finanzielle Unterlagen, die Einhaltung gesetzlicher Pflichten, die Beilegung von Streitigkeiten, die Durchsetzung von Vereinbarungen sowie Sicherheit/Schutz/Audits/Produktverbesserung. Laut FAQ werden Nutzer-Prompts und Outputs nicht über die vorübergehende Verarbeitung hinaus gespeichert; eine langfristige Speicherung von Prompts/Outputs erfolgt nicht.",
-        "details": "Laut Datenschutzerklärung erhebt das Unternehmen Inhalte, die Nutzer hochladen oder generieren, einschließlich Prompts, Dateien, Nachrichten, Modellpräferenzen und Nutzungseinstellungen. Ferner wird dort ausgeführt, dass personenbezogene Daten zur Verbesserung, Erforschung und Weiterentwicklung der Dienste verwendet werden, einschließlich Analytik, Qualitätssicherung, Sicherheitssystemen, Tests, Anonymisierung/Aggregation und neuer Funktionen; es wird jedoch nicht ausdrücklich angegeben, ob Daten von API-Kunden zum Training von Modellen verwendet werden."
+        "retentionPolicy": "Laut FAQ werden Prompts und Ausgaben nur vorübergehend zur Verarbeitung gespeichert. Am Enterprise-Endpunkt ist das Caching beim Anbieter abgeschaltet und Nachrichteninhalte erscheinen nicht in MegaNovas Protokollen; Ausnahme: Anthropic kann Anfragen an Claude Fable 5 und 5.1 bis zu 60 Tage speichern. Andere personenbezogene Daten werden so lange gespeichert, wie es für Dienst, Unterlagen, gesetzliche Pflichten und Sicherheit nötig ist.",
+        "details": "Für den selbst buchbaren Enterprise-Endpunkt erklärt MegaNova, dass Ein- und Ausgaben nie zum Training von Modellen verwendet werden. Für den Standard-Endpunkt gibt es keine Aussage zum Training, und die veröffentlichten Bedingungen räumen MegaNova eine weitgehende Lizenz an eingereichten Inhalten ein, auch zur Verbesserung der Dienste. Laut Datenschutzerklärung gehören Prompts und Dateien zu den Daten, die zur Verbesserung und Entwicklung der Dienste genutzt werden."
       }
     }
   }
