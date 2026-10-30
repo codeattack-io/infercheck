@@ -13,7 +13,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": null,
-      "euRegionDetails": "No EU region. Inference runs in DeepInfra data centers in the United States and, since July 2026, in Toronto, Canada. The documentation offers no region choice for serverless or dedicated deployments."
+      "euRegionDetails": "No EU region. Inference runs in DeepInfra data centers in the United States and, since July 2026, in Toronto, Canada. The documentation offers no region choice for serverless or dedicated deployments; only the separate Hosted Agents virtual machines of accounts subject to EU data-protection rules are placed in the eu-central-1 region, and their model calls use the regular inference service."
     },
     "dpa": {
       "available": true,
@@ -23,7 +23,7 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "Under the terms of service, inputs and outputs stay in memory only while a request is processed and are then deleted; only metadata is logged. Exceptions are batch requests, image and other asynchronous outputs, optional paid prompt-cache retention, and data kept with the customer's written consent for support, which is deleted within 30 days after the issue is resolved.",
+      "retentionPolicy": "Under the terms of service, customer data is kept only as long as needed to process and return a request and is then deleted; only metadata is logged. Exceptions are batch requests, image and other asynchronous outputs, third-party integrations, optional paid prompt-cache retention, records kept for legal obligations or to investigate fraud, security incidents or abuse, and data kept with the customer's written consent for support, which is deleted within 30 days after the issue is resolved.",
       "details": "The terms rule out using customer data to train or improve models except to provide the service, such as a customer's own fine-tuning. Requests to Google or Anthropic models are passed to those companies under their policies. The trust center lists GDPR as in progress."
     },
     "subProcessors": {
@@ -53,17 +53,19 @@
     "https://docs.deepinfra.com/account/data-privacy",
     "https://docs.deepinfra.com/account/subprocessors",
     "https://deepinfra.com/media-center",
-    "https://deepinfra.com/pricing"
+    "https://deepinfra.com/pricing",
+    "https://www.globenewswire.com/news-release/2026/07/08/3324125/0/en/deepinfra-expands-ai-inference-capacity-with-first-international-data-center-in-toronto.html",
+    "https://docs.deepinfra.com/agents/introduction"
   ],
   "notes": "Deep Infra Inc. is based in Palo Alto, California, and is not certified under the EU-US Data Privacy Framework. Its data processing agreement with EU standard contractual clauses is published in the trust center and is accepted with the terms of service. Data protection officer: Nikola Borisov (dpo@deepinfra.com).",
   "translations": {
     "de": {
-      "notes": "Deep Infra Inc. hat ihren Sitz in Palo Alto, Kalifornien, und ist nicht unter dem EU-US Data Privacy Framework zertifiziert. Der Auftragsverarbeitungsvertrag mit EU-Standardvertragsklauseln ist im Trust Center veröffentlicht und gilt mit Annahme der Nutzungsbedingungen. Datenschutzbeauftragter: Nikola Borisov (dpo@deepinfra.com).",
+      "notes": "Deep Infra Inc. hat seinen Sitz in Palo Alto, Kalifornien, und ist nicht unter dem EU-US Data Privacy Framework zertifiziert. Der Auftragsverarbeitungsvertrag mit EU-Standardvertragsklauseln ist im Trust Center veröffentlicht und wird mit den Nutzungsbedingungen akzeptiert. Datenschutzbeauftragter: Nikola Borisov (dpo@deepinfra.com).",
       "dataResidency": {
-        "euRegionDetails": "Keine EU-Region. Die Inferenz läuft in Rechenzentren von DeepInfra in den USA und seit Juli 2026 in Toronto (Kanada). Die Dokumentation bietet weder für Serverless- noch für dedizierte Deployments eine Regionswahl."
+        "euRegionDetails": "Keine EU-Region. Die Inferenz läuft in Rechenzentren von DeepInfra in den USA und seit Juli 2026 in Toronto (Kanada). Die Dokumentation bietet weder für Serverless- noch für dedizierte Deployments eine Regionswahl; nur die separaten virtuellen Maschinen der Hosted Agents von Konten, die EU-Datenschutzrecht unterliegen, laufen in der Region eu-central-1, und ihre Modellaufrufe nutzen den regulären Inferenzdienst."
       },
       "dataUsage": {
-        "retentionPolicy": "Laut Nutzungsbedingungen liegen Ein- und Ausgaben nur während der Verarbeitung einer Anfrage im Arbeitsspeicher und werden danach gelöscht; protokolliert werden nur Metadaten. Ausnahmen sind Batch-Anfragen, Bild- und andere asynchrone Ausgaben, optionales kostenpflichtiges Prompt-Caching sowie Daten, die mit schriftlicher Zustimmung des Kunden für den Support aufbewahrt und spätestens 30 Tage nach Lösung des Problems gelöscht werden.",
+        "retentionPolicy": "Laut Nutzungsbedingungen werden Kundendaten nur so lange vorgehalten, wie es für die Verarbeitung und Beantwortung einer Anfrage nötig ist, und danach gelöscht; protokolliert werden nur Metadaten. Ausnahmen sind Batch-Anfragen, Bild- und andere asynchrone Ausgaben, Integrationen von Drittanbietern, optionales kostenpflichtiges Prompt-Caching, Aufzeichnungen, die wegen gesetzlicher Pflichten oder zur Untersuchung von Betrug, Sicherheitsvorfällen oder Missbrauch aufbewahrt werden, sowie Daten, die mit schriftlicher Zustimmung des Kunden für den Support aufbewahrt und spätestens 30 Tage nach Lösung des Problems gelöscht werden.",
         "details": "Die Nutzungsbedingungen schließen aus, dass Kundendaten zum Training oder zur Verbesserung von Modellen genutzt werden, außer zur Erbringung des Dienstes, etwa beim Fine-Tuning für den Kunden selbst. Anfragen an Modelle von Google oder Anthropic werden an diese Unternehmen weitergegeben und unterliegen deren Richtlinien. Im Trust Center ist die DSGVO als „in Arbeit“ aufgeführt."
       }
     }
