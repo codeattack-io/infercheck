@@ -2,78 +2,64 @@
   "slug": "bailing",
   "name": "Bailing",
   "type": "api_provider",
-  "website": "https://alipaytbox.yuque.com",
-  "apiDocsUrl": "https://help.aliyun.com/zh/model-studio/applicantion-api-reference/",
+  "website": "https://www.ant-ling.com/en/",
+  "apiDocsUrl": "https://developer.ant-ling.com/en/docs/",
   "compliance": {
-    "headquarters": "SG",
+    "headquarters": "CN",
     "dataResidency": {
       "regions": [
-        "CN",
-        "SG",
-        "US"
+        "CN"
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Alibaba Cloud Model Studio/Bailing documents state model services are available in Chinese mainland (Beijing), US (Virginia), and International (Singapore). No EU region is documented. The DPA says customers choose a selected region, but Alibaba Cloud may transfer data outside that selected region subject to data protection measures."
+      "euRegionDetails": "No EU region is offered. The privacy policy says personal information collected and generated in mainland China is stored in mainland China, and the service agreement says the service is mainly provided to users in mainland China."
     },
     "dpa": {
-      "available": true,
-      "url": "https://www.alibabacloud.com/help/en/legal/latest/fe2cxg",
-      "signedVia": "online_acceptance"
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
     },
     "dataUsage": {
-      "trainsOnCustomerData": false,
+      "trainsOnCustomerData": true,
       "optOutAvailable": null,
-      "retentionPolicy": "For direct API calls, Model Studio states it does not save conversation data and only desensitizes and records call status. For Assistant API usage, it retains conversation history and says this information currently has no expiration date. The general privacy policy states personal data is retained as long as needed to provide services or comply with legal, tax, or accounting requirements.",
-      "details": "Alibaba Cloud Model Studio/Bailing states it will never use customer data for model training, and transmitted data is encrypted. Retention behavior depends on the invocation method."
+      "retentionPolicy": "The service agreement says the provider is not obliged to store inputs or outputs. The privacy policy says personal information is kept only as long as needed for the stated purposes and as required by law, and is deleted or anonymised after account deletion unless a legal retention period applies.",
+      "details": "The service agreement allows inputs and outputs to be used to develop and improve the services after de-identification or with the user's authorisation. The privacy policy says de-identified inputs and outputs may be used for model design, training and optimisation without further notice or consent. No opt-out was found."
     },
     "subProcessors": {
-      "disclosed": true,
-      "url": "https://account.alibabacloud.com/",
+      "disclosed": false,
+      "url": null,
       "includesEuEntities": null
     },
-    "certifications": [
-      "CSA STAR",
-      "ISO27001",
-      "ISO20000",
-      "ISO22301",
-      "ISO9001",
-      "C5",
-      "TISAX",
-      "HIPAA"
-    ],
+    "certifications": [],
     "euAiAct": {
       "status": "unknown",
       "details": null
     },
-    "sccs": true,
+    "sccs": null,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://help.aliyun.com/zh/model-studio/applicantion-api-reference/",
-    "https://help.aliyun.com/zh/model-studio/activate-alibaba-cloud-model-studio",
-    "https://www.alibabacloud.com/help/en/model-studio/what-is-model-studio",
-    "https://www.alibabacloud.com/help/en/model-studio/faq-about-alibaba-cloud-model-studio",
-    "https://www.alibabacloud.com/help/en/legal/latest/fe2cxg",
-    "https://www.alibabacloud.com/help/en/legal/latest/alibaba-cloud-international-website-privacy-policy",
-    "https://www.alibabacloud.com/help/en/legal/latest/alibaba-cloud-international-website-terms-of-use-alibaba-cloud-international-website-terms-of-use",
-    "https://www.alibabacloud.com/help/doc-detail/42427.html",
-    "https://www.alibabacloud.com/en/trust-center/compliance?_p_lc=1",
-    "https://www.alibabacloud.com/trust-center/gdpr"
+    "https://www.ant-ling.com/en/",
+    "https://developer.ant-ling.com/en/docs/",
+    "https://developer.ant-ling.com/en/docs/getting-started/prerequisites/",
+    "https://developer.ant-ling.com/en/docs/models/price/",
+    "https://developer.ant-ling.com/en/docs/faq/",
+    "https://render.alipay.com/p/c/180021120000001605/index.html?agreementId=AG01001547",
+    "https://render.alipay.com/p/c/180021120000001606/index.html?agreementId=AG01001548"
   ],
-  "notes": "Bailing appears to be Alibaba Cloud Model Studio/百炼 rather than an independent provider. Primary-source materials confirm a public DPA with SCC language, no-training statements for customer data, and processing regions in Beijing, Singapore, and Virginia, but no EU-only inference option or public standalone sub-processor list URL without account login.",
+  "notes": "Bailing is Ant Group's Ling (百灵) model family, offered through the Ant Ling API (api.ant-ling.com) operated by Ant Intelligence (Hangzhou) Technology Co., Ltd. in China; it is not Alibaba Cloud Model Studio (Bailian). The service agreement says the service is mainly provided to users in mainland China, and billing is pay-as-you-go via Alipay with a recurring free quota. No DPA, sub-processor list, SCC statement or certification was found.",
   "translations": {
     "de": {
-      "notes": "Bailing scheint eher Alibaba Cloud Model Studio/百炼 als ein unabhängiger Anbieter zu sein. Primärquellen bestätigen einen öffentlichen Auftragsverarbeitungsvertrag (AVV) mit Formulierungen zu Standardvertragsklauseln (SCC), Erklärungen, dass Kundendaten nicht für das Modelltraining verwendet werden, sowie Verarbeitungsregionen in Peking, Singapur und Virginia, jedoch keine ausschließlich in der EU verfügbare Inferenz-Option und keine öffentliche eigenständige URL zu einer Liste von Unterauftragsverarbeitern ohne Konto-Login.",
+      "notes": "Bailing ist die Ling-Modellfamilie (百灵) der Ant Group, angeboten über die Ant-Ling-API (api.ant-ling.com), die von Ant Intelligence (Hangzhou) Technology Co., Ltd. in China betrieben wird; es handelt sich nicht um Alibaba Cloud Model Studio (Bailian). Laut Nutzungsvereinbarung richtet sich der Dienst vor allem an Nutzer in Festlandchina; abgerechnet wird nach Verbrauch über Alipay, mit einem wiederkehrenden Freikontingent. Weder ein Auftragsverarbeitungsvertrag noch eine Liste der Unterauftragsverarbeiter, eine Aussage zu Standardvertragsklauseln oder eine Zertifizierung wurde gefunden.",
       "dataResidency": {
-        "euRegionDetails": "Die Dokumentation zu Alibaba Cloud Model Studio/Bailing gibt an, dass Modelldienste auf dem chinesischen Festland (Peking), in den USA (Virginia) und international (Singapur) verfügbar sind. Eine EU-Region ist nicht dokumentiert. Der Auftragsverarbeitungsvertrag (AVV) besagt, dass Kunden eine ausgewählte Region bestimmen, Alibaba Cloud Daten jedoch vorbehaltlich datenschutzrechtlicher Schutzmaßnahmen außerhalb dieser ausgewählten Region übermitteln kann."
+        "euRegionDetails": "Eine EU-Region gibt es nicht. Laut Datenschutzrichtlinie werden in Festlandchina erhobene und erzeugte personenbezogene Daten in Festlandchina gespeichert; laut Nutzungsvereinbarung richtet sich der Dienst vor allem an Nutzer in Festlandchina."
       },
       "dataUsage": {
-        "retentionPolicy": "Für direkte API-Aufrufe gibt Model Studio an, keine Konversationsdaten zu speichern und lediglich den Anrufstatus zu desensibilisieren und aufzuzeichnen. Bei Nutzung der Assistant API wird der Konversationsverlauf gespeichert; zudem wird angegeben, dass für diese Informationen derzeit kein Ablaufdatum besteht. Die allgemeine Datenschutzerklärung besagt, dass personenbezogene Daten so lange aufbewahrt werden, wie es für die Erbringung der Dienste oder zur Einhaltung rechtlicher, steuerlicher oder buchhalterischer Anforderungen erforderlich ist.",
-        "details": "Alibaba Cloud Model Studio/Bailing gibt an, Kundendaten niemals für das Modelltraining zu verwenden; zudem werden übermittelte Daten verschlüsselt. Das Speicherverhalten hängt von der Art der Aufrufmethode ab."
+        "retentionPolicy": "Laut Nutzungsvereinbarung ist der Anbieter nicht verpflichtet, Eingaben oder Ausgaben zu speichern. Laut Datenschutzrichtlinie werden personenbezogene Daten nur so lange aufbewahrt, wie es für die genannten Zwecke nötig und gesetzlich vorgeschrieben ist, und nach Löschung des Kontos gelöscht oder anonymisiert, sofern keine gesetzliche Aufbewahrungsfrist gilt.",
+        "details": "Die Nutzungsvereinbarung erlaubt, Eingaben und Ausgaben nach De-Identifizierung oder mit Zustimmung des Nutzers zur Entwicklung und Verbesserung der Dienste zu verwenden. Laut Datenschutzrichtlinie dürfen de-identifizierte Eingaben und Ausgaben ohne weitere Benachrichtigung oder Einwilligung für Modelldesign, Training und Optimierung genutzt werden. Eine Opt-out-Möglichkeit wurde nicht gefunden."
       }
     }
   }
