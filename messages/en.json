@@ -164,36 +164,16 @@
     "description": "Compare {modelName} availability across providers: EU data residency, DPA status, training policy, and pricing. Find which providers pass your GDPR threshold.",
     "ogTitle": "{modelName} — GDPR Compliance by Provider",
     "ogDescription": "EU data residency, DPA, training opt-out, and pricing for {modelName} across all providers offering it.",
-    "breadcrumb": {
-      "models": "Models",
-      "ariaLabel": "Breadcrumb"
-    },
-    "availableFrom1": "Available from 1 provider",
-    "availableFromN": "Available from {count} providers",
-    "compareSubheading": " — compare compliance, pricing, and data residency below.",
-    "fullProviderProfile": "Full provider profile →",
-    "sections": {
-      "pricing": "Pricing (per 1M tokens)",
-      "gdprCompliance": "GDPR Compliance",
-      "dataResidency": "Data Residency"
-    },
-    "pricing": {
-      "input": "Input",
-      "output": "Output",
-      "context": "Context"
-    },
-    "compliance": {
-      "euDataResidency": "EU data residency",
-      "dpaAvailable": "DPA available",
-      "noTrainingOnData": "No training on data",
-      "sccsInPlace": "SCCs in place",
-      "notYetVerified": "Not yet verified"
-    },
-    "residency": {
-      "regions": "Regions",
-      "euOnly": "EU only"
-    },
-    "backLink": "← Back to all models"
+    "availableFrom": "{count, plural, one {Available from # provider} other {Available from # providers}}",
+    "filtersLabel": "Compliance filters",
+    "countAll": "{count, plural, one {# provider} other {# providers}}",
+    "countFiltered": "{matching} of {total} providers",
+    "tableLabel": "Providers offering {modelName}"
+  },
+  "Breadcrumb": {
+    "label": "Breadcrumb",
+    "models": "Models",
+    "providers": "Providers"
   },
   "AboutPage": {
     "title": "About — InferCheck",

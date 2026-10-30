@@ -164,36 +164,16 @@
     "description": "{modelName} bei verschiedenen Anbietern vergleichen: EU-Datenhaltung, AVV-Status, Trainingsrichtlinie und Preise. Finden Sie Anbieter, die Ihre DSGVO-Anforderungen erfüllen.",
     "ogTitle": "{modelName} — DSGVO-Compliance nach Anbieter",
     "ogDescription": "EU-Datenhaltung, AVV, Trainings-Opt-out und Preise für {modelName} bei allen anbietenden Providern.",
-    "breadcrumb": {
-      "models": "Modelle",
-      "ariaLabel": "Brotkrumennavigation"
-    },
-    "availableFrom1": "Verfügbar bei 1 Anbieter",
-    "availableFromN": "Verfügbar bei {count} Anbietern",
-    "compareSubheading": " — Compliance, Preise und Datenhaltung unten vergleichen.",
-    "fullProviderProfile": "Vollständiges Anbieterprofil →",
-    "sections": {
-      "pricing": "Preise (pro 1 Mio. Token)",
-      "gdprCompliance": "DSGVO-Compliance",
-      "dataResidency": "Datenhaltung"
-    },
-    "pricing": {
-      "input": "Eingabe",
-      "output": "Ausgabe",
-      "context": "Kontext"
-    },
-    "compliance": {
-      "euDataResidency": "EU-Datenhaltung",
-      "dpaAvailable": "AVV verfügbar",
-      "noTrainingOnData": "Kein Training mit Daten",
-      "sccsInPlace": "SCC vorhanden",
-      "notYetVerified": "Noch nicht verifiziert"
-    },
-    "residency": {
-      "regions": "Regionen",
-      "euOnly": "Nur EU"
-    },
-    "backLink": "← Zurück zur Modellübersicht"
+    "availableFrom": "{count, plural, one {Verfügbar bei # Anbieter} other {Verfügbar bei # Anbietern}}",
+    "filtersLabel": "Compliance-Filter",
+    "countAll": "{count} Anbieter",
+    "countFiltered": "{matching} von {total} Anbietern",
+    "tableLabel": "Anbieter für {modelName}"
+  },
+  "Breadcrumb": {
+    "label": "Brotkrümelnavigation",
+    "models": "Modelle",
+    "providers": "Anbieter"
   },
   "AboutPage": {
     "title": "Über uns — InferCheck",
