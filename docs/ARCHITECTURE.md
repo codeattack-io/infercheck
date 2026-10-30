@@ -63,22 +63,22 @@ Vercel Cron (vercel.json, 02:00 UTC daily)
 
 **Adapters** (`src/lib/sync/adapters/`)
 
-| Key                     | Source                                                         | Without credentials        |
-| ----------------------- | -------------------------------------------------------------- | -------------------------- |
-| `openrouter`            | OpenRouter catalog and per-model endpoints API                 | none needed                |
-| `mistral`               | `api.mistral.ai/v1/models`, `MISTRAL_API_KEY`                  | returns no rows            |
-| `scaleway`              | `api.scaleway.ai/v1/models`, `SCW_SECRET_KEY`                  | returns no rows            |
-| `stackit`               | Model Serving API with `STACKIT_API_KEY`                       | static list in the adapter |
-| `berget-ai`             | public `api.berget.ai/v1/models`                               | none needed                |
-| `ovhcloud-ai-endpoints` | static list in the adapter                                     | none needed                |
-| `amazon-bedrock`        | AWS SDK model and inference-profile listing, static price seed | returns no rows            |
-| `aleph-alpha`           | none; the adapter returns no rows                              | —                          |
+| Key                     | Source                                                              | Without credentials        |
+| ----------------------- | ------------------------------------------------------------------- | -------------------------- |
+| `openrouter`            | OpenRouter catalog and per-model endpoints API                      | none needed                |
+| `mistral`               | `api.eu.mistral.ai/v1/models`, `MISTRAL_API_KEY`, static price seed | returns no rows            |
+| `scaleway`              | public Scaleway product catalog (models and prices)                 | none needed                |
+| `stackit`               | Model Serving API with `STACKIT_API_KEY`, static price seed         | static list in the adapter |
+| `berget-ai`             | public `api.berget.ai/v1/models`                                    | none needed                |
+| `ovhcloud-ai-endpoints` | static list in the adapter                                          | none needed                |
+| `amazon-bedrock`        | AWS SDK model and inference-profile listing, static price seed      | returns no rows            |
+| `aleph-alpha`           | none; the adapter returns no rows                                   | —                          |
 
 An adapter that returns no rows changes nothing in the database.
 
 **Per-adapter processing**
 
-1. The adapter returns `ModelRow[]`. Prices pass through `toPricePerMTokens`: missing, non-finite, negative, or above 10,000 per 1M tokens become `null` ("price unknown"). Each row carries its `priceCurrency`: `USD`, except Berget AI, whose API reports the currency (default `EUR`).
+1. The adapter returns `ModelRow[]`. Prices pass through `toPricePerMTokens`: missing, non-finite, negative, or above 10,000 per 1M tokens become `null` ("price unknown"). Each row carries its `priceCurrency`: `USD`, except Berget AI, whose API reports the currency (default `EUR`), and Scaleway, STACKIT and OVHcloud, whose prices are `EUR`.
 2. Rows are grouped by `providerSlug` and written by `upsertModels` in batches of 100. If a batch fails, its rows are retried one by one; rows that still fail are collected and make the adapter fail after the others were written.
 3. A thrown error in one adapter is recorded in `failures` and `sync_log`; the remaining adapters still run.
 
@@ -119,7 +119,7 @@ Names only; values live in `.env.local` (never committed), the Vercel project, a
 | ----------------------------------------------------------------- | -------------------------------- | --------------------------------------------------------------------------------- |
 | `DATABASE_URL`                                                    | app, sync, `drizzle.config.ts`   | Required. Neon connection string                                                  |
 | `CRON_SECRET`                                                     | cron route                       | Required in production; the route rejects every request without it                |
-| `MISTRAL_API_KEY`, `SCW_SECRET_KEY`, `STACKIT_API_KEY`            | sync adapters                    | Optional; see the adapter table                                                   |
+| `MISTRAL_API_KEY`, `STACKIT_API_KEY`                              | sync adapters                    | Optional; see the adapter table                                                   |
 | `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`        | Bedrock adapter                  | Optional; `AWS_REGION` defaults to `eu-central-1`                                 |
 | `OPENAI_API_KEY`                                                  | research and translate scripts   | Only for those scripts                                                            |
 | `GITHUB_TOKEN`                                                    | `scripts/import-models-dev.ts`   | Optional; raises the GitHub API rate limit                                        |
