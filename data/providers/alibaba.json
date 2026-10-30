@@ -27,7 +27,7 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "By default, prompts and responses from inference calls are kept for up to 30 days, longer if required by law or for service security. Conversation storage and files are kept until the user deletes them. Enterprise customers can apply for zero data retention; content flagged by safety filters is kept for up to 2 years.",
+      "retentionPolicy": "By default, prompts and responses from inference calls are kept for up to 30 days, longer if required by law or for service security. Conversation storage and files are kept until the user deletes them. Enterprise customers can apply for zero data retention for selected models; content flagged by safety filters is kept for up to 2 years.",
       "details": "Model Studio documentation states that Alibaba Cloud will never use customer data for model training; the retention policy says business data is not used to train, fine-tune or improve foundation models without separate consent."
     },
     "subProcessors": {
@@ -38,6 +38,8 @@
     "certifications": [
       "SOC2",
       "ISO27001",
+      "ISO27017",
+      "ISO27018",
       "ISO27701",
       "C5"
     ],
@@ -61,6 +63,7 @@
     "https://www.alibabacloud.com/help/en/model-studio/data-retention-policy",
     "https://www.alibabacloud.com/help/en/model-studio/regions/",
     "https://www.alibabacloud.com/help/en/model-studio/germany-frankfurt-global",
+    "https://www.alibabacloud.com/help/en/model-studio/web-search",
     "https://www.alibabacloud.com/help/en/model-studio/model-pricing",
     "https://www.alibabacloud.com/en/trust-center/compliance",
     "https://www.alibabacloud.com/help/en/model-studio/get-api-key"
@@ -68,12 +71,12 @@
   "notes": "EEA customers contract with Alibaba (Netherlands) B.V., and the Data Processing Addendum incorporates the EU Standard Contractual Clauses. Model Studio offers an optional EU deployment scope in Frankfurt that keeps inference in the region for a few Qwen models; the Global scope, the other regions and the product terms allow processing outside the EU, including in mainland China. The sub-processor list is only visible after login.",
   "translations": {
     "de": {
-      "notes": "Kunden im EWR schließen den Vertrag mit Alibaba (Netherlands) B.V.; der Auftragsverarbeitungsvertrag bezieht die EU-Standardvertragsklauseln ein. Model Studio bietet in Frankfurt einen optionalen EU-Bereitstellungsbereich, in dem die Inferenz für einige Qwen-Modelle in der Region bleibt; der globale Bereich, die anderen Regionen und die Produktbedingungen erlauben eine Verarbeitung außerhalb der EU, auch in Festlandchina. Die Liste der Unterauftragsverarbeiter ist nur nach Anmeldung einsehbar.",
+      "notes": "Kunden im EWR schließen den Vertrag mit Alibaba (Netherlands) B.V.; der Auftragsverarbeitungsvertrag bezieht die EU-Standardvertragsklauseln ein. Model Studio bietet in Frankfurt einen optionalen EU-Bereitstellungsbereich, in dem die Inferenz für wenige Qwen-Modelle in der Region bleibt; der Bereich Global, die anderen Regionen und die Produktbedingungen erlauben eine Verarbeitung außerhalb der EU, auch in Festlandchina. Die Liste der Unterauftragsverarbeiter ist nur nach Anmeldung einsehbar.",
       "dataResidency": {
-        "euRegionDetails": "In der Region Deutschland (Frankfurt) wählen Kunden pro Workspace einen Bereitstellungsbereich: EU, bei dem die Inferenz in der Region bleibt, oder Global, bei dem die Inferenz auf beliebigen Knoten laufen kann, auch in Festlandchina. Statische Daten werden in der gewählten Region gespeichert. Im EU-Bereich sind nur wenige Qwen-Modelle verfügbar; andere Modelle und Funktionen wie die Websuche erfordern den globalen Bereich."
+        "euRegionDetails": "In der Region Deutschland (Frankfurt) wählen Kunden pro Workspace einen Bereitstellungsbereich: EU, bei dem die Inferenz in der Region bleibt, oder Global, bei dem die Inferenz auf beliebigen Knoten laufen kann, auch in Festlandchina. Statische Daten werden in der gewählten Region gespeichert. Im Bereich EU sind nur wenige Qwen-Modelle verfügbar; andere Modelle und Funktionen wie die Websuche erfordern den Bereich Global."
       },
       "dataUsage": {
-        "retentionPolicy": "Prompts und Antworten aus Inferenzaufrufen werden standardmäßig bis zu 30 Tage gespeichert, länger, wenn das Gesetz oder die Sicherheit des Dienstes es erfordert. Gespeicherte Gespräche und Dateien bleiben erhalten, bis der Nutzer sie löscht. Enterprise-Kunden können Zero Data Retention beantragen; von Sicherheitsfiltern markierte Inhalte werden bis zu 2 Jahre aufbewahrt.",
+        "retentionPolicy": "Prompts und Antworten aus Inferenzaufrufen werden standardmäßig bis zu 30 Tage gespeichert, länger, wenn das Gesetz oder die Sicherheit des Dienstes es erfordert. Gespeicherte Gespräche und Dateien bleiben erhalten, bis der Nutzer sie löscht. Enterprise-Kunden können für ausgewählte Modelle Zero Data Retention beantragen; von Sicherheitsfiltern markierte Inhalte werden bis zu 2 Jahre aufbewahrt.",
         "details": "Laut Dokumentation von Model Studio verwendet Alibaba Cloud Kundendaten niemals für das Modelltraining; laut Aufbewahrungsrichtlinie werden Geschäftsdaten ohne gesonderte Einwilligung nicht zum Training, Fine-Tuning oder zur Verbesserung von Basismodellen genutzt."
       }
     }
