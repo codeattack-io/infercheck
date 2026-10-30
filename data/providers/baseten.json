@@ -11,9 +11,9 @@
         "US",
         "EU"
       ],
-      "euOnly": false,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": "The pay-per-token Model APIs use a shared endpoint whose serving regions can change; keeping requests in the EU requires Baseten support to enable a compliance policy and only works for models with EU capacity. Dedicated GPU deployments can be pinned to an EU region by verified organizations themselves, or placed in EU regional environments that Baseten configures on request. Enterprise customers can also run inference in their own cloud account."
+      "euOnly": true,
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "EU-only processing requires a dedicated GPU model deployment pinned to the EU region and called through its regional endpoint; its replicas then run only in the EU, without fallback to other regions, and synchronous inputs and outputs are not stored. Organizations verified by Baseten support can pin the region themselves; Chains, training jobs and shared CPU instances cannot be pinned, and the documentation does not say where asynchronous request queues are held. The pay-per-token Model APIs use a shared endpoint whose serving regions can change and stay in the EU only under a compliance policy that support enables for models with EU capacity."
     },
     "dpa": {
       "available": true,
@@ -63,7 +63,7 @@
     "de": {
       "notes": "Baseten Labs, Inc. (San Francisco) veröffentlicht einen Auftragsverarbeitungsvertrag mit EU-Standardvertragsklauseln, der über die Vertragsbedingungen automatisch gilt; eine Zertifizierung nach dem EU-US Data Privacy Framework besteht nicht. Das Trust Center nennt SOC 2 und ISO 27001 sowie einen HIPAA-Prüfbericht. Der Basic-Tarif wird nutzungsabhängig ohne Grundgebühr abgerechnet.",
       "dataResidency": {
-        "euRegionDetails": "Die tokenbasiert abgerechneten Model APIs laufen über einen gemeinsamen Endpunkt, dessen bedienende Regionen wechseln können; damit Anfragen in der EU bleiben, muss der Baseten-Support eine Compliance-Richtlinie aktivieren, und das nur für Modelle mit Kapazität in der EU. Dedizierte GPU-Deployments können verifizierte Organisationen selbst auf eine EU-Region festlegen oder in regionalen EU-Umgebungen betreiben, die Baseten auf Anfrage einrichtet. Enterprise-Kunden können die Inferenz außerdem im eigenen Cloud-Konto betreiben."
+        "euRegionDetails": "Für eine reine EU-Verarbeitung braucht es ein dediziertes GPU-Modell-Deployment, das auf die EU-Region festgelegt ist und über seinen regionalen Endpunkt aufgerufen wird; seine Replikate laufen dann nur in der EU, ohne Ausweichen in andere Regionen, und synchrone Ein- und Ausgaben werden nicht gespeichert. Vom Baseten-Support verifizierte Organisationen können die Region selbst festlegen; Chains, Trainingsjobs und geteilte CPU-Instanzen lassen sich nicht festlegen, und die Dokumentation sagt nicht, wo die Warteschlangen für asynchrone Anfragen liegen. Die tokenbasiert abgerechneten Model APIs laufen über einen gemeinsamen Endpunkt, dessen bedienende Regionen wechseln können, und bleiben nur mit einer Compliance-Richtlinie in der EU, die der Support für Modelle mit Kapazität in der EU aktiviert."
       },
       "dataUsage": {
         "retentionPolicy": "Baseten speichert Ein- und Ausgaben synchroner Inferenz nicht, auch nicht bei den Model APIs. Bei asynchroner Inferenz auf dedizierten Deployments warten Eingaben bis zu 72 Stunden in einer Warteschlange und werden danach gelöscht; Ausgaben werden nicht gespeichert. Nach Vertragsende können verbleibende Kundeninhalte 30 Tage lang abgerufen werden und werden danach gelöscht.",
