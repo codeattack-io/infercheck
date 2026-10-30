@@ -23,7 +23,7 @@
       "trainsOnCustomerData": true,
       "optOutAvailable": true,
       "retentionPolicy": "The privacy policy keeps personal data as long as needed to provide the services or for business purposes, and longer where law, disputes or fee collection require it. Zero-retention arrangements are handled case by case on request.",
-      "details": "The Terms of Use allow Inception to use user submissions to train its models; users can opt out by switching the 'Improve the model for everyone' setting in the API Platform user settings to OFF. The terms make no exception for paying customers."
+      "details": "The Terms of Use allow Inception to use user submissions to train its models; users can opt out by switching the 'Improve the model for everyone' setting in the API Platform user settings to OFF. The terms make no exception for paying customers. The enterprise offering, sold with custom terms, is advertised with no training on customer data."
     },
     "subProcessors": {
       "disclosed": true,
@@ -52,7 +52,8 @@
     "https://docs.inceptionlabs.ai/resources/faq",
     "https://trust.inceptionlabs.ai/",
     "https://trust.inceptionlabs.ai/subprocessors",
-    "https://www.inceptionlabs.ai/"
+    "https://www.inceptionlabs.ai/",
+    "https://www.inceptionlabs.ai/enterprise"
   ],
   "notes": "US provider of the Mercury diffusion language models. By default the terms allow training on API submissions, with an opt-out in the user settings. No DPA, no statement on Standard Contractual Clauses and no EU processing option were found; the trust center lists SOC 2 Type I and Type II reports and US-only sub-processors.",
   "translations": {
@@ -60,7 +61,7 @@
       "notes": "US-Anbieter der Mercury-Diffusionssprachmodelle. Standardmäßig erlauben die Nutzungsbedingungen das Training mit API-Eingaben; ein Opt-out ist in den Benutzereinstellungen möglich. Es wurden kein AVV, keine Aussage zu Standardvertragsklauseln und keine Option für eine Verarbeitung in der EU gefunden; das Trust Center führt SOC-2-Type-I- und -Type-II-Berichte sowie ausschließlich US-amerikanische Unterauftragsverarbeiter auf.",
       "dataUsage": {
         "retentionPolicy": "Laut Datenschutzerklärung werden personenbezogene Daten so lange gespeichert, wie es für die Erbringung der Dienste oder für geschäftliche Zwecke nötig ist, und länger, wenn Gesetze, Streitigkeiten oder der Einzug von Gebühren es erfordern. Vereinbarungen ohne Datenspeicherung (Zero Retention) werden auf Anfrage im Einzelfall getroffen.",
-        "details": "Die Nutzungsbedingungen erlauben Inception, Nutzereingaben zum Training seiner Modelle zu verwenden; Nutzer können widersprechen, indem sie die Einstellung „Improve the model for everyone“ in den Benutzereinstellungen der API Platform auf OFF setzen. Für zahlende Kunden sehen die Bedingungen keine Ausnahme vor."
+        "details": "Die Nutzungsbedingungen erlauben Inception, Nutzereingaben zum Training seiner Modelle zu verwenden; Nutzer können widersprechen, indem sie die Einstellung „Improve the model for everyone“ in den Benutzereinstellungen der API Platform auf OFF setzen. Für zahlende Kunden sehen die Bedingungen keine Ausnahme vor. Das Enterprise-Angebot mit individuellen Vertragsbedingungen wird damit beworben, nicht mit Kundendaten zu trainieren."
       },
       "dataResidency": {
         "euRegionDetails": "Es ist weder eine EU-Region noch eine Option für eine ausschließliche Verarbeitung in der EU dokumentiert. Alle im Trust Center aufgeführten Unterauftragsverarbeiter, auch die Anbieter, die die Modelle betreiben, haben laut Liste ihren Standort in den USA."
