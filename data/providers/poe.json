@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "No EU region or EU-only option is offered. Requests are passed to the AI model providers behind each bot (for example OpenAI, Anthropic, Google, Meta or Fireworks AI) and, for half-shield bots, also to the third-party developer. Quora says it relies on Standard Contractual Clauses for transfers out of the EEA."
+      "euRegionDetails": "No EU region or EU-only option is offered. Requests are passed to the AI model providers behind each bot (for example OpenAI, Anthropic, Google, Meta or Fireworks AI) and, for half-shield bots, also to the third-party developer. Quora says it relies on transfer mechanisms such as Standard Contractual Clauses for transfers out of the EEA."
     },
     "dpa": {
       "available": false,
@@ -20,10 +20,10 @@
       "signedVia": "not_available"
     },
     "dataUsage": {
-      "trainsOnCustomerData": false,
-      "optOutAvailable": false,
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
       "retentionPolicy": "Deleted chats and the personal data tied to an account are removed from Poe's systems; Memory summaries can persist until the user deletes them in settings. Account deletion takes effect after a 14-day grace period, with exceptions for legal obligations. Each AI model provider applies its own retention, for example 30 days at OpenAI and Anthropic.",
-      "details": "Poe says official bots and prompt bots built on OpenAI, Anthropic, Google and Meta models do not train on chats, and fully shielded bots are not used by model providers for training. Third-party developer bots and apps (half shield) may use chats for training, so the default only holds when calling official models. Quora, Inc. acts as data controller; no processor terms are offered."
+      "details": "Poe says official bots and prompt bots built on OpenAI, Anthropic, Google and Meta models do not train on chats, and chats with full-shield bots are not used by AI model providers for training. Half-shield bots and apps from third-party developers, which the API can also call, may use chats for training, and the privacy policy lets model providers and developers use chat contents to provide and generally improve their services. Quora, Inc. is data controller and offers no processor terms."
     },
     "subProcessors": {
       "disclosed": false,
@@ -55,16 +55,16 @@
     "https://creator.poe.com/docs/external-applications/openai-compatible-api",
     "https://creator.poe.com/docs/external-applications/external-application-guide"
   ],
-  "notes": "Poe is operated by Quora, Inc. (Mountain View, California), which is not certified under the EU-US Data Privacy Framework. The API at api.poe.com is paid with Poe points from a subscription or add-on purchase; free accounts can only call free models. There is no DPA, sub-processor list or security certification.",
+  "notes": "Poe is operated by Quora, Inc. (Mountain View, California), which is not certified under the EU-US Data Privacy Framework. The API at api.poe.com is paid with Poe points from a subscription or add-on purchase; free accounts can only call free models. Quora publishes no DPA, sub-processor list or security certification.",
   "translations": {
     "de": {
-      "notes": "Poe wird von Quora, Inc. (Mountain View, Kalifornien) betrieben, das nicht unter dem EU-US Data Privacy Framework zertifiziert ist. Die API unter api.poe.com wird mit Poe-Punkten aus einem Abonnement oder zugekauften Punkten bezahlt; kostenlose Konten können nur kostenlose Modelle aufrufen. Es gibt keinen AVV, keine Liste der Unterauftragsverarbeiter und keine Sicherheitszertifizierung.",
+      "notes": "Poe wird von Quora, Inc. (Mountain View, Kalifornien) betrieben, das nicht unter dem EU-US Data Privacy Framework zertifiziert ist. Die API unter api.poe.com wird mit Poe-Punkten aus einem Abonnement oder zugekauften Punkten bezahlt; kostenlose Konten können nur kostenlose Modelle aufrufen. Quora veröffentlicht keinen AVV, keine Liste der Unterauftragsverarbeiter und keine Sicherheitszertifizierung.",
       "dataResidency": {
-        "euRegionDetails": "Es gibt keine EU-Region und keine Option für ausschließliche Verarbeitung in der EU. Anfragen gehen an die KI-Modellanbieter hinter dem jeweiligen Bot (zum Beispiel OpenAI, Anthropic, Google, Meta oder Fireworks AI) und bei Half-Shield-Bots zusätzlich an den Drittentwickler. Quora stützt Übermittlungen aus dem EWR nach eigenen Angaben auf Standardvertragsklauseln."
+        "euRegionDetails": "Es gibt keine EU-Region und keine Option für ausschließliche Verarbeitung in der EU. Anfragen gehen an die KI-Modellanbieter hinter dem jeweiligen Bot (zum Beispiel OpenAI, Anthropic, Google, Meta oder Fireworks AI) und bei Half-Shield-Bots zusätzlich an den Drittentwickler. Quora stützt Übermittlungen aus dem EWR nach eigenen Angaben auf Mechanismen wie Standardvertragsklauseln."
       },
       "dataUsage": {
         "retentionPolicy": "Gelöschte Chats und die mit einem Konto verknüpften personenbezogenen Daten werden aus den Systemen von Poe entfernt; Memory-Zusammenfassungen können bestehen bleiben, bis der Nutzer sie in den Einstellungen löscht. Die Kontolöschung wird nach einer Frist von 14 Tagen wirksam, mit Ausnahmen für gesetzliche Pflichten. Jeder KI-Modellanbieter hat eigene Aufbewahrungsfristen, bei OpenAI und Anthropic zum Beispiel 30 Tage.",
-        "details": "Laut Poe trainieren offizielle Bots und Prompt-Bots auf Basis von Modellen von OpenAI, Anthropic, Google und Meta nicht mit Chats, und vollständig geschützte Bots werden von den Modellanbietern nicht für Training genutzt. Bots und Apps von Drittentwicklern (Half Shield) dürfen Chats für Training verwenden; die Voreinstellung gilt also nur beim Aufruf offizieller Modelle. Quora, Inc. ist Verantwortlicher; Auftragsverarbeitungsbedingungen werden nicht angeboten."
+        "details": "Laut Poe trainieren offizielle Bots und Prompt-Bots auf Basis von Modellen von OpenAI, Anthropic, Google und Meta nicht mit Chats, und Chats mit Full-Shield-Bots werden von den KI-Modellanbietern nicht für Training genutzt. Half-Shield-Bots und -Apps von Drittentwicklern, die sich ebenfalls über die API aufrufen lassen, dürfen Chats für Training verwenden, und laut Datenschutzerklärung dürfen Modellanbieter und Entwickler Chat-Inhalte zur Erbringung und allgemeinen Verbesserung ihrer Dienste nutzen. Quora, Inc. ist Verantwortlicher und bietet keine Auftragsverarbeitungsbedingungen an."
       }
     }
   }
