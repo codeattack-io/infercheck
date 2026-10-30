@@ -13,8 +13,8 @@ Temporary orchestration state. Deleted before the PR is opened.
 | b1    | amazon-bedrock azure azure-cognitive-services vertex vertex-anthropic google sap-ai-core cloudflare-workers-ai  | researching (agent e22ab234) |
 | b2    | aleph-alpha cloudferro-sherlock cortecs evroc ovhcloud-ai-endpoints stackit privatemode-ai nebius-token-factory | researching (agent 2d3af5e6) |
 | b3    | anthropic cohere xai perplexity perplexity-agent inception upstage morph                                        | researching (agent 1f0e3841) |
-| b4    | moonshot-ai minimax-minimax-io z-ai xiaomi stepfun siliconflow bailing novitaai                                 | queued                       |
-| b5    | together-ai fireworks-ai groq cerebras deep-infra baseten friendli nvidia                                       | queued                       |
+| b4    | moonshot-ai minimax-minimax-io z-ai xiaomi stepfun siliconflow bailing novitaai                                 | researching                  |
+| b5    | together-ai fireworks-ai groq cerebras deep-infra baseten friendli nvidia                                       | researching                  |
 | b6    | hugging-face llama chutes inference io-net venice-ai vultr weights-biases                                       | queued                       |
 | b7    | openrouter cloudflare-ai-gateway vercel-ai-gateway helicone requesty kilo-gateway llm-gateway zenmux            | queued                       |
 | b8    | abacus aihubmix clarifai dinference firmware github-models lucidquery-ai meganova                               | queued                       |
@@ -23,3 +23,5 @@ Temporary orchestration state. Deleted before the PR is opened.
 ## Decisions
 
 - Field rules for adequacy, EU AI Act status, training default (paying API customers), opt-out, regions, EEA+CH, evidence fallbacks, pricing tier and certification scope were fixed after the pilot (see the research brief).
+- Rule 8 (pricing tier) revised after p0 verification: pay per use whenever self-serve paid usage exists.
+- Open for Carlo: Mistral `trainsOnCustomerData` stays null (official sources conflict for paid self-serve); an account check of the "Anonymous improvement data" toggle would settle it.
