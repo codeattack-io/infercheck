@@ -392,10 +392,7 @@
     "title": "Dieses Modell stammt von einem Drittanbieter und wird über {providerName} bereitgestellt"
   },
   "OgImage": {
-    "tagline": "DSGVO-konforme KI-Inferenzanbieter finden",
-    "euResidency": "EU-Datenhaltung",
-    "dpa": "AVV verfügbar",
-    "trainingOptOut": "Training-Opt-out"
+    "title": "KI-Inferenzanbieter, gefiltert nach DSGVO-Konformität."
   },
   "ProviderType": {
     "api_provider": "API-Anbieter",

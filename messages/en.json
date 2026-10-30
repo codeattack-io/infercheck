@@ -392,10 +392,7 @@
     "title": "This model is made by a third party and hosted via {providerName}"
   },
   "OgImage": {
-    "tagline": "Find GDPR-compliant AI inference providers",
-    "euResidency": "EU Data Residency",
-    "dpa": "DPA Available",
-    "trainingOptOut": "Training Opt-out"
+    "title": "AI inference providers, filtered by GDPR compliance."
   },
   "ProviderType": {
     "api_provider": "API provider",
