@@ -11,9 +11,9 @@
         "EU",
         "US"
       ],
-      "euOnly": false,
+      "euOnly": true,
       "dataLeavesEuAtInference": false,
-      "euRegionDetails": "The default global endpoint (api.mistral.ai) makes no commitment on where inference runs. The optional EU endpoint (api.eu.mistral.ai, billed at 1.1× list price) runs inference in data centres in EU and EFTA countries; agents, batch, the Files API and tools other than function calling are not covered. A US endpoint (api.us.mistral.ai) also exists."
+      "euRegionDetails": "The EU endpoint api.eu.mistral.ai keeps inference in data centres in EU and EFTA countries and is billed at 1.1× list price; the default global endpoint (api.mistral.ai) has no location commitment, and a US endpoint also exists. The EU endpoint serves only models hosted in the EU region, function calling is the only supported tool, and Agents, Batch and the Files API are not available there. Account, billing, API-key and usage data may be handled outside the EU. Mistral states that customer data is hosted in the EU unless the US endpoint is used."
     },
     "dpa": {
       "available": true,
@@ -60,14 +60,15 @@
     "https://help.mistral.ai/en/articles/347612-can-i-activate-zero-data-retention-zdr",
     "https://mistral.ai/cloud/inference/",
     "https://mistral.ai/pricing",
-    "https://docs.mistral.ai/admin/billing-usage/usage-limits"
+    "https://docs.mistral.ai/admin/billing-usage/usage-limits",
+    "https://help.mistral.ai/en/articles/347629-where-do-you-store-my-data-or-my-organization-s-data"
   ],
   "notes": "French company headquartered in Paris; the DPA uses SCCs for transfers to non-EU sub-processors. EU processing is guaranteed only on the optional EU endpoint api.eu.mistral.ai; the default global endpoint has no location commitment. Whether paid API traffic is excluded from training by default is not consistently documented.",
   "translations": {
     "de": {
       "notes": "Französisches Unternehmen mit Sitz in Paris; für Übermittlungen an Unterauftragsverarbeiter außerhalb der EU nutzt der AVV Standardvertragsklauseln (SCC). EU-Verarbeitung ist nur beim optionalen EU-Endpunkt api.eu.mistral.ai garantiert; der globale Standard-Endpunkt sagt keinen Verarbeitungsort zu. Ob kostenpflichtiger API-Verkehr standardmäßig vom Training ausgenommen ist, wird nicht einheitlich dokumentiert.",
       "dataResidency": {
-        "euRegionDetails": "Der globale Standard-Endpunkt (api.mistral.ai) sagt keinen Ort für die Inferenz zu. Der optionale EU-Endpunkt (api.eu.mistral.ai, abgerechnet zum 1,1-Fachen des Listenpreises) verarbeitet die Inferenz in Rechenzentren in EU- und EFTA-Staaten; Agents, Batch, die Files API und Tools außer Function Calling sind davon nicht erfasst. Zusätzlich gibt es einen US-Endpunkt (api.us.mistral.ai)."
+        "euRegionDetails": "Der EU-Endpunkt api.eu.mistral.ai hält die Inferenz in Rechenzentren in EU- und EFTA-Staaten und wird zum 1,1-Fachen des Listenpreises abgerechnet; der globale Standard-Endpunkt (api.mistral.ai) sagt keinen Verarbeitungsort zu, zudem gibt es einen US-Endpunkt. Der EU-Endpunkt stellt nur in der EU-Region gehostete Modelle bereit, Function Calling ist das einzige unterstützte Tool, und Agents, Batch und die Files API sind dort nicht verfügbar. Konto-, Abrechnungs-, API-Schlüssel- und Nutzungsdaten können außerhalb der EU verarbeitet werden. Laut Mistral werden Kundendaten in der EU gespeichert, sofern nicht der US-Endpunkt genutzt wird."
       },
       "dataUsage": {
         "retentionPolicy": "API-Ein- und -Ausgaben werden 30 Tage (rollierend) zur Missbrauchsüberwachung gespeichert, sofern Zero Data Retention nicht aktiv ist. Daten der Agents API bleiben bis zur Schließung des Kontos gespeichert, Fine-Tuning-Daten bis der Kunde sie löscht. Zero Data Retention gewährt Mistral auf Antrag nach eigenem Ermessen, nur für Pay-as-you-go und zustandslose API-Aufrufe.",
