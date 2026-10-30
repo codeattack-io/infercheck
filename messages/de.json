@@ -47,6 +47,12 @@
     "ogTitle": "KI-Inferenzanbieter — DSGVO-Compliance-Verzeichnis",
     "ogDescription": "KI-Inferenzanbieter nach DSGVO-Compliance vergleichen: EU-exklusive Datenhaltung, AVV, Trainings-Opt-out und Zertifizierungen.",
     "heading": "KI-Inferenzanbieter, nach DSGVO-Konformitätsstufe.",
+    "searchLabel": "Anbieter suchen",
+    "searchPlaceholder": "Anbieter suchen…",
+    "countAll": "{count} Anbieter",
+    "countFiltered": "{matching} von {total} Anbietern",
+    "noProvidersFound": "Keine Anbieter für „{query}“ gefunden",
+    "resetFilters": "Filter zurücksetzen",
     "tableLabel": "KI-Inferenzanbieter mit DSGVO-Konformitätsstufe",
     "columns": {
       "provider": "Anbieter",
@@ -61,11 +67,6 @@
     "descriptionFull": "{providerName} DSGVO-Compliance: EU-Datenhaltung {euOnly}, AVV {dpa}, Training mit Kundendaten {training}. {status}.",
     "descriptionUnverified": "{providerName} DSGVO-Compliance-Profil. Compliance-Daten stehen noch aus.",
     "ogTitle": "{providerName} — DSGVO-Compliance-Profil",
-    "breadcrumb": {
-      "models": "Modelle",
-      "providers": "Anbieter",
-      "ariaLabel": "Brotkrumennavigation"
-    },
     "actions": {
       "apiDocs": "API-Dokumentation ↗",
       "reportChange": "Änderung melden"
@@ -74,66 +75,49 @@
       "gdprCompliance": "DSGVO-Compliance",
       "dataHandling": "Datenverarbeitung",
       "certsAndEuAiAct": "Zertifizierungen & EU-KI-Verordnung",
-      "verification": "Verifizierung"
+      "status": "Stand & Quellen"
     },
-    "compliance": {
-      "euOnlyResidency": "Ausschließliche EU-Datenhaltung",
-      "inferenceStaysInEu": "Inferenz verbleibt in der EU",
-      "dpa": "Auftragsverarbeitungsvertrag (AVV)",
-      "noTraining": "Kein Training mit Kundendaten",
-      "optOut": "Opt-out möglich",
-      "sccs": "Standardvertragsklauseln (SCC)",
-      "adequacy": "Angemessenheitsbeschluss (Hauptsitz)"
-    },
-    "dataHandlingLabels": {
+    "dataHandling": {
       "regions": "Regionen",
-      "retentionPolicy": "Aufbewahrungsrichtlinie",
-      "additionalDetails": "Weitere Details",
-      "subProcessors": "Unterauftragsverarbeiter",
-      "euOnly": "Nur EU"
-    },
-    "subProcessors": {
-      "disclosedLink": "Offengelegt ↗",
-      "disclosed": "Offengelegt",
-      "notDisclosed": "Nicht offengelegt",
-      "includesEu": "(enthält EU-Einheiten)",
-      "noEu": "(keine EU-Einheiten)"
+      "euOnly": "Nur EU",
+      "euRouting": "EU-Routing",
+      "retention": "Aufbewahrung",
+      "optOut": "Opt-out vom Training",
+      "details": "Details"
     },
     "certs": {
       "certifications": "Zertifizierungen",
-      "euAiActStatus": "Status EU-KI-Verordnung",
-      "noCerts": "Keine Zertifizierungen angegeben."
+      "none": "Keine angegeben.",
+      "euAiAct": "EU-KI-Verordnung"
     },
-    "verification": {
-      "status": "Status",
-      "dateAiDraft": "Recherchiert am",
-      "dateHuman": "Zuletzt verifiziert",
-      "statusAiDraft": "KI-Entwurf (noch nicht manuell verifiziert)",
-      "statusHuman": "Verifiziert von {name}",
-      "statusNone": "Noch nicht recherchiert",
-      "aiDraftNote": "Dieser Eintrag wurde mit KI-Unterstützung recherchiert und noch nicht manuell gegen die Quellen geprüft. Bitte verstehen Sie ihn als Ausgangspunkt und bestätigen Sie kritische Angaben beim Anbieter.",
+    "status": {
+      "status": "Stand",
       "pricingTier": "Preismodell",
-      "notResearched": "Nicht recherchiert",
-      "unknown": "Unbekannt",
       "sources": "Quellen",
       "notes": "Hinweise"
     },
+    "noComplianceData": "Für diesen Anbieter wurden noch keine Compliance-Daten recherchiert.",
     "models": {
       "heading": "Modelle ({count})",
-      "tableAriaLabel": "Von {providerName} angebotene Modelle",
+      "tableLabel": "Von {providerName} angebotene Modelle",
       "nativeHeading": "Eigene Modelle",
       "gatewayHeading": "Auch über diesen Anbieter verfügbar",
-      "gatewayNote": "Diese Modelle stammen von Drittanbietern, können aber über die Infrastruktur von {providerName} abgerufen werden. Die auf dieser Seite dargestellten DSGVO-Eigenschaften gelten für den Umgang von {providerName} mit Ihren Daten.",
+      "gatewayNote": "Von anderen Unternehmen entwickelt und über {providerName} bereitgestellt; die Compliance-Angaben auf dieser Seite beschreiben {providerName}.",
       "columns": {
         "model": "Modell",
         "modality": "Modalität",
         "context": "Kontext",
-        "input": "Eingabe",
-        "output": "Ausgabe"
+        "price": "Preis / 1 Mio. Token",
+        "priceSub": "Eingabe · Ausgabe",
+        "details": "Details"
+      },
+      "modality": {
+        "text": "Text",
+        "multimodal": "Multimodal",
+        "embedding": "Embedding",
+        "audio": "Audio"
       }
     },
-    "unverifiedNotice": "Compliance-Daten für diesen Anbieter noch nicht verifiziert. Falls Sie Informationen haben, nutzen Sie bitte „Änderung melden“.",
-    "backLink": "← Zurück zur Anbieterübersicht",
     "meta": {
       "yes": "ja",
       "no": "nein",
@@ -142,17 +126,6 @@
       "notAvailable": "nicht verfügbar"
     },
     "jsonLdDescription": "KI-Inferenzanbieter. DSGVO-Konformitätsstufe: {tier}. AVV: {dpa}.",
-    "dpaSignedVia": {
-      "online_acceptance": "Online-Annahme",
-      "custom_contract": "individueller Vertrag",
-      "not_available": "nicht verfügbar"
-    },
-    "euAiActStatus": {
-      "compliant": "konform",
-      "monitoring": "wird beobachtet",
-      "unknown": "unbekannt",
-      "not_applicable": "nicht anwendbar"
-    },
     "pricingTiers": {
       "free_tier": "kostenloses Kontingent",
       "pay_per_use": "nutzungsbasiert",
@@ -164,36 +137,16 @@
     "description": "{modelName} bei verschiedenen Anbietern vergleichen: EU-Datenhaltung, AVV-Status, Trainingsrichtlinie und Preise. Finden Sie Anbieter, die Ihre DSGVO-Anforderungen erfüllen.",
     "ogTitle": "{modelName} — DSGVO-Compliance nach Anbieter",
     "ogDescription": "EU-Datenhaltung, AVV, Trainings-Opt-out und Preise für {modelName} bei allen anbietenden Providern.",
-    "breadcrumb": {
-      "models": "Modelle",
-      "ariaLabel": "Brotkrumennavigation"
-    },
-    "availableFrom1": "Verfügbar bei 1 Anbieter",
-    "availableFromN": "Verfügbar bei {count} Anbietern",
-    "compareSubheading": " — Compliance, Preise und Datenhaltung unten vergleichen.",
-    "fullProviderProfile": "Vollständiges Anbieterprofil →",
-    "sections": {
-      "pricing": "Preise (pro 1 Mio. Token)",
-      "gdprCompliance": "DSGVO-Compliance",
-      "dataResidency": "Datenhaltung"
-    },
-    "pricing": {
-      "input": "Eingabe",
-      "output": "Ausgabe",
-      "context": "Kontext"
-    },
-    "compliance": {
-      "euDataResidency": "EU-Datenhaltung",
-      "dpaAvailable": "AVV verfügbar",
-      "noTrainingOnData": "Kein Training mit Daten",
-      "sccsInPlace": "SCC vorhanden",
-      "notYetVerified": "Noch nicht verifiziert"
-    },
-    "residency": {
-      "regions": "Regionen",
-      "euOnly": "Nur EU"
-    },
-    "backLink": "← Zurück zur Modellübersicht"
+    "availableFrom": "{count, plural, one {Verfügbar bei # Anbieter} other {Verfügbar bei # Anbietern}}",
+    "filtersLabel": "Compliance-Filter",
+    "countAll": "{count} Anbieter",
+    "countFiltered": "{matching} von {total} Anbietern",
+    "tableLabel": "Anbieter für {modelName}"
+  },
+  "Breadcrumb": {
+    "label": "Brotkrümelnavigation",
+    "models": "Modelle",
+    "providers": "Anbieter"
   },
   "AboutPage": {
     "title": "Über uns — InferCheck",
@@ -435,6 +388,7 @@
   },
   "ProviderRow": {
     "euResidency": "EU",
-    "modelCount": "{count, plural, one {# Modell} other {# Modelle}}"
+    "modelCount": "{count, plural, one {# Modell} other {# Modelle}}",
+    "dimmed": "Entspricht nicht dem aktiven Filter."
   }
 }

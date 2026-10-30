@@ -1,26 +1,12 @@
-// Model detail page — /model/[id]
-// Lists every provider offering this model with pricing, compliance, and links.
-//
-// Route params: `id` is the model suffix (e.g. "claude-sonnet-4-6").
-// The same suffix can appear at multiple providers (anthropic, amazon-bedrock, etc.).
-//
-// Vercel rules:
-//   - async-parallel: DB query + provider JSON load in parallel
-//   - server-serialization: no non-serializable data passed to client components
-
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
+import { Breadcrumb } from "@/components/Breadcrumb";
+import { ModelOffers } from "@/components/ModelOffers";
 import { getCanonicalModelIds, getModelOffers } from "@/lib/models";
 import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
-import { getComplianceTier, isFullProvider, TIER_CLASSES } from "@/lib/compliance";
-import { formatContext, formatPrice, type PriceFormat } from "@/lib/format";
-import { BooleanList, BooleanRow } from "@/components/BooleanRow";
-import { VerificationLabel } from "@/components/VerificationLabel";
 import type { AnyProvider } from "@/lib/compliance";
-import { ComplianceBadge } from "@/components/ComplianceBadge";
-import { buttonClass } from "@/lib/styles";
+import type { ModelWithProvider } from "@/components/types";
 
 interface PageProps {
   params: Promise<{ locale: string; id: string }>;
@@ -67,7 +53,6 @@ export default async function ModelDetailPage({ params }: PageProps) {
   setRequestLocale(locale);
   const decoded = decodeURIComponent(id);
 
-  // Parallel: cached DB query + provider JSON load (async-parallel rule).
   const [modelRows, allProviders] = await Promise.all([getModelOffers(decoded), Promise.resolve(getAllProviders())]);
 
   if (modelRows.length === 0) {
@@ -75,24 +60,23 @@ export default async function ModelDetailPage({ params }: PageProps) {
   }
 
   const t = await getTranslations("ModelPage");
-
-  const tf = await getTranslations("Format");
-  const priceFormat: PriceFormat = { locale, freeLabel: tf("free") };
+  const tb = await getTranslations("Breadcrumb");
 
   const providerMap = new Map<string, AnyProvider>(allProviders.map((p) => [p.slug, getLocalizedProvider(p, locale)]));
 
-  // Prefer a non-gateway row's display name for the page heading so we get the
-  // upstream model name (e.g. "Claude Sonnet 4.6") rather than a provider-specific
-  // label like "EU Anthropic Claude Sonnet 4.6" (Bedrock) or "Anthropic: Claude
-  // Sonnet 4.6" (OpenRouter). Fall back to the first row if no better option exists.
+  // The heading prefers the upstream model name ("Claude Sonnet 4.6") over provider-specific labels
+  // such as "EU Anthropic Claude Sonnet 4.6" (Bedrock) or "Anthropic: Claude Sonnet 4.6" (OpenRouter).
   const preferredRow =
     modelRows.find((r) => r.isNativeModel === true) ??
     modelRows.find((r) => r.providerSlug !== "amazon-bedrock") ??
     modelRows[0];
-  // Strip the "Vendor: " prefix that OpenRouter injects (e.g. "Anthropic: Claude …").
   const modelName = preferredRow.displayName.replace(/^\w[\w\s]*:\s+/, "");
 
-  // JSON-LD structured data
+  const items: ModelWithProvider[] = modelRows.map((model) => ({
+    model,
+    provider: providerMap.get(model.providerSlug) ?? null,
+  }));
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -113,159 +97,14 @@ export default async function ModelDetailPage({ params }: PageProps) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <main className="page-width flex-1 py-10">
-        {/* Breadcrumb */}
-        <nav aria-label={t("breadcrumb.ariaLabel")} className="mb-6">
-          <ol className="flex items-center gap-2 list-none p-0 m-0 font-body text-[0.8125rem] text-text-muted">
-            <li>
-              <Link href="/" className="text-link no-underline">
-                {t("breadcrumb.models")}
-              </Link>
-            </li>
-            <li aria-hidden="true">/</li>
-            <li className="text-text-secondary">{modelName}</li>
-          </ol>
-        </nav>
-
-        {/* Heading */}
-        <div className="mb-8">
-          <h1 className="m-0 mb-2">{modelName}</h1>
-          <p className="font-body text-[0.9375rem] text-text-secondary m-0">
-            {modelRows.length === 1 ? t("availableFrom1") : t("availableFromN", { count: modelRows.length })}
-            {t("compareSubheading")}
-          </p>
-        </div>
-
-        {/* Provider cards */}
-        <div className="flex flex-col gap-4">
-          {modelRows.map((row) => {
-            const provider = providerMap.get(row.providerSlug) ?? null;
-            const tier = provider ? getComplianceTier(provider) : "unverified";
-            const tierClasses = TIER_CLASSES[tier];
-            const verified = provider !== null && isFullProvider(provider);
-
-            return (
-              <div
-                key={`${row.id}::${row.providerSlug}`}
-                className={`bg-surface border border-border border-l-3 ${tierClasses.line} rounded-card px-6 py-5`}
-              >
-                {/* Card header */}
-                <div className="flex items-start justify-between gap-4 flex-wrap mb-4">
-                  <div>
-                    <div className="font-body text-base font-semibold text-text-primary mb-1">
-                      {provider?.name ?? row.providerSlug}
-                    </div>
-                    <div className="flex flex-wrap items-center gap-2.5">
-                      <ComplianceBadge
-                        tier={tier}
-                        label="long"
-                        compliance={provider !== null && isFullProvider(provider) ? provider.compliance : null}
-                      />
-                      {provider ? <VerificationLabel provider={provider} className="text-14 text-text-muted" /> : null}
-                    </div>
-                  </div>
-
-                  <Link href={`/provider/${row.providerSlug}`} className={`${buttonClass("primary")} shrink-0`}>
-                    {t("fullProviderProfile")}
-                  </Link>
-                </div>
-
-                {/* Detail grid */}
-                <div className="grid gap-4 grid-cols-[repeat(auto-fit,minmax(180px,1fr))]">
-                  {/* Pricing */}
-                  <DetailSection title={t("sections.pricing")}>
-                    <DetailRow
-                      label={t("pricing.input")}
-                      value={formatPrice(row.inputPricePerMTokens, { ...priceFormat, currency: row.priceCurrency })}
-                      numeric
-                    />
-                    <DetailRow
-                      label={t("pricing.output")}
-                      value={formatPrice(row.outputPricePerMTokens, { ...priceFormat, currency: row.priceCurrency })}
-                      numeric
-                    />
-                    <DetailRow label={t("pricing.context")} value={formatContext(row.contextWindow, locale)} numeric />
-                  </DetailSection>
-
-                  {/* Compliance summary */}
-                  {verified && provider !== null && isFullProvider(provider) ? (
-                    <DetailSection title={t("sections.gdprCompliance")}>
-                      <BooleanList>
-                        <BooleanRow
-                          label={t("compliance.euDataResidency")}
-                          value={provider.compliance.dataResidency.euOnly}
-                        />
-                        <BooleanRow
-                          label={t("compliance.dpaAvailable")}
-                          value={provider.compliance.dpa.available}
-                          href={provider.compliance.dpa.url ?? undefined}
-                        />
-                        <BooleanRow
-                          label={t("compliance.noTrainingOnData")}
-                          value={
-                            provider.compliance.dataUsage.trainsOnCustomerData === null
-                              ? null
-                              : !provider.compliance.dataUsage.trainsOnCustomerData
-                          }
-                        />
-                        <BooleanRow label={t("compliance.sccsInPlace")} value={provider.compliance.sccs ?? false} />
-                      </BooleanList>
-                    </DetailSection>
-                  ) : (
-                    <DetailSection title={t("sections.gdprCompliance")}>
-                      <p className="text-[0.8125rem] text-text-muted m-0">{t("compliance.notYetVerified")}</p>
-                    </DetailSection>
-                  )}
-
-                  {/* Data residency detail */}
-                  {verified && provider !== null && isFullProvider(provider) ? (
-                    <DetailSection title={t("sections.dataResidency")}>
-                      <DetailRow
-                        label={t("residency.regions")}
-                        value={
-                          provider.compliance.dataResidency.euOnly
-                            ? t("residency.euOnly")
-                            : provider.compliance.dataResidency.regions.join(", ")
-                        }
-                      />
-                      {provider.compliance.dataResidency.euRegionDetails ? (
-                        <p className="font-body text-[0.8125rem] text-text-secondary mt-1.5 leading-[1.5]">
-                          {provider.compliance.dataResidency.euRegionDetails}
-                        </p>
-                      ) : null}
-                    </DetailSection>
-                  ) : null}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Back link */}
-        <div className="mt-10">
-          <Link href="/" className="font-body text-sm text-link no-underline">
-            {t("backLink")}
-          </Link>
-        </div>
+      <main className="page-width flex-1 pt-7 max-md:pt-5">
+        <Breadcrumb trail={[{ href: "/", label: tb("models") }]} current={modelName} />
+        <h1 className="m-0 mt-5">{modelName}</h1>
+        <p className="m-0 mt-1.5 mb-5 text-15 text-text-muted max-md:mb-3.5">
+          {t("availableFrom", { count: modelRows.length })}
+        </p>
+        <ModelOffers items={items} modelName={modelName} />
       </main>
     </>
-  );
-}
-
-function DetailSection({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <div className="text-13 font-semibold text-text-muted mb-[10px]">{title}</div>
-      {children}
-    </div>
-  );
-}
-
-function DetailRow({ label, value, numeric = false }: { label: string; value: string; numeric?: boolean }) {
-  return (
-    <div className="flex items-baseline justify-between gap-2 mb-1">
-      <span className="font-body text-[0.8125rem] text-text-secondary shrink-0">{label}</span>
-      <span className={`text-[0.8125rem] text-text-primary text-right ${numeric ? "tabular-nums" : ""}`}>{value}</span>
-    </div>
   );
 }

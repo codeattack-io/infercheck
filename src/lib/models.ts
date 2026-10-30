@@ -54,7 +54,7 @@ export async function getModelsByProvider(providerSlug: string): Promise<Provide
 }
 
 /** Active rows of one canonical model across all providers, for /model/[id]. */
-export async function getModelOffers(canonicalModelId: string) {
+export async function getModelOffers(canonicalModelId: string): Promise<CatalogModel[]> {
   "use cache";
   cacheLife("hours");
   cacheTag(MODELS_CACHE_TAG);
@@ -64,7 +64,7 @@ export async function getModelOffers(canonicalModelId: string) {
       id: models.id,
       providerSlug: models.providerSlug,
       displayName: models.displayName,
-      contextWindow: models.contextWindow,
+      canonicalModelId: models.canonicalModelId,
       inputPricePerMTokens: models.inputPricePerMTokens,
       outputPricePerMTokens: models.outputPricePerMTokens,
       priceCurrency: models.priceCurrency,

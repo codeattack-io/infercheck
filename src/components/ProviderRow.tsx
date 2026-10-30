@@ -7,9 +7,11 @@ import type { AnyProvider } from "@/lib/compliance";
 interface ProviderRowProps {
   provider: AnyProvider;
   modelCount: number;
+  /** Outside the active compliance filter: muted, and announced as not matching. */
+  dimmed?: boolean;
 }
 
-export function ProviderRow({ provider, modelCount }: ProviderRowProps) {
+export function ProviderRow({ provider, modelCount, dimmed = false }: ProviderRowProps) {
   const t = useTranslations("ProviderRow");
   const tType = useTranslations("ProviderType");
   const tier = getComplianceTier(provider);
@@ -23,6 +25,7 @@ export function ProviderRow({ provider, modelCount }: ProviderRowProps) {
 
   return (
     <tr
+      data-dimmed={dimmed ? "" : undefined}
       className={`group relative transition-colors duration-150 ease-out hover:bg-row-hover max-md:grid max-md:grid-cols-[minmax(0,1fr)_auto] max-md:gap-x-3 max-md:gap-y-1.5 max-md:border-b max-md:border-l-3 max-md:border-b-border max-md:py-3 max-md:pr-3.5 max-md:pl-[13px] max-md:last:border-b-0 ${tierLine}`}
     >
       <td
@@ -32,6 +35,7 @@ export function ProviderRow({ provider, modelCount }: ProviderRowProps) {
           href={`/provider/${provider.slug}`}
           className="block text-16 leading-[1.35] font-medium text-pretty text-text-primary no-underline after:absolute after:inset-0 after:content-[''] focus-visible:rounded-[3px] focus-visible:outline-offset-3"
         >
+          {dimmed ? <span className="sr-only">{t("dimmed")} </span> : null}
           {provider.name}
         </Link>
         <span className="mt-0.5 block text-14 text-text-muted max-md:text-15">{tType(provider.type)}</span>

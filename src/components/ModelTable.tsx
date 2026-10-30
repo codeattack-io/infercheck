@@ -21,7 +21,7 @@ import {
   type SortKey,
   type SortState,
 } from "@/lib/model-list";
-import { buttonClass } from "@/lib/styles";
+import { buttonClass, TABLE_CLASS, TH_CLASS } from "@/lib/styles";
 import { writeSearchParams } from "@/lib/url-state";
 
 export const PAGE_SIZE = 50;
@@ -92,6 +92,8 @@ export interface ModelTableProps extends ModelList {
   /** Rows rendered first and added per "Load more"; null renders every row and no "more" row. */
   pageSize?: number | null;
   primary?: PrimaryColumn;
+  /** Accessible name of the table. */
+  label?: string;
   className?: string;
 }
 
@@ -111,6 +113,7 @@ export function ModelTable({
   onReset,
   pageSize = PAGE_SIZE,
   primary = "model",
+  label,
   className,
 }: ModelTableProps) {
   const t = useTranslations("ModelTable");
@@ -154,8 +157,11 @@ export function ModelTable({
   }
 
   return (
-    <div className={`overflow-hidden rounded-card border border-border bg-surface ${className ?? ""}`}>
-      <table className="-mb-px w-full border-separate border-spacing-0 max-md:block" aria-label={t("tableAriaLabel")}>
+    <div className={`${TABLE_CLASS} ${className ?? ""}`}>
+      <table
+        className="-mb-px w-full border-separate border-spacing-0 max-md:block"
+        aria-label={label ?? t("tableAriaLabel")}
+      >
         <colgroup className="max-md:hidden">
           <col className="w-[42%]" />
           <col className="w-[16%]" />
@@ -224,9 +230,6 @@ export function ModelTable({
     </div>
   );
 }
-
-const TH_CLASS =
-  "border-b border-border bg-surface-alt px-4 py-3 text-left align-middle text-13 font-semibold uppercase tracking-[0.04em] text-text-muted";
 
 interface SortHeaderProps {
   column: SortKey;

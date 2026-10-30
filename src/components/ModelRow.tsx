@@ -1,15 +1,15 @@
 "use client";
 
 import { memo, useId, useState, type MouseEvent, type ReactNode } from "react";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import type { FuseResultMatch } from "fuse.js";
 import { Link } from "@/i18n/navigation";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
 import { ComplianceFields } from "@/components/ComplianceFields";
 import { GatewayPill } from "@/components/GatewayPill";
+import { Price } from "@/components/Price";
 import { VerificationLabel } from "@/components/VerificationLabel";
 import { getComplianceTier, isFullProvider, TIER_CLASSES } from "@/lib/compliance";
-import { formatPrice } from "@/lib/format";
 import { providerName as getProviderName, type PrimaryColumn } from "@/lib/model-list";
 import { buttonClass } from "@/lib/styles";
 import type { ModelWithProvider } from "@/components/types";
@@ -131,7 +131,7 @@ function ModelRowInner({ item, dimmed = false, matches, primary = "model" }: Mod
       {open ? (
         <tr id={panelId} className="max-md:block">
           <td colSpan={5} className="border-b border-border bg-surface-sunken p-0 max-md:block">
-            <ModelPanel item={item} line={dimmed ? "border-l-border-strong" : line} />
+            <ModelPanel item={item} line={dimmed ? "border-l-border-strong" : line} primary={primary} />
           </td>
         </tr>
       ) : null}
@@ -141,33 +141,10 @@ function ModelRowInner({ item, dimmed = false, matches, primary = "model" }: Mod
 
 export const ModelRow = memo(ModelRowInner);
 
-function Price({ model }: { model: ModelWithProvider["model"] }) {
-  const t = useTranslations("ModelRow");
-  const tf = useTranslations("Format");
-  const locale = useLocale();
-  if (model.inputPricePerMTokens === null && model.outputPricePerMTokens === null) {
-    return <span className="text-14 text-text-muted">{t("priceNotPublished")}</span>;
-  }
-  const format = { locale, freeLabel: tf("free"), currency: model.priceCurrency };
-  return (
-    <>
-      <span className="inline-block min-w-[4.6em] text-right max-md:min-w-0">
-        {formatPrice(model.inputPricePerMTokens, format)}
-      </span>
-      <span aria-hidden="true" className="px-1 text-border-strong">
-        ·
-      </span>
-      <span className="inline-block min-w-[4.6em] text-right max-md:min-w-0">
-        {formatPrice(model.outputPricePerMTokens, format)}
-      </span>
-    </>
-  );
-}
-
 const LABEL_CLASS = "m-0 mb-2 text-13 font-semibold text-text-muted";
 const PROSE_CLASS = "m-0 max-w-[62ch] text-15 text-pretty text-text-secondary";
 
-function ModelPanel({ item, line }: { item: ModelWithProvider; line: string }) {
+function ModelPanel({ item, line, primary }: { item: ModelWithProvider; line: string; primary: PrimaryColumn }) {
   const { model, provider } = item;
   const t = useTranslations("ModelRow");
   const tType = useTranslations("ProviderType");
@@ -203,7 +180,7 @@ function ModelPanel({ item, line }: { item: ModelWithProvider; line: string }) {
           ) : null}
         </h3>
         <div className="flex flex-wrap gap-2 max-md:flex-col max-md:items-start">
-          {model.canonicalModelId ? (
+          {primary === "model" && model.canonicalModelId ? (
             <Link href={`/model/${model.canonicalModelId}`} className={`${buttonClass("secondary")} max-md:py-[9px]`}>
               {t("allProviders")}
             </Link>

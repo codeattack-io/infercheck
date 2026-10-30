@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ProviderRow } from "@/components/ProviderRow";
+import { ProviderBrowser } from "@/components/ProviderBrowser";
 import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import { getComplianceTier } from "@/lib/compliance";
 import type { AnyProvider, ComplianceTier } from "@/lib/compliance";
@@ -75,8 +75,6 @@ export default async function ProvidersPage({ params }: PageProps) {
   );
 
   const t = await getTranslations("ProvidersPage");
-  const thClass =
-    "border-b border-b-border bg-surface-alt px-4 py-3 text-13 font-semibold tracking-[0.04em] text-text-muted uppercase";
 
   return (
     <>
@@ -86,41 +84,9 @@ export default async function ProvidersPage({ params }: PageProps) {
       />
       <main className="page-width flex-1">
         <h1 className="m-0 pt-5 pb-3.5 md:pt-7 md:pb-5">{t("heading")}</h1>
-        <div className="overflow-hidden rounded-card border border-border bg-surface">
-          <table className="w-full border-separate border-spacing-0 max-md:block" aria-label={t("tableLabel")}>
-            <colgroup>
-              <col className="w-[40%]" />
-              <col className="w-[22%]" />
-              <col className="w-[22%]" />
-              <col className="w-[16%]" />
-              <col className="w-11" />
-            </colgroup>
-            <thead className="max-md:hidden">
-              <tr>
-                <th scope="col" className={`${thClass} rounded-tl-card pl-5 text-left`}>
-                  {t("columns.provider")}
-                </th>
-                <th scope="col" className={`${thClass} text-left`}>
-                  {t("columns.compliance")}
-                </th>
-                <th scope="col" className={`${thClass} text-left`}>
-                  {t("columns.residency")}
-                </th>
-                <th scope="col" className={`${thClass} text-right`}>
-                  {t("columns.models")}
-                </th>
-                <th scope="col" className={`${thClass} rounded-tr-card`}>
-                  <span className="sr-only">{t("columns.profile")}</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody className="max-md:block">
-              {providers.map((p) => (
-                <ProviderRow key={p.slug} provider={p} modelCount={modelCounts[p.slug] ?? 0} />
-              ))}
-            </tbody>
-          </table>
-        </div>
+        <ProviderBrowser
+          items={providers.map((provider) => ({ provider, modelCount: modelCounts[provider.slug] ?? 0 }))}
+        />
       </main>
     </>
   );

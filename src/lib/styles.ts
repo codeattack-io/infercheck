@@ -14,3 +14,11 @@ export function buttonClass(variant: ButtonVariant = "secondary"): string {
 
 export const CHIP_CLASS =
   "inline-flex items-center rounded-full border border-border-strong bg-surface px-3.5 py-1.5 text-15 leading-[1.4] font-medium text-text-primary whitespace-nowrap cursor-pointer transition-colors duration-100 ease-out hover:border-text-secondary max-md:px-3 aria-pressed:border-accent aria-pressed:bg-accent aria-pressed:text-white";
+
+export const FINDER_CLASS =
+  "rounded-card border border-border bg-surface shadow-finder focus-within:border-accent focus-within:shadow-[0_0_0_3px_var(--color-accent-subtle)]";
+
+export const TABLE_CLASS = "overflow-hidden rounded-card border border-border bg-surface";
+
+export const TH_CLASS =
+  "border-b border-border bg-surface-alt px-4 py-3 text-left align-middle text-13 font-semibold uppercase tracking-[0.04em] text-text-muted";
