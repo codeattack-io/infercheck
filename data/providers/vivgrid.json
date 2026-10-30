@@ -23,10 +23,10 @@
       "signedVia": "not_available"
     },
     "dataUsage": {
-      "trainsOnCustomerData": false,
-      "optOutAvailable": false,
+      "trainsOnCustomerData": null,
+      "optOutAvailable": null,
       "retentionPolicy": "API logs are kept for 1 day on the Free plan and 90 days on the Growth plan. Customer data may be irretrievably deleted when the account is terminated.",
-      "details": "The terms give Vivgrid only a limited license to use customer data as necessary to provide the service, and its right to use aggregated de-identified data excludes customer data; Vivgrid publishes no explicit statement on model training. The terms also require customers not to submit personal data subject to applicable law. Models are served by unnamed upstream providers, whose own data handling Vivgrid does not describe."
+      "details": "The terms give Vivgrid a limited license to use customer data as necessary to provide the service and exclude customer data from the aggregated de-identified data it may use freely, but the privacy policy says usage information, including content users create, is used to improve the service and develop new features. Vivgrid publishes no explicit statement on model training. The terms also require customers not to submit personal data subject to applicable law, and models are served by unnamed upstream providers whose data handling Vivgrid does not describe."
     },
     "subProcessors": {
       "disclosed": false,
@@ -62,7 +62,7 @@
       },
       "dataUsage": {
         "retentionPolicy": "API-Protokolle werden im Free-Plan 1 Tag und im Growth-Plan 90 Tage aufbewahrt. Kundendaten können bei Kündigung des Kontos unwiederbringlich gelöscht werden.",
-        "details": "Die Nutzungsbedingungen räumen Vivgrid nur eine beschränkte Lizenz ein, Kundendaten zu nutzen, soweit es für die Erbringung des Dienstes nötig ist; das Recht zur Nutzung aggregierter, de-identifizierter Daten schließt Kundendaten aus. Eine ausdrückliche Aussage zum Modelltraining veröffentlicht Vivgrid nicht. Außerdem dürfen Kunden laut Nutzungsbedingungen keine personenbezogenen Daten übermitteln, die gesetzlichen Vorgaben unterliegen. Die Modelle werden von nicht benannten vorgelagerten Anbietern bereitgestellt, deren Datenverarbeitung Vivgrid nicht beschreibt."
+        "details": "Die Nutzungsbedingungen räumen Vivgrid eine beschränkte Lizenz ein, Kundendaten zu nutzen, soweit es für die Erbringung des Dienstes nötig ist, und nehmen Kundendaten von den aggregierten, de-identifizierten Daten aus, die Vivgrid frei verwenden darf. Laut Datenschutzerklärung werden Nutzungsdaten, einschließlich der von Nutzern erstellten Inhalte, jedoch zur Verbesserung des Dienstes und zur Entwicklung neuer Funktionen verwendet. Eine ausdrückliche Aussage zum Modelltraining veröffentlicht Vivgrid nicht. Außerdem dürfen Kunden laut Nutzungsbedingungen keine personenbezogenen Daten übermitteln, die gesetzlichen Vorgaben unterliegen, und die Modelle werden von nicht benannten vorgelagerten Anbietern bereitgestellt, deren Datenverarbeitung Vivgrid nicht beschreibt."
       }
     }
   }
