@@ -3,17 +3,16 @@
   "name": "Vultr",
   "type": "api_provider",
   "website": "https://api.vultrinference.com",
-  "apiDocsUrl": "https://www.vultr.com/api/",
+  "apiDocsUrl": "https://api.vultrinference.com/docs",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
       "regions": [
-        "EU",
         "US"
       ],
       "euOnly": false,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": "Vultr states that customers can choose deployment locations and that data remains in the selected location unless the customer copies it elsewhere; its trust-center materials also say data residency options keep data located within selected regions and not processed in other jurisdictions. However, no primary source located for Serverless Inference specifically guarantees EU-only inference processing."
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "Vultr Serverless Inference has no region choice, and Vultr's public model catalog lists every model as running in a US data centre. Customers can pick EU data centres only for other Vultr products such as cloud compute, GPU servers and storage."
     },
     "dpa": {
       "available": true,
@@ -21,10 +20,10 @@
       "signedVia": "custom_contract"
     },
     "dataUsage": {
-      "trainsOnCustomerData": null,
-      "optOutAvailable": null,
-      "retentionPolicy": "Vultr says account closure permanently deletes the account and associated data, and its trust center says customer data is securely and permanently removed once the retention period specified in the customer contract has ended. No Serverless Inference-specific retention schedule for prompts, outputs, or logs was found in primary sources.",
-      "details": "Vultr's privacy notice says it does not apply to customer 'User Content' hosted using the services and that in that context Vultr acts solely as a data processor. Trust-center language says Vultr does not claim rights to customer content except as required by law or for security purposes, but no explicit statement was found on whether API/inference data is used for model training."
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "The Responses endpoint stores nothing. Uploaded files expire after 30 days, and generated videos and songs are deleted 7 days after completion. Vultr publishes no retention period for chat prompts, outputs or request logs.",
+      "details": "Vultr acts as processor for customer content and states that it does not use or share that content except where required by law or for security. Its documents contain no statement on model training that is specific to Serverless Inference."
     },
     "subProcessors": {
       "disclosed": true,
@@ -33,7 +32,10 @@
     },
     "certifications": [
       "SOC2",
-      "ISO27001"
+      "ISO27001",
+      "ISO27017",
+      "ISO27018",
+      "ISO20000"
     ],
     "euAiAct": {
       "status": "unknown",
@@ -43,34 +45,41 @@
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
+    "https://api.vultrinference.com/docs",
+    "https://api.vultrinference.com/v1/models",
+    "https://api.vultrinference.com/docs/openapi.json",
+    "https://api.vultrinference.com/docs/reference/create-response",
+    "https://api.vultrinference.com/docs/reference/create-file",
+    "https://docs.vultr.com/products/compute/serverless-inference/provisioning",
     "https://docs.vultr.com/support/platform/compliance/does-vultr-offer-a-data-processing-addendum",
+    "https://docs.vultr.com/platform/trust-and-compliance/signed-agreements/overview",
     "https://docs.vultr.com/support/platform/compliance/are-vultr-services-gdpr-compliant",
+    "https://docs.vultr.com/support/platform/compliance/how-can-i-access-vultrs-compliance-reports",
     "https://www.vultr.com/legal/eea-gdpr-privacy/",
     "https://www.vultr.com/legal/privacy/",
+    "https://www.vultr.com/legal/data-privacy-framework/",
+    "https://www.vultr.com/legal/tos/",
     "https://www.vultr.com/legal/subprocessors",
-    "https://www.vultr.com/trust-center",
-    "https://docs.vultr.com/support/platform/compliance/how-to-delete-or-retrieve-data-on-vultr",
-    "https://docs.vultr.com/support/platform/profile/can-i-delete-or-close-my-vultr-account",
-    "https://docs.vultr.com/public/doc-assets/pdfs/collection_item/products-cloud-storage.pdf",
-    "https://www.vultr.com/multicloud/",
+    "https://www.vultr.com/trust-center/",
     "https://www.vultr.com/api/",
     "https://www.vultr.com/pricing/",
-    "https://docs.vultr.com/public/doc-assets/pdfs/collection_item/products-serverless-inference.pdf",
-    "https://docs.vultr.com/support/platform/billing/how-do-i-arrange-payment-via-ach-or-wire"
+    "https://www.dataprivacyframework.gov/list",
+    "https://docs.vultr.com/support/platform/compliance/how-to-delete-or-retrieve-data-on-vultr",
+    "https://docs.vultr.com/support/platform/profile/can-i-delete-or-close-my-vultr-account"
   ],
-  "notes": "Vultr provides GDPR-facing documentation, a DPA available on request for e-signature, a public subprocessor list, and public statements supporting SCC-based transfers. However, primary-source evidence was not found for Serverless Inference-specific prompt/output retention, model-training use of API data, or a guarantee that inference GPU processing can be restricted to the EU.",
+  "notes": "Vultr Serverless Inference is billed per token, and its public model catalog lists only US data centres. A DPA is available on request and signed via DocuSign; transfers rely on standard contractual clauses. Vultr's privacy policy claims participation in the EU-U.S. Data Privacy Framework, but Vultr is not on the official DPF list (checked 2026-10-30).",
   "translations": {
     "de": {
-      "notes": "Vultr stellt DSGVO-bezogene Dokumentation bereit, einen Auftragsverarbeitungsvertrag (AVV), der auf Anfrage zur elektronischen Signatur verfügbar ist, eine öffentliche Liste von Unterauftragsverarbeitern sowie öffentliche Erklärungen zur Unterstützung von auf Standardvertragsklauseln (SCC) gestützten Übermittlungen. Es wurde jedoch kein Primärquellennachweis für eine speziell auf Serverless Inference bezogene Speicherung von Prompts/Ausgaben, für die Nutzung von API-Daten zum Modelltraining oder für eine Garantie gefunden, dass die GPU-Verarbeitung für Inferenz auf die EU beschränkt werden kann.",
+      "notes": "Vultr Serverless Inference wird pro Token abgerechnet; der öffentliche Modellkatalog führt nur Rechenzentren in den USA. Ein AVV ist auf Anfrage erhältlich und wird über DocuSign unterzeichnet; Übermittlungen stützen sich auf Standardvertragsklauseln. Laut Datenschutzerklärung nimmt Vultr am EU-U.S. Data Privacy Framework teil, auf der offiziellen DPF-Liste ist Vultr jedoch nicht verzeichnet (Stand 30.10.2026).",
       "dataResidency": {
-        "euRegionDetails": "Vultr gibt an, dass Kunden Bereitstellungsstandorte wählen können und dass Daten am ausgewählten Standort verbleiben, sofern der Kunde sie nicht anderweitig kopiert; die Materialien des Trust Centers besagen zudem, dass Optionen zur Datenhaltung gewährleisten, dass Daten innerhalb der ausgewählten Regionen gespeichert bleiben und nicht in anderen Rechtsordnungen verarbeitet werden. Es wurde jedoch keine Primärquelle gefunden, die speziell für Serverless Inference eine ausschließlich auf die EU beschränkte Inferenzverarbeitung garantiert."
+        "euRegionDetails": "Bei Vultr Serverless Inference lässt sich keine Region wählen; der öffentliche Modellkatalog von Vultr führt jedes Modell mit einem Rechenzentrum in den USA. EU-Rechenzentren können Kunden nur für andere Vultr-Produkte wie Cloud-Server, GPU-Server und Speicher wählen."
       },
       "dataUsage": {
-        "retentionPolicy": "Vultr gibt an, dass die Schließung eines Kontos zur dauerhaften Löschung des Kontos und der zugehörigen Daten führt, und sein Trust Center erklärt, dass Kundendaten nach Ablauf des im Kundenvertrag festgelegten Aufbewahrungszeitraums sicher und dauerhaft entfernt werden. In Primärquellen wurde kein speziell auf Serverless Inference bezogener Aufbewahrungsplan für Prompts, Ausgaben oder Protokolle gefunden.",
-        "details": "Die Datenschutzhinweise von Vultr besagen, dass sie keine Anwendung auf vom Kunden unter Nutzung der Dienste gehostete \"User Content\" finden und dass Vultr in diesem Kontext ausschließlich als Auftragsverarbeiter handelt. Die Formulierungen im Trust Center besagen, dass Vultr keine Rechte an Kundeninhalten beansprucht, außer soweit dies gesetzlich erforderlich ist oder Sicherheitszwecken dient; es wurde jedoch keine ausdrückliche Erklärung dazu gefunden, ob API-/Inferenzdaten für das Modelltraining verwendet werden."
+        "retentionPolicy": "Der Responses-Endpunkt speichert nichts. Hochgeladene Dateien laufen nach 30 Tagen ab, erzeugte Videos und Musikstücke werden 7 Tage nach Fertigstellung gelöscht. Für Chat-Prompts, Ausgaben und Request-Logs nennt Vultr keine Aufbewahrungsfrist.",
+        "details": "Vultr handelt für Kundeninhalte als Auftragsverarbeiter und erklärt, diese Inhalte nur zu nutzen oder weiterzugeben, wenn das Gesetz oder die Sicherheit es erfordert. Eine eigene Aussage zum Modelltraining speziell für Serverless Inference enthalten die Dokumente nicht."
       }
     }
   }
