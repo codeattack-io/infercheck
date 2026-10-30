@@ -18,7 +18,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": null,
-      "euRegionDetails": "The pay-per-token serverless API routes requests globally by default; a US-only endpoint exists for selected models, and EU-only serverless is available only through sales. Dedicated deployments can be placed in a Europe multi-region or in single regions in Frankfurt and Iceland once Fireworks grants quota, at a higher price. Account-wide region enforcement is an Enterprise feature and currently covers only the US."
+      "euRegionDetails": "The pay-per-token serverless API routes requests globally by default; a US-only endpoint exists for selected models, and EU-only serverless is available only through sales. Dedicated deployments can be placed in a Europe multi-region or in single regions in Frankfurt and Iceland once Fireworks grants quota, at a higher price. Account-wide region enforcement is an Enterprise feature and currently covers only the US. The DPA allows Fireworks to process customer data wherever it or its sub-processors maintain facilities."
     },
     "dpa": {
       "available": true,
@@ -29,7 +29,7 @@
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
       "retentionPolicy": "Prompts and outputs of open models are not logged or stored by default and stay in memory only for the request; with prompt caching, parts can remain in memory for several minutes. The Responses API stores conversations by default for up to 30 days unless store=false is set. Logging for features such as FireOptimizer is opt-in.",
-      "details": "The terms and the DPA rule out using customer content to train or improve Fireworks or shared foundation models. Zero data retention is the default for inference on open models."
+      "details": "The terms rule out using customer content to train Fireworks' own models or to improve the service, and the DPA rules out using it to train or improve shared or foundation models. Zero data retention is the default for inference on open models."
     },
     "subProcessors": {
       "disclosed": true,
@@ -70,11 +70,11 @@
     "de": {
       "notes": "Fireworks.ai, Inc. hat seinen Sitz in San Mateo, Kalifornien, und ist nicht unter dem EU-US Data Privacy Framework zertifiziert; Übermittlungen aus der EU stützen sich auf Standardvertragsklauseln im Auftragsverarbeitungsvertrag, der Teil der Nutzungsbedingungen ist. GDPR Local ist der Vertreter in der EU und im Vereinigten Königreich. Der Self-Service-Zugang wird über vorab gekauftes Guthaben pro Token abgerechnet.",
       "dataResidency": {
-        "euRegionDetails": "Die serverlose Pay-per-Token-API leitet Anfragen standardmäßig weltweit weiter; für ausgewählte Modelle gibt es einen reinen US-Endpunkt, eine reine EU-Variante nur über den Vertrieb. Dedizierte Deployments lassen sich in einer Europa-Multiregion oder in Einzelregionen in Frankfurt und Island betreiben, sobald Fireworks Kontingent freigibt, zu einem höheren Preis. Eine kontoweite Festlegung auf eine Region ist eine Enterprise-Funktion und umfasst derzeit nur die USA."
+        "euRegionDetails": "Die serverlose Pay-per-Token-API leitet Anfragen standardmäßig weltweit weiter; für ausgewählte Modelle gibt es einen reinen US-Endpunkt, eine reine EU-Variante nur über den Vertrieb. Dedizierte Deployments lassen sich in einer Europa-Multiregion oder in Einzelregionen in Frankfurt und Island betreiben, sobald Fireworks Kontingent freigibt, zu einem höheren Preis. Eine kontoweite Festlegung auf eine Region ist eine Enterprise-Funktion und umfasst derzeit nur die USA. Laut Auftragsverarbeitungsvertrag darf Fireworks Kundendaten überall dort verarbeiten, wo Fireworks oder seine Unterauftragsverarbeiter Standorte unterhalten."
       },
       "dataUsage": {
         "retentionPolicy": "Prompts und Ausgaben offener Modelle werden standardmäßig weder protokolliert noch gespeichert und liegen nur für die Dauer der Anfrage im Arbeitsspeicher; beim Prompt-Caching können Teile einige Minuten im Arbeitsspeicher bleiben. Die Responses API speichert Unterhaltungen standardmäßig bis zu 30 Tage, sofern nicht store=false gesetzt ist. Die Protokollierung für Funktionen wie FireOptimizer erfolgt nur nach Opt-in.",
-        "details": "Nutzungsbedingungen und Auftragsverarbeitungsvertrag schließen aus, dass Kundeninhalte zum Training oder zur Verbesserung von Fireworks- oder gemeinsam genutzten Basismodellen verwendet werden. Für Inferenz mit offenen Modellen gilt standardmäßig keine Datenspeicherung."
+        "details": "Die Nutzungsbedingungen schließen aus, dass Kundeninhalte zum Training eigener Fireworks-Modelle oder zur Verbesserung des Dienstes genutzt werden; der Auftragsverarbeitungsvertrag schließt Training und Verbesserung gemeinsam genutzter oder Basismodelle aus. Für Inferenz mit offenen Modellen gilt standardmäßig keine Datenspeicherung."
       }
     }
   }
