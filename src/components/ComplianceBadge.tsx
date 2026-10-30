@@ -32,7 +32,15 @@ export function ComplianceBadge({ tier, label = "short", compliance, className }
   );
 }
 
-export function TierIcon({ tier, className = "size-3 shrink-0" }: { tier: ComplianceTier; className?: string }) {
+export function TierIcon({
+  tier,
+  className = "size-3 shrink-0",
+  size,
+}: {
+  tier: ComplianceTier;
+  className?: string;
+  size?: number;
+}) {
   switch (tier) {
     case "compliant":
       return (
@@ -44,6 +52,8 @@ export function TierIcon({ tier, className = "size-3 shrink-0" }: { tier: Compli
           strokeLinecap="round"
           strokeLinejoin="round"
           className={className}
+          width={size}
+          height={size}
           aria-hidden="true"
         >
           <path d="m2 6.5 2.6 2.5L10 3.5" />
@@ -51,7 +61,7 @@ export function TierIcon({ tier, className = "size-3 shrink-0" }: { tier: Compli
       );
     case "partial":
       return (
-        <svg viewBox="0 0 12 12" className={className} aria-hidden="true">
+        <svg viewBox="0 0 12 12" className={className} width={size} height={size} aria-hidden="true">
           <circle cx="6" cy="6" r="4.5" fill="none" stroke="currentColor" strokeWidth="1.6" />
           <path d="M6 1.5a4.5 4.5 0 0 1 0 9z" fill="currentColor" />
         </svg>
@@ -65,6 +75,8 @@ export function TierIcon({ tier, className = "size-3 shrink-0" }: { tier: Compli
           strokeWidth="2"
           strokeLinecap="round"
           className={className}
+          width={size}
+          height={size}
           aria-hidden="true"
         >
           <path d="m3 3 6 6M9 3 3 9" />
@@ -79,6 +91,8 @@ export function TierIcon({ tier, className = "size-3 shrink-0" }: { tier: Compli
           strokeWidth="1.8"
           strokeLinecap="round"
           className={className}
+          width={size}
+          height={size}
           aria-hidden="true"
         >
           <path d="M4.2 4.6a1.9 1.9 0 1 1 2.6 1.8c-.5.3-.8.7-.8 1.2" />

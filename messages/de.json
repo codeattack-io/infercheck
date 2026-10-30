@@ -49,26 +49,14 @@
     "description": "Über 75 KI-Inferenzanbieter nach DSGVO-Konformitätsstufe durchsuchen. Nach EU-Datenhaltung, AVV-Verfügbarkeit, Trainingsrichtlinie und mehr filtern.",
     "ogTitle": "KI-Inferenzanbieter — DSGVO-Compliance-Verzeichnis",
     "ogDescription": "KI-Inferenzanbieter nach DSGVO-Compliance vergleichen: EU-exklusive Datenhaltung, AVV, Trainings-Opt-out und Zertifizierungen.",
-    "heading1": "KI-Inferenzanbieter,",
-    "heading2": "nach DSGVO-Konformitätsstufe.",
-    "subheading": "{providerCount} Anbieter indexiert. {verifiedCount} mit recherchierten Compliance-Daten. Auf einen Anbieter klicken für das vollständige Profil.",
-    "tiers": {
-      "compliant": {
-        "label": "EU-konform",
-        "description": "Ausschließliche EU-Datenhaltung, AVV verfügbar, kein Training mit Kundendaten"
-      },
-      "partial": {
-        "label": "Teilweise (EU + SCC)",
-        "description": "AVV verfügbar und Standardvertragsklauseln vorhanden, jedoch nicht EU-exklusiv"
-      },
-      "noncompliant": {
-        "label": "Nicht konform",
-        "description": "Kein AVV oder Training mit Kundendaten ohne Opt-out-Möglichkeit"
-      },
-      "unverified": {
-        "label": "Nicht verifiziert",
-        "description": "Compliance-Daten noch nicht geprüft"
-      }
+    "heading": "KI-Inferenzanbieter, nach DSGVO-Konformitätsstufe.",
+    "tableLabel": "KI-Inferenzanbieter mit DSGVO-Konformitätsstufe",
+    "columns": {
+      "provider": "Anbieter",
+      "compliance": "Compliance",
+      "residency": "Datenhaltung",
+      "models": "Modelle",
+      "profile": "Profil"
     }
   },
   "ProviderPage": {
@@ -241,8 +229,7 @@
     "notPaidTitle": "Kein bezahlter Platzierungsservice.",
     "notPaidBody": "Kein Anbieter hat dafür bezahlt, hier gelistet zu werden oder die Darstellung seiner Daten zu beeinflussen.",
     "notCurrentTitle": "Keine Aktualitätsgarantie.",
-    "notCurrentBody": "Anbieterbedingungen ändern sich. Das Datum bei jedem Eintrag zeigt an, wann er zuletzt recherchiert bzw. bei manuell verifizierten Einträgen zuletzt gegen Quelldokumente geprüft wurde.",
-    "backLink": "← Zum Verzeichnis"
+    "notCurrentBody": "Anbieterbedingungen ändern sich. Das Datum bei jedem Eintrag zeigt an, wann er zuletzt recherchiert bzw. bei manuell verifizierten Einträgen zuletzt gegen Quelldokumente geprüft wurde."
   },
   "FilterBar": {
     "filterLabel": "Filter:",
@@ -307,10 +294,6 @@
     "dimmed": "Entspricht nicht dem aktiven Filter",
     "toggleDetails": "Details zu {name}"
   },
-  "ProviderCard": {
-    "modelCount": "{count} Modell",
-    "modelCountPlural": "{count} Modelle"
-  },
   "ImprintPage": {
     "title": "Impressum — InferCheck",
     "description": "Impressum von InferCheck, betrieben von Carlo Nölle, Köln.",
@@ -334,8 +317,7 @@
     "liabilityLinksHeading": "Haftung für Links",
     "liabilityLinksText": "Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.",
     "copyrightHeading": "Urheberrecht",
-    "copyrightText": "Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.",
-    "backLink": "← Zurück"
+    "copyrightText": "Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen."
   },
   "PrivacyPage": {
     "title": "Datenschutzerklärung — InferCheck",
@@ -378,8 +360,7 @@
     "cookiesHeading": "9. Cookies",
     "cookiesText": "Diese Website verwendet keine Cookies für Tracking oder Werbung. Ein Session-Cookie kann von der Hosting-Infrastruktur (Vercel) ausschließlich für technische Routing-Zwecke gesetzt werden. Es werden keine dauerhaften Tracking-Cookies gesetzt.",
     "changesHeading": "10. Änderungen dieser Datenschutzerklärung",
-    "changesText": "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Die jeweils aktuelle Version ist stets unter dieser URL verfügbar. Wesentliche Änderungen werden durch eine Aktualisierung des obigen Datums kenntlich gemacht.",
-    "backLink": "← Zurück"
+    "changesText": "Wir können diese Datenschutzerklärung von Zeit zu Zeit aktualisieren. Die jeweils aktuelle Version ist stets unter dieser URL verfügbar. Wesentliche Änderungen werden durch eine Aktualisierung des obigen Datums kenntlich gemacht."
   },
   "ComplianceBadge": {
     "short": {
@@ -411,10 +392,7 @@
     "title": "Dieses Modell stammt von einem Drittanbieter und wird über {providerName} bereitgestellt"
   },
   "OgImage": {
-    "tagline": "DSGVO-konforme KI-Inferenzanbieter finden",
-    "euResidency": "EU-Datenhaltung",
-    "dpa": "AVV verfügbar",
-    "trainingOptOut": "Training-Opt-out"
+    "title": "KI-Inferenzanbieter, gefiltert nach DSGVO-Konformität."
   },
   "ProviderType": {
     "api_provider": "API-Anbieter",
@@ -425,5 +403,9 @@
     "yes": "ja",
     "no": "nein",
     "unknown": "unbekannt"
+  },
+  "ProviderRow": {
+    "euResidency": "EU",
+    "modelCount": "{count, plural, one {# Modell} other {# Modelle}}"
   }
 }

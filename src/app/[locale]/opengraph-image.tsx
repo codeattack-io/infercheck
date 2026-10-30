@@ -1,5 +1,9 @@
+import { readFile } from "node:fs/promises";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import { getTranslations } from "next-intl/server";
+import { TierIcon } from "@/components/ComplianceBadge";
+import type { ComplianceTier } from "@/lib/compliance";
 
 export const size = {
   width: 1200,
@@ -8,9 +12,35 @@ export const size = {
 
 export const contentType = "image/png";
 
+// NOTE: ImageResponse cannot read CSS custom properties; these mirror the @theme tokens in globals.css.
+const COLORS = {
+  bg: "#f7f6f1",
+  border: "#e4e1d9",
+  textPrimary: "#161a1f",
+  textMuted: "#5b6470",
+  accent: "#1d4ed8",
+};
+
+const TIER_COLORS: Record<ComplianceTier, { text: string; bg: string }> = {
+  compliant: { text: "#15803d", bg: "#e9f8ee" },
+  partial: { text: "#855900", bg: "#fdf5d9" },
+  noncompliant: { text: "#b42318", bg: "#fdecea" },
+  unverified: { text: "#4b5563", bg: "#eef0f3" },
+};
+
+const TIERS = Object.keys(TIER_COLORS) as ComplianceTier[];
+
 export default async function Image({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "OgImage" });
+  const tTier = await getTranslations({ locale, namespace: "ComplianceBadge" });
+
+  const [dmSansRegular, dmSansSemiBold, instrumentSerif, icon] = await Promise.all([
+    readFile(join(process.cwd(), "assets/fonts/DMSans-Regular.ttf")),
+    readFile(join(process.cwd(), "assets/fonts/DMSans-SemiBold.ttf")),
+    readFile(join(process.cwd(), "assets/fonts/InstrumentSerif-Regular.ttf")),
+    readFile(join(process.cwd(), "public/logos/infercheck/icon-color.svg"), "base64"),
+  ]);
 
   return new ImageResponse(
     <div
@@ -19,164 +49,66 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
         height: "100%",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        background: "#0f1520",
-        fontFamily: "'Helvetica Neue', Arial, sans-serif",
-        position: "relative",
-        overflow: "hidden",
+        justifyContent: "space-between",
+        padding: "64px 72px",
+        background: COLORS.bg,
+        color: COLORS.textPrimary,
+        fontFamily: "DM Sans",
       }}
     >
-      {/* Subtle grid / noise texture via radial gradients */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background: "radial-gradient(ellipse 80% 60% at 50% 0%, #1d4ed820 0%, transparent 70%)",
-        }}
-      />
-      <div
-        style={{
-          position: "absolute",
-          bottom: -120,
-          right: -120,
-          width: 500,
-          height: 500,
-          borderRadius: "50%",
-          background: "radial-gradient(circle, #1d4ed810 0%, transparent 70%)",
-        }}
-      />
-
-      {/* Icon + Wordmark row */}
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 36,
-          marginBottom: 40,
-        }}
-      >
-        {/* Icon — rounded square, blue bg */}
-        <div
-          style={{
-            width: 120,
-            height: 120,
-            borderRadius: 26,
-            background: "#1d4ed8",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            flexShrink: 0,
-            boxShadow: "0 0 0 1px #2563eb40",
-          }}
-        >
-          {/* Magnifier SVG inlined */}
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="70" height="70">
-            {/* Magnifier ring */}
-            <circle cx="13" cy="13" r="8" fill="none" stroke="#ffffff" strokeWidth="2.5" />
-            {/* Handle */}
-            <line x1="19" y1="19" x2="25" y2="25" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" />
-            {/* Tick */}
-            <polyline
-              points="9,13 12,17 18,8"
-              fill="none"
-              stroke="#4ade80"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
+          <img src={`data:image/svg+xml;base64,${icon}`} width={60} height={60} alt="" />
+          <div style={{ display: "flex", fontSize: 42, fontWeight: 600 }}>
+            <span>Infer</span>
+            <span style={{ color: COLORS.accent }}>Check</span>
+          </div>
         </div>
-
-        {/* Wordmark */}
-        <div style={{ display: "flex", alignItems: "baseline", gap: 0 }}>
-          <span
-            style={{
-              fontSize: 88,
-              fontWeight: 600,
-              color: "#f8fafc",
-              letterSpacing: "-2px",
-              lineHeight: 1,
-            }}
-          >
-            Infer
-          </span>
-          <span
-            style={{
-              fontSize: 88,
-              fontWeight: 600,
-              color: "#3b82f6",
-              letterSpacing: "-2px",
-              lineHeight: 1,
-            }}
-          >
-            Check
-          </span>
-        </div>
+        <div style={{ display: "flex", fontSize: 26, color: COLORS.textMuted }}>infercheck.eu</div>
       </div>
 
-      {/* Tagline */}
-      <p
-        style={{
-          fontSize: 28,
-          color: "#94a3b8",
-          margin: 0,
-          letterSpacing: "-0.3px",
-          textAlign: "center",
-          maxWidth: 780,
-          lineHeight: 1.4,
-        }}
-      >
-        {t("tagline")}
-      </p>
-
-      {/* Bottom badge row */}
       <div
         style={{
           display: "flex",
-          gap: 16,
-          marginTop: 48,
+          fontFamily: "Instrument Serif",
+          fontSize: 80,
+          lineHeight: 1.1,
+          letterSpacing: "-0.01em",
+          maxWidth: 1000,
         }}
       >
-        {[
-          { label: t("euResidency"), color: "#16a34a", bg: "#14532d30" },
-          { label: t("dpa"), color: "#3b82f6", bg: "#1e3a8a30" },
-          { label: t("trainingOptOut"), color: "#f59e0b", bg: "#78350f30" },
-        ].map(({ label, color, bg }) => (
+        {t("title")}
+      </div>
+
+      <div style={{ display: "flex", gap: 12, paddingTop: 32, borderTop: `2px solid ${COLORS.border}` }}>
+        {TIERS.map((tier) => (
           <div
-            key={label}
+            key={tier}
             style={{
-              padding: "8px 18px",
-              borderRadius: 9999,
-              background: bg,
-              border: `1px solid ${color}40`,
-              color,
-              fontSize: 20,
-              fontWeight: 500,
-              letterSpacing: "-0.2px",
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              padding: "8px 20px 8px 16px",
+              borderRadius: 999,
+              fontSize: 24,
+              fontWeight: 600,
+              color: TIER_COLORS[tier].text,
+              background: TIER_COLORS[tier].bg,
             }}
           >
-            {label}
+            <TierIcon tier={tier} size={22} />
+            {tTier(`short.${tier}`)}
           </div>
         ))}
-      </div>
-
-      {/* Domain label */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 36,
-          right: 52,
-          fontSize: 20,
-          color: "#334155",
-          letterSpacing: "0.5px",
-        }}
-      >
-        infercheck.eu
       </div>
     </div>,
     {
       ...size,
+      fonts: [
+        { name: "DM Sans", data: dmSansRegular, weight: 400, style: "normal" },
+        { name: "DM Sans", data: dmSansSemiBold, weight: 600, style: "normal" },
+        { name: "Instrument Serif", data: instrumentSerif, weight: 400, style: "normal" },
+      ],
     }
   );
 }
