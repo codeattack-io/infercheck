@@ -1,118 +1,147 @@
 # InferCheck — Design Guide
 
-> Direction: "EU Compliance Desk" + editorial tone
+> Direction: **search first**. The home page is a search field with compliance presets directly under it and the model
+> table right below. Every other page uses the same language.
+
+This file is the reference for every visual and interaction decision. If the code and this file disagree, fix one of
+them in the same change.
 
 ---
 
 ## Design Philosophy
 
-This site is a **compliance reference tool built by a human expert, not a vendor product or a marketing site.** Every design decision should reinforce that.
+This site is a **compliance reference tool built by a human expert, not a vendor product or a marketing site.** Every
+design decision should reinforce that.
 
-Three principles drive every choice:
-
-1. **Answer the question fast.** A product manager under legal review, a CTO forwarding a link to counsel, a freelancer checking a provider before a client call — they all need the answer in seconds. Speed of comprehension is a design feature.
-
-2. **Trust through structure, not decoration.** Trust comes from clearly sourced, consistently formatted data — not from hero sections, gradients, or stock photography. The layout's job is to get out of the way of the data.
-
-3. **Independent editorial voice.** The site reads like a well-maintained technical publication written by someone who has been inside GDPR compliance work — not like a SaaS product or a law firm brochure. Some personality is welcome. Sterile corporate design is not.
+1. **Answer the question fast.** Visitors arrive with a model or provider in mind. The search field is the first and
+   largest control. The first table rows are visible without scrolling at 1440×900 and after one short scroll on a
+   phone.
+2. **Less text, tidier page.** No explanatory paragraphs, legends, info boxes or "what does this mean" blocks on list
+   pages. Explanations live in tooltips, in the expanded row or on the About page. A list page shows no more words in
+   its first viewport than the visitor needs to find a model.
+3. **Trust through structure, not decoration.** Sourced facts, consistent formatting and an honest review status. No
+   scores, rankings, gradients, stock imagery or marketing language.
 
 ---
 
 ## Color System
 
+Light theme only. Warm off-white page, white surfaces, near-black ink, one blue accent taken from the logo, and four
+compliance colors that mean nothing else.
+
 ### Base Palette
 
-| Token                    | Value     | Usage                                          |
-| ------------------------ | --------- | ---------------------------------------------- |
-| `--color-bg`             | `#f5f4ef` | Page background — warm off-white, not clinical |
-| `--color-surface`        | `#ffffff` | Cards, panels, table rows                      |
-| `--color-surface-alt`    | `#eeeee8` | Alternate row backgrounds, subtle dividers     |
-| `--color-border`         | `#d6d4cc` | Borders, separators                            |
-| `--color-text-primary`   | `#1a1f2e` | Body text, table values                        |
-| `--color-text-secondary` | `#5a6070` | Labels, captions, timestamps                   |
-| `--color-text-muted`     | `#9aa0ad` | Placeholder text, unverified indicators        |
-| `--color-heading`        | `#0f1520` | Page titles, provider names                    |
-| `--color-link`           | `#1d4ed8` | Interactive links                              |
-| `--color-link-hover`     | `#1e40af` | Link hover state                               |
-
-### Semantic Compliance Colors
-
-These are the only colors with meaning. Use them consistently and only for compliance signal. Each of the four tiers has four tokens: a fill, a background, a border and a text color.
-
-| Token                         | Value     | Usage                                                   |
-| ----------------------------- | --------- | ------------------------------------------------------- |
-| `--color-compliant`           | `#16a34a` | Fully EU-compliant: dot fill, row border-left, ✓ symbol |
-| `--color-compliant-bg`        | `#f0fdf4` | Badge and pill background                               |
-| `--color-compliant-border`    | `#bbf7d0` | Badge and pill border                                   |
-| `--color-compliant-text`      | `#15803d` | Badge and pill text                                     |
-| `--color-partial`             | `#d97706` | Partial / EU with SCCs: dot fill, row border-left       |
-| `--color-partial-bg`          | `#fffbeb` | Badge and pill background                               |
-| `--color-partial-border`      | `#fde68a` | Badge and pill border                                   |
-| `--color-partial-text`        | `#92400e` | Badge and pill text                                     |
-| `--color-noncompliant`        | `#dc2626` | Non-compliant: dot fill, row border-left, ✗ symbol      |
-| `--color-noncompliant-bg`     | `#fef2f2` | Badge and pill background                               |
-| `--color-noncompliant-border` | `#fecaca` | Badge and pill border                                   |
-| `--color-noncompliant-text`   | `#b91c1c` | Badge and pill text                                     |
-| `--color-unverified`          | `#9aa0ad` | Not verified or unknown: dot fill, row border-left      |
-| `--color-unverified-bg`       | `#f8f8f7` | Badge and pill background                               |
-| `--color-unverified-border`   | `#e2e2de` | Badge and pill border                                   |
-| `--color-unverified-text`     | `#6b7280` | Badge and pill text                                     |
-
-**Rule:** Never use red/amber/green for anything except compliance status. No success toasts in green. No warning banners in amber. These colors belong to the compliance signal system only. The one exception is the gateway pill, which uses the partial (amber) color to flag that a model is hosted for a third party.
-
-`TIER_CLASSES` in `src/lib/compliance.ts` maps each tier to its Tailwind classes (`text`, `bg`, `border`, `dot`, `dotInk`, `accentBorder`). Components take tier colors from there instead of naming the tokens themselves.
+| Token                    | Value     | Usage                                                                  |
+| ------------------------ | --------- | ---------------------------------------------------------------------- |
+| `--color-bg`             | `#f7f6f1` | Page background                                                        |
+| `--color-surface`        | `#ffffff` | Finder, tables, cards, buttons                                         |
+| `--color-surface-alt`    | `#f3f1ec` | Table header row, active language tab, certification pills             |
+| `--color-surface-sunken` | `#faf9f5` | Expanded row panel                                                     |
+| `--color-row-hover`      | `#fbfaf7` | Row hover and open row                                                 |
+| `--color-border`         | `#e4e1d9` | Container borders, row and field separators                            |
+| `--color-border-strong`  | `#cfcbc1` | Borders of chips and buttons, the dot between input and output price   |
+| `--color-text-primary`   | `#161a1f` | Body text, model names, panel headings                                 |
+| `--color-heading`        | `#161a1f` | Page titles                                                            |
+| `--color-text-secondary` | `#3a414a` | Nav links, residency, prose in panels and cards, secondary button text |
+| `--color-text-muted`     | `#5b6470` | Provider line, table header, counts, labels, field values, dimmed rows |
+| `--color-placeholder`    | `#6b7280` | Search placeholder                                                     |
+| `--color-link`           | `#1d4ed8` | Links                                                                  |
+| `--color-link-hover`     | `#1e40af` | Link hover                                                             |
 
 ### Accent
 
-| Token                   | Value     | Usage                                                               |
-| ----------------------- | --------- | ------------------------------------------------------------------- |
-| `--color-accent`        | `#1d4ed8` | Primary interactive elements (buttons, focus rings, active filters) |
-| `--color-accent-hover`  | `#1e3a8a` | Hover state on accent elements                                      |
-| `--color-accent-subtle` | `#eff6ff` | Subtle accent backgrounds (active filter chip)                      |
+| Token                   | Value     | Usage                                                                                 |
+| ----------------------- | --------- | ------------------------------------------------------------------------------------- |
+| `--color-accent`        | `#1d4ed8` | Active preset chip (fill), focus ring, primary button border, "Check" in the wordmark |
+| `--color-accent-ink`    | `#1e40af` | Link text inside panels and cards, primary button text                                |
+| `--color-accent-subtle` | `#e8eefb` | Focus halo around the finder, search match highlight                                  |
+
+### Semantic Compliance Colors
+
+Each tier has three tokens: `-text` for pill text and marks, `-bg` for the pill background, `-line` for the 3px bar on
+the left edge of a row and its expanded panel.
+
+| Tier           | `-text`   | `-bg`     | `-line`   | Short label (de / en)          |
+| -------------- | --------- | --------- | --------- | ------------------------------ |
+| `compliant`    | `#15803d` | `#e9f8ee` | `#22c55e` | EU-konform / EU compliant      |
+| `partial`      | `#855900` | `#fdf5d9` | `#e0b80d` | Teilweise / Partial            |
+| `noncompliant` | `#b42318` | `#fdecea` | `#ef5350` | Nicht konform / Non-compliant  |
+| `unverified`   | `#4b5563` | `#eef0f3` | `#9aa3ad` | Nicht verifiziert / Unverified |
+
+Token names follow the pattern `--color-compliant-text`, `--color-compliant-bg`, `--color-compliant-line`. The long
+labels ("Teilweise (EU + SCC)", "Partial (EU + SCCs)") stay in use for titles and the providers page.
+
+`TIER_CLASSES` in `src/lib/compliance.ts` maps each tier to its Tailwind classes (`text`, `bg`, `line`). Components take
+tier colors from there instead of naming the tokens themselves.
+
+**Rules:**
+
+- Red, amber, green and the tier grey are used for compliance status only: tier pills, the row bar, and the ✓ / ✗ / ?
+  marks in compliance field lists. No success toasts, warning banners, decoration or non-compliance labels in those
+  colors. The gateway label is neutral grey.
+- A tier is never shown by color alone. The pill always carries an icon and a label; the row bar is a redundant cue.
+- No dark theme. `prefers-color-scheme: dark` changes nothing.
+
+### Measured Contrast (WCAG 2.x)
+
+| Foreground            | Background                                      | Ratio                 |
+| --------------------- | ----------------------------------------------- | --------------------- |
+| `#161a1f` primary     | `#ffffff` / `#f7f6f1`                           | 17.5 / 16.2           |
+| `#3a414a` secondary   | `#ffffff`                                       | 10.3                  |
+| `#5b6470` muted       | `#ffffff`                                       | 6.0                   |
+| `#5b6470` muted       | `#f7f6f1` / `#f3f1ec` / `#faf9f5`               | 5.5 / 5.3 / 5.7       |
+| `#6b7280` placeholder | `#ffffff`                                       | 4.8                   |
+| `#1d4ed8` accent      | `#ffffff`                                       | 6.7                   |
+| `#ffffff`             | `#1d4ed8` accent                                | 6.7                   |
+| `#1e40af` accent-ink  | `#faf9f5`                                       | 8.3                   |
+| Pill text on pill bg  | compliant / partial / noncompliant / unverified | 4.6 / 5.6 / 5.8 / 6.6 |
+
+`--color-border-strong` (1.6:1 on white) only outlines controls that also carry a text label.
 
 ---
 
 ## Typography
 
-### Font Stack
+### Fonts
 
-```css
-/* Display / headings — character and authority */
---font-display: "Instrument Serif", Georgia, serif;
+Loaded with `next/font/google` in `src/app/[locale]/layout.tsx` (self-hosted at build time, `display: "swap"`, exposed
+as CSS variables):
 
-/* UI / body / data — clean, readable at small sizes */
---font-body: "DM Sans", system-ui, sans-serif;
+- **Instrument Serif** — 400, normal style → `--font-display`. Page titles (`h1`) only.
+- **DM Sans** — variable font with the optical-size axis: no `weight` option, `axes: ["opsz"]` → `--font-body`. Weights
+  in use: 400, 500, 600. Everything that is not an `h1` is DM Sans, including prices, dates, context sizes and IDs.
 
-/* Code / technical values — data fields, provider IDs, timestamps */
---font-mono: "IBM Plex Mono", "Courier New", monospace;
-```
+IBM Plex Mono is not part of the design: remove it from the layout and from `@theme`. No weight above 600.
 
-**Loaded with `next/font/google` in `src/app/[locale]/layout.tsx`** (self-hosted at build time, `font-display: swap`):
-
-- `Instrument Serif` — 400, 400 italic
-- `DM Sans` — 400, 500, 600
-- `IBM Plex Mono` — 400, 500
+Base: `body` 16px (`1rem`), line-height 1.5, antialiased. Prices, counts and dates use
+`font-variant-numeric: tabular-nums`; DM Sans draws an open zero.
 
 ### Type Scale
 
-| Level     | Element                         | Font             | Size             | Weight | Line-height |
-| --------- | ------------------------------- | ---------------- | ---------------- | ------ | ----------- |
-| `display` | Home and providers headings     | Instrument Serif | 2.5rem (40px)    | 400    | 1.15        |
-| `h1`      | Detail page titles              | Instrument Serif | 2rem (32px)      | 400    | 1.2         |
-| `h2`      | Section headings                | DM Sans          | 1.25rem (20px)   | 600    | 1.3         |
-| `h3`      | Card headings, provider names   | DM Sans          | 1rem (16px)      | 600    | 1.4         |
-| `body`    | Body copy, descriptions         | DM Sans          | 0.9375rem (15px) | 400    | 1.6         |
-| `small`   | Labels, timestamps, captions    | DM Sans          | 0.8125rem (13px) | 400    | 1.5         |
-| `micro`   | Badge text, table metadata      | DM Sans          | 0.75rem (12px)   | 500    | 1.4         |
-| `mono`    | Provider IDs, dates, API values | IBM Plex Mono    | 0.8125rem (13px) | 400    | 1.5         |
+| Role                  | Where                              | Size (≥768 / <768) | Weight         | Line-height | Notes                                                   |
+| --------------------- | ---------------------------------- | ------------------ | -------------- | ----------- | ------------------------------------------------------- |
+| Page title            | `h1` on every page                 | 36px / 28px        | 400            | 1.15        | Instrument Serif, letter-spacing −0.01em, balanced wrap |
+| Wordmark              | Header                             | 18px               | 600            | —           | "Infer" primary, "Check" accent, no space               |
+| Search input          | Finder                             | 18px / 16px        | 400            | —           | Never below 16px on mobile                              |
+| Section heading       | `h2` on detail and long-form pages | 20px               | 600            | 1.3         | Sentence case                                           |
+| Panel / card heading  | Expanded row `h3`, card `h2`       | 17px               | 600            | 1.3         | Sentence case                                           |
+| Model name            | Row button                         | 16px               | 500            | 1.35        | `text-wrap: pretty`                                     |
+| Body, table cell      | Cells, prose in panels             | 15px               | 400            | 1.5         | Long-form pages: 16px / 1.6                             |
+| Nav link, chip, count |                                    | 15px               | 400 (chip 500) | 1.4         |                                                         |
+| Provider line         | Under the model name               | 14px / 15px        | 400            | —           | Muted                                                   |
+| Field value, source   | Panels and cards                   | 14px               | 400            | 1.5         | Muted, or accent-ink when a link                        |
+| Button                | Panel links, "Load more"           | 14px / 15px        | 500            | —           |                                                         |
+| Table header          | `th`                               | 13px               | 600            | —           | Uppercase, letter-spacing 0.04em, muted                 |
+| Header sub-line       | Second line of the price `th`      | 13px               | 500            | —           | Sentence case                                           |
+| Label                 | `h4` inside panels and cards       | 13px               | 600            | —           | Sentence case, muted                                    |
+| Tier pill             |                                    | 13px               | 600            | —           |                                                         |
+| Language tab          | EN / DE                            | 13px               | 400            | —           |                                                         |
 
-### Typography Rules
+**Rules:**
 
-- Serif font is used **only** for page headings (`display`, `h1`) and the headings of the long-form pages (about, imprint, privacy). The wordmark and everything else is DM Sans.
-- Monospace is used for: verification labels and dates, pricing values, context sizes.
-- Do not use font-weight 700+ anywhere. Maximum weight is 600 (semi-bold). The type system conveys hierarchy through size and font choice, not heaviness.
-- Line lengths for intro copy under page headings: `max-w-[55ch]`.
-- Italic serif is available and welcome in pull quotes or editorial callout text.
+- Nothing on the site is smaller than 13px.
+- Uppercase appears only in table header rows.
+- Line length for prose in panels: `max-width: 62ch`; for the footer disclaimer: `72ch`; long-form pages: 720px column.
 
 ---
 
@@ -121,139 +150,93 @@ These are the only colors with meaning. Use them consistently and only for compl
 ### Page Width
 
 ```
-Max content width:   1200px  (every page, header and footer included)
-Padding (mobile):    16px
-Padding (tablet):    24px  (sm, 640px and up)
-Padding (desktop):   40px  (lg, 1024px and up)
+Max content width:   1120px  (every page, header and footer included)
+Padding (≥768px):    32px
+Padding (<768px):    16px
+Long-form text:      720px column inside the content width
 ```
 
-### Breakpoints
+### Breakpoint
 
-Tailwind's defaults. What changes at each one:
+One layout breakpoint: **768px** (Tailwind `md`). From 768px the header shows the inline nav and the model table shows
+all columns; below it the header shows the menu button and table rows become two-line mobile rows. Nothing overflows
+horizontally at 390px.
 
-| Name | Min-width | Notes                                                                                                |
-| ---- | --------- | ---------------------------------------------------------------------------------------------------- |
-| `sm` | 640px     | Header shows the inline nav instead of the menu button; Compliance column appears in the model table |
-| `md` | 768px     | Residency column appears                                                                             |
-| `lg` | 1024px    | Price column appears; provider page switches to two columns                                          |
-| `xl` | 1280px    | Status column appears                                                                                |
+### Vertical Rhythm (home page)
 
-Page layouts use flexbox and CSS grid per component; there is no global column grid.
+```
+Header            60px  (56px below 768px)
+Hero              28px top, 20px bottom  (20 / 14px below 768px)
+Finder
+Gap               20px  (16px below 768px)
+Table
+Footer            48px above, 40px below  (36px above below 768px)
+```
 
-### Spacing Scale
+Spacing steps in use: 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 24, 28, 32, 40, 48px (Tailwind's 4px scale plus the half
+steps 6, 10, 14, 18).
 
-Follow Tailwind's default spacing scale (4px base unit). Key values:
+### Radii, Borders, Shadows
 
-| Token      | px   | Common use                    |
-| ---------- | ---- | ----------------------------- |
-| `space-1`  | 4px  | Micro gaps (icon to label)    |
-| `space-2`  | 8px  | Badge padding, tight gaps     |
-| `space-3`  | 12px | Inner card padding            |
-| `space-4`  | 16px | Standard element spacing      |
-| `space-6`  | 24px | Card padding, section gaps    |
-| `space-8`  | 32px | Major section separation      |
-| `space-12` | 48px | Page section breaks           |
-| `space-16` | 64px | Hero section vertical padding |
+| Element                                 | Radius | Border                                                                                 | Shadow                                      |
+| --------------------------------------- | ------ | -------------------------------------------------------------------------------------- | ------------------------------------------- |
+| Finder, table container, cards          | 10px   | 1px `--color-border`                                                                   | Finder only: `0 1px 2px rgba(22,26,31,.04)` |
+| Preset chips, tier pills, neutral pills | 999px  | Chips 1px `--color-border-strong`; tier pills none; neutral pills 1px `--color-border` | none                                        |
+| Buttons                                 | 8px    | 1px `--color-border-strong`                                                            | none                                        |
+| Active language tab                     | 6px    | 1px `--color-border`                                                                   | none                                        |
+| Row and panel tier bar                  | —      | 3px left, `--color-<tier>-line`                                                        | —                                           |
+| Custom filter panel                     | —      | 1px dashed `--color-border` on top                                                     | —                                           |
+
+No other shadows. No gradients.
 
 ---
 
 ## Component Patterns
 
-### 1. Compliance Badge
-
-The atomic unit of the compliance display system.
-
-**Structure:** `[colored dot] [label text]`
+### 1. Header
 
 ```
-Shape:       Pill, 4px border-radius
-Padding:     md: 2px 8px   sm: 1px 6px
-Font:        DM Sans 500, md: 12px   sm: 11px
-Border:      1px solid, the tier's border token
+[Icon] InferCheck                      Models  Providers  About   EN DE
 ```
 
-**Variants:**
+- 60px high (56px below 768px), sticky. On the page background with no border at the top of the page; after scrolling
+  past 8px it gets a `--color-bg` background at 85% with `backdrop-blur` and a 1px `--color-border` bottom border.
+- Brand: link to the home page with `aria-label="InferCheck"`. The app icon (the rounded blue square of
+  `public/logos/infercheck/icon-color.svg`) at 26×26px, 10px gap, then the wordmark as text: DM Sans 18px / 600,
+  "Infer" in `--color-text-primary`, "Check" in `--color-accent`, visible text `aria-hidden`.
+- Nav (≥768px): Models · Providers · About, 15px `--color-text-secondary`, 28px apart. Current page:
+  `--color-text-primary`, underline at 0.35em offset, `aria-current="page"`.
+- Language switcher, 12px after the nav: two 13px tabs "EN" "DE", padding 4×8px, radius 6px. Inactive muted; active
+  with `--color-surface-alt` background, 1px border, primary text, `aria-current="true"`.
+- Below 768px: a 24px menu icon button (8px padding, label "Open menu" / "Close menu") opens a drawer from the right with
+  the nav links and the language switcher. Behaviour under Accessibility.
 
-| Variant          | Tier         | Text               |
-| ---------------- | ------------ | ------------------ |
-| EU Only          | compliant    | "EU Only"          |
-| DPA Available    | compliant    | "DPA"              |
-| EU + SCCs        | partial      | "EU + SCCs"        |
-| No Training      | compliant    | "No Training"      |
-| Trains on Data   | noncompliant | "Trains on Data"   |
-| Training Unknown | unverified   | "Training Unknown" |
-| US Only          | noncompliant | "US Only"          |
-| Unverified       | unverified   | "Unverified"       |
+### 2. Hero Line
 
-Each badge takes the dot, background, border and text color of its tier. `getBadgeVariants` in `ComplianceBadge.tsx` picks the badges for a provider: "EU Only", else "EU + SCCs" when SCCs are in place; "DPA" when a DPA is available; and always one training badge. "US Only" exists as a variant but no rule produces it. Providers without compliance data show only "Unverified".
+- One `h1`, nothing else: "AI inference providers, filtered by GDPR compliance." / "KI-Inferenzanbieter, gefiltert nach
+  DSGVO-Konformität." The two message parts join into one sentence on one line where it fits.
+- No sub-heading paragraph. The model and provider counts live in the finder.
 
-**Rule:** Never use a badge for anything except a compliance property. Badge = compliance signal. Full stop.
+### 3. Finder (search, presets, count)
 
----
+One white block (radius 10px, 1px border, faint shadow), labelled "Search and filters", with two parts.
 
-### 2. Provider Card
+**Search row**
 
-Used in the grouped grid on the providers page. Compact summary of a provider's compliance posture.
+- `input type="search"`, full width, 60px high (54px below 768px), no own border or outline, 18px text (16px below
+  768px), padding-left 54px (48px).
+- Magnifier icon 22px (20px), 18px (16px) from the left, muted, `aria-hidden`. Visually hidden `<label>`.
+- Placeholder "Search models or providers…" / "Modelle oder Anbieter suchen…".
+- Clear button when the field has text: 24px × icon, muted, 14px from the right, `aria-label` "Clear search".
 
-**Structure:**
+**Refine row**
 
-```
-┌─[left border: compliance color]──────────────────┐
-│  [Provider name]              [Tier label]        │
-│                                                    │
-│  [Badge row: EU Only] [DPA] [No Training]         │
-│                                                    │
-│  [Type · N models]       [Verification label]     │
-└────────────────────────────────────────────────────┘
-```
-
-The whole card is one link to the provider profile. The providers page groups cards into one section per tier (compliant, partial, non-compliant, unverified), each with a colored dot, the tier name, a count and a one-line description.
-
-**Left border:** 3px solid, color = overall compliance tier (green/amber/red/grey). This is the fastest scan signal — users learn to read the left rail at a glance.
-
-**Card sizing:** `grid-cols-[repeat(auto-fill,minmax(280px,1fr))]`; cards are at least 280px wide and grow with the grid.
-
-**Hover state:** Subtle box-shadow lift (`0 2px 8px rgba(0,0,0,0.08)`), no color change. No dramatic transforms.
-
----
-
-### 3. Model Row (Table View)
-
-Used in the model table on the homepage. Dense, scannable.
-
-**Columns:**
-
-| Column     | Visible from | Content                                                                       |
-| ---------- | ------------ | ----------------------------------------------------------------------------- |
-| Model      | always       | Model name (semibold), gateway pill when a third party's model, provider name |
-| Compliance | `sm`         | Badge cluster from `getBadgeVariants`; "Unverified" without compliance data   |
-| Residency  | `md`         | "EU" for EU-only providers, else the provider's regions                       |
-| Price      | `lg`         | Input and output price per 1M tokens in the stored currency, monospace        |
-| Status     | `xl`         | Verification label: "AI draft · date" or "Verified date", monospace, muted    |
-| Details    | always       | Round +/− button that expands the row                                         |
-
-The Model, Compliance and Price headers sort the table; Residency and Status do not.
-
-**Row left-border:** 2px solid, compliance color tier. Same signal system as cards.
-
-**Narrow screens:** Columns drop out as listed above; the row stays a table row. Everything a hidden column showed is in the expanded panel or on the provider page.
-
----
-
-### 4. Filter Bar
-
-The compliance filter is the primary interaction. Design it to be immediately legible without any explanation.
-
-**Preset buttons (row above the table):**
-
-```
-Filter:  [ Strict EU ] [ EU + SCCs ] [ No Training ] [ Custom ▼ ]
-```
-
-- Default state: surface background, 1px `#b8b5ac` border, `--color-text-primary` text, faint shadow
-- Active state: filled `--color-accent-subtle`, border `--color-accent`, text `--color-accent`
-- These are toggle buttons (`aria-pressed`) — one can be active at a time, or none (show all)
-- "Custom ▼" opens an inline panel below with individual boolean toggles
+- 1px top border, padding 10px 12px 12px (10px below 768px), gap 8px (6px), wraps.
+- Preset chips, in this order: **Strict EU** · **EU + SCCs** · **No Training** · **Custom** (de: Streng EU · EU + SCC ·
+  Kein Training · Benutzerdefiniert). Chip: white, 1px `--color-border-strong`, radius 999px, padding 6px 14px (6 ×
+  12px below 768px), 15px / 500, no wrap.
+- Pressed chip: `--color-accent` fill and border, white text. Chips are toggle buttons with `aria-pressed`; at most one
+  is active; pressing the active one clears it.
 
 | Preset      | Requires                     |
 | ----------- | ---------------------------- |
@@ -261,102 +244,223 @@ Filter:  [ Strict EU ] [ EU + SCCs ] [ No Training ] [ Custom ▼ ]
 | EU + SCCs   | DPA, SCCs, no training       |
 | No Training | no training on customer data |
 
-**Custom panel (expanded):**
+- "Custom" has a 10px chevron after its label and `aria-expanded` / `aria-controls`. It opens the custom panel under the
+  refine row: 1px dashed top border, padding 4px 14px 14px, four checkboxes (18px, `accent-color` accent) with 15px
+  labels, 8px between box and label, 8 × 20px between items: "Data stays in EU", "DPA available", "No training on data",
+  "SCCs in place".
+- Count, right-aligned, 15px muted, tabular, an `<output aria-live="polite">`:
+  - nothing active: "425 models · 77 providers" / "425 Modelle · 77 Anbieter"
+  - filter or search active: "190 of 425 models" / "190 von 425 Modellen"
+  - below 768px the count takes its own full-width line under the chips (padding 4px 4px 0).
+- Focus: `:focus-within` on the finder gives it an `--color-accent` border and a 3px `--color-accent-subtle` halo.
+
+### 4. Model Table (≥768px)
+
+- White container, radius 10px, 1px border, 20px below the finder. Full-width `table`, `border-collapse: separate`,
+  `aria-label` "AI models with GDPR compliance data".
+- Columns (`colgroup`):
+
+| Column            | Width | Content                                                          |
+| ----------------- | ----- | ---------------------------------------------------------------- |
+| Model             | 42%   | Model name (the expand button), provider below, gateway label    |
+| Compliance        | 16%   | One tier pill                                                    |
+| Residency         | 18%   | "EU" for EU-only providers, else the region list; "—" if unknown |
+| Price / 1M tokens | 20%   | Input · output, right-aligned                                    |
+| (toggle)          | 44px  | Chevron; header cell holds visually hidden "Details"             |
+
+- There is **no status column**. The review status appears only in the expanded panel and on detail pages.
+- Header row: `--color-surface-alt`, 1px bottom border, cells padding 12px 16px (20px left on the first), 13px / 600,
+  uppercase, 0.04em tracking, muted. The price header has a second line "Input · Output" / "Eingabe · Ausgabe" (13px /
+  500, sentence case).
+- Sorting: Model, Compliance and Price are sortable. The header label is a `<button>` with `aria-label`
+  "Sort by {label}"; the `th` carries `aria-sort`. The active column shows a 10px ↑ or ↓ after its label; inactive
+  sortable columns show the arrow at 35% opacity on hover and focus only.
+- Row: cells padding 12px 16px, 1px bottom border, 15px, vertically centred. The first cell carries the 3px tier bar on
+  its left edge (padding-left 17px). Hover and open: `--color-row-hover`, 150ms ease-out.
+  - **Model:** the model name is a `<button>` styled as text (16px / 500, primary) with `aria-expanded` and
+    `aria-controls`. The provider name sits under it (14px muted, 2px gap). Search matches are highlighted in both with
+    an `--color-accent-subtle` background; the text color does not change. Models a provider hosts for a third party
+    carry a neutral label after the name: "via gateway" / "über Gateway", 13px / 500 muted, 1px `--color-border`,
+    radius 999px, padding 1px 8px, with a `title` that explains it.
+  - **Compliance:** exactly one tier pill. Its `title` lists the long tier label and the individual properties, for
+    example "EU compliant · EU Only · DPA · No Training".
+  - **Residency:** 15px `--color-text-secondary`.
+  - **Price:** right-aligned, tabular, no wrap. Input and output are inline blocks with `min-width: 4.6em`, right-aligned,
+    separated by a "·" in `--color-border-strong` with 4px padding each side (`aria-hidden`). Format follows the locale:
+    en `$3.00`, de `3,00 $`; two decimals, three when the price needs them (`$0.045`). No published price: "Price not
+    published" / "Preis nicht angegeben" (14px muted) in place of both values, never `0`.
+  - **Toggle:** 18px chevron, muted, `aria-hidden`, rotates 180° when open (150ms ease-out). A click anywhere on the row
+    except links and the pill toggles it; the accessible control is the model-name button.
+- After the loaded rows, a "more" row: padding 14px 20px, 15px muted text "403 more models" / "403 weitere Modelle",
+  then, 12px after it, the button "Load more" / "Mehr laden" (white, 1px `--color-border-strong`, radius 8px, padding
+  6px 12px, 14px / 500, secondary text; hover border `--color-text-secondary`). The table renders 50 rows first; each
+  click adds 50.
+- No results: one full-width row, 48px vertical padding, centred 15px muted: 'No models found for "{query}"', followed by
+  a "Reset filters" button in the "Load more" style.
+
+### 5. Tier Pill
+
+- Inline flex, gap 6px, padding 3px 10px 3px 8px, radius 999px, 13px / 600, no wrap, text and background from the tier
+  tokens, no border, `cursor: help` (it has a `title`).
+- 12px icon before the label, drawn in `currentColor`: compliant ✓, partial a circle with the right half filled,
+  noncompliant ×, unverified ?.
+- Short labels in rows (see the tier table); long labels on the provider page and the providers page.
+- Not interactive beyond its tooltip.
+
+### 6. Expanded Row Panel
+
+A second `tr` directly under its row (the `id` the row button points to), one cell across all columns,
+`--color-surface-sunken` background, the same 3px tier bar on the left. Only open rows render their panel. It opens and
+closes without animation.
 
 ```
-┌──────────────────────────────────────────────────────┐
-│  Data stays in EU     [●──] on                       │
-│  DPA available        [──○] off                      │
-│  No training on data  [──○] off                      │
-│  SCCs in place        [──○] off                      │
-└──────────────────────────────────────────────────────┘
+┌─ Amazon Bedrock  Cloud platform · HQ US        [All providers for this model →] [Full provider profile →] ─┐
+│ Compliance                                     EU routing                                                  │
+│ ✓ EU-only data residency                       Text from the provider file…                                │
+│   yes                                          Retention                                                   │
+│ ? Inference stays in EU                        Text…                                                       │
+│   unknown (not stated)                                                                                     │
+│ ✓ Data processing agreement (DPA)                                                                          │
+│   yes, online acceptance  ← link to source                                                                 │
+│ …                                                                                                          │
+├────────────────────────────────────────────────────────────────────────────────────────────────────────────┤
+│ Sources                                        Status                                                      │
+│ aws.amazon.com/bedrock/security-compliance/    AI draft · 2026-04-07                                       │
+└────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
-Toggle switches (`role="switch"`): 32×18px, pill shape. Active = `--color-accent`. Inactive = `--color-border`.
+- Padding 20px 20px 24px; two-column grid `1.1fr 1fr`, gaps 20px × 40px.
+- **Head** (full width, space-between, wraps): provider name as `h3` (17px / 600), then the meta "Cloud platform · HQ
+  US" (15px / 400 muted, 8px gap). Right: two link buttons, 8px apart, radius 8px, padding 7px 12px, 14px / 500:
+  "All providers for this model →" (white, 1px `--color-border-strong`, secondary text) and "Full provider profile →"
+  (white, 1px `--color-accent` border, `--color-accent-ink` text).
+- **Left column**, label "Compliance" (`h4`, 13px / 600 muted, 8px below): the compliance field list (component 7) with
+  all fields of the provider: EU-only data residency · Inference stays in EU · DPA · No training on customer data ·
+  SCCs · Adequacy decision (HQ) · Sub-processors · Certifications · EU AI Act status.
+- **Right column:** "EU routing" and "Retention" labels, each followed by the provider's text (15px secondary,
+  `max-width: 62ch`, 12px between paragraphs). A section without text is left out. Gateway models add the gateway note
+  here as a third short section.
+- **Foot** (full width, 1px top border, 16px padding-top, same two columns):
+  - "Sources": source URLs without the protocol, one per line, 14px links in `--color-accent-ink`,
+    `overflow-wrap: anywhere`.
+  - "Status": the verification label (component 9) at 15px secondary.
+- No explanatory text beyond these sections.
 
-**URL persistence:** Every filter state is reflected in URL params (`?profile=strict-eu`, or `?profile=custom&euOnly=true&dpa=true`). Links are always shareable. This is a hard requirement — compliance teams share links with legal.
+### 7. Compliance Field List (`BooleanRow`)
 
----
+Used in the expanded panel and on the provider page.
 
-### 5. Provider Profile Page
+- Each item: grid of an 18px mark column and the text, 10px gap, padding 5px 0, 1px `--color-border` between items.
+- Label 15px primary; value as a second line, 14px muted ("yes", "no (USA)", "unknown (not stated)",
+  "SOC2, ISO27001, …"). A value with a source is a link in `--color-accent-ink`.
+- Marks, 16px, `aria-hidden`: ✓ in `--color-compliant-text` for yes, × in `--color-noncompliant-text` for no, ? in
+  `--color-unverified-text` for unknown, a muted dot for lists such as certifications.
+- Each item carries visually hidden text with its answer (": yes", ": no", ": unknown"), so meaning never depends on the
+  mark or its color.
 
-Full-width layout inside the 1200px container.
+### 8. Mobile Rows (<768px)
 
-**Structure:**
-
-```
-Breadcrumb: Models / Providers / [Provider name]
-
-[Provider name — h1 serif]                [API docs] [Report a change]
-[Tier pill] [Provider type] [Website ↗]
-
-┌─────────────────────────────┬─────────────────────────────┐
-│ GDPR COMPLIANCE             │ DATA HANDLING               │
-│ ✓/✗/? rows + badge set      │ Residency, retention,       │
-│ (left border: tier color)   │ training, sub-processors    │
-├─────────────────────────────┼─────────────────────────────┤
-│ CERTIFICATIONS & EU AI ACT  │ VERIFICATION                │
-│                             │ Status, date, pricing tier, │
-│                             │ sources, notes              │
-└─────────────────────────────┴─────────────────────────────┘
-
-MODELS (N)
-[Table: Model / Modality / Context / Input / Output]
-Native models first; models the provider hosts for third parties
-follow under a gateway heading with a note.
-```
-
-Below `lg` the cards stack in one column. A provider without compliance data shows a notice in place of the compliance details.
-
-**Field rows:** Label `--color-text-secondary`. Boolean values are rendered as ✓ / ✗ / ? with their semantic color (green, red, muted), and the answer is also available as screen reader text — no plain "Yes/No" text.
-
-**Verification card:** Shows the status (AI draft, verified by a name, or none), the date, the pricing tier and the list of source URLs. For AI drafts it adds a note that the entry has not been checked manually.
-
----
-
-### 6. Navigation / Header
-
-Minimal. The nav should not compete with the data.
-
-**Structure:**
-
-```
-[Icon] InferCheck             [Models] [Providers] [About]  [EN | DE]
-```
-
-- Wordmark: the 24px app icon followed by "Infer" in `--color-text-primary` and "Check" in `--color-accent`, DM Sans 17px / 600
-- Nav links: DM Sans 14px / 500, `--color-text-secondary`; active = `--color-text-primary` + underline
-- Language switcher: one button per locale, the active one marked
-- No mega-menus, no dropdowns, no hamburger animation drama
-- Sticky, 56px high; after scrolling past 8px it gets a `backdrop-blur` and a border-bottom
-- Below `sm`: links and language switcher collapse into a drawer from the right. Escape closes it, focus moves into it and back to the menu button, and the page behind it is `inert`.
-
----
-
-### 7. Disclaimer Note
-
-Part of the footer, so it appears on every page. Not a cookie banner, not a banner at all: an editorial note.
-
-**Style:**
-
-- Last element of the footer, below a border-top
-- Font: DM Sans 12px, `--color-text-muted`
-- `role="note"`
-- Text: "This directory provides sourced information about AI providers' data practices. It is not legal advice. Always verify directly with the provider and consult legal counsel for compliance decisions."
-
-The footer above it carries the license line and links to About, Imprint, Privacy and GitHub.
-
----
-
-### 8. Gateway Pill
-
-A small amber outlined pill reading "via gateway" next to a model name when the provider hosts a third party's model (for example Claude on Amazon Bedrock). The expanded table row and the provider page add a short notice explaining it.
-
----
+- The table header is hidden; `table` and `tbody` become blocks; each row is a grid with the areas
+  `"model comp" "num num"`, columns `minmax(0, 1fr) auto`, gaps 6px × 12px, padding 12px 14px 12px 13px, 1px bottom
+  border, 3px tier bar on the left.
+- Line 1: model name (16px / 500) and provider below it (15px muted) on the left; the tier pill top right. The gateway
+  label sits at the right end of line 2 instead of after the model name.
+- Line 2: the prices, left-aligned, 16px, tabular: "$3.00 · $15.00" (input first), or "Price not published".
+- Residency, the chevron and the status are not shown in the row; residency and status are in the panel. The whole row
+  is the tap target (the model button's `::after` covers the row, `position: relative` on the row).
+- The panel is one column, padding 16px 14px 20px 13px, 18px gap; the two link buttons stack, padding 9px 12px, 15px.
 
 ### 9. Verification Label
 
-A `<time>` element in monospace: "AI draft · 2026-04-07" for AI-researched entries (with a tooltip explaining it), "Verified 2026-04-07" for entries a person checked. Nothing is shown for entries without compliance data. It appears on provider cards, in the model table's Status column and on the model and provider pages.
+A `<time datetime>` with the review status, never in table rows:
+
+- AI-researched: "AI draft · 2026-04-07" / "KI-Entwurf · 2026-04-07". "AI draft" is an `<abbr>` with a dotted underline
+  (offset 0.2em, `cursor: help`) and the title "Researched with AI assistance; not yet manually verified."
+- Checked by a person: "Verified 2026-04-07" / "Verifiziert 2026-04-07", no abbreviation.
+- Nothing for providers without compliance data.
+- Shown in the expanded panel, on the provider page and on the model page. Dates are always ISO `YYYY-MM-DD`.
+
+### 10. Buttons and Neutral Pills
+
+- **Secondary button / link button:** white, 1px `--color-border-strong`, radius 8px, padding 7px 12px, 14px / 500,
+  `--color-text-secondary`; hover border `--color-text-secondary`.
+- **Primary button:** same shape, 1px `--color-accent` border, `--color-accent-ink` text; hover background
+  `--color-accent-subtle`.
+- **Neutral pill** (certifications, gateway label, provider type): radius 999px, 1px `--color-border`, padding 1–2px
+  8–10px, 13px / 500, muted text on `--color-surface-alt` or white. Never tier colors.
+
+### 11. Footer and Disclaimer
+
+- 48px above (36px below 768px), 40px below; 14px muted (15px below 768px).
+- The disclaimer is a paragraph with `role="note"`, `max-width: 72ch`, 12px below it: "This directory provides sourced
+  information about AI providers' data practices. It is not legal advice. Always verify directly with the provider and
+  consult legal counsel for compliance decisions."
+- One wrapping line, items separated by "·", gaps 6px × 10px: "Data licensed under CC BY-NC-SA 4.0 · Code under MIT ·
+  About · Imprint · Privacy · GitHub". Links muted with underline. Below 768px the data licence, the code licence and the
+  links each take their own line, without a "·" between them.
+
+---
+
+## Other Pages
+
+All pages share the header, footer, content width, colors, type and components above. The page title is the only serif
+text. No page has an intro paragraph longer than one sentence.
+
+### Model Page (`/[locale]/model/[id]`)
+
+- Breadcrumb (14px muted, "/" separators `aria-hidden`): Models / {model}. 20px below, the `h1` with the model name.
+- One line under the title, 15px muted: "Available from 4 providers".
+- The finder without its search row: the refine row alone (preset chips, custom panel, count "3 of 4 providers").
+- The model table with one row per offering provider. The first column shows the provider name as the primary line
+  (the expand button) and the provider type below it; the other columns, the panel and dim-not-remove work as on the
+  home page. No "more" row.
+
+### Provider Page (`/[locale]/provider/[slug]`)
+
+```
+Models / Providers / Mistral
+
+Mistral                                         [API docs ↗] [Report a change]
+(EU compliant) API provider · mistral.ai ↗
+
+┌ GDPR compliance ────────────┐ ┌ Data handling ──────────────┐
+│ compliance field list       │ │ Regions, EU routing,         │
+│                             │ │ retention, details,          │
+│                             │ │ sub-processors               │
+└─────────────────────────────┘ └──────────────────────────────┘
+┌ Certifications & EU AI Act ─┐ ┌ Status & sources ───────────┐
+│ neutral pills, AI Act text  │ │ verification label,          │
+│                             │ │ pricing tier, sources, notes │
+└─────────────────────────────┘ └──────────────────────────────┘
+
+Models (26)
+[table: Model · Modality · Context · Price / 1M tokens]
+```
+
+- Title row: `h1` left; right the secondary button "API docs ↗" and the primary button "Report a change".
+- Under the title, one line with 10px gaps: tier pill with the long label, provider type (15px muted), website link.
+- Cards: white, radius 10px, 1px border, padding 20px 24px, a two-column grid with 24px gaps (one column below 768px).
+  Card headings `h2` 17px / 600 sentence case; inner labels 13px / 600 muted; text 15px secondary.
+- Below the cards, `h2` "Models (26)" (20px / 600) and a table in the home table style: Model · Modality · Context ·
+  Price / 1M tokens. Gateway providers split it into "Own models" and "Also available through this provider", each with
+  its own table; the gateway explanation is one sentence under the second heading.
+- A provider without compliance data shows one muted sentence in place of the compliance card.
+
+### Providers List (`/[locale]/providers`)
+
+- `h1` "AI inference providers, by GDPR compliance tier." / "KI-Inferenzanbieter, nach DSGVO-Konformitätsstufe."
+- The finder with "Search providers…" / "Anbieter suchen…", the same preset chips, and the count "77 providers" /
+  "21 of 77 providers".
+- A table in the home style, one row per provider: **Provider** (name as primary line, linked to the profile; provider
+  type below) · **Compliance** (tier pill) · **Residency** · **Models** (count, right-aligned, tabular) · a 44px cell
+  with a → chevron. Rows link to the provider page; they do not expand. Default order: compliant, partial,
+  noncompliant, unverified, then by name. Dim-not-remove applies to presets.
+- Below 768px the rows use the mobile row grid: name and pill on line 1, residency and model count on line 2.
+
+### Long-form Pages (About, Imprint, Privacy)
+
+- `h1` as everywhere; 720px text column; body 16px / 1.6 `--color-text-secondary`; `h2` 20px / 600 primary with 32px
+  above; links `--color-link`; call-to-action buttons in the primary button style.
 
 ---
 
@@ -364,69 +468,124 @@ A `<time>` element in monospace: "AI draft · 2026-04-07" for AI-researched entr
 
 ### Filter: Dim-not-remove
 
-When a compliance filter is active, non-matching rows are **dimmed** rather than removed from the DOM: they move below the matching rows, turn grayscale, and their text takes the secondary color (still AA contrast against the row background). Screen readers hear "Does not match the active filter" in front of the model name. This communicates the full landscape while highlighting what passes the filter.
+A compliance filter (preset or custom) never removes rows. Matching rows come first in the current order; non-matching
+rows follow, dimmed:
 
-Why: It answers both "what passes?" and "what's excluded?" in a single view. Enterprise users reviewing options want to see what they're ruling out.
+- `data-dimmed` on the row: primary and secondary text switch to `--color-text-muted` (at least 5.3:1 on every row
+  background), the pill and the tier bar get `filter: grayscale(1)`. No opacity.
+- Screen readers hear "Does not match the active filter." before the model name (visually hidden).
+- Dimmed rows stay fully operable.
+
+Why: it answers both "what passes?" and "what's excluded?" in one view.
 
 ### Detail: Inline expand
 
-On the homepage model table, clicking a row (or its +/− button, which is keyboard-operable) expands an inline detail panel instead of navigating away. The panel shows the provider name, links to all providers of that model and to the full provider profile, a notice for gateway models, the key compliance answers (EU data residency, DPA, training, SCCs) and the EU routing details.
-
-Why: Maintains search/filter context. Reduces navigation friction for users comparing multiple options quickly.
+Clicking a row or activating its model-name button expands the inline panel (component 6) instead of navigating away.
+The search, filter and scroll position stay as they are. No modals.
 
 ### Search: Immediate, no submit
 
-The search input filters the full model list in the browser on every keypress with Fuse.js: typo-tolerant for words, literal match for version numbers, and every word of the query must match. No search button. No enter required. The query is written to the URL 300 ms after typing stops.
+The search input filters the full model list in the browser on every keypress with Fuse.js: typo-tolerant for words,
+literal match for version numbers, every word of the query must match. Unlike the compliance filter, search narrows the
+list: rows that do not match are not rendered. No search button. The query is written to the URL 300ms after typing
+stops.
 
 ### Sort
 
-Clicking the Model, Compliance or Price header sorts ascending, then descending, then back to the default order. Models without a price always sort last. Without an explicit sort, search results stay in relevance order.
+Clicking a sortable header sorts ascending, then descending, then back to the default order. Models without a price
+always sort last. Without an explicit sort, search results stay in relevance order.
 
-### Shareable state
+### Shareable State
 
-Search query, filters and sort map to the URL: `?q=claude&profile=strict-eu&sort=price&dir=desc`. Users should be able to copy the URL from their browser and paste it into an email to legal/procurement. Changing this state never requests the server. Which rows are expanded is not part of the URL.
+Search query, filters and sort map to the URL: `q`, `profile` (`strict-eu`, `eu-sccs`, `no-training`, `custom`),
+`euOnly`, `dpa`, `noTraining`, `sccs` (with `profile=custom`), `sort`, `dir`, for example
+`?q=claude&profile=strict-eu&sort=price&dir=desc`. The URL is updated with `history.replaceState`; changing state never
+requests the server. Until the client has applied the URL state, the table carries `data-url-pending` and stays hidden
+for at most 3s. Expanded rows and the number of loaded rows are not part of the URL.
+
+### Motion
+
+- Only state changes move: row background and chevron rotation, 150ms ease-out; button hover 100ms.
+- Nothing animates on load. No skeletons for content rendered on the server.
+- Panels open and close without height animation.
+- Under `prefers-reduced-motion: reduce` all transitions are off.
+
+---
+
+## Internationalization
+
+- Locales `en` and `de` with `next-intl`, routed as `/en/…` and `/de/…`; `x-default` is `en`.
+- Every visible string, `aria-label` and `title` comes from `messages/en.json` and `messages/de.json`. No copy in
+  components.
+- Prices and counts follow the locale's number format (see the table); dates stay ISO.
+- German copy uses "Sie". Layouts must not depend on word length in either language: chips wrap, the count moves to its
+  own line on mobile, header labels may break.
+
+---
+
+## Accessibility
+
+- Target WCAG 2.2 AA. All text pairs meet at least 4.5:1, dimmed rows included.
+- Focus: `:focus-visible` 2px solid `--color-accent`, offset 2px (model-name buttons offset 3px with a 3px radius). The
+  search input has no outline of its own; the finder's `:focus-within` state shows focus.
+- Keyboard: chips, the custom panel and its checkboxes, search, clear button, sort buttons, model-name buttons, panel
+  links, "Load more" and the drawer are reachable and operable with Tab, Enter and Space. Expand controls are real
+  buttons with `aria-expanded` and `aria-controls`.
+- The table keeps table semantics on desktop with an `aria-label`; sortable columns use `aria-sort` and labelled sort
+  buttons; the toggle column header contains visually hidden "Details".
+- Compliance marks are `aria-hidden` and every field has visually hidden yes / no / unknown text.
+- Presets: a `role="group"` with a label, `aria-pressed` per chip. The count is a polite live region.
+- Mobile drawer: opening moves focus to its first link and makes the rest of the page `inert`; Escape and link
+  activation close it; closing returns focus to the menu button. The menu button has `aria-expanded`, `aria-controls`
+  and a label that switches between "Open menu" and "Close menu".
+- Tooltips (`title`) only repeat information that is available without them: the pill's properties are in the panel,
+  the meaning of "AI draft" is on the About page.
+- Touch targets: chips and buttons at least 32px high; mobile rows are tappable over their full area.
+- The search input is at least 16px on mobile.
 
 ---
 
 ## What NOT to Do (Anti-patterns)
 
-- **No hero sections with taglines.** The homepage is a search interface, not a landing page. Users who arrive via search know what this is.
-- **No gradient backgrounds.** The compliance color system needs a neutral canvas. Gradients corrupt the signal.
-- **No loading skeletons for above-the-fold content.** Pages are prerendered from the cached model catalog and the provider files, so the page renders fully on first paint.
-- **No star ratings or "scores."** Compliance is not rated. It is factual. Scores create liability.
-- **No marketing language in the UI copy.** "Powerful filtering" → just filter. "Comprehensive coverage" → just list what's covered. Every word earns its place.
-- **No modals for compliance detail.** Modals break the URL. Use inline expand or navigate to a dedicated page.
-- **No purple gradients, no Inter font, no Tailwind `rounded-2xl` on everything.** This site should not look like any other AI product.
-- **No "Coming soon" placeholders.** If a feature isn't built, don't show the ghost of it. Ship what works.
+- **No review status in table rows.** Status lives in the expanded panel and on detail pages.
+- **No badge clusters in rows.** One tier pill per row; the individual properties are in its tooltip and the panel.
+- **No explanatory blocks on list pages.** No intro paragraphs under the title, no "Filter:" labels, no legends, no
+  info boxes, no stats sidebars.
+- **No hero sections with taglines.** The home page is a search interface, not a landing page.
+- **No gradient backgrounds, glows or decorative shadows.** The compliance colors need a neutral canvas.
+- **No loading skeletons for above-the-fold content.** Pages are prerendered from the cached model catalog and the
+  provider files.
+- **No star ratings or "scores."** Compliance is factual, not rated. Scores create liability.
+- **No marketing language.** Every word earns its place.
+- **No modals for compliance detail.** Modals break the URL. Expand inline or navigate to a dedicated page.
+- **No monospace, no text below 13px, no uppercase outside table headers, no weight above 600.**
+- **No purple gradients, no Inter font, no Tailwind `rounded-2xl` on everything.** This site should not look like any
+  other AI product.
+- **No "Coming soon" placeholders.** Ship what works.
 
 ---
 
 ## SEO Design Requirements
 
-These are design constraints, not afterthoughts:
-
-- Every page title follows: `{Model or Provider Name} — InferCheck` (the `titleTemplate` in the `Layout` messages)
-- `<h1>` is always visible in the viewport on load, contains the primary keyword
-- Provider cards and model rows include the provider name as readable text — for crawlers
-- "Last verified" dates are rendered as `<time datetime="...">` elements
-- JSON-LD structured data is injected per page type: Dataset on the homepage and the providers page, Organization on provider pages, SoftwareApplication with one Offer per provider on model pages
+- Every page title follows `{Model or Provider Name} — InferCheck` (the `titleTemplate` in the `Layout` messages).
+- The `<h1>` is visible in the first viewport and contains the primary keyword.
+- Model rows and provider rows include the provider name as readable text.
+- Review dates are `<time datetime="…">` elements.
+- JSON-LD per page type: Dataset on the home page and the providers page, Organization on provider pages,
+  SoftwareApplication with one Offer per provider on model pages.
 
 ---
 
 ## Voice & Tone
 
-The editorial copy on this site (summaries, notes, about page) should sound like:
+The editorial copy (summaries, notes, About page) should sound like:
 
 - A senior developer who works in enterprise IT and has read a lot of DPAs
-- Direct. No hedging language where it's not needed.
-- Plain English for compliance jargon the first time it appears (e.g. "Standard Contractual Clauses (SCCs)")
-- Willing to say "this provider's DPA is weak" or "this claim is unverified" — the site's value is honesty, not diplomacy
+- Direct. No hedging where it isn't needed.
+- Plain words for compliance jargon the first time it appears (e.g. "Standard Contractual Clauses (SCCs)")
+- Willing to say "this provider's DPA is weak" or "this claim is unverified" — the site's value is honesty
 
-**Avoid:**
-
-- "Empowering teams to..." / "Unlock compliance..." / "Seamlessly..."
-- Passive voice in compliance notes
-- Marketing superlatives of any kind
+**Avoid:** "Empowering teams to…", "Unlock compliance…", "Seamlessly…", passive voice in compliance notes, superlatives.
 
 ---
 
@@ -436,21 +595,21 @@ The editorial copy on this site (summaries, notes, about page) should sound like
 src/
   app/
     [locale]/
-      page.tsx                  # Homepage: model search and table
-      providers/page.tsx        # Providers grouped by compliance tier
+      page.tsx                  # Home: finder + model table
+      providers/page.tsx        # Providers table, ordered by tier
       provider/[slug]/page.tsx  # Provider profile
-      model/[id]/page.tsx       # Model detail: one card per offering provider
+      model/[id]/page.tsx       # Model detail: table of offering providers
       about/ imprint/ privacy/  # Long-form pages
     globals.css                 # Design tokens (@theme) and the few CSS-only rules
   components/
-    ComplianceBadge.tsx         # Single badge, badge list, getBadgeVariants
-    BooleanRow.tsx              # ✓ / ✗ / ? row with label
-    FilterBar.tsx               # Filter presets + custom panel
-    GatewayPill.tsx             # "via gateway" marker
-    ModelBrowser.tsx            # Filter bar + table, driven by the URL query
-    ModelTable.tsx              # Search, filter, sort, table
-    ModelRow.tsx                # Single row + inline expand
-    ProviderCard.tsx            # Summary card with left-border signal
+    ComplianceBadge.tsx         # Tier pill
+    BooleanRow.tsx              # Compliance field list item
+    FilterBar.tsx               # Preset chips, custom panel, count (refine row)
+    GatewayPill.tsx             # Neutral "via gateway" label
+    ModelBrowser.tsx            # Finder + table, driven by the URL query
+    ModelTable.tsx              # Search, filter, sort, table, load more
+    ModelRow.tsx                # Row, mobile row and expanded panel
+    ProviderRow.tsx             # Row of the providers table
     ProviderModelRow.tsx        # Row of the provider page's model table
     VerificationLabel.tsx       # AI draft / verified date
     Nav.tsx  Footer.tsx  LanguageSwitcher.tsx
@@ -462,22 +621,45 @@ src/
 
 ## Color Tokens in Tailwind
 
-Tailwind 4 reads the tokens from the `@theme` block in `src/app/globals.css`. Every `--color-*` token becomes utilities, so `--color-surface-alt` is available as `bg-surface-alt` and `--color-compliant-border` as `border-compliant-border`. The fonts are declared there too:
+Tailwind 4 reads the tokens from the `@theme` block in `src/app/globals.css`. Every `--color-*` token becomes utilities
+(`bg-surface-sunken`, `text-compliant-text`, `border-partial-line`). The fonts are declared there too:
 
 ```css
 @theme {
-  --color-bg: #f5f4ef;
+  --color-bg: #f7f6f1;
   --color-surface: #ffffff;
-  --color-compliant: #16a34a;
-  --color-compliant-bg: #f0fdf4;
-  --color-compliant-border: #bbf7d0;
-  --color-compliant-text: #15803d;
+  --color-surface-alt: #f3f1ec;
+  --color-surface-sunken: #faf9f5;
+  --color-row-hover: #fbfaf7;
+  --color-border: #e4e1d9;
+  --color-border-strong: #cfcbc1;
+  --color-text-primary: #161a1f;
+  --color-heading: #161a1f;
+  --color-text-secondary: #3a414a;
+  --color-text-muted: #5b6470;
+  --color-placeholder: #6b7280;
+  --color-link: #1d4ed8;
+  --color-link-hover: #1e40af;
+
   --color-accent: #1d4ed8;
-  /* … all tokens listed above … */
+  --color-accent-ink: #1e40af;
+  --color-accent-subtle: #e8eefb;
+
+  --color-compliant-text: #15803d;
+  --color-compliant-bg: #e9f8ee;
+  --color-compliant-line: #22c55e;
+  --color-partial-text: #855900;
+  --color-partial-bg: #fdf5d9;
+  --color-partial-line: #e0b80d;
+  --color-noncompliant-text: #b42318;
+  --color-noncompliant-bg: #fdecea;
+  --color-noncompliant-line: #ef5350;
+  --color-unverified-text: #4b5563;
+  --color-unverified-bg: #eef0f3;
+  --color-unverified-line: #9aa3ad;
 
   --font-display: "Instrument Serif", Georgia, serif;
   --font-body: "DM Sans", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", "Courier New", monospace;
 }
 ```
 
