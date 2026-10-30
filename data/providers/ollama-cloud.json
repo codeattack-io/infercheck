@@ -2,17 +2,18 @@
   "slug": "ollama-cloud",
   "name": "Ollama Cloud",
   "type": "api_provider",
-  "website": "https://docs.ollama.com",
+  "website": "https://ollama.com",
   "apiDocsUrl": "https://docs.ollama.com/api/introduction",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
       "regions": [
-        "US"
+        "US",
+        "EU"
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Ollama states that cloud-hosted model data may be transferred to and processed in the United States, and cloud model inference compute runs on ollama.com. No EU-only region or routing option was found in the provider's primary documentation."
+      "euRegionDetails": "Ollama hosts cloud models mainly in the United States and may route requests to Europe for extra capacity. Customers cannot choose a region, and there is no EU-only option. Hosting runs at NVIDIA Cloud Providers that Ollama does not name."
     },
     "dpa": {
       "available": false,
@@ -22,8 +23,8 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "For cloud-hosted models, prompts and responses are processed transiently to provide the service and are not stored beyond the time required to fulfill the request. Ollama also says its cloud does not retain customer data. It does collect limited device and usage metadata, and users can delete their account via ollama.com.",
-      "details": "Ollama states it does not train on user data and does not retain prompts/responses for cloud inference beyond request fulfillment. The privacy policy also says third parties may help operate the service, including cloud infrastructure providers and model inference providers."
+      "retentionPolicy": "Cloud prompts and responses are processed transiently and are not logged or stored beyond the time needed to answer the request. Account data is kept while the account is active and deleted on request; billing records follow legal retention duties.",
+      "details": "The terms and privacy policy say inputs and outputs are not used to train AI models, for all plans. Ollama names Stripe, unnamed cloud infrastructure providers and model inference providers as third parties that help run the service, and says it requires no logging, no training and zero data retention from its hosting partners (NVIDIA Cloud Providers). Ollama Inc. describes itself as data controller; no processor terms are published."
     },
     "subProcessors": {
       "disclosed": false,
@@ -38,28 +39,29 @@
     "sccs": null,
     "adequacyDecision": false
   },
-  "pricingTier": "free_tier",
-  "lastVerified": "2026-04-11",
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://docs.ollama.com/",
+    "https://docs.ollama.com/cloud",
     "https://docs.ollama.com/api/introduction",
     "https://docs.ollama.com/api/authentication",
+    "https://docs.ollama.com/faq",
     "https://ollama.com/privacy",
     "https://ollama.com/terms",
-    "https://ollama.com/blog/cloud-models",
-    "https://ollama.com/pricing"
+    "https://ollama.com/pricing",
+    "https://ollama.com/blog/cloud-models"
   ],
-  "notes": "Primary-source documentation confirms Ollama Cloud is operated by Ollama Inc. in the United States, offers direct API access, and states that cloud prompts/responses are processed transiently and not used for training. No public DPA/AVV, sub-processor list, EU-only residency option, SCC statement, or security certification page was found in the provider’s primary documentation reviewed on April 11, 2026.",
+  "notes": "Ollama Cloud is run by Ollama Inc. in the US under California law; the company is not certified under the EU-US Data Privacy Framework, and the privacy policy mentions only unspecified safeguards for transfers to the US. Cloud models are billed per token, with optional Pro, Max, Team and Enterprise plans that include monthly usage credits. There is no DPA, sub-processor list or security certification.",
   "translations": {
     "de": {
-      "notes": "Die Primärdokumentation bestätigt, dass Ollama Cloud von Ollama Inc. in den Vereinigten Staaten betrieben wird, einen direkten API-Zugang bietet und angibt, dass Cloud-Prompts/-Eingaben und -Antworten nur vorübergehend verarbeitet und nicht für das Training verwendet werden. In der am 11. April 2026 geprüften Primärdokumentation des Anbieters wurden kein öffentlicher Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Option zur ausschließlichen Datenhaltung in der EU, keine Erklärung zu Standardvertragsklauseln (SCC) und keine Seite zu Sicherheitszertifizierungen gefunden.",
+      "notes": "Ollama Cloud wird von Ollama Inc. in den USA nach kalifornischem Recht betrieben; das Unternehmen ist nicht unter dem EU-US Data Privacy Framework zertifiziert, und die Datenschutzerklärung nennt für Übermittlungen in die USA nur nicht näher bezeichnete Garantien. Cloud-Modelle werden pro Token abgerechnet, optional mit Pro-, Max-, Team- und Enterprise-Tarifen, die monatliches Nutzungsguthaben enthalten. Es gibt keinen AVV, keine Liste der Unterauftragsverarbeiter und keine Sicherheitszertifizierung.",
       "dataResidency": {
-        "euRegionDetails": "Ollama gibt an, dass Daten cloudgehosteter Modelle in die Vereinigten Staaten übermittelt und dort verarbeitet werden können und dass die Rechenleistung für die Inferenz von Cloud-Modellen auf ollama.com ausgeführt wird. In der Primärdokumentation des Anbieters wurde keine EU-exklusive Region und keine Routing-Option gefunden."
+        "euRegionDetails": "Ollama betreibt Cloud-Modelle überwiegend in den USA und kann Anfragen für zusätzliche Kapazität nach Europa leiten. Kunden können keine Region wählen, und es gibt keine Option für ausschließliche Verarbeitung in der EU. Das Hosting läuft bei NVIDIA Cloud Providers, die Ollama nicht namentlich nennt."
       },
       "dataUsage": {
-        "retentionPolicy": "Bei cloudgehosteten Modellen werden Prompts/Eingaben und Antworten zur Erbringung des Dienstes nur vorübergehend verarbeitet und nicht über den zur Erfüllung der Anfrage erforderlichen Zeitraum hinaus gespeichert. Ollama gibt außerdem an, dass seine Cloud keine Kundendaten speichert. Es werden jedoch begrenzte Geräte- und Nutzungsmetadaten erhoben, und Nutzer können ihr Konto über ollama.com löschen.",
-        "details": "Ollama gibt an, keine Nutzerdaten für das Training zu verwenden und Prompts/Eingaben bzw. Antworten für die Cloud-Inferenz nicht über die Erfüllung der Anfrage hinaus zu speichern. In der Datenschutzerklärung heißt es außerdem, dass Dritte beim Betrieb des Dienstes unterstützen können, darunter Anbieter von Cloud-Infrastruktur und Anbieter für Modellinferenz."
+        "retentionPolicy": "Cloud-Prompts und -Antworten werden nur flüchtig verarbeitet und weder protokolliert noch länger gespeichert, als zur Beantwortung der Anfrage nötig. Kontodaten werden aufbewahrt, solange das Konto aktiv ist, und auf Anfrage gelöscht; Abrechnungsdaten unterliegen gesetzlichen Aufbewahrungspflichten.",
+        "details": "Laut Nutzungsbedingungen und Datenschutzerklärung werden Ein- und Ausgaben in keinem Tarif zum Training von KI-Modellen verwendet. Ollama nennt Stripe, nicht benannte Cloud-Infrastrukturanbieter und Anbieter für Modellinferenz als Dritte, die den Dienst mitbetreiben, und schreibt seinen Hosting-Partnern (NVIDIA Cloud Providers) nach eigenen Angaben vor, nichts zu protokollieren, nicht zu trainieren und keine Daten aufzubewahren. Ollama Inc. bezeichnet sich als Verantwortlichen; Auftragsverarbeitungsbedingungen sind nicht veröffentlicht."
       }
     }
   }
