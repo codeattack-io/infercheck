@@ -49,26 +49,14 @@
     "description": "Browse 75+ AI inference providers by GDPR compliance tier. Filter by EU data residency, DPA availability, training policy, and more.",
     "ogTitle": "AI Inference Providers — InferCheck Compliance Directory",
     "ogDescription": "Compare AI inference providers by GDPR compliance: EU-only data residency, DPA, training opt-out, and certifications.",
-    "heading1": "AI inference providers,",
-    "heading2": "by GDPR compliance tier.",
-    "subheading": "{providerCount} providers indexed. {verifiedCount} with researched compliance data. Click any provider for the full profile.",
-    "tiers": {
-      "compliant": {
-        "label": "EU Compliant",
-        "description": "EU-only data residency, DPA available, no training on customer data"
-      },
-      "partial": {
-        "label": "Partial (EU + SCCs)",
-        "description": "DPA available and SCCs in place, but not EU-only"
-      },
-      "noncompliant": {
-        "label": "Non-compliant",
-        "description": "No DPA or trains on customer data without opt-out"
-      },
-      "unverified": {
-        "label": "Unverified",
-        "description": "Compliance data not yet verified"
-      }
+    "heading": "AI inference providers, by GDPR compliance tier.",
+    "tableLabel": "AI inference providers with GDPR compliance tier",
+    "columns": {
+      "provider": "Provider",
+      "compliance": "Compliance",
+      "residency": "Residency",
+      "models": "Models",
+      "profile": "Profile"
     }
   },
   "ProviderPage": {
@@ -307,10 +295,6 @@
     "dimmed": "Does not match the active filter",
     "toggleDetails": "Details for {name}"
   },
-  "ProviderCard": {
-    "modelCount": "{count} model",
-    "modelCountPlural": "{count} models"
-  },
   "ImprintPage": {
     "title": "Imprint — InferCheck",
     "description": "Legal notice (Impressum) for InferCheck, operated by Carlo Nölle, Cologne, Germany.",
@@ -425,5 +409,9 @@
     "yes": "yes",
     "no": "no",
     "unknown": "unknown"
+  },
+  "ProviderRow": {
+    "euResidency": "EU",
+    "modelCount": "{count, plural, one {# model} other {# models}}"
   }
 }

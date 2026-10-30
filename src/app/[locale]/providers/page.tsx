@@ -1,12 +1,8 @@
-// /providers — browsable list of all providers, grouped by compliance tier.
-// React Server Component — provider JSON plus cached model counts from the DB.
-
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { ProviderCard } from "@/components/ProviderCard";
+import { ProviderRow } from "@/components/ProviderRow";
 import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
-import { getComplianceTier, TIER_CLASSES } from "@/lib/compliance";
-import { TierIcon } from "@/components/ComplianceBadge";
+import { getComplianceTier } from "@/lib/compliance";
 import type { AnyProvider, ComplianceTier } from "@/lib/compliance";
 import { getModelCountsByProvider } from "@/lib/models";
 
@@ -33,6 +29,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 const TIER_ORDER: ComplianceTier[] = ["compliant", "partial", "noncompliant", "unverified"];
+
+function sortByTier(providers: AnyProvider[], locale: string): AnyProvider[] {
+  const rank = new Map(providers.map((p) => [p.slug, TIER_ORDER.indexOf(getComplianceTier(p))]));
+  return [...providers].sort(
+    (a, b) => rank.get(a.slug)! - rank.get(b.slug)! || a.name.localeCompare(b.name, locale, { sensitivity: "base" })
+  );
+}
 
 function buildJsonLd(allProviders: AnyProvider[]) {
   return {
@@ -64,85 +67,59 @@ export default async function ProvidersPage({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const [allProviders, modelCounts] = await Promise.all([
-    Promise.resolve(getAllProviders()),
-    getModelCountsByProvider(),
-  ]);
-  const localizedProviders = allProviders.map((p) => getLocalizedProvider(p, locale));
+  const allProviders = getAllProviders();
+  const modelCounts = await getModelCountsByProvider();
+  const providers = sortByTier(
+    allProviders.map((p) => getLocalizedProvider(p, locale)),
+    locale
+  );
+
   const t = await getTranslations("ProvidersPage");
-
-  // Group by tier
-  const grouped = new Map<ComplianceTier, AnyProvider[]>();
-  for (const tier of TIER_ORDER) {
-    grouped.set(tier, []);
-  }
-  for (const p of localizedProviders) {
-    const tier = getComplianceTier(p);
-    grouped.get(tier)!.push(p);
-  }
-
-  // Sort each group alphabetically
-  for (const [, group] of grouped) {
-    group.sort((a, b) => a.name.localeCompare(b.name));
-  }
-
-  const totalVerified = allProviders.filter((p) => p.verifiedBy !== "stub" && p.compliance !== null).length;
-
-  const jsonLd = buildJsonLd(allProviders);
-
-  // Build tier meta with translated strings
-  const TIER_META: Record<ComplianceTier, { label: string; description: string }> = {
-    compliant: { label: t("tiers.compliant.label"), description: t("tiers.compliant.description") },
-    partial: { label: t("tiers.partial.label"), description: t("tiers.partial.description") },
-    noncompliant: { label: t("tiers.noncompliant.label"), description: t("tiers.noncompliant.description") },
-    unverified: { label: t("tiers.unverified.label"), description: t("tiers.unverified.description") },
-  };
+  const thClass =
+    "border-b border-b-border bg-surface-alt px-4 py-3 text-13 font-semibold tracking-[0.04em] text-text-muted uppercase";
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-
-      <main className="page-width flex-1 py-10">
-        {/* Heading */}
-        <div className="mb-8">
-          <h1 className="m-0 mb-3">
-            {t("heading1")}
-            <br />
-            {t("heading2")}
-          </h1>
-          <p className="font-body text-[0.9375rem] text-text-secondary m-0 max-w-[55ch] leading-[1.6]">
-            {t("subheading", { providerCount: allProviders.length, verifiedCount: totalVerified })}
-          </p>
-        </div>
-
-        {/* Tier sections */}
-        <div className="flex flex-col gap-12">
-          {TIER_ORDER.map((tier) => {
-            const group = grouped.get(tier)!;
-            if (group.length === 0) return null;
-            const meta = TIER_META[tier];
-
-            return (
-              <section key={tier} aria-labelledby={`tier-${tier}`}>
-                {/* Tier header */}
-                <div className="flex items-baseline gap-3 mb-4 pb-3 border-b border-border">
-                  <TierIcon tier={tier} className={`size-3 shrink-0 ${TIER_CLASSES[tier].text}`} />
-                  <h2 id={`tier-${tier}`} className="font-body text-base font-semibold text-text-primary m-0">
-                    {meta.label}
-                    <span className="font-body text-sm font-normal text-text-muted ml-2">({group.length})</span>
-                  </h2>
-                  <span className="font-body text-[0.8125rem] text-text-muted">{meta.description}</span>
-                </div>
-
-                {/* Provider grid */}
-                <div className="grid gap-3 grid-cols-[repeat(auto-fill,minmax(280px,1fr))]">
-                  {group.map((p) => (
-                    <ProviderCard key={p.slug} provider={p} modelCount={modelCounts[p.slug]} />
-                  ))}
-                </div>
-              </section>
-            );
-          })}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildJsonLd(allProviders)) }}
+      />
+      <main className="page-width flex-1">
+        <h1 className="m-0 pt-5 pb-3.5 md:pt-7 md:pb-5">{t("heading")}</h1>
+        <div className="rounded-card border border-border bg-surface">
+          <table className="w-full border-separate border-spacing-0 max-md:block" aria-label={t("tableLabel")}>
+            <colgroup>
+              <col className="w-[40%]" />
+              <col className="w-[22%]" />
+              <col className="w-[22%]" />
+              <col className="w-[16%]" />
+              <col className="w-11" />
+            </colgroup>
+            <thead className="max-md:hidden">
+              <tr>
+                <th scope="col" className={`${thClass} rounded-tl-card pl-5 text-left`}>
+                  {t("columns.provider")}
+                </th>
+                <th scope="col" className={`${thClass} text-left`}>
+                  {t("columns.compliance")}
+                </th>
+                <th scope="col" className={`${thClass} text-left`}>
+                  {t("columns.residency")}
+                </th>
+                <th scope="col" className={`${thClass} text-right`}>
+                  {t("columns.models")}
+                </th>
+                <th scope="col" className={`${thClass} rounded-tr-card`}>
+                  <span className="sr-only">{t("columns.profile")}</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody className="max-md:block">
+              {providers.map((p) => (
+                <ProviderRow key={p.slug} provider={p} modelCount={modelCounts[p.slug] ?? 0} />
+              ))}
+            </tbody>
+          </table>
         </div>
       </main>
     </>

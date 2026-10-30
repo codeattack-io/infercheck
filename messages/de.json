@@ -49,26 +49,14 @@
     "description": "Über 75 KI-Inferenzanbieter nach DSGVO-Konformitätsstufe durchsuchen. Nach EU-Datenhaltung, AVV-Verfügbarkeit, Trainingsrichtlinie und mehr filtern.",
     "ogTitle": "KI-Inferenzanbieter — DSGVO-Compliance-Verzeichnis",
     "ogDescription": "KI-Inferenzanbieter nach DSGVO-Compliance vergleichen: EU-exklusive Datenhaltung, AVV, Trainings-Opt-out und Zertifizierungen.",
-    "heading1": "KI-Inferenzanbieter,",
-    "heading2": "nach DSGVO-Konformitätsstufe.",
-    "subheading": "{providerCount} Anbieter indexiert. {verifiedCount} mit recherchierten Compliance-Daten. Auf einen Anbieter klicken für das vollständige Profil.",
-    "tiers": {
-      "compliant": {
-        "label": "EU-konform",
-        "description": "Ausschließliche EU-Datenhaltung, AVV verfügbar, kein Training mit Kundendaten"
-      },
-      "partial": {
-        "label": "Teilweise (EU + SCC)",
-        "description": "AVV verfügbar und Standardvertragsklauseln vorhanden, jedoch nicht EU-exklusiv"
-      },
-      "noncompliant": {
-        "label": "Nicht konform",
-        "description": "Kein AVV oder Training mit Kundendaten ohne Opt-out-Möglichkeit"
-      },
-      "unverified": {
-        "label": "Nicht verifiziert",
-        "description": "Compliance-Daten noch nicht geprüft"
-      }
+    "heading": "KI-Inferenzanbieter, nach DSGVO-Konformitätsstufe.",
+    "tableLabel": "KI-Inferenzanbieter mit DSGVO-Konformitätsstufe",
+    "columns": {
+      "provider": "Anbieter",
+      "compliance": "Compliance",
+      "residency": "Datenhaltung",
+      "models": "Modelle",
+      "profile": "Profil"
     }
   },
   "ProviderPage": {
@@ -307,10 +295,6 @@
     "dimmed": "Entspricht nicht dem aktiven Filter",
     "toggleDetails": "Details zu {name}"
   },
-  "ProviderCard": {
-    "modelCount": "{count} Modell",
-    "modelCountPlural": "{count} Modelle"
-  },
   "ImprintPage": {
     "title": "Impressum — InferCheck",
     "description": "Impressum von InferCheck, betrieben von Carlo Nölle, Köln.",
@@ -425,5 +409,9 @@
     "yes": "ja",
     "no": "nein",
     "unknown": "unbekannt"
+  },
+  "ProviderRow": {
+    "euResidency": "EU",
+    "modelCount": "{count, plural, one {# Modell} other {# Modelle}}"
   }
 }
