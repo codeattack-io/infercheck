@@ -35,7 +35,7 @@
       "status": "monitoring",
       "details": "DeepSeek has published no AI Act compliance statement and is not a signatory of the EU GPAI Code of Practice. It publishes public summaries of training content in the EU AI Office template for its V3.1/V3.2, V4 and V4.1 models and names Prighter as its authorised representative in the EU."
     },
-    "sccs": false,
+    "sccs": null,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",

@@ -40,7 +40,7 @@
       "status": "unknown",
       "details": null
     },
-    "sccs": true,
+    "sccs": null,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
