@@ -13,18 +13,18 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": null,
-      "euRegionDetails": "For users in the EEA, the UK and Switzerland, Xiaomi stores account and service data in data centres in the Netherlands and may transfer it to Singapore. The service agreement says data for the international service is stored on servers in Europe and Singapore, and that customers can ask Xiaomi for a specific storage region, possibly at extra cost. Xiaomi does not document where API inference runs."
+      "euRegionDetails": "For users in the EEA, the UK and Switzerland, Xiaomi stores the personal data it collects in data centres in the Netherlands and may transfer it to Singapore; customers can ask for a specific storage region, possibly at extra cost. The Token Plan subscription for coding tools lists a European and a Singapore cluster. Xiaomi does not document where pay-as-you-go API requests are processed."
     },
     "dpa": {
-      "available": true,
-      "url": "https://mimo.mi.com/docs/terms/user-agreement",
-      "signedVia": "online_acceptance"
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
       "retentionPolicy": "Xiaomi publishes no fixed retention period for API inputs and outputs. Under the service agreement, it stops processing or deletes personal data within a reasonable period after the service ends, the purpose is fulfilled or the customer asks. Platform data is cleared when the Xiaomi account is deleted.",
-      "details": "The MiMo privacy policy states that Xiaomi does not use content submitted through the API or MiMo Code for model training or any other purpose. Xiaomi's public training-content summaries for its MiMo V2, V2.5 and V2.6 models state that no user interaction data was used for training."
+      "details": "The MiMo privacy policy states that Xiaomi does not use content submitted through the API or MiMo Code for model training or any other purpose. The service agreement contains short data protection terms that name Xiaomi as processor and cover security, staff confidentiality and deletion, but not processing on instructions, sub-processors, assistance or audits. Xiaomi's training-content summaries for MiMo V2, V2.5 and V2.6 state that no user interaction data was used for training."
     },
     "subProcessors": {
       "disclosed": false,
@@ -48,20 +48,21 @@
     "https://mimo.mi.com/docs/terms/privacy-policy",
     "https://privacy.mi.com/all/en_US/",
     "https://mimo.mi.com/docs/price/pay-as-you-go",
+    "https://mimo.mi.com/docs/en-US/tokenplan/Token%20Plan/subscription",
     "https://trust.mi.com/compliance",
     "https://trust.mi.com/transparency",
     "https://trust.mi.com/pdf/Public%20Summary%20of%20Training%20Content%20for%20Xiaomi%20MiMo%20V2.6.pdf"
   ],
-  "notes": "The international MiMo API platform is operated by Xiaomi Technologies Singapore Pte. Ltd. under Singapore law, and Xiaomi Technology Netherlands B.V. is named as data controller for users in the EEA, the UK and Switzerland; mainland China has a separate service and terms. The service agreement contains short data protection terms with Xiaomi as processor but no sub-processor list, and Xiaomi's general privacy policy relies on standard contractual clauses for transfers to group companies in Singapore and mainland China. Xiaomi's ISO 27001, ISO 27701 and SOC 2 certificates cover named consumer, IoT and e-commerce services, not MiMo; API access is prepaid pay-as-you-go or a monthly Token Plan subscription.",
+  "notes": "The international MiMo API platform is operated by Xiaomi Technologies Singapore Pte. Ltd. under a service agreement governed by Singapore law; Xiaomi Technology Netherlands B.V. is named as data controller for users in the EEA, the UK and Switzerland, and mainland China has a separate service. There is no full data processing agreement and no sub-processor list, and Xiaomi's general privacy policy relies on standard contractual clauses for transfers to group companies in Singapore and mainland China. Xiaomi's ISO 27001, ISO 27701 and SOC 2 certificates do not name MiMo in their scope; API access is prepaid pay-as-you-go or a Token Plan subscription.",
   "translations": {
     "de": {
-      "notes": "Die internationale MiMo-API-Plattform wird von Xiaomi Technologies Singapore Pte. Ltd. nach singapurischem Recht betrieben; für Nutzer im EWR, im Vereinigten Königreich und in der Schweiz ist Xiaomi Technology Netherlands B.V. als Verantwortlicher genannt, für Festlandchina gibt es ein eigenes Angebot mit eigenen Bedingungen. Der Dienstvertrag enthält kurze Datenschutzbestimmungen mit Xiaomi als Auftragsverarbeiter, aber keine Liste der Unterauftragsverarbeiter; für Übermittlungen an Konzerngesellschaften in Singapur und Festlandchina stützt sich Xiaomis allgemeine Datenschutzrichtlinie auf Standardvertragsklauseln. Xiaomis Zertifikate nach ISO 27001, ISO 27701 und SOC 2 gelten für namentlich genannte Verbraucher-, IoT- und E-Commerce-Dienste, nicht für MiMo; der API-Zugang wird als vorausbezahlte nutzungsbasierte Abrechnung oder als monatliches Token-Plan-Abonnement angeboten.",
+      "notes": "Die internationale MiMo-API-Plattform wird von Xiaomi Technologies Singapore Pte. Ltd. unter einem Dienstvertrag nach singapurischem Recht betrieben; für Nutzer im EWR, im Vereinigten Königreich und in der Schweiz ist Xiaomi Technology Netherlands B.V. als Verantwortlicher genannt, für Festlandchina gibt es ein eigenes Angebot. Ein vollständiger Auftragsverarbeitungsvertrag und eine Liste der Unterauftragsverarbeiter fehlen; für Übermittlungen an Konzerngesellschaften in Singapur und Festlandchina stützt sich Xiaomis allgemeine Datenschutzrichtlinie auf Standardvertragsklauseln. Xiaomis Zertifikate nach ISO 27001, ISO 27701 und SOC 2 nennen MiMo nicht in ihrem Geltungsbereich; der API-Zugang wird vorausbezahlt nach Verbrauch oder als Token-Plan-Abonnement angeboten.",
       "dataResidency": {
-        "euRegionDetails": "Für Nutzer im EWR, im Vereinigten Königreich und in der Schweiz speichert Xiaomi Konto- und Nutzungsdaten in Rechenzentren in den Niederlanden und kann sie nach Singapur übermitteln. Laut Dienstvertrag werden Daten des internationalen Angebots auf Servern in Europa und Singapur gespeichert; Kunden können bei Xiaomi eine bestimmte Speicherregion anfragen, gegebenenfalls gegen Aufpreis. Wo die API-Inferenz läuft, gibt Xiaomi nicht an."
+        "euRegionDetails": "Für Nutzer im EWR, im Vereinigten Königreich und in der Schweiz speichert Xiaomi die erhobenen personenbezogenen Daten in Rechenzentren in den Niederlanden und kann sie nach Singapur übermitteln; Kunden können eine bestimmte Speicherregion anfragen, gegebenenfalls gegen Aufpreis. Für das Token-Plan-Abonnement für Coding-Tools nennt Xiaomi einen europäischen und einen singapurischen Cluster. Wo Anfragen an die nutzungsbasiert abgerechnete API verarbeitet werden, gibt Xiaomi nicht an."
       },
       "dataUsage": {
         "retentionPolicy": "Xiaomi nennt keine feste Aufbewahrungsfrist für API-Eingaben und -Ausgaben. Laut Dienstvertrag beendet Xiaomi die Verarbeitung personenbezogener Daten oder löscht sie innerhalb angemessener Frist, wenn der Dienst endet, der Zweck erfüllt ist oder der Kunde es verlangt. Mit der Löschung des Xiaomi-Kontos werden die Plattformdaten gelöscht.",
-        "details": "Laut MiMo-Datenschutzrichtlinie verwendet Xiaomi Inhalte, die über die API oder MiMo Code übermittelt werden, weder für das Modelltraining noch für andere Zwecke. In den veröffentlichten Zusammenfassungen der Trainingsinhalte für die Modelle MiMo V2, V2.5 und V2.6 gibt Xiaomi an, dass keine Daten aus Nutzerinteraktionen für das Training verwendet wurden."
+        "details": "Laut MiMo-Datenschutzrichtlinie verwendet Xiaomi Inhalte, die über die API oder MiMo Code übermittelt werden, weder für das Modelltraining noch für andere Zwecke. Der Dienstvertrag enthält kurze Datenschutzbestimmungen, die Xiaomi als Auftragsverarbeiter benennen und Sicherheitsmaßnahmen, die Vertraulichkeit des Personals und die Löschung regeln, nicht aber die Verarbeitung nach Weisung, Unterauftragsverarbeiter, Unterstützungspflichten oder Prüfrechte. In den Zusammenfassungen der Trainingsinhalte für MiMo V2, V2.5 und V2.6 gibt Xiaomi an, dass keine Daten aus Nutzerinteraktionen für das Training verwendet wurden."
       },
       "euAiAct": {
         "details": "Keine Erklärung zur Einhaltung des AI Act gefunden; Xiaomi gibt an, den EU-Verhaltenskodex für KI-Modelle mit allgemeinem Verwendungszweck (GPAI Code of Practice) nicht unterzeichnet zu haben. Xiaomi veröffentlicht für seine Modelle MiMo V2, V2.5 und V2.6 Zusammenfassungen der Trainingsinhalte nach der Vorlage des EU-Büros für Künstliche Intelligenz, nennt darin Xiaomi Technologies Singapore Pte. Ltd. als Anbieter und keinen bevollmächtigten Vertreter in der EU."
