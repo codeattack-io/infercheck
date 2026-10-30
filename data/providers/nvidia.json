@@ -10,7 +10,7 @@
       "regions": [],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "The free hosted API runs on NVIDIA DGX Cloud. NVIDIA does not say in which regions inference runs and offers no EU region or region choice. For production, customers self-host NIM under an NVIDIA AI Enterprise licence or use a third-party partner endpoint, so the location depends on the infrastructure they choose."
+      "euRegionDetails": "The free hosted API runs on NVIDIA DGX Cloud. NVIDIA does not say in which regions inference runs and documents no EU region or region choice. For production, customers self-host NIM under an NVIDIA AI Enterprise licence or use a third-party partner endpoint, so the location depends on the infrastructure they choose."
     },
     "dpa": {
       "available": false,
@@ -20,13 +20,13 @@
     "dataUsage": {
       "trainsOnCustomerData": true,
       "optOutAvailable": false,
-      "retentionPolicy": "For NVIDIA API Trial Terms, NVIDIA states it will not store or use User Content or Generated Content after each API service session unless otherwise disclosed for a specific API service. For certain API services such as Fine Tuning, unless a subscription is purchased from the appropriate service provider, NVIDIA stores User Content for 30 days from first upload and Generated Content for 90 days from first availability; NVIDIA may also log and store content for security, fraud, or abuse prevention. In the general privacy policy, NVIDIA says it erases customer and enterprise personal data after more than five years of no engagement.",
+      "retentionPolicy": "The trial terms say NVIDIA does not store or use inputs and outputs after each session unless disclosed otherwise for a service; the in-product notice discloses that inputs and outputs are recorded to provide the trial and to improve NVIDIA products and AI models, without naming a retention period. For fine-tuning on the trial, NVIDIA stores uploaded content for 30 days and fine-tuning output for 90 days, and content may be logged for security, fraud or abuse monitoring.",
       "details": "The hosted API is a free trial for testing and evaluation, not for production use. Under the trial terms NVIDIA uses inputs and outputs to improve its products and AI models, and the terms forbid uploading personal data unless a service expressly allows it. Usage is logged for security, fraud and abuse monitoring and shared with third-party service providers for that purpose."
     },
     "subProcessors": {
-      "disclosed": true,
-      "url": "https://www.nvidia.com/en-us/agreements/data-processing-addendum/nvidia-cloud-services-data-processing-addendum/",
-      "includesEuEntities": false
+      "disclosed": false,
+      "url": null,
+      "includesEuEntities": null
     },
     "certifications": [
       "ISO27001",
@@ -58,21 +58,23 @@
     "https://www.nvidia.com/en-us/ai-trust-center/security-compliance/",
     "https://developer.download.nvidia.com/assets/nemo/docs/public-summary-of-training-content-for-nvidia-nemotron.pdf",
     "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm",
-    "https://www.dataprivacyframework.gov/list"
+    "https://www.dataprivacyframework.gov/list",
+    "https://docs.api.nvidia.com/nim/docs/faq",
+    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
   ],
   "notes": "NVIDIA's hosted API catalog is a free trial for prototyping; for production, customers self-host NIM under an NVIDIA AI Enterprise licence or use a paid third-party partner endpoint. The trial terms do not include NVIDIA's cloud services data processing addendum, and they let NVIDIA use inputs and outputs to improve its products and AI models. NVIDIA Corporation is certified under the EU-US Data Privacy Framework and names standard contractual clauses for transfers in its privacy policy.",
   "translations": {
     "de": {
       "notes": "Der gehostete API-Katalog von NVIDIA ist ein kostenloses Testangebot für Prototypen; für den Produktivbetrieb hosten Kunden NIM selbst mit einer NVIDIA-AI-Enterprise-Lizenz oder nutzen einen kostenpflichtigen Partner-Endpunkt eines Drittanbieters. Die Testbedingungen schließen den Auftragsverarbeitungsvertrag für NVIDIA-Cloud-Dienste nicht ein und erlauben NVIDIA, Ein- und Ausgaben zur Verbesserung seiner Produkte und KI-Modelle zu nutzen. Die NVIDIA Corporation ist unter dem EU-US Data Privacy Framework zertifiziert und nennt in ihrer Datenschutzerklärung Standardvertragsklauseln für Übermittlungen.",
       "dataUsage": {
-        "retentionPolicy": "Für die NVIDIA API Trial Terms erklärt NVIDIA, dass User Content und Generated Content nach jeder API-Dienstsitzung weder gespeichert noch verwendet werden, sofern für einen bestimmten API-Dienst nichts anderes offengelegt wird. Für bestimmte API-Dienste wie Fine Tuning speichert NVIDIA, sofern kein Abonnement bei dem entsprechenden Dienstanbieter erworben wird, User Content für 30 Tage ab dem ersten Upload und Generated Content für 90 Tage ab der ersten Verfügbarkeit; außerdem kann NVIDIA Inhalte zum Zweck der Sicherheit sowie der Betrugs- oder Missbrauchsprävention protokollieren und speichern. In der allgemeinen Datenschutzerklärung gibt NVIDIA an, Kunden- und Unternehmensdaten mit Personenbezug nach mehr als fünf Jahren ohne Interaktion zu löschen.",
+        "retentionPolicy": "Laut Testbedingungen speichert oder nutzt NVIDIA Ein- und Ausgaben nach jeder Sitzung nicht, sofern für einen Dienst nichts anderes offengelegt ist; der Hinweis im Produkt legt offen, dass Ein- und Ausgaben für das Testangebot und zur Verbesserung von NVIDIA-Produkten und KI-Modellen aufgezeichnet werden, ohne eine Aufbewahrungsfrist zu nennen. Beim Fine-Tuning im Testangebot speichert NVIDIA hochgeladene Inhalte 30 Tage und Fine-Tuning-Ergebnisse 90 Tage; zudem können Inhalte zur Überwachung von Sicherheit, Betrug und Missbrauch protokolliert werden.",
         "details": "Die gehostete API ist ein kostenloses Testangebot zur Erprobung und Evaluierung, nicht für den Produktivbetrieb. Laut Testbedingungen nutzt NVIDIA Ein- und Ausgaben zur Verbesserung seiner Produkte und KI-Modelle; die Bedingungen verbieten das Hochladen personenbezogener Daten, sofern ein Dienst dies nicht ausdrücklich erlaubt. Die Nutzung wird zur Überwachung von Sicherheit, Betrug und Missbrauch protokolliert und dafür an externe Dienstleister weitergegeben."
       },
       "euAiAct": {
-        "details": "NVIDIA hat den GPAI-Verhaltenskodex nicht unterzeichnet. Für die eigenen Nemotron-Modelle veröffentlicht NVIDIA die nach dem AI Act vorgeschriebene Zusammenfassung der Trainingsinhalte und benennt die NVIDIA GmbH in Deutschland als Bevollmächtigten. In seinen Börsenberichten schreibt NVIDIA, der AI Act könne beeinflussen, ob es KI-Modelle in der EU trainieren, bereitstellen oder veröffentlichen kann."
+        "details": "NVIDIA hat den GPAI-Verhaltenskodex nicht unterzeichnet. Für die eigenen Nemotron-Modelle veröffentlicht NVIDIA die nach dem AI Act vorgeschriebene Zusammenfassung der Trainingsinhalte und benennt die NVIDIA GmbH in Deutschland als Bevollmächtigten. In seinen Berichten an die US-Börsenaufsicht SEC schreibt NVIDIA, der AI Act könne beeinflussen, ob es KI-Modelle in der EU trainieren, bereitstellen oder veröffentlichen kann."
       },
       "dataResidency": {
-        "euRegionDetails": "Die kostenlose gehostete API läuft auf NVIDIA DGX Cloud. NVIDIA gibt nicht an, in welchen Regionen die Inferenz stattfindet, und bietet weder eine EU-Region noch eine Regionswahl an. Für den Produktivbetrieb hosten Kunden NIM selbst mit einer NVIDIA-AI-Enterprise-Lizenz oder nutzen einen Partner-Endpunkt eines Drittanbieters; der Standort hängt dann von der gewählten Infrastruktur ab."
+        "euRegionDetails": "Die kostenlose gehostete API läuft auf NVIDIA DGX Cloud. NVIDIA gibt nicht an, in welchen Regionen die Inferenz stattfindet, und dokumentiert weder eine EU-Region noch eine Regionswahl. Für den Produktivbetrieb hosten Kunden NIM selbst mit einer NVIDIA-AI-Enterprise-Lizenz oder nutzen einen Partner-Endpunkt eines Drittanbieters; der Standort hängt dann von der gewählten Infrastruktur ab."
       }
     }
   }
