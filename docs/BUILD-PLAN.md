@@ -15,7 +15,7 @@ Temporary orchestration state. Deleted before the PR is opened.
 | b3    | anthropic cohere xai perplexity perplexity-agent inception upstage morph                                        | merged                                                           |
 | b4    | moonshot-ai minimax-minimax-io z-ai xiaomi stepfun siliconflow bailing novitaai                                 | merged                                                           |
 | b5    | together-ai fireworks-ai groq cerebras deep-infra baseten friendli nvidia                                       | verifying                                                        |
-| b6    | hugging-face llama chutes inference io-net venice-ai vultr weights-biases                                       | researching                                                      |
+| b6    | hugging-face llama chutes inference io-net venice-ai vultr weights-biases                                       | verifying                                                        |
 | b7    | openrouter cloudflare-ai-gateway vercel-ai-gateway helicone requesty kilo-gateway llm-gateway zenmux            | researching                                                      |
 | b8    | abacus aihubmix clarifai dinference firmware github-models lucidquery-ai meganova                               | researching                                                      |
 | b9    | mixlayer nanogpt nova ollama-cloud poe synthetic vivgrid                                                        | researching                                                      |
@@ -27,3 +27,4 @@ Temporary orchestration state. Deleted before the PR is opened.
 - Open for Carlo: Mistral `trainsOnCustomerData` stays null (official sources conflict for paid self-serve); an account check of the "Anonymous improvement data" toggle would settle it.
 - Rule 11 (what counts as a DPA) added after b4 research.
 - Rule 12 (euOnly = documented, contractually committed EU-only configuration counts) decided by Carlo after b1–b3 were merged. Final task c1: one agent applies rule 12 and the other late rules (8, 11) consistently to p0–b4 and checks cross-provider conventions (sccs, euAiAct for hosts, enterprise-only DPAs).
+- Meta Llama API (`llama`) reported as discontinued by b6 research — decide in c1 whether to remove the file (separate commit).
