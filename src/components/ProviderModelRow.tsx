@@ -2,7 +2,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { GatewayPill } from "@/components/GatewayPill";
 import { Price } from "@/components/Price";
-import { formatContext } from "@/lib/format";
+import { formatContext, modelDisplayName } from "@/lib/format";
 import type { ProviderModel } from "@/components/types";
 
 interface ProviderModelRowProps {
@@ -27,7 +27,7 @@ export function ProviderModelRow({ model: m, gatewayProviderName }: ProviderMode
             href={href}
             className="text-16 leading-[1.35] font-medium text-pretty text-text-primary no-underline after:absolute after:inset-0 after:content-[''] focus-visible:rounded-[3px] focus-visible:outline-offset-3"
           >
-            {m.displayName}
+            {modelDisplayName(m.displayName)}
           </Link>
           {gatewayProviderName ? <GatewayPill providerName={gatewayProviderName} className="relative" /> : null}
         </span>

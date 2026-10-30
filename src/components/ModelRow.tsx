@@ -10,16 +10,27 @@ import { GatewayPill } from "@/components/GatewayPill";
 import { Price } from "@/components/Price";
 import { VerificationLabel } from "@/components/VerificationLabel";
 import { getComplianceTier, isFullProvider, TIER_CLASSES } from "@/lib/compliance";
+import { modelDisplayName } from "@/lib/format";
 import { providerName as getProviderName, type PrimaryColumn } from "@/lib/model-list";
 import { buttonClass } from "@/lib/styles";
 import type { ModelWithProvider } from "@/components/types";
 
-function highlight(text: string, matches: readonly FuseResultMatch[] | undefined, key: string): ReactNode {
-  const indices = matches?.find((m) => m.key === key && m.value === text)?.indices;
+/** Marks the match ranges of `source` inside `text`, which is `source` or a suffix of it. */
+function highlight(
+  text: string,
+  matches: readonly FuseResultMatch[] | undefined,
+  key: string,
+  source = text
+): ReactNode {
+  const indices = matches?.find((m) => m.key === key && m.value === source)?.indices;
   if (!indices?.length) return text;
 
+  const offset = source.length - text.length;
   const merged: [number, number][] = [];
-  for (const [start, end] of indices.toSorted((a, b) => a[0] - b[0])) {
+  for (const [matchStart, matchEnd] of indices.toSorted((a, b) => a[0] - b[0])) {
+    const start = Math.max(matchStart - offset, 0);
+    const end = matchEnd - offset;
+    if (end < 0) continue;
     const last = merged.at(-1);
     if (last && start <= last[1] + 1) last[1] = Math.max(last[1], end);
     else merged.push([start, end]);
@@ -68,7 +79,7 @@ function ModelRowInner({ item, dimmed = false, matches, primary = "model" }: Mod
 
   const name =
     primary === "model"
-      ? highlight(model.displayName, matches, "model.displayName")
+      ? highlight(modelDisplayName(model.displayName), matches, "model.displayName", model.displayName)
       : highlight(providerName, matches, "provider.name");
   const secondary =
     primary === "model" ? highlight(providerName, matches, "provider.name") : provider ? tType(provider.type) : null;
