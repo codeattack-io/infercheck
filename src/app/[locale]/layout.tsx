@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, DM_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Instrument_Serif, DM_Sans } from "next/font/google";
 import { NextIntlClientProvider, hasLocale } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -9,27 +9,18 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import Script from "next/script";
 
-// next/font/google: fonts are self-hosted at build time — no external requests,
-// no layout shift, automatic font-display:swap.
 const instrumentSerif = Instrument_Serif({
-  weight: ["400"],
-  style: ["normal", "italic"],
+  weight: "400",
+  style: "normal",
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
 });
 
 const dmSans = DM_Sans({
-  weight: ["400", "500", "600"],
+  axes: ["opsz"],
   subsets: ["latin"],
   variable: "--font-body",
-  display: "swap",
-});
-
-const ibmPlexMono = IBM_Plex_Mono({
-  weight: ["400", "500"],
-  subsets: ["latin"],
-  variable: "--font-mono",
   display: "swap",
 });
 
@@ -101,8 +92,8 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${instrumentSerif.variable} ${dmSans.variable} ${ibmPlexMono.variable} h-full`}>
-      <body className="min-h-full flex flex-col antialiased" suppressHydrationWarning>
+    <html lang={locale} className={`${instrumentSerif.variable} ${dmSans.variable} h-full`}>
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
         <NextIntlClientProvider messages={messages}>
           <Nav />
           {children}
