@@ -31,7 +31,7 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "SAP does not publish a fixed retention period for prompts and outputs in the generative AI hub. Under the DPA, personal data remaining with SAP is deleted within a reasonable period after the agreement ends, at most 6 months.",
+      "retentionPolicy": "SAP does not publish a fixed retention period for prompts and outputs in the generative AI hub. Requests and responses are stored only if the customer enables recording for inference observability, in the customer's object store. For models hosted by third parties, SAP states that data is sent to the model provider for processing only and is not retained there. Under the DPA, personal data remaining with SAP is deleted within a reasonable period after the agreement ends, at most 6 months.",
       "details": "SAP states that customer data in SAP AI Core is never used to train SAP models or shared with third-party vendors for training LLMs. SAP's AI terms add that customer data is not provided to third-party model providers for training."
     },
     "subProcessors": {
@@ -42,6 +42,7 @@
     "certifications": [
       "SOC2",
       "ISO27001",
+      "ISO42001",
       "C5"
     ],
     "euAiAct": {
@@ -51,13 +52,16 @@
     "sccs": true,
     "adequacyDecision": true
   },
-  "pricingTier": "enterprise_only",
+  "pricingTier": "pay_per_use",
   "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://www.sap.com/products/artificial-intelligence/ai-core.html",
     "https://github.com/SAP-docs/sap-artificial-intelligence/blob/main/docs/sap-ai-core/generativeAI/model-availability-by-region-3794e87.md",
     "https://github.com/SAP-docs/sap-artificial-intelligence/blob/main/docs/sap-ai-core/service-plans-c7244c6.md",
+    "https://github.com/SAP-docs/sap-artificial-intelligence/blob/main/docs/sap-ai-core/generativeAI/inference-observability-8e9dacc.md",
+    "https://www.sap.com/products/technology-platform/pricing.html",
+    "https://www.sap.com/products/artificial-intelligence/generative-ai-hub-trial.html",
     "https://assets.cdn.sap.com/agreements/data-processing-agreements/sps/data-processing-agreement-for-cloud-services-sap-support-and-sap-services-english-v10-2024.pdf",
     "https://assets.cdn.sap.com/agreements/general-terms-and-conditions/ai/sap-ai-terms-english-v8-2026a.pdf",
     "https://www.sap.com/about/trust-center/data-privacy.html",
@@ -67,15 +71,15 @@
     "https://www.sap.com/products/artificial-intelligence/ai-ethics.html",
     "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
   ],
-  "notes": "SAP AI Core is a service on SAP BTP that gives access to SAP's own models and to third-party models, some hosted by SAP and some called remotely at providers such as AWS, Microsoft, Google and Perplexity. The generative AI hub requires the Extended service plan on an SAP BTP enterprise account; a 30-day trial is available. The subprocessor list is published on SAP's support portal and requires a customer login.",
+  "notes": "SAP AI Core is a service on SAP BTP that gives access to SAP's own models and to third-party models, some hosted by SAP and some called remotely at providers such as AWS, Microsoft, Google and Perplexity. The generative AI hub requires the Extended service plan in a paid SAP BTP account, available through Pay-As-You-Go for SAP BTP without upfront commitment or through an enterprise agreement; a 30-day trial is available. The subprocessor list is published on SAP's support portal and requires a customer login.",
   "translations": {
     "de": {
-      "notes": "SAP AI Core ist ein Dienst auf SAP BTP, der Zugriff auf SAPs eigene Modelle und auf Modelle Dritter bietet; ein Teil wird von SAP gehostet, ein Teil wird bei Anbietern wie AWS, Microsoft, Google und Perplexity aufgerufen. Der Generative AI Hub erfordert den Extended-Serviceplan auf einem SAP-BTP-Enterprise-Konto; eine 30-tägige Testphase ist verfügbar. Die Liste der Unterauftragsverarbeiter steht im SAP-Supportportal und erfordert ein Kundenlogin.",
+      "notes": "SAP AI Core ist ein Dienst auf SAP BTP, der Zugriff auf SAPs eigene Modelle und auf Modelle Dritter bietet; ein Teil wird von SAP gehostet, ein Teil wird bei Anbietern wie AWS, Microsoft, Google und Perplexity aufgerufen. Der Generative AI Hub erfordert den Extended-Serviceplan in einem kostenpflichtigen SAP-BTP-Konto, das über Pay-As-You-Go for SAP BTP ohne Vorabverpflichtung oder über einen Enterprise-Vertrag erhältlich ist; eine 30-tägige Testphase ist verfügbar. Die Liste der Unterauftragsverarbeiter steht im SAP-Supportportal und erfordert ein Kundenlogin.",
       "dataResidency": {
         "euRegionDetails": "Der Kunde wählt die Region des SAP-BTP-Subaccounts; EU-Regionen liegen in Frankfurt (u. a. EU10, EU11, EU30), St. Leon-Rot (EU01) und den Niederlanden (EU20). In SAPs Übersicht zur Modellverfügbarkeit läuft ein Modell mit „Yes“ in einer EU-Region nur in den Rechenzentren dieser Region; Modelle mit „Yes*“ können zur Lastverteilung und Ausfallsicherung aus einer anderen Region bedient werden, wobei SAP nicht angibt, ob diese in der EU liegt. Einige Modelle sind entfernte Dienste, die von ihren Anbietern gehostet werden (zum Beispiel AWS Bedrock, Azure OpenAI, Google Vertex AI, Perplexity)."
       },
       "dataUsage": {
-        "retentionPolicy": "SAP nennt keine feste Aufbewahrungsdauer für Prompts und Ausgaben im Generative AI Hub. Nach dem AVV werden bei SAP verbliebene personenbezogene Daten nach Vertragsende innerhalb einer angemessenen Frist gelöscht, spätestens nach 6 Monaten.",
+        "retentionPolicy": "SAP nennt keine feste Aufbewahrungsdauer für Prompts und Ausgaben im Generative AI Hub. Anfragen und Antworten werden nur gespeichert, wenn der Kunde die Aufzeichnung für Inference Observability aktiviert, und zwar im Object Store des Kunden. Bei Modellen, die von Dritten gehostet werden, werden die Daten laut SAP nur zur Verarbeitung an den Modellanbieter gesendet und dort nicht gespeichert. Nach dem AVV werden bei SAP verbliebene personenbezogene Daten nach Vertragsende innerhalb einer angemessenen Frist gelöscht, spätestens nach 6 Monaten.",
         "details": "SAP erklärt, dass Kundendaten in SAP AI Core nie zum Training von SAP-Modellen verwendet oder zum Training von LLMs an Drittanbieter weitergegeben werden. SAPs KI-Bedingungen ergänzen, dass Kundendaten nicht an Drittanbieter von Modellen zu Trainingszwecken übergeben werden."
       },
       "euAiAct": {
