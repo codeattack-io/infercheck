@@ -13,12 +13,12 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": null,
-      "euRegionDetails": "The serverless API has no EU option: the default endpoint does not fix a processing region, and the only selectable geography is a US endpoint for some models. EU processing is available through dedicated endpoints with region placement or private/VPC deployments arranged with sales."
+      "euRegionDetails": "The serverless API has no EU option: the standard endpoint makes no commitment on the processing region, and the only selectable geography is a US endpoint for some models. Together states that dedicated endpoints and private or VPC deployments can run in EU data centers, arranged with sales; the public documentation names no EU region and does not say where stored prompts and logs are kept."
     },
     "dpa": {
       "available": true,
       "url": "https://trust.together.ai/resources",
-      "signedVia": "online_acceptance"
+      "signedVia": "custom_contract"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
@@ -56,12 +56,12 @@
     "https://docs.together.ai/docs/dedicated-endpoints/manage",
     "https://support.together.ai/articles/8079447813-eu-data-centers-and-dedicated-model-deployment"
   ],
-  "notes": "Together Computer, Inc. is a Delaware corporation based in San Francisco and is not certified under the EU-US Data Privacy Framework. Its privacy policy names EU standard contractual clauses for transfers from the EEA, Switzerland and the UK. There is no free trial; access requires a credit purchase.",
+  "notes": "Together Computer, Inc. is a Delaware corporation based in San Francisco and is not certified under the EU-US Data Privacy Framework. Its privacy policy names EU standard contractual clauses for transfers from the EEA, Switzerland and the UK. The data processing addendum is not public and is provided on request through the trust center.",
   "translations": {
     "de": {
-      "notes": "Together Computer, Inc. ist eine Gesellschaft nach dem Recht von Delaware mit Sitz in San Francisco und nicht unter dem EU-US Data Privacy Framework zertifiziert. Die Datenschutzerklärung nennt EU-Standardvertragsklauseln für Übermittlungen aus dem EWR, der Schweiz und dem Vereinigten Königreich. Es gibt keine kostenlose Testphase; der Zugang setzt einen Guthabenkauf voraus.",
+      "notes": "Together Computer, Inc. ist eine Gesellschaft nach dem Recht von Delaware mit Sitz in San Francisco und nicht unter dem EU-US Data Privacy Framework zertifiziert. Die Datenschutzerklärung nennt EU-Standardvertragsklauseln für Übermittlungen aus dem EWR, der Schweiz und dem Vereinigten Königreich. Der Auftragsverarbeitungsvertrag ist nicht öffentlich und wird auf Anfrage über das Trust Center bereitgestellt.",
       "dataResidency": {
-        "euRegionDetails": "Die serverlose API bietet keine EU-Option: Der Standard-Endpunkt legt keine Verarbeitungsregion fest, wählbar ist nur ein US-Endpunkt für einige Modelle. Verarbeitung in der EU ist über dedizierte Endpunkte mit Regionsvorgabe oder über private/VPC-Bereitstellungen nach Absprache mit dem Vertrieb möglich."
+        "euRegionDetails": "Die serverlose API bietet keine EU-Option: Der Standard-Endpunkt sagt keine Verarbeitungsregion zu, wählbar ist nur ein US-Endpunkt für einige Modelle. Laut Together können dedizierte Endpunkte sowie private oder VPC-Bereitstellungen nach Absprache mit dem Vertrieb in EU-Rechenzentren laufen; die öffentliche Dokumentation nennt keine EU-Region und gibt nicht an, wo gespeicherte Prompts und Logs liegen."
       },
       "dataUsage": {
         "retentionPolicy": "Standardmäßig werden Prompts und Antworten gespeichert und können zur Produktverbesserung genutzt werden, bis der Kunde sie löscht. Organisations-Admins können Zero Data Retention aktivieren; danach werden Anfrageinhalte nicht gespeichert, Nutzungsmetadaten und hochgeladene Dateien bleiben erhalten.",
