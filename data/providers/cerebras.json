@@ -2,19 +2,18 @@
   "slug": "cerebras",
   "name": "Cerebras",
   "type": "api_provider",
-  "website": "https://inference-docs.cerebras.ai",
+  "website": "https://www.cerebras.ai",
   "apiDocsUrl": "https://inference-docs.cerebras.ai",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
       "regions": [
         "US",
-        "CA",
-        "EU"
+        "CA"
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Cerebras announced inference data centers in the United States and Canada, and announced a Europe region planned for Q4 2025. Primary-source materials reviewed do not state that API customers can enforce EU-only routing or processing. Cerebras also stated in April 2025 that all inference-serving data centers were in North America at that time."
+      "euRegionDetails": "Cerebras offers no EU region for its inference API. The documentation lists a single API endpoint with no region selection, for both shared (pay-per-token) and dedicated inference. Cerebras has announced its first European data center capacity for the end of 2026 but has not said whether API customers will be able to select it."
     },
     "dpa": {
       "available": true,
@@ -22,15 +21,15 @@
       "signedVia": "custom_contract"
     },
     "dataUsage": {
-      "trainsOnCustomerData": null,
-      "optOutAvailable": null,
-      "retentionPolicy": "Cerebras states it does not retain inputs and outputs associated with its training, inference, and chatbot services, and deletes logs associated with those services when they are no longer necessary to provide services.",
-      "details": "Prompt caching documentation says caches are ZDR-compliant, remain ephemeral in memory, are never persisted, and are stored in key-value stores colocated in the same data center as the serving model instance, with a TTL guaranteed for 5 minutes and up to 1 hour depending on load."
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "Cerebras states that it does not retain inputs and outputs of its inference service and deletes related logs once they are no longer needed to provide the service. Files uploaded for batch jobs and batch results are kept for 7 days by default.",
+      "details": "The terms of service do not allow Cerebras to use customer content to train or fine-tune models. Prompt caches are held only in memory in the data center serving the request and expire after 5 minutes to 1 hour."
     },
     "subProcessors": {
       "disclosed": true,
       "url": "https://trust.cerebras.ai/",
-      "includesEuEntities": null
+      "includesEuEntities": false
     },
     "certifications": [
       "SOC2"
@@ -39,34 +38,36 @@
       "status": "unknown",
       "details": null
     },
-    "sccs": null,
+    "sccs": true,
     "adequacyDecision": false
   },
-  "pricingTier": "free_tier",
-  "lastVerified": "2026-04-11",
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://inference-docs.cerebras.ai",
     "https://inference-docs.cerebras.ai/capabilities/prompt-caching",
-    "https://inference-docs.cerebras.ai/api-reference/authentication",
+    "https://inference-docs.cerebras.ai/capabilities/batch",
+    "https://inference-docs.cerebras.ai/dedicated/overview",
+    "https://inference-docs.cerebras.ai/support/rate-limits",
     "https://www.cerebras.ai/privacy-policy",
+    "https://www.cerebras.ai/policies",
+    "https://www.cerebras.ai/terms-of-service",
     "https://www.cerebras.ai/pricing",
-    "https://www.cerebras.ai/contact",
-    "https://www.cerebras.ai/company",
     "https://www.cerebras.ai/press-release/cerebras-announces-six-new-ai-datacenters-across-north-america-and-europe-to-deliver-industry-s",
-    "https://www.cerebras.ai/news/meta-unleashes-llama-api-running-18x-faster-than-openai-cerebras-partnership-delivers-2-600",
+    "https://investors.cerebras.ai/news-releases/news-release-details/cerebras-systems-accelerates-european-expansion-200mw-ai-compute",
     "https://trust.cerebras.ai/"
   ],
-  "notes": "Cerebras provides a public privacy policy and a trust center that indicates a DPA and subprocessor information are available, but the reviewed public pages did not expose enough primary-source detail to confirm SCC terms, EU-only routing guarantees, or whether customer API data is used for model training. Their current public posture suggests predominantly North American inference infrastructure, with a Europe region announced but no verified customer-selectable EU-only processing commitment found.",
+  "notes": "Cerebras Systems Inc. is based in Sunnyvale, California, and is not certified under the EU-US Data Privacy Framework; its privacy summary names standard contractual clauses for transfers. A DPA is listed in the trust center and is available on request. New accounts get a one-time $5 trial credit, after which usage is billed pay as you go.",
   "translations": {
     "de": {
-      "notes": "Cerebras stellt eine öffentliche Datenschutzerklärung und ein Trust Center bereit, aus denen hervorgeht, dass ein Auftragsverarbeitungsvertrag (AVV) und Informationen zu Unterauftragsverarbeitern verfügbar sind; die geprüften öffentlich zugänglichen Seiten enthielten jedoch nicht genügend Details aus Primärquellen, um Bedingungen zu Standardvertragsklauseln (SCC), Garantien für ein ausschließliches EU-Routing oder die Frage zu bestätigen, ob API-Kundendaten für das Modelltraining verwendet werden. Die derzeitige öffentliche Positionierung deutet auf eine überwiegend nordamerikanische Inferenz-Infrastruktur hin, wobei eine Region in Europa angekündigt wurde, jedoch keine verifizierte, kundenseitig auswählbare Verpflichtung zu einer ausschließlich in der EU erfolgenden Verarbeitung festgestellt werden konnte.",
+      "notes": "Cerebras Systems Inc. hat seinen Sitz in Sunnyvale, Kalifornien, und ist nicht unter dem EU-US Data Privacy Framework zertifiziert; die Datenschutz-Zusammenfassung nennt Standardvertragsklauseln für Übermittlungen. Ein Auftragsverarbeitungsvertrag ist im Trust Center aufgeführt und auf Anfrage erhältlich. Neue Konten erhalten einmalig 5 US-Dollar Testguthaben, danach wird nutzungsabhängig abgerechnet.",
       "dataResidency": {
-        "euRegionDetails": "Cerebras kündigte Inferenz-Rechenzentren in den Vereinigten Staaten und Kanada an und kündigte eine für Q4 2025 geplante Region in Europa an. Die geprüften Materialien aus Primärquellen besagen nicht, dass API-Kunden ein ausschließliches Routing oder eine ausschließlich in der EU erfolgende Verarbeitung durchsetzen können. Cerebras erklärte außerdem im April 2025, dass sich zu diesem Zeitpunkt sämtliche Rechenzentren für die Bereitstellung von Inferenz in Nordamerika befanden."
+        "euRegionDetails": "Cerebras bietet für seine Inferenz-API keine EU-Region an. Die Dokumentation nennt einen einzigen API-Endpunkt ohne Regionsauswahl, sowohl für geteilte (Abrechnung pro Token) als auch für dedizierte Inferenz. Cerebras hat erste Rechenzentrumskapazitäten in Europa für Ende 2026 angekündigt, aber nicht gesagt, ob API-Kunden diese auswählen können."
       },
       "dataUsage": {
-        "retentionPolicy": "Cerebras gibt an, Eingaben und Ausgaben im Zusammenhang mit seinen Trainings-, Inferenz- und Chatbot-Diensten nicht zu speichern, und Protokolle im Zusammenhang mit diesen Diensten zu löschen, sobald sie für die Erbringung der Dienste nicht mehr erforderlich sind.",
-        "details": "Die Dokumentation zum Prompt Caching besagt, dass die Caches ZDR-konform sind, flüchtig im Speicher verbleiben, niemals persistent gespeichert werden und in Key-Value-Stores gespeichert sind, die sich im selben Rechenzentrum wie die bereitstellende Modellinstanz befinden, mit einer garantierten TTL von 5 Minuten und bis zu 1 Stunde abhängig von der Auslastung."
+        "retentionPolicy": "Cerebras gibt an, Ein- und Ausgaben seines Inferenzdienstes nicht zu speichern und zugehörige Protokolle zu löschen, sobald sie für die Erbringung des Dienstes nicht mehr benötigt werden. Für Batch-Aufträge hochgeladene Dateien und Batch-Ergebnisse werden standardmäßig 7 Tage aufbewahrt.",
+        "details": "Nach den Nutzungsbedingungen darf Cerebras Kundeninhalte nicht zum Trainieren oder Feinabstimmen von Modellen verwenden. Prompt-Caches werden nur im Arbeitsspeicher des bearbeitenden Rechenzentrums gehalten und verfallen nach 5 Minuten bis 1 Stunde."
       }
     }
   }
