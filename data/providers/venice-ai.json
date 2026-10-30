@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Venice states that its service is hosted in the United States and that personal data is processed and stored there. No EU region or EU-only routing is documented for the self-serve API or for enterprise agreements. Depending on the model, prompts run on Venice-controlled GPUs, unnamed zero-retention partners, TEE partners (NEAR AI Cloud, Phala Network) or, for \"Anonymous\" models, the original providers such as OpenAI, Anthropic, Google and xAI."
+      "euRegionDetails": "Venice states that its service is hosted in the United States and that personal data is processed and stored there. No EU region or EU-only routing is documented for the self-serve API or for enterprise agreements. Depending on the model, prompts run on Venice-controlled GPUs, unnamed zero-retention partners, TEE partners (NEAR AI Cloud, Phala Network) or, for \"Anonymous\" models, the original providers such as OpenAI, Anthropic and Google."
     },
     "dpa": {
       "available": true,
@@ -23,7 +23,7 @@
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
       "retentionPolicy": "Venice says it does not store or log prompt and response content for normal API inference; generated videos are kept temporarily until downloaded. For \"Private\" models, partners are contractually bound not to retain prompts, while for \"Anonymous\" models Venice says users should assume the third-party provider stores them. Account and billing metadata are kept as long as needed for the stated purposes or legal obligations.",
-      "details": "The terms state that neither Venice nor the third-party model providers it uses may train on user content. Requests pass through a Venice proxy and run on Venice-controlled GPUs or zero-retention partners (\"Private\"), in hardware enclaves run by NEAR AI Cloud and Phala Network (\"TEE\"/\"E2EE\"), or at the original model provider with the user's identity removed (\"Anonymous\"), where that provider's own policies apply. A DPA is offered on request through API sales; no sub-processor list is published."
+      "details": "The terms state that Venice does not use user content for training and requires the third-party model providers it uses not to do so either. Requests pass through a Venice proxy and run on Venice-controlled GPUs or zero-retention partners (\"Private\"), in hardware enclaves run by NEAR AI Cloud and Phala Network (\"TEE\"/\"E2EE\"), or at the original model provider with the user's identity removed (\"Anonymous\"), where that provider's own policies apply. A DPA is offered on request through API sales and its text is not public; no sub-processor list is published."
     },
     "subProcessors": {
       "disclosed": false,
@@ -50,18 +50,19 @@
     "https://venice.ai/legal/tos",
     "https://venice.ai/contact-api",
     "https://venice.ai/venice-api",
-    "https://venice.ai/blog/how-venice-handles-your-privacy"
+    "https://venice.ai/blog/how-venice-handles-your-privacy",
+    "https://venice.ai/pricing"
   ],
   "notes": "Venice is a US company based in Wyoming; it states that it does not store API prompts and that user content is not used for training, but \"Anonymous\" models send prompts to providers such as OpenAI, Anthropic and Google under their own policies. A DPA is available on request, but no sub-processor list, EU processing option, security certification or EU-US Data Privacy Framework certification was found. Free accounts can call the API at the same per-token rates as paid accounts; Pro Plus and Max plans include monthly API credit.",
   "translations": {
     "de": {
       "notes": "Venice ist ein US-Unternehmen mit Sitz in Wyoming; es gibt an, API-Prompts nicht zu speichern und Nutzerinhalte nicht für Training zu verwenden, doch „Anonymous“-Modelle leiten Prompts an Anbieter wie OpenAI, Anthropic und Google weiter, für die deren eigene Richtlinien gelten. Ein AVV ist auf Anfrage erhältlich, eine Liste der Unterauftragsverarbeiter, eine EU-Verarbeitungsoption, Sicherheitszertifizierungen oder eine Zertifizierung nach dem EU-US Data Privacy Framework wurden jedoch nicht gefunden. Kostenlose Konten können die API zu denselben Tokenpreisen wie zahlende Konten nutzen; die Pläne Pro Plus und Max enthalten ein monatliches API-Guthaben.",
       "dataResidency": {
-        "euRegionDetails": "Venice gibt an, dass der Dienst in den USA gehostet wird und personenbezogene Daten dort verarbeitet und gespeichert werden. Für die Self-Service-API und für Enterprise-Verträge ist weder eine EU-Region noch eine reine EU-Verarbeitung dokumentiert. Je nach Modell laufen Prompts auf von Venice kontrollierten GPUs, bei nicht genannten Partnern ohne Datenspeicherung, bei TEE-Partnern (NEAR AI Cloud, Phala Network) oder bei „Anonymous“-Modellen direkt bei den ursprünglichen Anbietern wie OpenAI, Anthropic, Google und xAI."
+        "euRegionDetails": "Venice gibt an, dass der Dienst in den USA gehostet wird und personenbezogene Daten dort verarbeitet und gespeichert werden. Für die Self-Service-API und für Enterprise-Verträge ist weder eine EU-Region noch eine reine EU-Verarbeitung dokumentiert. Je nach Modell laufen Prompts auf von Venice kontrollierten GPUs, bei nicht genannten Partnern ohne Datenspeicherung, bei TEE-Partnern (NEAR AI Cloud, Phala Network) oder bei „Anonymous“-Modellen direkt bei den ursprünglichen Anbietern wie OpenAI, Anthropic und Google."
       },
       "dataUsage": {
         "retentionPolicy": "Venice gibt an, Prompt- und Antwortinhalte bei normaler API-Nutzung weder zu speichern noch zu protokollieren; generierte Videos werden bis zum Download vorübergehend gespeichert. Bei „Private“-Modellen sind die Partner vertraglich verpflichtet, keine Prompts aufzubewahren, bei „Anonymous“-Modellen sollen Nutzer laut Venice davon ausgehen, dass der Drittanbieter sie speichert. Konto- und Abrechnungsmetadaten werden so lange aufbewahrt, wie es für die genannten Zwecke oder gesetzliche Pflichten nötig ist.",
-        "details": "Laut Nutzungsbedingungen dürfen weder Venice noch die eingesetzten Drittanbieter von Modellen Nutzerinhalte zum Training verwenden. Anfragen laufen über einen Venice-Proxy und werden auf von Venice kontrollierten GPUs oder bei Partnern ohne Datenspeicherung („Private“), in Hardware-Enklaven von NEAR AI Cloud und Phala Network („TEE“/„E2EE“) oder beim ursprünglichen Modellanbieter ohne Nutzeridentität („Anonymous“) verarbeitet, wobei dort dessen eigene Richtlinien gelten. Ein AVV wird auf Anfrage über den API-Vertrieb angeboten; eine Liste der Unterauftragsverarbeiter wird nicht veröffentlicht."
+        "details": "Laut Nutzungsbedingungen verwendet Venice Nutzerinhalte nicht zum Training und verlangt das auch von den eingesetzten Drittanbietern von Modellen. Anfragen laufen über einen Venice-Proxy und werden auf von Venice kontrollierten GPUs oder bei Partnern ohne Datenspeicherung („Private“), in Hardware-Enklaven von NEAR AI Cloud und Phala Network („TEE“/„E2EE“) oder beim ursprünglichen Modellanbieter ohne Nutzeridentität („Anonymous“) verarbeitet, wobei dort dessen eigene Richtlinien gelten. Ein AVV wird auf Anfrage über den API-Vertrieb angeboten, sein Text ist nicht öffentlich; eine Liste der Unterauftragsverarbeiter wird nicht veröffentlicht."
       }
     }
   }
