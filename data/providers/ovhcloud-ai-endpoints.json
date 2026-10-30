@@ -11,58 +11,68 @@
         "EU"
       ],
       "euOnly": true,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": "AI Endpoints inference runs in OVHcloud's European datacentres. EU regions: Gravelines (GRA1–GRA11, France) and Strasbourg (SBG1–SBG5, France). EU-resident customers should select EU regions; Canadian region (BHS) also exists but is not for EU workloads."
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "OVHcloud states that AI Endpoints is hosted and run in the EU; its regions page lists the service only in Gravelines (France), with no region choice. OVHcloud affiliates in the UK and Canada are listed as sub-processors and may process data remotely where needed for the service, in particular for security and maintenance."
     },
     "dpa": {
       "available": true,
-      "url": "https://www.ovhcloud.com/en/personal-data-protection/",
+      "url": "https://contract.eu.ovhapis.com/1.0/pdf/OVH_Data_Protection_Agreement-ie.pdf",
       "signedVia": "online_acceptance"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "Prompts and completions not retained beyond request processing per OVHcloud's data protection documentation.",
-      "details": "OVHcloud acts as data processor for customer workloads. No AI-specific training on customer inference data."
+      "retentionPolicy": "Inputs and outputs are not stored or backed up; OVHcloud keeps only the data needed for billing. The Batch API stores input and output data temporarily.",
+      "details": "OVHcloud acts as processor under its DPA. The AI Endpoints terms state that OVHcloud does not reuse inputs and outputs in any way, and OVHcloud states that customer data is never used to train models."
     },
     "subProcessors": {
       "disclosed": true,
-      "url": "https://www.ovhcloud.com/en/personal-data-protection/",
+      "url": "https://contract.eu.ovhapis.com/1.0/pdf/OVH_Sub_processors-ie.pdf",
       "includesEuEntities": true
     },
     "certifications": [
       "ISO27001",
-      "HDS",
-      "SOC2"
+      "ISO27017",
+      "ISO27018",
+      "ISO27701",
+      "SOC2",
+      "HDS"
     ],
     "euAiAct": {
-      "status": "unknown",
-      "details": "Infrastructure provider and deployer of third-party open-weight models. No specific EU AI Act compliance statement for AI Endpoints published. OVHcloud is engaged in EU AI Act readiness discussions."
+      "status": "monitoring",
+      "details": "OVHcloud has signed the European Commission's voluntary AI Pact pledges. AI Endpoints serves third-party open-weight models; no AI Act statement specific to AI Endpoints was found."
     },
-    "sccs": false,
+    "sccs": true,
     "adequacyDecision": true
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-07",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/",
-    "https://www.ovhcloud.com/en/personal-data-protection/",
-    "https://www.ovhcloud.com/en/compliance/"
+    "https://www.ovhcloud.com/en/public-cloud/regions-availability/",
+    "https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-capabilities",
+    "https://contract.eu.ovhapis.com/1.0/pdf/Conditions_particulieres_OVH_Stack-ie.pdf",
+    "https://contract.eu.ovhapis.com/1.0/pdf/OVH_Data_Protection_Agreement-ie.pdf",
+    "https://contract.eu.ovhapis.com/1.0/pdf/OVH_Sub_processors-ie.pdf",
+    "https://www.ovhcloud.com/en/compliance/iso-27001-27017-27018/",
+    "https://www.ovhcloud.com/en/compliance/iso-27701/",
+    "https://digital-strategy.ec.europa.eu/en/policies/ai-pact",
+    "https://www.ovhcloud.com/en/compliance/secnumcloud/"
   ],
-  "notes": "OVHcloud (OVH SAS, Roubaix, France) is the largest EU-owned cloud provider by infrastructure. France is an EU member state — no cross-border transfer concern for EU customers. SecNumCloud qualification (French ANSSI sovereign cloud standard) applies to OVHcloud Private Cloud and Bare Metal Pod products, NOT to AI Endpoints (public cloud serverless). SOC 1 Type II confirmed for some products. HDS certification for healthcare data hosting.",
+  "notes": "OVH SAS is headquartered in Roubaix, France. AI Endpoints serves third-party open-weight models through an OpenAI-compatible API from OVHcloud's Gravelines datacentre and bills per token; anonymous use without an API key is free but limited to 2 requests per minute per IP and model. AI Endpoints is not among the services OVHcloud lists as SecNumCloud-qualified.",
   "translations": {
     "de": {
-      "notes": "OVHcloud (OVH SAS, Roubaix, Frankreich) ist nach Infrastruktur der größte Cloud-Anbieter in EU-Eigentum. Frankreich ist ein EU-Mitgliedstaat — für EU-Kunden besteht kein grenzüberschreitendes Übermittlungsrisiko. Die SecNumCloud-Qualifizierung (französischer Souveränitäts-Cloud-Standard der ANSSI) gilt für die Produkte OVHcloud Private Cloud und Bare Metal Pod, NICHT für AI Endpoints (serverlose Public Cloud). SOC 1 Type II ist für einige Produkte bestätigt. HDS-Zertifizierung für das Hosting von Gesundheitsdaten.",
+      "notes": "OVH SAS hat seinen Sitz in Roubaix, Frankreich. AI Endpoints stellt Open-Weight-Modelle Dritter über eine OpenAI-kompatible API aus dem OVHcloud-Rechenzentrum in Gravelines bereit und rechnet pro Token ab; die anonyme Nutzung ohne API-Schlüssel ist kostenlos, aber auf 2 Anfragen pro Minute je IP-Adresse und Modell begrenzt. AI Endpoints gehört nicht zu den Diensten, die OVHcloud als SecNumCloud-qualifiziert führt.",
       "dataResidency": {
-        "euRegionDetails": "Die Inferenz von AI Endpoints läuft in den europäischen Rechenzentren von OVHcloud. EU-Regionen: Gravelines (GRA1–GRA11, Frankreich) und Straßburg (SBG1–SBG5, Frankreich). In der EU ansässige Kunden sollten EU-Regionen auswählen; die kanadische Region (BHS) existiert ebenfalls, ist jedoch nicht für EU-Workloads vorgesehen."
+        "euRegionDetails": "Laut OVHcloud wird AI Endpoints in der EU gehostet und betrieben; die Regionsübersicht führt den Dienst nur in Gravelines (Frankreich), eine Regionswahl gibt es nicht. OVHcloud-Konzerngesellschaften im Vereinigten Königreich und in Kanada sind als Unterauftragsverarbeiter gelistet und können Daten aus der Ferne verarbeiten, soweit dies für den Dienst nötig ist, insbesondere für Sicherheit und Wartung."
       },
       "dataUsage": {
-        "retentionPolicy": "Prompts und Completions werden gemäß der Datenschutzdokumentation von OVHcloud nicht über die Antragsverarbeitung hinaus gespeichert.",
-        "details": "OVHcloud handelt für Kunden-Workloads als Auftragsverarbeiter. Kein KI-spezifisches Training auf Kundendaten aus der Inferenz."
+        "retentionPolicy": "Eingaben und Ausgaben werden weder gespeichert noch gesichert; OVHcloud behält nur die für die Abrechnung nötigen Daten. Die Batch-API speichert Eingabe- und Ausgabedaten vorübergehend.",
+        "details": "OVHcloud handelt gemäß seinem AVV als Auftragsverarbeiter. Laut den AI-Endpoints-Bedingungen verwendet OVHcloud Eingaben und Ausgaben in keiner Weise weiter, und OVHcloud erklärt, dass Kundendaten nie zum Training von Modellen genutzt werden."
       },
       "euAiAct": {
-        "details": "Infrastrukturanbieter und Betreiber von Open-Weight-Modellen Dritter. Für AI Endpoints wurde keine spezifische Erklärung zur Einhaltung des EU AI Act veröffentlicht. OVHcloud ist an Diskussionen zur Vorbereitung auf den EU AI Act beteiligt."
+        "details": "OVHcloud hat die freiwilligen AI-Pact-Zusagen der Europäischen Kommission unterzeichnet. AI Endpoints stellt Open-Weight-Modelle Dritter bereit; eine AI-Endpoints-spezifische Erklärung zum AI Act wurde nicht gefunden."
       }
     }
   }

@@ -2,8 +2,8 @@
   "slug": "evroc",
   "name": "evroc",
   "type": "api_provider",
-  "website": "https://docs.evroc.com",
-  "apiDocsUrl": "https://docs.evroc.com",
+  "website": "https://evroc.com",
+  "apiDocsUrl": "https://docs.evroc.com/products/think/index.html",
   "compliance": {
     "headquarters": "SE",
     "dataResidency": {
@@ -12,7 +12,7 @@
       ],
       "euOnly": true,
       "dataLeavesEuAtInference": false,
-      "euRegionDetails": "evroc states that its infrastructure is exclusively located in Europe, all data is stored in the European Union, and its AI offering runs on European GPU infrastructure. Public materials also mention active regions in Stockholm, Paris, and Frankfurt."
+      "euRegionDetails": "evroc states that evroc Think is operated entirely in Europe and that all data is stored in the EU; its cloud regions are in Stockholm, Paris and Frankfurt. The DPA bars access to customer content from outside the EEA unless the customer explicitly shares it for support, maintenance, troubleshooting, security or engineering purposes, and requires its AI-services sub-processor to process and store personal data in the EU/EEA."
     },
     "dpa": {
       "available": true,
@@ -22,43 +22,54 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "For evroc Think Models, evroc says it does not use customer prompts, completions, or other customer data to train models unless the customer explicitly opts in in writing. It may log API metadata such as timestamps, request/response sizes, and error codes for operational, security, and billing purposes, and says those logs are retained according to its data retention policies, but it does not publish a specific retention period for API metadata in the sources reviewed.",
-      "details": "The public Service Terms state that customer prompts, completions, and other customer data from evroc Think Models are not used to train, improve, or develop AI models unless the customer has explicitly opted in in writing."
+      "retentionPolicy": "evroc Think does not log or persistently store the content of prompts or responses; transient processing or caching is limited to serving the request. API metadata (timestamps, request/response sizes, error codes) is kept for operational, security and billing purposes; its retention periods are available to customers on request.",
+      "details": "The Service Terms bar evroc from using customer content from its AI services, including prompts, responses, logs and embeddings, to train, fine-tune, evaluate or improve any model unless the customer opts in in writing; equivalent restrictions apply to third-party model providers and sub-processors. The separate roc assistant stores prompts and responses unless prompt history is disabled."
     },
     "subProcessors": {
       "disclosed": false,
       "url": null,
       "includesEuEntities": null
     },
-    "certifications": [
-      "ISO27001"
-    ],
+    "certifications": [],
     "euAiAct": {
       "status": "monitoring",
-      "details": "evroc states that customers must comply with laws governing the use of artificial intelligence systems, and markets its AI services around European sovereignty and compliance, but no explicit public statement claiming formal EU AI Act compliance was found in the reviewed primary sources."
+      "details": "evroc has not published an EU AI Act compliance statement. Its Service Terms commit it to Article 50 transparency measures where required, and its Acceptable Use Policy prohibits practices banned under Article 5."
     },
-    "sccs": true,
+    "sccs": false,
     "adequacyDecision": true
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://docs.evroc.com",
+    "https://evroc.com/ai-services/think-models/",
+    "https://docs.evroc.com/products/think/concepts.html",
     "https://evroc.com/contact/",
+    "https://evroc.com/about/",
     "https://evroc.com/legal/",
-    "https://evroc.com/legal/privacy-notice/",
-    "https://evroc.com/legal/data-processing-addendum/",
+    "https://evroc.com/legal/general-terms-and-conditions/",
     "https://evroc.com/legal/service-terms/",
+    "https://evroc.com/legal/data-processing-addendum/",
+    "https://evroc.com/legal/privacy-notice/",
+    "https://evroc.com/legal/acceptable-use-policy/",
     "https://evroc.com/security/",
     "https://evroc.com/sovereignty/",
-    "https://evroc.com/ai-services/roc/",
-    "https://evroc.com/news/evroc-suse-european-sovereign-cloud-partnership"
+    "https://evroc.com/roc/"
   ],
-  "notes": "evroc presents a strongly EU-sovereign posture: headquarters in Sweden, infrastructure and AI GPU operations stated to be in Europe/EU, and a public DPA with SCC language for non-EU/EEA subprocessors. Customer data for Think Models is stated not to be used for training unless the customer opts in in writing, but evroc did not provide a publicly accessible subprocessor list or a specific published retention period for API metadata in the sources reviewed.",
+  "notes": "evroc is a Stockholm-based cloud provider whose Service Terms state that evroc Think does not log or persistently store prompts or responses and does not use customer content for training without a written opt-in. The DPA is part of the online terms and requires its single, unnamed AI-services sub-processor to be established in and process data within the EU/EEA. evroc publishes no sub-processor list, and its security page says the infrastructure meets ISO 27001:2022 without claiming a certification.",
   "translations": {
     "de": {
-      "notes": "evroc weist eine stark EU-souveräne Ausrichtung auf: Hauptsitz in Schweden, Infrastruktur sowie AI-GPU-Betrieb laut Angaben in Europa bzw. der EU, und ein öffentlich zugänglicher Auftragsverarbeitungsvertrag (AVV) mit Regelungen zu Standardvertragsklauseln (SCC) für Unterauftragsverarbeiter außerhalb der EU/des EWR. Für Think Models wird angegeben, dass Kundendaten nicht für das Training verwendet werden, es sei denn, der Kunde erteilt hierzu ausdrücklich schriftlich ein Opt-out? "
+      "notes": "evroc ist ein Cloud-Anbieter mit Sitz in Stockholm; laut Service Terms protokolliert und speichert evroc Think Prompts und Antworten nicht dauerhaft und nutzt Kundeninhalte ohne schriftliches Opt-in nicht für Training. Der Auftragsverarbeitungsvertrag (AVV) ist Teil der Online-Bedingungen und verpflichtet den einzigen, nicht namentlich genannten Unterauftragsverarbeiter für KI-Dienste, in der EU/im EWR ansässig zu sein und Daten dort zu verarbeiten. evroc veröffentlicht keine Liste der Unterauftragsverarbeiter; laut Sicherheitsseite erfüllt die Infrastruktur ISO 27001:2022, eine Zertifizierung nennt evroc dort nicht.",
+      "dataResidency": {
+        "euRegionDetails": "Laut evroc wird evroc Think vollständig in Europa betrieben und alle Daten werden in der EU gespeichert; die Cloud-Regionen liegen in Stockholm, Paris und Frankfurt. Der AVV untersagt den Zugriff auf Kundeninhalte von außerhalb des EWR, sofern der Kunde sie nicht ausdrücklich für Support, Wartung, Fehlerbehebung, Sicherheit oder Engineering freigibt, und verpflichtet den Unterauftragsverarbeiter für KI-Dienste, personenbezogene Daten in der EU/im EWR zu verarbeiten und zu speichern."
+      },
+      "dataUsage": {
+        "retentionPolicy": "evroc Think protokolliert oder speichert die Inhalte von Prompts und Antworten nicht dauerhaft; eine kurzzeitige Verarbeitung oder Zwischenspeicherung beschränkt sich auf die Bearbeitung der Anfrage. API-Metadaten (Zeitstempel, Anfrage-/Antwortgrößen, Fehlercodes) werden für Betrieb, Sicherheit und Abrechnung aufbewahrt; die Aufbewahrungsfristen erhalten Kunden auf Anfrage.",
+        "details": "Laut Service Terms nutzt evroc Kundeninhalte aus seinen KI-Diensten, einschließlich Prompts, Antworten, Logs und Embeddings, nicht zum Training, Fine-Tuning, zur Evaluierung oder Verbesserung von Modellen, sofern der Kunde nicht schriftlich einwilligt (Opt-in); gleichwertige Beschränkungen gelten für Drittanbieter von Modellen und Unterauftragsverarbeiter. Der separate Assistent roc speichert Prompts und Antworten, solange der Prompt-Verlauf nicht deaktiviert ist."
+      },
+      "euAiAct": {
+        "details": "evroc hat keine Erklärung zur Konformität mit dem EU AI Act veröffentlicht. Die Service Terms verpflichten evroc, wo erforderlich, zu Transparenzmaßnahmen nach Artikel 50, und die Acceptable Use Policy verbietet nach Artikel 5 untersagte Praktiken."
+      }
     }
   }
 }
