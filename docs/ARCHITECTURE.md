@@ -133,7 +133,7 @@ Commands that write to the database (`sync:models` without `--dry-run`, `db:migr
 
 ## CI and deploy
 
-**`ci.yml`** runs on pull requests and on pushes to every branch except `main`. Bun is pinned to one version.
+**`ci.yml`** runs on pull requests only. Bun is pinned to one version.
 
 - `check`: `prettier --check .`, `eslint --max-warnings=0`, `tsc --noEmit`, `bun run validate`.
 - `build`: `bun run build` with `DATABASE_URL` set from `DATABASE_URL_DEV`. Skipped for pull requests from forks, which get no secrets.
