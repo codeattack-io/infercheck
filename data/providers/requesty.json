@@ -10,22 +10,25 @@
       "regions": [
         "EU",
         "US",
-        "SG"
+        "GB",
+        "SG",
+        "CN",
+        "JP"
       ],
-      "euOnly": false,
-      "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Requesty offers an EU endpoint at https://router.eu.requesty.ai/v1 and states that EU requests are hosted, stored, and processed exclusively in Frankfurt, Germany (AWS eu-central-1) with US fallback disabled. However, its public sub-processor list shows multiple inference providers in the US, Global, Singapore, China, UK, and EU, so EU-only processing is not guaranteed across the overall service unless limited to EU-capable providers."
+      "euOnly": true,
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "Customers must call the EU endpoint (router.eu.requesty.ai) and use only models marked 'eu' (for example Claude on Bedrock EU regions, Gemini on Vertex EU, GPT on Azure France Central or Sweden Central, Mistral); Requesty's terms then commit to processing and inference in the EEA. Models marked 'global', including the direct OpenAI, Anthropic and Gemini APIs, are outside this commitment. Blocking non-EU endpoints for a whole organisation is available on paid plans on written request, and restricting it to EU models (Approved Models) only on Enterprise plans."
     },
     "dpa": {
       "available": true,
-      "url": null,
-      "signedVia": "custom_contract"
+      "url": "https://www.requesty.ai/dpa",
+      "signedVia": "online_acceptance"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
-      "optOutAvailable": true,
-      "retentionPolicy": "Requesty states a zero data retention policy for its gateway: requests are proxied in real time and nothing is stored, logged, or cached after delivery. Its sub-processor disclosure shows underlying model providers may have their own retention periods (for example, some providers retain data for 30 days).",
-      "details": "Requesty states it does not train on customer data. Its sub-processor disclosure says prompts and outputs are not used to train provider models unless the customer has explicitly opted in via Requesty project settings."
+      "optOutAvailable": false,
+      "retentionPolicy": "On self-serve plans Requesty logs prompts and outputs by default and keeps them encrypted in the EU for up to 30 days, plus up to 35 days in backups; logging can be switched off per API key, and paid customers can get organisation-wide zero data retention on written request, which also disables caching. Billing metadata without prompt content is kept for 6 years in every configuration. Model providers apply their own retention, for example 30 days at OpenAI, Anthropic and xAI according to Requesty's sub-processor list.",
+      "details": "Requesty does not use content from paying customers for training or product improvement; its own training is limited to free plan accounts. Free 'Training Permitted' models, currently some NVIDIA and Poolside models, train on prompts at the provider; paying customers can still select them unless an administrator excludes them."
     },
     "subProcessors": {
       "disclosed": true,
@@ -39,30 +42,36 @@
       "status": "unknown",
       "details": null
     },
-    "sccs": null,
+    "sccs": true,
     "adequacyDecision": true
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://www.requesty.ai/",
-    "https://www.requesty.ai/eu",
-    "https://www.requesty.ai/es/enterprise",
+    "https://www.requesty.ai/terms",
     "https://www.requesty.ai/privacy",
     "https://www.requesty.ai/privacy/subprocessors",
-    "https://docs.requesty.ai/quickstart"
+    "https://www.requesty.ai/dpa",
+    "https://www.requesty.ai/pricing",
+    "https://www.requesty.ai/enterprise",
+    "https://www.requesty.ai/security",
+    "https://docs.requesty.ai/quickstart",
+    "https://docs.requesty.ai/features/eu-routing",
+    "https://docs.requesty.ai/features/data-privacy",
+    "https://router.eu.requesty.ai/v1/models"
   ],
-  "notes": "Requesty publishes a useful sub-processor disclosure and advertises zero retention, no training, and an EU Frankfurt endpoint. However, because its gateway can route to non-EU inference providers and no public DPA URL or SCC statement was found on primary sources, EU customers should verify routing constraints and contractual terms directly with Requesty.",
+  "notes": "Requesty Ltd is a UK-based gateway that routes requests to more than 40 model providers, most of them outside the EU. EU-only processing requires both the Frankfurt EU endpoint and models marked 'eu'; self-serve plans log prompts for 30 days by default. A free plan with 200 requests per day exists alongside pay-as-you-go pricing with a 5% fee; the full DPA text is not public and is sent on request.",
   "translations": {
     "de": {
-      "notes": "Requesty veröffentlicht eine nützliche Offenlegung der Unterauftragsverarbeiter und bewirbt eine Null-Speicherung, kein Training sowie einen EU-Endpoint in Frankfurt. Da das Gateway jedoch an Nicht-EU-Inferenzanbieter weiterleiten kann und in den Primärquellen weder eine öffentliche URL für einen Auftragsverarbeitungsvertrag (AVV) noch eine Erklärung zu Standardvertragsklauseln (SCC) gefunden wurde, sollten EU-Kunden Routing-Beschränkungen und vertragliche Bedingungen direkt mit Requesty verifizieren.",
+      "notes": "Requesty Ltd ist ein Gateway mit Sitz im Vereinigten Königreich, das Anfragen an mehr als 40 Modellanbieter weiterleitet, die meisten davon außerhalb der EU. Eine reine EU-Verarbeitung setzt sowohl den EU-Endpunkt in Frankfurt als auch Modelle mit der Kennzeichnung „eu“ voraus; in den Self-Service-Tarifen werden Prompts standardmäßig 30 Tage protokolliert. Neben nutzungsbasierter Abrechnung mit 5 % Aufschlag gibt es einen kostenlosen Tarif mit 200 Anfragen pro Tag; der vollständige AVV-Text ist nicht öffentlich und wird auf Anfrage zugeschickt.",
       "dataResidency": {
-        "euRegionDetails": "Requesty bietet einen EU-Endpoint unter https://router.eu.requesty.ai/v1 an und erklärt, dass EU-Anfragen ausschließlich in Frankfurt, Deutschland (AWS eu-central-1), gehostet, gespeichert und verarbeitet werden, wobei ein US-Fallback deaktiviert ist. Die öffentliche Liste der Unterauftragsverarbeiter weist jedoch mehrere Inferenzanbieter in den USA, global, Singapur, China, dem Vereinigten Königreich und der EU aus, sodass eine ausschließlich EU-interne Verarbeitung über den Gesamtdienst nicht gewährleistet ist, sofern keine Beschränkung auf EU-fähige Anbieter erfolgt."
+        "euRegionDetails": "Kunden müssen den EU-Endpunkt (router.eu.requesty.ai) aufrufen und ausschließlich Modelle mit der Kennzeichnung „eu“ verwenden (etwa Claude über Bedrock-EU-Regionen, Gemini über Vertex EU, GPT über Azure France Central oder Sweden Central, Mistral); dann sagen die Bedingungen von Requesty Verarbeitung und Inferenz im EWR zu. Modelle mit der Kennzeichnung „global“, darunter die direkten APIs von OpenAI, Anthropic und Gemini, fallen nicht unter diese Zusage. Eine organisationsweite Sperre von Nicht-EU-Endpunkten gibt es in bezahlten Tarifen auf schriftliche Anfrage, eine Beschränkung auf EU-Modelle (Approved Models) nur im Enterprise-Tarif."
       },
       "dataUsage": {
-        "retentionPolicy": "Requesty gibt für sein Gateway eine Richtlinie der Null-Speicherung an: Anfragen werden in Echtzeit weitergeleitet, und nach der Zustellung wird nichts gespeichert, protokolliert oder zwischengespeichert. Die Offenlegung der Unterauftragsverarbeiter zeigt, dass zugrunde liegende Modellanbieter eigene Aufbewahrungsfristen haben können (beispielsweise speichern einige Anbieter Daten 30 Tage lang).",
-        "details": "Requesty erklärt, keine Kundendaten für das Training zu verwenden. Laut der Offenlegung der Unterauftragsverarbeiter werden Prompts und Ausgaben nicht zum Training von Anbietermodellen verwendet, es sei denn, der Kunde hat dem über die Projekteinstellungen von Requesty ausdrücklich per Opt-in zugestimmt."
+        "retentionPolicy": "In den Self-Service-Tarifen protokolliert Requesty Prompts und Ausgaben standardmäßig und speichert sie verschlüsselt in der EU bis zu 30 Tage, in Backups bis zu 35 weitere Tage; die Protokollierung lässt sich pro API-Schlüssel abschalten, und zahlende Kunden erhalten auf schriftliche Anfrage eine organisationsweite Nullspeicherung, die auch das Caching abschaltet. Abrechnungsmetadaten ohne Prompt-Inhalte bewahrt Requesty in jeder Konfiguration 6 Jahre auf. Die Modellanbieter haben eigene Aufbewahrungsfristen, laut Requestys Liste der Unterauftragsverarbeiter etwa 30 Tage bei OpenAI, Anthropic und xAI.",
+        "details": "Requesty nutzt Inhalte zahlender Kunden weder für Training noch zur Produktverbesserung; eigenes Training beschränkt sich auf Konten im kostenlosen Tarif. Bei kostenlosen „Training Permitted“-Modellen, derzeit einige von NVIDIA und Poolside, trainiert der Anbieter mit den Prompts; zahlende Kunden können sie weiterhin auswählen, sofern ein Administrator sie nicht ausschließt."
       }
     }
   }
