@@ -7,68 +7,63 @@
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
-      "regions": [
-        "EU",
-        "GB",
-        "US",
-        "IN",
-        "AE",
-        "BR",
-        "JP",
-        "SG",
-        "HK",
-        "AU",
-        "ZA"
-      ],
+      "regions": [],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Novita publicly advertises globally distributed GPU regions, including Germany (EU-GER-01, EU-GER-02) and the United Kingdom (EU-GB-01), alongside regions in the US, Asia, Middle East, South America, Africa, and Australia. Because processing capacity is offered across multiple non-EU regions and no primary-source statement guaranteeing EU-only routing for API inference was found, EU-only processing cannot be considered guaranteed and inference can leave the EU."
+      "euRegionDetails": "Novita does not say where its model API runs inference and offers no EU-only option. Its trust center says the platform is hosted on AWS, its privacy policy says personal information may be transferred to other countries including the United States, and API inputs may be passed to third-party model providers for integrated models. The regional locations Novita lists, including Germany and the UK, apply to its GPU instances."
     },
     "dpa": {
-      "available": false,
+      "available": true,
       "url": null,
-      "signedVia": "not_available"
+      "signedVia": "custom_contract"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
-      "optOutAvailable": null,
-      "retentionPolicy": "The privacy policy says personal information is retained only as long as needed to provide the service or for legitimate business purposes such as resolving disputes, safety/security, or legal compliance. It also says de-identified or anonymized information may be used indefinitely for research or statistical purposes.",
-      "details": "Novita’s privacy policy states: \"The Personal Information will not be used for model training.\" The same policy also says it does not apply to content processed on behalf of customers while providing services, and that such content is governed by customer agreements."
+      "optOutAvailable": false,
+      "retentionPolicy": "The terms set zero data retention as the default: prompts and outputs are not kept beyond the time needed to generate and deliver the output, unless law requires otherwise. The trust center says request metadata is kept for 6 months; the privacy policy says account information is kept while the account is active plus 7 years.",
+      "details": "The terms say Novita does not use customer content to train its own models or improve its services by default. Content may pass through automated safety screening, and for integrated third-party models the model provider processes the inputs and outputs."
     },
     "subProcessors": {
-      "disclosed": false,
-      "url": null,
+      "disclosed": true,
+      "url": "https://trust.novita.ai/subprocessors",
       "includesEuEntities": null
     },
-    "certifications": [],
+    "certifications": [
+      "SOC2"
+    ],
     "euAiAct": {
-      "status": "unknown",
-      "details": null
+      "status": "monitoring",
+      "details": "Novita's trust center says it monitors regulatory developments including the EU AI Act and updates its practices as new requirements take effect. Novita is not listed as a signatory of the GPAI Code of Practice."
     },
-    "sccs": null,
+    "sccs": true,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://novita.ai/",
-    "https://novita.ai/docs/api-reference",
-    "https://novita.ai/legal",
     "https://novita.ai/legal/terms-of-service",
+    "https://novita.ai/legal/privacy-policy",
+    "https://trust.novita.ai/",
+    "https://trust.novita.ai/faq",
+    "https://trust.novita.ai/subprocessors",
+    "https://novita.ai/docs/api-reference",
     "https://blogs.novita.ai/gpu-regions-zones/",
-    "https://novita.ai/models-console/model-detail/qwen-qwen-mt-plus"
+    "https://www.dataprivacyframework.gov/list"
   ],
-  "notes": "Novita publishes a privacy policy and API documentation and publicly advertises multi-region global GPU infrastructure, including Germany and the UK, but no primary-source DPA, SCC commitment, or public sub-processor list was found. Their privacy policy expressly says personal information is not used for model training, but it leaves customer-content processing to separate customer agreements that were not publicly located.",
+  "notes": "Novita's terms are governed by Delaware law and name the operator only as Novita AI; Novita is not listed under the EU-US Data Privacy Framework. The trust center offers a DPA with SCCs to enterprise customers on request and reports a SOC 2 Type II audit, with the report available under NDA. The model API is billed per use and its inference location is not documented.",
   "translations": {
     "de": {
-      "notes": "Novita veröffentlicht eine Datenschutzerklärung und eine API-Dokumentation und bewirbt öffentlich eine globale GPU-Infrastruktur mit mehreren Regionen, darunter Deutschland und das Vereinigte Königreich; es wurde jedoch weder ein Auftragsverarbeitungsvertrag (AVV), eine Verpflichtung zu Standardvertragsklauseln (SCC) aus Primärquellen noch eine öffentliche Liste der Unterauftragsverarbeiter gefunden. In der Datenschutzerklärung wird ausdrücklich angegeben, dass personenbezogene Informationen nicht für das Modelltraining verwendet werden; zugleich wird die Verarbeitung von Kundeninhalten auf gesonderte Kundenvereinbarungen verwiesen, die öffentlich nicht aufgefunden wurden.",
+      "notes": "Die Nutzungsbedingungen von Novita unterliegen dem Recht von Delaware und nennen als Betreiber nur Novita AI; Novita ist nicht im EU-US Data Privacy Framework gelistet. Laut Trust Center erhalten Enterprise-Kunden auf Anfrage einen Auftragsverarbeitungsvertrag mit Standardvertragsklauseln, und es liegt ein SOC-2-Type-II-Audit vor, dessen Bericht unter NDA erhältlich ist. Die Modell-API wird nach Verbrauch abgerechnet; wo die Inferenz läuft, ist nicht dokumentiert.",
       "dataResidency": {
-        "euRegionDetails": "Novita bewirbt öffentlich global verteilte GPU-Regionen, darunter Deutschland (EU-GER-01, EU-GER-02) und das Vereinigte Königreich (EU-GB-01), neben Regionen in den USA, Asien, dem Nahen Osten, Südamerika, Afrika und Australien. Da Verarbeitungskapazitäten über mehrere Nicht-EU-Regionen hinweg angeboten werden und keine Aussage aus Primärquellen gefunden wurde, die eine ausschließlich auf die EU beschränkte Weiterleitung für API-Inferenz garantiert, kann eine ausschließlich in der EU erfolgende Verarbeitung nicht als gewährleistet angesehen werden, und Inferenz kann die EU verlassen."
+        "euRegionDetails": "Novita gibt nicht an, wo seine Modell-API die Inferenz ausführt, und bietet keine reine EU-Option an. Laut Trust Center läuft die Plattform auf AWS, laut Datenschutzrichtlinie können personenbezogene Daten in andere Länder einschließlich der USA übermittelt werden, und bei eingebundenen Modellen von Drittanbietern können API-Eingaben an diese weitergegeben werden. Die von Novita genannten regionalen Standorte, darunter Deutschland und Großbritannien, gelten für seine GPU-Instanzen."
       },
       "dataUsage": {
-        "retentionPolicy": "In der Datenschutzerklärung heißt es, dass personenbezogene Informationen nur so lange aufbewahrt werden, wie es zur Erbringung des Dienstes oder für berechtigte geschäftliche Zwecke erforderlich ist, etwa zur Beilegung von Streitigkeiten, zur Gewährleistung von Safety/Security oder zur Einhaltung gesetzlicher Vorgaben. Ferner wird ausgeführt, dass de-identifizierte oder anonymisierte Informationen für Forschungs- oder Statistikzwecke unbefristet verwendet werden können.",
-        "details": "In der Datenschutzerklärung von Novita heißt es: „The Personal Information will not be used for model training.“ Dieselbe Datenschutzerklärung führt zudem aus, dass sie nicht für Inhalte gilt, die bei der Erbringung von Dienstleistungen im Auftrag von Kunden verarbeitet werden, und dass solche Inhalte durch Kundenvereinbarungen geregelt werden."
+        "retentionPolicy": "Laut Nutzungsbedingungen gilt standardmäßig Zero Data Retention: Prompts und Ausgaben werden nicht länger aufbewahrt, als zum Erzeugen und Ausliefern der Ausgabe nötig ist, sofern das Gesetz nichts anderes verlangt. Laut Trust Center werden Anfrage-Metadaten 6 Monate aufbewahrt; laut Datenschutzrichtlinie werden Kontodaten für die Dauer des Kontos plus 7 Jahre aufbewahrt.",
+        "details": "Laut Nutzungsbedingungen verwendet Novita Kundeninhalte standardmäßig nicht zum Training eigener Modelle oder zur Verbesserung seiner Dienste. Inhalte können automatisiert auf Sicherheit geprüft werden, und bei eingebundenen Modellen von Drittanbietern verarbeitet der Modellanbieter die Eingaben und Ausgaben."
+      },
+      "euAiAct": {
+        "details": "Laut Trust Center beobachtet Novita regulatorische Entwicklungen einschließlich des EU AI Act und passt seine Praxis an, sobald neue Anforderungen gelten. Novita ist nicht als Unterzeichner des GPAI-Verhaltenskodex gelistet."
       }
     }
   }
