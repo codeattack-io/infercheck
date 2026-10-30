@@ -17,7 +17,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": null,
-      "euRegionDetails": "Groq runs inference in its own data centers in the US, Canada, Finland, the UK, Australia and Saudi Arabia. Self-serve API customers cannot choose a region; Groq routes requests across its data centers, and only enterprise customers can arrange regional endpoints with Groq. Data kept at rest (logs, batch files, fine-tuning data) is stored in Google Cloud buckets in the US."
+      "euRegionDetails": "Groq runs inference in data centers in the US, Canada, Finland, the UK, Australia and Saudi Arabia. Self-serve API customers cannot choose a region; Groq routes requests across its data centers. Enterprise customers can arrange regional API endpoints with Groq, but no EU endpoint is documented, and data kept at rest (logs, batch files, fine-tuning data) is stored in Google Cloud buckets in the US."
     },
     "dpa": {
       "available": true,
@@ -58,14 +58,15 @@
     "https://trust.groq.com/",
     "https://trust.groq.com/subprocessors",
     "https://trust.groq.com/faq",
-    "https://groq.com/platform"
+    "https://groq.com/platform",
+    "https://console.groq.com/docs/security/gcp-private-service-connect"
   ],
   "notes": "US company (Groq LLC) that is not certified under the EU-US Data Privacy Framework; customers in the EEA and Switzerland contract with Groq UK Limited. The DPA is public, is accepted together with the services agreement, includes the EU SCCs and covers GDPR, UK GDPR and the Swiss FADP. There is a free plan and a pay-as-you-go Developer plan.",
   "translations": {
     "de": {
       "notes": "US-Unternehmen (Groq LLC), das nicht unter dem EU-US Data Privacy Framework zertifiziert ist; Kunden im EWR und in der Schweiz schließen den Vertrag mit Groq UK Limited. Der Auftragsverarbeitungsvertrag ist öffentlich, wird zusammen mit dem Servicevertrag akzeptiert, enthält die EU-Standardvertragsklauseln und deckt DSGVO, UK GDPR und das Schweizer DSG ab. Es gibt einen kostenlosen Plan und einen nutzungsbasiert abgerechneten Developer-Plan.",
       "dataResidency": {
-        "euRegionDetails": "Groq betreibt die Inferenz in eigenen Rechenzentren in den USA, Kanada, Finnland, Großbritannien, Australien und Saudi-Arabien. Kunden der Self-Service-API können keine Region wählen; Groq verteilt die Anfragen auf seine Rechenzentren, und nur Enterprise-Kunden können regionale Endpunkte mit Groq vereinbaren. Gespeicherte Daten (Logs, Batch-Dateien, Fine-Tuning-Daten) liegen in Google-Cloud-Buckets in den USA."
+        "euRegionDetails": "Groq betreibt die Inferenz in Rechenzentren in den USA, Kanada, Finnland, Großbritannien, Australien und Saudi-Arabien. Kunden der Self-Service-API können keine Region wählen; Groq verteilt die Anfragen auf seine Rechenzentren. Enterprise-Kunden können mit Groq regionale API-Endpunkte vereinbaren, ein EU-Endpunkt ist jedoch nicht dokumentiert, und gespeicherte Daten (Logs, Batch-Dateien, Fine-Tuning-Daten) liegen in Google-Cloud-Buckets in den USA."
       },
       "dataUsage": {
         "retentionPolicy": "Standardmäßig speichert Groq keine Kundendaten für Inferenzanfragen. Daten können vorübergehend für bis zu 30 Tage ausschließlich zur Fehlerbehebung im Hinblick auf die Zuverlässigkeit oder zur Untersuchung von Missbrauch gespeichert werden. Zero Data Retention ist für alle Kunden über die Self-Service-Einstellungen für Data Controls verfügbar.",
