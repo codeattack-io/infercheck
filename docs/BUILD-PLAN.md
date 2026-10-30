@@ -16,9 +16,9 @@ Temporary orchestration state. Deleted before the PR is opened.
 | b4    | moonshot-ai minimax-minimax-io z-ai xiaomi stepfun siliconflow bailing novitaai                                 | merged                                                           |
 | b5    | together-ai fireworks-ai groq cerebras deep-infra baseten friendli nvidia                                       | merged                                                           |
 | b6    | hugging-face llama chutes inference io-net venice-ai vultr weights-biases                                       | merged                                                           |
-| b7    | openrouter cloudflare-ai-gateway vercel-ai-gateway helicone requesty kilo-gateway llm-gateway zenmux            | verifying                                                        |
-| b8    | abacus aihubmix clarifai dinference firmware github-models lucidquery-ai meganova                               | verifying                                                        |
-| b9    | mixlayer nanogpt nova ollama-cloud poe synthetic vivgrid                                                        | verifying                                                        |
+| b7    | openrouter cloudflare-ai-gateway vercel-ai-gateway helicone requesty kilo-gateway llm-gateway zenmux            | merged                                                           |
+| b8    | abacus aihubmix clarifai dinference firmware github-models lucidquery-ai meganova                               | merged                                                           |
+| b9    | mixlayer nanogpt nova ollama-cloud poe synthetic vivgrid                                                        | merged                                                           |
 
 ## Decisions
 
@@ -28,3 +28,4 @@ Temporary orchestration state. Deleted before the PR is opened.
 - Rule 11 (what counts as a DPA) added after b4 research.
 - Rule 12 (euOnly = documented, contractually committed EU-only configuration counts) decided by Carlo after b1–b3 were merged. Final task c1: one agent applies rule 12 and the other late rules (8, 11) consistently to p0–b4 and checks cross-provider conventions (sccs, euAiAct for hosts, enterprise-only DPAs).
 - Meta Llama API (`llama`) reported as discontinued by b6 research — decide in c1 whether to remove the file (separate commit).
+- c1 consistency pass running (rule 12 retroactively, conventions, hygiene, remove discontinued llama/github-models/clarifai).
