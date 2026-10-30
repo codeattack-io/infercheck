@@ -38,7 +38,7 @@
       "C5"
     ],
     "euAiAct": {
-      "status": "unknown",
+      "status": "monitoring",
       "details": "No formal EU AI Act statement found; the Sherlock platform page only claims adherence to the upcoming AI Act. The Sherlock terms of service split AI Act obligations between CloudFerro and the customer and commit CloudFerro to provide documentation that supports compliance."
     },
     "sccs": null,
