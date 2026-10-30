@@ -23,7 +23,7 @@
       "trainsOnCustomerData": null,
       "optOutAvailable": null,
       "retentionPolicy": "The data processing agreement says customer data is deleted within 30 days after the contract ends, unless law, a dispute or the prevention of abuse requires keeping it. The privacy policy keeps account data while needed and IP addresses for three years. Prompts are cached automatically for supported models, and no retention period is published for prompts, outputs or API call logs.",
-      "details": "The terms of service grant StepFun a perpetual licence to use prompts, outputs and API call logs for any purpose, including to develop and improve its services. Training on API data is stated explicitly only for the StepFun Startup Program and other early-access programs. The data processing agreement limits the processing of customers' personal data to providing the services on the customer's instructions."
+      "details": "The terms of service grant StepFun a perpetual, irrevocable licence to use prompts, outputs and API call logs for any purpose, and let it use content to develop and improve its services. Training on API data is stated explicitly only for the StepFun Startup Program and other early-access programs. The data processing agreement limits the processing of customers' personal data to providing the services on the customer's instructions."
     },
     "subProcessors": {
       "disclosed": false,
@@ -50,16 +50,16 @@
     "https://platform.stepfun.ai/docs/en/guides/developer/prompt-cache",
     "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
   ],
-  "notes": "StepFun's international API platform (platform.stepfun.ai) is operated by STEPFUN TECHNOLOGY (HK) LIMITED in Hong Kong, part of the Shanghai-based StepFun group; its privacy policy places its servers in the United States, and no EU region is offered. A data processing agreement with EU standard contractual clauses is part of the online terms, but no sub-processor list, security certifications or EU AI Act statement are published. The API is prepaid pay-as-you-go, with a separate Step Plan subscription.",
+  "notes": "StepFun's international API platform (platform.stepfun.ai) is operated by STEPFUN TECHNOLOGY (HK) LIMITED in Hong Kong; its privacy policy places its servers in the United States, and no EU region is offered. A data processing agreement with EU standard contractual clauses is part of the online terms, but no sub-processor list, security certifications or EU AI Act statement are published. The API is prepaid pay-as-you-go, with a separate Step Plan subscription.",
   "translations": {
     "de": {
-      "notes": "Die internationale API-Plattform von StepFun (platform.stepfun.ai) wird von der STEPFUN TECHNOLOGY (HK) LIMITED in Hongkong betrieben, die zur StepFun-Gruppe mit Sitz in Shanghai gehört; laut Datenschutzerklärung stehen die Server in den USA, eine EU-Region wird nicht angeboten. Ein Auftragsverarbeitungsvertrag mit EU-Standardvertragsklauseln ist Teil der online akzeptierten Bedingungen, eine Liste der Unterauftragsverarbeiter, Sicherheitszertifizierungen oder eine Erklärung zum EU AI Act sind jedoch nicht veröffentlicht. Die API wird im Voraus nach Verbrauch bezahlt; daneben gibt es das Step-Plan-Abonnement.",
+      "notes": "Die internationale API-Plattform von StepFun (platform.stepfun.ai) wird von der STEPFUN TECHNOLOGY (HK) LIMITED in Hongkong betrieben; laut Datenschutzerklärung stehen die Server in den USA, eine EU-Region wird nicht angeboten. Ein Auftragsverarbeitungsvertrag mit EU-Standardvertragsklauseln ist Teil der online akzeptierten Bedingungen; veröffentlicht sind jedoch weder eine Liste der Unterauftragsverarbeiter noch Sicherheitszertifizierungen oder eine Erklärung zum EU AI Act. Die API wird per Vorauszahlung nach Verbrauch abgerechnet; daneben gibt es das Step-Plan-Abonnement.",
       "dataResidency": {
         "euRegionDetails": "Laut internationaler Datenschutzerklärung von StepFun stehen die Server in den USA. Eine EU-Region oder eine Verarbeitung ausschließlich in der EU ist nicht dokumentiert."
       },
       "dataUsage": {
         "retentionPolicy": "Laut Auftragsverarbeitungsvertrag werden Kundendaten innerhalb von 30 Tagen nach Vertragsende gelöscht, sofern nicht Gesetz, ein Rechtsstreit oder die Missbrauchsabwehr eine Aufbewahrung erfordern. Laut Datenschutzerklärung werden Kontodaten so lange wie nötig und IP-Adressen drei Jahre aufbewahrt. Prompts werden bei unterstützten Modellen automatisch zwischengespeichert; für Prompts, Ausgaben und API-Aufrufprotokolle ist keine Aufbewahrungsdauer veröffentlicht.",
-        "details": "Die Nutzungsbedingungen räumen StepFun eine unbefristete Lizenz ein, Prompts, Ausgaben und API-Aufrufprotokolle für beliebige Zwecke zu nutzen, auch zur Entwicklung und Verbesserung seiner Dienste. Ein Training mit API-Daten wird ausdrücklich nur für das StepFun Startup Program und andere Early-Access-Programme genannt. Der Auftragsverarbeitungsvertrag beschränkt die Verarbeitung personenbezogener Kundendaten auf die Erbringung der Dienste nach Weisung des Kunden."
+        "details": "Die Nutzungsbedingungen räumen StepFun eine unbefristete, unwiderrufliche Lizenz ein, Prompts, Ausgaben und API-Aufrufprotokolle für beliebige Zwecke zu nutzen, und erlauben die Nutzung von Inhalten zur Entwicklung und Verbesserung seiner Dienste. Ein Training mit API-Daten wird ausdrücklich nur für das StepFun Startup Program und andere Early-Access-Programme genannt. Der Auftragsverarbeitungsvertrag beschränkt die Verarbeitung personenbezogener Kundendaten auf die Erbringung der Dienste nach Weisung des Kunden."
       }
     }
   }
