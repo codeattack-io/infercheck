@@ -22,7 +22,7 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "Zero Data Retention is on by default for new teams: prompts and outputs are not stored, only request metadata is kept. If a team turns it off, or uses the batch and async APIs, requests and results are stored. The pricing page lists 14 days of data retention on the pay-as-you-go plan and unlimited retention on the Growth plan.",
+      "retentionPolicy": "Zero Data Retention is on by default for new teams: prompts and outputs are not stored, only request metadata is kept. If a team turns it off, or uses the batch and async APIs, requests and results are stored. The pricing page lists 14 days of data retention on the pay-as-you-go plan and unlimited retention on the Growth plan, without saying which data this covers.",
       "details": "The privacy policy and the Zero Data Retention policy state that customer data is not used to train models. Closed models such as GPT, Claude and Gemini are forwarded to their providers under those providers' terms. For ad-supported models, a sample of full prompts and responses goes to the advertising partner Gravity, even with Zero Data Retention on. A data processing agreement is available on request; its text is not public."
     },
     "subProcessors": {
@@ -62,7 +62,7 @@
         "euRegionDetails": "Es gibt keine EU-Region. Für den Standard-API-Endpunkt ist nicht dokumentiert, wo Anfragen verarbeitet werden; ein separater US-Endpunkt hält Anfragen vollständig in US-Rechenzentren. Enterprise-Verträge bieten dedizierte Infrastruktur, ein EU-Standort ist jedoch nicht dokumentiert."
       },
       "dataUsage": {
-        "retentionPolicy": "Für neue Teams ist Zero Data Retention standardmäßig aktiv: Prompts und Antworten werden nicht gespeichert, nur Metadaten der Anfragen bleiben erhalten. Schaltet ein Team dies ab oder nutzt es die Batch- und Async-APIs, werden Anfragen und Ergebnisse gespeichert. Laut Preisseite gilt im Pay-as-you-go-Tarif eine Aufbewahrung von 14 Tagen, im Growth-Tarif eine unbegrenzte.",
+        "retentionPolicy": "Für neue Teams ist Zero Data Retention standardmäßig aktiv: Prompts und Antworten werden nicht gespeichert, nur Metadaten der Anfragen bleiben erhalten. Schaltet ein Team dies ab oder nutzt es die Batch- und Async-APIs, werden Anfragen und Ergebnisse gespeichert. Laut Preisseite gilt im Pay-as-you-go-Tarif eine Datenaufbewahrung von 14 Tagen, im Growth-Tarif eine unbegrenzte; welche Daten das betrifft, sagt die Seite nicht.",
         "details": "Laut Datenschutzerklärung und Zero-Data-Retention-Richtlinie werden Kundendaten nicht zum Training von Modellen verwendet. Anfragen an geschlossene Modelle wie GPT, Claude oder Gemini werden an deren Anbieter weitergeleitet und unterliegen deren Bedingungen. Bei werbefinanzierten Modellen gehen Stichproben vollständiger Prompts und Antworten an den Werbepartner Gravity, auch bei aktivem Zero Data Retention. Ein Auftragsverarbeitungsvertrag ist auf Anfrage erhältlich; sein Text ist nicht öffentlich."
       },
       "euAiAct": {
