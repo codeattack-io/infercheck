@@ -15,9 +15,9 @@
       "euRegionDetails": "The hosting location of the Kolibri API is not published, and no API terms or DPA with a location commitment are public. Kolibri's open weights and Aleph Alpha's platform can run on-premises or air-gapped in the customer's own environment. The Pharia Government Assistant, a hosted assistant app, runs on STACKIT in Germany."
     },
     "dpa": {
-      "available": true,
+      "available": false,
       "url": null,
-      "signedVia": "custom_contract"
+      "signedVia": "not_available"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
