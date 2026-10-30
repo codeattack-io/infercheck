@@ -82,3 +82,34 @@ export function getLocalizedProvider(provider: AnyProvider, locale: string): Any
     },
   };
 }
+
+/** The provider without the text only its profile page shows, for the model table and its expanded panel. */
+export function getPanelProvider(provider: AnyProvider): AnyProvider {
+  if (!isFullProvider(provider)) return { ...provider, notes: null };
+  const { compliance } = provider;
+  return {
+    ...provider,
+    notes: null,
+    compliance: {
+      ...compliance,
+      dataUsage: { ...compliance.dataUsage, details: null },
+      euAiAct: { ...compliance.euAiAct, details: null },
+    },
+  };
+}
+
+/** The provider without any long text or sources, for the providers table. */
+export function getListProvider(provider: AnyProvider): AnyProvider {
+  const panel = getPanelProvider(provider);
+  if (!isFullProvider(panel)) return { ...panel, sourceUrls: [] };
+  const { compliance } = panel;
+  return {
+    ...panel,
+    sourceUrls: [],
+    compliance: {
+      ...compliance,
+      dataResidency: { ...compliance.dataResidency, euRegionDetails: null },
+      dataUsage: { ...compliance.dataUsage, retentionPolicy: null },
+    },
+  };
+}

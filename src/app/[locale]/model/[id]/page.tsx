@@ -4,7 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { ModelOffers } from "@/components/ModelOffers";
 import { getCanonicalModelIds, getModelOffers } from "@/lib/models";
-import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
+import { getAllProviders, getLocalizedProvider, getPanelProvider } from "@/lib/providers";
 import type { AnyProvider } from "@/lib/compliance";
 import { modelDisplayName } from "@/lib/format";
 import type { CatalogModel, ModelWithProvider } from "@/components/types";
@@ -67,7 +67,9 @@ export default async function ModelDetailPage({ params }: PageProps) {
   const t = await getTranslations("ModelPage");
   const tb = await getTranslations("Breadcrumb");
 
-  const providerMap = new Map<string, AnyProvider>(allProviders.map((p) => [p.slug, getLocalizedProvider(p, locale)]));
+  const providerMap = new Map<string, AnyProvider>(
+    allProviders.map((p) => [p.slug, getPanelProvider(getLocalizedProvider(p, locale))])
+  );
 
   const modelName = preferredName(modelRows);
 

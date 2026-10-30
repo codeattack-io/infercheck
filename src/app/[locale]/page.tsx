@@ -12,7 +12,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { ModelBrowser } from "@/components/ModelBrowser";
 import { getCatalogModels } from "@/lib/models";
-import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
+import { getAllProviders, getLocalizedProvider, getPanelProvider } from "@/lib/providers";
 import type { ModelWithProvider } from "@/components/types";
 import type { AnyProvider } from "@/lib/compliance";
 
@@ -53,7 +53,9 @@ export default async function HomePage({ params }: HomePageProps) {
   const [allModels, allProviders] = await Promise.all([getCatalogModels(), Promise.resolve(getAllProviders())]);
 
   // Build provider lookup map — js-index-maps rule
-  const providerMap = new Map<string, AnyProvider>(allProviders.map((p) => [p.slug, getLocalizedProvider(p, locale)]));
+  const providerMap = new Map<string, AnyProvider>(
+    allProviders.map((p) => [p.slug, getPanelProvider(getLocalizedProvider(p, locale))])
+  );
 
   // Serialize: only pass what client components need — server-serialization rule
   const items: ModelWithProvider[] = allModels.map((model) => ({

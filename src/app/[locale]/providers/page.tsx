@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ProviderBrowser } from "@/components/ProviderBrowser";
-import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
+import { getAllProviders, getListProvider, getLocalizedProvider } from "@/lib/providers";
 import { getComplianceTier } from "@/lib/compliance";
 import type { AnyProvider, ComplianceTier } from "@/lib/compliance";
 import { getModelCountsByProvider } from "@/lib/models";
@@ -70,7 +70,7 @@ export default async function ProvidersPage({ params }: PageProps) {
   const allProviders = getAllProviders();
   const modelCounts = await getModelCountsByProvider();
   const providers = sortByTier(
-    allProviders.map((p) => getLocalizedProvider(p, locale)),
+    allProviders.map((p) => getListProvider(getLocalizedProvider(p, locale))),
     locale
   );
 
