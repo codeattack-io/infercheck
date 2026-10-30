@@ -69,6 +69,7 @@ function ModelRowInner({ item, dimmed = false, matches, primary = "model" }: Mod
   const line = TIER_CLASSES[tier].line;
   const compliance = provider && isFullProvider(provider) ? provider.compliance : null;
   const providerName = getProviderName(item);
+  const viaGateway = primary === "model" && !model.isNativeModel;
   const toggle = () => setOpen((value) => !value);
 
   const onRowClick = (event: MouseEvent<HTMLTableRowElement>) => {
@@ -107,9 +108,14 @@ function ModelRowInner({ item, dimmed = false, matches, primary = "model" }: Mod
               {dimmed ? <span className="sr-only">{t("dimmed")} </span> : null}
               {name}
             </button>
-            {primary === "model" && !model.isNativeModel ? <GatewayPill providerName={providerName} /> : null}
+            {viaGateway ? <GatewayPill providerName={providerName} className="max-md:hidden" /> : null}
           </span>
-          {secondary ? <span className="mt-0.5 block text-14 text-text-muted max-md:text-15">{secondary}</span> : null}
+          {secondary ? (
+            <span className="mt-0.5 block text-14 text-text-muted max-md:text-15">
+              {secondary}
+              {viaGateway ? <GatewayPill providerName={providerName} className="ml-2 md:hidden" /> : null}
+            </span>
+          ) : null}
         </td>
         <td className="border-b border-border px-4 py-3 align-middle max-md:block max-md:self-start max-md:border-0 max-md:p-0 max-md:[grid-area:comp]">
           <ComplianceBadge tier={tier} compliance={compliance} />
