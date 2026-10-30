@@ -29,7 +29,7 @@
       "about": "Info",
       "imprint": "Impressum",
       "privacy": "Datenschutz",
-      "github": "GitHub →"
+      "github": "GitHub"
     },
     "disclaimer": "Dieses Verzeichnis stellt quellengestützte Informationen über die Datenpraktiken von KI-Anbietern bereit. Es handelt sich nicht um Rechtsberatung. Überprüfen Sie Angaben stets direkt beim Anbieter und konsultieren Sie rechtlichen Beistand für Compliance-Entscheidungen.",
     "navLabel": "Fußnavigation"
@@ -149,12 +149,6 @@
     },
     "unverifiedNotice": "Compliance-Daten für diesen Anbieter noch nicht verifiziert. Falls Sie Informationen haben, nutzen Sie bitte „Änderung melden“.",
     "backLink": "← Zurück zur Anbieterübersicht",
-    "tiers": {
-      "compliant": "EU-konform",
-      "partial": "Teilweise (EU + SCC)",
-      "noncompliant": "Nicht konform",
-      "unverified": "Nicht verifiziert"
-    },
     "meta": {
       "yes": "ja",
       "no": "nein",
@@ -196,8 +190,7 @@
     "sections": {
       "pricing": "Preise (pro 1 Mio. Token)",
       "gdprCompliance": "DSGVO-Compliance",
-      "dataResidency": "Datenhaltung",
-      "complianceBadges": "Compliance-Abzeichen"
+      "dataResidency": "Datenhaltung"
     },
     "pricing": {
       "input": "Eingabe",
@@ -215,13 +208,7 @@
       "regions": "Regionen",
       "euOnly": "Nur EU"
     },
-    "backLink": "← Zurück zur Modellübersicht",
-    "tiers": {
-      "compliant": "EU-konform",
-      "partial": "Teilweise (EU + SCC)",
-      "noncompliant": "Nicht konform",
-      "unverified": "Nicht verifiziert"
-    }
+    "backLink": "← Zurück zur Modellübersicht"
   },
   "AboutPage": {
     "title": "Über uns — InferCheck",
@@ -294,7 +281,7 @@
     "sortBy": "Sortieren nach {label}"
   },
   "Verification": {
-    "aiDraft": "KI-Entwurf · {date}",
+    "aiDraft": "<abbr>KI-Entwurf</abbr> · {date}",
     "verified": "Verifiziert {date}",
     "aiDraftHint": "Mit KI-Unterstützung recherchiert; noch nicht manuell verifiziert."
   },
@@ -316,18 +303,11 @@
     "unverifiedNotice": "Compliance-Daten für diesen Anbieter noch nicht verifiziert.",
     "priceIn": "ein ",
     "priceOut": "aus ",
-    "gatewayTitle": "Dieses Modell stammt von einem Drittanbieter und wird über {providerName} bereitgestellt",
     "gatewayNotice": "<strong>Drittanbieter-Modell, bereitgestellt über {providerName}.</strong> Dieses Modell stammt von einem anderen Unternehmen, wird aber über die Infrastruktur von {providerName} betrieben. Die hier gezeigten Compliance-Eigenschaften beschreiben den Umgang von <strong>{providerName}</strong> mit Daten – nicht den des ursprünglichen Modellherstellers.",
     "dimmed": "Entspricht nicht dem aktiven Filter",
     "toggleDetails": "Details zu {name}"
   },
   "ProviderCard": {
-    "tiers": {
-      "compliant": "EU-konform",
-      "partial": "EU + SCC",
-      "noncompliant": "Nicht konform",
-      "unverified": "Nicht verifiziert"
-    },
     "modelCount": "{count} Modell",
     "modelCountPlural": "{count} Modelle"
   },
@@ -402,20 +382,33 @@
     "backLink": "← Zurück"
   },
   "ComplianceBadge": {
-    "euOnly": "Nur EU",
-    "dpa": "AVV",
-    "euSccs": "EU + SCC",
-    "noTraining": "Kein Training",
-    "trainsOnData": "Training mit Daten",
-    "trainingUnknown": "Training unbekannt",
-    "usOnly": "Nur USA",
-    "unverified": "Nicht verifiziert"
+    "short": {
+      "compliant": "EU-konform",
+      "partial": "Teilweise",
+      "noncompliant": "Nicht konform",
+      "unverified": "Nicht verifiziert"
+    },
+    "long": {
+      "compliant": "EU-konform",
+      "partial": "Teilweise (EU + SCC)",
+      "noncompliant": "Nicht konform",
+      "unverified": "Nicht verifiziert"
+    },
+    "properties": {
+      "euOnly": "Nur EU",
+      "euSccs": "EU + SCC",
+      "dpa": "AVV",
+      "noTraining": "Kein Training",
+      "trainsOnData": "Training mit Daten",
+      "trainingUnknown": "Training unbekannt"
+    }
   },
   "Format": {
     "free": "kostenlos"
   },
   "GatewayPill": {
-    "label": "über Gateway"
+    "label": "über Gateway",
+    "title": "Dieses Modell stammt von einem Drittanbieter und wird über {providerName} bereitgestellt"
   },
   "OgImage": {
     "tagline": "DSGVO-konforme KI-Inferenzanbieter finden",
