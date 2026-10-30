@@ -2,26 +2,26 @@
   "slug": "chutes",
   "name": "Chutes",
   "type": "api_provider",
-  "website": "https://llm.chutes.ai",
-  "apiDocsUrl": "https://docs.chutes.ai/",
+  "website": "https://chutes.ai",
+  "apiDocsUrl": "https://chutes.ai/docs",
   "compliance": {
     "headquarters": null,
     "dataResidency": {
       "regions": [],
       "euOnly": false,
       "dataLeavesEuAtInference": null,
-      "euRegionDetails": null
+      "euRegionDetails": "Chutes offers no EU region and no way to choose a region, for the pay-per-use API or for private deployments. Inference runs on GPU servers of independent, anonymous node operators on the Bittensor network, and Chutes does not document where they are. Models marked as confidential compute run in Intel TDX trusted execution environments that the server operator cannot inspect."
     },
     "dpa": {
-      "available": false,
-      "url": null,
-      "signedVia": "not_available"
+      "available": true,
+      "url": "https://chutes.ai/dpa",
+      "signedVia": "online_acceptance"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
-      "optOutAvailable": null,
-      "retentionPolicy": "Chutes states that it does not log, store, or persist the content of API requests or responses. For its end-to-end encrypted inference offering, it states the API only sees opaque ciphertext plus routing, nonce, and usage metadata for billing.",
-      "details": "The privacy policy says API request and response content is not logged, stored, or persisted. Chutes also documents an E2EE mode in which prompts are decrypted only inside a TEE, while the API handles ciphertext, nonce validation, billing, and rate limiting."
+      "optOutAvailable": false,
+      "retentionPolicy": "Chutes states that it does not log, store or persist the content of API requests and responses; content is only held in memory while a request runs. Account, billing and operational metadata such as timestamps, token counts and model identifiers are kept as long as needed for operation, support, security, legal and accounting purposes.",
+      "details": "Chutes does not use API requests or responses to train models. Prompts are processed on hardware run by independent node operators, which Chutes says are not its employees, agents or contractors; its sub-processor list is only available on request. The published DPA contains no explicit customer audit right, no duty to notify customers of data breaches and no flow-down of its obligations to sub-processors. Some models run in Intel TDX trusted execution environments, and an optional end-to-end encryption mode decrypts prompts only inside such an environment."
     },
     "subProcessors": {
       "disclosed": false,
@@ -33,27 +33,33 @@
       "status": "unknown",
       "details": null
     },
-    "sccs": null,
+    "sccs": true,
     "adequacyDecision": null
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://chutes.ai/privacy",
     "https://chutes.ai/terms",
-    "https://chutes.ai/",
-    "https://docs.chutes.ai/",
+    "https://chutes.ai/dpa",
+    "https://chutes.ai/pricing",
+    "https://chutes.ai/tee",
+    "https://chutes.ai/docs/help/faq",
+    "https://chutes.ai/docs/core-concepts/security-architecture",
     "https://chutes.ai/news/end-to-end-encrypted-ai-inference-with-post-quantum-cryptography",
-    "https://chutes.ai/about"
+    "https://chutes.ai/"
   ],
-  "notes": "Chutes publishes a privacy policy and states it does not log, store, or persist API request/response content, including a documented end-to-end encrypted TEE inference mode. However, no primary-source DPA, sub-processor list, SCC statement, HQ country, or formal data residency/EU-only processing commitment was found on the consulted official pages.",
+  "notes": "Chutes is operated by Chutes Global Corp; its terms are governed by the laws of Nevis (Saint Kitts and Nevis), and no headquarters country is stated. Its published DPA says international transfers use Standard Contractual Clauses, but the sub-processor list is only available on request and inference runs on independent GPU operators in undocumented locations. Billing is pay-as-you-go with no free tier.",
   "translations": {
     "de": {
-      "notes": "Chutes veröffentlicht eine Datenschutzrichtlinie und gibt an, Inhalte von API-Anfragen/-Antworten nicht zu protokollieren, zu speichern oder anderweitig zu persistieren, einschließlich eines dokumentierten End-to-End-verschlüsselten TEE-Inferenzmodus. Auf den konsultierten offiziellen Seiten wurden jedoch keine Primärquelle für einen Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Erklärung zu Standardvertragsklauseln (SCC), kein Land des Hauptsitzes und keine formale Zusage zur Datenhaltung bzw. ausschließlich zur EU-Datenverarbeitung gefunden.",
+      "notes": "Chutes wird von der Chutes Global Corp betrieben; für die Nutzungsbedingungen gilt das Recht von Nevis (St. Kitts und Nevis), ein Land des Hauptsitzes wird nicht genannt. Laut dem veröffentlichten Auftragsverarbeitungsvertrag stützen sich internationale Übermittlungen auf Standardvertragsklauseln, die Liste der Unterauftragsverarbeiter gibt es jedoch nur auf Anfrage, und die Inferenz läuft bei unabhängigen GPU-Betreibern an nicht angegebenen Standorten. Abgerechnet wird nutzungsbasiert ohne kostenloses Kontingent.",
       "dataUsage": {
-        "retentionPolicy": "Chutes gibt an, die Inhalte von API-Anfragen oder -Antworten nicht zu protokollieren, zu speichern oder anderweitig zu persistieren. Für das End-to-End-verschlüsselte Inferenzangebot wird angegeben, dass die API nur opaken Chiffretext sowie Routing-, Nonce- und Nutzungsmetadaten für die Abrechnung sieht.",
-        "details": "Laut Datenschutzrichtlinie werden Inhalte von API-Anfragen und -Antworten nicht protokolliert, gespeichert oder anderweitig persistiert. Chutes dokumentiert außerdem einen E2EE-Modus, in dem Prompts ausschließlich innerhalb einer TEE entschlüsselt werden, während die API Chiffretext, Nonce-Validierung, Abrechnung und Ratenbegrenzung verarbeitet."
+        "retentionPolicy": "Chutes gibt an, Inhalte von API-Anfragen und -Antworten nicht zu protokollieren, zu speichern oder dauerhaft abzulegen; Inhalte liegen nur während der Verarbeitung im Arbeitsspeicher. Konto-, Abrechnungs- und Betriebsmetadaten wie Zeitstempel, Tokenzahlen und Modellkennungen werden so lange aufbewahrt, wie es für Betrieb, Support, Sicherheit sowie rechtliche und buchhalterische Zwecke nötig ist.",
+        "details": "Chutes verwendet API-Anfragen und -Antworten nicht zum Training von Modellen. Prompts werden auf Hardware unabhängiger Knotenbetreiber verarbeitet, die laut Chutes weder Angestellte noch Vertreter oder Auftragnehmer von Chutes sind; die Liste der Unterauftragsverarbeiter gibt es nur auf Anfrage. Der veröffentlichte AVV enthält kein ausdrückliches Prüfrecht für Kunden, keine Pflicht, Kunden über Datenschutzverletzungen zu informieren, und keine Weitergabe seiner Pflichten an Unterauftragsverarbeiter. Ein Teil der Modelle läuft in vertrauenswürdigen Ausführungsumgebungen (Intel TDX), und ein optionaler Ende-zu-Ende-Verschlüsselungsmodus entschlüsselt Prompts nur innerhalb einer solchen Umgebung."
+      },
+      "dataResidency": {
+        "euRegionDetails": "Chutes bietet weder für die nutzungsbasierte API noch für private Deployments eine EU-Region oder eine Regionswahl an. Die Inferenz läuft auf GPU-Servern unabhängiger, anonymer Knotenbetreiber im Bittensor-Netzwerk, deren Standorte Chutes nicht angibt. Als Confidential Compute gekennzeichnete Modelle laufen in vertrauenswürdigen Ausführungsumgebungen (Intel TDX), in die der Serverbetreiber keinen Einblick hat."
       }
     }
   }
