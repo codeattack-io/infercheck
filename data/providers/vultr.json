@@ -23,7 +23,7 @@
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
       "retentionPolicy": "The Responses endpoint stores nothing. Uploaded files expire after 30 days, and generated videos and songs are deleted 7 days after completion. Vultr publishes no retention period for chat prompts, outputs or request logs.",
-      "details": "Vultr acts as processor for customer content and states that it does not use or share that content except where required by law or for security. Its documents contain no statement on model training that is specific to Serverless Inference."
+      "details": "Vultr acts as processor for customer content and states that it does not use or share that content except where required by law or for security. Its documents contain no statement on model training that is specific to Serverless Inference. A DPA is available on request and signed via DocuSign; its text is not public."
     },
     "subProcessors": {
       "disclosed": true,
@@ -79,7 +79,7 @@
       },
       "dataUsage": {
         "retentionPolicy": "Der Responses-Endpunkt speichert nichts. Hochgeladene Dateien laufen nach 30 Tagen ab, erzeugte Videos und Musikstücke werden 7 Tage nach Fertigstellung gelöscht. Für Chat-Prompts, Ausgaben und Request-Logs nennt Vultr keine Aufbewahrungsfrist.",
-        "details": "Vultr handelt für Kundeninhalte als Auftragsverarbeiter und erklärt, diese Inhalte nur zu nutzen oder weiterzugeben, wenn das Gesetz oder die Sicherheit es erfordert. Eine eigene Aussage zum Modelltraining speziell für Serverless Inference enthalten die Dokumente nicht."
+        "details": "Vultr handelt für Kundeninhalte als Auftragsverarbeiter und erklärt, diese Inhalte nur zu nutzen oder weiterzugeben, wenn das Gesetz oder die Sicherheit es erfordert. Eine eigene Aussage zum Modelltraining speziell für Serverless Inference enthalten die Dokumente nicht. Ein AVV ist auf Anfrage erhältlich und wird über DocuSign unterzeichnet; sein Text ist nicht öffentlich."
       }
     }
   }
