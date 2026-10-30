@@ -2,80 +2,80 @@
   "slug": "weights-biases",
   "name": "Weights & Biases",
   "type": "api_provider",
-  "website": "https://docs.wandb.ai",
-  "apiDocsUrl": "https://docs.wandb.ai/inference/api-reference",
+  "website": "https://wandb.ai",
+  "apiDocsUrl": "https://docs.coreweave.com/products/inference/serverless/api-reference",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
       "regions": [
-        "US",
-        "EU",
-        "CA",
-        "AU",
-        "JP",
-        "KR",
-        "IN",
-        "SG"
+        "US"
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": null,
-      "euRegionDetails": "W&B Multi-tenant Cloud is deployed in a North America Google Cloud region. W&B Dedicated Cloud is available on AWS, Google Cloud, and Azure in customer-selected regions, including multiple EU regions such as AWS eu-central-1/eu-west-1/eu-west-2/eu-south-1/eu-north-1, Google Cloud europe-west1/europe-west2/europe-west3/europe-west4, and Azure francecentral/westeurope. The documentation found does not explicitly guarantee that W&B Inference GPU compute remains only in the EU."
+      "euRegionDetails": "W&B Serverless Inference, now part of CoreWeave Forge, has no EU region or EU data residency option. Forge runs in Google Cloud regions in North America, the listed sub-processors are in the United States, and the location of the inference GPUs is not documented. W&B Dedicated Cloud offers EU regions for the W&B platform, but Serverless Inference is not available there."
     },
     "dpa": {
       "available": true,
-      "url": "https://wandb.ai/site/de/dpa/",
+      "url": "https://wandb.ai/site/dpa/",
       "signedVia": "online_acceptance"
     },
     "dataUsage": {
       "trainsOnCustomerData": null,
       "optOutAvailable": null,
-      "retentionPolicy": "The privacy policy states that personal data is retained only as long as necessary for the purposes described, unless a longer retention period is required or permitted by law; when no longer needed, data is deleted, anonymized, or securely isolated until deletion is feasible.",
-      "details": "For Weave, W&B offers client-side sensitive-data controls such as PII redaction before traces are sent to W&B servers, and Dedicated Cloud provides region-of-choice deployment for stricter governance needs. No primary-source statement was found clearly saying whether customer/API data is or is not used to train provider models."
+      "retentionPolicy": "No retention period for Serverless Inference prompts and outputs is published. Under the DPA, personal data is deleted or returned on request or when the contract ends; copies in backups are isolated and deleted later.",
+      "details": "The terms treat prompts and outputs as customer data and allow W&B to use customer data to provide and improve its services, develop new products and improve AI features. Forge has an organisation privacy setting \"Allow model training on Customer Data\", but its default and whether it covers Serverless Inference are not documented. No official statement says whether Serverless Inference prompts are used for training."
     },
     "subProcessors": {
       "disclosed": true,
-      "url": "https://wandb.ai/site/ja/security/",
+      "url": "https://wandb.ai/site/security/",
       "includesEuEntities": false
     },
     "certifications": [
       "SOC2",
-      "HIPAA"
+      "ISO27001",
+      "ISO27017",
+      "ISO27018"
     ],
     "euAiAct": {
-      "status": "monitoring",
-      "details": "W&B publicly provides EU AI Act guidance materials and events about AI Act compliance and positions its products as supporting governance, traceability, documentation, and reporting, but no primary-source statement was found claiming formal EU AI Act compliance certification or legal conformity status for the provider itself."
+      "status": "unknown",
+      "details": "No official statement from W&B or CoreWeave on their own status under the EU AI Act was found, and neither is on the EU list of GPAI Code of Practice signatories. W&B's AI Act materials are guidance for customers."
     },
     "sccs": true,
     "adequacyDecision": false
   },
-  "pricingTier": "free_tier",
-  "lastVerified": "2026-04-11",
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://docs.wandb.ai/inference/api-reference",
-    "https://docs.wandb.ai/platform/hosting",
-    "https://docs.wandb.ai/weave/guides/platform",
-    "https://docs.wandb.ai/inference/lora",
-    "https://docs.wandb.ai/ko/platform/hosting/hosting-options/dedicated_regions",
-    "https://wandb.ai/site/de/dpa/",
-    "https://wandb.ai/site/ja/security/",
+    "https://docs.coreweave.com/products/inference/serverless/api-reference",
+    "https://docs.coreweave.com/products/inference",
+    "https://docs.coreweave.com/products/inference/serverless/usage-limits",
+    "https://docs.coreweave.com/products/inference/serverless/lora",
+    "https://docs.coreweave.com/products/wandb/platform/hosting/hosting-options/multi_tenant_cloud",
+    "https://docs.coreweave.com/products/wandb/platform/hosting/privacy-settings",
+    "https://docs.coreweave.com/release-notes/server-releases",
+    "https://coreweave.com/forge-pricing/inference-agents",
+    "https://wandb.ai/site/terms/",
+    "https://wandb.ai/site/dpa/",
+    "https://wandb.ai/site/security/",
+    "https://docs.coreweave.com/policies/terms-of-service/privacy-policy",
     "https://wandb.ai/site/resources/whitepapers/eu-ai-act/",
-    "https://wandb.ai/site/resources/events/navigating-the-eu-ai-act-compliance-through-governance-and-observability/",
-    "https://docs.coreweave.com/policies/terms-of-service/privacy-policy"
+    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
+    "https://www.dataprivacyframework.gov/list"
   ],
-  "notes": "W&B offers a click-through DPA, public sub-processor disclosure, SOC 2/HIPAA statements, and region-selectable Dedicated Cloud including EU regions, but its multi-tenant cloud is North America-based. A clear primary-source statement was not found on whether customer/API data is used for model training or whether W&B Inference compute is guaranteed to stay in the EU.",
+  "notes": "W&B Inference is now CoreWeave Serverless Inference within CoreWeave Forge, and the contracting party under the terms and DPA is Weights and Biases, LLC, a CoreWeave affiliate. It offers an online-accepted DPA with Standard Contractual Clauses but no EU region, and Weights & Biases is no longer active under the EU-US Data Privacy Framework. Free accounts get limited credits; paid use is billed per token.",
   "translations": {
     "de": {
-      "notes": "W&B bietet einen per Click-through abschließbaren Auftragsverarbeitungsvertrag (AVV), eine öffentliche Offenlegung der Unterauftragsverarbeiter, Erklärungen zu SOC 2/HIPAA sowie eine regionenwählbare Dedicated Cloud einschließlich EU-Regionen an; die mandantenfähige Multi-tenant Cloud ist jedoch in Nordamerika angesiedelt. Es wurde keine eindeutige Aussage aus Primärquellen dazu gefunden, ob Kunden-/API-Daten für das Modelltraining verwendet werden oder ob gewährleistet ist, dass W&B Inference-Compute in der EU verbleibt.",
+      "notes": "W&B Inference heißt heute CoreWeave Serverless Inference und gehört zu CoreWeave Forge; Vertragspartner laut Nutzungsbedingungen und AVV ist Weights and Biases, LLC, ein mit CoreWeave verbundenes Unternehmen. Es gibt einen online abschließbaren AVV mit Standardvertragsklauseln, aber keine EU-Region, und Weights & Biases ist unter dem EU-US Data Privacy Framework nicht mehr aktiv. Kostenlose Konten erhalten begrenzte Guthaben, bezahlte Nutzung wird pro Token abgerechnet.",
       "dataResidency": {
-        "euRegionDetails": "Die W&B Multi-tenant Cloud wird in einer Google-Cloud-Region in Nordamerika betrieben. W&B Dedicated Cloud ist auf AWS, Google Cloud und Azure in kundenseitig ausgewählten Regionen verfügbar, einschließlich mehrerer EU-Regionen wie AWS eu-central-1/eu-west-1/eu-west-2/eu-south-1/eu-north-1, Google Cloud europe-west1/europe-west2/europe-west3/europe-west4 und Azure francecentral/westeurope. Die aufgefundene Dokumentation gewährleistet nicht ausdrücklich, dass W&B Inference-GPU-Compute ausschließlich in der EU verbleibt."
+        "euRegionDetails": "W&B Serverless Inference, heute Teil von CoreWeave Forge, bietet keine EU-Region und keine EU-Datenresidenz. Forge läuft in Google-Cloud-Regionen in Nordamerika, die gelisteten Unterauftragsverarbeiter sitzen in den USA, und der Standort der Inferenz-GPUs ist nicht dokumentiert. W&B Dedicated Cloud bietet EU-Regionen für die W&B-Plattform, Serverless Inference ist dort aber nicht verfügbar."
       },
       "dataUsage": {
-        "retentionPolicy": "In der Datenschutzerklärung wird ausgeführt, dass personenbezogene Daten nur so lange gespeichert werden, wie dies für die beschriebenen Zwecke erforderlich ist, sofern nicht gesetzlich eine längere Aufbewahrungsfrist vorgeschrieben oder zulässig ist; sobald die Daten nicht mehr benötigt werden, werden sie gelöscht, anonymisiert oder bis zur möglichen Löschung sicher isoliert.",
-        "details": "Für Weave bietet W&B clientseitige Kontrollmechanismen für sensible Daten an, wie etwa die Schwärzung personenbezogener Daten (PII-Redaktion), bevor Traces an W&B-Server gesendet werden, und Dedicated Cloud ermöglicht die Bereitstellung in einer frei wählbaren Region für strengere Governance-Anforderungen. Es wurde keine Aussage aus Primärquellen gefunden, die klar besagt, ob Kunden-/API-Daten für das Training von Modellen des Anbieters verwendet werden oder nicht."
+        "retentionPolicy": "Für Prompts und Ausgaben von Serverless Inference ist keine Aufbewahrungsfrist veröffentlicht. Laut AVV werden personenbezogene Daten auf Anfrage oder bei Vertragsende gelöscht oder zurückgegeben; Kopien in Backups werden isoliert und später gelöscht.",
+        "details": "Die Vertragsbedingungen behandeln Prompts und Ausgaben als Kundendaten und erlauben W&B, Kundendaten zur Bereitstellung und Verbesserung der Dienste, zur Entwicklung neuer Produkte und zur Verbesserung von KI-Funktionen zu nutzen. Forge hat eine Datenschutzeinstellung „Allow model training on Customer Data“ auf Organisationsebene, deren Standardwert und Geltung für Serverless Inference aber nicht dokumentiert sind. Eine offizielle Aussage, ob Prompts aus Serverless Inference für Training genutzt werden, gibt es nicht."
       },
       "euAiAct": {
-        "details": "W&B stellt öffentlich Leitfäden und Veranstaltungen zum EU AI Act und zur AI-Act-Compliance bereit und positioniert seine Produkte als Unterstützung für Governance, Nachvollziehbarkeit, Dokumentation und Berichterstattung; es wurde jedoch keine Aussage aus Primärquellen gefunden, die eine formale EU-AI-Act-Compliance-Zertifizierung oder einen Rechtskonformitätsstatus des Anbieters selbst beansprucht."
+        "details": "Eine offizielle Aussage von W&B oder CoreWeave zum eigenen Status unter dem EU AI Act wurde nicht gefunden, und keines der beiden Unternehmen steht auf der EU-Liste der Unterzeichner des GPAI-Verhaltenskodex. Die AI-Act-Materialien von W&B sind Leitfäden für Kunden."
       }
     }
   }
