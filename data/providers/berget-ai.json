@@ -12,7 +12,7 @@
       ],
       "euOnly": true,
       "dataLeavesEuAtInference": false,
-      "euRegionDetails": "Inference runs on Berget AI's own infrastructure in Stockholm, Sweden. All Berget AI data centres are in the EEA, and the DPA rules out transfers outside the EEA unless the customer instructs them in writing."
+      "euRegionDetails": "Inference runs on Berget AI's infrastructure in Stockholm, Sweden. All Berget AI data centres are in the EEA, and the DPA rules out transfers outside the EEA unless the customer instructs them in writing."
     },
     "dpa": {
       "available": true,
@@ -32,8 +32,8 @@
     },
     "certifications": [],
     "euAiAct": {
-      "status": "unknown",
-      "details": "Berget AI's Acceptable Use Policy states that it acts only as an infrastructure provider, not as a provider or deployer of AI systems under the EU AI Act, and makes customers responsible for AI Act compliance."
+      "status": "not_applicable",
+      "details": "Berget AI's Acceptable Use Policy states that it acts solely as an infrastructure and service provider, not as a provider or deployer of AI systems under the EU AI Act, and makes customers responsible for AI Act compliance."
     },
     "sccs": false,
     "adequacyDecision": true
@@ -50,19 +50,19 @@
     "https://berget.ai/en/serverless-inference",
     "https://docs.berget.ai/quickstart"
   ],
-  "notes": "Founded in Sweden in 2024; runs open-weight models on its own hardware in Stockholm. The DPA lists four sub-processors, all EU entities: three Swedish infrastructure firms and Stripe Payments Europe for card payments. No security certification yet; the Terms state that ISO 27001 certification is in progress.",
+  "notes": "Founded in Sweden in 2024; serves open-weight models from infrastructure in Stockholm. The DPA lists four sub-processors, all EU entities: three Swedish infrastructure firms and Stripe Payments Europe (Ireland) for card payments. No security certification yet; the Terms state that Berget AI is working toward ISO 27001 certification.",
   "translations": {
     "de": {
-      "notes": "2024 in Schweden gegründet; betreibt Open-Weight-Modelle auf eigener Hardware in Stockholm. Der AVV nennt vier Unterauftragsverarbeiter, alle mit Sitz in der EU: drei schwedische Infrastrukturfirmen und Stripe Payments Europe für Kartenzahlungen. Noch keine Sicherheitszertifizierung; laut AGB ist eine ISO-27001-Zertifizierung in Arbeit.",
+      "notes": "2024 in Schweden gegründet; stellt Open-Weight-Modelle auf Infrastruktur in Stockholm bereit. Der AVV nennt vier Unterauftragsverarbeiter, alle mit Sitz in der EU: drei schwedische Infrastrukturfirmen und Stripe Payments Europe (Irland) für Kartenzahlungen. Noch keine Sicherheitszertifizierung; laut Nutzungsbedingungen strebt Berget AI eine ISO-27001-Zertifizierung an.",
       "dataResidency": {
-        "euRegionDetails": "Die Inferenz läuft auf der eigenen Infrastruktur von Berget AI in Stockholm, Schweden. Alle Rechenzentren von Berget AI liegen im EWR; laut AVV werden Daten nur auf schriftliche Weisung des Kunden außerhalb des EWR übermittelt."
+        "euRegionDetails": "Die Inferenz läuft auf der Infrastruktur von Berget AI in Stockholm, Schweden. Alle Rechenzentren von Berget AI liegen im EWR; laut AVV werden Daten nur auf schriftliche Weisung des Kunden außerhalb des EWR übermittelt."
       },
       "dataUsage": {
-        "retentionPolicy": "Zero Data Retention für Serverless Inference: Prompts, Dateien und Ausgaben werden nach der Anfrage nicht gespeichert und auch während der Verarbeitung nicht auf Datenträger geschrieben. Anfrage-Metadaten und Token-Zählungen werden für Betrieb und Abrechnung gespeichert.",
+        "retentionPolicy": "Zero Data Retention für Serverless Inference: Prompts, Dateien und Ausgaben werden nach der Anfrage nicht gespeichert und auch während der Verarbeitung nicht auf Datenträger geschrieben. Anfrage-Metadaten und Tokenzahlen werden für Betrieb und Abrechnung gespeichert.",
         "details": "Laut AVV trainiert Berget AI keine Modelle mit Ein- oder Ausgaben der Serverless Inference und gibt sie auch nicht zu Trainingszwecken an Modellanbieter weiter."
       },
       "euAiAct": {
-        "details": "Laut Acceptable Use Policy tritt Berget AI nur als Infrastrukturanbieter auf, nicht als Anbieter oder Betreiber von KI-Systemen im Sinne des EU AI Act; für die Einhaltung des AI Act sind die Kunden verantwortlich."
+        "details": "Laut Acceptable Use Policy tritt Berget AI ausschließlich als Infrastruktur- und Dienstanbieter auf, nicht als Anbieter oder Betreiber von KI-Systemen im Sinne des EU AI Act; für die Einhaltung des AI Act sind die Kunden verantwortlich."
       }
     }
   }
