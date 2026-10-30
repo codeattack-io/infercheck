@@ -24,7 +24,7 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "For standard inference requests Cloudflare keeps no prompts or outputs once the response is delivered. Content is stored only when the customer uses a stateful feature, such as batch requests, AI Gateway logging or Cloudflare storage services. Cloudflare keeps operational metadata such as model IDs, token counts and timestamps, but not the content.",
+      "retentionPolicy": "For standard inference requests Cloudflare keeps no prompts or outputs once the response is delivered, apart from limited legal and security exceptions. Content is stored when the customer uses a stateful feature, such as batch requests, AI Gateway logging or Cloudflare storage services. Cloudflare keeps operational metadata such as model IDs, token counts and timestamps, but not the content.",
       "details": "Inputs, outputs, embeddings and adaptation data count as Customer Content. Cloudflare does not use it to train AI models and does not make it available to other customers."
     },
     "subProcessors": {
@@ -41,12 +41,12 @@
     ],
     "euAiAct": {
       "status": "not_applicable",
-      "details": "Cloudflare states it does not provide general-purpose AI models it has trained itself; the models on Workers AI come from third-party providers, who are responsible for their EU AI Act compliance. Cloudflare says it offers no high-risk AI systems."
+      "details": "Cloudflare states it does not provide general-purpose AI models trained by Cloudflare and that third-party providers are responsible for the AI Act compliance of the GPAI models on Workers AI. The catalog also lists Cloudflare's own Clef decision models and the Clairic extraction model (preview). Cloudflare says it offers no high-risk AI systems."
     },
     "sccs": true,
     "adequacyDecision": true
   },
-  "pricingTier": "free_tier",
+  "pricingTier": "pay_per_use",
   "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
@@ -54,6 +54,7 @@
     "https://developers.cloudflare.com/workers-ai/",
     "https://developers.cloudflare.com/workers-ai/platform/data-usage/",
     "https://developers.cloudflare.com/workers-ai/platform/pricing/",
+    "https://developers.cloudflare.com/workers-ai/models/",
     "https://developers.cloudflare.com/data-localization/compatibility/",
     "https://www.cloudflare.com/privacypolicy/",
     "https://www.cloudflare.com/terms/",
@@ -66,19 +67,19 @@
     "https://www.cloudflare.com/trust-hub/compliance-resources/iso-certifications/",
     "https://www.cloudflare.com/trust-hub/responsible-ai/"
   ],
-  "notes": "Cloudflare commits to zero data retention and no training for standard Workers AI inference, and Cloudflare, Inc. is certified under the EU-US Data Privacy Framework. Inference runs on Cloudflare's global network and GPU sub-processors in the US and England; Workers AI cannot be restricted to EU data centres. The free Workers plan includes an ongoing daily allocation of 10,000 Neurons.",
+  "notes": "Cloudflare commits to zero data retention and no training for standard Workers AI inference, and Cloudflare, Inc. is certified under the EU-US Data Privacy Framework. Inference runs on Cloudflare's global network and GPU sub-processors in the US and England; Workers AI cannot be restricted to EU data centres. The free Workers plan includes a daily allocation of 10,000 Neurons; usage above it is billed on the Workers Paid plan.",
   "translations": {
     "de": {
-      "notes": "Cloudflare sagt für normale Workers-AI-Inferenz Zero Data Retention und kein Training zu, und Cloudflare, Inc. ist nach dem EU-US Data Privacy Framework zertifiziert. Die Inferenz läuft im globalen Netzwerk von Cloudflare und bei GPU-Unterauftragsverarbeitern in den USA und England; Workers AI lässt sich nicht auf EU-Rechenzentren beschränken. Der kostenlose Workers-Tarif enthält ein dauerhaftes Tageskontingent von 10.000 Neurons.",
+      "notes": "Cloudflare sagt für normale Workers-AI-Inferenz Zero Data Retention und kein Training zu, und Cloudflare, Inc. ist nach dem EU-US Data Privacy Framework zertifiziert. Die Inferenz läuft im globalen Netzwerk von Cloudflare und bei GPU-Unterauftragsverarbeitern in den USA und England; Workers AI lässt sich nicht auf EU-Rechenzentren beschränken. Der kostenlose Workers-Tarif enthält ein tägliches Kontingent von 10.000 Neurons; darüber hinausgehende Nutzung wird im Tarif Workers Paid abgerechnet.",
       "dataResidency": {
         "euRegionDetails": "Workers AI läuft auf GPUs im globalen Netzwerk von Cloudflare sowie bei GPU-Unterauftragsverarbeitern in den USA (CoreWeave) und England (Nebius). Eine Option, die Inferenz in der EU zu halten, gibt es nicht: Workers AI ist nicht mit den Regional Services von Cloudflare kompatibel. Nur Protokolle und Analysemetadaten lassen sich über die Customer Metadata Boundary in der EU halten."
       },
       "dataUsage": {
-        "retentionPolicy": "Bei normalen Inferenzanfragen speichert Cloudflare keine Prompts oder Ausgaben, sobald die Antwort ausgeliefert ist. Inhalte werden nur gespeichert, wenn der Kunde eine zustandsbehaftete Funktion nutzt, etwa Batch-Anfragen, Logging im AI Gateway oder Cloudflare-Speicherdienste. Cloudflare bewahrt Betriebsmetadaten wie Modell-IDs, Token-Zahlen und Zeitstempel auf, nicht aber die Inhalte.",
+        "retentionPolicy": "Bei normalen Inferenzanfragen speichert Cloudflare keine Prompts oder Ausgaben, sobald die Antwort ausgeliefert ist, abgesehen von eng begrenzten rechtlichen und sicherheitsbezogenen Ausnahmen. Inhalte werden gespeichert, wenn der Kunde eine zustandsbehaftete Funktion nutzt, etwa Batch-Anfragen, Logging im AI Gateway oder Cloudflare-Speicherdienste. Cloudflare bewahrt Betriebsmetadaten wie Modell-IDs, Token-Zahlen und Zeitstempel auf, nicht aber die Inhalte.",
         "details": "Eingaben, Ausgaben, Embeddings und Anpassungsdaten gelten als Kundeninhalte. Cloudflare verwendet sie nicht zum Training von KI-Modellen und macht sie anderen Kunden nicht zugänglich."
       },
       "euAiAct": {
-        "details": "Cloudflare erklärt, keine selbst trainierten KI-Modelle mit allgemeinem Verwendungszweck anzubieten; die Modelle auf Workers AI stammen von Drittanbietern, die für die Einhaltung des EU AI Act verantwortlich sind. Nach eigenen Angaben bietet Cloudflare keine Hochrisiko-KI-Systeme an."
+        "details": "Cloudflare erklärt, keine von Cloudflare trainierten KI-Modelle mit allgemeinem Verwendungszweck anzubieten; für die AI-Act-Konformität der GPAI-Modelle auf Workers AI seien die Drittanbieter verantwortlich. Im Katalog stehen auch eigene Modelle von Cloudflare: die Entscheidungsmodelle Clef und das Extraktionsmodell Clairic (Vorschau). Nach eigenen Angaben bietet Cloudflare keine Hochrisiko-KI-Systeme an."
       }
     }
   }
