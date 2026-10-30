@@ -22,7 +22,7 @@
     "dataUsage": {
       "trainsOnCustomerData": true,
       "optOutAvailable": true,
-      "retentionPolicy": "Prompts and outputs are deleted after 30 days unless flagged for misuse or required by law or contract. Paying customers can turn off training use under Data Controls in the dashboard. Zero data retention is available to enterprise customers on request.",
+      "retentionPolicy": "Prompts and outputs are deleted after 30 days unless flagged for misuse or required by law or contract; data that a customer allows Cohere to use for training may be kept separately under the customer agreement. Paying customers can turn off training use under Data Controls in the dashboard. Zero data retention is available to enterprise customers on request.",
       "details": "If training use is on, Cohere filters common personal information out of prompts and outputs before training. Inputs from free trial keys may be used for research and model improvement. In private deployments and on third-party clouds, Cohere receives no prompts or outputs."
     },
     "subProcessors": {
@@ -42,7 +42,7 @@
     "sccs": true,
     "adequacyDecision": true
   },
-  "pricingTier": "free_tier",
+  "pricingTier": "pay_per_use",
   "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
@@ -52,18 +52,21 @@
     "https://trustcenter.cohere.com/",
     "https://trustcenter.cohere.com/subprocessors",
     "https://docs.cohere.com/docs/rate-limits",
+    "https://docs.cohere.com/docs/going-live",
+    "https://docs.cohere.com/docs/deployment-options-overview",
+    "https://cohere.com/pricing",
     "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
     "https://cohere.com/blog/cohere-signs-eu-code-of-practice"
   ],
-  "notes": "Headquartered in Toronto, Canada; EU data reaches Cohere under the EU adequacy decision for Canada, and onward transfers to its US infrastructure rely on Google Cloud's Data Privacy Framework certification and Standard Contractual Clauses. The DPA is not public and is sent on request to privacy@cohere.com after an NDA. All listed sub-processors are in the US.",
+  "notes": "Headquartered in Toronto, Canada; EU data reaches Cohere under the EU adequacy decision for Canada, and onward transfers to its US infrastructure rely on Google Cloud's Data Privacy Framework certification and Standard Contractual Clauses. The DPA is not public and is available on request from privacy@cohere.com after signing an NDA; all listed sub-processors are in the US. Production API keys are billed pay-as-you-go; free, rate-limited trial keys may not be used for production or commercial purposes.",
   "translations": {
     "de": {
-      "notes": "Hauptsitz in Toronto, Kanada; EU-Daten gelangen auf Grundlage des EU-Angemessenheitsbeschlusses für Kanada zu Cohere, die Weiterübermittlung an die US-Infrastruktur stützt sich auf die Data-Privacy-Framework-Zertifizierung von Google Cloud und Standardvertragsklauseln. Der AVV ist nicht öffentlich und wird nach Abschluss einer NDA auf Anfrage an privacy@cohere.com gesendet. Alle aufgeführten Unterauftragsverarbeiter haben ihren Sitz in den USA.",
+      "notes": "Hauptsitz in Toronto, Kanada; EU-Daten gelangen auf Grundlage des EU-Angemessenheitsbeschlusses für Kanada zu Cohere, die Weiterübermittlung an die US-Infrastruktur stützt sich auf die Data-Privacy-Framework-Zertifizierung von Google Cloud und Standardvertragsklauseln. Der AVV ist nicht öffentlich und wird nach Unterzeichnung einer NDA auf Anfrage über privacy@cohere.com bereitgestellt; alle aufgeführten Unterauftragsverarbeiter haben ihren Sitz in den USA. Produktions-API-Schlüssel werden nutzungsbasiert abgerechnet; kostenlose, ratenbegrenzte Test-Schlüssel dürfen nicht für Produktiv- oder kommerzielle Zwecke genutzt werden.",
       "dataResidency": {
         "euRegionDetails": "Die Cohere-API-Plattform läuft ausschließlich in den USA (Google Cloud, US-Central); eine EU-Region gibt es nicht. Bei privaten Bereitstellungen und über Drittanbieter-Clouds (AWS, Azure, OCI) erhält Cohere keine Prompts oder Ausgaben, der Kunde bestimmt also selbst, wo die Daten verarbeitet werden."
       },
       "dataUsage": {
-        "retentionPolicy": "Prompts und Ausgaben werden nach 30 Tagen gelöscht, sofern sie nicht wegen Missbrauchsverdacht markiert sind oder Gesetz oder Vertrag eine längere Aufbewahrung verlangen. Zahlende Kunden können die Nutzung für das Training im Dashboard unter „Data Controls“ abschalten. Zero Data Retention ist für Unternehmenskunden auf Anfrage verfügbar.",
+        "retentionPolicy": "Prompts und Ausgaben werden nach 30 Tagen gelöscht, sofern sie nicht wegen Missbrauchsverdacht markiert sind oder Gesetz oder Vertrag eine längere Aufbewahrung verlangen; Daten, die ein Kunde für das Training freigibt, können gemäß Kundenvertrag gesondert aufbewahrt werden. Zahlende Kunden können die Nutzung für das Training im Dashboard unter „Data Controls“ abschalten. Zero Data Retention ist für Unternehmenskunden auf Anfrage verfügbar.",
         "details": "Ist die Trainingsnutzung aktiviert, filtert Cohere gängige personenbezogene Daten vor dem Training aus Prompts und Ausgaben heraus. Eingaben über kostenlose Test-Schlüssel können für Forschung und Modellverbesserung genutzt werden. Bei privaten Bereitstellungen und über Drittanbieter-Clouds erhält Cohere keine Prompts oder Ausgaben."
       },
       "euAiAct": {
