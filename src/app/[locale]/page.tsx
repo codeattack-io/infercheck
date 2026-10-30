@@ -81,22 +81,9 @@ export default async function HomePage({ params }: HomePageProps) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <main className="page-width flex-1 py-10">
-        {/* Page heading */}
-        <div className="mb-8">
-          <h1 className="m-0 mb-3">
-            {t("heading1")}
-            <br />
-            {t("heading2")}
-          </h1>
-          <p className="font-body text-[0.9375rem] text-text-secondary m-0 max-w-[55ch] leading-[1.6]">
-            {items.length > 0
-              ? t("subheadingWithData", { modelCount: allModels.length, providerCount: providerMap.size })
-              : t("subheadingEmpty")}
-          </p>
-        </div>
-
-        <ModelBrowser items={items} />
+      <main className="page-width flex-1">
+        <h1 className="m-0 pt-7 pb-5 max-md:pt-5 max-md:pb-3.5">{t("heading")}</h1>
+        <ModelBrowser items={items} providerCount={allProviders.length} />
       </main>
     </>
   );

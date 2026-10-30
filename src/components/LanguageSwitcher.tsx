@@ -3,10 +3,12 @@
 import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
+import { useUrlSearchParams } from "@/lib/url-state";
 
 export function LanguageSwitcher({ className }: { className?: string }) {
   const locale = useLocale();
   const pathname = usePathname();
+  const searchParams = useUrlSearchParams();
   const t = useTranslations("LanguageSwitcher");
 
   return (
@@ -14,7 +16,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
       {routing.locales.map((l) => (
         <Link
           key={l}
-          href={pathname}
+          href={{ pathname, query: Object.fromEntries(searchParams) }}
           locale={l}
           hrefLang={l}
           replace

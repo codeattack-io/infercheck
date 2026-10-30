@@ -126,16 +126,6 @@
   }
 }
 
-.search-input:focus {
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 2px var(--color-accent-subtle);
-  outline: none;
-}
-
-.search-clear-btn:hover {
-  opacity: 1 !important;
-}
-
 /* Hidden until the client applies the URL's table state; shown after 3 s if scripts never run. */
 [data-url-pending] {
   visibility: hidden;
@@ -147,9 +137,9 @@
   }
 }
 
-/* Rows outside the active filter: grey, with every text colour at least AA against the row background. */
+/* Rows outside the active filter: muted text, grey pill and tier bar. */
 [data-dimmed] {
-  --color-text-primary: var(--color-text-secondary);
-  --color-text-muted: var(--color-text-secondary);
+  --color-text-primary: var(--color-text-muted);
+  --color-text-secondary: var(--color-text-muted);
   filter: grayscale(1);
 }

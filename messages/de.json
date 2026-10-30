@@ -39,10 +39,7 @@
     "description": "KI-Inferenzanbieter nach DSGVO-Konformität filtern. EU-Datenhaltung, AVV-Verfügbarkeit, Trainingsrichtlinien und Preise von über 75 Anbietern vergleichen.",
     "ogTitle": "InferCheck — DSGVO-konforme KI-Inferenzanbieter finden",
     "ogDescription": "KI-Inferenzanbieter nach DSGVO filtern. EU-Datenhaltung, AVV, Trainings-Opt-out und Preise von über 75 Anbietern vergleichen.",
-    "heading1": "KI-Inferenzanbieter,",
-    "heading2": "gefiltert nach DSGVO-Konformität.",
-    "subheadingWithData": "{modelCount} Modelle bei {providerCount} Anbietern. Nach Compliance-Profil filtern, um geeignete Anbieter zu finden.",
-    "subheadingEmpty": "Anbieter und ihre Compliance-Haltung durchsuchen. Nach Datenhaltung, AVV-Verfügbarkeit und Trainingsrichtlinie filtern."
+    "heading": "KI-Inferenzanbieter, gefiltert nach DSGVO-Konformität."
   },
   "ProvidersPage": {
     "title": "KI-Inferenzanbieter — DSGVO-Compliance-Verzeichnis",
@@ -232,14 +229,13 @@
     "notCurrentBody": "Anbieterbedingungen ändern sich. Das Datum bei jedem Eintrag zeigt an, wann er zuletzt recherchiert bzw. bei manuell verifizierten Einträgen zuletzt gegen Quelldokumente geprüft wurde."
   },
   "FilterBar": {
-    "filterLabel": "Filter:",
     "presets": {
       "strictEu": "Streng EU",
       "euSccs": "EU + SCC",
       "noTraining": "Kein Training"
     },
     "custom": "Benutzerdefiniert",
-    "ariaPresets": "Compliance-Filter-Voreinstellungen",
+    "ariaPresets": "Compliance-Profil",
     "ariaCustomPanel": "Benutzerdefinierte Compliance-Filter",
     "toggles": {
       "euOnly": "Daten verbleiben in der EU",
@@ -248,24 +244,31 @@
       "sccs": "SCC vorhanden"
     }
   },
-  "ModelTable": {
+  "Finder": {
+    "label": "Suche und Filter",
     "searchLabel": "Modelle oder Anbieter suchen",
     "searchPlaceholder": "Modelle oder Anbieter suchen…",
-    "clearSearch": "Suche zurücksetzen",
-    "noModelsFound": "Keine Modelle für „{query}“ gefunden",
-    "resultCountFiltered": "{matching} von {total} Modellen entsprechen dem aktiven Filter",
-    "resultCountSearch": "{total} von {all} Modellen",
-    "resultCount": "{total} Modelle",
+    "clearSearch": "Suche löschen",
+    "countAll": "{models} Modelle · {providers} Anbieter",
+    "countFiltered": "{matching} von {total} Modellen"
+  },
+  "ModelTable": {
     "tableAriaLabel": "KI-Modelle mit DSGVO-Compliance-Daten",
     "columns": {
       "model": "Modell",
+      "provider": "Anbieter",
       "compliance": "Compliance",
       "residency": "Datenhaltung",
       "price": "Preis / 1 Mio. Token",
-      "status": "Stand",
+      "priceSub": "Eingabe · Ausgabe",
       "details": "Details"
     },
-    "sortBy": "Sortieren nach {label}"
+    "sortBy": "Sortieren nach {label}",
+    "moreCount": "{count, plural, one {# weiteres Modell} other {# weitere Modelle}}",
+    "loadMore": "Mehr laden",
+    "noModelsFound": "Keine Modelle für „{query}“ gefunden",
+    "noModels": "Keine Modelle gefunden",
+    "resetFilters": "Filter zurücksetzen"
   },
   "Verification": {
     "aiDraft": "<abbr>KI-Entwurf</abbr> · {date}",
@@ -273,26 +276,52 @@
     "aiDraftHint": "Mit KI-Unterstützung recherchiert; noch nicht manuell verifiziert."
   },
   "ModelRow": {
-    "fullProviderProfile": "Vollständiges Anbieterprofil →",
+    "dimmed": "Entspricht nicht dem aktiven Filter.",
+    "euResidency": "EU",
+    "priceNotPublished": "Preis nicht angegeben",
+    "headquarters": "Hauptsitz {country}",
     "allProviders": "Alle Anbieter für dieses Modell →",
-    "expandSections": {
-      "compliance": "Compliance",
-      "euRouting": "EU-Routing"
+    "fullProviderProfile": "Vollständiges Anbieterprofil →",
+    "compliance": "Compliance",
+    "euRouting": "EU-Routing",
+    "retention": "Aufbewahrung",
+    "gateway": "Gateway",
+    "gatewayNote": "Von einem anderen Unternehmen entwickelt und über {providerName} bereitgestellt. Die Compliance-Angaben beschreiben {providerName}, nicht den Modellhersteller.",
+    "noComplianceData": "Für diesen Anbieter wurden noch keine Compliance-Daten recherchiert.",
+    "sources": "Quellen",
+    "status": "Stand"
+  },
+  "ComplianceFields": {
+    "euOnly": "Ausschließliche EU-Datenhaltung",
+    "inferenceInEu": "Inferenz verbleibt in der EU",
+    "dpa": "Auftragsverarbeitungsvertrag (AVV)",
+    "noTraining": "Kein Training mit Kundendaten",
+    "sccs": "Standardvertragsklauseln (SCC)",
+    "adequacy": "Angemessenheitsbeschluss (Hauptsitz)",
+    "subProcessors": "Unterauftragsverarbeiter",
+    "certifications": "Zertifizierungen",
+    "euAiAct": "Status EU-KI-Verordnung",
+    "yes": "ja",
+    "no": "nein",
+    "unknownNotStated": "unbekannt (keine Angabe)",
+    "withDetail": "{answer}, {detail}",
+    "withCountry": "{answer} ({country})",
+    "dpaSignedVia": {
+      "online_acceptance": "Online-Akzeptanz",
+      "custom_contract": "individueller Vertrag",
+      "not_available": "nicht verfügbar"
     },
-    "complianceFields": {
-      "euDataResidency": "EU-Datenhaltung",
-      "dpaAvailable": "AVV verfügbar",
-      "trainsOnCustomerData": "Training mit Kundendaten",
-      "noTrainingOnCustomerData": "Kein Training mit Kundendaten",
-      "sccsInPlace": "SCC vorhanden"
-    },
-    "euResidencyValue": "EU",
-    "unverifiedNotice": "Compliance-Daten für diesen Anbieter noch nicht verifiziert.",
-    "priceIn": "ein ",
-    "priceOut": "aus ",
-    "gatewayNotice": "<strong>Drittanbieter-Modell, bereitgestellt über {providerName}.</strong> Dieses Modell stammt von einem anderen Unternehmen, wird aber über die Infrastruktur von {providerName} betrieben. Die hier gezeigten Compliance-Eigenschaften beschreiben den Umgang von <strong>{providerName}</strong> mit Daten – nicht den des ursprünglichen Modellherstellers.",
-    "dimmed": "Entspricht nicht dem aktiven Filter",
-    "toggleDetails": "Details zu {name}"
+    "subProcessorsDisclosed": "offengelegt",
+    "subProcessorsWithEu": "offengelegt, enthält EU-Einheiten",
+    "subProcessorsWithoutEu": "offengelegt, keine EU-Einheiten",
+    "subProcessorsHidden": "nicht offengelegt",
+    "certificationsNone": "keine angegeben",
+    "euAiActStatus": {
+      "compliant": "konform",
+      "monitoring": "beobachtet",
+      "unknown": "unbekannt",
+      "not_applicable": "nicht anwendbar"
+    }
   },
   "ImprintPage": {
     "title": "Impressum — InferCheck",

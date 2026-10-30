@@ -1,506 +1,274 @@
 "use client";
 
-// ModelTable: client component that handles search input, applies compliance
-// filters, and renders the model rows.
-//
-// Data is fetched server-side and passed as props — no client-side fetch.
-// Search, filter and sort state lives in URL params (shareable links requirement)
-// and is written through the History API, so changing it never requests the server.
-// Search uses Fuse.js with a manual multi-token $and logical query so that
-// "claude 4.6" matches "Claude Sonnet 4.6" without spuriously matching any
-// model that happens to contain a standalone "4" or "6" elsewhere.
-//
-// Vercel rules applied:
-//   - rerender-derived-state-no-effect: filtered list derived during render
-//   - rerender-functional-setstate: stable search callback
-//   - js-index-maps: provider lookup by slug via Map
-//   - rendering-conditional-render: ternary not &&
-
-import { useMemo, useCallback, useEffect, useRef, useState } from "react";
-import Fuse, { type FuseResultMatch, type Expression } from "fuse.js";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { ModelRow } from "@/components/ModelRow";
-import {
-  PRESET_FILTERS,
-  providerMatchesFilter,
-  filterStateFromSearchParams,
-  getComplianceTier,
-} from "@/lib/compliance";
 import type { ModelWithProvider } from "@/components/types";
-import type { AnyProvider } from "@/lib/compliance";
+import type { ComplianceFilter } from "@/lib/compliance";
+import {
+  createModelSearch,
+  filterFromKey,
+  filterKey,
+  nextSort,
+  partitionByFilter,
+  rowKey,
+  searchModels,
+  parseSort,
+  sortModels,
+  type MatchMap,
+  type ModelList,
+  type PrimaryColumn,
+  type SortKey,
+  type SortState,
+} from "@/lib/model-list";
+import { buttonClass } from "@/lib/styles";
 import { writeSearchParams } from "@/lib/url-state";
 
-// Keys searched; displayName weighted highest since it's what users type.
-// We do NOT use useTokenSearch — it splits on whitespace and matches each
-// token independently, so "4" matches any model with a 4 anywhere.
-// Instead we build a manual $and logical query in buildFuseQuery() below.
-const FUSE_OPTIONS: ConstructorParameters<typeof Fuse<ModelWithProvider>>[1] = {
-  keys: [
-    { name: "model.displayName", weight: 2 },
-    { name: "provider.name", weight: 1 },
-    { name: "model.id", weight: 0.5 },
-  ],
-  threshold: 0.2, // tight: only close matches; 0 = exact, 1 = anything
-  distance: 200, // allow matches further into long model-id strings
-  ignoreLocation: true, // don't penalise matches that occur deep in the string
-  useExtendedSearch: true, // required for $and / $or logical queries
-  useTokenSearch: false, // off — we build the token split manually below
-  includeMatches: true, // character-level indices for highlighting
-  minMatchCharLength: 2, // never match single characters
-};
+export const PAGE_SIZE = 50;
 
-// Split the query into tokens on whitespace.
-// Each token becomes an $or across all keys, and the full query is an $and —
-// every token must be present somewhere.
-//
-// Token matching strategy (Fuse extended search operators):
-//
-//  - Purely numeric/version tokens (only digits, dots, hyphens): use the
-//    include-match operator "'" (e.g. "'5", "'4.6") which requires a literal
-//    substring match with no fuzzy tolerance. This prevents "5" from fuzzy-
-//    matching "12" inside "gpt-oss-120b".
-//
-//  - All other tokens (alphabetic, mixed): plain fuzzy matching so typos
-//    like "claud" → "Claude", "gpt" → "GPT-5" still work. No length cutoff —
-//    short alphabetic tokens like "gpt" need fuzzy, not exact, because Fuse's
-//    "=" operator is a full-field match (whole field must equal the pattern),
-//    not a substring match.
-//
-// Examples:
-//   "gpt"       → fuzzy  "gpt"   → matches "OpenAI: GPT-5", "GPT-OSS-120b"
-//   "gpt 5"     → fuzzy  "gpt"  AND include "'5"  → only models with literal "5"
-//   "claude 4.6"→ fuzzy  "claude" AND include "'4.6"
-//   "claud"     → fuzzy  "claud"  → typo-tolerant, finds Claude models
-function isVersionToken(token: string): boolean {
-  // Only digits, dots, and hyphens — version numbers and numeric model suffixes
-  return /^[\d.\-]+$/.test(token);
+const NO_MATCHES: MatchMap = new Map();
+
+interface ModelListOptions {
+  query?: string;
+  filter: ComplianceFilter | null;
+  sort: SortState;
+  primary?: PrimaryColumn;
 }
 
-function buildFuseQuery(raw: string): string | Expression {
-  const tokens = raw
-    .trim()
-    .split(/\s+/)
-    .filter((t) => t.length >= 1);
-
-  if (tokens.length === 0) return raw.trim();
-
-  // Single token: version → include-match, alphabetic → fuzzy
-  if (tokens.length === 1) {
-    return isVersionToken(tokens[0]) ? `'${tokens[0]}` : tokens[0];
-  }
-
-  // Multi-token: every token must match at least one field.
-  // Cast each leaf to Record<string,string> to satisfy Fuse's Expression index sig.
-  return {
-    $and: tokens.map((token) => {
-      const t = isVersionToken(token) ? `'${token}` : token;
-      return {
-        $or: [
-          { "model.displayName": t } as Record<string, string>,
-          { "provider.name": t } as Record<string, string>,
-          { "model.id": t } as Record<string, string>,
-        ],
-      };
-    }),
-  } as Expression;
-}
-
-export type SortKey = "model" | "compliance" | "price" | "default";
-export type SortDir = "asc" | "desc";
-
-const SORT_KEYS: readonly SortKey[] = ["model", "compliance", "price"];
-
-const TIER_RANK: Record<string, number> = {
-  compliant: 0,
-  partial: 1,
-  noncompliant: 2,
-  unverified: 3,
-};
-
-function providerName(item: ModelWithProvider): string {
-  return item.provider?.name ?? item.model.providerSlug;
-}
-
-function sortItems(items: ModelWithProvider[], key: SortKey, dir: SortDir, locale: string): ModelWithProvider[] {
-  if (key === "default") return items;
-
-  const multiplier = dir === "asc" ? 1 : -1;
-
-  // js-tosorted-immutable: toSorted() creates a new array without mutating props
-  return items.toSorted((a, b) => {
-    if (key === "compliance") {
-      const ra = TIER_RANK[getComplianceTier(a.provider as AnyProvider)] ?? 3;
-      const rb = TIER_RANK[getComplianceTier(b.provider as AnyProvider)] ?? 3;
-      return (ra - rb) * multiplier;
-    }
-    if (key === "price") {
-      const aHasPrice = a.model.inputPricePerMTokens !== null;
-      const bHasPrice = b.model.inputPricePerMTokens !== null;
-      // Models without pricing always sink to the bottom regardless of sort direction
-      if (!aHasPrice && !bHasPrice) return 0;
-      if (!aHasPrice) return 1;
-      if (!bHasPrice) return -1;
-      const pa = parseFloat(a.model.inputPricePerMTokens!);
-      const pb = parseFloat(b.model.inputPricePerMTokens!);
-      return (pa - pb) * multiplier;
-    }
-    if (key === "model") {
-      const byModel = a.model.displayName.localeCompare(b.model.displayName, locale, { sensitivity: "base" });
-      if (byModel !== 0) return byModel * multiplier;
-      return providerName(a).localeCompare(providerName(b), locale, { sensitivity: "base" }) * multiplier;
-    }
-    return 0;
-  });
-}
-
-// Per-row match data keyed by `${model.id}::${model.providerSlug}`
-export type MatchMap = Map<string, readonly FuseResultMatch[]>;
-
-function rowKey(item: ModelWithProvider): string {
-  return `${item.model.id}::${item.model.providerSlug}`;
-}
-
-interface ModelTableProps {
-  items: ModelWithProvider[];
-  searchParams: URLSearchParams;
-}
-
-const SEARCH_URL_DEBOUNCE_MS = 300;
-
-export function ModelTable({ items, searchParams }: ModelTableProps) {
-  const t = useTranslations("ModelTable");
+/**
+ * Searches, sorts and partitions `items` in the browser. A search narrows the rows; the
+ * compliance filter only moves non-matching rows behind the matching ones. Without an
+ * explicit sort, search results keep their relevance order.
+ */
+export function useModelList(
+  items: ModelWithProvider[],
+  { query = "", filter, sort, primary = "model" }: ModelListOptions
+): ModelList {
   const locale = useLocale();
+  const fuse = useMemo(() => createModelSearch(items), [items]);
+  const trimmed = query.trim();
+  const key = filterKey(filter);
+  const { key: sortKey, dir: sortDir } = sort;
 
-  // The input is local state so typing never waits for the URL. `syncedQuery` is the
-  // URL query the input last agreed with; a URL change from elsewhere (hydration,
-  // back/forward) resets the input.
-  const urlQuery = searchParams.get("q") ?? "";
-  const [inputValue, setInputValue] = useState(urlQuery);
-  const [syncedQuery, setSyncedQuery] = useState(urlQuery);
-  if (urlQuery !== syncedQuery) {
-    setSyncedQuery(urlQuery);
-    setInputValue(urlQuery);
-  }
+  return useMemo(() => {
+    const searched = trimmed === "" ? { items, matches: NO_MATCHES } : searchModels(fuse, trimmed);
+    const sorted = sortModels(searched.items, { key: sortKey, dir: sortDir }, locale, primary);
+    return { ...partitionByFilter(sorted, filterFromKey(key)), matches: searched.matches };
+  }, [items, fuse, trimmed, key, sortKey, sortDir, locale, primary]);
+}
 
-  const debounceTimer = useRef<number | undefined>(undefined);
-  useEffect(() => {
-    const handlePopState = () => {
-      window.clearTimeout(debounceTimer.current);
-      const q = new URLSearchParams(window.location.search).get("q") ?? "";
-      setInputValue(q);
-      setSyncedQuery(q);
-    };
-    window.addEventListener("popstate", handlePopState);
-    return () => {
-      window.removeEventListener("popstate", handlePopState);
-      window.clearTimeout(debounceTimer.current);
-    };
-  }, []);
+/** Sort state from the `sort` and `dir` URL parameters, written back without a server request. */
+export function useUrlSort(searchParams: URLSearchParams) {
+  const sortParam = searchParams.get("sort");
+  const dirParam = searchParams.get("dir");
+  const sort = useMemo(() => parseSort(sortParam, dirParam), [sortParam, dirParam]);
 
-  const writeQuery = useCallback((q: string) => {
-    window.clearTimeout(debounceTimer.current);
-    setSyncedQuery(q);
-    const params = new URLSearchParams(window.location.search);
-    if (q) {
-      params.set("q", q);
-    } else {
-      params.delete("q");
-    }
-    writeSearchParams(params, "replace");
-  }, []);
-
-  // Sort state — persisted in URL
-  const rawSort = searchParams.get("sort") as SortKey | null;
-  const sortKey: SortKey = rawSort !== null && SORT_KEYS.includes(rawSort) ? rawSort : "default";
-  const sortDir: SortDir = searchParams.get("dir") === "desc" ? "desc" : "asc";
-
-  const handleSort = useCallback(
+  const onSort = useCallback(
     (key: SortKey) => {
+      const next = nextSort(sort, key);
       const params = new URLSearchParams(window.location.search);
-      if (sortKey === key) {
-        // Toggle direction if same key
-        if (sortDir === "asc") {
-          params.set("dir", "desc");
-        } else {
-          // Third click: reset sort
-          params.delete("sort");
-          params.delete("dir");
-        }
+      if (next.key === null) {
+        params.delete("sort");
+        params.delete("dir");
       } else {
-        params.set("sort", key);
-        params.set("dir", "asc");
+        params.set("sort", next.key);
+        params.set("dir", next.dir);
       }
       writeSearchParams(params, "replace");
     },
-    [sortKey, sortDir]
+    [sort]
   );
 
-  // Derive filter state from URL params during render — no useEffect
-  const filterState = useMemo(() => filterStateFromSearchParams(searchParams), [searchParams]);
+  return { sort, onSort };
+}
 
-  // Build active filter from profile or custom
-  const activeFilter = useMemo(() => {
-    if (!filterState.profile || filterState.profile === null) return null;
-    if (filterState.profile === "custom") return filterState.custom;
-    return PRESET_FILTERS[filterState.profile] ?? null;
-  }, [filterState]);
+export interface ModelTableProps extends ModelList {
+  sort: SortState;
+  onSort: (key: SortKey) => void;
+  /** The search text, quoted in the empty state. */
+  query?: string;
+  /** Shows a "Reset filters" button in the empty state. */
+  onReset?: () => void;
+  /** Rows rendered first and added per "Load more"; null renders every row and no "more" row. */
+  pageSize?: number | null;
+  primary?: PrimaryColumn;
+  className?: string;
+}
 
-  // Build Fuse index once per items change — O(n) cost paid on data change, not per keystroke
-  const fuse = useMemo(() => new Fuse(items, FUSE_OPTIONS), [items]);
+/**
+ * Matching rows come first, dimmed rows after them, and "Load more" reveals that combined
+ * order in steps of `pageSize`, so dimmed rows appear only once every matching row is shown.
+ * A new search, filter or sort starts again at one page. After "Load more", focus moves to
+ * the first newly shown row.
+ */
+export function ModelTable({
+  matching,
+  dimmed,
+  matches,
+  sort,
+  onSort,
+  query = "",
+  onReset,
+  pageSize = PAGE_SIZE,
+  primary = "model",
+  className,
+}: ModelTableProps) {
+  const t = useTranslations("ModelTable");
+  const total = matching.length + dimmed.length;
 
-  // Search filters on the local value immediately; the URL follows once typing pauses.
-  const handleSearchChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      const q = e.target.value;
-      setInputValue(q);
-      window.clearTimeout(debounceTimer.current);
-      debounceTimer.current = window.setTimeout(() => writeQuery(q), SEARCH_URL_DEBOUNCE_MS);
-    },
-    [writeQuery]
-  );
+  const [limit, setLimit] = useState(pageSize ?? total);
+  const [listFor, setListFor] = useState({ matching, dimmed });
+  if (listFor.matching !== matching || listFor.dimmed !== dimmed) {
+    setListFor({ matching, dimmed });
+    setLimit(pageSize ?? total);
+  }
+  const shown = pageSize === null ? total : Math.min(limit, total);
+  const remaining = total - shown;
 
-  const handleClear = useCallback(() => {
-    setInputValue("");
-    writeQuery("");
-  }, [writeQuery]);
+  const tbodyRef = useRef<HTMLTableSectionElement>(null);
+  const focusRow = useRef<number | null>(null);
+  useEffect(() => {
+    if (focusRow.current === null) return;
+    tbodyRef.current?.querySelectorAll<HTMLElement>("[data-row-button]")[focusRow.current]?.focus();
+    focusRow.current = null;
+  }, [limit]);
 
-  // Search + filter — derived during render (rerender-derived-state-no-effect)
-  //
-  // inputValue drives filtering (local, instant), not the debounced URL query.
-  const { matching, nonMatching, matchMap } = useMemo(() => {
-    const q = inputValue.trim();
-    const matchMap: MatchMap = new Map();
+  const loadMore = () => {
+    focusRow.current = shown;
+    setLimit(shown + (pageSize ?? total));
+  };
 
-    let searchPassed: Set<ModelWithProvider> | null = null;
-
-    if (q !== "") {
-      const query = buildFuseQuery(q);
-      // Fuse search accepts string | Expression — cast needed because the
-      // TypeScript overloads don't unify the two signatures cleanly.
-      const fuseResults = fuse.search(query as string);
-      searchPassed = new Set();
-      for (const result of fuseResults) {
-        searchPassed.add(result.item);
-        if (result.matches && result.matches.length > 0) {
-          matchMap.set(rowKey(result.item), result.matches);
-        }
-      }
-    }
-
-    const matching: ModelWithProvider[] = [];
-    const nonMatching: ModelWithProvider[] = [];
-
-    const source =
-      searchPassed !== null
-        ? Array.from(searchPassed) // Fuse-ranked order
-        : items; // original DB order when no query
-
-    for (const item of source) {
-      const matchesFilter =
-        activeFilter === null || (item.provider !== null && providerMatchesFilter(item.provider, activeFilter));
-
-      if (matchesFilter) {
-        matching.push(item);
-      } else {
-        nonMatching.push(item);
-      }
-    }
-
-    // An explicit sort overrides Fuse relevance order; without one, search results stay ranked.
-    const shouldSort = sortKey !== "default";
-    return {
-      matching: shouldSort ? sortItems(matching, sortKey, sortDir, locale) : matching,
-      nonMatching: shouldSort ? sortItems(nonMatching, sortKey, sortDir, locale) : nonMatching,
-      matchMap,
-    };
-  }, [items, inputValue, activeFilter, fuse, sortKey, sortDir, locale]);
-
-  const totalVisible = matching.length + nonMatching.length;
-  const hasFilter = activeFilter !== null;
-  const hasQuery = inputValue.trim() !== "";
+  const rows = [];
+  for (let i = 0; i < shown; i++) {
+    const isDimmed = i >= matching.length;
+    const item = isDimmed ? dimmed[i - matching.length] : matching[i];
+    rows.push(
+      <ModelRow
+        key={rowKey(item)}
+        item={item}
+        dimmed={isDimmed}
+        matches={matches.get(rowKey(item))}
+        primary={primary}
+      />
+    );
+  }
 
   return (
-    <div>
-      {/* Search input */}
-      <div className="mb-4">
-        <label htmlFor="model-search" className="sr-only">
-          {t("searchLabel")}
-        </label>
-        <div className="relative">
-          {/* Search icon */}
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            aria-hidden="true"
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-text-muted pointer-events-none"
-          >
-            <circle cx="7" cy="7" r="4.5" stroke="currentColor" strokeWidth="1.25" />
-            <path d="M10.5 10.5L13.5 13.5" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" />
-          </svg>
-
-          {/* search-input class provides :focus ring via globals.css */}
-          <input
-            id="model-search"
-            type="text"
-            value={inputValue}
-            onChange={handleSearchChange}
-            placeholder={t("searchPlaceholder")}
-            autoComplete="off"
-            spellCheck={false}
-            className="search-input w-full bg-surface border border-border rounded font-body text-[0.9375rem] text-text-primary outline-none box-border pl-9 py-[9px]"
-            style={{ paddingRight: hasQuery ? "36px" : "12px" }}
-          />
-
-          {/* Clear button — only visible when there's a query */}
-          {hasQuery ? (
-            <button
-              type="button"
-              onClick={handleClear}
-              aria-label={t("clearSearch")}
-              className="search-clear-btn absolute right-[10px] top-1/2 -translate-y-1/2 flex items-center justify-center w-5 h-5 rounded-full border-none bg-text-muted text-surface cursor-pointer p-0 text-sm leading-none opacity-65"
-            >
-              ×
-            </button>
+    <div className={`overflow-hidden rounded-card border border-border bg-surface ${className ?? ""}`}>
+      <table className="-mb-px w-full border-separate border-spacing-0 max-md:block" aria-label={t("tableAriaLabel")}>
+        <colgroup className="max-md:hidden">
+          <col className="w-[42%]" />
+          <col className="w-[16%]" />
+          <col className="w-[18%]" />
+          <col className="w-[20%]" />
+          <col className="w-11" />
+        </colgroup>
+        <thead className="max-md:hidden">
+          <tr>
+            <SortHeader
+              column="model"
+              label={primary === "model" ? t("columns.model") : t("columns.provider")}
+              sort={sort}
+              onSort={onSort}
+              className="pl-5"
+            />
+            <SortHeader column="compliance" label={t("columns.compliance")} sort={sort} onSort={onSort} />
+            <th scope="col" className={TH_CLASS}>
+              {t("columns.residency")}
+            </th>
+            <SortHeader
+              column="price"
+              label={t("columns.price")}
+              sub={t("columns.priceSub")}
+              sort={sort}
+              onSort={onSort}
+              className="text-right"
+            />
+            <th scope="col" className={TH_CLASS}>
+              <span className="sr-only">{t("columns.details")}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody ref={tbodyRef} className="max-md:block">
+          {rows}
+          {remaining > 0 ? (
+            <tr className="max-md:block">
+              <td
+                colSpan={5}
+                className="border-b border-border px-5 py-3.5 text-15 text-text-muted max-md:block max-md:p-3.5"
+              >
+                {t("moreCount", { count: remaining })}
+                <button type="button" onClick={loadMore} className={`ml-3 ${buttonClass("secondary")}`}>
+                  {t("loadMore")}
+                </button>
+              </td>
+            </tr>
           ) : null}
-        </div>
-      </div>
-
-      {/* Results summary */}
-      <div className="font-body text-[0.8125rem] text-text-muted mb-3">
-        {hasQuery && totalVisible === 0
-          ? t("noModelsFound", { query: inputValue })
-          : hasFilter
-            ? t("resultCountFiltered", { matching: matching.length, total: totalVisible })
-            : hasQuery
-              ? t("resultCountSearch", { total: totalVisible, all: items.length })
-              : t("resultCount", { total: totalVisible })}
-      </div>
-
-      {/* Table */}
-      <div className="border border-border rounded overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse bg-surface" aria-label={t("tableAriaLabel")}>
-            <thead>
-              <tr className="bg-surface-alt border-b border-border">
-                <SortableTh
-                  label={t("columns.model")}
-                  sortKey="model"
-                  activeSortKey={sortKey}
-                  sortDir={sortDir}
-                  onSort={handleSort}
-                  className="w-[25%]"
-                />
-                <SortableTh
-                  label={t("columns.compliance")}
-                  sortKey="compliance"
-                  activeSortKey={sortKey}
-                  sortDir={sortDir}
-                  onSort={handleSort}
-                  className="hidden sm:table-cell w-[26%]"
-                />
-                <SortableTh
-                  label={t("columns.residency")}
-                  sortKey="default"
-                  activeSortKey={sortKey}
-                  sortDir={sortDir}
-                  onSort={handleSort}
-                  className="hidden md:table-cell w-[15%]"
-                  nonSortable
-                />
-                <SortableTh
-                  label={t("columns.price")}
-                  sortKey="price"
-                  activeSortKey={sortKey}
-                  sortDir={sortDir}
-                  onSort={handleSort}
-                  className="hidden lg:table-cell w-[15%]"
-                />
-                <SortableTh
-                  label={t("columns.status")}
-                  sortKey="default"
-                  activeSortKey={sortKey}
-                  sortDir={sortDir}
-                  onSort={handleSort}
-                  className="hidden xl:table-cell w-[14%]"
-                  nonSortable
-                />
-                <th className="w-[5%]">
-                  <span className="sr-only">{t("columns.details")}</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {matching.map((item) => (
-                <ModelRow key={rowKey(item)} item={item} dimmed={false} matches={matchMap.get(rowKey(item))} />
-              ))}
-              {nonMatching.map((item) => (
-                <ModelRow key={rowKey(item)} item={item} dimmed={true} matches={matchMap.get(rowKey(item))} />
-              ))}
-              {totalVisible === 0 ? (
-                <tr>
-                  <td colSpan={6} className="py-12 px-4 text-center font-body text-[0.9375rem] text-text-muted">
-                    {t("noModelsFound", { query: inputValue })}
-                  </td>
-                </tr>
-              ) : null}
-            </tbody>
-          </table>
-        </div>
-      </div>
+          {total === 0 ? (
+            <tr className="max-md:block">
+              <td
+                colSpan={5}
+                className="border-b border-border px-4 py-12 text-center text-15 text-text-muted max-md:block"
+              >
+                <p className="m-0">{query.trim() ? t("noModelsFound", { query: query.trim() }) : t("noModels")}</p>
+                {onReset ? (
+                  <button type="button" onClick={onReset} className={`mt-3 ${buttonClass("secondary")}`}>
+                    {t("resetFilters")}
+                  </button>
+                ) : null}
+              </td>
+            </tr>
+          ) : null}
+        </tbody>
+      </table>
     </div>
   );
 }
 
-interface SortableThProps {
+const TH_CLASS =
+  "border-b border-border bg-surface-alt px-4 py-3 text-left align-middle text-13 font-semibold uppercase tracking-[0.04em] text-text-muted";
+
+interface SortHeaderProps {
+  column: SortKey;
   label: string;
-  sortKey: SortKey;
-  activeSortKey: SortKey;
-  sortDir: SortDir;
+  sub?: string;
+  sort: SortState;
   onSort: (key: SortKey) => void;
   className?: string;
-  nonSortable?: boolean;
 }
 
-function SortableTh({
-  label,
-  sortKey,
-  activeSortKey,
-  sortDir,
-  onSort,
-  className,
-  nonSortable = false,
-}: SortableThProps) {
-  const isActive = !nonSortable && activeSortKey === sortKey;
+function SortHeader({ column, label, sub, sort, onSort, className }: SortHeaderProps) {
   const t = useTranslations("ModelTable");
+  const active = sort.key === column;
+  const descending = active && sort.dir === "desc";
 
   return (
     <th
-      aria-sort={nonSortable ? undefined : isActive ? (sortDir === "desc" ? "descending" : "ascending") : "none"}
-      className={[
-        "px-4 py-[10px] text-left text-13 font-semibold uppercase tracking-[0.04em] select-none",
-        isActive ? "text-text-primary" : "text-text-secondary",
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      scope="col"
+      aria-sort={active ? (descending ? "descending" : "ascending") : "none"}
+      className={`${TH_CLASS} ${className ?? ""}`}
     >
-      {nonSortable ? (
-        label
-      ) : (
-        <button
-          type="button"
-          onClick={() => onSort(sortKey)}
-          className="bg-transparent border-none p-0 cursor-pointer font-[inherit] text-[inherit] [text-transform:inherit] [letter-spacing:inherit] inline-flex items-center gap-1"
-          aria-label={t("sortBy", { label })}
+      <button
+        type="button"
+        onClick={() => onSort(column)}
+        aria-label={t("sortBy", { label })}
+        className="group relative cursor-pointer uppercase tracking-[inherit]"
+      >
+        {label}
+        <svg
+          viewBox="0 0 10 10"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+          className={`absolute top-1/2 left-full ml-1 size-2.5 -translate-y-1/2 ${descending ? "rotate-180" : ""} ${active ? "" : "opacity-0 group-hover:opacity-35 group-focus-visible:opacity-35"}`}
         >
-          {label}
-          <span className="text-[10px] leading-none" style={{ opacity: isActive ? 1 : 0.35 }} aria-hidden="true">
-            {isActive && sortDir === "desc" ? "↓" : "↑"}
-          </span>
-        </button>
-      )}
+          <path d="M5 8.5v-7M2 4.5l3-3 3 3" />
+        </svg>
+      </button>
+      {sub ? <span className="block text-13 font-medium tracking-normal normal-case">{sub}</span> : null}
     </th>
   );
 }
