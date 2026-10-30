@@ -59,12 +59,13 @@
     "https://docs.github.com/en/enterprise-cloud@latest/admin/overview/accessing-compliance-reports-for-your-enterprise",
     "https://github.com/trust-center",
     "https://docs.github.com/en/site-policy/github-terms/github-terms-of-service",
-    "https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement"
+    "https://docs.github.com/fr/site-policy/privacy-policies/github-general-privacy-statement",
+    "https://www.dataprivacyframework.gov/participant/6174"
   ],
-  "notes": "GitHub retired GitHub Models on 30 July 2026; the playground, model catalog, inference API and bring-your-own-key endpoints are no longer available to any customer. The compliance details describe the service as it was offered before retirement, based on GitHub platform documents. GitHub points to Azure AI Foundry and GitHub Copilot as alternatives.",
+  "notes": "GitHub retired GitHub Models on 30 July 2026; the playground, model catalog, inference API and bring-your-own-key (BYOK) access are no longer available to any customer. The compliance details describe the service as it was offered before retirement, based on GitHub platform documents; GitHub, Inc. is certified under the EU-US Data Privacy Framework. GitHub points to Azure AI Foundry and GitHub Copilot as alternatives.",
   "translations": {
     "de": {
-      "notes": "GitHub hat GitHub Models am 30. Juli 2026 eingestellt; Playground, Modellkatalog, Inferenz-API und Bring-your-own-key-Endpunkte stehen keinem Kunden mehr zur Verfügung. Die Compliance-Angaben beschreiben den Dienst, wie er vor der Einstellung angeboten wurde, auf Grundlage der GitHub-Plattformdokumente. Als Alternativen verweist GitHub auf Azure AI Foundry und GitHub Copilot.",
+      "notes": "GitHub hat GitHub Models am 30. Juli 2026 eingestellt; Playground, Modellkatalog, Inferenz-API und Bring Your Own Key (BYOK) stehen keinem Kunden mehr zur Verfügung. Die Compliance-Angaben beschreiben den Dienst, wie er vor der Einstellung angeboten wurde, auf Grundlage der GitHub-Plattformdokumente; GitHub, Inc. ist unter dem EU-US Data Privacy Framework zertifiziert. Als Alternativen verweist GitHub auf Azure AI Foundry und GitHub Copilot.",
       "dataResidency": {
         "euRegionDetails": "GitHub legt öffentlich Unterauftragsverarbeiter für KI-Inferenz/Datenhosting mit Verarbeitungsstandorten offen, darunter die Vereinigten Staaten, Belgien, Deutschland, Island und Singapur. Die geprüfte Dokumentation zu GitHub Models enthielt weder eine Option für eine ausschließlich in der EU erfolgende Datenhaltung noch eine Garantie für ein kundenseitig wählbares Routing der Inferenz ausschließlich innerhalb der EU."
       },
