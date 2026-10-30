@@ -13,7 +13,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Customers can use Helicone's EU region (eu.helicone.ai, API keys with the prefix eu-), where logged requests are stored. The gateway itself runs on Cloudflare's global edge network, cached responses are kept in Cloudflare Workers KV, and with Helicone-managed provider keys requests go to global or US provider endpoints. Inference stays in the EU only if the customer routes to their own EU deployment (for example Azure in Frankfurt) with their own key; there is no contractual EU-only commitment."
+      "euRegionDetails": "Customers can choose Helicone's EU region (eu.helicone.ai, API keys with the prefix eu-), which Helicone offers for data residency; its privacy policy, however, states that data of users outside the US is transferred to and processed in the United States. The gateway itself runs on Cloudflare's global edge network, cached responses are kept in Cloudflare Workers KV, and with Helicone-managed provider keys requests go to global or US provider endpoints. Inference stays in the EU only if the customer routes to their own EU deployment (for example Azure in Frankfurt) with their own key; there is no contractual EU-only commitment."
     },
     "dpa": {
       "available": false,
@@ -49,7 +49,7 @@
     "https://www.helicone.ai/terms",
     "https://www.helicone.ai/pricing",
     "https://us.helicone.ai/signup",
-    "http://web.archive.org/web/20261003140627/https://www.helicone.ai/blog/joining-mintlify",
+    "https://web.archive.org/web/20261003140627/https://www.helicone.ai/blog/joining-mintlify",
     "https://www.mintlify.com/blog/mintlify-acquires-helicone",
     "https://docs.helicone.ai/getting-started/quick-start",
     "https://docs.helicone.ai/references/data-autonomy",
@@ -59,14 +59,15 @@
     "https://docs.helicone.ai/references/proxy-vs-async",
     "https://docs.helicone.ai/references/latency-affect",
     "https://docs.helicone.ai/gateway/provider-routing",
-    "https://docs.helicone.ai/faq/soc2"
+    "https://docs.helicone.ai/faq/soc2",
+    "https://docs.helicone.ai/references/data-autonomy"
   ],
-  "notes": "Helicone, Inc. (US) is an LLM observability platform and AI gateway. Mintlify acquired it in March 2026 and ran it in maintenance mode; in October 2026 its website stated that Helicone is no longer part of Mintlify, without naming a new owner, and new signups are disabled. It offers an EU region for stored logs and self-hosting, and claims SOC 2 compliance and HIPAA support, but publishes no DPA, no sub-processor list and no statement on whether customer data is used for training.",
+  "notes": "Helicone, Inc. (US) is an LLM observability platform and AI gateway. Mintlify acquired it in March 2026 and ran it in maintenance mode; in October 2026 its website stated that Helicone is no longer part of Mintlify, without naming a new owner, and new signups are disabled. It offers an EU region and self-hosting, and claims SOC 2 compliance and HIPAA support, but publishes no DPA, no sub-processor list and no statement on whether customer data is used for training.",
   "translations": {
     "de": {
-      "notes": "Helicone, Inc. (USA) ist eine Observability-Plattform und ein AI-Gateway für LLMs. Mintlify hat Helicone im März 2026 übernommen und im Wartungsmodus weiterbetrieben; im Oktober 2026 heißt es auf der Website, Helicone gehöre nicht mehr zu Mintlify, ohne einen neuen Eigentümer zu nennen, und Neuregistrierungen sind deaktiviert. Helicone bietet eine EU-Region für gespeicherte Logs und Self-Hosting und nennt SOC-2-Konformität sowie HIPAA-Unterstützung, veröffentlicht aber keinen AVV, keine Liste der Unterauftragsverarbeiter und keine Aussage dazu, ob Kundendaten für Training genutzt werden.",
+      "notes": "Helicone, Inc. (USA) ist eine Observability-Plattform und ein AI-Gateway für LLMs. Mintlify hat Helicone im März 2026 übernommen und im Wartungsmodus weiterbetrieben; im Oktober 2026 heißt es auf der Website, Helicone gehöre nicht mehr zu Mintlify, ohne einen neuen Eigentümer zu nennen, und Neuregistrierungen sind deaktiviert. Helicone bietet eine EU-Region und Self-Hosting und nennt SOC-2-Konformität sowie HIPAA-Unterstützung, veröffentlicht aber keinen AVV, keine Liste der Unterauftragsverarbeiter und keine Aussage dazu, ob Kundendaten für Training genutzt werden.",
       "dataResidency": {
-        "euRegionDetails": "Kunden können die EU-Region von Helicone nutzen (eu.helicone.ai, API-Schlüssel mit dem Präfix eu-), in der protokollierte Anfragen gespeichert werden. Das Gateway selbst läuft im weltweiten Edge-Netz von Cloudflare, zwischengespeicherte Antworten liegen in Cloudflare Workers KV, und mit den von Helicone verwalteten Anbieter-Schlüsseln gehen Anfragen an globale oder US-Endpunkte der Modellanbieter. Die Inferenz bleibt nur in der EU, wenn der Kunde mit eigenem Schlüssel an ein eigenes EU-Deployment routet (etwa Azure in Frankfurt); eine vertragliche Zusage zur ausschließlichen Verarbeitung in der EU gibt es nicht."
+        "euRegionDetails": "Kunden können die EU-Region von Helicone wählen (eu.helicone.ai, API-Schlüssel mit dem Präfix eu-), die Helicone für Datenresidenz anbietet; laut Datenschutzerklärung werden Daten von Nutzern außerhalb der USA jedoch in die USA übermittelt und dort verarbeitet. Das Gateway selbst läuft im weltweiten Edge-Netz von Cloudflare, zwischengespeicherte Antworten liegen in Cloudflare Workers KV, und mit den von Helicone verwalteten Anbieter-Schlüsseln gehen Anfragen an globale oder US-Endpunkte der Modellanbieter. Die Inferenz bleibt nur in der EU, wenn der Kunde mit eigenem Schlüssel an ein eigenes EU-Deployment routet (etwa Azure in Frankfurt); eine vertragliche Zusage zur ausschließlichen Verarbeitung in der EU gibt es nicht."
       },
       "dataUsage": {
         "retentionPolicy": "Protokollierte Anfragen werden im Hobby-Tarif 7 Tage, bei Pro 1 Monat, bei Team 3 Monate und bei Enterprise unbegrenzt gespeichert; Team und Enterprise können die Speicherdauer anpassen. Anfrage- und Antwortinhalte lassen sich pro Anfrage von der Speicherung ausnehmen oder mit asynchronem Logging gar nicht erst übertragen. Ist Caching aktiviert, werden Antworten standardmäßig 7 Tage und höchstens 365 Tage zwischengespeichert.",
