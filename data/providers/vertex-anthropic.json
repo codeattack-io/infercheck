@@ -3,17 +3,19 @@
   "name": "Vertex (Anthropic)",
   "type": "api_provider",
   "website": "https://cloud.google.com",
-  "apiDocsUrl": "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/partner-models/use-claude",
+  "apiDocsUrl": "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
       "regions": [
         "EU",
-        "US"
+        "US",
+        "SG",
+        "TW"
       ],
       "euOnly": false,
-      "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Google Cloud documents regional Anthropic partner model endpoints in multiple EU regions (for example europe-west1, europe-west2, europe-west3, europe-west4, europe-west6, europe-west8, europe-west9, europe-central2, europe-north1, europe-southwest1). Generative AI data residency docs state ML processing occurs within the specific region or multi-region where the request is made, but Google also offers a global endpoint for Anthropic models and says global endpoints do not support data residency requirements and you cannot control or know which region ML processing requests are sent to. Therefore EU-only processing is not guaranteed across the service offering."
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "Claude 4.7 and newer run on the EU multi-region endpoint (eu), older Claude models on the Belgium region (europe-west1); Google documents that ML processing then stays in the EU. The global endpoint can process requests in any region and gives no residency guarantee. Regional and multi-region endpoints cost 10% more than the global endpoint."
     },
     "dpa": {
       "available": true,
@@ -23,8 +25,8 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "Google states it will not use customer data to train or fine-tune AI/ML models without prior permission or instruction. Under the Cloud Data Processing Addendum, customers can delete data during the term, and remaining customer data is deleted at the end of the term; Google states deletion is performed as soon as reasonably practicable and within a maximum of 180 days where that replacement text applies.",
-      "details": "For Vertex AI, Google documents a training restriction and also offers a zero data retention program for eligible use cases, but that is a separate program rather than an opt-out from training."
+      "retentionPolicy": "Claude Fable and Mythos models, and Claude Opus 4.7+ and Sonnet 5+ used in Anthropic's Cyber Verification Program, log prompts and responses for up to 30 days for abuse monitoring in the customer's selected region; for Fable 5 and Mythos 5 this data must be shared with Anthropic. Optional request-response logging keeps data for 30 days. Deleted customer data is removed within 180 days.",
+      "details": "Google's training restriction covers Claude on Google Cloud; Google, not Anthropic, is the data processor for the Google-managed service. Model use is governed by Anthropic's commercial terms."
     },
     "subProcessors": {
       "disclosed": true,
@@ -34,51 +36,61 @@
     "certifications": [
       "SOC2",
       "ISO27001",
+      "ISO27017",
+      "ISO27018",
       "ISO27701",
+      "ISO42001",
       "C5",
       "HDS"
     ],
     "euAiAct": {
-      "status": "monitoring",
-      "details": "Google Cloud has a dedicated EU AI Act compliance page stating it will continue to publish information to support customer compliance and demonstrate adherence to the Act, but it does not claim blanket compliance for Vertex/Anthropic specifically."
+      "status": "compliant",
+      "details": "Anthropic, the provider of Claude, and Google are both on the EU Commission's list of signatories of the General-Purpose AI Code of Practice. Google states that Anthropic models are not a Google product."
     },
     "sccs": true,
-    "adequacyDecision": false
+    "adequacyDecision": true
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://cloud.google.com/terms/cloud-privacy-notice",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/use-partner-models",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude/anthropic-managed",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/locations",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/data-residency",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/resources/zero-data-retention",
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/abuse-monitoring",
+    "https://cloud.google.com/terms/service-terms",
+    "https://cloud.google.com/terms/data-residency",
     "https://cloud.google.com/terms/data-processing-addendum",
-    "https://cloud.google.com/privacy/gdpr",
     "https://cloud.google.com/terms/sccs",
     "https://cloud.google.com/terms/subprocessors",
-    "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/learn/data-residency",
-    "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/learn/locations",
-    "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/vertex-ai-zero-data-retention",
-    "https://cloud.google.com/security/compliance/soc-2",
-    "https://cloud.google.com/security/compliance/iso-27001",
+    "https://cloud.google.com/terms/cloud-privacy-notice",
+    "https://cloud.google.com/privacy/gdpr",
+    "https://cloud.google.com/security/compliance/services-in-scope",
     "https://cloud.google.com/security/compliance/iso-27701",
+    "https://cloud.google.com/security/compliance/iso-42001",
     "https://cloud.google.com/security/compliance/bsi-c5",
     "https://cloud.google.com/security/compliance/hds",
     "https://cloud.google.com/security/compliance/eu-ai-act",
-    "https://cloud.google.com/vertex-ai/generative-ai/pricing",
-    "https://docs.cloud.google.com/vertex-ai/generative-ai/docs/partner-models/use-claude"
+    "https://cloud.google.com/model-garden/partner-models/pricing",
+    "https://policies.google.com/privacy/frameworks",
+    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
   ],
-  "notes": "This offering inherits Google Cloud’s enterprise privacy and contract framework rather than Anthropic’s direct API terms. Google provides a public CDPA, SCCs, subprocessor list, and substantial compliance documentation, but because Anthropic models are available through both EU regional endpoints and a non-residency global endpoint, EU-only inference is not guaranteed across the overall service unless customers strictly constrain endpoint usage.",
+  "notes": "Google-managed Claude runs on Google Cloud (Gemini Enterprise Agent Platform, formerly Vertex AI) with Google as data processor under its Cloud DPA with SCCs; Google LLC is certified under the EU-US Data Privacy Framework. EU processing needs the eu multi-region or the Belgium region; the global endpoint has no residency guarantee. The separate Anthropic-managed Claude offering on Google Cloud runs on Anthropic infrastructure and is not covered by this entry.",
   "translations": {
     "de": {
-      "notes": "Dieses Angebot übernimmt den Datenschutz- und Vertragsrahmen für Unternehmen von Google Cloud anstelle der direkten API-Bedingungen von Anthropic. Google stellt öffentlich ein CDPA, Standardvertragsklauseln (SCC), eine Liste der Unterauftragsverarbeiter sowie umfangreiche Compliance-Dokumentation bereit; da Anthropic-Modelle jedoch sowohl über regionale EU-Endpunkte als auch über einen globalen Endpunkt ohne Datenhaltung verfügbar sind, ist eine ausschließlich in der EU erfolgende Inferenz über das Gesamtangebot hinweg nicht gewährleistet, sofern Kunden die Nutzung der Endpunkte nicht strikt beschränken.",
+      "notes": "Das von Google betriebene Claude läuft auf Google Cloud (Gemini Enterprise Agent Platform, früher Vertex AI) mit Google als Auftragsverarbeiter nach dem Cloud-AVV mit Standardvertragsklauseln; Google LLC ist nach dem EU-US Data Privacy Framework zertifiziert. EU-Verarbeitung erfordert die eu-Multi-Region oder die Region Belgien; der globale Endpunkt bietet keine Garantie für die Datenresidenz. Das separate, von Anthropic betriebene Claude-Angebot auf Google Cloud läuft auf Infrastruktur von Anthropic und ist nicht Gegenstand dieses Eintrags.",
       "dataResidency": {
-        "euRegionDetails": "Google Cloud dokumentiert regionale Endpunkte für Anthropic-Partnermodelle in mehreren EU-Regionen (zum Beispiel europe-west1, europe-west2, europe-west3, europe-west4, europe-west6, europe-west8, europe-west9, europe-central2, europe-north1, europe-southwest1). In der Dokumentation zur Datenhaltung für Generative AI wird angegeben, dass die ML-Verarbeitung innerhalb der spezifischen Region oder Multi-Region erfolgt, in der die Anfrage gestellt wird; Google bietet jedoch auch einen globalen Endpunkt für Anthropic-Modelle an und weist darauf hin, dass globale Endpunkte keine Anforderungen an die Datenhaltung unterstützen und nicht kontrolliert oder festgestellt werden kann, an welche Region Anfragen zur ML-Verarbeitung gesendet werden. Daher ist eine ausschließlich in der EU erfolgende Verarbeitung über das Serviceangebot hinweg nicht gewährleistet."
+        "euRegionDetails": "Claude 4.7 und neuere Modelle laufen über den EU-Multi-Region-Endpunkt (eu), ältere Claude-Modelle über die Region Belgien (europe-west1); laut Google bleibt die ML-Verarbeitung dann in der EU. Der globale Endpunkt kann Anfragen in jeder Region verarbeiten und bietet keine Garantie für die Datenresidenz. Regionale und Multi-Region-Endpunkte kosten 10 % mehr als der globale Endpunkt."
       },
       "dataUsage": {
-        "retentionPolicy": "Google erklärt, dass Kundendaten ohne vorherige Genehmigung oder Weisung nicht zum Trainieren oder Fine-Tuning von AI-/ML-Modellen verwendet werden. Nach dem Cloud Data Processing Addendum können Kunden Daten während der Vertragslaufzeit löschen, und verbleibende Kundendaten werden bei Vertragsende gelöscht; Google erklärt, dass die Löschung so bald wie vernünftigerweise praktikabel und, soweit dieser Ersetzungstext Anwendung findet, innerhalb von maximal 180 Tagen erfolgt.",
-        "details": "Für Vertex AI dokumentiert Google eine Beschränkung hinsichtlich des Trainings und bietet zudem für geeignete Anwendungsfälle ein Programm zur Null-Datenspeicherung an; dabei handelt es sich jedoch um ein separates Programm und nicht um ein Opt-out vom Training."
+        "retentionPolicy": "Claude-Fable- und Mythos-Modelle sowie Claude Opus ab 4.7 und Sonnet ab 5 im Cyber Verification Program von Anthropic protokollieren Prompts und Antworten bis zu 30 Tage zur Missbrauchsüberwachung in der vom Kunden gewählten Region; bei Fable 5 und Mythos 5 müssen diese Daten mit Anthropic geteilt werden. Die optionale Anfrage-Antwort-Protokollierung speichert Daten 30 Tage. Gelöschte Kundendaten werden innerhalb von 180 Tagen entfernt.",
+        "details": "Die Trainingsbeschränkung von Google gilt für Claude auf Google Cloud; Auftragsverarbeiter des von Google betriebenen Dienstes ist Google, nicht Anthropic. Die Modellnutzung richtet sich nach den kommerziellen Bedingungen von Anthropic."
       },
       "euAiAct": {
-        "details": "Google Cloud verfügt über eine eigene Compliance-Seite zum EU AI Act, auf der erklärt wird, weiterhin Informationen zur Unterstützung der Compliance von Kunden zu veröffentlichen und die Einhaltung des Rechtsakts darzulegen; eine pauschale Compliance-Zusage speziell für Vertex/Anthropic wird jedoch nicht abgegeben."
+        "details": "Anthropic als Anbieter von Claude und Google stehen beide auf der Liste der Unterzeichner des GPAI-Verhaltenskodex der EU-Kommission. Google erklärt, dass Anthropic-Modelle kein Google-Produkt sind."
       }
     }
   }
