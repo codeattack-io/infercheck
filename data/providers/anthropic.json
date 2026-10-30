@@ -3,72 +3,73 @@
   "name": "Anthropic",
   "type": "api_provider",
   "website": "https://anthropic.com",
-  "apiDocsUrl": "https://docs.anthropic.com/en/docs/about-claude/models",
+  "apiDocsUrl": "https://platform.claude.com/docs/en/models/overview",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
       "regions": [
-        "US",
-        "EU",
-        "CA",
-        "JP"
+        "US"
       ],
       "euOnly": false,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": "EU data residency available via AWS Bedrock (eu-* regions), GCP Vertex AI (europe-* regions), and Microsoft Azure. Regional inference supported via cloud partners. The direct API (api.anthropic.com) does not support region-pinning — EU residency requires routing through a cloud provider."
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "The Claude API has no EU option for inference or storage. Inference can be limited to the US per request or as a workspace default; the default global routing may run in any available geography. Stored data is kept in the US. Regional endpoints are only offered through partner clouds such as Amazon Bedrock or Google Cloud, which are listed separately."
     },
     "dpa": {
       "available": true,
-      "url": "https://anthropic.com/legal/data-processing-addendum",
+      "url": "https://www.anthropic.com/legal/data-processing-addendum",
       "signedVia": "online_acceptance"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "Commercial API customers' data is not used for model training. This is a hard contractual guarantee in the Commercial Terms, not just a default. Consumer Claude.ai users may have data used for training unless opted out via Privacy Settings.",
-      "details": "The Commercial Terms explicitly state Anthropic may not train models on Customer Content. Safety-flagged content may be retained for trust and safety purposes regardless of other settings."
+      "retentionPolicy": "API inputs and outputs are deleted within 30 days, unless a feature with longer storage is used, zero data retention has been agreed, or longer retention is needed to enforce the usage policy or by law. Content flagged by automated safety systems may be kept for up to 2 years. Zero data retention is available on request, except for some models that require 30-day retention.",
+      "details": "The Commercial Terms state that Anthropic may not train models on customer content. API data is used for training only if the customer explicitly allows it, for example by submitting feedback. Consumer Claude plans have separate terms and use chats for training if the user allows it."
     },
     "subProcessors": {
       "disclosed": true,
-      "url": "https://www.anthropic.com/subprocessors",
+      "url": "https://trust.anthropic.com/subprocessors",
       "includesEuEntities": null
     },
     "certifications": [
       "SOC2",
       "ISO27001",
-      "ISO27017",
-      "ISO27018"
+      "ISO42001"
     ],
     "euAiAct": {
-      "status": "monitoring",
-      "details": "No dedicated EU AI Act compliance page. Published Responsible Scaling Policy and Model Cards align with GPAI transparency obligations. As a US-based GPAI model provider serving the EU, EU AI Act obligations apply. No public conformity assessment or EU AI Office registration found as of verification date."
+      "status": "compliant",
+      "details": "Anthropic has signed the EU General-Purpose AI Code of Practice and is listed as a signatory by the European Commission."
     },
     "sccs": true,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-07",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://anthropic.com/legal/privacy",
-    "https://anthropic.com/legal/data-processing-addendum",
-    "https://anthropic.com/legal/commercial-terms",
-    "https://www.anthropic.com/subprocessors",
-    "https://trust.anthropic.com"
+    "https://www.anthropic.com/legal/privacy",
+    "https://www.anthropic.com/legal/data-processing-addendum",
+    "https://www.anthropic.com/legal/commercial-terms",
+    "https://trust.anthropic.com/",
+    "https://trust.anthropic.com/subprocessors",
+    "https://platform.claude.com/docs/en/manage-claude/data-residency",
+    "https://platform.claude.com/docs/en/manage-claude/api-and-data-retention",
+    "https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data",
+    "https://privacy.claude.com/en/articles/7996868-is-my-data-used-for-model-training",
+    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
   ],
-  "notes": "EU data controller is Anthropic Ireland, Limited (Dublin). Lead supervisory authority is the Irish DPC. The no-training guarantee for API customers is a hard contract clause, stronger than a default opt-out. Security breach notification in DPA is 48 hours — stricter than GDPR's 72-hour requirement. EU data residency requires routing through AWS Bedrock, GCP Vertex, or Azure, not the direct API.",
+  "notes": "For customers in the EEA, Switzerland and the UK, the contracting party is Anthropic Ireland, Limited; the DPA with Standard Contractual Clauses is part of the Commercial Terms. The DPA commits to notifying security breaches within 48 hours. Anthropic, PBC is not certified under the EU-US Data Privacy Framework.",
   "translations": {
     "de": {
-      "notes": "EU-Verantwortlicher ist Anthropic Ireland, Limited (Dublin). Federführende Aufsichtsbehörde ist die irische DPC. Die Garantie der Nichtverwendung zu Trainingszwecken für API-Kunden ist eine verbindliche Vertragsklausel und geht über ein standardmäßiges Opt-out hinaus. Die Benachrichtigung über Sicherheitsverletzungen im AVV erfolgt innerhalb von 48 Stunden — strenger als die DSGVO-Anforderung von 72 Stunden. EU-Datenhaltung erfordert die Weiterleitung über AWS Bedrock, GCP Vertex oder Azure, nicht über die direkte API.",
+      "notes": "Vertragspartner für Kunden im EWR, in der Schweiz und im Vereinigten Königreich ist die Anthropic Ireland, Limited; der AVV mit Standardvertragsklauseln ist Teil der Commercial Terms. Der AVV sieht eine Meldung von Sicherheitsvorfällen innerhalb von 48 Stunden vor. Anthropic, PBC ist nicht unter dem EU-US Data Privacy Framework zertifiziert.",
       "dataResidency": {
-        "euRegionDetails": "EU-Datenhaltung ist über AWS Bedrock (eu-*-Regionen), GCP Vertex AI (europe-*-Regionen) und Microsoft Azure verfügbar. Regionale Inferenz wird über Cloud-Partner unterstützt. Die direkte API (api.anthropic.com) unterstützt kein Region-Pinning — EU-Datenhaltung erfordert die Weiterleitung über einen Cloud-Anbieter."
+        "euRegionDetails": "Die Claude API bietet keine EU-Option für Inferenz oder Speicherung. Die Inferenz lässt sich pro Anfrage oder als Workspace-Standard auf die USA beschränken; das standardmäßige globale Routing kann in jeder verfügbaren Region laufen. Gespeicherte Daten liegen in den USA. Regionale Endpunkte gibt es nur über Partner-Clouds wie Amazon Bedrock oder Google Cloud, die separat gelistet sind."
       },
       "dataUsage": {
-        "retentionPolicy": "Daten von Kunden der kommerziellen API werden nicht für das Modelltraining verwendet. Dies ist eine verbindliche vertragliche Garantie in den Commercial Terms und nicht lediglich eine Standardeinstellung. Daten von Verbrauchernutzern von Claude.ai können für das Training verwendet werden, sofern nicht über die Privacy Settings ein Opt-out erfolgt ist.",
-        "details": "Die Commercial Terms legen ausdrücklich fest, dass Anthropic Modelle nicht auf Customer Content trainieren darf. Als sicherheitsrelevant gekennzeichnete Inhalte können ungeachtet anderer Einstellungen zu Trust-and-Safety-Zwecken gespeichert werden."
+        "retentionPolicy": "Ein- und Ausgaben der API werden innerhalb von 30 Tagen gelöscht, außer bei Funktionen mit längerer Speicherung, bei vereinbarter Zero Data Retention oder wenn eine längere Aufbewahrung zur Durchsetzung der Nutzungsrichtlinie oder gesetzlich nötig ist. Von automatischen Sicherheitssystemen markierte Inhalte können bis zu 2 Jahre aufbewahrt werden. Zero Data Retention ist auf Anfrage verfügbar, außer für einige Modelle, die eine 30-tägige Aufbewahrung erfordern.",
+        "details": "Laut den Commercial Terms darf Anthropic keine Modelle mit Kundeninhalten trainieren. API-Daten werden nur dann für das Training genutzt, wenn der Kunde dies ausdrücklich erlaubt, etwa durch das Senden von Feedback. Für die Verbraucherpläne von Claude gelten eigene Bedingungen; dort werden Chats für das Training genutzt, wenn die Nutzer zustimmen."
       },
       "euAiAct": {
-        "details": "Keine spezielle Compliance-Seite zum EU AI Act. Die veröffentlichte Responsible Scaling Policy und die Model Cards stehen mit den GPAI-Transparenzpflichten im Einklang. Als in den USA ansässiger Anbieter von GPAI-Modellen, der Dienstleistungen in der EU erbringt, unterliegt Anthropic den Verpflichtungen aus dem EU AI Act. Mit Stand des Verifizierungsdatums wurde weder eine öffentliche Konformitätsbewertung noch eine Registrierung beim EU AI Office gefunden."
+        "details": "Anthropic hat den EU-Verhaltenskodex für KI-Modelle mit allgemeinem Verwendungszweck unterzeichnet und wird von der Europäischen Kommission als Unterzeichner geführt."
       }
     }
   }
