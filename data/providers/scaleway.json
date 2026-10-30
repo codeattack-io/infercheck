@@ -31,8 +31,7 @@
       "includesEuEntities": true
     },
     "certifications": [
-      "ISO27001",
-      "HDS"
+      "ISO27001"
     ],
     "euAiAct": {
       "status": "compliant",
@@ -55,7 +54,8 @@
     "https://www.scaleway.com/en/privacy-policy/",
     "https://www.scaleway.com/en/generative-apis/",
     "https://www.scaleway.com/en/product-availability-by-region/",
-    "https://security.scaleway.com/"
+    "https://security.scaleway.com/",
+    "https://www.scaleway.com/en/about-us/"
   ],
   "notes": "French cloud provider and subsidiary of the iliad Group; the DPA applies the EU Standard Contractual Clauses to any transfer outside the EU. Its HDS certification for health data covers infrastructure services such as Instances, Kapsule and Object Storage, not Generative APIs.",
   "translations": {
@@ -69,7 +69,7 @@
         "details": "Die Datenschutzdokumentation zu den Generative APIs und die Besonderen Bedingungen für KI-Dienste von Scaleway halten fest, dass Prompts und Ausgaben nicht zum Training oder zur Verbesserung von Modellen genutzt werden und weder Modellanbietern noch Diensten Dritter zugänglich sind."
       },
       "euAiAct": {
-        "details": "Scaleway erklärt, den AI Act im eigenen Verantwortungsbereich als Plattform für Modelle Dritter einzuhalten; Kunden sind nach dem AI Act in der Regel Anbieter oder Betreiber von KI-Systemen."
+        "details": "Scaleway erklärt, den AI Act in seinem Verantwortungsbereich als Plattform für Modelle Dritter einzuhalten; Kunden gelten nach Angaben von Scaleway voraussichtlich als Anbieter oder Betreiber von KI-Systemen im Sinne des AI Act."
       }
     }
   }
