@@ -10,12 +10,13 @@
 import { useId, useState, memo, type ReactNode } from "react";
 import { Link } from "@/i18n/navigation";
 import { useLocale, useTranslations } from "next-intl";
-import { ComplianceBadge, ComplianceBadgeList } from "@/components/ComplianceBadge";
+import { ComplianceBadge } from "@/components/ComplianceBadge";
 import { GatewayPill } from "@/components/GatewayPill";
-import { BooleanRow } from "@/components/BooleanRow";
+import { BooleanList, BooleanRow } from "@/components/BooleanRow";
 import { VerificationLabel } from "@/components/VerificationLabel";
 import { getVerification } from "@/lib/verification";
 import { formatPrice } from "@/lib/format";
+import { buttonClass } from "@/lib/styles";
 import { isFullProvider, getComplianceTier, TIER_CLASSES } from "@/lib/compliance";
 import type { ModelWithProvider } from "@/components/types";
 import type { FuseResultMatch } from "fuse.js";
@@ -88,7 +89,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
   const priceFormat = { locale, freeLabel: tf("free"), currency: model.priceCurrency };
 
   const tier = provider ? getComplianceTier(provider) : "unverified";
-  const accentBorder = TIER_CLASSES[tier].accentBorder;
+  const tierLine = TIER_CLASSES[tier].line;
 
   const providerName = provider?.name ?? model.providerSlug;
   const isVerified = provider ? isFullProvider(provider) : false;
@@ -97,14 +98,10 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
     <>
       {/* Main row — opacity, borderLeft, backgroundColor are dynamic */}
       <tr
-        className={`cursor-pointer border-l-2 ${accentBorder}`}
+        className={`cursor-pointer border-l-3 ${tierLine}`}
         data-dimmed={dimmed ? "" : undefined}
         style={{
-          backgroundColor: expanded
-            ? "var(--color-surface-alt)"
-            : hovered
-              ? "color-mix(in srgb, var(--color-surface-alt) 60%, var(--color-surface))"
-              : "var(--color-surface)",
+          backgroundColor: expanded || hovered ? "var(--color-row-hover)" : "var(--color-surface)",
         }}
         onClick={() => setExpanded((e) => !e)}
         onMouseEnter={() => setHovered(true)}
@@ -117,7 +114,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
             <span className="font-body text-[0.9375rem] font-semibold text-text-primary leading-[1.3]">
               {highlightText(model.displayName, matches, "model.displayName")}
             </span>
-            {!model.isNativeModel ? <GatewayPill title={t("gatewayTitle", { providerName })} /> : null}
+            {!model.isNativeModel ? <GatewayPill providerName={providerName} /> : null}
           </div>
           <div className="font-body text-[0.8125rem] text-text-secondary mt-0.5">
             {highlightText(providerName, matches, "provider.name")}
@@ -126,11 +123,10 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
 
         {/* Compliance column */}
         <td className="p-3 px-4 align-middle hidden sm:table-cell">
-          {isVerified && provider !== null && isFullProvider(provider) ? (
-            <ComplianceBadgeList compliance={provider.compliance} size="sm" />
-          ) : (
-            <ComplianceBadge variant="unverified" size="sm" />
-          )}
+          <ComplianceBadge
+            tier={tier}
+            compliance={provider !== null && isFullProvider(provider) ? provider.compliance : null}
+          />
         </td>
 
         {/* Data residency column */}
@@ -146,26 +142,26 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
         <td className="p-3 px-4 align-middle hidden lg:table-cell">
           {model.inputPricePerMTokens !== null || model.outputPricePerMTokens !== null ? (
             <div className="flex flex-col gap-0.5">
-              <span className="font-mono text-[0.8125rem] text-text-secondary whitespace-nowrap">
-                <span className="text-text-muted text-xs">{t("priceIn")}</span>
+              <span className="text-[0.8125rem] tabular-nums text-text-secondary whitespace-nowrap">
+                <span className="text-text-muted">{t("priceIn")}</span>
                 {formatPrice(model.inputPricePerMTokens, priceFormat)}
               </span>
-              <span className="font-mono text-[0.8125rem] text-text-secondary whitespace-nowrap">
-                <span className="text-text-muted text-xs">{t("priceOut")}</span>
+              <span className="text-[0.8125rem] tabular-nums text-text-secondary whitespace-nowrap">
+                <span className="text-text-muted">{t("priceOut")}</span>
                 {formatPrice(model.outputPricePerMTokens, priceFormat)}
               </span>
             </div>
           ) : (
-            <span className="font-mono text-[0.8125rem] text-text-muted">—</span>
+            <span className="text-[0.8125rem] text-text-muted">—</span>
           )}
         </td>
 
         {/* Verification status column */}
         <td className="p-3 px-4 align-middle hidden xl:table-cell">
           {provider && getVerification(provider).kind !== "none" ? (
-            <VerificationLabel provider={provider} className="font-mono text-xs text-text-muted whitespace-nowrap" />
+            <VerificationLabel provider={provider} className="text-13 text-text-muted whitespace-nowrap" />
           ) : (
-            <span className="font-mono text-xs text-text-muted">—</span>
+            <span className="text-13 text-text-muted">—</span>
           )}
         </td>
 
@@ -190,20 +186,18 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
 
       {/* Inline expand panel — per DESIGN.md, no modals */}
       {expanded ? (
-        <tr id={panelId} className={`bg-surface-alt border-l-2 ${accentBorder}`}>
+        <tr id={panelId} className={`bg-surface-sunken border-l-3 ${tierLine}`}>
           <td colSpan={6} className="p-0">
             <div className="px-4 pt-3.5 pb-[18px] border-t border-border">
               {/* Header row: provider name + profile link prominently together */}
               <div className="flex items-center justify-between mb-3.5 gap-4 flex-wrap">
-                <span className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em]">
-                  {providerName}
-                </span>
+                <span className="text-17 font-semibold text-text-primary">{providerName}</span>
                 <div className="flex items-center gap-2 flex-wrap">
                   {model.canonicalModelId ? (
                     <Link
                       href={`/model/${model.canonicalModelId}`}
                       onClick={(e) => e.stopPropagation()}
-                      className="font-body text-[0.8125rem] font-medium text-text-secondary no-underline inline-flex items-center gap-1 px-[10px] py-1 border border-border rounded bg-surface-alt whitespace-nowrap"
+                      className={buttonClass("secondary")}
                     >
                       {t("allProviders")}
                     </Link>
@@ -211,7 +205,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                   <Link
                     href={`/provider/${model.providerSlug}`}
                     onClick={(e) => e.stopPropagation()}
-                    className="font-body text-[0.8125rem] font-medium text-accent no-underline inline-flex items-center gap-1 px-[10px] py-1 border border-accent rounded bg-accent-subtle whitespace-nowrap"
+                    className={buttonClass("primary")}
                   >
                     {t("fullProviderProfile")}
                   </Link>
@@ -220,7 +214,7 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
 
               {/* Gateway notice — full width, shown before the compliance grid */}
               {!model.isNativeModel ? (
-                <div className="rounded px-3.5 py-2.5 border font-body text-[0.8125rem] leading-[1.5] mb-4 text-partial border-partial bg-[color-mix(in_srgb,var(--color-partial)_6%,transparent)]">
+                <div className="rounded-button px-3.5 py-2.5 border border-border bg-surface text-14 text-text-secondary mb-4">
                   {t.rich("gatewayNotice", {
                     providerName,
                     strong: (chunks) => <span className="font-semibold">{chunks}</span>,
@@ -233,10 +227,8 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                 {isVerified && provider !== null && isFullProvider(provider) ? (
                   <>
                     <div>
-                      <div className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] mb-2">
-                        {t("expandSections.compliance")}
-                      </div>
-                      <div className="flex flex-col gap-1.5">
+                      <div className="text-13 font-semibold text-text-muted mb-2">{t("expandSections.compliance")}</div>
+                      <BooleanList>
                         <BooleanRow
                           label={t("complianceFields.euDataResidency")}
                           value={provider.compliance.dataResidency.euOnly}
@@ -262,12 +254,12 @@ function ModelRowInner({ item, dimmed = false, matches }: ModelRowProps) {
                           label={t("complianceFields.sccsInPlace")}
                           value={provider.compliance.sccs ?? false}
                         />
-                      </div>
+                      </BooleanList>
                     </div>
 
                     {provider.compliance.dataResidency.euRegionDetails ? (
                       <div className="col-span-2">
-                        <div className="font-body text-xs font-semibold text-text-secondary uppercase tracking-[0.06em] mb-2">
+                        <div className="text-13 font-semibold text-text-muted mb-2">
                           {t("expandSections.euRouting")}
                         </div>
                         <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.5]">

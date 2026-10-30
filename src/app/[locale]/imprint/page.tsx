@@ -40,10 +40,8 @@ export default async function ImprintPage({ params }: PageProps) {
 
   return (
     <>
-      <main className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 pt-14 pb-24">
-        <h1 className="font-display text-[clamp(2rem,5vw,2.75rem)] font-normal text-heading leading-[1.15] mb-3 tracking-[-0.02em]">
-          {t("heading")}
-        </h1>
+      <main className="page-width flex-1 pt-14 pb-24">
+        <h1 className="mb-3">{t("heading")}</h1>
 
         <p className="font-body text-[0.9375rem] text-text-secondary leading-[1.65] mb-10">
           {t.rich("legalNote", {
@@ -60,10 +58,8 @@ export default async function ImprintPage({ params }: PageProps) {
 
         <hr className="border-none border-t border-border mb-10" />
 
-        <section className="mb-10 bg-surface border border-border rounded-lg px-8 py-7">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("operatorHeading")}
-          </h2>
+        <section className="mb-10 bg-surface border border-border rounded-card px-8 py-7">
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("operatorHeading")}</h2>
           <address className="not-italic font-body text-[0.9375rem] text-text-primary leading-[1.9]">
             <span className="font-semibold text-heading">{t("name")}</span>
             <br />
@@ -74,9 +70,7 @@ export default async function ImprintPage({ params }: PageProps) {
         </section>
 
         <section className="mb-10">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("contactHeading")}
-          </h2>
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("contactHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
             {t("emailLabel")}:{" "}
             <a href={`mailto:${t("email")}`} className="text-link underline underline-offset-[3px]">
@@ -86,16 +80,12 @@ export default async function ImprintPage({ params }: PageProps) {
         </section>
 
         <section className="mb-10">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("responsibleHeading")}
-          </h2>
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("responsibleHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("responsibleText")}</p>
         </section>
 
         <section className="mb-10">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("disputeHeading")}
-          </h2>
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("disputeHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">
             {t.rich("disputeText", {
               link: (chunks) => (
@@ -113,23 +103,17 @@ export default async function ImprintPage({ params }: PageProps) {
         </section>
 
         <section className="mb-10">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("liabilityContentHeading")}
-          </h2>
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("liabilityContentHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("liabilityContentText")}</p>
         </section>
 
         <section className="mb-10">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("liabilityLinksHeading")}
-          </h2>
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("liabilityLinksHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("liabilityLinksText")}</p>
         </section>
 
         <section className="mb-12">
-          <h2 className="font-display text-xl font-normal text-heading mb-4 tracking-[-0.01em]">
-            {t("copyrightHeading")}
-          </h2>
+          <h2 className="text-20 font-semibold text-text-primary mb-4">{t("copyrightHeading")}</h2>
           <p className="font-body text-[0.9375rem] text-text-primary leading-[1.75]">{t("copyrightText")}</p>
         </section>
 

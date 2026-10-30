@@ -12,10 +12,10 @@ import { formatContext, formatPrice } from "@/lib/format";
 
 interface ProviderModelRowProps {
   model: ProviderModel;
-  gateway?: boolean;
+  gatewayProviderName?: string;
 }
 
-export function ProviderModelRow({ model: m, gateway = false }: ProviderModelRowProps) {
+export function ProviderModelRow({ model: m, gatewayProviderName }: ProviderModelRowProps) {
   const [hovered, setHovered] = useState(false);
   const router = useRouter();
   const locale = useLocale();
@@ -33,9 +33,7 @@ export function ProviderModelRow({ model: m, gateway = false }: ProviderModelRow
       key={`${m.id}::${m.providerSlug}`}
       className="border-b border-border last:border-b-0 cursor-pointer transition-colors duration-100 ease-in-out"
       style={{
-        backgroundColor: hovered
-          ? "color-mix(in srgb, var(--color-surface-alt) 60%, var(--color-surface))"
-          : "var(--color-surface)",
+        backgroundColor: hovered ? "var(--color-row-hover)" : "var(--color-surface)",
       }}
       onClick={handleClick}
       onMouseEnter={() => setHovered(true)}
@@ -50,18 +48,18 @@ export function ProviderModelRow({ model: m, gateway = false }: ProviderModelRow
           >
             {m.displayName}
           </Link>
-          {gateway ? <GatewayPill size="sm" /> : null}
+          {gatewayProviderName ? <GatewayPill providerName={gatewayProviderName} /> : null}
         </div>
-        <div className="font-mono text-xs text-text-muted mt-0.5">{m.id}</div>
+        <div className="text-13 text-text-muted mt-0.5">{m.id}</div>
       </td>
       <td className="px-4 py-[10px] font-body text-[0.8125rem] text-text-secondary">{m.modality}</td>
-      <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
+      <td className="px-4 py-[10px] text-[0.8125rem] tabular-nums text-text-secondary">
         {formatContext(m.contextWindow, locale)}
       </td>
-      <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
+      <td className="px-4 py-[10px] text-[0.8125rem] tabular-nums text-text-secondary">
         {formatPrice(m.inputPricePerMTokens, priceFormat)}
       </td>
-      <td className="px-4 py-[10px] font-mono text-[0.8125rem] text-text-secondary">
+      <td className="px-4 py-[10px] text-[0.8125rem] tabular-nums text-text-secondary">
         {formatPrice(m.outputPricePerMTokens, priceFormat)}
       </td>
     </tr>
