@@ -13,7 +13,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Upstage is based in South Korea. Its privacy policy names Korean providers (NAVER Cloud, VESSL AI, FuriosaAI) for model inference and transfers service data to Amazon Web Services and other providers in the United States. No EU region or EU-only processing option is documented; on-premises deployment in the customer's own infrastructure is offered separately."
+      "euRegionDetails": "Upstage is based in South Korea. Its privacy policy names Korean providers (NAVER Cloud, VESSL AI, FuriosaAI) and several US providers (such as RunPod and Crusoe) for model inference across its services, and transfers service data to Amazon Web Services in the United States. No EU region or EU-only processing option is documented; on-premises deployment in the customer's own infrastructure is offered separately."
     },
     "dpa": {
       "available": false,
@@ -55,14 +55,15 @@
     "https://www.upstage.ai/partners/aws/announcement-2025",
     "https://console.upstage.ai/docs/getting-started",
     "https://console.upstage.ai/docs/resources/faq",
-    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
+    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
+    "https://www.upstage.ai/products/studio"
   ],
-  "notes": "South Korea has an EU adequacy decision; for onward transfers to other countries, including the United States, Upstage relies on Standard Contractual Clauses. No public DPA was found. The Terms of Service exclude paid API data from training unless the customer consents separately, while free services may be used for training.",
+  "notes": "South Korea has an EU adequacy decision; for transfers to other countries, including the United States, Upstage relies on Standard Contractual Clauses. No public DPA was found. The Terms of Service exclude paid API data from training unless the customer consents separately, while free services may be used for training.",
   "translations": {
     "de": {
-      "notes": "Für Südkorea besteht ein Angemessenheitsbeschluss der EU; für Weiterübermittlungen in andere Länder, darunter die USA, stützt sich Upstage auf Standardvertragsklauseln. Ein öffentlicher AVV wurde nicht gefunden. Die Nutzungsbedingungen schließen Daten aus der kostenpflichtigen API-Nutzung vom Training aus, sofern der Kunde nicht gesondert einwilligt; Daten aus kostenlosen Diensten können für das Training verwendet werden.",
+      "notes": "Für Südkorea besteht ein Angemessenheitsbeschluss der EU; für Übermittlungen in andere Länder, darunter die USA, stützt sich Upstage auf Standardvertragsklauseln. Ein öffentlicher AVV wurde nicht gefunden. Die Nutzungsbedingungen schließen Daten aus der kostenpflichtigen API-Nutzung vom Training aus, sofern der Kunde nicht gesondert einwilligt; Daten aus kostenlosen Diensten können für das Training verwendet werden.",
       "dataResidency": {
-        "euRegionDetails": "Upstage hat seinen Sitz in Südkorea. Die Datenschutzerklärung nennt koreanische Anbieter (NAVER Cloud, VESSL AI, FuriosaAI) für die Modellinferenz und übermittelt Dienstdaten an Amazon Web Services und weitere Anbieter in den USA. Eine EU-Region oder eine Option für eine ausschließliche Verarbeitung in der EU ist nicht dokumentiert; eine On-Premises-Bereitstellung in der eigenen Infrastruktur des Kunden wird gesondert angeboten."
+        "euRegionDetails": "Upstage hat seinen Sitz in Südkorea. Die Datenschutzerklärung nennt koreanische Anbieter (NAVER Cloud, VESSL AI, FuriosaAI) und mehrere US-Anbieter (etwa RunPod und Crusoe) für die Modellinferenz in seinen Diensten und übermittelt Dienstdaten an Amazon Web Services in den USA. Eine EU-Region oder eine Option für eine ausschließliche Verarbeitung in der EU ist nicht dokumentiert; eine On-Premises-Bereitstellung in der eigenen Infrastruktur des Kunden wird gesondert angeboten."
       },
       "dataUsage": {
         "retentionPolicy": "Laut Nutzungsbedingungen speichert Upstage Ein- und Ausgabedaten von Mitgliedern nur, soweit es für den Betrieb des Dienstes nötig ist, etwa für den Nutzungsverlauf oder die Fehlerbehebung. Ergebnisse der asynchronen API werden 30 Tage aufbewahrt; API-Logging zur Qualitätsverbesserung erfordert eine gesonderte Einwilligung. Kontodaten werden bis zur Kündigung des Kontos gespeichert.",
