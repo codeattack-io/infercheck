@@ -40,7 +40,7 @@
     "sccs": true,
     "adequacyDecision": false
   },
-  "pricingTier": "free_tier",
+  "pricingTier": "pay_per_use",
   "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
@@ -53,10 +53,10 @@
     "https://trust.delve.co/morph/subprocessors",
     "https://www.morphllm.com/eula"
   ],
-  "notes": "Operated by AutoInfra, Inc. (San Francisco). Primary processing is in the US; transfers from the EEA rely on SCCs, custom DPAs are offered to enterprise customers and regional data centers to paid and enterprise customers. Morph states it does not train on customer inputs or outputs on any tier; zero data retention requires a signed enterprise addendum.",
+  "notes": "Operated by AutoInfra, Inc. (San Francisco); primary processing is in the US, transfers from the EEA rely on SCCs, and custom DPAs are available to enterprise customers. Usage is billed per token from prepaid credits or a monthly plan, with 200 free requests per month. Morph states it does not train on customer inputs or outputs on any tier; zero data retention requires a signed enterprise addendum.",
   "translations": {
     "de": {
-      "notes": "Betrieben von AutoInfra, Inc. (San Francisco). Die Verarbeitung erfolgt primär in den USA; Übermittlungen aus dem EWR stützen sich auf Standardvertragsklauseln, individuelle AVV werden Enterprise-Kunden angeboten, regionale Rechenzentren zahlenden und Enterprise-Kunden. Morph gibt an, Kundeneingaben und -ausgaben in keiner Stufe für das Training zu verwenden; Zero Data Retention erfordert eine unterzeichnete Enterprise-Vereinbarung.",
+      "notes": "Betrieben von AutoInfra, Inc. (San Francisco); die Verarbeitung erfolgt primär in den USA, Übermittlungen aus dem EWR stützen sich auf Standardvertragsklauseln, und individuelle AVV sind für Enterprise-Kunden erhältlich. Abgerechnet wird pro Token über vorausbezahltes Guthaben oder einen Monatsplan, 200 Anfragen pro Monat sind kostenlos. Morph gibt an, Kundeneingaben und -ausgaben in keiner Stufe für das Training zu verwenden; Zero Data Retention erfordert eine unterzeichnete Enterprise-Vereinbarung.",
       "dataResidency": {
         "euRegionDetails": "Morph gibt an, dass die primäre Datenverarbeitung in den Vereinigten Staaten erfolgt, mit zusätzlicher Verarbeitung in ausgewählten Ländern, in denen Dienstleister tätig sind. Erwähnt werden regionale Rechenzentren für kostenpflichtige und Enterprise-Kunden sowie selbst gehostete Bereitstellungen für ausgewählte Jurisdiktionen; eine ausschließlich auf die EU beschränkte Verarbeitung wird öffentlich jedoch nicht garantiert."
       },
