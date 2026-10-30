@@ -10,7 +10,7 @@
       "regions": [],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "The Gemini Developer API has only a global endpoint and no EU region option. Google's terms allow prompts and responses to be processed and cached in any country where Google or its agents have facilities. EU data residency is only offered through Google Cloud's Gemini Enterprise Agent Platform (formerly Vertex AI)."
+      "euRegionDetails": "The Gemini Developer API has only a global endpoint and no EU region option. Google's terms state that prompts and responses logged for abuse monitoring may be stored transiently or cached in any country where Google or its agents maintain facilities. EU data residency is only offered through Google Cloud's Gemini Enterprise Agent Platform (formerly Vertex AI)."
     },
     "dpa": {
       "available": true,
@@ -36,7 +36,7 @@
     "sccs": true,
     "adequacyDecision": true
   },
-  "pricingTier": "free_tier",
+  "pricingTier": "pay_per_use",
   "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
@@ -57,16 +57,16 @@
     "https://blog.google/company-news/inside-google/around-the-globe/google-europe/eu-ai-code-practice/",
     "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
   ],
-  "notes": "Paid Gemini API use falls under Google's processor data processing addendum, not the Google Cloud DPA; Google LLC is certified under the EU-US Data Privacy Framework. Google states the Gemini API has no compliance certifications such as SOC 2 and offers no EU region, and directs regulated customers to Gemini Enterprise Agent Platform (formerly Vertex AI). Free-tier data is used to improve Google's products, except for users in the EEA, Switzerland and the UK.",
+  "notes": "Paid Gemini API use falls under Google's processor data processing addendum, not the Google Cloud DPA; Google LLC is certified under the EU-US Data Privacy Framework. Google states the Gemini API has no compliance certifications such as SOC 2 and only a global endpoint, and directs regulated customers to Gemini Enterprise Agent Platform (formerly Vertex AI). Besides prepaid and pay-as-you-go billing there is a free tier whose data is used to improve Google's products, except for users in the EEA, Switzerland and the UK.",
   "translations": {
     "de": {
-      "notes": "Die bezahlte Nutzung der Gemini API fällt unter Googles Auftragsverarbeitungszusatz, nicht unter den AVV von Google Cloud; Google LLC ist nach dem EU-US Data Privacy Framework zertifiziert. Laut Google hat die Gemini API keine Compliance-Zertifizierungen wie SOC 2 und keine EU-Region; regulierte Kunden verweist Google auf die Gemini Enterprise Agent Platform (früher Vertex AI). Daten aus dem kostenlosen Kontingent werden zur Verbesserung von Google-Produkten verwendet, außer bei Nutzern im EWR, in der Schweiz und im Vereinigten Königreich.",
+      "notes": "Die bezahlte Nutzung der Gemini API fällt unter Googles Auftragsverarbeitungszusatz, nicht unter den AVV von Google Cloud; Google LLC ist nach dem EU-US Data Privacy Framework zertifiziert. Laut Google hat die Gemini API keine Compliance-Zertifizierungen wie SOC 2 und nur einen globalen Endpunkt; regulierte Kunden verweist Google auf die Gemini Enterprise Agent Platform (früher Vertex AI). Neben Vorauszahlung und nutzungsbasierter Abrechnung gibt es ein kostenloses Kontingent, dessen Daten zur Verbesserung von Google-Produkten verwendet werden, außer bei Nutzern im EWR, in der Schweiz und im Vereinigten Königreich.",
       "dataResidency": {
-        "euRegionDetails": "Die Gemini Developer API hat nur einen globalen Endpunkt und keine EU-Regionsoption. Nach den Bedingungen von Google können Prompts und Antworten in jedem Land verarbeitet und zwischengespeichert werden, in dem Google oder seine Beauftragten Einrichtungen betreiben. EU-Datenresidenz bietet Google nur über die Gemini Enterprise Agent Platform von Google Cloud (früher Vertex AI) an."
+        "euRegionDetails": "Die Gemini Developer API hat nur einen globalen Endpunkt und keine EU-Regionsoption. Nach den Bedingungen von Google können zur Missbrauchsüberwachung protokollierte Prompts und Antworten in jedem Land vorübergehend gespeichert oder zwischengespeichert werden, in dem Google oder seine Beauftragten Einrichtungen betreiben. EU-Datenresidenz bietet Google nur über die Gemini Enterprise Agent Platform von Google Cloud (früher Vertex AI) an."
       },
       "dataUsage": {
         "retentionPolicy": "Bezahlte Nutzung: Prompts und Antworten werden 55 Tage zur Missbrauchsüberwachung aufbewahrt. Neue Projekte mit Abrechnung speichern zudem standardmäßig entwicklereigene Anfrageprotokolle bis zu 55 Tage; das lässt sich anpassen oder abschalten. Grounding mit der Google Suche oder Google Maps speichert Prompts und Ausgaben 30 Tage. Eine garantierte Zero Data Retention bietet Google für diese API nicht an.",
-        "details": "Bezahlte Nutzung wird nach Googles Auftragsverarbeitungszusatz verarbeitet und nicht zur Verbesserung von Google-Produkten verwendet. Das kostenlose Kontingent und Google AI Studio ohne Abrechnung verwenden Prompts und Antworten zur Verbesserung von Google-Produkten, mit möglicher menschlicher Prüfung; im EWR, in der Schweiz und im Vereinigten Königreich gelten die Datenbedingungen für bezahlte Dienste für jede Nutzung. Das freiwillige Teilen von Protokollen und der Contributor Tier verwenden Daten für das Training."
+        "details": "Bezahlte Nutzung wird nach Googles Auftragsverarbeitungszusatz verarbeitet und nicht zur Verbesserung von Google-Produkten verwendet. Im kostenlosen Kontingent und in Google AI Studio ohne Abrechnung verwendet Google Prompts und Antworten zur Verbesserung seiner Produkte, auch mit möglicher Prüfung durch Menschen; im EWR, in der Schweiz und im Vereinigten Königreich gelten für jede Nutzung die Datenbedingungen der bezahlten Dienste. Beim freiwilligen Teilen von Protokollen und im Contributor Tier werden Daten für das Training verwendet."
       },
       "euAiAct": {
         "details": "Google als Entwickler der Gemini-Modelle steht auf der Liste der Unterzeichner des GPAI-Verhaltenskodex der EU-Kommission."
