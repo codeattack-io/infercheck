@@ -9,11 +9,19 @@
     "dataResidency": {
       "regions": [
         "US",
-        "EU"
+        "EU",
+        "GB",
+        "CA",
+        "AU",
+        "JP",
+        "KR",
+        "IN",
+        "SG",
+        "AE"
       ],
       "euOnly": false,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": "EU data residency available via eu.api.openai.com (EEA + Switzerland). Both regional storage and regional inference (GPU processing in-region) supported. Requires Zero Data Retention amendment and approved abuse monitoring controls. A pricing uplift applies for some models on data residency endpoints."
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "EU data residency (EEA + Switzerland) via eu.api.openai.com, configured per project. For eligible endpoints and models, customer content is stored and inference runs in the region; system data such as account and usage data may be processed outside it. Requires approval by OpenAI, approved abuse-monitoring controls and a Modified Retention amendment; a 10% price uplift applies to eligible models released on or after 5 March 2026."
     },
     "dpa": {
       "available": true,
@@ -23,13 +31,13 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "API data not used for training by default since March 2023. Abuse monitoring logs retained up to 30 days. Zero Data Retention (ZDR) available for eligible enterprise customers.",
-      "details": "API customers' data is not used for model training by default. ZDR and modified abuse monitoring require enterprise sales approval. Consumer ChatGPT users have a separate opt-out toggle."
+      "retentionPolicy": "API data is not used for training by default since 1 March 2023. Abuse-monitoring logs are kept for up to 30 days unless longer retention is required by law. Zero Data Retention or Modified Abuse Monitoring is available after approval by OpenAI.",
+      "details": "API customer data is used for model training only if the customer opts in. Zero Data Retention and Modified Abuse Monitoring need prior approval by OpenAI. The Responses API keeps application state for 30 days by default when responses are stored."
     },
     "subProcessors": {
       "disclosed": true,
-      "url": "https://platform.openai.com/subprocessors",
-      "includesEuEntities": null
+      "url": "https://openai.com/policies/sub-processor-list/",
+      "includesEuEntities": true
     },
     "certifications": [
       "SOC2",
@@ -40,35 +48,38 @@
       "ISO42001"
     ],
     "euAiAct": {
-      "status": "monitoring",
-      "details": "Holds ISO 42001 (AI Management System) certification. Actively engaged with the EU AI Office on GPAI model obligations. No formal EU AI Act compliance declaration published as of verification date."
+      "status": "compliant",
+      "details": "Listed by the European Commission as a signatory of the General-Purpose AI Code of Practice; OpenAI also endorsed the Code of Practice on Transparency of AI-Generated Content. Publishes training-content summaries for its GPAI models under Article 53(1)(d) and an EU AI Act help page with customer guidance."
     },
     "sccs": true,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-07",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://openai.com/policies/data-processing-addendum",
-    "https://openai.com/policies/privacy-policy",
-    "https://platform.openai.com/subprocessors",
-    "https://platform.openai.com/docs/guides/your-data",
-    "https://trust.openai.com"
+    "https://openai.com/policies/eu-privacy-policy/",
+    "https://openai.com/policies/sub-processor-list/",
+    "https://developers.openai.com/api/docs/guides/your-data",
+    "https://trust.openai.com",
+    "https://openai.com/index/advancing-responsible-ai-across-europe/",
+    "https://help.openai.com/en/articles/12141645-eu-ai-act-openai-resources-and-customer-guidance",
+    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
   ],
-  "notes": "EU data controller is OpenAI Ireland Limited (Dublin). Lead supervisory authority is the Irish DPC. DPA is auto-accepted on account creation. EU inference residency (GPU processing in-region) available via eu.api.openai.com. ZDR and data residency require enterprise engagement.",
+  "notes": "Customers in the EEA and Switzerland contract with OpenAI Ireland Ltd. (Dublin); the Irish DPC is the lead supervisory authority. The DPA is part of the Services Agreement and is accepted by clicking \"I agree\", accepting an order form or using the services. EU data residency with in-region inference requires approval by OpenAI.",
   "translations": {
     "de": {
-      "notes": "EU-Verantwortlicher ist OpenAI Ireland Limited (Dublin). Federführende Aufsichtsbehörde ist die irische DPC. Der Auftragsverarbeitungsvertrag (AVV) wird bei der Kontoerstellung automatisch akzeptiert. EU-Inferenz-Datenhaltung (GPU-Verarbeitung in der Region) ist über eu.api.openai.com verfügbar. ZDR und Datenhaltung erfordern eine Enterprise-Abstimmung.",
+      "notes": "Kunden aus dem EWR und der Schweiz schließen den Vertrag mit OpenAI Ireland Ltd. (Dublin); federführende Aufsichtsbehörde ist die irische DPC. Der AVV ist Teil des Services Agreement und wird durch Klick auf „I agree“, die Annahme eines Bestellformulars oder die Nutzung der Dienste akzeptiert. EU-Datenresidenz mit Inferenz in der Region erfordert eine Freigabe durch OpenAI.",
       "dataResidency": {
-        "euRegionDetails": "EU-Datenhaltung über eu.api.openai.com verfügbar (EWR + Schweiz). Sowohl regionale Datenspeicherung als auch regionale Inferenz (GPU-Verarbeitung in der Region) werden unterstützt. Erfordert eine Zero Data Retention-Ergänzung und genehmigte Kontrollen zur Missbrauchsüberwachung. Für einige Modelle auf Endpunkten mit Datenhaltung gilt ein Preisaufschlag."
+        "euRegionDetails": "EU-Datenresidenz (EWR + Schweiz) über eu.api.openai.com, pro Projekt konfiguriert. Für berechtigte Endpunkte und Modelle werden Kundeninhalte in der Region gespeichert, und die Inferenz läuft dort; Systemdaten wie Konto- und Nutzungsdaten können außerhalb verarbeitet werden. Erfordert eine Freigabe durch OpenAI, genehmigte Kontrollen zur Missbrauchsüberwachung und eine Modified-Retention-Ergänzung; für berechtigte Modelle, die ab dem 5. März 2026 erschienen sind, gilt ein Preisaufschlag von 10 %."
       },
       "dataUsage": {
-        "retentionPolicy": "API-Daten werden seit März 2023 standardmäßig nicht für das Training verwendet. Protokolle zur Missbrauchsüberwachung werden bis zu 30 Tage aufbewahrt. Zero Data Retention (ZDR) ist für berechtigte Enterprise-Kunden verfügbar.",
-        "details": "Daten von API-Kunden werden standardmäßig nicht für das Modelltraining verwendet. ZDR und geänderte Missbrauchsüberwachung erfordern die Genehmigung durch den Enterprise-Vertrieb. Für Consumer-ChatGPT-Nutzer gibt es einen separaten Opt-out-Schalter."
+        "retentionPolicy": "API-Daten werden seit dem 1. März 2023 standardmäßig nicht für das Training verwendet. Protokolle zur Missbrauchsüberwachung werden bis zu 30 Tage aufbewahrt, sofern das Gesetz keine längere Aufbewahrung verlangt. Zero Data Retention oder Modified Abuse Monitoring ist nach Freigabe durch OpenAI verfügbar.",
+        "details": "Daten von API-Kunden werden nur nach ausdrücklicher Zustimmung (Opt-in) für das Modelltraining verwendet. Zero Data Retention und Modified Abuse Monitoring erfordern eine vorherige Freigabe durch OpenAI. Die Responses API speichert Anwendungsdaten standardmäßig 30 Tage, wenn Antworten gespeichert werden."
       },
       "euAiAct": {
-        "details": "Verfügt über die Zertifizierung ISO 42001 (AI Management System). Ist aktiv mit dem EU AI Office in Bezug auf Verpflichtungen für GPAI-Modelle befasst. Zum Verifizierungsdatum wurde keine formelle EU AI Act-Compliance-Erklärung veröffentlicht."
+        "details": "Von der Europäischen Kommission als Unterzeichner des Verhaltenskodex für KI mit allgemeinem Verwendungszweck (GPAI) geführt; OpenAI hat außerdem den Verhaltenskodex zur Transparenz KI-generierter Inhalte unterstützt. Veröffentlicht Zusammenfassungen der Trainingsinhalte seiner GPAI-Modelle gemäß Artikel 53 Abs. 1 lit. d sowie eine Hilfeseite zum EU AI Act mit Hinweisen für Kunden."
       }
     }
   }
