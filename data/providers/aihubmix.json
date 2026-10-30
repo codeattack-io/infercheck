@@ -22,7 +22,7 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "Zero data retention is on by default: AIHubMix keeps request metadata but not prompts or outputs. Content is kept only in a debugging mode the customer requests, or when an account is banned after a compliance notification. Upstream model providers apply their own retention, from none to 55 days or unknown, according to the AIHubMix vendor table.",
+      "retentionPolicy": "Zero data retention is on by default: AIHubMix keeps request metadata but not prompts or outputs. Content is kept only if the customer opts out of zero data retention, in a debugging mode the customer requests, or when an account is banned after a compliance notification. Upstream model providers apply their own retention, from none to 55 days or unknown, according to the AIHubMix vendor table.",
       "details": "AIHubMix does not store or train on prompts and outputs by default. Customers who opt out of zero data retention in exchange for discounts allow their de-identified data to be used for training. The AIHubMix vendor table marks some upstream model providers as possibly using requests for training, including Chutes, DeepSeek, Ideogram, Jina AI, MiniMax and Nvidia."
     },
     "subProcessors": {
@@ -58,7 +58,7 @@
         "euRegionDetails": "Eine Verarbeitung in der EU wird nicht angeboten. AIHubMix läuft auf Google Cloud in den USA und leitet Anfragen an den gewählten Modellanbieter weiter, der sie auch in anderen Ländern verarbeiten kann."
       },
       "dataUsage": {
-        "retentionPolicy": "Standardmäßig gilt Zero Data Retention: AIHubMix speichert Metadaten zu Anfragen, aber keine Prompts oder Ausgaben. Inhalte werden nur in einem vom Kunden angeforderten Debug-Modus gespeichert oder wenn ein Konto nach einer Compliance-Meldung gesperrt wird. Die vorgelagerten Modellanbieter haben laut der Anbietertabelle von AIHubMix eigene Aufbewahrungsfristen, von keiner Speicherung bis 55 Tage oder unbekannt.",
+        "retentionPolicy": "Standardmäßig gilt Zero Data Retention: AIHubMix speichert Metadaten zu Anfragen, aber keine Prompts oder Ausgaben. Inhalte werden nur gespeichert, wenn der Kunde auf Zero Data Retention verzichtet, in einem vom Kunden angeforderten Debug-Modus oder wenn ein Konto nach einer Compliance-Meldung gesperrt wird. Die vorgelagerten Modellanbieter haben laut der Anbietertabelle von AIHubMix eigene Aufbewahrungsfristen: von keiner Speicherung bis zu 55 Tagen, teils auch unbekannt.",
         "details": "AIHubMix speichert Prompts und Ausgaben standardmäßig nicht und trainiert nicht damit. Kunden, die gegen Rabatte auf Zero Data Retention verzichten, erlauben die Nutzung ihrer anonymisierten Daten für das Training. Laut der Anbietertabelle von AIHubMix können einige vorgelagerte Modellanbieter Anfragen zum Training verwenden, darunter Chutes, DeepSeek, Ideogram, Jina AI, MiniMax und Nvidia."
       }
     }
