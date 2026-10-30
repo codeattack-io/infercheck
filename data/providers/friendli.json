@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "FriendliAI publishes no region list for Model APIs or Dedicated Endpoints, and self-serve customers cannot select an EU region; all listed sub-processors, including infrastructure providers, are given as located in the United States. Custom region, VPC and on-premises deployments are available under an Enterprise contract, and with BYOG FriendliAI runs its inference stack in the customer's own cloud account."
+      "euRegionDetails": "FriendliAI publishes no region list for Model APIs or Dedicated Endpoints and documents no region choice for self-serve customers; every listed sub-processor, including the infrastructure providers, is given as located in the United States. Custom region, VPC and on-premises deployments are available under an Enterprise contract, but no EU region is named. With BYOG, FriendliAI runs its inference stack in the customer's own cloud environment."
     },
     "dpa": {
       "available": true,
@@ -28,7 +28,7 @@
     "subProcessors": {
       "disclosed": true,
       "url": "https://friendli.ai/subprocessors",
-      "includesEuEntities": false
+      "includesEuEntities": null
     },
     "certifications": [
       "SOC2"
@@ -58,17 +58,18 @@
     "https://friendli.ai/product/model-apis",
     "https://friendli.ai/product/dedicated-endpoints",
     "https://friendli.ai/product/bring-your-own-gpu-byog",
-    "https://friendli.ai/blog/SOC2-Type-II-HIPAA"
+    "https://friendli.ai/blog/SOC2-Type-II-HIPAA",
+    "https://friendli.ai/providers"
   ],
-  "notes": "FriendliAI Corp. is based in California with a hub in Seoul and is not certified under the EU-US Data Privacy Framework; its terms incorporate a DPA with EU standard contractual clauses. Pay-per-token access is self-serve with prepaid credits. Friendli describes itself as HIPAA compliant; health data requires a separate business associate agreement.",
+  "notes": "FriendliAI Corp. is based in California with a hub in Seoul and is not certified under the EU-US Data Privacy Framework; its terms incorporate a DPA with EU standard contractual clauses. Pay-per-token access is self-serve with prepaid credits. Friendli describes itself as HIPAA compliant; protected health information requires a separate business associate agreement.",
   "translations": {
     "de": {
-      "notes": "FriendliAI Corp. hat seinen Sitz in Kalifornien und einen Standort in Seoul und ist nicht unter dem EU-US Data Privacy Framework zertifiziert; die Nutzungsbedingungen beinhalten einen Auftragsverarbeitungsvertrag mit EU-Standardvertragsklauseln. Der Zugang mit Abrechnung pro Token ist per Self-Service mit Prepaid-Guthaben möglich. Friendli bezeichnet sich als HIPAA-konform; für Gesundheitsdaten ist ein gesondertes Business Associate Agreement nötig.",
+      "notes": "Die FriendliAI Corp. hat ihren Sitz in Kalifornien und einen Standort in Seoul und ist nicht unter dem EU-US Data Privacy Framework zertifiziert; die Nutzungsbedingungen beinhalten einen Auftragsverarbeitungsvertrag mit EU-Standardvertragsklauseln. Der Zugang mit Abrechnung pro Token ist per Self-Service mit Prepaid-Guthaben möglich. Friendli bezeichnet sich als HIPAA-konform; für geschützte Gesundheitsdaten nach HIPAA ist ein gesondertes Business Associate Agreement nötig.",
       "dataResidency": {
-        "euRegionDetails": "FriendliAI veröffentlicht keine Regionsliste für Model APIs oder Dedicated Endpoints, und Self-Service-Kunden können keine EU-Region wählen; alle gelisteten Unterauftragsverarbeiter, auch die Infrastrukturanbieter, sind mit Standort USA angegeben. Bereitstellungen in bestimmten Regionen, in einer VPC oder On-Premises gibt es mit einem Enterprise-Vertrag, und mit BYOG betreibt FriendliAI seinen Inferenz-Stack im eigenen Cloud-Konto des Kunden."
+        "euRegionDetails": "FriendliAI veröffentlicht keine Regionsliste für Model APIs oder Dedicated Endpoints und dokumentiert keine Regionswahl für Self-Service-Kunden; alle gelisteten Unterauftragsverarbeiter, auch die Infrastrukturanbieter, sind mit Standort USA angegeben. Bereitstellungen in bestimmten Regionen, in einer VPC oder On-Premises gibt es mit einem Enterprise-Vertrag, eine EU-Region wird dabei aber nicht genannt. Mit BYOG betreibt FriendliAI seinen Inferenz-Stack in der eigenen Cloud-Umgebung des Kunden."
       },
       "dataUsage": {
-        "retentionPolicy": "Laut Nutzungsbedingungen werden Ein- und Ausgaben von API-Anfragen nicht länger gespeichert, als für die Bearbeitung nötig ist, sofern der Kunde nicht einer längeren Aufbewahrung zustimmt; das gilt nicht für kostenlos bereitgestellte Dienste. Laut Datenschutzerklärung werden Inferenzdaten bis zu einen Tag nach dem Löschen der Organisation oder des Projekts aufbewahrt.",
+        "retentionPolicy": "Laut Nutzungsbedingungen werden Ein- und Ausgaben von API-Anfragen nicht länger gespeichert, als für die Bearbeitung nötig ist, sofern der Kunde nicht einer längeren Aufbewahrung zustimmt; das gilt nicht für kostenlos bereitgestellte Dienste. Laut Datenschutzerklärung werden Inferenzdaten bis zu einem Tag nach dem Löschen der Organisation oder des Projekts aufbewahrt.",
         "details": "Standardmäßig werden Inhalte von Anfragen und Antworten nicht zum Training von Modellen genutzt. Inhalte, die an kostenlos bereitgestellte Dienste von FriendliAI gesendet werden, dürfen zur Produktverbesserung genutzt werden, und Kunden können in der Konsole einer weitergehenden Aufbewahrung und Nutzung zustimmen."
       }
     }
