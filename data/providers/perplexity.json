@@ -23,7 +23,7 @@
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
       "retentionPolicy": "Zero data retention is not the default and is only available to eligible customers under a written agreement. Under the DPA, personal data in inputs is stored until the customer deletes it, at most until 30 days after the service ends. Perplexity also keeps usage metadata such as token counts, model, timestamps and API key for billing.",
-      "details": "The API terms state that Perplexity does not use API inputs and outputs to train AI models and does not allow third parties to do so. According to the DPA, the Search and Embeddings APIs may operate under different, product-specific data terms."
+      "details": "The API terms state that Perplexity does not use API inputs and outputs to train AI models and does not allow third parties to do so. According to the DPA, certain services, including the Embeddings API and Perplexity Search, may operate under different, product-specific data terms."
     },
     "subProcessors": {
       "disclosed": true,
@@ -64,7 +64,7 @@
       },
       "dataUsage": {
         "retentionPolicy": "Zero Data Retention ist nicht Standard und nur für berechtigte Kunden mit schriftlicher Vereinbarung verfügbar. Laut AVV werden personenbezogene Daten in Eingaben gespeichert, bis der Kunde sie löscht, längstens bis 30 Tage nach Ende der Leistungserbringung. Zusätzlich speichert Perplexity Nutzungsmetadaten wie Token-Anzahl, Modell, Zeitstempel und API-Schlüssel für die Abrechnung.",
-        "details": "Laut den API-Nutzungsbedingungen verwendet Perplexity API-Eingaben und -Ausgaben nicht zum Training von KI-Modellen und gestattet dies auch Dritten nicht. Laut AVV können für die Search- und Embeddings-API abweichende, produktspezifische Datenbedingungen gelten."
+        "details": "Laut den API-Nutzungsbedingungen verwendet Perplexity API-Eingaben und -Ausgaben nicht zum Training von KI-Modellen und gestattet dies auch Dritten nicht. Laut AVV können für bestimmte Dienste, darunter die Embeddings API und Perplexity Search, abweichende, produktspezifische Datenbedingungen gelten."
       }
     }
   }
