@@ -1,19 +1,21 @@
 {
   "slug": "vercel-ai-gateway",
   "name": "Vercel AI Gateway",
-  "type": "api_provider",
-  "website": "https://github.com",
+  "type": "gateway",
+  "website": "https://vercel.com/ai-gateway",
   "apiDocsUrl": "https://vercel.com/docs/ai-gateway",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
       "regions": [
         "US",
-        "EU"
+        "EU",
+        "AU",
+        "JP"
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Vercel states AI Gateway runs across its distributed infrastructure in multiple AWS regions and routes requests to the nearest Vercel region. Vercel documents per-request Zero Data Retention filtering for certain upstream providers, but no primary-source documentation found guarantees EU-only processing for AI Gateway inference. Vercel's privacy policy also says information may be processed in the United States and other jurisdictions in which it operates."
+      "euRegionDetails": "Inference can be pinned to an EU data center per request by setting the inference region to the EU zone; the provider then runs inference and keeps any stored data in the EU, and the request fails rather than run elsewhere. This is documented but not contractually committed, only some models support it (52 of 500 model IDs on 2026-10-30, from Amazon, Anthropic, Google and OpenAI), and the default is global routing. Vercel's own gateway step can still run in any Vercel region, and providers may keep requests flagged for abuse review outside the EU."
     },
     "dpa": {
       "available": true,
@@ -21,14 +23,14 @@
       "signedVia": "online_acceptance"
     },
     "dataUsage": {
-      "trainsOnCustomerData": null,
-      "optOutAvailable": null,
-      "retentionPolicy": "AI Gateway documents a zero-data-retention policy: prompts, outputs, and sensitive data are immediately and permanently deleted after requests complete. Separately, Vercel's general privacy policy says personal information is retained for the minimum necessary period to fulfill legal and contractual obligations and other legitimate business purposes, and the DPA says customer data is deleted within a commercially reasonable timeframe after termination or expiration unless retention is required by law.",
-      "details": "Vercel's AI Product Terms expressly state that for Enterprise AI Gateway subscriptions, Vercel will not use AI Gateway Customer Content to train or improve the AI Products and Services. I could not find a primary source stating the default training position for non-Enterprise AI Gateway customers specifically, so the training and opt-out fields are null."
+      "trainsOnCustomerData": true,
+      "optOutAvailable": true,
+      "retentionPolicy": "AI Gateway does not store prompts or responses; they are deleted when the request completes. It keeps request metadata such as model, provider, token usage, cost, status and routing attempts, with routing details available for 30 days. Retention at the upstream provider follows that provider's terms unless zero data retention routing is turned on (Pro and Enterprise plans), which sends requests only to providers with a zero data retention agreement with Vercel.",
+      "details": "Vercel itself does not use AI Gateway prompts or responses for training; a contractual no-training warranty exists only for Enterprise subscriptions. By default, however, the gateway does not route by the provider's training policy, Vercel assumes providers without a no-training agreement may train on inputs, and some models are served only by such providers. The per-request no-training setting (all plans) or zero data retention (Pro and Enterprise) restricts routing to providers with no-training agreements."
     },
     "subProcessors": {
       "disclosed": true,
-      "url": "https://security.vercel.com",
+      "url": "https://security.vercel.com/?itemName=legal&itemUid=e3fae2ca-94a9-416b-b577-5c90e382df57",
       "includesEuEntities": true
     },
     "certifications": [
@@ -36,41 +38,45 @@
       "ISO27001"
     ],
     "euAiAct": {
-      "status": "monitoring",
-      "details": "Vercel's AI Product Terms require customers to comply with applicable AI laws and regulations, and its Acceptable Use Policy references 'high risk' areas under the EU AI Act. No primary-source statement was found claiming formal EU AI Act compliance for AI Gateway itself."
+      "status": "unknown",
+      "details": "No official Vercel statement on EU AI Act compliance or GPAI provider status was found, and Vercel is not a signatory of the GPAI Code of Practice. Vercel's acceptable use policy prohibits using its AI services in high-risk areas under the EU AI Act."
     },
     "sccs": true,
-    "adequacyDecision": false
+    "adequacyDecision": true
   },
-  "pricingTier": "free_tier",
-  "lastVerified": "2026-04-11",
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
+    "https://vercel.com/ai-gateway",
     "https://vercel.com/docs/ai-gateway",
     "https://vercel.com/docs/ai-gateway/pricing",
-    "https://vercel.com/ai-gateway",
-    "https://vercel.com/docs/ai-gateway/capabilities/zdr",
-    "https://vercel.com/blog/how-ai-gateway-runs-on-fluid-compute",
-    "https://vercel.com/legal/privacy-policy",
+    "https://vercel.com/docs/ai-gateway/faq",
+    "https://vercel.com/docs/ai-gateway/security-and-compliance/zdr",
+    "https://vercel.com/docs/ai-gateway/security-and-compliance/disallow-prompt-training",
+    "https://vercel.com/docs/ai-gateway/security-and-compliance/regional-inference",
+    "https://vercel.com/ai-gateway/models",
+    "https://vercel.com/legal/terms",
+    "https://vercel.com/legal/privacy-notice",
     "https://vercel.com/legal/dpa",
     "https://vercel.com/legal/ai-product-terms",
     "https://vercel.com/legal/acceptable-use-policy",
-    "https://vercel.com/legal",
-    "https://security.vercel.com"
+    "https://vercel.com/security",
+    "https://security.vercel.com/?itemName=legal&itemUid=e3fae2ca-94a9-416b-b577-5c90e382df57"
   ],
-  "notes": "Vercel offers a public DPA, public trust center, public subprocessor disclosure, SCC-based transfer language, and Data Privacy Framework statements, but I found no primary-source guarantee of EU-only inference for AI Gateway. AI Gateway documents zero data retention and Enterprise-only no-training language; for non-Enterprise AI Gateway customers, I could not confirm a provider-specific default training position from primary sources, so those fields are left null.",
+  "notes": "Model router run by Vercel Inc. (US, certified under the EU-US Data Privacy Framework) that forwards requests to many third-party model providers, only some of which are on Vercel's sub-processor list. Each team gets a monthly free credit for a subset of models; other usage is paid through prepaid AI Gateway credits. Customers can restrict routing to chosen providers, to providers that do not train on prompts, to zero-data-retention providers (Pro and Enterprise), or to an EU inference region for supported models.",
   "translations": {
     "de": {
-      "notes": "Vercel bietet einen öffentlichen Auftragsverarbeitungsvertrag (AVV), ein öffentliches Trust Center, eine öffentliche Offenlegung der Unterauftragsverarbeiter, auf Standardvertragsklauseln (SCC) basierende Formulierungen zu Übermittlungen sowie Erklärungen zum Data Privacy Framework an, jedoch wurde keine Primärquelle gefunden, die eine ausschließlich in der EU erfolgende Inferenz für AI Gateway garantiert. Für AI Gateway dokumentiert Vercel eine Datenspeicherung von null sowie Formulierungen zum Ausschluss des Trainings ausschließlich für Enterprise; für nicht zum Enterprise-Tarif gehörende AI-Gateway-Kunden konnte anhand von Primärquellen keine anbieterspezifische Standardposition zum Training bestätigt werden, daher bleiben diese Felder null.",
+      "notes": "Modell-Router der Vercel Inc. (USA, zertifiziert nach dem EU-US Data Privacy Framework), der Anfragen an viele externe Modellanbieter weiterleitet, von denen nur ein Teil auf Vercels Liste der Unterauftragsverarbeiter steht. Jedes Team erhält ein monatliches Gratisguthaben für einen Teil der Modelle; die übrige Nutzung wird über vorab gekaufte AI-Gateway-Credits bezahlt. Kunden können das Routing auf ausgewählte Anbieter, auf Anbieter ohne Training mit Prompts, auf Anbieter mit Zero Data Retention (Pro und Enterprise) oder für unterstützte Modelle auf eine EU-Inferenzregion beschränken.",
       "dataResidency": {
-        "euRegionDetails": "Vercel gibt an, dass AI Gateway über seine verteilte Infrastruktur in mehreren AWS-Regionen betrieben wird und Anfragen an die nächstgelegene Vercel-Region weiterleitet. Vercel dokumentiert eine anfragebezogene Filterung im Sinne einer Datenspeicherung von null für bestimmte Upstream-Anbieter, jedoch wurde keine Primärquellen-Dokumentation gefunden, die eine ausschließlich in der EU erfolgende Verarbeitung für die Inferenz von AI Gateway garantiert. In der Datenschutzerklärung von Vercel heißt es außerdem, dass Informationen in den Vereinigten Staaten und anderen Rechtsordnungen, in denen das Unternehmen tätig ist, verarbeitet werden können."
+        "euRegionDetails": "Die Inferenz kann pro Anfrage an ein Rechenzentrum in der EU gebunden werden, indem die Inferenzregion auf die EU-Zone gesetzt wird; der Anbieter führt die Inferenz dann in der EU aus und speichert dort auch etwaige Daten, andernfalls schlägt die Anfrage fehl. Das ist dokumentiert, aber nicht vertraglich zugesichert, nur einige Modelle unterstützen es (am 30.10.2026 52 von 500 Modell-IDs, von Amazon, Anthropic, Google und OpenAI), und standardmäßig wird global geroutet. Vercels eigene Gateway-Verarbeitung kann weiterhin in jeder Vercel-Region stattfinden, und Anfragen, die wegen Missbrauchs geprüft werden, können Anbieter außerhalb der EU aufbewahren."
       },
       "dataUsage": {
-        "retentionPolicy": "Für AI Gateway ist eine Richtlinie zur Datenspeicherung von null dokumentiert: Prompts, Ausgaben und sensible Daten werden unmittelbar und dauerhaft gelöscht, nachdem Anfragen abgeschlossen sind. Unabhängig davon besagt die allgemeine Datenschutzerklärung von Vercel, dass personenbezogene Informationen für den zur Erfüllung rechtlicher und vertraglicher Verpflichtungen sowie sonstiger berechtigter Geschäftszwecke mindestens erforderlichen Zeitraum gespeichert werden, und der Auftragsverarbeitungsvertrag (AVV) besagt, dass Kundendaten nach Beendigung oder Ablauf innerhalb eines kaufmännisch angemessenen Zeitraums gelöscht werden, sofern keine gesetzliche Aufbewahrungspflicht besteht.",
-        "details": "In den AI Product Terms von Vercel wird ausdrücklich festgelegt, dass Vercel bei Enterprise-Abonnements für AI Gateway AI-Gateway-Kundeninhalte nicht zum Trainieren oder Verbessern der AI Products and Services verwendet. Es konnte keine Primärquelle gefunden werden, die die Standardposition zum Training speziell für nicht zum Enterprise-Tarif gehörende AI-Gateway-Kunden angibt; daher sind die Felder zum Training und zum Opt-out null."
+        "retentionPolicy": "AI Gateway speichert keine Prompts oder Antworten; sie werden nach Abschluss der Anfrage gelöscht. Gespeichert werden Metadaten der Anfrage wie Modell, Anbieter, Token-Verbrauch, Kosten, Status und Routing-Versuche; die Routing-Details sind 30 Tage abrufbar. Die Aufbewahrung beim nachgelagerten Anbieter richtet sich nach dessen Bedingungen, außer das Routing mit Zero Data Retention ist aktiviert (Pro- und Enterprise-Tarif); dann gehen Anfragen nur an Anbieter mit einer entsprechenden Vereinbarung mit Vercel.",
+        "details": "Vercel selbst verwendet Prompts und Antworten aus AI Gateway nicht zum Training; eine vertragliche Zusicherung dazu gibt es nur für Enterprise-Abonnements. Standardmäßig berücksichtigt das Routing jedoch nicht, ob ein Anbieter trainiert; Vercel geht bei Anbietern ohne entsprechende Vereinbarung davon aus, dass sie mit Eingaben trainieren können, und manche Modelle werden nur von solchen Anbietern bereitgestellt. Die Einstellung gegen Training pro Anfrage (alle Tarife) oder Zero Data Retention (Pro und Enterprise) beschränkt das Routing auf Anbieter mit einer Vereinbarung ohne Training."
       },
       "euAiAct": {
-        "details": "Die AI Product Terms von Vercel verpflichten Kunden zur Einhaltung der anwendbaren KI-Gesetze und -Vorschriften, und die Acceptable Use Policy verweist auf \"high risk\"-Bereiche im Sinne des EU AI Act. Es wurde keine Primärquelle gefunden, die für AI Gateway selbst die formale Einhaltung des EU AI Act beansprucht."
+        "details": "Eine offizielle Aussage von Vercel zur Einhaltung des EU AI Act oder zum Status als GPAI-Anbieter wurde nicht gefunden; Vercel hat den GPAI-Verhaltenskodex nicht unterzeichnet. Vercels Acceptable Use Policy untersagt die Nutzung der KI-Dienste in Hochrisikobereichen nach dem EU AI Act."
       }
     }
   }
