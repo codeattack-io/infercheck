@@ -38,7 +38,7 @@
       "status": "unknown",
       "details": null
     },
-    "sccs": true,
+    "sccs": null,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
@@ -58,10 +58,10 @@
     "https://investors.cerebras.ai/news-releases/news-release-details/cerebras-systems-accelerates-european-expansion-200mw-ai-compute",
     "https://trust.cerebras.ai/"
   ],
-  "notes": "Cerebras Systems Inc. is based in Sunnyvale, California, and is not certified under the EU-US Data Privacy Framework; its privacy summary names standard contractual clauses for transfers. A DPA is listed in the trust center and is available on request. New accounts get a one-time $5 trial credit, after which usage is billed pay as you go.",
+  "notes": "Cerebras Systems Inc. is based in Sunnyvale, California, and is not certified under the EU-US Data Privacy Framework. A data processing agreement is listed in the trust center but is only available on request, so its terms, including any standard contractual clauses, could not be checked. New accounts get a one-time $5 trial credit, after which usage is billed pay as you go.",
   "translations": {
     "de": {
-      "notes": "Cerebras Systems Inc. hat seinen Sitz in Sunnyvale, Kalifornien, und ist nicht unter dem EU-US Data Privacy Framework zertifiziert; die Datenschutz-Zusammenfassung nennt Standardvertragsklauseln für Übermittlungen. Ein Auftragsverarbeitungsvertrag ist im Trust Center aufgeführt und auf Anfrage erhältlich. Neue Konten erhalten einmalig 5 US-Dollar Testguthaben, danach wird nutzungsabhängig abgerechnet.",
+      "notes": "Cerebras Systems Inc. hat seinen Sitz in Sunnyvale, Kalifornien, und ist nicht unter dem EU-US Data Privacy Framework zertifiziert. Ein Auftragsverarbeitungsvertrag ist im Trust Center aufgeführt, aber nur auf Anfrage erhältlich; seine Bedingungen, auch etwaige Standardvertragsklauseln, konnten daher nicht geprüft werden. Neue Konten erhalten einmalig 5 US-Dollar Testguthaben, danach wird nutzungsabhängig abgerechnet.",
       "dataResidency": {
         "euRegionDetails": "Cerebras bietet für seine Inferenz-API keine EU-Region an. Die Dokumentation nennt einen einzigen API-Endpunkt ohne Regionsauswahl, sowohl für geteilte (Abrechnung pro Token) als auch für dedizierte Inferenz. Cerebras hat erste Rechenzentrumskapazitäten in Europa für Ende 2026 angekündigt, aber nicht gesagt, ob API-Kunden diese auswählen können."
       },
