@@ -21,7 +21,7 @@ import {
   type SortKey,
   type SortState,
 } from "@/lib/model-list";
-import { buttonClass } from "@/lib/styles";
+import { buttonClass, TABLE_CLASS, TH_CLASS } from "@/lib/styles";
 import { writeSearchParams } from "@/lib/url-state";
 
 export const PAGE_SIZE = 50;
@@ -157,7 +157,7 @@ export function ModelTable({
   }
 
   return (
-    <div className={`overflow-hidden rounded-card border border-border bg-surface ${className ?? ""}`}>
+    <div className={`${TABLE_CLASS} ${className ?? ""}`}>
       <table
         className="-mb-px w-full border-separate border-spacing-0 max-md:block"
         aria-label={label ?? t("tableAriaLabel")}
@@ -230,9 +230,6 @@ export function ModelTable({
     </div>
   );
 }
-
-const TH_CLASS =
-  "border-b border-border bg-surface-alt px-4 py-3 text-left align-middle text-13 font-semibold uppercase tracking-[0.04em] text-text-muted";
 
 interface SortHeaderProps {
   column: SortKey;

@@ -1,28 +1,19 @@
-// Provider profile page — /[locale]/provider/[slug]
-// Full compliance deep-dive for a single provider.
-// All data from the provider JSON file — no DB query needed.
-//
-// Vercel rules:
-//   - server-cache-react: getProvider wrapped in React.cache() so generateMetadata
-//     and the page body share a single fs.readFileSync per request
-//   - async-parallel: provider JSON load + DB model query run in parallel
-//   - server-serialization: no non-serializable data passed to client
-
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { cache } from "react";
+import { cache, type ReactNode } from "react";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { getProvider, getAllProviders, getLocalizedProvider } from "@/lib/providers";
 import { getModelsByProvider } from "@/lib/models";
-import { getComplianceTier, isFullProvider, TIER_CLASSES } from "@/lib/compliance";
+import { getComplianceTier, isFullProvider } from "@/lib/compliance";
 import { getVerification } from "@/lib/verification";
+import { Breadcrumb } from "@/components/Breadcrumb";
 import { ComplianceBadge } from "@/components/ComplianceBadge";
-import { GatewayPill } from "@/components/GatewayPill";
-import { BooleanList, BooleanRow } from "@/components/BooleanRow";
+import { ComplianceFields } from "@/components/ComplianceFields";
 import { NeutralPill } from "@/components/NeutralPill";
-import { buttonClass } from "@/lib/styles";
 import { ProviderModelRow } from "@/components/ProviderModelRow";
+import { VerificationLabel } from "@/components/VerificationLabel";
+import { buttonClass, TABLE_CLASS, TH_CLASS } from "@/lib/styles";
 import type { ProviderModel } from "@/components/types";
 
 export async function generateStaticParams() {
@@ -30,8 +21,6 @@ export async function generateStaticParams() {
   return providers.map((p) => ({ slug: p.slug }));
 }
 
-// server-cache-react: wrap the synchronous fs read so generateMetadata and the
-// page body share one parse result within the same request context.
 const getCachedProvider = cache((slug: string) => getProvider(slug));
 
 interface PageProps {
@@ -86,8 +75,6 @@ export default async function ProviderProfilePage({ params }: PageProps) {
   const { locale, slug } = await params;
   setRequestLocale(locale);
 
-  // async-parallel: start model DB query immediately, while provider JSON is
-  // read synchronously from the React.cache. Both complete in parallel.
   const modelsPromise = getModelsByProvider(slug);
   const rawProvider = getCachedProvider(slug);
 
@@ -96,93 +83,70 @@ export default async function ProviderProfilePage({ params }: PageProps) {
   const provider = getLocalizedProvider(rawProvider, locale);
 
   const t = await getTranslations("ProviderPage");
+  const tb = await getTranslations("Breadcrumb");
   const tType = await getTranslations("ProviderType");
   const tBadge = await getTranslations("ComplianceBadge");
+  const tFields = await getTranslations("ComplianceFields");
 
   const tier = getComplianceTier(provider);
-  const tierClasses = TIER_CLASSES[tier];
-  const verified = isFullProvider(provider);
-  const verification = getVerification(provider);
+  const compliance = isFullProvider(provider) ? provider.compliance : null;
 
-  // Await the model fetch started earlier
   const providerModels = await modelsPromise;
-
-  // Split native vs gateway-hosted models for display
   const nativeModels = providerModels.filter((m) => m.isNativeModel);
   const gatewayModels = providerModels.filter((m) => !m.isNativeModel);
 
-  // Report-a-change URL (GitHub Issue Form with provider pre-filled)
   const repoUrl = process.env.NEXT_PUBLIC_GITHUB_REPO_URL ?? "https://github.com/codeattack-io/infercheck";
   const reportUrl = `${repoUrl}/issues/new?template=report-change.yml&title=%5BReport%5D+${encodeURIComponent(provider.name)}%3A+&provider=${encodeURIComponent(slug)}`;
 
-  // JSON-LD for this provider
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: provider.name,
     url: provider.website,
-    ...(verified
+    ...(compliance
       ? {
           description: t("jsonLdDescription", {
             tier: tBadge(`long.${tier}`),
-            dpa: provider.compliance.dpa.available ? t("meta.available") : t("meta.notAvailable"),
+            dpa: compliance.dpa.available ? t("meta.available") : t("meta.notAvailable"),
           }),
         }
       : {}),
   };
 
+  const answer = (value: boolean | null) =>
+    value === null ? tFields("unknownNotStated") : value ? tFields("yes") : tFields("no");
+  const dataHandling = compliance
+    ? [
+        {
+          label: t("dataHandling.regions"),
+          text: compliance.dataResidency.euOnly
+            ? t("dataHandling.euOnly")
+            : compliance.dataResidency.regions.join(", ") || "—",
+        },
+        { label: t("dataHandling.euRouting"), text: compliance.dataResidency.euRegionDetails },
+        { label: t("dataHandling.retention"), text: compliance.dataUsage.retentionPolicy },
+        { label: t("dataHandling.optOut"), text: answer(compliance.dataUsage.optOutAvailable) },
+        { label: t("dataHandling.details"), text: compliance.dataUsage.details },
+      ].filter((item): item is { label: string; text: string } => Boolean(item.text))
+    : [];
+  const sources = provider.sourceUrls ?? [];
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <main className="page-width flex-1 py-10">
-        {/* Breadcrumb */}
-        <nav aria-label={t("breadcrumb.ariaLabel")} className="mb-6">
-          <ol className="flex items-center gap-2 list-none p-0 m-0 font-body text-[0.8125rem] text-text-muted">
-            <li>
-              <Link href="/" className="text-link no-underline">
-                {t("breadcrumb.models")}
-              </Link>
-            </li>
-            <li aria-hidden="true">/</li>
-            <li>
-              <Link href="/providers" className="text-link no-underline">
-                {t("breadcrumb.providers")}
-              </Link>
-            </li>
-            <li aria-hidden="true">/</li>
-            <li className="text-text-secondary">{provider.name}</li>
-          </ol>
-        </nav>
+      <main className="page-width flex-1 pt-7 max-md:pt-5">
+        <Breadcrumb
+          trail={[
+            { href: "/", label: tb("models") },
+            { href: "/providers", label: tb("providers") },
+          ]}
+          current={provider.name}
+        />
 
-        {/* Header */}
-        <div className="flex items-start justify-between flex-wrap gap-4 mb-8">
-          <div>
-            <h1 className="m-0 mb-[10px]">{provider.name}</h1>
-            <div className="flex items-center gap-[10px] flex-wrap">
-              <ComplianceBadge
-                tier={tier}
-                label="long"
-                compliance={isFullProvider(provider) ? provider.compliance : null}
-              />
-              <span className="text-15 text-text-muted">{tType(provider.type)}</span>
-
-              {/* Website link */}
-              {provider.website ? (
-                <a
-                  href={provider.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-15 text-link no-underline hover:underline"
-                >
-                  {provider.website.replace(/^https?:\/\//, "")} ↗
-                </a>
-              ) : null}
-            </div>
-          </div>
-
-          {/* Action buttons */}
-          <div className="flex gap-2 flex-wrap">
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+          <h1 className="m-0">{provider.name}</h1>
+          <div className="flex flex-wrap gap-2">
             {provider.apiDocsUrl ? (
               <a
                 href={provider.apiDocsUrl}
@@ -198,357 +162,206 @@ export default async function ProviderProfilePage({ params }: PageProps) {
             </a>
           </div>
         </div>
-
-        {/* Main content grid */}
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {verified ? (
-            <section
-              className={`bg-surface border border-border border-l-3 ${tierClasses.line} rounded-card px-6 py-5`}
-              aria-labelledby="compliance-heading"
+        <div className="mt-2.5 flex flex-wrap items-center gap-2.5">
+          <ComplianceBadge tier={tier} label="long" compliance={compliance} />
+          <span className="text-15 text-text-muted">{tType(provider.type)}</span>
+          {provider.website ? (
+            <a
+              href={provider.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-15 text-link hover:text-link-hover"
             >
-              <h2 id="compliance-heading" className="text-17 font-semibold text-text-primary m-0 mb-3">
-                {t("sections.gdprCompliance")}
-              </h2>
+              {provider.website.replace(/^https?:\/\//, "").replace(/\/$/, "")} ↗
+            </a>
+          ) : null}
+        </div>
 
-              <BooleanList>
-                <BooleanRow label={t("compliance.euOnlyResidency")} value={provider.compliance.dataResidency.euOnly} />
-                <BooleanRow
-                  label={t("compliance.inferenceStaysInEu")}
-                  value={
-                    provider.compliance.dataResidency.dataLeavesEuAtInference === null
-                      ? null
-                      : !provider.compliance.dataResidency.dataLeavesEuAtInference
-                  }
-                />
-                <BooleanRow
-                  label={t("compliance.dpa")}
-                  value={provider.compliance.dpa.available}
-                  href={provider.compliance.dpa.url ?? undefined}
-                  valueText={
-                    provider.compliance.dpa.signedVia !== "not_available"
-                      ? `${provider.compliance.dpa.available ? t("meta.yes") : t("meta.no")}, ${t(`dpaSignedVia.${provider.compliance.dpa.signedVia}`)}`
-                      : undefined
-                  }
-                />
-                <BooleanRow
-                  label={t("compliance.noTraining")}
-                  value={
-                    provider.compliance.dataUsage.trainsOnCustomerData === null
-                      ? null
-                      : !provider.compliance.dataUsage.trainsOnCustomerData
-                  }
-                />
-                <BooleanRow label={t("compliance.optOut")} value={provider.compliance.dataUsage.optOutAvailable} />
-                <BooleanRow label={t("compliance.sccs")} value={provider.compliance.sccs} />
-                <BooleanRow label={t("compliance.adequacy")} value={provider.compliance.adequacyDecision} />
-              </BooleanList>
-            </section>
-          ) : (
-            <section
-              className={`bg-surface border border-border border-l-3 ${tierClasses.line} rounded-card px-6 py-5`}
-            >
-              <h2 className="text-17 font-semibold text-text-primary m-0 mb-3">{t("sections.gdprCompliance")}</h2>
-              <p className="text-15 text-text-muted m-0">{t("unverifiedNotice")}</p>
-            </section>
-          )}
+        {compliance === null ? <p className="m-0 mt-7 text-15 text-text-muted">{t("noComplianceData")}</p> : null}
 
-          {verified ? (
-            <section
-              className="bg-surface border border-border rounded-card px-6 py-5"
-              aria-labelledby="data-handling-heading"
-            >
-              <h2 id="data-handling-heading" className="text-17 font-semibold text-text-primary m-0 mb-3">
-                {t("sections.dataHandling")}
-              </h2>
+        <div className="mt-7 grid grid-cols-1 items-start gap-6 md:grid-cols-2">
+          {compliance ? (
+            <>
+              <Card id="compliance-heading" title={t("sections.gdprCompliance")}>
+                <ComplianceFields compliance={compliance} />
+              </Card>
 
-              <div className="flex flex-col gap-3.5">
-                {/* Data residency detail */}
-                <div>
-                  <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1">
-                    {t("dataHandlingLabels.regions")}
-                  </div>
-                  <div className="text-[0.8125rem] text-text-primary">
-                    {provider.compliance.dataResidency.euOnly
-                      ? t("dataHandlingLabels.euOnly")
-                      : provider.compliance.dataResidency.regions.join(", ") || "—"}
-                  </div>
-                  {provider.compliance.dataResidency.euRegionDetails ? (
-                    <p className="font-body text-[0.8125rem] text-text-secondary mt-1.5 leading-[1.6]">
-                      {provider.compliance.dataResidency.euRegionDetails}
-                    </p>
-                  ) : null}
+              <Card id="data-handling-heading" title={t("sections.dataHandling")}>
+                <div className="flex flex-col gap-3.5">
+                  {dataHandling.map((item) => (
+                    <div key={item.label}>
+                      <h3 className={LABEL_CLASS}>{item.label}</h3>
+                      <p className={TEXT_CLASS}>{item.text}</p>
+                    </div>
+                  ))}
                 </div>
+              </Card>
 
-                {/* Retention policy */}
-                {provider.compliance.dataUsage.retentionPolicy ? (
+              <Card id="certs-heading" title={t("sections.certsAndEuAiAct")}>
+                <div className="flex flex-col gap-3.5">
                   <div>
-                    <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1">
-                      {t("dataHandlingLabels.retentionPolicy")}
-                    </div>
-                    <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.6]">
-                      {provider.compliance.dataUsage.retentionPolicy}
-                    </p>
-                  </div>
-                ) : null}
-
-                {/* Additional details */}
-                {provider.compliance.dataUsage.details ? (
-                  <div>
-                    <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1">
-                      {t("dataHandlingLabels.additionalDetails")}
-                    </div>
-                    <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.6]">
-                      {provider.compliance.dataUsage.details}
-                    </p>
-                  </div>
-                ) : null}
-
-                {/* Sub-processors */}
-                <div>
-                  <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1">
-                    {t("dataHandlingLabels.subProcessors")}
-                  </div>
-                  <div className="flex items-center gap-2 font-body text-[0.8125rem] text-text-secondary">
-                    {provider.compliance.subProcessors.disclosed ? (
-                      <>
-                        <span className="text-compliant-text" aria-hidden="true">
-                          ✓
-                        </span>
-                        {provider.compliance.subProcessors.url ? (
-                          <a
-                            href={provider.compliance.subProcessors.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-link no-underline"
-                          >
-                            {t("subProcessors.disclosedLink")}
-                          </a>
-                        ) : (
-                          t("subProcessors.disclosed")
-                        )}
-                        {provider.compliance.subProcessors.includesEuEntities === true
-                          ? t("subProcessors.includesEu")
-                          : provider.compliance.subProcessors.includesEuEntities === false
-                            ? t("subProcessors.noEu")
-                            : null}
-                      </>
+                    <h3 className={LABEL_CLASS}>{t("certs.certifications")}</h3>
+                    {compliance.certifications.length > 0 ? (
+                      <ul className="m-0 flex list-none flex-wrap gap-1.5 p-0">
+                        {compliance.certifications.map((cert) => (
+                          <li key={cert}>
+                            <NeutralPill surface="alt">{cert}</NeutralPill>
+                          </li>
+                        ))}
+                      </ul>
                     ) : (
-                      <>
-                        <span className="text-noncompliant-text" aria-hidden="true">
-                          ✗
-                        </span>
-                        {t("subProcessors.notDisclosed")}
-                      </>
+                      <p className={TEXT_CLASS}>{t("certs.none")}</p>
                     )}
                   </div>
-                </div>
-              </div>
-            </section>
-          ) : null}
-
-          {verified ? (
-            <section className="bg-surface border border-border rounded-card px-6 py-5" aria-labelledby="certs-heading">
-              <h2 id="certs-heading" className="text-17 font-semibold text-text-primary m-0 mb-3">
-                {t("sections.certsAndEuAiAct")}
-              </h2>
-
-              {provider.compliance.certifications.length > 0 ? (
-                <div className="mb-4">
-                  <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-2">
-                    {t("certs.certifications")}
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {provider.compliance.certifications.map((cert) => (
-                      <NeutralPill key={cert} surface="alt">
-                        {cert}
-                      </NeutralPill>
-                    ))}
+                  <div>
+                    <h3 className={LABEL_CLASS}>{t("certs.euAiAct")}</h3>
+                    <NeutralPill surface="alt">{tFields(`euAiActStatus.${compliance.euAiAct.status}`)}</NeutralPill>
+                    {compliance.euAiAct.details ? (
+                      <p className={`${TEXT_CLASS} mt-2`}>{compliance.euAiAct.details}</p>
+                    ) : null}
                   </div>
                 </div>
-              ) : (
-                <p className="text-[0.8125rem] text-text-muted m-0 mb-4">{t("certs.noCerts")}</p>
-              )}
-
-              <div>
-                <div className="font-body text-[0.8125rem] font-medium text-text-secondary mb-1.5">
-                  {t("certs.euAiActStatus")}
-                </div>
-                <NeutralPill surface="alt" className="mb-1.5">
-                  {t(`euAiActStatus.${provider.compliance.euAiAct.status}`)}
-                </NeutralPill>
-                {provider.compliance.euAiAct.details ? (
-                  <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.6]">
-                    {provider.compliance.euAiAct.details}
-                  </p>
-                ) : null}
-              </div>
-            </section>
+              </Card>
+            </>
           ) : null}
 
-          <section
-            className="bg-surface border border-border rounded-card px-6 py-5"
-            aria-labelledby="verification-heading"
-          >
-            <h2 id="verification-heading" className="text-17 font-semibold text-text-primary m-0 mb-3">
-              {t("sections.verification")}
-            </h2>
-
-            <div className="flex flex-col gap-[10px]">
-              <MetaRow
-                label={t("verification.status")}
-                value={
-                  verification.kind === "none"
-                    ? t("verification.statusNone")
-                    : verification.kind === "ai_draft"
-                      ? t("verification.statusAiDraft")
-                      : t("verification.statusHuman", { name: provider.verifiedBy })
-                }
-              />
-              {verification.date ? (
-                <MetaRow
-                  label={verification.kind === "ai_draft" ? t("verification.dateAiDraft") : t("verification.dateHuman")}
-                  value={verification.date}
-                  numeric
-                />
+          <Card id="status-heading" title={t("sections.status")}>
+            <div className="flex flex-col gap-3.5">
+              {compliance ? (
+                <div>
+                  <h3 className={LABEL_CLASS}>{t("status.status")}</h3>
+                  <VerificationLabel provider={provider} className={TEXT_CLASS} />
+                </div>
               ) : null}
-              <MetaRow
-                label={t("verification.pricingTier")}
-                value={provider.pricingTier ? t(`pricingTiers.${provider.pricingTier}`) : t("verification.unknown")}
-              />
+              {provider.pricingTier ? (
+                <div>
+                  <h3 className={LABEL_CLASS}>{t("status.pricingTier")}</h3>
+                  <p className={TEXT_CLASS}>{t(`pricingTiers.${provider.pricingTier}`)}</p>
+                </div>
+              ) : null}
+              {sources.length > 0 ? (
+                <div>
+                  <h3 className={LABEL_CLASS}>{t("status.sources")}</h3>
+                  <ul className="m-0 list-none p-0">
+                    {sources.map((url) => (
+                      <li key={url} className="text-14 [overflow-wrap:anywhere]">
+                        <a href={url} target="_blank" rel="noopener noreferrer" className="text-accent-ink underline">
+                          {url.replace(/^https?:\/\//, "")}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
+              {provider.notes ? (
+                <div>
+                  <h3 className={LABEL_CLASS}>{t("status.notes")}</h3>
+                  <p className={TEXT_CLASS}>{provider.notes}</p>
+                </div>
+              ) : null}
             </div>
-
-            {verification.kind === "ai_draft" ? (
-              <p className="font-body text-[0.8125rem] text-text-secondary leading-relaxed mt-4 mb-0">
-                {t("verification.aiDraftNote")}
-              </p>
-            ) : null}
-
-            {/* Source URLs */}
-            {provider.sourceUrls && provider.sourceUrls.length > 0 ? (
-              <div className="mt-4">
-                <div className="text-13 font-semibold text-text-muted mb-2">{t("verification.sources")}</div>
-                <ul className="list-none p-0 m-0 flex flex-col gap-1">
-                  {provider.sourceUrls.map((url, i) => (
-                    <li key={i}>
-                      <a
-                        href={url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-body text-[0.8125rem] text-link no-underline break-all"
-                      >
-                        {url} ↗
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-
-            {/* Notes */}
-            {provider.notes ? (
-              <div className="mt-4">
-                <div className="text-13 font-semibold text-text-muted mb-2">{t("verification.notes")}</div>
-                <p className="font-body text-[0.8125rem] text-text-secondary m-0 leading-[1.6]">{provider.notes}</p>
-              </div>
-            ) : null}
-          </section>
+          </Card>
         </div>
 
         {providerModels.length > 0 ? (
-          <section className="mt-8" aria-labelledby="models-heading">
-            <h2 id="models-heading" className="text-20 font-semibold text-text-primary m-0 mb-4">
+          <section className="mt-10" aria-labelledby="models-heading">
+            <h2 id="models-heading" className="m-0 text-20 font-semibold text-text-primary">
               {t("models.heading", { count: providerModels.length })}
             </h2>
-
-            {/* Native models */}
-            {nativeModels.length > 0 ? (
-              <div className={gatewayModels.length > 0 ? "mb-8" : ""}>
-                {gatewayModels.length > 0 ? (
-                  <div className="text-13 font-semibold text-text-muted mb-3">{t("models.nativeHeading")}</div>
+            {gatewayModels.length === 0 ? (
+              <ModelsTable
+                models={nativeModels}
+                label={t("models.tableLabel", { providerName: provider.name })}
+                className="mt-4"
+              />
+            ) : (
+              <>
+                {nativeModels.length > 0 ? (
+                  <>
+                    <h3 className={SUBHEADING_CLASS}>{t("models.nativeHeading")}</h3>
+                    <ModelsTable models={nativeModels} label={t("models.nativeHeading")} className="mt-3" />
+                  </>
                 ) : null}
-                <ModelsTable models={nativeModels} t={t} />
-              </div>
-            ) : null}
-
-            {/* Gateway / third-party models */}
-            {gatewayModels.length > 0 ? (
-              <div>
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-13 font-semibold text-text-muted">{t("models.gatewayHeading")}</span>
-                  <GatewayPill providerName={provider.name} />
-                </div>
-                <p className="font-body text-[0.8125rem] text-text-secondary mt-0 mb-3 leading-[1.5]">
+                <h3 className={SUBHEADING_CLASS}>{t("models.gatewayHeading")}</h3>
+                <p className="m-0 mt-1 max-w-[72ch] text-15 text-text-muted">
                   {t("models.gatewayNote", { providerName: provider.name })}
                 </p>
-                <ModelsTable models={gatewayModels} t={t} gatewayProviderName={provider.name} />
-              </div>
-            ) : null}
+                <ModelsTable
+                  models={gatewayModels}
+                  label={t("models.gatewayHeading")}
+                  gatewayProviderName={provider.name}
+                  className="mt-3"
+                />
+              </>
+            )}
           </section>
         ) : null}
-
-        {/* Back link */}
-        <div className="mt-10">
-          <Link href="/providers" className="font-body text-sm text-link no-underline">
-            {t("backLink")}
-          </Link>
-        </div>
       </main>
     </>
   );
 }
 
-function ModelsTable({
-  models: rows,
-  t,
-  gatewayProviderName,
-}: {
-  models: ProviderModel[];
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  t: any;
-  gatewayProviderName?: string;
-}) {
+const LABEL_CLASS = "m-0 mb-1.5 text-13 font-semibold text-text-muted";
+const TEXT_CLASS = "m-0 text-15 text-pretty text-text-secondary";
+const SUBHEADING_CLASS = "m-0 mt-6 text-17 font-semibold text-text-primary";
+
+function Card({ id, title, children }: { id: string; title: string; children: ReactNode }) {
   return (
-    <div className="border border-border rounded-card overflow-hidden">
-      <div className="overflow-x-auto">
-        <table className="w-full border-collapse bg-surface">
-          <thead>
-            <tr className="bg-surface-alt border-b border-border">
-              {[
-                t("models.columns.model"),
-                t("models.columns.modality"),
-                t("models.columns.context"),
-                t("models.columns.input"),
-                t("models.columns.output"),
-              ].map((h: string) => (
-                <th
-                  key={h}
-                  className="px-4 py-3 text-left text-13 font-semibold text-text-muted uppercase tracking-[0.04em] whitespace-nowrap"
-                >
-                  {h}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((m) => (
-              <ProviderModelRow
-                key={`${m.id}::${m.providerSlug}`}
-                model={m}
-                gatewayProviderName={gatewayProviderName}
-              />
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+    <section aria-labelledby={id} className="rounded-card border border-border bg-surface px-6 py-5">
+      <h2 id={id} className="m-0 mb-3 text-17 font-semibold text-text-primary">
+        {title}
+      </h2>
+      {children}
+    </section>
   );
 }
 
-function MetaRow({ label, value, numeric = false }: { label: string; value: string; numeric?: boolean }) {
+interface ModelsTableProps {
+  models: ProviderModel[];
+  label: string;
+  gatewayProviderName?: string;
+  className?: string;
+}
+
+function ModelsTable({ models, label, gatewayProviderName, className }: ModelsTableProps) {
+  const t = useTranslations("ProviderPage.models");
+
   return (
-    <div className="flex justify-between gap-4 flex-wrap">
-      <span className="font-body text-[0.8125rem] text-text-secondary">{label}</span>
-      <span className={`text-[0.8125rem] text-text-primary font-medium ${numeric ? "tabular-nums" : ""}`}>{value}</span>
+    <div className={`${TABLE_CLASS} ${className ?? ""}`}>
+      <table className="-mb-px w-full border-separate border-spacing-0 max-md:block" aria-label={label}>
+        <colgroup className="max-md:hidden">
+          <col className="w-[46%]" />
+          <col className="w-[14%]" />
+          <col className="w-[14%]" />
+          <col className="w-[22%]" />
+          <col className="w-11" />
+        </colgroup>
+        <thead className="max-md:hidden">
+          <tr>
+            <th scope="col" className={`${TH_CLASS} pl-5`}>
+              {t("columns.model")}
+            </th>
+            <th scope="col" className={TH_CLASS}>
+              {t("columns.modality")}
+            </th>
+            <th scope="col" className={`${TH_CLASS} text-right`}>
+              {t("columns.context")}
+            </th>
+            <th scope="col" className={`${TH_CLASS} text-right`}>
+              {t("columns.price")}
+              <span className="block text-13 font-medium tracking-normal normal-case">{t("columns.priceSub")}</span>
+            </th>
+            <th scope="col" className={TH_CLASS}>
+              <span className="sr-only">{t("columns.details")}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody className="max-md:block">
+          {models.map((m) => (
+            <ProviderModelRow key={`${m.id}::${m.providerSlug}`} model={m} gatewayProviderName={gatewayProviderName} />
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

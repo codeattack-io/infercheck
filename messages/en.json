@@ -61,79 +61,57 @@
     "descriptionFull": "{providerName} GDPR compliance: EU data residency {euOnly}, DPA {dpa}, training on customer data {training}. {status}.",
     "descriptionUnverified": "{providerName} GDPR compliance profile. Compliance data pending verification.",
     "ogTitle": "{providerName} — GDPR Compliance Profile",
-    "breadcrumb": {
-      "models": "Models",
-      "providers": "Providers",
-      "ariaLabel": "Breadcrumb"
-    },
     "actions": {
-      "apiDocs": "API Docs ↗",
+      "apiDocs": "API docs ↗",
       "reportChange": "Report a change"
     },
     "sections": {
-      "gdprCompliance": "GDPR Compliance",
-      "dataHandling": "Data Handling",
+      "gdprCompliance": "GDPR compliance",
+      "dataHandling": "Data handling",
       "certsAndEuAiAct": "Certifications & EU AI Act",
-      "verification": "Verification"
+      "status": "Status & sources"
     },
-    "compliance": {
-      "euOnlyResidency": "EU-only data residency",
-      "inferenceStaysInEu": "Inference stays in EU",
-      "dpa": "Data Processing Agreement",
-      "noTraining": "No training on customer data",
-      "optOut": "Opt-out available",
-      "sccs": "Standard Contractual Clauses",
-      "adequacy": "Adequacy decision (HQ country)"
-    },
-    "dataHandlingLabels": {
+    "dataHandling": {
       "regions": "Regions",
-      "retentionPolicy": "Retention Policy",
-      "additionalDetails": "Additional Details",
-      "subProcessors": "Sub-processors",
-      "euOnly": "EU only"
-    },
-    "subProcessors": {
-      "disclosedLink": "Disclosed ↗",
-      "disclosed": "Disclosed",
-      "notDisclosed": "Not disclosed",
-      "includesEu": "(includes EU entities)",
-      "noEu": "(no EU entities)"
+      "euOnly": "EU only",
+      "euRouting": "EU routing",
+      "retention": "Retention",
+      "optOut": "Training opt-out",
+      "details": "Details"
     },
     "certs": {
       "certifications": "Certifications",
-      "euAiActStatus": "EU AI Act Status",
-      "noCerts": "No certifications disclosed."
+      "none": "None disclosed.",
+      "euAiAct": "EU AI Act"
     },
-    "verification": {
+    "status": {
       "status": "Status",
-      "dateAiDraft": "Researched on",
-      "dateHuman": "Last verified",
-      "statusAiDraft": "AI draft (not yet manually verified)",
-      "statusHuman": "Verified by {name}",
-      "statusNone": "Not yet researched",
-      "aiDraftNote": "This entry was researched with AI assistance and has not yet been checked manually against the sources. Treat it as a starting point and confirm critical details with the provider.",
-      "pricingTier": "Pricing tier",
-      "notResearched": "Not researched",
-      "unknown": "Unknown",
+      "pricingTier": "Pricing",
       "sources": "Sources",
       "notes": "Notes"
     },
+    "noComplianceData": "Compliance data for this provider has not been researched yet.",
     "models": {
       "heading": "Models ({count})",
-      "tableAriaLabel": "Models offered by {providerName}",
+      "tableLabel": "Models offered by {providerName}",
       "nativeHeading": "Own models",
-      "gatewayHeading": "Also available via this provider",
-      "gatewayNote": "These models are made by third parties but can be accessed through {providerName}'s infrastructure. The GDPR compliance properties shown on this page apply to how {providerName} handles your data.",
+      "gatewayHeading": "Also available through this provider",
+      "gatewayNote": "Made by other companies and served through {providerName}; the compliance data on this page describes {providerName}.",
       "columns": {
         "model": "Model",
         "modality": "Modality",
         "context": "Context",
-        "input": "Input",
-        "output": "Output"
+        "price": "Price / 1M tokens",
+        "priceSub": "Input · Output",
+        "details": "Details"
+      },
+      "modality": {
+        "text": "Text",
+        "multimodal": "Multimodal",
+        "embedding": "Embedding",
+        "audio": "Audio"
       }
     },
-    "unverifiedNotice": "Compliance data not yet verified for this provider. If you have information, please use \"Report a change\" above.",
-    "backLink": "← Back to all providers",
     "meta": {
       "yes": "yes",
       "no": "no",
@@ -142,17 +120,6 @@
       "notAvailable": "not available"
     },
     "jsonLdDescription": "AI inference provider. GDPR compliance tier: {tier}. DPA: {dpa}.",
-    "dpaSignedVia": {
-      "online_acceptance": "online acceptance",
-      "custom_contract": "custom contract",
-      "not_available": "not available"
-    },
-    "euAiActStatus": {
-      "compliant": "compliant",
-      "monitoring": "monitoring",
-      "unknown": "unknown",
-      "not_applicable": "not applicable"
-    },
     "pricingTiers": {
       "free_tier": "free tier",
       "pay_per_use": "pay per use",
