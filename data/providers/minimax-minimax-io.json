@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "No EU region is offered. According to the API privacy policy, personal data, including API inputs and outputs, is stored in a US data center and processed by MiniMax or third-party vendors."
+      "euRegionDetails": "No EU region is offered. According to the API privacy policy, personal data, including personal data in API inputs and outputs, is stored in a US data center and processed by MiniMax or third-party vendors."
     },
     "dpa": {
       "available": false,
@@ -23,7 +23,7 @@
       "trainsOnCustomerData": null,
       "optOutAvailable": null,
       "retentionPolicy": "No fixed period. The API privacy policy says personal data is kept as long as necessary or permitted by law for the purpose it was collected for, then deleted or anonymised.",
-      "details": "The Open Platform terms let MiniMax use inputs and generated content to provide, maintain, develop and improve its services, and the API privacy policy only rules out training to profile or target consumers. MiniMax's EU training-data summaries for its current models state that data from user interactions with the model was not used for training. No opt-out for API data is documented."
+      "details": "The Open Platform terms let MiniMax use inputs and generated content to provide, maintain, develop and improve its services, and the API privacy policy only rules out training to profile or target consumers. MiniMax's EU training-data summaries for its M3 and H3 models state that data from user interactions with the model was not used for training. No opt-out for API data is documented."
     },
     "subProcessors": {
       "disclosed": false,
@@ -47,20 +47,21 @@
     "https://www.minimax.io/privacy-policy-v2.html",
     "https://platform.minimax.io/docs/guides/transparency",
     "https://file.cdn.minimax.io/public/m3-training-summary-20261019/M3-Public-Summary-of-Training-Content-for-General-V2.pdf",
+    "https://file.cdn.minimax.io/public/8b640d09-235b-4351-a096-2f7bea762e75.pdf",
     "https://platform.minimax.io/docs/pricing/overview",
     "https://platform.minimax.io/docs/guides/models-intro",
     "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
   ],
-  "notes": "The international API platform (platform.minimax.io) is operated by Nanonoble Pte. Ltd. in Singapore; according to its API privacy policy, personal data including API inputs and outputs is stored in a US data center, and no EU region is offered. No DPA, sub-processor list or certification is published, and the policy names its EU representative only by an email address. Billing is self-serve pay-as-you-go, with M Plan subscriptions as an alternative.",
+  "notes": "The international API platform (platform.minimax.io) is operated by Nanonoble Pte. Ltd. in Singapore; according to its API privacy policy, personal data, including personal data in API inputs and outputs, is stored in a US data center, and no EU region is offered. No DPA, sub-processor list or certification is published, and the policy gives no company name or address for its EU representative, only an email contact. Billing is self-serve pay-as-you-go, with M Plan subscriptions as an alternative.",
   "translations": {
     "de": {
-      "notes": "Die internationale API-Plattform (platform.minimax.io) wird von der Nanonoble Pte. Ltd. in Singapur betrieben; laut API-Datenschutzerklärung werden personenbezogene Daten einschließlich API-Eingaben und -Ausgaben in einem Rechenzentrum in den USA gespeichert, eine EU-Region wird nicht angeboten. Weder ein Auftragsverarbeitungsvertrag noch eine Liste der Unterauftragsverarbeiter oder eine Zertifizierung ist veröffentlicht, und für ihren EU-Vertreter nennt die Erklärung nur eine E-Mail-Adresse. Abgerechnet wird per Selbstbedienung nach Verbrauch; alternativ gibt es M-Plan-Abonnements.",
+      "notes": "Die internationale API-Plattform (platform.minimax.io) wird von der Nanonoble Pte. Ltd. in Singapur betrieben; laut API-Datenschutzerklärung werden personenbezogene Daten, auch solche in API-Eingaben und -Ausgaben, in einem Rechenzentrum in den USA gespeichert, eine EU-Region wird nicht angeboten. Weder ein Auftragsverarbeitungsvertrag noch eine Liste der Unterauftragsverarbeiter oder eine Zertifizierung ist veröffentlicht, und für ihren EU-Vertreter nennt die Erklärung weder Firmenname noch Anschrift, sondern nur einen E-Mail-Kontakt. Abgerechnet wird per Selbstbedienung nach Verbrauch; alternativ gibt es M-Plan-Abonnements.",
       "dataUsage": {
         "retentionPolicy": "Keine feste Frist. Laut API-Datenschutzerklärung werden personenbezogene Daten so lange gespeichert, wie es für den Erhebungszweck erforderlich oder gesetzlich zulässig ist, und danach gelöscht oder anonymisiert.",
-        "details": "Die Nutzungsbedingungen der Open Platform erlauben MiniMax, Eingaben und erzeugte Inhalte zur Bereitstellung, Wartung, Entwicklung und Verbesserung seiner Dienste zu nutzen; die API-Datenschutzerklärung schließt nur Training zur Profilbildung oder gezielten Ansprache von Verbrauchern aus. Laut den EU-Zusammenfassungen der Trainingsdaten für die aktuellen Modelle wurden Daten aus Nutzerinteraktionen mit dem Modell nicht für das Training verwendet. Eine Opt-out-Möglichkeit für API-Daten ist nicht dokumentiert."
+        "details": "Die Nutzungsbedingungen der Open Platform erlauben MiniMax, Eingaben und erzeugte Inhalte zur Bereitstellung, Wartung, Entwicklung und Verbesserung seiner Dienste zu nutzen; die API-Datenschutzerklärung schließt nur Training zur Profilbildung oder gezielten Ansprache von Verbrauchern aus. Laut den EU-Zusammenfassungen der Trainingsdaten für die Modelle M3 und H3 wurden Daten aus Nutzerinteraktionen mit dem Modell nicht für das Training verwendet. Eine Opt-out-Möglichkeit für API-Daten ist nicht dokumentiert."
       },
       "dataResidency": {
-        "euRegionDetails": "Eine EU-Region wird nicht angeboten. Laut API-Datenschutzerklärung werden personenbezogene Daten einschließlich API-Eingaben und -Ausgaben in einem Rechenzentrum in den USA gespeichert und von MiniMax oder Drittanbietern verarbeitet."
+        "euRegionDetails": "Eine EU-Region wird nicht angeboten. Laut API-Datenschutzerklärung werden personenbezogene Daten, auch solche in API-Eingaben und -Ausgaben, in einem Rechenzentrum in den USA gespeichert und von MiniMax oder Drittanbietern verarbeitet."
       },
       "euAiAct": {
         "details": "Keine Erklärung zur Einhaltung des AI Act gefunden; MiniMax ist nicht als Unterzeichner des GPAI-Verhaltenskodex gelistet. MiniMax veröffentlicht nach Artikel 53 Abs. 1 lit. d AI Act Zusammenfassungen der Trainingsdaten seiner Modelle und benennt die Prighter GmbH als Bevollmächtigten in der EU."
