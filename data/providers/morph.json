@@ -16,18 +16,18 @@
     },
     "dpa": {
       "available": true,
-      "url": "https://www.morphllm.com/privacy",
+      "url": null,
       "signedVia": "custom_contract"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
-      "optOutAvailable": null,
-      "retentionPolicy": "Free tier: up to 90 days, then deleted or anonymized. Paid tier: up to 30 days, then securely deleted. Enterprise tier: zero data retention, processed in memory only with immediate purge after processing. Self-hosted retention is customer-controlled.",
-      "details": "Morph says it does not use customer inputs/outputs to train models by default. It reserves limited use of customer data for support/debugging and service quality in free/paid tiers; enterprise tier states zero training and zero retention."
+      "optOutAvailable": false,
+      "retentionPolicy": "Free and paid tiers: inputs and outputs are kept only to operate the service and the customer's request history, and are deleted within 30 days. Enterprise tiers can get zero data retention under a signed addendum. Prompts flagged as attempts to compromise third-party systems are kept for safety review on every tier, including zero retention.",
+      "details": "Since 23 October 2026, Morph states it does not use inputs or outputs to train, fine-tune or evaluate its models on any tier, with no exception for support or debugging. Account, billing and request metadata without code content are kept on every tier."
     },
     "subProcessors": {
       "disclosed": true,
-      "url": "https://trust.delve.co/morph",
+      "url": "https://trust.delve.co/morph/subprocessors",
       "includesEuEntities": null
     },
     "certifications": [
@@ -41,26 +41,28 @@
     "adequacyDecision": false
   },
   "pricingTier": "free_tier",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://docs.morphllm.com",
+    "https://docs.morphllm.com/introduction",
     "https://www.morphllm.com/privacy",
     "https://www.morphllm.com/privacy/tos",
+    "https://www.morphllm.com/zdr",
     "https://www.morphllm.com/pricing",
     "https://trust.delve.co/morph",
+    "https://trust.delve.co/morph/subprocessors",
     "https://www.morphllm.com/eula"
   ],
-  "notes": "Morph provides a public privacy policy and trust center, states primary processing is in the US, and offers custom DPAs plus regional/self-hosted options for stricter residency needs. It publicly says customer data is not used for training by default, but support/debugging exceptions apply on free and paid tiers; enterprise is marketed as zero-retention/zero-training.",
+  "notes": "Operated by AutoInfra, Inc. (San Francisco). Primary processing is in the US; transfers from the EEA rely on SCCs, custom DPAs are offered to enterprise customers and regional data centers to paid and enterprise customers. Morph states it does not train on customer inputs or outputs on any tier; zero data retention requires a signed enterprise addendum.",
   "translations": {
     "de": {
-      "notes": "Morph stellt eine öffentliche Datenschutzerklärung und ein Trust Center bereit, gibt an, dass die primäre Verarbeitung in den USA erfolgt, und bietet individuelle Auftragsverarbeitungsverträge (AVV) sowie regionale bzw. selbst gehostete Optionen für strengere Anforderungen an die Datenhaltung an. Öffentlich wird erklärt, dass Kundendaten standardmäßig nicht für das Training verwendet werden; Ausnahmen für Support/Debugging gelten jedoch in den kostenlosen und kostenpflichtigen Stufen. Die Enterprise-Stufe wird als Zero-Retention/Zero-Training vermarktet.",
+      "notes": "Betrieben von AutoInfra, Inc. (San Francisco). Die Verarbeitung erfolgt primär in den USA; Übermittlungen aus dem EWR stützen sich auf Standardvertragsklauseln, individuelle AVV werden Enterprise-Kunden angeboten, regionale Rechenzentren zahlenden und Enterprise-Kunden. Morph gibt an, Kundeneingaben und -ausgaben in keiner Stufe für das Training zu verwenden; Zero Data Retention erfordert eine unterzeichnete Enterprise-Vereinbarung.",
       "dataResidency": {
         "euRegionDetails": "Morph gibt an, dass die primäre Datenverarbeitung in den Vereinigten Staaten erfolgt, mit zusätzlicher Verarbeitung in ausgewählten Ländern, in denen Dienstleister tätig sind. Erwähnt werden regionale Rechenzentren für kostenpflichtige und Enterprise-Kunden sowie selbst gehostete Bereitstellungen für ausgewählte Jurisdiktionen; eine ausschließlich auf die EU beschränkte Verarbeitung wird öffentlich jedoch nicht garantiert."
       },
       "dataUsage": {
-        "retentionPolicy": "Kostenlose Stufe: bis zu 90 Tage, danach gelöscht oder anonymisiert. Kostenpflichtige Stufe: bis zu 30 Tage, danach sicher gelöscht. Enterprise-Stufe: keine Datenspeicherung, Verarbeitung ausschließlich im Arbeitsspeicher mit sofortiger Löschung nach der Verarbeitung. Bei selbst gehosteten Bereitstellungen wird die Speicherdauer durch den Kunden kontrolliert.",
-        "details": "Morph gibt an, Kundeneingaben/-ausgaben standardmäßig nicht für das Training von Modellen zu verwenden. Für die kostenlosen und kostenpflichtigen Stufen behält sich Morph eine begrenzte Nutzung von Kundendaten für Support/Debugging und die Servicequalität vor; für die Enterprise-Stufe werden Zero Training und Zero Retention angegeben."
+        "retentionPolicy": "Kostenlose und kostenpflichtige Stufen: Eingaben und Ausgaben werden nur für den Betrieb des Dienstes und den Anfrageverlauf des Kunden gespeichert und innerhalb von 30 Tagen gelöscht. In Enterprise-Stufen ist Zero Data Retention mit einer unterzeichneten Zusatzvereinbarung möglich. Prompts, die als Versuch eingestuft werden, fremde Systeme zu kompromittieren, werden in jeder Stufe, auch bei Zero Data Retention, für eine Sicherheitsprüfung aufbewahrt.",
+        "details": "Seit dem 23. Oktober 2026 gibt Morph an, Eingaben und Ausgaben in keiner Stufe zum Trainieren, Feinabstimmen oder Evaluieren seiner Modelle zu verwenden, auch nicht für Support oder Debugging. Konto-, Abrechnungs- und Anfrage-Metadaten ohne Code-Inhalte werden in jeder Stufe gespeichert."
       }
     }
   }
