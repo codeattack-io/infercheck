@@ -12,7 +12,7 @@
       ],
       "euOnly": true,
       "dataLeavesEuAtInference": false,
-      "euRegionDetails": "All upstream inference sub-processors listed in the DPA have processing locations in the EEA, and Cortecs states that European data residency applies even without its Sovereign Cloud filter. For the Microsoft, Google and AWS EMEA entities, the DPA names the EU-US Data Privacy Framework as transfer basis; the Sovereign Cloud setting excludes them and routes only to EU-established providers. The routing service runs on OVH in France."
+      "euRegionDetails": "All upstream inference sub-processors listed in the DPA have processing locations in the EEA, and Cortecs states that European data residency applies even without its Sovereign Cloud setting, which is off by default. For the Microsoft, Google and AWS EMEA entities, the DPA names the EU-US Data Privacy Framework as transfer basis; the Sovereign Cloud setting restricts routing to providers based and regulated in the EU. The routing service runs on OVH in France."
     },
     "dpa": {
       "available": true,
@@ -23,7 +23,7 @@
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
       "retentionPolicy": "Cortecs processes prompts and completions only in volatile memory and deletes them when the request completes; operational metadata may be kept for up to 12 months. Upstream providers apply their own retention: Cortecs lists 0 days for all providers except Microsoft (30 days). A Zero Data Retention setting restricts routing to 0-day providers.",
-      "details": "The DPA prohibits Cortecs from training on customer data and requires upstream inference providers to contractually prohibit training. Requests sent with the customer's own provider key (BYOK, beta) are governed by that provider's retention and training terms, not by Cortecs' assurances."
+      "details": "The DPA prohibits Cortecs from training on customer data and allows it to engage only inference providers whose terms prohibit training on that data. Requests sent with the customer's own provider key (BYOK, beta) are governed by that provider's retention and training terms, not by Cortecs' assurances."
     },
     "subProcessors": {
       "disclosed": true,
@@ -59,12 +59,12 @@
     "https://docs.cortecs.ai/security-and-compliance/zero-data-retention-zdr",
     "https://docs.cortecs.ai/web-console/bring-your-own-key"
   ],
-  "notes": "Cortecs is a Vienna-based routing gateway that forwards API requests to upstream inference providers, which its DPA lists as sub-processors, all with processing locations in the EEA. For Microsoft, Google and AWS EMEA entities, the DPA names the EU-US Data Privacy Framework as transfer basis; a Sovereign Cloud setting restricts routing to EU-established providers. Cortecs holds an ISO/IEC 27001:2022 certificate covering its AI service and API traffic.",
+  "notes": "Cortecs is a Vienna-based routing gateway that forwards API requests to upstream inference providers, which its DPA lists as sub-processors, all with processing locations in the EEA. For Microsoft, Google and AWS EMEA entities, the DPA names the EU-US Data Privacy Framework as transfer basis; an optional Sovereign Cloud setting restricts routing to providers based and regulated in the EU. Cortecs holds an ISO/IEC 27001:2022 certificate covering its AI service and the processing of API traffic.",
   "translations": {
     "de": {
-      "notes": "Cortecs ist ein Routing-Gateway mit Sitz in Wien, das API-Anfragen an vorgelagerte Inferenzanbieter weiterleitet; diese sind im AVV als Unterauftragsverarbeiter mit Verarbeitungsorten im EWR aufgeführt. Für die EMEA-Gesellschaften von Microsoft, Google und AWS nennt der AVV das EU-US Data Privacy Framework als Übermittlungsgrundlage; eine Sovereign-Cloud-Einstellung beschränkt das Routing auf in der EU ansässige Anbieter. Cortecs hat ein ISO/IEC-27001:2022-Zertifikat, das den KI-Dienst und den API-Verkehr abdeckt.",
+      "notes": "Cortecs ist ein Routing-Gateway mit Sitz in Wien, das API-Anfragen an vorgelagerte Inferenzanbieter weiterleitet; diese sind im AVV als Unterauftragsverarbeiter mit Verarbeitungsorten im EWR aufgeführt. Für die EMEA-Gesellschaften von Microsoft, Google und AWS nennt der AVV das EU-US Data Privacy Framework als Übermittlungsgrundlage; eine optionale Sovereign-Cloud-Einstellung beschränkt das Routing auf Anbieter mit Sitz und Regulierung in der EU. Cortecs ist nach ISO/IEC 27001:2022 zertifiziert; der Geltungsbereich umfasst den KI-Dienst und die Verarbeitung des API-Verkehrs.",
       "dataResidency": {
-        "euRegionDetails": "Alle im AVV aufgeführten vorgelagerten Inferenz-Unterauftragsverarbeiter haben Verarbeitungsorte im EWR, und laut Cortecs gilt die europäische Datenhaltung auch ohne den Sovereign-Cloud-Filter. Für die EMEA-Gesellschaften von Microsoft, Google und AWS nennt der AVV das EU-US Data Privacy Framework als Übermittlungsgrundlage; die Sovereign-Cloud-Einstellung schließt sie aus und routet nur zu in der EU ansässigen Anbietern. Der Routing-Dienst läuft bei OVH in Frankreich."
+        "euRegionDetails": "Alle im AVV aufgeführten vorgelagerten Inferenz-Unterauftragsverarbeiter haben Verarbeitungsorte im EWR, und laut Cortecs gilt die europäische Datenhaltung auch ohne die standardmäßig deaktivierte Sovereign-Cloud-Einstellung. Für die EMEA-Gesellschaften von Microsoft, Google und AWS nennt der AVV das EU-US Data Privacy Framework als Übermittlungsgrundlage; die Sovereign-Cloud-Einstellung beschränkt das Routing auf Anbieter mit Sitz und Regulierung in der EU. Der Routing-Dienst läuft bei OVH in Frankreich."
       },
       "dataUsage": {
         "retentionPolicy": "Cortecs verarbeitet Prompts und Completions nur im flüchtigen Speicher und löscht sie nach Abschluss der Anfrage; Betriebsmetadaten können bis zu 12 Monate aufbewahrt werden. Vorgelagerte Anbieter wenden eigene Aufbewahrungsfristen an: Cortecs nennt 0 Tage für alle Anbieter außer Microsoft (30 Tage). Eine Zero-Data-Retention-Einstellung beschränkt das Routing auf Anbieter mit 0 Tagen.",
