@@ -301,7 +301,7 @@ export default async function ProviderProfilePage({ params }: PageProps) {
   );
 }
 
-const LABEL_CLASS = "m-0 mb-1.5 text-13 font-semibold text-text-muted";
+const LABEL_CLASS = "m-0 mb-2 text-13 font-semibold text-text-muted";
 const TEXT_CLASS = "m-0 text-15 text-pretty text-text-secondary";
 const SUBHEADING_CLASS = "m-0 mt-6 text-17 font-semibold text-text-primary";
 

@@ -4,12 +4,20 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { ModelOffers } from "@/components/ModelOffers";
 import { getCanonicalModelIds, getModelOffers } from "@/lib/models";
-import { getAllProviders, getLocalizedProvider } from "@/lib/providers";
+import { getAllProviders, getLocalizedProvider, getPanelProvider } from "@/lib/providers";
 import type { AnyProvider } from "@/lib/compliance";
-import type { ModelWithProvider } from "@/components/types";
+import { modelDisplayName } from "@/lib/format";
+import type { CatalogModel, ModelWithProvider } from "@/components/types";
 
 interface PageProps {
   params: Promise<{ locale: string; id: string }>;
+}
+
+/** The upstream model name ("Claude Sonnet 4.6") rather than a label such as "EU Anthropic Claude Sonnet 4.6" (Bedrock). */
+function preferredName(rows: CatalogModel[]): string {
+  const row =
+    rows.find((r) => r.isNativeModel === true) ?? rows.find((r) => r.providerSlug !== "amazon-bedrock") ?? rows[0];
+  return modelDisplayName(row.displayName);
 }
 
 export async function generateStaticParams() {
@@ -22,10 +30,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const decoded = decodeURIComponent(id);
 
   const rows = await getModelOffers(decoded);
-  const rawName =
-    (rows.find((r) => r.isNativeModel === true) ?? rows.find((r) => r.providerSlug !== "amazon-bedrock") ?? rows[0])
-      ?.displayName ?? decoded;
-  const name = rawName.replace(/^\w[\w\s]*:\s+/, "");
+  const name = rows.length > 0 ? preferredName(rows) : decoded;
 
   const t = await getTranslations({ locale, namespace: "ModelPage" });
 
@@ -62,15 +67,11 @@ export default async function ModelDetailPage({ params }: PageProps) {
   const t = await getTranslations("ModelPage");
   const tb = await getTranslations("Breadcrumb");
 
-  const providerMap = new Map<string, AnyProvider>(allProviders.map((p) => [p.slug, getLocalizedProvider(p, locale)]));
+  const providerMap = new Map<string, AnyProvider>(
+    allProviders.map((p) => [p.slug, getPanelProvider(getLocalizedProvider(p, locale))])
+  );
 
-  // The heading prefers the upstream model name ("Claude Sonnet 4.6") over provider-specific labels
-  // such as "EU Anthropic Claude Sonnet 4.6" (Bedrock) or "Anthropic: Claude Sonnet 4.6" (OpenRouter).
-  const preferredRow =
-    modelRows.find((r) => r.isNativeModel === true) ??
-    modelRows.find((r) => r.providerSlug !== "amazon-bedrock") ??
-    modelRows[0];
-  const modelName = preferredRow.displayName.replace(/^\w[\w\s]*:\s+/, "");
+  const modelName = preferredName(modelRows);
 
   const items: ModelWithProvider[] = modelRows.map((model) => ({
     model,

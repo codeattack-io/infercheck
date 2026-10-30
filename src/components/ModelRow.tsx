@@ -10,16 +10,27 @@ import { GatewayPill } from "@/components/GatewayPill";
 import { Price } from "@/components/Price";
 import { VerificationLabel } from "@/components/VerificationLabel";
 import { getComplianceTier, isFullProvider, TIER_CLASSES } from "@/lib/compliance";
+import { modelDisplayName } from "@/lib/format";
 import { providerName as getProviderName, type PrimaryColumn } from "@/lib/model-list";
 import { buttonClass } from "@/lib/styles";
 import type { ModelWithProvider } from "@/components/types";
 
-function highlight(text: string, matches: readonly FuseResultMatch[] | undefined, key: string): ReactNode {
-  const indices = matches?.find((m) => m.key === key && m.value === text)?.indices;
+/** Marks the match ranges of `source` inside `text`, which is `source` or a suffix of it. */
+function highlight(
+  text: string,
+  matches: readonly FuseResultMatch[] | undefined,
+  key: string,
+  source = text
+): ReactNode {
+  const indices = matches?.find((m) => m.key === key && m.value === source)?.indices;
   if (!indices?.length) return text;
 
+  const offset = source.length - text.length;
   const merged: [number, number][] = [];
-  for (const [start, end] of indices.toSorted((a, b) => a[0] - b[0])) {
+  for (const [matchStart, matchEnd] of indices.toSorted((a, b) => a[0] - b[0])) {
+    const start = Math.max(matchStart - offset, 0);
+    const end = matchEnd - offset;
+    if (end < 0) continue;
     const last = merged.at(-1);
     if (last && start <= last[1] + 1) last[1] = Math.max(last[1], end);
     else merged.push([start, end]);
@@ -58,6 +69,7 @@ function ModelRowInner({ item, dimmed = false, matches, primary = "model" }: Mod
   const line = TIER_CLASSES[tier].line;
   const compliance = provider && isFullProvider(provider) ? provider.compliance : null;
   const providerName = getProviderName(item);
+  const viaGateway = primary === "model" && !model.isNativeModel;
   const toggle = () => setOpen((value) => !value);
 
   const onRowClick = (event: MouseEvent<HTMLTableRowElement>) => {
@@ -68,7 +80,7 @@ function ModelRowInner({ item, dimmed = false, matches, primary = "model" }: Mod
 
   const name =
     primary === "model"
-      ? highlight(model.displayName, matches, "model.displayName")
+      ? highlight(modelDisplayName(model.displayName), matches, "model.displayName", model.displayName)
       : highlight(providerName, matches, "provider.name");
   const secondary =
     primary === "model" ? highlight(providerName, matches, "provider.name") : provider ? tType(provider.type) : null;
@@ -96,7 +108,7 @@ function ModelRowInner({ item, dimmed = false, matches, primary = "model" }: Mod
               {dimmed ? <span className="sr-only">{t("dimmed")} </span> : null}
               {name}
             </button>
-            {primary === "model" && !model.isNativeModel ? <GatewayPill providerName={providerName} /> : null}
+            {viaGateway ? <GatewayPill providerName={providerName} className="max-md:hidden" /> : null}
           </span>
           {secondary ? <span className="mt-0.5 block text-14 text-text-muted max-md:text-15">{secondary}</span> : null}
         </td>
@@ -110,8 +122,9 @@ function ModelRowInner({ item, dimmed = false, matches, primary = "model" }: Mod
               ? t("euResidency")
               : compliance.dataResidency.regions.join(", ") || "—"}
         </td>
-        <td className="border-b border-border px-4 py-3 text-right align-middle text-15 whitespace-nowrap tabular-nums max-md:block max-md:border-0 max-md:p-0 max-md:text-left max-md:text-16 max-md:[grid-area:num]">
+        <td className="border-b border-border px-4 py-3 text-right align-middle text-15 whitespace-nowrap tabular-nums max-md:flex max-md:items-center max-md:border-0 max-md:p-0 max-md:text-left max-md:text-16 max-md:[grid-area:num]">
           <Price model={model} />
+          {viaGateway ? <GatewayPill providerName={providerName} className="ml-auto md:hidden" /> : null}
         </td>
         <td className="w-11 border-b border-border py-3 pr-3.5 pl-0 text-right align-middle max-md:hidden">
           <svg

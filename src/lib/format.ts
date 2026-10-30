@@ -37,3 +37,10 @@ export function formatContext(n: number | null, locale: string): string {
   if (n >= 1_000) return `${numberFormat(locale, 0).format(n / 1_000)}K`;
   return `${n}`;
 }
+
+const AUTHOR_PREFIX = /^[A-Za-z][\w.\- ]{0,29}:\s+/;
+
+/** The model name without the "<Author>: " prefix that OpenRouter puts in front of it. */
+export function modelDisplayName(name: string): string {
+  return name.replace(AUTHOR_PREFIX, "") || name;
+}

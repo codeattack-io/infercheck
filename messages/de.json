@@ -136,7 +136,7 @@
     "title": "{modelName} — DSGVO-Compliance nach Anbieter",
     "description": "{modelName} bei verschiedenen Anbietern vergleichen: EU-Datenhaltung, AVV-Status, Trainingsrichtlinie und Preise. Finden Sie Anbieter, die Ihre DSGVO-Anforderungen erfüllen.",
     "ogTitle": "{modelName} — DSGVO-Compliance nach Anbieter",
-    "ogDescription": "EU-Datenhaltung, AVV, Trainings-Opt-out und Preise für {modelName} bei allen anbietenden Providern.",
+    "ogDescription": "EU-Datenhaltung, AVV, Trainings-Opt-out und Preise für {modelName} im Vergleich aller Anbieter.",
     "availableFrom": "{count, plural, one {Verfügbar bei # Anbieter} other {Verfügbar bei # Anbietern}}",
     "filtersLabel": "Compliance-Filter",
     "countAll": "{count} Anbieter",

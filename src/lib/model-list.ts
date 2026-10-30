@@ -8,6 +8,7 @@ import {
   type ComplianceFilter,
   type ComplianceTier,
 } from "@/lib/compliance";
+import { modelDisplayName } from "@/lib/format";
 import type { ModelWithProvider } from "@/components/types";
 
 export type SortKey = "model" | "compliance" | "price";
@@ -92,7 +93,7 @@ export function searchModels(fuse: Fuse<ModelWithProvider>, query: string) {
 }
 
 function primaryName(item: ModelWithProvider, primary: PrimaryColumn): string {
-  return primary === "model" ? item.model.displayName : providerName(item);
+  return primary === "model" ? modelDisplayName(item.model.displayName) : providerName(item);
 }
 
 export function sortModels(
