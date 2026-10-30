@@ -16,7 +16,7 @@
         "SA"
       ],
       "euOnly": false,
-      "dataLeavesEuAtInference": null,
+      "dataLeavesEuAtInference": true,
       "euRegionDetails": "Groq runs inference in data centers in the US, Canada, Finland, the UK, Australia and Saudi Arabia. Self-serve API customers cannot choose a region; Groq routes requests across its data centers. Enterprise customers can arrange regional API endpoints with Groq, but no EU endpoint is documented, and data kept at rest (logs, batch files, fine-tuning data) is stored in Google Cloud buckets in the US."
     },
     "dpa": {
@@ -40,7 +40,7 @@
     ],
     "euAiAct": {
       "status": "unknown",
-      "details": "No EU AI Act statement from Groq was found, and Groq is not a signatory of the GPAI Code of Practice. Its acceptable use policy makes customers responsible for complying with the EU AI Act when they use the service."
+      "details": "Groq has published no statement on the EU AI Act and is not a signatory of the GPAI Code of Practice. Its acceptable use policy makes customers responsible for complying with the EU AI Act when they use the service."
     },
     "sccs": true,
     "adequacyDecision": false
@@ -73,7 +73,7 @@
         "details": "Laut Servicevertrag darf Groq Eingaben und Ausgaben nur mit Erlaubnis des Kunden für Training nutzen. Batch-Dateien werden 30 Tage gespeichert, Fine-Tuning-Daten bis zur Löschung durch den Kunden, Prompt-Caches nur einige Stunden im Arbeitsspeicher."
       },
       "euAiAct": {
-        "details": "Eine Stellungnahme von Groq zum EU AI Act wurde nicht gefunden, und Groq hat den GPAI-Verhaltenskodex nicht unterzeichnet. Laut seiner Nutzungsrichtlinie sind Kunden selbst dafür verantwortlich, bei der Nutzung des Dienstes den EU AI Act einzuhalten."
+        "details": "Groq hat keine Stellungnahme zum EU AI Act veröffentlicht und den GPAI-Verhaltenskodex nicht unterzeichnet. Laut seiner Nutzungsrichtlinie sind Kunden selbst dafür verantwortlich, bei der Nutzung des Dienstes den EU AI Act einzuhalten."
       }
     }
   }

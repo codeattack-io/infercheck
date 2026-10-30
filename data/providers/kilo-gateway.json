@@ -41,7 +41,7 @@
       "status": "not_applicable",
       "details": "Kilo states it is not a model provider and does not host, serve or operate AI models; it routes requests to third-party providers. Kilo and Anaconda are not signatories of the EU GPAI Code of Practice."
     },
-    "sccs": true,
+    "sccs": null,
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",

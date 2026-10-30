@@ -12,7 +12,7 @@
       ],
       "euOnly": true,
       "dataLeavesEuAtInference": false,
-      "euRegionDetails": "OVHcloud states that AI Endpoints is hosted and run in the EU; its regions page lists the service only in Gravelines (France), with no region choice. OVHcloud affiliates in the UK and Canada are listed as sub-processors and may process data remotely where needed for the service, in particular for security and maintenance."
+      "euRegionDetails": "EU processing is the only mode: OVHcloud's regions page lists AI Endpoints only in Gravelines (France), with no region choice, and the product page states that AI Endpoints is hosted and run in the EU. The DPA ties a service's location to the datacentres listed on OVHcloud's website and bars changing it without the customer's approval, but lets OVHcloud affiliates in the UK and Canada, listed as sub-processors, process content remotely where needed for the service, in particular for security and maintenance. Inputs and outputs are not stored, except in the Batch API, which keeps files temporarily and deletes output files after 15 days."
     },
     "dpa": {
       "available": true,
@@ -40,7 +40,7 @@
     ],
     "euAiAct": {
       "status": "monitoring",
-      "details": "OVHcloud has signed the European Commission's voluntary AI Pact pledges. AI Endpoints serves third-party open-weight models; no AI Act statement specific to AI Endpoints was found."
+      "details": "OVHcloud has signed the European Commission's voluntary AI Pact pledges. AI Endpoints serves third-party open-weight models; OVHcloud has published no AI Act statement specific to AI Endpoints."
     },
     "sccs": true,
     "adequacyDecision": true
@@ -52,6 +52,7 @@
     "https://www.ovhcloud.com/en/public-cloud/ai-endpoints/",
     "https://www.ovhcloud.com/en/public-cloud/regions-availability/",
     "https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-capabilities",
+    "https://docs.ovhcloud.com/en/guides/public-cloud/ai-machine-learning/ai-endpoints-batch-mode",
     "https://contract.eu.ovhapis.com/1.0/pdf/Conditions_particulieres_OVH_Stack-ie.pdf",
     "https://contract.eu.ovhapis.com/1.0/pdf/OVH_Data_Protection_Agreement-ie.pdf",
     "https://contract.eu.ovhapis.com/1.0/pdf/OVH_Sub_processors-ie.pdf",
@@ -65,14 +66,14 @@
     "de": {
       "notes": "OVH SAS hat seinen Sitz in Roubaix, Frankreich. AI Endpoints stellt Open-Weight-Modelle Dritter über eine OpenAI-kompatible API aus dem OVHcloud-Rechenzentrum in Gravelines bereit und rechnet pro Token ab; die anonyme Nutzung ohne API-Schlüssel ist kostenlos, aber auf 2 Anfragen pro Minute je IP-Adresse und Modell begrenzt. AI Endpoints gehört nicht zu den Diensten, die OVHcloud als SecNumCloud-qualifiziert führt.",
       "dataResidency": {
-        "euRegionDetails": "Laut OVHcloud wird AI Endpoints in der EU gehostet und betrieben; die Regionsübersicht führt den Dienst nur in Gravelines (Frankreich), eine Regionswahl gibt es nicht. OVHcloud-Konzerngesellschaften im Vereinigten Königreich und in Kanada sind als Unterauftragsverarbeiter gelistet und können Daten aus der Ferne verarbeiten, soweit dies für den Dienst nötig ist, insbesondere für Sicherheit und Wartung."
+        "euRegionDetails": "Die Verarbeitung in der EU ist der einzige Modus: Die Regionsübersicht von OVHcloud führt AI Endpoints nur in Gravelines (Frankreich), eine Regionswahl gibt es nicht, und laut Produktseite wird AI Endpoints in der EU gehostet und betrieben. Der AVV bindet den Standort eines Dienstes an die auf der OVHcloud-Website genannten Rechenzentren und schließt einen Wechsel ohne Zustimmung des Kunden aus, erlaubt aber OVHcloud-Konzerngesellschaften im Vereinigten Königreich und in Kanada, die als Unterauftragsverarbeiter gelistet sind, Inhalte aus der Ferne zu verarbeiten, soweit dies für den Dienst nötig ist, insbesondere für Sicherheit und Wartung. Eingaben und Ausgaben werden nicht gespeichert, außer bei der Batch-API, die Dateien vorübergehend vorhält und Ausgabedateien nach 15 Tagen löscht."
       },
       "dataUsage": {
         "retentionPolicy": "Eingaben und Ausgaben werden weder gespeichert noch gesichert; OVHcloud behält nur die für die Abrechnung nötigen Daten. Die Batch-API speichert Eingabe- und Ausgabedaten vorübergehend.",
         "details": "OVHcloud handelt gemäß seinem AVV als Auftragsverarbeiter. Laut den AI-Endpoints-Bedingungen verwendet OVHcloud Eingaben und Ausgaben in keiner Weise weiter, und OVHcloud erklärt, dass Kundendaten nie zum Training von Modellen genutzt werden."
       },
       "euAiAct": {
-        "details": "OVHcloud hat die freiwilligen AI-Pact-Zusagen der Europäischen Kommission unterzeichnet. AI Endpoints stellt Open-Weight-Modelle Dritter bereit; eine AI-Endpoints-spezifische Erklärung zum AI Act wurde nicht gefunden."
+        "details": "OVHcloud hat die freiwilligen AI-Pact-Zusagen der Europäischen Kommission unterzeichnet. AI Endpoints stellt Open-Weight-Modelle Dritter bereit; eine eigene Erklärung zum AI Act für AI Endpoints hat OVHcloud nicht veröffentlicht."
       }
     }
   }

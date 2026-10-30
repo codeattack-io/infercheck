@@ -17,7 +17,7 @@
         "MY"
       ],
       "euOnly": false,
-      "dataLeavesEuAtInference": null,
+      "dataLeavesEuAtInference": true,
       "euRegionDetails": "The pay-per-token serverless API routes requests globally by default; a US-only endpoint exists for selected models, and EU-only serverless is available only through sales. Dedicated deployments can be placed in a Europe multi-region or in single regions in Frankfurt and Iceland once Fireworks grants quota, at a higher price. Account-wide region enforcement is an Enterprise feature and currently covers only the US. The DPA allows Fireworks to process customer data wherever it or its sub-processors maintain facilities."
     },
     "dpa": {

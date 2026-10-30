@@ -55,10 +55,10 @@
     "https://www.inceptionlabs.ai/",
     "https://www.inceptionlabs.ai/enterprise"
   ],
-  "notes": "US provider of the Mercury diffusion language models. By default the terms allow training on API submissions, with an opt-out in the user settings. No DPA, no statement on Standard Contractual Clauses and no EU processing option were found; the trust center lists SOC 2 Type I and Type II reports and US-only sub-processors.",
+  "notes": "US provider of the Mercury diffusion language models. By default the terms allow training on API submissions, with an opt-out in the user settings. Inception publishes no DPA and no statement on Standard Contractual Clauses and offers no EU processing option; the trust center lists SOC 2 Type I and Type II reports and US-only sub-processors.",
   "translations": {
     "de": {
-      "notes": "US-Anbieter der Mercury-Diffusionssprachmodelle. Standardmäßig erlauben die Nutzungsbedingungen das Training mit API-Eingaben; ein Opt-out ist in den Benutzereinstellungen möglich. Es wurden kein AVV, keine Aussage zu Standardvertragsklauseln und keine Option für eine Verarbeitung in der EU gefunden; das Trust Center führt SOC-2-Type-I- und -Type-II-Berichte sowie ausschließlich US-amerikanische Unterauftragsverarbeiter auf.",
+      "notes": "US-Anbieter der Mercury-Diffusionssprachmodelle. Standardmäßig erlauben die Nutzungsbedingungen das Training mit API-Eingaben; ein Opt-out ist in den Benutzereinstellungen möglich. Inception veröffentlicht keinen AVV und keine Aussage zu Standardvertragsklauseln und bietet keine Verarbeitung in der EU an; das Trust Center führt SOC-2-Type-I- und -Type-II-Berichte sowie ausschließlich US-amerikanische Unterauftragsverarbeiter auf.",
       "dataUsage": {
         "retentionPolicy": "Laut Datenschutzerklärung werden personenbezogene Daten so lange gespeichert, wie es für die Erbringung der Dienste oder für geschäftliche Zwecke nötig ist, und länger, wenn Gesetze, Streitigkeiten oder der Einzug von Gebühren es erfordern. Vereinbarungen ohne Datenspeicherung (Zero Retention) werden auf Anfrage im Einzelfall getroffen.",
         "details": "Die Nutzungsbedingungen erlauben Inception, Nutzereingaben zum Training seiner Modelle zu verwenden; Nutzer können widersprechen, indem sie die Einstellung „Improve the model for everyone“ in den Benutzereinstellungen der API Platform auf OFF setzen. Für zahlende Kunden sehen die Bedingungen keine Ausnahme vor. Das Enterprise-Angebot mit individuellen Vertragsbedingungen wird damit beworben, nicht mit Kundendaten zu trainieren."

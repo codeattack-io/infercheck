@@ -13,9 +13,9 @@
       "euRegionDetails": "Chutes offers no EU region and no way to choose a region, for the pay-per-use API or for private deployments. Inference runs on GPU servers of independent, anonymous node operators on the Bittensor network, and Chutes does not document where they are. Models marked as confidential compute run in Intel TDX trusted execution environments that the server operator cannot inspect."
     },
     "dpa": {
-      "available": true,
-      "url": "https://chutes.ai/dpa",
-      "signedVia": "online_acceptance"
+      "available": false,
+      "url": null,
+      "signedVia": "not_available"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,

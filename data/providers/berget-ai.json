@@ -12,7 +12,7 @@
       ],
       "euOnly": true,
       "dataLeavesEuAtInference": false,
-      "euRegionDetails": "Inference runs on Berget AI's infrastructure in Stockholm, Sweden. All Berget AI data centres are in the EEA, and the DPA rules out transfers outside the EEA unless the customer instructs them in writing."
+      "euRegionDetails": "EU processing is the only mode, so no region or endpoint has to be chosen. Serverless inference runs on Berget AI's infrastructure in Stockholm, Sweden; the DPA states that all Berget AI data centres are in the EEA and that personal data is not transferred outside the EEA unless the customer instructs it in writing. Prompts, files and outputs are not stored after an inference call. No models or features are excluded."
     },
     "dpa": {
       "available": true,
@@ -35,7 +35,7 @@
       "status": "not_applicable",
       "details": "Berget AI's Acceptable Use Policy states that it acts solely as an infrastructure and service provider, not as a provider or deployer of AI systems under the EU AI Act, and makes customers responsible for AI Act compliance."
     },
-    "sccs": false,
+    "sccs": true,
     "adequacyDecision": true
   },
   "pricingTier": "pay_per_use",
@@ -55,7 +55,7 @@
     "de": {
       "notes": "2024 in Schweden gegründet; stellt Open-Weight-Modelle auf Infrastruktur in Stockholm bereit. Der AVV nennt vier Unterauftragsverarbeiter, alle mit Sitz in der EU: drei schwedische Infrastrukturfirmen und Stripe Payments Europe (Irland) für Kartenzahlungen. Noch keine Sicherheitszertifizierung; laut Nutzungsbedingungen strebt Berget AI eine ISO-27001-Zertifizierung an.",
       "dataResidency": {
-        "euRegionDetails": "Die Inferenz läuft auf der Infrastruktur von Berget AI in Stockholm, Schweden. Alle Rechenzentren von Berget AI liegen im EWR; laut AVV werden Daten nur auf schriftliche Weisung des Kunden außerhalb des EWR übermittelt."
+        "euRegionDetails": "Die Verarbeitung in der EU ist der einzige Modus, eine Region oder ein Endpunkt muss also nicht gewählt werden. Die Serverless-Inferenz läuft auf der Infrastruktur von Berget AI in Stockholm, Schweden; laut AVV liegen alle Rechenzentren von Berget AI im EWR, und personenbezogene Daten werden nur auf schriftliche Weisung des Kunden außerhalb des EWR übermittelt. Prompts, Dateien und Ausgaben werden nach einem Inferenzaufruf nicht gespeichert. Kein Modell und keine Funktion ist ausgenommen."
       },
       "dataUsage": {
         "retentionPolicy": "Zero Data Retention für Serverless Inference: Prompts, Dateien und Ausgaben werden nach der Anfrage nicht gespeichert und auch während der Verarbeitung nicht auf Datenträger geschrieben. Anfrage-Metadaten und Tokenzahlen werden für Betrieb und Abrechnung gespeichert.",

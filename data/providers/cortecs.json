@@ -12,7 +12,7 @@
       ],
       "euOnly": true,
       "dataLeavesEuAtInference": false,
-      "euRegionDetails": "All upstream inference sub-processors listed in the DPA have processing locations in the EEA, and Cortecs states that European data residency applies even without its Sovereign Cloud setting, which is off by default. For the Microsoft, Google and AWS EMEA entities, the DPA names the EU-US Data Privacy Framework as transfer basis; the Sovereign Cloud setting restricts routing to providers based and regulated in the EU. The routing service runs on OVH in France."
+      "euRegionDetails": "For an EU-only setup the customer turns on the Sovereign Cloud setting in the project's inference settings, or sends eu_native set to true with each request; it is off by default. Cortecs then routes only to EU-based providers, which the DPA lists with processing locations in the EEA, and the routing service itself runs on OVH in France; about half of the chat models (51 of 108 in October 2026) are available this way. Without the setting, the DPA also lists EEA processing locations for every inference provider, but names the EU-US Data Privacy Framework as transfer basis for the Microsoft, Google and AWS EMEA entities. Requests served with the customer's own provider key (BYOK) are not covered by Cortecs' routing settings."
     },
     "dpa": {
       "available": true,
@@ -34,7 +34,7 @@
       "ISO27001"
     ],
     "euAiAct": {
-      "status": "not_applicable",
+      "status": "unknown",
       "details": "Cortecs describes its service as an AI gateway and routing infrastructure for third-party models. It withdrew its Code of Conduct, which contained its AI Act provider statement, on 12 August 2026 pending revision."
     },
     "sccs": false,
@@ -55,6 +55,8 @@
     "https://cortecs.ai/docs/ISO_27001_Certificate.pdf",
     "https://docs.cortecs.ai/",
     "https://docs.cortecs.ai/security-and-compliance/sovereign-cloud",
+    "https://docs.cortecs.ai/routing/routing-concept",
+    "https://docs.cortecs.ai/api/models",
     "https://docs.cortecs.ai/security-and-compliance/data-governance-and-controls",
     "https://docs.cortecs.ai/security-and-compliance/zero-data-retention-zdr",
     "https://docs.cortecs.ai/web-console/bring-your-own-key"
@@ -64,7 +66,7 @@
     "de": {
       "notes": "Cortecs ist ein Routing-Gateway mit Sitz in Wien, das API-Anfragen an vorgelagerte Inferenzanbieter weiterleitet; diese sind im AVV als Unterauftragsverarbeiter mit Verarbeitungsorten im EWR aufgeführt. Für die EMEA-Gesellschaften von Microsoft, Google und AWS nennt der AVV das EU-US Data Privacy Framework als Übermittlungsgrundlage; eine optionale Sovereign-Cloud-Einstellung beschränkt das Routing auf Anbieter mit Sitz und Regulierung in der EU. Cortecs ist nach ISO/IEC 27001:2022 zertifiziert; der Geltungsbereich umfasst den KI-Dienst und die Verarbeitung des API-Verkehrs.",
       "dataResidency": {
-        "euRegionDetails": "Alle im AVV aufgeführten vorgelagerten Inferenz-Unterauftragsverarbeiter haben Verarbeitungsorte im EWR, und laut Cortecs gilt die europäische Datenhaltung auch ohne die standardmäßig deaktivierte Sovereign-Cloud-Einstellung. Für die EMEA-Gesellschaften von Microsoft, Google und AWS nennt der AVV das EU-US Data Privacy Framework als Übermittlungsgrundlage; die Sovereign-Cloud-Einstellung beschränkt das Routing auf Anbieter mit Sitz und Regulierung in der EU. Der Routing-Dienst läuft bei OVH in Frankreich."
+        "euRegionDetails": "Für eine reine EU-Konfiguration aktiviert der Kunde die Sovereign-Cloud-Einstellung in den Inferenz-Einstellungen des Projekts oder setzt eu_native in jeder Anfrage auf true; standardmäßig ist sie deaktiviert. Cortecs leitet dann nur an Anbieter mit Sitz in der EU weiter, die der AVV mit Verarbeitungsorten im EWR aufführt, und der Routing-Dienst selbst läuft bei OVH in Frankreich; so ist etwa die Hälfte der Chat-Modelle verfügbar (51 von 108 im Oktober 2026). Ohne die Einstellung nennt der AVV ebenfalls für jeden Inferenzanbieter Verarbeitungsorte im EWR, für die EMEA-Gesellschaften von Microsoft, Google und AWS aber das EU-US Data Privacy Framework als Übermittlungsgrundlage. Anfragen mit dem eigenen Anbieter-Schlüssel des Kunden (BYOK) fallen nicht unter die Routing-Einstellungen von Cortecs."
       },
       "dataUsage": {
         "retentionPolicy": "Cortecs verarbeitet Prompts und Completions nur im flüchtigen Speicher und löscht sie nach Abschluss der Anfrage; Betriebsmetadaten können bis zu 12 Monate aufbewahrt werden. Vorgelagerte Anbieter wenden eigene Aufbewahrungsfristen an: Cortecs nennt 0 Tage für alle Anbieter außer Microsoft (30 Tage). Eine Zero-Data-Retention-Einstellung beschränkt das Routing auf Anbieter mit 0 Tagen.",

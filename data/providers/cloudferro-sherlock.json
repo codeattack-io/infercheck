@@ -39,7 +39,7 @@
     ],
     "euAiAct": {
       "status": "monitoring",
-      "details": "No formal EU AI Act statement found; the Sherlock platform page only claims adherence to the upcoming AI Act. The Sherlock terms of service split AI Act obligations between CloudFerro and the customer and commit CloudFerro to provide documentation that supports compliance."
+      "details": "CloudFerro has published no formal EU AI Act statement; the Sherlock platform page only claims adherence to the upcoming AI Act. The Sherlock terms of service split AI Act obligations between CloudFerro and the customer and commit CloudFerro to provide documentation that supports compliance."
     },
     "sccs": null,
     "adequacyDecision": true
@@ -59,10 +59,10 @@
     "https://www.cloudferro.com/certificates-insurance/",
     "https://www.cloudferro.com/pl/aktualnosci/bielik-3-0-dostepny-na-cloudferro-sherlock/"
   ],
-  "notes": "Sherlock is CloudFerro's OpenAI-compatible inference API, run from its WAW3-2 region in Poland. The no-training and zero-retention commitments appear on product pages, but not in the Sherlock terms of service. No public DPA or sub-processor list was found.",
+  "notes": "Sherlock is CloudFerro's OpenAI-compatible inference API, run from its WAW3-2 region in Poland. The no-training and zero-retention commitments appear on product pages, but not in the Sherlock terms of service. CloudFerro publishes no DPA or sub-processor list for Sherlock.",
   "translations": {
     "de": {
-      "notes": "Sherlock ist die OpenAI-kompatible Inferenz-API von CloudFerro und läuft in der Region WAW3-2 in Polen. Die Zusagen zu No-Training und Zero-Retention stehen auf Produktseiten, nicht aber in den Sherlock-Nutzungsbedingungen. Weder ein öffentlicher Auftragsverarbeitungsvertrag (AVV) noch eine Liste der Unterauftragsverarbeiter wurde gefunden.",
+      "notes": "Sherlock ist die OpenAI-kompatible Inferenz-API von CloudFerro und läuft in der Region WAW3-2 in Polen. Die Zusagen zu No-Training und Zero-Retention stehen auf Produktseiten, nicht aber in den Sherlock-Nutzungsbedingungen. CloudFerro veröffentlicht für Sherlock weder einen Auftragsverarbeitungsvertrag (AVV) noch eine Liste der Unterauftragsverarbeiter.",
       "dataResidency": {
         "euRegionDetails": "Laut CloudFerro läuft die gesamte Verarbeitung von Sherlock in der Region WAW3-2 in Polen. Die öffentlichen Cloud-Dienste von CloudFerro werden ausschließlich in Rechenzentren in der EU betrieben."
       },
@@ -71,7 +71,7 @@
         "details": "Laut CloudFerro werden Sherlock-Kundendaten nie für das Training oder die Verbesserung von Modellen verwendet. Die Aussagen zu No-Training und Zero-Storage stehen auf Produktseiten, nicht in den Sherlock-Nutzungsbedingungen."
       },
       "euAiAct": {
-        "details": "Keine formelle Erklärung zum EU AI Act gefunden; die Sherlock-Plattformseite behauptet lediglich die Einhaltung des kommenden AI Act. Die Sherlock-Nutzungsbedingungen teilen die Pflichten nach dem AI Act zwischen CloudFerro und dem Kunden auf und verpflichten CloudFerro, Dokumentation zur Unterstützung der Compliance bereitzustellen."
+        "details": "CloudFerro hat keine formelle Erklärung zum EU AI Act veröffentlicht; die Sherlock-Plattformseite behauptet lediglich die Einhaltung des kommenden AI Act. Die Sherlock-Nutzungsbedingungen teilen die Pflichten nach dem AI Act zwischen CloudFerro und dem Kunden auf und verpflichten CloudFerro, Dokumentation zur Unterstützung der Compliance bereitzustellen."
       }
     }
   }

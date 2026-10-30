@@ -14,9 +14,9 @@
         "IL",
         "CA"
       ],
-      "euOnly": false,
+      "euOnly": true,
       "dataLeavesEuAtInference": false,
-      "euRegionDetails": "Public endpoints have no region commitment: processing runs in Nebius or partner data centres in the EU, US, UK, Israel or Canada and can change without notice. Dedicated endpoints run only in the region the customer selects (EU regions: Finland eu-north1, France eu-west1), apart from limited operations and support access. Inputs and outputs retained for speculative decoding are stored in Finland."
+      "euRegionDetails": "EU processing requires a dedicated endpoint (billed per GPU hour) deployed in an EU region, Finland (eu-north1) or France (eu-west1), and called through that region's inference base URL; the DPA commits processing to the selected region, apart from limited operations, maintenance, security and support access listed in the sub-processor list. Only models whose deployment templates support the chosen region can be deployed there. Public per-token endpoints have no region commitment and may run in the EU, US, UK, Israel or Canada. Inputs and outputs retained for speculative decoding are stored in Finland, and fine-tuning data is stored in the EU."
     },
     "dpa": {
       "available": true,
@@ -43,7 +43,7 @@
     ],
     "euAiAct": {
       "status": "unknown",
-      "details": "No EU AI Act statement found. The Token Factory terms make the customer the provider of AI systems it builds on the API."
+      "details": "Nebius has published no EU AI Act statement. The Token Factory terms make the customer the provider of AI systems it builds on the API."
     },
     "sccs": true,
     "adequacyDecision": true
@@ -61,21 +61,23 @@
     "https://docs.tokenfactory.nebius.com/ai-models-inference/dedicated-endpoints/control-data-plane",
     "https://nebius.com/trust-center",
     "https://nebius.com/trust-center/iso-27001",
-    "https://nebius.com/trust-center/soc-2"
+    "https://nebius.com/trust-center/soc-2",
+    "https://docs.tokenfactory.nebius.com/ai-models-inference/dedicated-endpoints/overview",
+    "https://docs.nebius.com/overview/regions"
   ],
   "notes": "EU customers contract with Nebius B.V. (Netherlands); the lead supervisory authority is the Dutch Autoriteit Persoonsgegevens. Only dedicated endpoints guarantee a processing region; public endpoints may run in the EU, US, UK, Israel or Canada. Inputs and outputs are kept for speculative decoding by default unless Zero Data Retention is enabled.",
   "translations": {
     "de": {
       "notes": "Kunden aus der EU schließen den Vertrag mit Nebius B.V. (Niederlande); federführende Aufsichtsbehörde ist die niederländische Autoriteit Persoonsgegevens. Nur dedizierte Endpunkte garantieren eine Verarbeitungsregion; öffentliche Endpunkte können in der EU, den USA, dem Vereinigten Königreich, Israel oder Kanada laufen. Ein- und Ausgaben werden standardmäßig für Speculative Decoding gespeichert, sofern Zero Data Retention nicht aktiviert ist.",
       "dataResidency": {
-        "euRegionDetails": "Öffentliche Endpunkte haben keine Regionszusage: Die Verarbeitung erfolgt in Rechenzentren von Nebius oder Partnern in der EU, den USA, dem Vereinigten Königreich, Israel oder Kanada und kann sich ohne Ankündigung ändern. Dedizierte Endpunkte laufen nur in der vom Kunden gewählten Region (EU-Regionen: Finnland eu-north1, Frankreich eu-west1), abgesehen von begrenztem Zugriff für Betrieb und Support. Für Speculative Decoding gespeicherte Ein- und Ausgaben werden in Finnland abgelegt."
+        "euRegionDetails": "EU-Verarbeitung erfordert einen dedizierten Endpunkt (Abrechnung pro GPU-Stunde) in einer EU-Region, Finnland (eu-north1) oder Frankreich (eu-west1), der über die Inferenz-Basis-URL dieser Region aufgerufen wird; der AVV sichert die Verarbeitung in der gewählten Region zu, abgesehen von begrenztem Zugriff für Betrieb, Wartung, Sicherheit und Support gemäß der Liste der Unterauftragsverarbeiter. Dort lassen sich nur Modelle bereitstellen, deren Vorlagen die gewählte Region unterstützen. Öffentliche Endpunkte mit Abrechnung pro Token haben keine Regionszusage und können in der EU, den USA, dem Vereinigten Königreich, Israel oder Kanada laufen. Für Speculative Decoding gespeicherte Ein- und Ausgaben liegen in Finnland, Fine-Tuning-Daten in der EU."
       },
       "dataUsage": {
         "retentionPolicy": "Standardmäßig werden Ein- und Ausgaben für Speculative Decoding gespeichert und in Finnland abgelegt. Mit aktivierter Zero Data Retention auf Organisationsebene werden Chat-Completion-Ein- und -Ausgaben nach der Anfrage nicht gespeichert; Anfrage-Metadaten und Observability-Daten werden weiterhin aufbewahrt.",
         "details": "Laut AVV und Legal Quick Guide werden Kundeninhalte nicht zum Training oder zur Verbesserung von Modellen genutzt; die Token Factory Supplemental Terms erlauben Nebius jedoch, Ein- und Ausgaben zum Training kleinerer Draft-Modelle für Speculative Decoding zu verwenden. Diese Nutzung ist standardmäßig aktiv und endet, wenn Zero Data Retention aktiviert wird."
       },
       "euAiAct": {
-        "details": "Keine Erklärung zum EU AI Act gefunden. Die Token-Factory-Bedingungen weisen dem Kunden die Anbieterrolle für KI-Systeme zu, die er auf der API aufbaut."
+        "details": "Nebius hat keine Erklärung zum EU AI Act veröffentlicht. Die Token-Factory-Bedingungen weisen dem Kunden die Anbieterrolle für KI-Systeme zu, die er auf der API aufbaut."
       }
     }
   }

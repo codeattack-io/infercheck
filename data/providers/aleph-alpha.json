@@ -10,14 +10,14 @@
       "regions": [
         "EU"
       ],
-      "euOnly": true,
+      "euOnly": false,
       "dataLeavesEuAtInference": null,
-      "euRegionDetails": "The software can run on-premises or air-gapped in the customer's own environment. Aleph Alpha's hosted assistant runs on STACKIT in Germany; the hosting location of the Kolibri API is not published."
+      "euRegionDetails": "The hosting location of the Kolibri API is not published, and no API terms or DPA with a location commitment are public. Kolibri's open weights and Aleph Alpha's platform can run on-premises or air-gapped in the customer's own environment. The Pharia Government Assistant, a hosted assistant app, runs on STACKIT in Germany."
     },
     "dpa": {
-      "available": true,
+      "available": false,
       "url": null,
-      "signedVia": "custom_contract"
+      "signedVia": "not_available"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
@@ -64,7 +64,7 @@
     "de": {
       "notes": "Aleph Alpha bietet souveräne KI für den öffentlichen Sektor und regulierte Branchen an: das Modell Kolibri (offene Gewichte), eine Plattform für On-Premises-, Air-Gapped- oder gehosteten Betrieb sowie PhariaAI auf STACKIT; der API-Zugang zu Kolibri erfordert eine Registrierung, öffentliche Preise oder API-Bedingungen gibt es nicht. Im September 2026 hat Aleph Alpha eine Vereinbarung über den Zusammenschluss mit Cohere (Kanada) unter dem Namen Cohere unterzeichnet; bis zur behördlichen Genehmigung und zum Vollzug arbeitet das Unternehmen eigenständig weiter. Weder ein Auftragsverarbeitungsvertrag (AVV) für Kunden noch eine Liste der Unterauftragsverarbeiter ist veröffentlicht.",
       "dataResidency": {
-        "euRegionDetails": "Die Software kann On-Premises oder air-gapped in der Umgebung des Kunden betrieben werden. Der gehostete Assistent von Aleph Alpha läuft bei STACKIT in Deutschland; der Hosting-Standort der Kolibri-API ist nicht veröffentlicht."
+        "euRegionDetails": "Der Hosting-Standort der Kolibri-API ist nicht veröffentlicht, und API-Bedingungen oder ein AVV mit Standortzusage sind nicht öffentlich. Die offenen Gewichte von Kolibri und die Plattform von Aleph Alpha lassen sich On-Premises oder air-gapped in der Umgebung des Kunden betreiben. Der Pharia Government Assistant, eine gehostete Assistenz-App, läuft bei STACKIT in Deutschland."
       },
       "dataUsage": {
         "retentionPolicy": "Selbst gehostete Installationen: Der Kunde bestimmt Speicherung und Aufbewahrung. Für gehostete Dienste und die Kolibri-API ist keine Aufbewahrungsfrist veröffentlicht.",

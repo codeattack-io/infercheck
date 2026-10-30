@@ -12,9 +12,9 @@
         "EU",
         "AE"
       ],
-      "euOnly": false,
+      "euOnly": true,
       "dataLeavesEuAtInference": false,
-      "euRegionDetails": "EU data residency (EEA + Switzerland) via eu.api.openai.com, configured per project. For eligible endpoints and models, customer content is stored and inference runs in the region; system data such as account and usage data may be processed outside it. Requires approval by OpenAI, approved abuse-monitoring controls and a Modified Retention amendment; a 10% price uplift applies to eligible models released on or after 5 March 2026. The UK, Canada, Australia, Japan, South Korea, India and Singapore regions offer storage only, without regional inference."
+      "euRegionDetails": "EU data residency (EEA + Switzerland) is set per project and used through eu.api.openai.com; for eligible endpoints and models, customer content is stored and inference runs in the region. It requires approval by OpenAI, approved abuse-monitoring controls and a Modified Retention amendment; a 10% price uplift applies to eligible models released on or after 5 March 2026. Not every model, endpoint or mode is eligible (for example, Fast mode is not available for GPT-6 Astra or GPT-6 Sol), and data sent to remote MCP servers follows the third party's policies. System data such as account data, metadata and usage data may be processed and stored outside the region."
     },
     "dpa": {
       "available": true,
@@ -66,7 +66,7 @@
     "de": {
       "notes": "Kunden aus dem EWR und der Schweiz schließen den Vertrag mit OpenAI Ireland Ltd. (Dublin); federführende Aufsichtsbehörde ist die irische DPC. Der AVV ist Teil des Services Agreement und wird durch Klick auf „I agree“, die Annahme eines Bestellformulars oder die Nutzung der Dienste akzeptiert. OpenAI ist nicht im EU-US Data Privacy Framework gelistet; Übermittlungen von Kundendaten außerhalb des EWR und der Schweiz stützen sich auf Standardvertragsklauseln oder Angemessenheitsbeschlüsse der EU.",
       "dataResidency": {
-        "euRegionDetails": "EU-Datenresidenz (EWR + Schweiz) über eu.api.openai.com, pro Projekt konfiguriert. Für berechtigte Endpunkte und Modelle werden Kundeninhalte in der Region gespeichert, und die Inferenz läuft dort; Systemdaten wie Konto- und Nutzungsdaten können außerhalb verarbeitet werden. Erfordert eine Freigabe durch OpenAI, genehmigte Kontrollen zur Missbrauchsüberwachung und eine Modified-Retention-Ergänzung; für berechtigte Modelle, die ab dem 5. März 2026 erschienen sind, gilt ein Preisaufschlag von 10 %. Die Regionen Vereinigtes Königreich, Kanada, Australien, Japan, Südkorea, Indien und Singapur bieten nur Speicherung, keine regionale Inferenz."
+        "euRegionDetails": "EU-Datenresidenz (EWR + Schweiz) wird pro Projekt eingerichtet und über eu.api.openai.com genutzt; für berechtigte Endpunkte und Modelle werden Kundeninhalte in der Region gespeichert, und die Inferenz läuft dort. Voraussetzung sind eine Freigabe durch OpenAI, genehmigte Kontrollen zur Missbrauchsüberwachung und eine Modified-Retention-Ergänzung; für berechtigte Modelle, die ab dem 5. März 2026 erschienen sind, gilt ein Preisaufschlag von 10 %. Nicht jedes Modell, jeder Endpunkt und jeder Modus ist berechtigt (der Fast Mode ist etwa für GPT-6 Astra und GPT-6 Sol nicht verfügbar), und an Remote-MCP-Server gesendete Daten unterliegen den Regeln des jeweiligen Drittanbieters. Systemdaten wie Konto-, Meta- und Nutzungsdaten können außerhalb der Region verarbeitet und gespeichert werden."
       },
       "dataUsage": {
         "retentionPolicy": "API-Daten werden seit dem 1. März 2023 standardmäßig nicht für das Training verwendet. Protokolle zur Missbrauchsüberwachung werden bis zu 30 Tage aufbewahrt, sofern eine längere Aufbewahrung nicht gesetzlich vorgeschrieben oder zum Schutz vor Schäden erforderlich ist. Zero Data Retention oder Modified Abuse Monitoring ist nach Freigabe durch OpenAI verfügbar.",

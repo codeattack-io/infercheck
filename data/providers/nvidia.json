@@ -39,7 +39,7 @@
       "status": "monitoring",
       "details": "NVIDIA has not signed the GPAI Code of Practice. For its own Nemotron models it publishes the EU AI Act summary of training content and names NVIDIA GmbH in Germany as its authorised representative. Its SEC filings say the AI Act may affect its ability to train, deploy or release AI models in the EU."
     },
-    "sccs": true,
+    "sccs": null,
     "adequacyDecision": true
   },
   "pricingTier": "free_tier",

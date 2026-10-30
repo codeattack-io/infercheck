@@ -29,9 +29,9 @@
         "AU",
         "NZ"
       ],
-      "euOnly": false,
+      "euOnly": true,
       "dataLeavesEuAtInference": false,
-      "euRegionDetails": "EU/EEA Regions are Frankfurt, Ireland, Milan, Paris, Spain and Stockholm; Zurich is also available, London is a separate UK Region. In-Region calls stay in the chosen Region, and the EU inference profile (eu.*) called from an EU Region routes only among EU/EEA Regions. Many current models (e.g. Claude Opus/Sonnet/Haiku 5.5, Nova Pro) are offered in the EU only through the EU profile, and some (e.g. Claude Fable, GPT-6, Grok) only through the global profile, which can process data in any commercial AWS Region. The AWS European Sovereign Cloud (Brandenburg, Germany) offers Bedrock with in-Region inference only."
+      "euRegionDetails": "Call Bedrock in an EU/EEA Region (Frankfurt, Ireland, Milan, Paris, Spain, Stockholm) or in Zurich, either in-Region with the plain model ID or with the EU inference profile (eu.*), which then routes only among these Regions; the AWS DPA and Customer Agreement commit AWS not to move customer data out of the Regions the customer selects. London is a UK Region, and the EU profile called from London can route there. Models offered in EU Regions only through the global profile (for example Claude Fable, GPT-6 and Grok) can process data in any commercial AWS Region and are outside the EU configuration. The AWS European Sovereign Cloud (Brandenburg, Germany) offers Bedrock with in-Region inference only."
     },
     "dpa": {
       "available": true,
@@ -92,14 +92,17 @@
     "https://aws.amazon.com/compliance/eu-us-data-privacy-framework/",
     "https://aws.amazon.com/blogs/machine-learning/building-trust-in-ai-the-aws-approach-to-the-eu-ai-act/",
     "https://aws.amazon.com/blogs/security/run-open-weight-models-on-aws-bedrock-in-aws-european-sovereign-cloud/",
-    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
+    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai",
+    "https://aws.amazon.com/agreement/",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/cross-region-inference.html",
+    "https://docs.aws.amazon.com/bedrock/latest/userguide/model-card-anthropic-claude-fable-5-1.md"
   ],
   "notes": "Bedrock offers models from about 20 providers, including Anthropic, OpenAI, Meta, Mistral, DeepSeek and Amazon Nova; Bedrock Marketplace models are outside AWS's certification scope. Customers choose per request between single-Region, geographic (e.g. EU) and global routing; only single-Region calls in an EU Region and the EU profile called from an EU Region keep processing in the EU. The DPA and SCCs are part of the AWS Service Terms, Amazon.com, Inc. (including AWS) is certified under the EU-US Data Privacy Framework, and Bedrock adheres to the CISPE Code of Conduct.",
   "translations": {
     "de": {
       "notes": "Bedrock bietet Modelle von rund 20 Anbietern, darunter Anthropic, OpenAI, Meta, Mistral, DeepSeek und Amazon Nova; Modelle aus dem Bedrock Marketplace liegen außerhalb des Zertifizierungsumfangs von AWS. Kunden wählen pro Anfrage zwischen Verarbeitung in einer Region, geografischem (z. B. EU) und globalem Routing; nur Aufrufe in einer EU-Region und das aus einer EU-Region aufgerufene EU-Profil halten die Verarbeitung in der EU. AVV und Standardvertragsklauseln sind Teil der AWS Service Terms, Amazon.com, Inc. (einschließlich AWS) ist nach dem EU-US Data Privacy Framework zertifiziert, und Bedrock hält den CISPE-Verhaltenskodex ein.",
       "dataResidency": {
-        "euRegionDetails": "EU/EWR-Regionen sind Frankfurt, Irland, Mailand, Paris, Spanien und Stockholm; Zürich ist ebenfalls verfügbar, London ist eine eigene UK-Region. Aufrufe innerhalb einer Region bleiben in der gewählten Region, und das EU-Inferenzprofil (eu.*) leitet Anfragen aus einer EU-Region nur zwischen EU/EWR-Regionen weiter. Viele aktuelle Modelle (z. B. Claude Opus/Sonnet/Haiku 5.5, Nova Pro) gibt es in der EU nur über das EU-Profil, einige (z. B. Claude Fable, GPT-6, Grok) nur über das globale Profil, das Daten in jeder kommerziellen AWS-Region verarbeiten kann. Die AWS European Sovereign Cloud (Brandenburg, Deutschland) bietet Bedrock ausschließlich mit Inferenz innerhalb der Region an."
+        "euRegionDetails": "Für die Verarbeitung in der EU wird Bedrock in einer EU/EWR-Region (Frankfurt, Irland, Mailand, Paris, Spanien, Stockholm) oder in Zürich aufgerufen, entweder direkt in der Region mit der einfachen Modell-ID oder über das EU-Inferenzprofil (eu.*), das Anfragen dann nur zwischen diesen Regionen verteilt; im AWS-AVV und im Kundenvertrag verpflichtet sich AWS, Kundendaten nicht aus den vom Kunden gewählten Regionen zu verlagern. London ist eine UK-Region, und das von London aus aufgerufene EU-Profil kann Anfragen dorthin leiten. Modelle, die es in EU-Regionen nur über das globale Profil gibt (zum Beispiel Claude Fable, GPT-6 und Grok), können Daten in jeder kommerziellen AWS-Region verarbeiten und gehören nicht zur EU-Konfiguration. Die AWS European Sovereign Cloud (Brandenburg, Deutschland) bietet Bedrock ausschließlich mit Inferenz innerhalb der Region an."
       },
       "dataUsage": {
         "retentionPolicy": "Zur Missbrauchserkennung bewahrt AWS bei OpenAI-GPT-Modellen (außer gpt-oss) vom Klassifikator markierte Anfragen und bei Claude Fable 5 und 5.1 den gesamten Datenverkehr bis zu 30 Tage auf, und zwar in der Region, in der die Anfrage verarbeitet wurde. Kunden können pro Region Zero Data Retention einstellen; Modelle, die eine Aufbewahrung voraussetzen, sind dann gesperrt. Die Protokollierung von Modellaufrufen ist standardmäßig deaktiviert.",

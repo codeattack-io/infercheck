@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Moonshot AI states its servers are located in Singapore and that personal data may be transferred to and stored on servers outside the user's country of residence. No EU region or EU-only processing option was found in the provider's primary documentation."
+      "euRegionDetails": "Moonshot AI states its servers are located in Singapore and that personal data may be transferred to and stored on servers outside the user's country of residence. Its documentation describes no EU region or EU-only processing option."
     },
     "dpa": {
       "available": false,
@@ -32,8 +32,8 @@
     },
     "certifications": [],
     "euAiAct": {
-      "status": "unknown",
-      "details": "No AI Act compliance statement found, and Moonshot AI is not listed as a signatory of the GPAI Code of Practice. It publishes a public summary of the training content for Kimi K3 in the EU AI Office template."
+      "status": "monitoring",
+      "details": "Moonshot AI has published no AI Act compliance statement and is not listed as a signatory of the GPAI Code of Practice. It publishes a public summary of the training content for Kimi K3 in the EU AI Office template."
     },
     "sccs": null,
     "adequacyDecision": false
@@ -50,19 +50,19 @@
     "https://www.kimi.ai/tns/transparency",
     "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
   ],
-  "notes": "The international Kimi Open Platform (platform.kimi.ai, formerly platform.moonshot.ai) is operated by Moonshot AI PTE. LTD. in Singapore, and its privacy policy says data is stored on servers in Singapore. Its terms allow customer content to be used to improve the services unless otherwise agreed in writing, while its help center says API data is not used for training; zero data retention is available to enterprise customers on request. No public DPA, sub-processor list or named certification was found, and the API is pay-as-you-go with a minimum top-up of $1.",
+  "notes": "The international Kimi Open Platform (platform.kimi.ai, formerly platform.moonshot.ai) is operated by Moonshot AI PTE. LTD. in Singapore, and its privacy policy says data is stored on servers in Singapore. Its terms allow customer content to be used to improve the services unless otherwise agreed in writing, while its help center says API data is not used for training; zero data retention is available to enterprise customers on request. Moonshot AI publishes no DPA, sub-processor list or named certification, and the API is pay-as-you-go with a minimum top-up of $1.",
   "translations": {
     "de": {
-      "notes": "Die internationale Kimi Open Platform (platform.kimi.ai, früher platform.moonshot.ai) wird von Moonshot AI PTE. LTD. in Singapur betrieben; laut Datenschutzrichtlinie werden Daten auf Servern in Singapur gespeichert. Die Bedingungen erlauben die Nutzung von Kundeninhalten zur Verbesserung der Dienste, sofern nichts anderes schriftlich vereinbart ist, während laut Hilfe-Center API-Daten nicht zum Training verwendet werden; Zero Data Retention steht Enterprise-Kunden auf Anfrage zur Verfügung. Es wurden weder ein öffentlicher Auftragsverarbeitungsvertrag noch eine Liste der Unterauftragsverarbeiter oder eine konkret genannte Zertifizierung gefunden; die API wird nach Verbrauch abgerechnet, die Mindestaufladung beträgt 1 US-Dollar.",
+      "notes": "Die internationale Kimi Open Platform (platform.kimi.ai, früher platform.moonshot.ai) wird von Moonshot AI PTE. LTD. in Singapur betrieben; laut Datenschutzrichtlinie werden Daten auf Servern in Singapur gespeichert. Die Bedingungen erlauben die Nutzung von Kundeninhalten zur Verbesserung der Dienste, sofern nichts anderes schriftlich vereinbart ist, während laut Hilfe-Center API-Daten nicht zum Training verwendet werden; Zero Data Retention steht Enterprise-Kunden auf Anfrage zur Verfügung. Moonshot AI veröffentlicht weder einen Auftragsverarbeitungsvertrag noch eine Liste der Unterauftragsverarbeiter oder eine konkret genannte Zertifizierung; die API wird nach Verbrauch abgerechnet, die Mindestaufladung beträgt 1 US-Dollar.",
       "dataResidency": {
-        "euRegionDetails": "Moonshot AI gibt an, dass sich seine Server in Singapur befinden und dass personenbezogene Daten auf Server außerhalb des Wohnsitzlandes des Nutzers übermittelt und dort gespeichert werden können. In der Primärdokumentation des Anbieters wurde weder eine EU-Region noch eine Option für eine ausschließlich in der EU erfolgende Verarbeitung gefunden."
+        "euRegionDetails": "Moonshot AI gibt an, dass sich seine Server in Singapur befinden und dass personenbezogene Daten auf Server außerhalb des Wohnsitzlandes des Nutzers übermittelt und dort gespeichert werden können. Die Dokumentation beschreibt weder eine EU-Region noch eine Option für eine ausschließlich in der EU erfolgende Verarbeitung."
       },
       "dataUsage": {
         "retentionPolicy": "Laut Datenschutzrichtlinie werden Konto-, Eingabe- und Zahlungsdaten aufbewahrt, solange das Konto aktiv ist, andere Daten so lange, wie es für die genannten Zwecke und rechtlichen Pflichten nötig ist. Enterprise-Kunden können Zero Data Retention beantragen; dabei werden Prompts und Antworten gelöscht, sobald die Antwort zurückgegeben wurde. Batch-Jobs sind ausgenommen, und für über die Datei-API hochgeladene Bilder und Videos ist dies nicht garantiert.",
         "details": "Laut Datenschutzrichtlinie helfen Prompts und generierte Inhalte bei der Optimierung der Modelle, und die Plattformbedingungen erlauben die Nutzung von Kundeninhalten zur Verbesserung der Dienste, sofern nichts anderes schriftlich vereinbart ist; Einschränkungen beim Training erfordern eine Enterprise-Vereinbarung. Laut Hilfe-Center der internationalen API werden API-Eingaben und -Ausgaben nicht zum Training verwendet, und laut der Seite zu Zero Data Retention werden Daten von Enterprise-Kunden standardmäßig nicht zum Training verwendet."
       },
       "euAiAct": {
-        "details": "Keine Erklärung zur Einhaltung des AI Act gefunden; Moonshot AI ist nicht als Unterzeichner des GPAI-Verhaltenskodex gelistet. Moonshot AI veröffentlicht für Kimi K3 eine Zusammenfassung der Trainingsinhalte nach der Vorlage des EU-Büros für Künstliche Intelligenz."
+        "details": "Moonshot AI hat keine Erklärung zur Einhaltung des AI Act veröffentlicht und ist nicht als Unterzeichner des GPAI-Verhaltenskodex gelistet. Moonshot AI veröffentlicht für Kimi K3 eine Zusammenfassung der Trainingsinhalte nach der Vorlage des EU-Büros für Künstliche Intelligenz."
       }
     }
   }

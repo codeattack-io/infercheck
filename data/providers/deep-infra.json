@@ -12,7 +12,7 @@
         "CA"
       ],
       "euOnly": false,
-      "dataLeavesEuAtInference": null,
+      "dataLeavesEuAtInference": true,
       "euRegionDetails": "No EU region. Inference runs in DeepInfra data centers in the United States and, since July 2026, in Toronto, Canada. The documentation offers no region choice for serverless or dedicated deployments; only the separate Hosted Agents virtual machines of accounts subject to EU data-protection rules are placed in the eu-central-1 region, and their model calls use the regular inference service."
     },
     "dpa": {

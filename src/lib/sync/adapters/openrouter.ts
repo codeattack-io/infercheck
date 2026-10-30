@@ -41,7 +41,6 @@ export const OPENROUTER_HOSTS: Record<string, OpenRouterHost> = {
   friendli: { slug: "friendli" },
   groq: { slug: "groq" },
   inception: { slug: "inception", authors: ["inception"] },
-  meta: { slug: "llama", authors: ["meta-llama", "meta"] },
   minimax: { slug: "minimax-minimax-io", authors: ["minimax"] },
   moonshotai: { slug: "moonshot-ai", authors: ["moonshotai"] },
   morph: { slug: "morph", authors: ["morph"], servesAuthors: ["morph"] },

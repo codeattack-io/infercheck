@@ -29,7 +29,6 @@ body:
         - berget-ai
         - cerebras
         - chutes
-        - clarifai
         - cloudferro-sherlock
         - cloudflare-ai-gateway
         - cloudflare-workers-ai
@@ -42,7 +41,6 @@ body:
         - fireworks-ai
         - firmware
         - friendli
-        - github-models
         - google
         - groq
         - helicone
@@ -51,7 +49,6 @@ body:
         - inference
         - io-net
         - kilo-gateway
-        - llama
         - llm-gateway
         - lucidquery-ai
         - meganova

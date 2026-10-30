@@ -12,7 +12,7 @@
       ],
       "euOnly": true,
       "dataLeavesEuAtInference": false,
-      "euRegionDetails": "STACKIT runs its cloud in its own data centres in Germany (region eu01) and Austria (region eu02). AI Model Serving shared models are offered in region EU01 (Germany). The DPA limits processing to the EU/EEA unless a transfer is expressly agreed."
+      "euRegionDetails": "EU processing is the only mode: all AI Model Serving shared chat and embedding models are served in region EU01 (Germany) through a single endpoint, with no region choice and no model excluded. STACKIT hosts its regions only in Germany (eu01) and Austria (eu02), and the DPA requires processing within the EU/EEA unless processing outside the EEA is expressly agreed, for example in a service certificate; the AI Model Serving service certificate contains no such agreement. Request content is not stored; the user's e-mail address and subject ID are kept in the service logs for 30 days."
     },
     "dpa": {
       "available": true,
@@ -38,10 +38,10 @@
       "C5"
     ],
     "euAiAct": {
-      "status": "monitoring",
+      "status": "compliant",
       "details": "STACKIT's AI Act knowledge page states that its cloud infrastructure meets the key requirements of the AI Act; STACKIT has published no formal AI Act statement for AI Model Serving, which serves third-party open-source models. Its Terms of Use prohibit using its services for practices banned under Art. 5 of the AI Act."
     },
-    "sccs": false,
+    "sccs": true,
     "adequacyDecision": true
   },
   "pricingTier": "pay_per_use",
@@ -55,6 +55,7 @@
     "https://stackit.com/en/gtc/cloud-services",
     "https://stackit.com/en/asset/download/34534/file/STACKIT_data_processing_agreement.pdf",
     "https://stackit.com/en/asset/download/34346/file/Service_Certificate_STACKIT_AI_Model_Serving.pdf",
+    "https://stackit.com/en/asset/download/34130/file/Service_certificate_STACKIT_Compute_Engine_GPU.pdf",
     "https://stackit.com/en/asset/download/34542/file/Terms_of_use_STACKIT_Cloud.pdf",
     "https://docs.stackit.cloud/products/data-and-ai/ai-model-serving/faq/",
     "https://docs.stackit.cloud/platform/regions/",
@@ -66,7 +67,7 @@
     "de": {
       "notes": "STACKIT ist die Cloud-Marke der Schwarz Digits Cloud GmbH & Co. KG, die zur Schwarz Gruppe (Lidl, Kaufland) gehört. AI Model Serving bietet Open-Source-Chat- und Embedding-Modelle über eine OpenAI-kompatible API an und gehört zum BSI-C5-Type-2-Prüfumfang von STACKIT. Kundenkonten lassen sich in Deutschland, Österreich und der Schweiz selbst anlegen, in anderen Ländern über den Vertrieb.",
       "dataResidency": {
-        "euRegionDetails": "STACKIT betreibt seine Cloud in eigenen Rechenzentren in Deutschland (Region eu01) und Österreich (Region eu02). Die Shared Models von AI Model Serving werden in der Region EU01 (Deutschland) angeboten. Der AVV beschränkt die Verarbeitung auf die EU/den EWR, sofern keine Übermittlung ausdrücklich vereinbart ist."
+        "euRegionDetails": "Die Verarbeitung in der EU ist der einzige Modus: Alle Shared Chat- und Embedding-Modelle von AI Model Serving laufen in der Region EU01 (Deutschland) über einen einzigen Endpunkt, ohne Regionswahl und ohne ausgenommene Modelle. STACKIT betreibt seine Regionen nur in Deutschland (eu01) und Österreich (eu02), und der AVV verlangt die Verarbeitung in der EU/im EWR, sofern eine Verarbeitung außerhalb des EWR nicht ausdrücklich vereinbart ist, etwa in einem Leistungsschein; der Leistungsschein für AI Model Serving enthält keine solche Vereinbarung. Anfrageinhalte werden nicht gespeichert; E-Mail-Adresse und Subject-ID des Nutzers bleiben 30 Tage in den Logs des Dienstes."
       },
       "dataUsage": {
         "retentionPolicy": "Prompts und Antworten werden weder gespeichert noch gesichert. Der Dienst speichert E-Mail-Adresse und Subject-ID des Nutzers 30 Tage lang in seinen Logs.",
