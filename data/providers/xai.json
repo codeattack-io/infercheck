@@ -64,7 +64,7 @@
     "de": {
       "notes": "xAI firmiert inzwischen als SpaceX Super Intelligence LLC (SpaceXSI), ein US-Unternehmen ohne Zertifizierung nach dem EU-US Data Privacy Framework; Übermittlungen stützen sich auf die Standardvertragsklauseln im AVV. Eine Verarbeitung nur in der EU ist nicht möglich, und der AVV verlangt, personenbezogene Daten nur über die Zero-Data-Retention-API zu senden. API-Daten werden ohne ausdrückliche Zustimmung nicht für das Training genutzt.",
       "dataResidency": {
-        "euRegionDetails": "Es gibt keinen EU-Endpunkt. Der globale Standard-Endpunkt kann Anfragen zwischen Regionen umleiten, der Verarbeitungsort ist daher nicht garantiert; ein eigener US-Endpunkt hält Anfragebearbeitung und Inferenz in den USA. Der AVV erlaubt Übermittlungen personenbezogener Daten außerhalb Europas, auch in die USA."
+        "euRegionDetails": "Es gibt keinen EU-Endpunkt. Der globale Standard-Endpunkt kann Anfragen zwischen Regionen weiterleiten, der Verarbeitungsort ist daher nicht garantiert; ein eigener US-Endpunkt hält Anfragebearbeitung und Inferenz in den USA. Der AVV erlaubt Übermittlungen personenbezogener Daten außerhalb Europas, auch in die USA."
       },
       "dataUsage": {
         "retentionPolicy": "API-Anfragen und -Antworten werden innerhalb von 30 Tagen automatisch gelöscht, sofern keine längere Aufbewahrung vereinbart, gesetzlich vorgeschrieben oder für Sicherheit oder Untersuchungen nötig ist. Mit Zero Data Retention, einer Einstellung für das ganze Team, werden Prompts und Ausgaben nicht gespeichert und spätestens eine Stunde nach der Anfrage gelöscht.",
