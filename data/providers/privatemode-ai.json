@@ -59,10 +59,10 @@
     "https://docs.privatemode.ai/api/proxyless-api/",
     "https://docs.privatemode.ai/pricing/"
   ],
-  "notes": "Privatemode AI is operated by Edgeless Systems GmbH (Bochum, Germany) and serves open-weight models through an OpenAI- and Anthropic-compatible API inside confidential-computing environments in the EU. Its DPA becomes part of the Terms of Service on first use and lists Scaleway (France) and Lyceum Technology (Germany) as sub-processors. Edgeless Systems states that it is ISO 27001 certified; the certificate scope is not published.",
+  "notes": "Privatemode AI is operated by Edgeless Systems GmbH (Bochum, Germany) and serves open-weight models through an OpenAI- and Anthropic-compatible API inside confidential-computing environments in the EU. Its DPA is part of the Terms of Service, applies once the customer starts using the service, and lists Scaleway (France) and Lyceum Technology (Germany) as sub-processors. Edgeless Systems states that it is ISO 27001 certified; the certificate scope is not published.",
   "translations": {
     "de": {
-      "notes": "Privatemode AI wird von der Edgeless Systems GmbH (Bochum, Deutschland) betrieben und stellt Open-Weight-Modelle über eine OpenAI- und Anthropic-kompatible API in Confidential-Computing-Umgebungen in der EU bereit. Der AVV wird mit der ersten Nutzung Teil der Nutzungsbedingungen und nennt Scaleway (Frankreich) und Lyceum Technology (Deutschland) als Unterauftragsverarbeiter. Edgeless Systems gibt an, nach ISO 27001 zertifiziert zu sein; der Geltungsbereich des Zertifikats ist nicht veröffentlicht.",
+      "notes": "Privatemode AI wird von der Edgeless Systems GmbH (Bochum, Deutschland) betrieben und stellt Open-Weight-Modelle über eine OpenAI- und Anthropic-kompatible API in Confidential-Computing-Umgebungen in der EU bereit. Der AVV ist Teil der Nutzungsbedingungen, gilt ab Beginn der Nutzung und nennt Scaleway (Frankreich) und Lyceum Technology (Deutschland) als Unterauftragsverarbeiter. Edgeless Systems gibt an, nach ISO 27001 zertifiziert zu sein; der Geltungsbereich des Zertifikats ist nicht veröffentlicht.",
       "dataResidency": {
         "euRegionDetails": "Prompts und Antworten werden ausschließlich in der EU verarbeitet, auf Confidential-Computing-Infrastruktur von Scaleway (Frankreich) und Lyceum Technology (Deutschland). Die Inferenz läuft in vertraulichen VMs auf Basis von AMD SEV-SNP mit NVIDIA-H100- und -B200-GPUs."
       },
