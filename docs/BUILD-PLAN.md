@@ -26,14 +26,14 @@ Temporary orchestration state. Deleted in the final task before the PR is opened
 
 ## Tasks
 
-| ID  | Task                                                                                                                                                         | Depends on | Model / effort  | Status                   | Branch                   | Last gate          |
-| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ------------------------ | ------------------------ | ------------------ |
-| R1  | Foundation: tokens, fonts, page width and breakpoint, header, footer, shared primitives (tier pill, chips, buttons, neutral pills, gateway pill, BooleanRow) | —          | Opus 5.5 / high | merged                   | `redesign/r1-foundation` | full green b9e372a |
-| R2  | Home page: finder, model table, expanded row, mobile rows, load more, empty state, search clear and highlight, custom filter checkboxes                      | R1         | Opus 5.5 / high | merged                   | `redesign/r2-home`       | full green c0e49d2 |
-| R4  | Providers list as table, long-form pages, Open Graph image                                                                                                   | R1         | Opus 5.5 / high | merged                   | `redesign/r4-providers`  | full green c4a6a40 |
-| R3  | Model page and provider page                                                                                                                                 | R2         | Opus 5.5 / high | running (agent d6e32ccf) | `redesign/r3-detail`     | —                  |
-| R5  | Visual and accessibility QA across all pages, both locales, desktop and mobile; fix deviations from DESIGN.md                                                | R2, R3, R4 | Opus 5.5 / high | queued                   | `redesign/r5-qa`         | —                  |
-| R6  | Delete this file, final full gate, push, open PR with screenshots (orchestrator)                                                                             | all        | —               | queued                   | —                        | —                  |
+| ID  | Task                                                                                                                                                         | Depends on | Model / effort  | Status  | Branch                   | Last gate          |
+| --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- | --------------- | ------- | ------------------------ | ------------------ |
+| R1  | Foundation: tokens, fonts, page width and breakpoint, header, footer, shared primitives (tier pill, chips, buttons, neutral pills, gateway pill, BooleanRow) | —          | Opus 5.5 / high | merged  | `redesign/r1-foundation` | full green b9e372a |
+| R2  | Home page: finder, model table, expanded row, mobile rows, load more, empty state, search clear and highlight, custom filter checkboxes                      | R1         | Opus 5.5 / high | merged  | `redesign/r2-home`       | full green c0e49d2 |
+| R4  | Providers list as table, long-form pages, Open Graph image                                                                                                   | R1         | Opus 5.5 / high | merged  | `redesign/r4-providers`  | full green c4a6a40 |
+| R3  | Model page and provider page                                                                                                                                 | R2         | Opus 5.5 / high | merged  | `redesign/r3-detail`     | full green a8c8878 |
+| R5  | Visual and accessibility QA across all pages, both locales, desktop and mobile; fix deviations from DESIGN.md                                                | R2, R3, R4 | Opus 5.5 / high | running | `redesign/r5-qa`         | —                  |
+| R6  | Delete this file, final full gate, push, open PR with screenshots (orchestrator)                                                                             | all        | —               | queued  | —                        | —                  |
 
 ## Why this cut
 
