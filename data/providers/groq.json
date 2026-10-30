@@ -16,7 +16,7 @@
         "SA"
       ],
       "euOnly": false,
-      "dataLeavesEuAtInference": null,
+      "dataLeavesEuAtInference": true,
       "euRegionDetails": "Groq runs inference in data centers in the US, Canada, Finland, the UK, Australia and Saudi Arabia. Self-serve API customers cannot choose a region; Groq routes requests across its data centers. Enterprise customers can arrange regional API endpoints with Groq, but no EU endpoint is documented, and data kept at rest (logs, batch files, fine-tuning data) is stored in Google Cloud buckets in the US."
     },
     "dpa": {
