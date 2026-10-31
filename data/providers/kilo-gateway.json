@@ -24,10 +24,10 @@
       "signedVia": "custom_contract"
     },
     "dataUsage": {
-      "trainsOnCustomerData": true,
+      "trainsOnCustomerData": false,
       "optOutAvailable": true,
       "retentionPolicy": "Kilo says paid plans support no retention of AI prompts and outputs. Account data is kept while the account is active or as needed for contractual and legal purposes; after account deletion Kilo removes prompts, conversation history and account metadata. Data already sent to model providers follows their retention rules.",
-      "details": "Kilo states that it does not train on code or prompts, but its terms grant it a broad licence to use customer data to provide and improve its services. Data sent to a model is used under that provider's terms; Kilo's own model catalogue marks several paid and many free models as possibly training on prompts, and individual accounts have no data-collection block by default. Organisations (Teams and Enterprise) can set a deny policy for data collection, and a DPA is available on request or under Enterprise contracts."
+      "details": "Kilo states that it does not train on code or prompts, but its terms grant it a broad licence to use customer data to provide and improve its services. Data sent to a model is used under that provider's terms, and Kilo's own model catalogue marks several paid and many free models as possibly training on prompts. To exclude them, an organisation on the self-serve Teams plan ($15 per user per month) or on Enterprise has to set its data collection policy to deny, which filters out models and providers that train on prompts; the policy is an organisation setting and is not set by default. A DPA is available on request or under Enterprise contracts."
     },
     "subProcessors": {
       "disclosed": true,
@@ -62,7 +62,10 @@
     "https://www.anaconda.com/legal/terms/kilo-code",
     "https://legal.anaconda.com/policies/en/",
     "https://ai-gateway.kilo.ai/api/v1/models",
-    "https://ai-gateway.kilo.ai/api/v1/providers"
+    "https://ai-gateway.kilo.ai/api/v1/providers",
+    "https://kilo.ai/teams",
+    "https://kilo.ai/docs/collaborate/teams/about-plans",
+    "https://kilo.ai/docs/collaborate/teams/dashboard"
   ],
   "notes": "Kilo Gateway is the model routing service of Kilo Code, which Anaconda acquired in 2026; the terms are now with Anaconda, Inc. (US). Anaconda's EU-US Data Privacy Framework listing does not cover Kilo Code Inc., the controller named in Kilo's privacy policy, and both companies' privacy policies rely on SCCs. The gateway routes requests to third-party model providers, partly through OpenRouter, and offers pay-as-you-go credits alongside free models; a DPA, the SOC 2 Type 1 report and an EU data-residency setup are available on request or for Enterprise customers.",
   "translations": {
@@ -73,7 +76,7 @@
       },
       "dataUsage": {
         "retentionPolicy": "Laut Kilo ist in kostenpflichtigen Tarifen eine Nutzung ohne Speicherung von KI-Prompts und -Ausgaben möglich. Kontodaten werden aufbewahrt, solange das Konto aktiv ist oder es für vertragliche und rechtliche Zwecke nötig ist; nach der Kontolöschung entfernt Kilo Prompts, Gesprächsverläufe und Kontometadaten. Für Daten, die bereits an Modellanbieter übermittelt wurden, gelten deren Aufbewahrungsregeln.",
-        "details": "Kilo erklärt, nicht mit Code oder Prompts zu trainieren, die Nutzungsbedingungen räumen Kilo aber eine weitreichende Lizenz ein, Kundendaten zur Bereitstellung und Verbesserung seiner Dienste zu nutzen. An ein Modell gesendete Daten unterliegen den Bedingungen des jeweiligen Anbieters; Kilos eigener Modellkatalog kennzeichnet mehrere kostenpflichtige und viele kostenlose Modelle als möglicherweise mit Prompts trainierend, und für Einzelkonten ist standardmäßig keine Sperre der Datenerhebung gesetzt. Organisationen (Teams und Enterprise) können eine Richtlinie zur Ablehnung der Datenerhebung festlegen, und ein AVV ist auf Anfrage bzw. im Enterprise-Vertrag erhältlich."
+        "details": "Kilo erklärt, nicht mit Code oder Prompts zu trainieren, die Nutzungsbedingungen räumen Kilo aber eine weitreichende Lizenz ein, Kundendaten zur Bereitstellung und Verbesserung seiner Dienste zu nutzen. An ein Modell gesendete Daten unterliegen den Bedingungen des jeweiligen Anbieters, und Kilos eigener Modellkatalog kennzeichnet mehrere kostenpflichtige und viele kostenlose Modelle als möglicherweise mit Prompts trainierend. Um sie auszuschließen, muss eine Organisation im Self-Service-Tarif Teams (15 US-Dollar pro Nutzer und Monat) oder in Enterprise ihre Richtlinie zur Datenerhebung auf „Deny“ setzen; damit werden Modelle und Anbieter herausgefiltert, die mit Prompts trainieren. Die Richtlinie ist eine Organisationseinstellung und standardmäßig nicht gesetzt. Ein AVV ist auf Anfrage bzw. im Enterprise-Vertrag erhältlich."
       },
       "euAiAct": {
         "details": "Kilo erklärt, kein Modellanbieter zu sein und keine KI-Modelle zu hosten, bereitzustellen oder zu betreiben; Anfragen werden an Drittanbieter weitergeleitet. Kilo und Anaconda haben den GPAI-Verhaltenskodex der EU nicht unterzeichnet."
