@@ -52,8 +52,8 @@ export async function Footer() {
             ),
           })}
         </span>
-        <Separator className="max-md:hidden" />
-        <nav aria-label={t("navLabel")} className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 max-md:w-full">
+        <Separator className="max-lg:hidden" />
+        <nav aria-label={t("navLabel")} className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 max-lg:w-full">
           <Link href="/about" className={LINK_CLASS}>
             {t("nav.about")}
           </Link>
