@@ -21,7 +21,7 @@
     },
     "dataUsage": {
       "trainsOnCustomerData": true,
-      "optOutAvailable": false,
+      "optOutAvailable": null,
       "retentionPolicy": "Deleted chats and the personal data tied to an account are removed from Poe's systems; Memory summaries can persist until the user deletes them in settings. Account deletion takes effect after a 14-day grace period, with exceptions for legal obligations. Each AI model provider applies its own retention, for example 30 days at OpenAI and Anthropic.",
       "details": "Poe says official bots and prompt bots built on OpenAI, Anthropic, Google and Meta models do not train on chats, and chats with full-shield bots are not used by AI model providers for training. Half-shield bots and apps from third-party developers, which the paid API can also call, may use chats for training, and no setting to block them is documented; the privacy policy also lets model providers and developers use chat contents to provide and generally improve their services. Quora, Inc. is data controller and offers no processor terms."
     },
