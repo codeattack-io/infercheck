@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { ProviderBrowser } from "@/components/ProviderBrowser";
+import { CODEATTACK_URL } from "@/lib/codeattack";
 import { getAllProviders, getListProvider, getLocalizedProvider } from "@/lib/providers";
 import { getComplianceTier } from "@/lib/compliance";
 import type { AnyProvider, ComplianceTier } from "@/lib/compliance";
@@ -48,8 +49,13 @@ function buildJsonLd(allProviders: AnyProvider[]) {
     license: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
     creator: {
       "@type": "Person",
-      name: "Carlo Noelle",
+      name: "Carlo Nölle",
       url: "https://infercheck.eu",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "CodeAttack",
+      url: CODEATTACK_URL,
     },
     hasPart: allProviders.slice(0, 50).map((p) => ({
       "@type": "Organization",
