@@ -580,7 +580,7 @@ for at most 3s. Expanded rows and the number of loaded rows are not part of the 
 
 The editorial copy (summaries, notes, About page) should sound like:
 
-- A senior developer who works in enterprise IT and has read a lot of DPAs
+- A senior developer who builds AI solutions for EU companies and has read a lot of DPAs
 - Direct. No hedging where it isn't needed.
 - Plain words for compliance jargon the first time it appears (e.g. "Standard Contractual Clauses (SCCs)")
 - Willing to say "this provider's DPA is weak" or "this claim is unverified" — the site's value is honesty
