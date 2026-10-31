@@ -25,7 +25,7 @@
     "@ai-sdk/openai": "^4.0.51",
     "@aws-sdk/client-bedrock": "^3.1121.0",
     "@neondatabase/serverless": "^1.1.0",
-    "@sentry/nextjs": "^10.72.0",
+    "@sentry/nextjs": "^11.0.0",
     "ai": "^7.0.84",
     "drizzle-orm": "^0.45.2",
     "fuse.js": "^7.5.0",
