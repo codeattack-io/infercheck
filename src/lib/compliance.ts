@@ -39,6 +39,7 @@ export interface ComplianceFilter {
   dpa?: boolean;
   noTraining?: boolean;
   sccs?: boolean;
+  sccsOrEuOnly?: boolean;
 }
 
 export type FilterProfile = "strict-eu" | "eu-sccs" | "no-training" | "custom" | null;
@@ -47,7 +48,7 @@ export type PresetProfile = Exclude<FilterProfile, "custom" | null>;
 
 export const PRESET_FILTERS: Record<PresetProfile, ComplianceFilter> = {
   "strict-eu": { euOnly: true, dpa: true, noTraining: true },
-  "eu-sccs": { dpa: true, sccs: true, noTraining: true },
+  "eu-sccs": { dpa: true, sccsOrEuOnly: true, noTraining: true },
   "no-training": { noTraining: true },
 };
 
@@ -124,6 +125,7 @@ export function providerMatchesFilter(p: AnyProvider, filter: ComplianceFilter):
   if (filter.dpa && !c.dpa.available) return false;
   if (filter.noTraining && c.dataUsage.trainsOnCustomerData !== false) return false;
   if (filter.sccs && !c.sccs) return false;
+  if (filter.sccsOrEuOnly && !c.sccs && !c.dataResidency.euOnly) return false;
 
   return true;
 }
