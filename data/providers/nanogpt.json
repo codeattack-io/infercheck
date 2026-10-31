@@ -24,10 +24,10 @@
       "signedVia": "not_available"
     },
     "dataUsage": {
-      "trainsOnCustomerData": true,
+      "trainsOnCustomerData": false,
       "optOutAvailable": true,
       "retentionPolicy": "NanoGPT does not store prompt or response content by default. Optional API request logging keeps encrypted request and response bodies for 1 to 30 days, and Responses API storage, which is off by default, keeps records for 7 days unless retention is set between 0 and 365 days. Account, payment, usage and security records are kept as long as needed for their purpose.",
-      "details": "NanoGPT's terms and privacy policy state that NanoGPT itself does not train on customer input or output. Prompts are forwarded to the selected model provider, whose own retention and training terms apply; an optional setting restricts routing to providers that declare zero data retention. On supported OpenAI-model routes, NanoGPT shares a hashed account or session identifier with the provider for abuse prevention. On default settings, paid requests can go to routes whose providers' terms permit training on inputs and outputs, such as LongCat and Tenstorrent; the optional zero-data-retention setting filters these routes out."
+      "details": "NanoGPT's terms and privacy policy state that NanoGPT itself does not train on customer input or output. Prompts are forwarded to the selected model provider, whose own retention and training terms apply. With the default \"Anonymized\" routing, paid requests can go to routes whose providers' terms permit training on inputs and outputs, such as LongCat and Tenstorrent. The \"ZDR only\" setting, which has to be turned on in the account's privacy settings or for each API key, limits routing to providers that state they neither retain nor train on prompts, and requests fail when no such route is available. On supported OpenAI-model routes, NanoGPT shares a hashed account or session identifier with the provider for abuse prevention."
     },
     "subProcessors": {
       "disclosed": true,
@@ -65,7 +65,7 @@
       },
       "dataUsage": {
         "retentionPolicy": "NanoGPT speichert Prompt- und Antwortinhalte standardmäßig nicht. Die optionale Protokollierung von API-Anfragen bewahrt verschlüsselte Anfrage- und Antwortinhalte 1 bis 30 Tage auf; die standardmäßig deaktivierte Speicherung der Responses API bewahrt Datensätze 7 Tage auf, sofern keine Aufbewahrungsdauer zwischen 0 und 365 Tagen festgelegt wird. Konto-, Zahlungs-, Nutzungs- und Sicherheitsdaten werden so lange aufbewahrt, wie es ihr Zweck erfordert.",
-        "details": "Laut Nutzungsbedingungen und Datenschutzerklärung trainiert NanoGPT selbst nicht mit Kundeneingaben oder -ausgaben. Prompts werden an den gewählten Modellanbieter weitergeleitet, für den dessen eigene Aufbewahrungs- und Trainingsbedingungen gelten; eine optionale Einstellung beschränkt das Routing auf Anbieter, die nach eigener Angabe keine Daten speichern (Zero Data Retention). Bei unterstützten OpenAI-Modellen übermittelt NanoGPT zur Missbrauchsabwehr eine gehashte Konto- oder Sitzungskennung an den Anbieter. Mit den Standardeinstellungen können kostenpflichtige Anfragen an Anbieterwege gehen, deren Bedingungen das Training mit Ein- und Ausgaben erlauben, etwa LongCat und Tenstorrent; die optionale Zero-Data-Retention-Einstellung filtert diese Wege heraus."
+        "details": "Laut Nutzungsbedingungen und Datenschutzerklärung trainiert NanoGPT selbst nicht mit Kundeneingaben oder -ausgaben. Prompts werden an den gewählten Modellanbieter weitergeleitet, für den dessen eigene Aufbewahrungs- und Trainingsbedingungen gelten. Mit dem standardmäßigen Routing „Anonymized“ können kostenpflichtige Anfragen an Anbieterwege gehen, deren Bedingungen das Training mit Ein- und Ausgaben erlauben, etwa LongCat und Tenstorrent. Die Einstellung „ZDR only“, die in den Datenschutzeinstellungen des Kontos oder pro API-Schlüssel eingeschaltet werden muss, beschränkt das Routing auf Anbieter, die nach eigener Angabe Prompts weder speichern noch zum Training nutzen; steht kein solcher Weg zur Verfügung, schlägt die Anfrage fehl. Bei unterstützten OpenAI-Modellen übermittelt NanoGPT zur Missbrauchsabwehr eine gehashte Konto- oder Sitzungskennung an den Anbieter."
       }
     }
   }
