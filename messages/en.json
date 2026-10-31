@@ -32,7 +32,8 @@
       "github": "GitHub"
     },
     "disclaimer": "This directory provides sourced information about AI providers' data practices. It is not legal advice. Always verify directly with the provider and consult legal counsel for compliance decisions.",
-    "navLabel": "Footer navigation"
+    "navLabel": "Footer navigation",
+    "projectBy": "A project by <link>CodeAttack</link>"
   },
   "HomePage": {
     "title": "InferCheck — Find GDPR-compliant AI inference providers",
@@ -152,16 +153,16 @@
     "title": "About — InferCheck",
     "description": "Why InferCheck exists, who built it, and how to report outdated or missing provider information.",
     "ogTitle": "About — InferCheck",
-    "ogDescription": "Built by a German developer who needed a neutral, sourced reference for GDPR-compliant AI inference providers.",
+    "ogDescription": "Built by Carlo Nölle (CodeAttack, Cologne), who answers the same AI provider and GDPR questions in every project for EU companies.",
     "heading": "About this directory",
     "subtitle": "A neutral, sourced reference for AI inference compliance — built because no such resource existed.",
     "whyExistsHeading": "Why this exists",
-    "whyExistsPara1": "I built this for myself. As a developer building SaaS products in Germany, every time I evaluated a new AI inference provider I had to answer the same questions: Where does the data go at inference time? Is there a DPA I can actually sign? Does the provider train on my users' inputs? Is there an EU-only routing option?",
-    "whyExistsPara2": "Those questions don't have a single place to look them up. You end up digging through privacy policies, data processing addenda, and support docs — for every provider, every time. In my corporate job I saw the same friction play out weekly: teams defaulting to expensive enterprise contracts (Azure OpenAI, IBM Watsonx) not because the models were better but because the compliance paperwork was already done.",
+    "whyExistsPara1": "I build AI solutions for companies in the EU. In every project the same questions come up before the first line of code: Where does the data go at inference time? Is there a DPA we can actually sign? Does the provider train on our inputs? Is there an EU-only routing option?",
+    "whyExistsPara2": "There is no single place to look these up. You dig through privacy policies, data processing addenda and support docs — for every provider, every time. Many teams therefore default to expensive enterprise contracts (Azure OpenAI, IBM Watsonx). Not because the models are better, but because the compliance paperwork is already done.",
     "whyExistsPara3": "This directory is the resource I wanted. It presents structured, sourced facts — not a provider's own marketing copy, not a law firm's generic checklist — so you can make a defensible provider selection and move on.",
-    "whoBuiltHeading": "Who built it",
-    "whoBuiltPara1": "I'm Carlo, a software developer based in <strong>Germany</strong>. I work in enterprise IT and build SaaS products on the side — which means I operate under GDPR daily, from both the engineering and compliance sides of the table.",
-    "whoBuiltPara2": "I don't have a financial relationship with any of the providers listed here. The directory is independent. Compliance metadata reflects publicly verifiable information with source links — if something is wrong or has changed, I want to know.",
+    "whoBuiltHeading": "Who's behind it",
+    "whoBuiltPara1": "I'm <strong>Carlo Nölle</strong> from <strong>Cologne</strong>. I run CodeAttack, where I build AI solutions for companies in the EU. I'm a senior software engineer, an iSAQB-certified software architect and an AWS Solutions Architect.",
+    "whoBuiltPara2": "Neither I nor CodeAttack has a financial relationship with any provider listed here. No provider pays for an entry, and my work at CodeAttack has no influence on the data. Compliance metadata reflects publicly verifiable information with source links — if something is wrong or has changed, I want to know.",
     "dataMaintenanceHeading": "How data is maintained",
     "dataMaintenancePara1": "Every provider entry is a flat JSON file stored in the public GitHub repository. Each field has a source URL. Entries are researched with AI assistance and reviewed over time. Every entry is labelled as an AI draft or as manually verified, together with its date, so you can judge how reliable and how fresh the information is before acting on it.",
     "dataMaintenancePara2": "Provider compliance terms change — sometimes quietly. If you spot something outdated or missing, the best thing you can do is open an issue on GitHub. The issue template asks for the specific field that changed and a link to the source document. That keeps updates auditable and reviewable before they go into the directory.",
@@ -179,7 +180,14 @@
     "notPaidTitle": "Not a paid placement service.",
     "notPaidBody": "No provider has paid to appear here or to influence how their data is presented.",
     "notCurrentTitle": "Not guaranteed to be current.",
-    "notCurrentBody": "Provider terms change. The date on each entry tells you when it was last researched or, for manually verified entries, last confirmed against source documents."
+    "notCurrentBody": "Provider terms change. The date on each entry tells you when it was last researched or, for manually verified entries, last confirmed against source documents.",
+    "codeAttackLabel": "A note from the maker",
+    "codeAttackHeading": "Planning to use AI in your company?",
+    "codeAttackPara1": "Through CodeAttack I build AI agents, automations and smart reporting for mid-sized companies and SMEs that have no AI team of their own. At a fixed price, in production, GDPR-compliant.",
+    "codeAttackPara2": "The questions this directory answers come up in every one of these projects. Where the data requires it, the solution runs in the EU or on your own servers, optionally with a self-hosted model. I measure quality on your real cases before go-live and hand over with documentation, so you are not locked in.",
+    "codeAttackPara3": "A good place to start is the AI potential check. If you already have a proposal from an agency, I give a second opinion on its scope, architecture, data protection and price.",
+    "codeAttackLink": "Visit codeattack.io",
+    "codeAttackContact": "Get in touch"
   },
   "FilterBar": {
     "presets": {
