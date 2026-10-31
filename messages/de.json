@@ -32,7 +32,8 @@
       "github": "GitHub"
     },
     "disclaimer": "Dieses Verzeichnis stellt quellengestützte Informationen über die Datenpraktiken von KI-Anbietern bereit. Es handelt sich nicht um Rechtsberatung. Überprüfen Sie Angaben stets direkt beim Anbieter und konsultieren Sie rechtlichen Beistand für Compliance-Entscheidungen.",
-    "navLabel": "Fußnavigation"
+    "navLabel": "Fußnavigation",
+    "projectBy": "Ein Projekt von <link>CodeAttack</link>"
   },
   "HomePage": {
     "title": "InferCheck — DSGVO-konforme KI-Inferenzanbieter finden",
@@ -152,16 +153,16 @@
     "title": "Über uns — InferCheck",
     "description": "Warum InferCheck existiert, wer es gebaut hat und wie man veraltete oder fehlende Anbieterinformationen meldet.",
     "ogTitle": "Über uns — InferCheck",
-    "ogDescription": "Erstellt von einem deutschen Entwickler, der eine neutrale, quellengestützte Referenz für DSGVO-konforme KI-Inferenzanbieter benötigte.",
+    "ogDescription": "Gebaut von Carlo Nölle (CodeAttack, Köln), der die Fragen zu KI-Anbietern und DSGVO in jedem Projekt für Unternehmen in der EU beantwortet.",
     "heading": "Über dieses Verzeichnis",
     "subtitle": "Eine neutrale, quellengestützte Referenz für DSGVO-Compliance bei KI-Inferenzanbietern — entstanden, weil eine solche Ressource fehlte.",
     "whyExistsHeading": "Warum es dieses Verzeichnis gibt",
-    "whyExistsPara1": "Ich habe es für mich selbst gebaut. Als Entwickler, der SaaS-Produkte in Deutschland betreibt, musste ich bei jedem neuen KI-Inferenzanbieter dieselben Fragen beantworten: Wo landen die Daten zur Inferenzzeit? Gibt es einen AVV, den ich wirklich unterzeichnen kann? Trainiert der Anbieter mit den Eingaben meiner Nutzer? Gibt es eine EU-exklusive Routing-Option?",
-    "whyExistsPara2": "Diese Fragen haben keinen zentralen Anlaufpunkt. Man durchforstet Datenschutzrichtlinien, Auftragsverarbeitungsverträge und Support-Dokumentationen — für jeden Anbieter, jedes Mal aufs Neue. In meinem Angestelltenverhältnis erlebte ich diese Reibung wöchentlich: Teams, die auf teure Enterprise-Verträge (Azure OpenAI, IBM Watsonx) zurückgriffen — nicht weil die Modelle besser waren, sondern weil der Compliance-Papierkram bereits erledigt war.",
+    "whyExistsPara1": "Ich setze KI-Lösungen für Unternehmen in der EU um. In jedem Projekt stellen sich vor der ersten Zeile Code dieselben Fragen: Wo landen die Daten zur Inferenzzeit? Gibt es einen AVV, den wir wirklich unterzeichnen können? Trainiert der Anbieter mit unseren Eingaben? Gibt es eine EU-exklusive Routing-Option?",
+    "whyExistsPara2": "Diese Fragen haben keinen zentralen Anlaufpunkt. Man durchforstet Datenschutzrichtlinien, Auftragsverarbeitungsverträge und Support-Dokumentationen — für jeden Anbieter, jedes Mal aufs Neue. Viele Teams greifen deshalb zu teuren Enterprise-Verträgen (Azure OpenAI, IBM Watsonx). Nicht weil die Modelle besser sind, sondern weil der Compliance-Papierkram schon erledigt ist.",
     "whyExistsPara3": "Dieses Verzeichnis ist die Ressource, die ich mir gewünscht hätte. Es präsentiert strukturierte, quellengestützte Fakten — keine Marketingtexte der Anbieter, keine generische Checkliste einer Anwaltskanzlei — damit Sie eine vertretbare Anbieterauswahl treffen und weitermachen können.",
     "whoBuiltHeading": "Wer steckt dahinter",
-    "whoBuiltPara1": "Ich bin Carlo, ein Softwareentwickler aus <strong>Deutschland</strong>. Ich arbeite in der Unternehmens-IT und entwickle nebenbei SaaS-Produkte — das heißt, ich lebe täglich mit der DSGVO, sowohl auf der technischen als auch auf der Compliance-Seite.",
-    "whoBuiltPara2": "Ich habe keine finanzielle Beziehung zu einem der hier gelisteten Anbieter. Das Verzeichnis ist unabhängig. Compliance-Metadaten spiegeln öffentlich nachprüfbare Informationen mit Quellenangaben wider — wenn etwas falsch ist oder sich geändert hat, möchte ich das wissen.",
+    "whoBuiltPara1": "Ich bin <strong>Carlo Nölle</strong> aus <strong>Köln</strong>. Mit CodeAttack setze ich KI-Lösungen für Unternehmen in der EU um. Ich bin Senior Software Engineer, iSAQB-zertifizierter Softwarearchitekt und AWS Solutions Architect.",
+    "whoBuiltPara2": "Weder ich noch CodeAttack haben eine finanzielle Beziehung zu einem der hier gelisteten Anbieter. Kein Anbieter bezahlt für einen Eintrag, und meine Arbeit für CodeAttack hat keinen Einfluss auf die Daten. Compliance-Metadaten spiegeln öffentlich nachprüfbare Informationen mit Quellenangaben wider — wenn etwas falsch ist oder sich geändert hat, möchte ich das wissen.",
     "dataMaintenanceHeading": "Wie die Daten gepflegt werden",
     "dataMaintenancePara1": "Jeder Anbietereintrag ist eine flache JSON-Datei im öffentlichen GitHub-Repository. Jedes Feld hat eine Quellen-URL. Die Einträge werden mit KI-Unterstützung recherchiert und nach und nach geprüft. Jeder Eintrag ist mit Datum als KI-Entwurf oder als manuell verifiziert gekennzeichnet, damit Sie Verlässlichkeit und Aktualität der Information einschätzen können.",
     "dataMaintenancePara2": "Compliance-Bedingungen von Anbietern ändern sich — manchmal still und leise. Wenn Ihnen etwas Veraltetes oder Fehlendes auffällt, öffnen Sie bitte ein Issue auf GitHub. Die Issue-Vorlage fragt nach dem geänderten Feld und einem Link zum Quelldokument. Das hält Aktualisierungen nachvollziehbar und überprüfbar.",
@@ -179,7 +180,14 @@
     "notPaidTitle": "Kein bezahlter Platzierungsservice.",
     "notPaidBody": "Kein Anbieter hat dafür bezahlt, hier gelistet zu werden oder die Darstellung seiner Daten zu beeinflussen.",
     "notCurrentTitle": "Keine Aktualitätsgarantie.",
-    "notCurrentBody": "Anbieterbedingungen ändern sich. Das Datum bei jedem Eintrag zeigt an, wann er zuletzt recherchiert bzw. bei manuell verifizierten Einträgen zuletzt gegen Quelldokumente geprüft wurde."
+    "notCurrentBody": "Anbieterbedingungen ändern sich. Das Datum bei jedem Eintrag zeigt an, wann er zuletzt recherchiert bzw. bei manuell verifizierten Einträgen zuletzt gegen Quelldokumente geprüft wurde.",
+    "codeAttackLabel": "In eigener Sache",
+    "codeAttackHeading": "Sie wollen KI im Unternehmen einsetzen?",
+    "codeAttackPara1": "Mit CodeAttack baue ich KI-Agenten, Automatisierungen und smartes Reporting für Mittelstand und KMU ohne eigenes KI-Team. Zum Festpreis, im Produktivbetrieb, DSGVO-konform.",
+    "codeAttackPara2": "Die Fragen aus diesem Verzeichnis kläre ich in jedem dieser Projekte. Wo die Daten es verlangen, läuft die Lösung in der EU oder auf Ihren eigenen Servern, auf Wunsch mit einem selbst gehosteten Modell. Vor dem Go-live messe ich die Qualität an Ihren echten Fällen. Die Übergabe ist dokumentiert, damit Sie nicht von mir abhängig sind.",
+    "codeAttackPara3": "Ein guter Einstieg ist der KI-Potenzial-Check. Liegt Ihnen schon ein Agenturangebot vor, prüfe ich als Zweitmeinung Umfang, Architektur, Datenschutz und Preis.",
+    "codeAttackLink": "Zu codeattack.io",
+    "codeAttackContact": "Kontakt aufnehmen"
   },
   "FilterBar": {
     "presets": {

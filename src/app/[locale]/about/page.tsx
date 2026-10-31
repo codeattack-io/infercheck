@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { LongformPage, LongformSection, LONGFORM_LINK_CLASS } from "@/components/Longform";
 import { buttonClass } from "@/lib/styles";
+import { codeAttackLinks } from "@/lib/codeattack";
 
 interface PageProps {
   params: Promise<{ locale: string }>;
@@ -39,6 +40,7 @@ export default async function AboutPage({ params }: PageProps) {
 
   const t = await getTranslations("AboutPage");
   const strong = (chunks: ReactNode) => <strong className="font-semibold text-text-primary">{chunks}</strong>;
+  const codeAttack = codeAttackLinks(locale);
 
   return (
     <LongformPage heading={t("heading")}>
@@ -54,6 +56,27 @@ export default async function AboutPage({ params }: PageProps) {
         <p>{t.rich("whoBuiltPara1", { strong })}</p>
         <p>{t("whoBuiltPara2")}</p>
       </LongformSection>
+
+      <aside
+        aria-labelledby="codeattack-heading"
+        className="mt-4 flex flex-col gap-3 rounded-card border border-border bg-surface px-6 py-5 text-15 max-md:px-4"
+      >
+        <p className="m-0 text-13 font-semibold text-text-muted">{t("codeAttackLabel")}</p>
+        <h2 id="codeattack-heading" className="m-0 text-17 font-semibold text-text-primary">
+          {t("codeAttackHeading")}
+        </h2>
+        <p className="m-0">{t("codeAttackPara1")}</p>
+        <p className="m-0">{t("codeAttackPara2")}</p>
+        <p className="m-0">{t("codeAttackPara3")}</p>
+        <p className="m-0 flex flex-wrap gap-2 pt-1">
+          <a href={codeAttack.home} target="_blank" rel="noopener" className={buttonClass("primary")}>
+            {t("codeAttackLink")}
+          </a>
+          <a href={codeAttack.contact} target="_blank" rel="noopener" className={buttonClass("secondary")}>
+            {t("codeAttackContact")}
+          </a>
+        </p>
+      </aside>
 
       <LongformSection heading={t("dataMaintenanceHeading")}>
         <p>{t("dataMaintenancePara1")}</p>

@@ -11,6 +11,7 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { ModelBrowser } from "@/components/ModelBrowser";
+import { CODEATTACK_URL } from "@/lib/codeattack";
 import { getCatalogModels } from "@/lib/models";
 import { getAllProviders, getLocalizedProvider, getPanelProvider } from "@/lib/providers";
 import type { ModelWithProvider } from "@/components/types";
@@ -74,7 +75,12 @@ export default async function HomePage({ params }: HomePageProps) {
     license: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
     creator: {
       "@type": "Person",
-      name: "Carlo Noelle",
+      name: "Carlo Nölle",
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "CodeAttack",
+      url: CODEATTACK_URL,
     },
     keywords: ["GDPR AI", "EU AI compliance", "GDPR compliant LLM", "EU data residency AI", "AI inference GDPR"],
   };

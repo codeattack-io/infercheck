@@ -395,9 +395,10 @@ A `<time datetime>` with the review status, never in table rows:
 - The disclaimer is a paragraph with `role="note"`, `max-width: 72ch`, 12px below it: "This directory provides sourced
   information about AI providers' data practices. It is not legal advice. Always verify directly with the provider and
   consult legal counsel for compliance decisions."
-- One wrapping line, items separated by "·", gaps 6px × 10px: "Data licensed under CC BY-NC-SA 4.0 · Code under MIT ·
-  About · Imprint · Privacy · GitHub". Links muted with underline. Below 768px the data licence, the code licence and the
-  links each take their own line, without a "·" between them.
+- One wrapping line, items separated by "·", gaps 6px × 10px: "Data licensed under CC BY-NC-SA 4.0 · Code under MIT · A
+  project by CodeAttack · About · Imprint · Privacy · GitHub". "CodeAttack" links to codeattack.io in the page's locale.
+  Links muted with underline. Below 1024px the links take their own line; below 768px the data licence, the code
+  licence and the CodeAttack line do too, without a "·" between them.
 
 ---
 
@@ -461,6 +462,9 @@ Models (26)
 
 - `h1` as everywhere; 720px text column; body 16px / 1.6 `--color-text-secondary`; `h2` 20px / 600 primary with 32px
   above; links `--color-link`; call-to-action buttons in the primary button style.
+- About page: after "Who's behind it", one CodeAttack card (`aside`, card style, 15px text). A 13px / 600 muted label
+  "A note from the maker", a 17px / 600 `h2`, three short paragraphs, then the primary button "Visit codeattack.io" and
+  the secondary button "Get in touch", both to the page's locale. No other page shows CodeAttack apart from the footer.
 
 ---
 
@@ -580,7 +584,7 @@ for at most 3s. Expanded rows and the number of loaded rows are not part of the 
 
 The editorial copy (summaries, notes, About page) should sound like:
 
-- A senior developer who works in enterprise IT and has read a lot of DPAs
+- A senior developer who builds AI solutions for EU companies and has read a lot of DPAs
 - Direct. No hedging where it isn't needed.
 - Plain words for compliance jargon the first time it appears (e.g. "Standard Contractual Clauses (SCCs)")
 - Willing to say "this provider's DPA is weak" or "this claim is unverified" — the site's value is honesty

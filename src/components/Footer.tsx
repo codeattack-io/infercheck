@@ -1,5 +1,6 @@
 import { Link } from "@/i18n/navigation";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
+import { codeAttackLinks } from "@/lib/codeattack";
 
 const GITHUB_REPO = process.env.NEXT_PUBLIC_GITHUB_REPO_URL ?? "#";
 
@@ -15,6 +16,7 @@ function Separator({ className }: { className?: string }) {
 
 export async function Footer() {
   const t = await getTranslations("Footer");
+  const codeAttack = codeAttackLinks(await getLocale());
 
   return (
     <footer className="page-width mt-auto pt-9 pb-10 text-15 text-text-muted md:pt-12 md:text-14">
@@ -41,7 +43,17 @@ export async function Footer() {
           </a>
         </span>
         <Separator className="max-md:hidden" />
-        <nav aria-label={t("navLabel")} className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 max-md:w-full">
+        <span className="max-md:w-full">
+          {t.rich("projectBy", {
+            link: (chunks) => (
+              <a href={codeAttack.home} target="_blank" rel="noopener" className={LINK_CLASS}>
+                {chunks}
+              </a>
+            ),
+          })}
+        </span>
+        <Separator className="max-lg:hidden" />
+        <nav aria-label={t("navLabel")} className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5 max-lg:w-full">
           <Link href="/about" className={LINK_CLASS}>
             {t("nav.about")}
           </Link>
