@@ -2,8 +2,8 @@
   "slug": "privatemode-ai",
   "name": "Privatemode AI",
   "type": "api_provider",
-  "website": "https://docs.privatemode.ai",
-  "apiDocsUrl": "https://docs.privatemode.ai/quickstart/",
+  "website": "https://www.privatemode.ai",
+  "apiDocsUrl": "https://docs.privatemode.ai/getting-started/api/",
   "compliance": {
     "headquarters": "DE",
     "dataResidency": {
@@ -12,25 +12,27 @@
       ],
       "euOnly": true,
       "dataLeavesEuAtInference": false,
-      "euRegionDetails": "Privatemode states that the service is hosted in top-tier data centers within the European Union, and its security materials state prompts are decrypted only within Privatemode’s confidential-computing environment using AMD CPUs and Nvidia H100/B200 GPUs. The desktop app documentation also states it sends no data to third-party services."
+      "euRegionDetails": "EU processing is the only mode, so no region or endpoint has to be chosen. The DPA states that all processing of personal data takes place exclusively in the EU or EEA; inference runs in confidential-computing environments on infrastructure from Scaleway (France) and Lyceum Technology (Germany). Prompts and responses are not stored after a request; operational metadata such as IP address, API key and token usage is kept for up to 90 days. No models or features are excluded."
     },
     "dpa": {
-      "available": false,
-      "url": null,
-      "signedVia": "not_available"
+      "available": true,
+      "url": "https://www.privatemode.ai/dpa",
+      "signedVia": "online_acceptance"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
-      "optOutAvailable": null,
-      "retentionPolicy": "Website privacy policy says personal data is deleted or blocked once the purpose no longer applies, subject to legal retention periods. For the product itself, Privatemode states user data is never stored, remembered, or used for training; the desktop app stores chat history and access key locally on the user's device. Inquiry-form data is kept until deletion is requested, consent is withdrawn, or the purpose no longer applies.",
-      "details": "Privatemode states its architecture ensures models cannot remember customer data or be retrained on it. Documentation says the desktop app sends no data to third-party services and stores chat history locally on device."
+      "optOutAvailable": false,
+      "retentionPolicy": "Prompts and responses are held only in encrypted memory during processing and are not stored afterwards. Operational metadata (IP address, timestamp, API key, token usage, request path, method and status code, response time) is kept for up to 90 days; token usage per API key is stored permanently for billing.",
+      "details": "Privatemode states that prompts and responses are not used for training. With the SDK or proxy, prompts are end-to-end encrypted and the client verifies the backend by remote attestation. The proxyless API terminates TLS inside a confidential-computing environment operated by Edgeless Systems, without client-side attestation."
     },
     "subProcessors": {
-      "disclosed": false,
-      "url": null,
-      "includesEuEntities": null
+      "disclosed": true,
+      "url": "https://www.privatemode.ai/dpa",
+      "includesEuEntities": true
     },
-    "certifications": [],
+    "certifications": [
+      "ISO27001"
+    ],
     "euAiAct": {
       "status": "unknown",
       "details": null
@@ -38,29 +40,35 @@
     "sccs": true,
     "adequacyDecision": true
   },
-  "pricingTier": "free_tier",
-  "lastVerified": "2026-04-11",
+  "pricingTier": "pay_per_use",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://www.privatemode.ai/api",
+    "https://www.privatemode.ai/",
+    "https://www.privatemode.ai/imprint",
+    "https://www.privatemode.ai/dpa",
+    "https://www.privatemode.ai/terms-of-service",
     "https://www.privatemode.ai/privacy-policy",
     "https://www.privatemode.ai/pricing",
-    "https://www.privatemode.ai/",
-    "https://www.privatemode.ai/chat",
-    "https://www.privatemode.ai/security-encryption",
-    "https://docs.privatemode.ai/quickstart/",
-    "https://docs.privatemode.ai/guides/desktop-app/"
+    "https://www.privatemode.ai/security-and-encryption",
+    "https://docs.privatemode.ai/security/trust-and-compliance/",
+    "https://docs.privatemode.ai/getting-started/faq/",
+    "https://docs.privatemode.ai/getting-started/api/",
+    "https://docs.privatemode.ai/architecture/overview/",
+    "https://docs.privatemode.ai/architecture/server-side/",
+    "https://docs.privatemode.ai/api/proxyless-api/",
+    "https://docs.privatemode.ai/pricing/"
   ],
-  "notes": "Privatemode presents a strong privacy-by-design posture: it is operated by Edgeless Systems GmbH in Germany, says hosting and inference processing are in the EU, and states customer/API data is not stored, remembered, or used for training. However, no public DPA/AVV or public sub-processor list was found in the consulted primary sources, so those fields are conservatively set to unavailable/null.",
+  "notes": "Privatemode AI is operated by Edgeless Systems GmbH (Bochum, Germany) and serves open-weight models through an OpenAI- and Anthropic-compatible API inside confidential-computing environments in the EU. Its DPA is part of the Terms of Service, applies once the customer starts using the service, and lists Scaleway (France) and Lyceum Technology (Germany) as sub-processors. Edgeless Systems states that it is ISO 27001 certified; the certificate scope is not published.",
   "translations": {
     "de": {
-      "notes": "Privatemode weist eine starke Privacy-by-Design-Ausrichtung auf: Der Dienst wird von der Edgeless Systems GmbH in Deutschland betrieben, gibt an, dass Hosting und Inferenzverarbeitung in der EU erfolgen, und erklärt, dass Kunden-/API-Daten weder gespeichert noch vorgehalten oder für das Training verwendet werden. Allerdings wurden in den konsultierten Primärquellen weder ein öffentlicher Auftragsverarbeitungsvertrag (AVV) noch eine öffentliche Liste der Unterauftragsverarbeiter gefunden, sodass diese Felder vorsorglich als nicht verfügbar/null gesetzt wurden.",
+      "notes": "Privatemode AI wird von der Edgeless Systems GmbH (Bochum, Deutschland) betrieben und stellt Open-Weight-Modelle über eine OpenAI- und Anthropic-kompatible API in Confidential-Computing-Umgebungen in der EU bereit. Der AVV ist Teil der Nutzungsbedingungen, gilt ab Beginn der Nutzung und nennt Scaleway (Frankreich) und Lyceum Technology (Deutschland) als Unterauftragsverarbeiter. Edgeless Systems gibt an, nach ISO 27001 zertifiziert zu sein; der Geltungsbereich des Zertifikats ist nicht veröffentlicht.",
       "dataResidency": {
-        "euRegionDetails": "Privatemode gibt an, dass der Dienst in erstklassigen Rechenzentren innerhalb der Europäischen Union gehostet wird, und in den Sicherheitsunterlagen wird angegeben, dass Prompts ausschließlich innerhalb der Confidential-Computing-Umgebung von Privatemode unter Verwendung von AMD-CPUs und Nvidia-H100/B200-GPUs entschlüsselt werden. In der Dokumentation der Desktop-App wird außerdem angegeben, dass keine Daten an Dienste Dritter übermittelt werden."
+        "euRegionDetails": "Die Verarbeitung in der EU ist der einzige Modus, eine Region oder ein Endpunkt muss also nicht gewählt werden. Laut AVV findet die gesamte Verarbeitung personenbezogener Daten ausschließlich in der EU oder im EWR statt; die Inferenz läuft in Confidential-Computing-Umgebungen auf Infrastruktur von Scaleway (Frankreich) und Lyceum Technology (Deutschland). Prompts und Antworten werden nach einer Anfrage nicht gespeichert; Betriebsmetadaten wie IP-Adresse, API-Schlüssel und Token-Verbrauch werden bis zu 90 Tage aufbewahrt. Kein Modell und keine Funktion ist ausgenommen."
       },
       "dataUsage": {
-        "retentionPolicy": "Laut der Datenschutzrichtlinie der Website werden personenbezogene Daten gelöscht oder gesperrt, sobald der Zweck entfällt, vorbehaltlich gesetzlicher Aufbewahrungsfristen. Für das Produkt selbst gibt Privatemode an, dass Nutzerdaten niemals gespeichert, vorgehalten oder für das Training verwendet werden; die Desktop-App speichert den Chatverlauf und den Zugriffsschlüssel lokal auf dem Gerät des Nutzers. Daten aus Anfrageformularen werden aufbewahrt, bis ihre Löschung verlangt wird, die Einwilligung widerrufen wird oder der Zweck entfällt.",
-        "details": "Privatemode gibt an, dass seine Architektur sicherstellt, dass Modelle sich Kundendaten nicht merken können und nicht mit diesen nachtrainiert werden können. Laut Dokumentation übermittelt die Desktop-App keine Daten an Dienste Dritter und speichert den Chatverlauf lokal auf dem Gerät."
+        "retentionPolicy": "Prompts und Antworten liegen nur während der Verarbeitung im verschlüsselten Arbeitsspeicher und werden danach nicht gespeichert. Betriebsmetadaten (IP-Adresse, Zeitstempel, API-Schlüssel, Token-Verbrauch, Pfad, Methode und Statuscode der Anfrage, Antwortzeit) werden bis zu 90 Tage aufbewahrt; der Token-Verbrauch je API-Schlüssel wird für die Abrechnung dauerhaft gespeichert.",
+        "details": "Privatemode gibt an, dass Prompts und Antworten nicht für das Training verwendet werden. Mit dem SDK oder dem Proxy werden Prompts Ende-zu-Ende verschlüsselt, und der Client prüft das Backend per Remote Attestation. Die Proxyless API terminiert TLS in einer von Edgeless Systems betriebenen Confidential-Computing-Umgebung, ohne clientseitige Attestierung."
       }
     }
   }

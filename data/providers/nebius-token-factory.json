@@ -9,57 +9,75 @@
     "dataResidency": {
       "regions": [
         "EU",
-        "FI"
+        "US",
+        "GB",
+        "IL",
+        "CA"
       ],
-      "euOnly": false,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": "Primary infrastructure in Finland (eu-north1). Paris region (eu-west1) in development. Nebius Group N.V. has active US subsidiaries (Nebius Inc. and ADC Tech Inc., Massachusetts) covered under EU-US Data Privacy Framework certification. Privacy policy states data may be stored in datacentres that differ from the selected datacentre for fault tolerance — this may include non-primary EU locations. Review DPA carefully for strict EU-only requirements."
+      "euOnly": true,
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "EU processing requires a dedicated endpoint (billed per GPU hour) deployed in an EU region, Finland (eu-north1) or France (eu-west1), and called through that region's inference base URL; the DPA commits processing to the selected region, apart from limited operations, maintenance, security and support access listed in the sub-processor list. Only models whose deployment templates support the chosen region can be deployed there. Public per-token endpoints have no region commitment and may run in the EU, US, UK, Israel or Canada. Inputs and outputs retained for speculative decoding are stored in Finland, and fine-tuning data is stored in the EU."
     },
     "dpa": {
       "available": true,
-      "url": "https://docs.nebius.com/legal/",
+      "url": "https://docs.nebius.com/legal/dpa",
       "signedVia": "online_acceptance"
     },
     "dataUsage": {
-      "trainsOnCustomerData": false,
-      "optOutAvailable": false,
-      "retentionPolicy": "Personal data retained as long as necessary for service delivery. No explicit public statement found on inference prompt/completion data usage for training — confirm via DPA.",
-      "details": "Privacy policy focuses on account/personal data, not inference data. Inference data policy should be confirmed contractually."
+      "trainsOnCustomerData": null,
+      "optOutAvailable": true,
+      "retentionPolicy": "By default, inputs and outputs are retained for speculative decoding and stored in Finland. With Zero Data Retention enabled at organisation level, chat-completion inputs and outputs are not stored after the request; request metadata and observability data are still retained.",
+      "details": "The DPA and the Legal Quick Guide state that customer content is not used to train or improve models, but the Token Factory Supplemental Terms allow Nebius to use inputs and outputs to train smaller draft models for speculative decoding. This use is on by default and stops when Zero Data Retention is enabled."
     },
     "subProcessors": {
       "disclosed": true,
-      "url": "https://nebius.com/privacy-policy",
-      "includesEuEntities": false
+      "url": "https://docs.nebius.com/legal/sub-processors_tofa",
+      "includesEuEntities": true
     },
-    "certifications": [],
+    "certifications": [
+      "SOC2",
+      "ISO27001",
+      "ISO27701",
+      "ISO42001",
+      "ISO22301"
+    ],
     "euAiAct": {
       "status": "unknown",
-      "details": "No specific EU AI Act compliance statement published. Netherlands-incorporated entity subject to EU AI Act as provider placing AI services on the EU market."
+      "details": "Nebius has published no EU AI Act statement. The Token Factory terms make the customer the provider of AI systems it builds on the API."
     },
-    "sccs": false,
+    "sccs": true,
     "adequacyDecision": true
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-07",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://nebius.com/privacy-policy",
-    "https://nebius.com/",
-    "https://docs.nebius.com/legal/"
+    "https://docs.tokenfactory.nebius.com/legal/legal-quick-guide",
+    "https://docs.nebius.com/legal/agreement",
+    "https://docs.nebius.com/legal/token-factory",
+    "https://docs.nebius.com/legal/dpa",
+    "https://docs.nebius.com/legal/sub-processors_tofa",
+    "https://docs.nebius.com/legal/privacy",
+    "https://docs.tokenfactory.nebius.com/ai-models-inference/dedicated-endpoints/control-data-plane",
+    "https://nebius.com/trust-center",
+    "https://nebius.com/trust-center/iso-27001",
+    "https://nebius.com/trust-center/soc-2",
+    "https://docs.tokenfactory.nebius.com/ai-models-inference/dedicated-endpoints/overview",
+    "https://docs.nebius.com/overview/regions"
   ],
-  "notes": "IMPORTANT: Nebius Group N.V. is incorporated in the Netherlands but spun off from Yandex NV (2023) and has active US subsidiaries (Nebius Inc., ADC Tech Inc.). The Netherlands is an EU member state — adequacyDecision is true for intra-EU transfers. However, US subsidiary involvement means EU-US transfers are covered by EU-US DPF certification (not SCCs). Privacy policy explicitly mentions fault-tolerance data storage that may not stay in the primary selected region. Lead supervisory authority is the Dutch DPA (Autoriteit Persoonsgegevens). Inference-specific data usage policy not publicly documented — verify via DPA before processing personal data.",
+  "notes": "EU customers contract with Nebius B.V. (Netherlands); the lead supervisory authority is the Dutch Autoriteit Persoonsgegevens. Only dedicated endpoints guarantee a processing region; public endpoints may run in the EU, US, UK, Israel or Canada. Inputs and outputs are kept for speculative decoding by default unless Zero Data Retention is enabled.",
   "translations": {
     "de": {
-      "notes": "WICHTIG: Nebius Group N.V. ist in den Niederlanden eingetragen, wurde jedoch von Yandex NV (2023) abgespalten und verfügt über aktive US-Tochtergesellschaften (Nebius Inc., ADC Tech Inc.). Die Niederlande sind ein EU-Mitgliedstaat — adequacyDecision ist für innergemeinschaftliche Übermittlungen true. Die Einbindung von US-Tochtergesellschaften bedeutet jedoch, dass EU-US-Übermittlungen durch eine Zertifizierung nach dem EU-US Data Privacy Framework abgedeckt sind (nicht durch Standardvertragsklauseln (SCC)). Die Datenschutzerklärung erwähnt ausdrücklich eine fehlertolerante Datenspeicherung, die möglicherweise nicht in der primär ausgewählten Region verbleibt. Federführende Aufsichtsbehörde ist die niederländische Datenschutzbehörde (Autoriteit Persoonsgegevens). Eine Inferenz-spezifische Richtlinie zur Datennutzung ist öffentlich nicht dokumentiert — vor der Verarbeitung personenbezogener Daten über den Auftragsverarbeitungsvertrag (AVV) zu verifizieren.",
+      "notes": "Kunden aus der EU schließen den Vertrag mit Nebius B.V. (Niederlande); federführende Aufsichtsbehörde ist die niederländische Autoriteit Persoonsgegevens. Nur dedizierte Endpunkte garantieren eine Verarbeitungsregion; öffentliche Endpunkte können in der EU, den USA, dem Vereinigten Königreich, Israel oder Kanada laufen. Ein- und Ausgaben werden standardmäßig für Speculative Decoding gespeichert, sofern Zero Data Retention nicht aktiviert ist.",
       "dataResidency": {
-        "euRegionDetails": "Primäre Infrastruktur in Finnland (eu-north1). Region Paris (eu-west1) in Entwicklung. Nebius Group N.V. verfügt über aktive US-Tochtergesellschaften (Nebius Inc. und ADC Tech Inc., Massachusetts), die durch eine Zertifizierung nach dem EU-US Data Privacy Framework abgedeckt sind. Laut Datenschutzerklärung können Daten aus Gründen der Fehlertoleranz in Rechenzentren gespeichert werden, die vom ausgewählten Rechenzentrum abweichen — dies kann nicht primäre EU-Standorte einschließen. Der Auftragsverarbeitungsvertrag (AVV) ist bei strengen Anforderungen an ausschließliche EU-Datenhaltung sorgfältig zu prüfen."
+        "euRegionDetails": "EU-Verarbeitung erfordert einen dedizierten Endpunkt (Abrechnung pro GPU-Stunde) in einer EU-Region, Finnland (eu-north1) oder Frankreich (eu-west1), der über die Inferenz-Basis-URL dieser Region aufgerufen wird; der AVV sichert die Verarbeitung in der gewählten Region zu, abgesehen von begrenztem Zugriff für Betrieb, Wartung, Sicherheit und Support gemäß der Liste der Unterauftragsverarbeiter. Dort lassen sich nur Modelle bereitstellen, deren Vorlagen die gewählte Region unterstützen. Öffentliche Endpunkte mit Abrechnung pro Token haben keine Regionszusage und können in der EU, den USA, dem Vereinigten Königreich, Israel oder Kanada laufen. Für Speculative Decoding gespeicherte Ein- und Ausgaben liegen in Finnland, Fine-Tuning-Daten in der EU."
       },
       "dataUsage": {
-        "retentionPolicy": "Personenbezogene Daten werden so lange gespeichert, wie dies für die Leistungserbringung erforderlich ist. Es wurde keine ausdrückliche öffentliche Erklärung zur Nutzung von Prompt-/Completion-Daten aus der Inferenz für Trainingszwecke gefunden — über den Auftragsverarbeitungsvertrag (AVV) zu bestätigen.",
-        "details": "Die Datenschutzerklärung konzentriert sich auf Konto-/personenbezogene Daten, nicht auf Inferenzdaten. Die Richtlinie zu Inferenzdaten sollte vertraglich bestätigt werden."
+        "retentionPolicy": "Standardmäßig werden Ein- und Ausgaben für Speculative Decoding gespeichert und in Finnland abgelegt. Mit aktivierter Zero Data Retention auf Organisationsebene werden Chat-Completion-Ein- und -Ausgaben nach der Anfrage nicht gespeichert; Anfrage-Metadaten und Observability-Daten werden weiterhin aufbewahrt.",
+        "details": "Laut AVV und Legal Quick Guide werden Kundeninhalte nicht zum Training oder zur Verbesserung von Modellen genutzt; die Token Factory Supplemental Terms erlauben Nebius jedoch, Ein- und Ausgaben zum Training kleinerer Draft-Modelle für Speculative Decoding zu verwenden. Diese Nutzung ist standardmäßig aktiv und endet, wenn Zero Data Retention aktiviert wird."
       },
       "euAiAct": {
-        "details": "Es wurde keine spezifische Konformitätserklärung zum EU AI Act veröffentlicht. Die in den Niederlanden eingetragene Gesellschaft unterliegt als Anbieter, der KI-Dienste auf dem EU-Markt bereitstellt, dem EU AI Act."
+        "details": "Nebius hat keine Erklärung zum EU AI Act veröffentlicht. Die Token-Factory-Bedingungen weisen dem Kunden die Anbieterrolle für KI-Systeme zu, die er auf der API aufbaut."
       }
     }
   }

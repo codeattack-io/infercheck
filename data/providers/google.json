@@ -7,74 +7,69 @@
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
-      "regions": [
-        "EU",
-        "US"
-      ],
+      "regions": [],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "The direct Gemini Developer API at ai.google.dev does not provide an EU region selection or EU-only processing guarantee in the official Gemini API documentation consulted. Google Cloud documents data residency options for Generative AI on Vertex AI and Vertex AI Platform, including AI/ML data location controls in specific regions/multi-regions, but those controls apply to Vertex AI/Google Cloud services rather than the direct Gemini Developer API."
+      "euRegionDetails": "The Gemini Developer API has only a global endpoint and no EU region option. Google's terms state that prompts and responses logged for abuse monitoring may be stored transiently or cached in any country where Google or its agents maintain facilities. EU data residency is only offered through Google Cloud's Gemini Enterprise Agent Platform (formerly Vertex AI)."
     },
     "dpa": {
       "available": true,
-      "url": "https://cloud.google.com/terms/data-processing-addendum",
+      "url": "https://business.safety.google/processorterms/",
       "signedVia": "online_acceptance"
     },
     "dataUsage": {
-      "trainsOnCustomerData": null,
-      "optOutAvailable": null,
-      "retentionPolicy": "For paid Gemini API services, Google states it does not use prompts or responses to improve its products and processes them under the Google data processing addendum. For unpaid services (including Google AI Studio and unpaid Gemini API quota), Google says submitted content and generated responses are used to provide, improve, and develop Google products and machine learning technologies, and human reviewers may review input/output. Tuning content is retained with tuned models for re-tuning support and deleted when the tuned model is deleted.",
-      "details": "Google's Gemini API terms distinguish unpaid vs paid usage. Unpaid usage is used to improve products; paid usage is not. For users in the EEA, Switzerland, or the UK, the terms say the paid-services data use terms apply to all services, including Google AI Studio and unpaid Gemini API quota."
+      "trainsOnCustomerData": false,
+      "optOutAvailable": false,
+      "retentionPolicy": "Paid use: prompts and responses are kept for 55 days for abuse monitoring. New billing-enabled projects also keep developer-owned request logs for up to 55 days by default, which can be adjusted or switched off. Grounding with Google Search or Google Maps stores prompts and output for 30 days. Google offers no guaranteed zero data retention for this API.",
+      "details": "Paid use is processed under Google's processor data processing addendum and is not used to improve Google's products. The free tier and Google AI Studio without billing use prompts and responses to improve Google's products, with possible human review; in the EEA, Switzerland and the UK the paid-service data terms apply to all use. Opt-in log sharing and the Contributor Tier use data for training."
     },
     "subProcessors": {
       "disclosed": true,
-      "url": "https://cloud.google.com/terms/subprocessors",
-      "includesEuEntities": true
+      "url": "https://business.safety.google/subprocessors/",
+      "includesEuEntities": null
     },
-    "certifications": [
-      "SOC 2",
-      "SOC 3",
-      "ISO27001",
-      "ISO27017",
-      "ISO27018",
-      "ISO27701"
-    ],
+    "certifications": [],
     "euAiAct": {
-      "status": "monitoring",
-      "details": "Google Cloud has an official EU AI Act compliance page and states it will continue to publish information to support customer compliance. Google Cloud also publicly stated in July 2025 that it intends to sign the EU AI Act Code of Practice."
+      "status": "compliant",
+      "details": "Google, the developer of the Gemini models, is on the EU Commission's list of signatories of the General-Purpose AI Code of Practice."
     },
     "sccs": true,
-    "adequacyDecision": false
+    "adequacyDecision": true
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://ai.google.dev/api",
-    "https://ai.google.dev/pricing",
-    "https://ai.google.dev/gemini-api/terms-archive/terms_02_05_25",
-    "https://policies.google.com/privacy",
-    "https://cloud.google.com/privacy/gdpr",
-    "https://cloud.google.com/terms/data-processing-addendum",
-    "https://cloud.google.com/terms/subprocessors",
-    "https://cloud.google.com/terms/data-residency",
+    "https://ai.google.dev/gemini-api/terms",
+    "https://ai.google.dev/gemini-api/docs/pricing",
+    "https://ai.google.dev/gemini-api/docs/billing",
+    "https://ai.google.dev/gemini-api/docs/usage-policies",
+    "https://ai.google.dev/gemini-api/docs/logs-policy",
+    "https://ai.google.dev/gemini-api/docs/zdr",
+    "https://business.safety.google/processorterms/",
+    "https://business.safety.google/services/",
+    "https://business.safety.google/subprocessors/",
     "https://business.safety.google/compliance/",
-    "https://cloud.google.com/security/compliance/eu-ai-act",
-    "https://cloud.google.com/blog/products/identity-security/google-clouds-commitment-to-eu-ai-act-support"
+    "https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/migrate/migrate-google-ai",
+    "https://policies.google.com/privacy",
+    "https://policies.google.com/privacy/frameworks",
+    "https://blog.google/company-news/inside-google/around-the-globe/google-europe/eu-ai-code-practice/",
+    "https://digital-strategy.ec.europa.eu/en/policies/contents-code-gpai"
   ],
-  "notes": "Google offers contractual GDPR tooling for cloud customers, including a public Cloud Data Processing Addendum, SCC resources, and a public subprocessor list. For the direct Gemini Developer API, EU-only inference routing is not guaranteed from the primary sources consulted; Google positions regional data residency controls through Vertex AI/Google Cloud instead. Gemini API data-use terms differ materially between unpaid and paid usage, with unpaid usage used for product improvement unless EEA/CH/UK terms apply.",
+  "notes": "Paid Gemini API use falls under Google's processor data processing addendum, not the Google Cloud DPA; Google LLC is certified under the EU-US Data Privacy Framework. Google states the Gemini API has no compliance certifications such as SOC 2 and only a global endpoint, and directs regulated customers to Gemini Enterprise Agent Platform (formerly Vertex AI). Besides prepaid and pay-as-you-go billing there is a free tier whose data is used to improve Google's products, except for users in the EEA, Switzerland and the UK.",
   "translations": {
     "de": {
-      "notes": "Google bietet für Cloud-Kunden vertragliche DSGVO-Werkzeuge an, darunter ein öffentliches Cloud Data Processing Addendum, Ressourcen zu Standardvertragsklauseln (SCC) sowie eine öffentliche Liste der Unterauftragsverarbeiter. Für die direkte Gemini Developer API ist auf Grundlage der konsultierten Primärquellen kein ausschließliches EU-Inferenz-Routing garantiert; Google positioniert stattdessen regionale Kontrollen zur Datenhaltung über Vertex AI/Google Cloud. Die Bedingungen zur Datennutzung der Gemini API unterscheiden sich wesentlich zwischen unbezahlter und bezahlter Nutzung; bei unbezahlter Nutzung erfolgt eine Verwendung zur Produktverbesserung, sofern nicht Bedingungen für den EWR, die Schweiz oder das Vereinigte Königreich gelten.",
+      "notes": "Die bezahlte Nutzung der Gemini API fällt unter Googles Auftragsverarbeitungszusatz, nicht unter den AVV von Google Cloud; Google LLC ist nach dem EU-US Data Privacy Framework zertifiziert. Laut Google hat die Gemini API keine Compliance-Zertifizierungen wie SOC 2 und nur einen globalen Endpunkt; regulierte Kunden verweist Google auf die Gemini Enterprise Agent Platform (früher Vertex AI). Neben Vorauszahlung und nutzungsbasierter Abrechnung gibt es ein kostenloses Kontingent, dessen Daten zur Verbesserung von Google-Produkten verwendet werden, außer bei Nutzern im EWR, in der Schweiz und im Vereinigten Königreich.",
       "dataResidency": {
-        "euRegionDetails": "Die direkte Gemini Developer API unter ai.google.dev bietet in der konsultierten offiziellen Gemini-API-Dokumentation weder eine Auswahl einer EU-Region noch eine Garantie für eine ausschließlich EU-interne Verarbeitung. Google Cloud dokumentiert Optionen zur Datenhaltung für Generative AI auf Vertex AI und der Vertex AI Platform, einschließlich Kontrollen zum Speicherort von AI/ML-Daten in bestimmten Regionen bzw. Multi-Regionen; diese Kontrollen gelten jedoch für Vertex-AI-/Google-Cloud-Dienste und nicht für die direkte Gemini Developer API."
+        "euRegionDetails": "Die Gemini Developer API hat nur einen globalen Endpunkt und keine EU-Regionsoption. Nach den Bedingungen von Google können zur Missbrauchsüberwachung protokollierte Prompts und Antworten in jedem Land vorübergehend gespeichert oder zwischengespeichert werden, in dem Google oder seine Beauftragten Einrichtungen betreiben. EU-Datenresidenz bietet Google nur über die Gemini Enterprise Agent Platform von Google Cloud (früher Vertex AI) an."
       },
       "dataUsage": {
-        "retentionPolicy": "Für bezahlte Gemini-API-Dienste erklärt Google, dass Prompts oder Antworten nicht zur Verbesserung eigener Produkte verwendet werden und diese im Rahmen des Google Data Processing Addendum verarbeitet werden. Für unbezahlte Dienste (einschließlich Google AI Studio und unbezahlter Gemini-API-Kontingente) gibt Google an, dass übermittelte Inhalte und generierte Antworten zur Bereitstellung, Verbesserung und Weiterentwicklung von Google-Produkten und Technologien des maschinellen Lernens verwendet werden, und dass menschliche Prüfer Eingaben/Ausgaben überprüfen können. Tuning-Inhalte werden zusammen mit feinabgestimmten Modellen zur Unterstützung einer erneuten Feinabstimmung gespeichert und gelöscht, wenn das feinabgestimmte Modell gelöscht wird.",
-        "details": "Die Gemini-API-Bedingungen von Google unterscheiden zwischen unbezahlter und bezahlter Nutzung. Unbezahlte Nutzung wird zur Verbesserung von Produkten verwendet; bezahlte Nutzung nicht. Für Nutzer im EWR, in der Schweiz oder im Vereinigten Königreich legen die Bedingungen fest, dass die Bedingungen zur Datennutzung für bezahlte Dienste für sämtliche Dienste gelten, einschließlich Google AI Studio und unbezahlter Gemini-API-Kontingente."
+        "retentionPolicy": "Bezahlte Nutzung: Prompts und Antworten werden 55 Tage zur Missbrauchsüberwachung aufbewahrt. Neue Projekte mit Abrechnung speichern zudem standardmäßig entwicklereigene Anfrageprotokolle bis zu 55 Tage; das lässt sich anpassen oder abschalten. Grounding mit der Google Suche oder Google Maps speichert Prompts und Ausgaben 30 Tage. Eine garantierte Zero Data Retention bietet Google für diese API nicht an.",
+        "details": "Bezahlte Nutzung wird nach Googles Auftragsverarbeitungszusatz verarbeitet und nicht zur Verbesserung von Google-Produkten verwendet. Im kostenlosen Kontingent und in Google AI Studio ohne Abrechnung verwendet Google Prompts und Antworten zur Verbesserung seiner Produkte, auch mit möglicher Prüfung durch Menschen; im EWR, in der Schweiz und im Vereinigten Königreich gelten für jede Nutzung die Datenbedingungen der bezahlten Dienste. Beim freiwilligen Teilen von Protokollen und im Contributor Tier werden Daten für das Training verwendet."
       },
       "euAiAct": {
-        "details": "Google Cloud verfügt über eine offizielle Informationsseite zur Compliance mit dem EU AI Act und erklärt, weiterhin Informationen zur Unterstützung der Compliance von Kunden zu veröffentlichen. Google Cloud hat zudem im Juli 2025 öffentlich erklärt, dass beabsichtigt ist, den Verhaltenskodex zum EU AI Act zu unterzeichnen."
+        "details": "Google als Entwickler der Gemini-Modelle steht auf der Liste der Unterzeichner des GPAI-Verhaltenskodex der EU-Kommission."
       }
     }
   }

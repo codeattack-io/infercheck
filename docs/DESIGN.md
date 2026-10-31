@@ -238,11 +238,11 @@ One white block (radius 10px, 1px border, faint shadow), labelled "Search and fi
 - Pressed chip: `--color-accent` fill and border, white text. Chips are toggle buttons with `aria-pressed`; at most one
   is active; pressing the active one clears it.
 
-| Preset      | Requires                     |
-| ----------- | ---------------------------- |
-| Strict EU   | EU only, DPA, no training    |
-| EU + SCCs   | DPA, SCCs, no training       |
-| No Training | no training on customer data |
+| Preset      | Requires                          |
+| ----------- | --------------------------------- |
+| Strict EU   | EU only, DPA, no training         |
+| EU + SCCs   | DPA, SCCs or EU only, no training |
+| No Training | no training on customer data      |
 
 - "Custom" has a 10px chevron after its label and `aria-expanded` / `aria-controls`. It opens the custom panel under the
   refine row: 1px dashed top border, padding 4px 14px 14px, four checkboxes (18px, `accent-color` accent) with 15px

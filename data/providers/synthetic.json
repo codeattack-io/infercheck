@@ -12,7 +12,7 @@
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "Synthetic says it runs models in private, secure datacenters, but it does not publish any EU region or EU-only processing option in its primary documentation. Its status pages distinguish between Synthetic-hosted models and proxied models; proxied models are served by third-party inference providers, so inference can leave Synthetic's own infrastructure."
+      "euRegionDetails": "Synthetic's privacy policy states that personal information is processed in the United States, and no EU region or EU processing option is documented. Its model list shows the chat models as hosted by Synthetic and the embedding model as served by Fireworks; a separate status page covers models proxied from third-party inference providers, which are not named."
     },
     "dpa": {
       "available": false,
@@ -22,8 +22,8 @@
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "For API data, Synthetic says it may store API inputs and outputs for up to 14 days for debugging, otherwise it does not store API prompts or completions without explicit consent, and it may log metadata such as request ID, inference cost, or sampling parameters. For UI or other usage, it retains personal information for as long as you use the services, as required by law, or as otherwise communicated.",
-      "details": "The homepage states Synthetic never trains on customer data and never stores API prompts or completions. The privacy policy adds that API inputs/outputs may be stored for up to 14 days for debugging and that prompts/completions are otherwise not stored without explicit consent."
+      "retentionPolicy": "Synthetic does not store API prompts or completions without explicit consent and deletes them once a request is completed. For use through the web interface and for other personal information, data is kept for as long as the services are used or the law requires.",
+      "details": "Synthetic's terms and privacy policy state that prompts and completions are not used to train, fine-tune, benchmark or otherwise improve any model. The privacy policy says Synthetic only works with inference partners that also do not store prompts or completions and do not train on them."
     },
     "subProcessors": {
       "disclosed": false,
@@ -39,29 +39,29 @@
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://synthetic.new/",
-    "https://synthetic.new/policies/privacy/2024-12-19",
+    "https://synthetic.new/policies/privacy",
     "https://synthetic.new/policies/terms-of-service",
     "https://dev.synthetic.new/docs/api/overview",
+    "https://dev.synthetic.new/docs/api/models",
     "https://synthetic.new/pricing",
+    "https://synthetic.new/pricing/models",
     "https://status.synthetic.new/",
-    "https://status-proxied.synthetic.new/",
-    "https://synthetic.new/blog/subscriptions",
-    "https://synthetic.new/blog/billing-launch"
+    "https://status-proxied.synthetic.new/"
   ],
-  "notes": "Synthetic publishes a privacy policy and states that it never trains on customer data; for API use it says prompts/completions may be retained for up to 14 days for debugging. No public DPA/AVV, SCC statement, sub-processor list, certifications, or EU-only residency commitment was found in primary sources. Because some models are explicitly proxied via third-party inference providers, EU-only inference cannot be confirmed and inference can leave Synthetic-hosted infrastructure.",
+  "notes": "Synthetic is operated by Synthetic Lab, Co. in San Francisco under California law. Its official sources contain no DPA, sub-processor list, standard contractual clauses, certifications or EU processing option. API access is offered through monthly subscriptions or usage-based per-token pricing.",
   "translations": {
     "de": {
-      "notes": "Synthetic veröffentlicht eine Datenschutzerklärung und gibt an, niemals auf Kundendaten zu trainieren; für die API-Nutzung wird angegeben, dass Prompts/Completions zu Debugging-Zwecken bis zu 14 Tage aufbewahrt werden können. In Primärquellen wurden weder ein öffentlich verfügbarer Auftragsverarbeitungsvertrag (AVV), eine Erklärung zu Standardvertragsklauseln (SCC), eine Liste der Unterauftragsverarbeiter, Zertifizierungen noch eine Verpflichtung zur ausschließlichen Datenhaltung in der EU gefunden. Da einige Modelle ausdrücklich über externe Inferenz-Anbieter weitergeleitet werden, kann eine ausschließlich in der EU erfolgende Inferenz nicht bestätigt werden, und die Inferenz kann die von Synthetic gehostete Infrastruktur verlassen.",
+      "notes": "Synthetic wird von Synthetic Lab, Co. in San Francisco nach kalifornischem Recht betrieben. Die offiziellen Quellen enthalten keinen Auftragsverarbeitungsvertrag, keine Liste der Unterauftragsverarbeiter, keine Standardvertragsklauseln, keine Zertifizierungen und keine Option zur Verarbeitung in der EU. Der API-Zugang wird über Monatsabonnements oder nutzungsbasierte Abrechnung pro Token angeboten.",
       "dataResidency": {
-        "euRegionDetails": "Synthetic gibt an, Modelle in privaten, sicheren Rechenzentren zu betreiben, veröffentlicht jedoch in seiner Primärdokumentation weder eine EU-Region noch eine Option für eine ausschließlich in der EU erfolgende Verarbeitung. Die Statusseiten unterscheiden zwischen von Synthetic gehosteten Modellen und weitergeleiteten Modellen; weitergeleitete Modelle werden von externen Inferenz-Anbietern bereitgestellt, sodass die Inferenz die eigene Infrastruktur von Synthetic verlassen kann."
+        "euRegionDetails": "Laut Datenschutzerklärung von Synthetic werden personenbezogene Daten in den USA verarbeitet; eine EU-Region oder eine Option zur Verarbeitung in der EU ist nicht dokumentiert. Die Modellliste führt die Chat-Modelle als von Synthetic gehostet und das Embedding-Modell als von Fireworks bereitgestellt; eine eigene Statusseite betrifft Modelle, die über nicht namentlich genannte externe Inferenzanbieter weitergeleitet werden."
       },
       "dataUsage": {
-        "retentionPolicy": "Für API-Daten gibt Synthetic an, API-Eingaben und -Ausgaben zu Debugging-Zwecken bis zu 14 Tage speichern zu können; ansonsten werden API-Prompts oder Completions ohne ausdrückliche Einwilligung nicht gespeichert, wobei Metadaten wie Request-ID, Inferenzkosten oder Sampling-Parameter protokolliert werden können. Für die UI oder sonstige Nutzung werden personenbezogene Daten so lange aufbewahrt, wie die Dienste genutzt werden, wie es gesetzlich erforderlich ist oder wie anderweitig mitgeteilt.",
-        "details": "Auf der Homepage wird angegeben, dass Synthetic niemals auf Kundendaten trainiert und API-Prompts oder Completions niemals speichert. Die Datenschutzerklärung ergänzt, dass API-Eingaben/-Ausgaben zu Debugging-Zwecken bis zu 14 Tage gespeichert werden können und dass Prompts/Completions im Übrigen ohne ausdrückliche Einwilligung nicht gespeichert werden."
+        "retentionPolicy": "Synthetic speichert API-Prompts und -Completions nicht ohne ausdrückliche Einwilligung und löscht sie, sobald eine Anfrage abgeschlossen ist. Bei Nutzung über die Weboberfläche und für sonstige personenbezogene Daten werden Daten so lange aufbewahrt, wie die Dienste genutzt werden oder es gesetzlich vorgeschrieben ist.",
+        "details": "Laut Nutzungsbedingungen und Datenschutzerklärung von Synthetic werden Prompts und Completions nicht zum Training, Fine-Tuning, Benchmarking oder zur sonstigen Verbesserung von Modellen verwendet. Laut Datenschutzerklärung arbeitet Synthetic nur mit Inferenzpartnern zusammen, die Prompts und Completions ebenfalls nicht speichern und nicht für Training verwenden."
       }
     }
   }

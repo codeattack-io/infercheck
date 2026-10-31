@@ -1,7 +1,7 @@
 {
   "slug": "llm-gateway",
   "name": "LLM Gateway",
-  "type": "api_provider",
+  "type": "gateway",
   "website": "https://llmgateway.io",
   "apiDocsUrl": "https://docs.llmgateway.io",
   "compliance": {
@@ -9,29 +9,33 @@
     "dataResidency": {
       "regions": [
         "EU",
-        "US"
+        "US",
+        "SG",
+        "CN"
       ],
       "euOnly": false,
       "dataLeavesEuAtInference": true,
-      "euRegionDetails": "The privacy policy states data may be processed and stored on servers in the European Union or the United States. LLM Gateway routes API requests to selected third-party AI providers, and its site/docs describe access to many providers and automatic routing/fallback, so EU-only processing is not guaranteed from the public documentation."
+      "euRegionDetails": "LLM Gateway runs its own platform on Google Cloud in the EU and the US and does not commit to EU-only processing. Requests go to the third-party provider serving the chosen model, with automatic routing and fallback across providers worldwide; customers can pin a provider and, for some providers, a region (provider/model:region) and turn off fallback with the X-No-Fallback header. Enterprise customers can also restrict routing by provider headquarters country and pin regions per project, but no contractually committed EU-only mode is documented."
     },
     "dpa": {
-      "available": false,
+      "available": true,
       "url": null,
-      "signedVia": "not_available"
+      "signedVia": "custom_contract"
     },
     "dataUsage": {
-      "trainsOnCustomerData": null,
-      "optOutAvailable": null,
-      "retentionPolicy": "Default retention is metadata only. If 'Retain All Data' is enabled, full request/response payloads are stored. Data is retained for 30 days for all users, with custom retention periods for Enterprise. Stored data is automatically deleted after the retention period or when the account is deleted, and users can request immediate deletion of specific records through support.",
-      "details": "Privacy/terms say users can choose between 'Metadata Only' and 'Retain All Data' in Settings → Policies. The service shares request data with selected AI providers when routing requests."
+      "trainsOnCustomerData": false,
+      "optOutAvailable": true,
+      "retentionPolicy": "By default the gateway stores only request metadata (model, provider, token counts, cost, latency), not prompts or responses. Enterprise organizations can enable storage of full request and response payloads, which are deleted after 30 days; Responses API items are kept for up to 30 days unless the request sets store: false, and optional per-project response caching keeps responses for a configurable time (60 seconds by default). Billing records are kept for 10 years.",
+      "details": "LLM Gateway states that it does not use prompts or responses to train models. Automatic routing does not filter by training policy by default: its provider list marks DeepSeek and Meta's contributor endpoint as training on API inputs, and requests may also go to undisclosed stealth providers. Pay-as-you-go customers have to exclude these themselves, either with an Allow Providers rule on the API key or by pinning each request to one provider (provider/model) and sending the X-No-Fallback header. DevPass coding subscriptions can turn on a No AI training setting, the full provider compliance policy (no training, zero data retention, certifications) is Enterprise-only, and the DPA is offered to Enterprise customers on request."
     },
     "subProcessors": {
-      "disclosed": false,
-      "url": null,
-      "includesEuEntities": null
+      "disclosed": true,
+      "url": "https://llmgateway.io/legal/sub-processors",
+      "includesEuEntities": true
     },
-    "certifications": [],
+    "certifications": [
+      "SOC2"
+    ],
     "euAiAct": {
       "status": "unknown",
       "details": null
@@ -40,30 +44,34 @@
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://llmgateway.io/",
     "https://llmgateway.io/pricing",
+    "https://llmgateway.io/about",
+    "https://llmgateway.io/enterprise",
     "https://llmgateway.io/legal/privacy",
     "https://llmgateway.io/legal/terms",
-    "https://llmgateway.io/features/multi-provider-support",
-    "https://docs.llmgateway.io/",
+    "https://llmgateway.io/legal/sub-processors",
+    "https://llmgateway.io/legal/providers",
+    "https://security.llmgateway.io/",
     "https://docs.llmgateway.io/features/data-retention",
-    "https://docs.llmgateway.io/features/caching",
-    "https://llmgateway.io/blog/introducing-llm-gateway",
-    "https://llmgateway.io/blog/custom-openai-compatible-providers"
+    "https://docs.llmgateway.io/features/caching/gateway-caching",
+    "https://docs.llmgateway.io/features/routing",
+    "https://docs.llmgateway.io/features/compliance",
+    "https://docs.llmgateway.io/features/api-keys"
   ],
-  "notes": "Public primary-source documentation confirms a US legal nexus (Delaware governing law), processing/storage in the EU or US, configurable retention, and extensive routing to third-party AI providers, including custom providers. I could not find a public DPA/AVV, sub-processor list, SCC statement, training-on-customer-data statement, or security certification disclosure on the provider’s official site/docs, so those fields are null or false where appropriate.",
+  "notes": "Hosted AI gateway operated by Polar Lights LLC (Delaware, US), which is not certified under the EU-US Data Privacy Framework; the open-source code can also be self-hosted. Usage is paid per token through prepaid credits with a 5% platform fee, the pricing page lists rate-limited free models, and Enterprise adds provider compliance policies, full payload retention and a DPA. LLM Gateway claims SOC 2 Type II and uses SCCs with its operational sub-processors, but states that no SCCs are in place with several upstream AI providers.",
   "translations": {
     "de": {
-      "notes": "Öffentlich zugängliche Primärquellen-Dokumentation bestätigt einen rechtlichen Bezug zu den USA (anwendbares Recht des US-Bundesstaats Delaware), eine Verarbeitung/Speicherung in der EU oder den USA, konfigurierbare Speicherfristen sowie ein umfangreiches Routing an externe KI-Anbieter, einschließlich kundenspezifischer Anbieter. Auf der offiziellen Website/in den offiziellen Dokumentationen des Anbieters konnte kein öffentlich zugänglicher Auftragsverarbeitungsvertrag (AVV), keine Liste der Unterauftragsverarbeiter, keine Erklärung zu Standardvertragsklauseln (SCC), keine Erklärung zur Nutzung von Kundendaten für das Training und keine Offenlegung von Sicherheitszertifizierungen gefunden werden; daher sind diese Felder, soweit zutreffend, null oder false.",
+      "notes": "Gehostetes KI-Gateway der Polar Lights LLC (Delaware, USA), die nicht nach dem EU-US Data Privacy Framework zertifiziert ist; der Open-Source-Code lässt sich auch selbst betreiben. Abgerechnet wird pro Token über Prepaid-Guthaben mit 5 % Plattformgebühr, die Preisseite nennt kostenlose Modelle mit Ratenbegrenzung, und Enterprise bietet zusätzlich Compliance-Richtlinien für Anbieter, die Speicherung vollständiger Anfragen und Antworten sowie einen AVV. LLM Gateway gibt SOC 2 Type II an und nutzt Standardvertragsklauseln mit seinen eigenen Unterauftragsverarbeitern, räumt aber ein, dass mit mehreren Upstream-KI-Anbietern keine Standardvertragsklauseln abgeschlossen sind.",
       "dataResidency": {
-        "euRegionDetails": "Die Datenschutzerklärung besagt, dass Daten auf Servern in der Europäischen Union oder in den Vereinigten Staaten verarbeitet und gespeichert werden können. LLM Gateway leitet API-Anfragen an ausgewählte externe KI-Anbieter weiter, und die Website/Dokumentation beschreibt den Zugriff auf viele Anbieter sowie automatisches Routing/Fallback; daher ist eine ausschließlich auf die EU beschränkte Verarbeitung anhand der öffentlich zugänglichen Dokumentation nicht gewährleistet."
+        "euRegionDetails": "LLM Gateway betreibt die eigene Plattform auf Google Cloud in der EU und den USA und sagt keine ausschließliche Verarbeitung in der EU zu. Anfragen gehen an den externen Anbieter des gewählten Modells, mit automatischem Routing und Fallback über Anbieter weltweit; Kunden können einen Anbieter und bei manchen Anbietern auch eine Region festlegen (provider/model:region) und den Fallback mit dem Header X-No-Fallback abschalten. Enterprise-Kunden können das Routing zusätzlich nach Sitzland des Anbieters einschränken und Regionen pro Projekt festlegen, eine vertraglich zugesicherte reine EU-Verarbeitung ist aber nicht dokumentiert."
       },
       "dataUsage": {
-        "retentionPolicy": "Die Standardspeicherung beschränkt sich auf Metadaten. Wenn „Retain All Data“ aktiviert ist, werden vollständige Anfrage-/Antwort-Payloads gespeichert. Daten werden für alle Nutzer 30 Tage lang gespeichert; für Enterprise sind individuelle Speicherfristen verfügbar. Gespeicherte Daten werden nach Ablauf der Speicherfrist oder bei Löschung des Kontos automatisch gelöscht, und über den Support kann die unverzügliche Löschung bestimmter Datensätze beantragt werden.",
-        "details": "Datenschutzerklärung/Nutzungsbedingungen besagen, dass Nutzer in Settings → Policies zwischen „Metadata Only“ und „Retain All Data“ wählen können. Der Dienst teilt Anfragedaten mit ausgewählten KI-Anbietern, wenn Anfragen weitergeleitet werden."
+        "retentionPolicy": "Standardmäßig speichert das Gateway nur Metadaten der Anfragen (Modell, Anbieter, Token-Anzahl, Kosten, Latenz), keine Prompts oder Antworten. Enterprise-Organisationen können die Speicherung vollständiger Anfragen und Antworten aktivieren, die nach 30 Tagen gelöscht werden; Einträge der Responses API werden bis zu 30 Tage aufbewahrt, sofern die Anfrage nicht store: false setzt, und das optionale Antwort-Caching pro Projekt hält Antworten für eine einstellbare Dauer (standardmäßig 60 Sekunden). Abrechnungsdaten werden 10 Jahre aufbewahrt.",
+        "details": "LLM Gateway gibt an, Prompts und Antworten nicht zum Training von Modellen zu nutzen. Das automatische Routing berücksichtigt standardmäßig nicht, ob ein Anbieter trainiert: Die eigene Anbieterliste weist DeepSeek und Metas Contributor-Endpunkt als Anbieter aus, die mit API-Eingaben trainieren, und Anfragen können auch an nicht offengelegte Stealth-Anbieter gehen. Kunden mit nutzungsbasierter Abrechnung müssen diese selbst ausschließen, entweder mit einer Regel „Allow Providers“ am API-Schlüssel oder indem sie jede Anfrage auf einen Anbieter festlegen (provider/model) und den Header X-No-Fallback mitsenden. DevPass-Abonnements für Coding können die Einstellung „No AI training“ aktivieren, die vollständige Compliance-Richtlinie für Anbieter (kein Training, Zero Data Retention, Zertifizierungen) gibt es nur für Enterprise, und den AVV erhalten Enterprise-Kunden auf Anfrage."
       }
     }
   }

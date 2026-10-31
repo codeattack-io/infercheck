@@ -8,27 +8,31 @@
     "headquarters": "US",
     "dataResidency": {
       "regions": [
-        "US"
+        "US",
+        "EU",
+        "SG",
+        "CN",
+        "ID"
       ],
-      "euOnly": false,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": "EU in-region routing (eu.openrouter.ai) is enterprise-only and not enabled by default. Standard accounts route globally through US infrastructure with no data-residency guarantee. Even with EU routing enabled, every request passes through OpenRouter's US gateway infrastructure, creating a mandatory cross-border transfer."
+      "euOnly": true,
+      "dataLeavesEuAtInference": false,
+      "euRegionDetails": "Business (self-serve) and Enterprise customers can send requests to eu.openrouter.ai, where they are decrypted in Europe and routed only to provider endpoints in Europe (EU/EEA, UK, Switzerland); requests fail rather than leave the region, and OpenRouter's own input/output logging is skipped there. The contractual EU/EEA-only commitment for prompts and outputs (DPA Exhibit A, which also excludes UK providers) applies only when the customer elects it in an order form or other written agreement; OpenRouter documents no self-serve way to make this election, and without it the standard DPA describes hosting in US regions. Account, billing, security and abuse-monitoring records may be processed in the US in either case. In October 2026 about 69 models from 5 providers were available; web search and fetch, server tools such as files, image generation and shell, PDF engines other than native, the Batch API and the Auto Router are excluded, and BYOK deployments must be placed in the EU by the customer."
     },
     "dpa": {
       "available": true,
-      "url": "https://openrouter.ai/terms",
+      "url": "https://openrouter.ai/data-processing-agreement",
       "signedVia": "online_acceptance"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
-      "optOutAvailable": true,
-      "retentionPolicy": "OpenRouter layer: prompts not logged by default (ZDR mode). Opt-in prompt logging available. Upstream providers each have their own retention policies, which vary widely. ZDR flag restricts routing to zero-retention endpoints only.",
-      "details": "Each of 60+ upstream providers is effectively a sub-processor with its own data handling policy. OpenRouter's own DPA covers only OpenRouter's layer, not upstream providers."
+      "optOutAvailable": false,
+      "retentionPolicy": "OpenRouter does not store prompts or completions by default, but keeps request metadata such as token counts and latency. Optional input/output logging keeps data for at least 3 months, files uploaded through the Files API are kept until deleted, and content flagged as potential child sexual abuse material may be retained for review and reporting. Upstream providers apply their own retention; customers can restrict routing to zero-data-retention endpoints.",
+      "details": "OpenRouter does not train on prompts; letting it use them for product improvement in exchange for a 1% discount is off by default, and it samples a small number of prompts for anonymous topic categorization. The account privacy settings have separate switches for paid and free endpoints that may train on inputs; according to the FAQ, such providers, and those whose policy is unconfirmed, are not used unless the customer switches this on. A per-request data-collection filter, zero-data-retention routing and provider restrictions narrow routing further. Upstream model providers process data under their own terms; OpenRouter tracks their data policies but does not guarantee their compliance."
     },
     "subProcessors": {
-      "disclosed": false,
-      "url": null,
-      "includesEuEntities": null
+      "disclosed": true,
+      "url": "https://trust.openrouter.ai/",
+      "includesEuEntities": true
     },
     "certifications": [
       "SOC2"
@@ -41,22 +45,34 @@
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-07",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://openrouter.ai/terms",
-    "https://openrouter.ai/privacy"
+    "https://openrouter.ai/privacy",
+    "https://openrouter.ai/data-processing-agreement",
+    "https://trust.openrouter.ai/",
+    "https://openrouter.ai/docs/guides/features/in-region-routing",
+    "https://openrouter.ai/business/eu",
+    "https://openrouter.ai/docs/guides/privacy/data-collection",
+    "https://openrouter.ai/docs/guides/privacy/provider-logging",
+    "https://openrouter.ai/docs/guides/routing/provider-selection",
+    "https://openrouter.ai/docs/guides/features/zdr",
+    "https://openrouter.ai/docs/guides/features/input-output-logging",
+    "https://openrouter.ai/docs/faq",
+    "https://openrouter.ai/pricing",
+    "https://openrouter.ai/api/v1/providers"
   ],
-  "notes": "Gateway routing to 300+ upstream models (GPT-4o, Claude, Gemini, Llama, DeepSeek, Mistral, etc.). Most complex GDPR posture in this directory: the gateway architecture makes every upstream provider a de facto sub-processor, none of which are formally listed. EU routing requires enterprise agreement. Illustrates the compliance gap created by gateway/aggregator services.",
+  "notes": "Gateway that routes to 600+ models from 80+ upstream providers; besides pay-as-you-go there is a free tier with 25+ free models. OpenRouter, Inc. is not certified under the EU-US Data Privacy Framework; transfers to the US rely on the SCCs in the DPA. Upstream model providers are listed as sub-processors only as a category, and changes to them are not notified in advance.",
   "translations": {
     "de": {
-      "notes": "Gateway-Routing zu mehr als 300 Upstream-Modellen (GPT-4o, Claude, Gemini, Llama, DeepSeek, Mistral usw.). Die komplexeste DSGVO-Compliance-Position in diesem Verzeichnis: Die Gateway-Architektur macht jeden Upstream-Anbieter de facto zu einem Unterauftragsverarbeiter, von denen keiner formell aufgeführt ist. EU-Routing erfordert eine Enterprise-Vereinbarung. Veranschaulicht die durch Gateway-/Aggregator-Dienste entstehende Compliance-Lücke.",
+      "notes": "Gateway, das an mehr als 600 Modelle von über 80 Upstream-Anbietern weiterleitet; neben der nutzungsbasierten Abrechnung gibt es einen kostenlosen Tarif mit über 25 Gratis-Modellen. OpenRouter, Inc. ist nicht nach dem EU-US Data Privacy Framework zertifiziert; Übermittlungen in die USA stützen sich auf die Standardvertragsklauseln im AVV. Die Upstream-Modellanbieter sind nur als Kategorie unter den Unterauftragsverarbeitern aufgeführt, und Änderungen bei ihnen werden nicht vorab mitgeteilt.",
       "dataResidency": {
-        "euRegionDetails": "EU-In-Region-Routing (eu.openrouter.ai) ist nur für Enterprise verfügbar und standardmäßig nicht aktiviert. Standardkonten werden global über US-Infrastruktur geroutet, ohne Garantie hinsichtlich der Datenhaltung. Selbst bei aktiviertem EU-Routing läuft jede Anfrage über die US-Gateway-Infrastruktur von OpenRouter, wodurch eine zwingende grenzüberschreitende Übermittlung entsteht."
+        "euRegionDetails": "Business-Kunden (selbst buchbar) und Enterprise-Kunden können Anfragen an eu.openrouter.ai senden; dort werden sie in Europa entschlüsselt und nur an Anbieter-Endpunkte in Europa (EU/EWR, Vereinigtes Königreich, Schweiz) weitergeleitet, Anfragen schlagen fehl, statt die Region zu verlassen, und OpenRouters eigene Protokollierung von Ein- und Ausgaben entfällt dort. Die vertragliche Zusage, Prompts und Ausgaben nur in der EU/im EWR zu verarbeiten (AVV-Anlage A, die auch Anbieter im Vereinigten Königreich ausschließt), gilt nur, wenn der Kunde sie in einem Bestellformular oder einer anderen schriftlichen Vereinbarung wählt; einen Self-Service-Weg dafür dokumentiert OpenRouter nicht, und ohne diese Wahl beschreibt der Standard-AVV Hosting in US-Regionen. Konto-, Abrechnungs-, Sicherheits- und Missbrauchsdaten können in jedem Fall in den USA verarbeitet werden. Im Oktober 2026 waren rund 69 Modelle von 5 Anbietern verfügbar; Websuche und Web-Abruf, Server-Tools wie Dateien, Bilderzeugung und Shell, andere PDF-Engines als die native, die Batch-API und der Auto Router sind ausgeschlossen, und eigene BYOK-Deployments muss der Kunde selbst in der EU betreiben."
       },
       "dataUsage": {
-        "retentionPolicy": "OpenRouter-Ebene: Prompts werden standardmäßig nicht protokolliert (ZDR-Modus). Optionales Opt-in für die Protokollierung von Prompts verfügbar. Die jeweiligen Upstream-Anbieter haben jeweils eigene Aufbewahrungsrichtlinien, die stark variieren. Das ZDR-Flag beschränkt das Routing ausschließlich auf Endpunkte ohne Datenspeicherung.",
-        "details": "Jeder der mehr als 60 Upstream-Anbieter ist faktisch ein Unterauftragsverarbeiter mit eigener Richtlinie zur Datenverarbeitung. Der eigene Auftragsverarbeitungsvertrag (AVV) von OpenRouter deckt nur die Ebene von OpenRouter ab, nicht die Upstream-Anbieter."
+        "retentionPolicy": "OpenRouter speichert Prompts und Antworten standardmäßig nicht, behält aber Metadaten wie Token-Anzahl und Latenz. Die optionale Protokollierung von Ein- und Ausgaben bewahrt Daten mindestens 3 Monate auf, über die Files API hochgeladene Dateien bleiben bis zur Löschung gespeichert, und als möglicher Kindesmissbrauch markierte Inhalte können zur Prüfung und Meldung aufbewahrt werden. Upstream-Anbieter wenden eigene Aufbewahrungsfristen an; Kunden können das Routing auf Endpunkte ohne Datenspeicherung beschränken.",
+        "details": "OpenRouter trainiert nicht mit Prompts; die Nutzung zur Produktverbesserung gegen 1 % Rabatt ist standardmäßig deaktiviert, und eine kleine Stichprobe von Prompts wird anonym nach Themen kategorisiert. Die Datenschutzeinstellungen des Kontos haben getrennte Schalter für kostenpflichtige und kostenlose Endpunkte, die mit Eingaben trainieren könnten; laut FAQ werden solche Anbieter und solche mit unbestätigter Richtlinie nur genutzt, wenn der Kunde diese Schalter aktiviert. Ein Filter für die Datenerfassung pro Anfrage, Routing ohne Datenspeicherung und Einschränkungen der Anbieter begrenzen das Routing zusätzlich. Die Upstream-Modellanbieter verarbeiten Daten nach ihren eigenen Bedingungen; OpenRouter erfasst deren Datenrichtlinien, garantiert aber nicht deren Einhaltung."
       }
     }
   }

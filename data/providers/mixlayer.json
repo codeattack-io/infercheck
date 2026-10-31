@@ -2,15 +2,17 @@
   "slug": "mixlayer",
   "name": "Mixlayer",
   "type": "api_provider",
-  "website": "https://docs.mixlayer.com",
+  "website": "https://www.mixlayer.com",
   "apiDocsUrl": "https://docs.mixlayer.com",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
-      "regions": [],
+      "regions": [
+        "US"
+      ],
       "euOnly": false,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": null
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "By default Mixlayer runs each request in the nearest region that hosts the model and may fall back to any other region visible to the organization. An organization routing policy can restrict inference to listed regions, but Mixlayer documents no EU region and no EU processing commitment. The privacy policy says data may be processed and stored in the U.S. and other countries where Mixlayer or its service providers operate."
     },
     "dpa": {
       "available": false,
@@ -19,9 +21,9 @@
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
-      "optOutAvailable": true,
-      "retentionPolicy": "By default, Mixlayer says it does not log full API request/response bodies. It may retain logs, metadata, console usage analytics, security/audit logs, and stored customer content only in limited circumstances, for up to a maximum of 1 year unless otherwise agreed in writing.",
-      "details": "Mixlayer states that by default it does not use customer content to train or improve models for general availability. Training use is opt-in, and opt-in can be withdrawn prospectively through settings if available or by contacting support. Customer-directed fine-tuning/adaptation is treated separately when explicitly enabled."
+      "optOutAvailable": false,
+      "retentionPolicy": "Inference prompts and outputs are processed in memory and discarded after the request by default. Stored Responses API data is kept for the organization's retention setting, which admins can set to a custom window or \"Never store\". The terms allow Mixlayer to keep API requests and responses, logs and metadata for up to 1 year unless otherwise agreed in writing.",
+      "details": "The terms and privacy policy say Mixlayer does not use customer inputs or outputs to train or improve models for general availability unless the customer opts in; opt-in can be withdrawn for the future. Customer-requested fine-tuning uses the customer's content only for that model."
     },
     "subProcessors": {
       "disclosed": false,
@@ -37,21 +39,27 @@
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-11",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
-    "https://docs.mixlayer.com",
     "https://www.mixlayer.com/",
     "https://www.mixlayer.com/terms-of-service",
-    "https://www.mixlayer.com/privacy-policy"
+    "https://www.mixlayer.com/privacy-policy",
+    "https://www.mixlayer.com/security",
+    "https://docs.mixlayer.com/zero-data-retention",
+    "https://docs.mixlayer.com/regions-and-routing",
+    "https://docs.mixlayer.com/credits-and-limits"
   ],
-  "notes": "Mixlayer publishes a Privacy Policy and Terms of Service, but no public DPA/AVV, SCC commitment, public sub-processor list, or data residency/EU-only processing documentation was found in the primary sources reviewed. The company states customer content is not used for general model training by default, with explicit opt-in required, and says SOC 2 is only in progress.",
+  "notes": "Mixlayer Labs Inc. (San Francisco) serves open-weight models through an OpenAI-compatible API, billed from prepaid credit (post-paid on request); some models are free. It publishes no DPA, sub-processor list or SCC commitment, and its security page says SOC 2 is still in progress. Mixlayer is not certified under the EU-U.S. Data Privacy Framework.",
   "translations": {
     "de": {
-      "notes": "Mixlayer veröffentlicht eine Datenschutzerklärung und Nutzungsbedingungen; in den überprüften Primärquellen wurden jedoch kein öffentlich zugänglicher Auftragsverarbeitungsvertrag (AVV), keine Verpflichtung zu Standardvertragsklauseln (SCC), keine öffentliche Liste von Unterauftragsverarbeitern und keine Dokumentation zur Datenhaltung bzw. ausschließlich zur Verarbeitung in der EU gefunden. Das Unternehmen gibt an, dass Kundeninhalte standardmäßig nicht für das allgemeine Modelltraining verwendet werden und hierfür ein ausdrückliches Opt-in erforderlich ist; ferner wird angegeben, dass SOC 2 sich lediglich in Vorbereitung befindet.",
+      "notes": "Mixlayer Labs Inc. (San Francisco) stellt Open-Weight-Modelle über eine OpenAI-kompatible API bereit, abgerechnet über vorausbezahltes Guthaben (nachträgliche Abrechnung auf Anfrage); einige Modelle sind kostenlos. Ein AVV, eine Liste der Unterauftragsverarbeiter oder eine Zusage zu Standardvertragsklauseln werden nicht veröffentlicht, und laut Sicherheitsseite ist SOC 2 noch in Arbeit. Mixlayer ist nicht unter dem EU-U.S. Data Privacy Framework zertifiziert.",
       "dataUsage": {
-        "retentionPolicy": "Mixlayer gibt an, standardmäßig keine vollständigen API-Anfrage-/Antwortinhalte zu protokollieren. Protokolle, Metadaten, Analysen der Konsolennutzung, Sicherheits-/Audit-Protokolle und gespeicherte Kundeninhalte können nur unter begrenzten Umständen und, sofern nicht schriftlich etwas anderes vereinbart wurde, für höchstens 1 Jahr aufbewahrt werden.",
-        "details": "Mixlayer gibt an, Kundeninhalte standardmäßig nicht zur Schulung oder Verbesserung von Modellen für die allgemeine Verfügbarkeit zu verwenden. Die Nutzung zu Trainingszwecken erfolgt auf Opt-in-Basis; ein erteiltes Opt-in kann, sofern entsprechende Einstellungen verfügbar sind, dort oder durch Kontaktaufnahme mit dem Support mit Wirkung für die Zukunft widerrufen werden. Eine kundenseitig veranlasste Feinabstimmung/Anpassung wird bei ausdrücklicher Aktivierung gesondert behandelt."
+        "retentionPolicy": "Prompts und Ausgaben werden standardmäßig nur im Arbeitsspeicher verarbeitet und nach der Anfrage verworfen. Gespeicherte Daten der Responses API bleiben so lange erhalten, wie es die Aufbewahrungseinstellung der Organisation vorsieht; Admins können einen eigenen Zeitraum oder „Never store“ wählen. Laut Nutzungsbedingungen darf Mixlayer API-Anfragen und -Antworten, Protokolle und Metadaten bis zu 1 Jahr aufbewahren, sofern nichts anderes schriftlich vereinbart ist.",
+        "details": "Laut Nutzungsbedingungen und Datenschutzerklärung verwendet Mixlayer Eingaben und Ausgaben von Kunden nicht zum Training oder zur Verbesserung allgemein verfügbarer Modelle, es sei denn, der Kunde willigt ein (Opt-in); die Einwilligung kann für die Zukunft widerrufen werden. Vom Kunden beauftragtes Fine-Tuning nutzt seine Inhalte nur für das jeweilige Modell."
+      },
+      "dataResidency": {
+        "euRegionDetails": "Standardmäßig verarbeitet Mixlayer jede Anfrage in der nächstgelegenen Region, die das Modell anbietet, und kann auf jede andere für die Organisation sichtbare Region ausweichen. Über eine Routing-Richtlinie der Organisation lässt sich die Inferenz auf bestimmte Regionen beschränken, Mixlayer dokumentiert aber keine EU-Region und keine Zusage zur Verarbeitung in der EU. Laut Datenschutzerklärung können Daten in den USA und in anderen Ländern verarbeitet und gespeichert werden, in denen Mixlayer oder seine Dienstleister tätig sind."
       }
     }
   }

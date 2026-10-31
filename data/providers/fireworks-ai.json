@@ -3,34 +3,45 @@
   "name": "Fireworks AI",
   "type": "api_provider",
   "website": "https://fireworks.ai",
-  "apiDocsUrl": "https://fireworks.ai/docs/",
+  "apiDocsUrl": "https://docs.fireworks.ai/getting-started/introduction",
   "compliance": {
     "headquarters": "US",
     "dataResidency": {
       "regions": [
-        "US"
+        "US",
+        "EU",
+        "CA",
+        "JP",
+        "AU",
+        "TW",
+        "MY"
       ],
       "euOnly": false,
-      "dataLeavesEuAtInference": null,
-      "euRegionDetails": "US infrastructure only. No EU region generally available."
+      "dataLeavesEuAtInference": true,
+      "euRegionDetails": "The pay-per-token serverless API routes requests globally by default; a US-only endpoint exists for selected models, and EU-only serverless is available only through sales. Dedicated deployments can be placed in a Europe multi-region or in single regions in Frankfurt and Iceland once Fireworks grants quota, at a higher price. Account-wide region enforcement is an Enterprise feature and currently covers only the US. The DPA allows Fireworks to process customer data wherever it or its sub-processors maintain facilities."
     },
     "dpa": {
       "available": true,
-      "url": "https://fireworks.ai/privacy-policy",
+      "url": "https://fireworks.ai/dpa",
       "signedVia": "online_acceptance"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
-      "retentionPolicy": "ZDR by default for all open models — prompt/generation data in volatile memory only, deleted after request. Response API: 30-day retention when store=true (opt-out: store=false). FireOptimizer: opt-in logging only.",
-      "details": "No training on customer inference data. ZDR is the default for open model endpoints."
+      "retentionPolicy": "Prompts and outputs of open models are not logged or stored by default and stay in memory only for the request; with prompt caching, parts can remain in memory for several minutes. The Responses API stores conversations by default for up to 30 days unless store=false is set. Logging for features such as FireOptimizer is opt-in.",
+      "details": "The terms rule out using customer content to train Fireworks' own models or to improve the service, and the DPA rules out using it to train or improve shared or foundation models. Zero data retention is the default for inference on open models."
     },
     "subProcessors": {
-      "disclosed": false,
-      "url": null,
-      "includesEuEntities": null
+      "disclosed": true,
+      "url": "https://trust.fireworks.ai/subprocessors",
+      "includesEuEntities": true
     },
-    "certifications": [],
+    "certifications": [
+      "SOC2",
+      "ISO27001",
+      "ISO27701",
+      "ISO42001"
+    ],
     "euAiAct": {
       "status": "unknown",
       "details": null
@@ -39,22 +50,31 @@
     "adequacyDecision": false
   },
   "pricingTier": "pay_per_use",
-  "lastVerified": "2026-04-07",
+  "lastVerified": "2026-10-30",
   "verifiedBy": "ai_draft",
   "sourceUrls": [
     "https://fireworks.ai/privacy-policy",
-    "https://fireworks.ai/terms-of-service"
+    "https://fireworks.ai/terms-of-service",
+    "https://fireworks.ai/dpa",
+    "https://trust.fireworks.ai/",
+    "https://trust.fireworks.ai/subprocessors",
+    "https://docs.fireworks.ai/guides/security_compliance/data_handling",
+    "https://docs.fireworks.ai/guides/security_compliance/data_security",
+    "https://docs.fireworks.ai/deployments/regions",
+    "https://docs.fireworks.ai/accounts/data-residency",
+    "https://docs.fireworks.ai/serverless/us-only-serverless",
+    "https://fireworks.ai/pricing"
   ],
-  "notes": "Headquartered in San Francisco, CA. SCCs explicitly referenced for EEA/UK transfers. Named EU GDPR representative via GDPR Local (fireworksaiinc.gdprlocal.com/eu). ZDR is the default for inference — better data hygiene posture than many US competitors. No EU data residency option.",
+  "notes": "Fireworks.ai, Inc. is based in San Mateo, California, and is not certified under the EU-US Data Privacy Framework; EU transfers rely on standard contractual clauses in the DPA, which is part of the terms of service. GDPR Local acts as its representative in the EU and UK. Self-serve access is prepaid pay-per-token.",
   "translations": {
     "de": {
-      "notes": "Hauptsitz in San Francisco, Kalifornien. Standardvertragsklauseln (SCC) werden für Übermittlungen in den EWR/das Vereinigte Königreich ausdrücklich erwähnt. Benannter EU-GDPR-Vertreter über GDPR Local (fireworksaiinc.gdprlocal.com/eu). ZDR ist der Standard für Inferenz — bessere Data-Hygiene-Position als bei vielen US-Wettbewerbern. Keine Option für Datenhaltung in der EU.",
+      "notes": "Fireworks.ai, Inc. hat seinen Sitz in San Mateo, Kalifornien, und ist nicht unter dem EU-US Data Privacy Framework zertifiziert; Übermittlungen aus der EU stützen sich auf Standardvertragsklauseln im Auftragsverarbeitungsvertrag, der Teil der Nutzungsbedingungen ist. GDPR Local ist der Vertreter in der EU und im Vereinigten Königreich. Der Self-Service-Zugang wird über vorab gekauftes Guthaben pro Token abgerechnet.",
       "dataResidency": {
-        "euRegionDetails": "Nur US-Infrastruktur. Keine EU-Region allgemein verfügbar."
+        "euRegionDetails": "Die serverlose Pay-per-Token-API leitet Anfragen standardmäßig weltweit weiter; für ausgewählte Modelle gibt es einen reinen US-Endpunkt, eine reine EU-Variante nur über den Vertrieb. Dedizierte Deployments lassen sich in einer Europa-Multiregion oder in Einzelregionen in Frankfurt und Island betreiben, sobald Fireworks Kontingent freigibt, zu einem höheren Preis. Eine kontoweite Festlegung auf eine Region ist eine Enterprise-Funktion und umfasst derzeit nur die USA. Laut Auftragsverarbeitungsvertrag darf Fireworks Kundendaten überall dort verarbeiten, wo Fireworks oder seine Unterauftragsverarbeiter Standorte unterhalten."
       },
       "dataUsage": {
-        "retentionPolicy": "ZDR ist standardmäßig für alle offenen Modelle aktiviert — Prompt-/Generierungsdaten nur im flüchtigen Speicher, Löschung nach der Anfrage. Response API: 30 Tage Aufbewahrung, wenn store=true (Opt-out: store=false). FireOptimizer: Protokollierung nur auf Opt-in-Basis.",
-        "details": "Keine Nutzung von Kunden-Inferenzdaten für das Training. ZDR ist der Standard für Endpunkte offener Modelle."
+        "retentionPolicy": "Prompts und Ausgaben offener Modelle werden standardmäßig weder protokolliert noch gespeichert und liegen nur für die Dauer der Anfrage im Arbeitsspeicher; beim Prompt-Caching können Teile einige Minuten im Arbeitsspeicher bleiben. Die Responses API speichert Unterhaltungen standardmäßig bis zu 30 Tage, sofern nicht store=false gesetzt ist. Die Protokollierung für Funktionen wie FireOptimizer erfolgt nur nach Opt-in.",
+        "details": "Die Nutzungsbedingungen schließen aus, dass Kundeninhalte zum Training eigener Fireworks-Modelle oder zur Verbesserung des Dienstes genutzt werden; der Auftragsverarbeitungsvertrag schließt Training und Verbesserung gemeinsam genutzter oder Basismodelle aus. Für Inferenz mit offenen Modellen gilt standardmäßig keine Datenspeicherung."
       }
     }
   }

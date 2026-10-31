@@ -159,7 +159,12 @@ export function activeFilterFromSearchParams(params: URLSearchParams): Complianc
 
 /** A stable string for a filter, so memoised lists survive URL writes that leave the filter unchanged. */
 export function filterKey(filter: ComplianceFilter | null): string {
-  return filter === null ? "" : FILTER_FLAGS.filter((flag) => filter[flag]).join(",");
+  if (filter === null) return "";
+  const flags = Object.keys(filter) as (keyof ComplianceFilter)[];
+  return flags
+    .filter((flag) => filter[flag])
+    .sort()
+    .join(",");
 }
 
 export function filterFromKey(key: string): ComplianceFilter | null {
