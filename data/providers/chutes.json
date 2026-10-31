@@ -13,9 +13,9 @@
       "euRegionDetails": "Chutes offers no EU region and no way to choose a region, for the pay-per-use API or for private deployments. Inference runs on GPU servers of independent, anonymous node operators on the Bittensor network, and Chutes does not document where they are. Models marked as confidential compute run in Intel TDX trusted execution environments that the server operator cannot inspect."
     },
     "dpa": {
-      "available": false,
-      "url": null,
-      "signedVia": "not_available"
+      "available": true,
+      "url": "https://chutes.ai/dpa",
+      "signedVia": "online_acceptance"
     },
     "dataUsage": {
       "trainsOnCustomerData": false,
@@ -50,10 +50,10 @@
     "https://chutes.ai/news/end-to-end-encrypted-ai-inference-with-post-quantum-cryptography",
     "https://chutes.ai/"
   ],
-  "notes": "Chutes is operated by Chutes Global Corp; its terms are governed by the laws of Nevis (Saint Kitts and Nevis), and no headquarters country is stated. Its published DPA says international transfers use Standard Contractual Clauses, but the sub-processor list is only available on request and inference runs on independent GPU operators in undocumented locations. Billing is pay-as-you-go with no free tier.",
+  "notes": "Chutes is operated by Chutes Global Corp, whose terms are governed by the laws of Nevis (Saint Kitts and Nevis); no headquarters country is stated, inference runs on independent GPU operators in undocumented locations, and the sub-processor list is only available on request. Its published DPA, part of the terms, lacks a customer audit right, a duty to notify customers of data breaches and a flow-down of its obligations to sub-processors; customers should clarify these points with Chutes before using the service. Billing is pay-as-you-go with no free tier.",
   "translations": {
     "de": {
-      "notes": "Chutes wird von der Chutes Global Corp betrieben; für die Nutzungsbedingungen gilt das Recht von Nevis (St. Kitts und Nevis), ein Land des Hauptsitzes wird nicht genannt. Laut dem veröffentlichten Auftragsverarbeitungsvertrag stützen sich internationale Übermittlungen auf Standardvertragsklauseln, die Liste der Unterauftragsverarbeiter gibt es jedoch nur auf Anfrage, und die Inferenz läuft bei unabhängigen GPU-Betreibern an nicht angegebenen Standorten. Abgerechnet wird nutzungsbasiert ohne kostenloses Kontingent.",
+      "notes": "Chutes wird von der Chutes Global Corp betrieben, deren Nutzungsbedingungen dem Recht von Nevis (St. Kitts und Nevis) unterliegen; ein Land des Hauptsitzes wird nicht genannt, die Inferenz läuft bei unabhängigen GPU-Betreibern an nicht angegebenen Standorten, und die Liste der Unterauftragsverarbeiter gibt es nur auf Anfrage. Dem veröffentlichten Auftragsverarbeitungsvertrag, der Teil der Nutzungsbedingungen ist, fehlen ein Prüfrecht für Kunden, eine Pflicht, Kunden über Datenschutzverletzungen zu informieren, und die Weitergabe seiner Pflichten an Unterauftragsverarbeiter; diese Punkte sollten vor der Nutzung mit Chutes geklärt werden. Abgerechnet wird nutzungsbasiert ohne kostenloses Kontingent.",
       "dataUsage": {
         "retentionPolicy": "Chutes gibt an, Inhalte von API-Anfragen und -Antworten nicht zu protokollieren, zu speichern oder dauerhaft abzulegen; Inhalte liegen nur während der Verarbeitung im Arbeitsspeicher. Konto-, Abrechnungs- und Betriebsmetadaten wie Zeitstempel, Tokenzahlen und Modellkennungen werden so lange aufbewahrt, wie es für Betrieb, Support, Sicherheit sowie rechtliche und buchhalterische Zwecke nötig ist.",
         "details": "Chutes verwendet API-Anfragen und -Antworten nicht zum Training von Modellen. Prompts werden auf Hardware unabhängiger Knotenbetreiber verarbeitet, die laut Chutes weder Angestellte noch Vertreter oder Auftragnehmer von Chutes sind; die Liste der Unterauftragsverarbeiter gibt es nur auf Anfrage. Der veröffentlichte AVV enthält kein ausdrückliches Prüfrecht für Kunden, keine Pflicht, Kunden über Datenschutzverletzungen zu informieren, und keine Weitergabe seiner Pflichten an Unterauftragsverarbeiter. Ein Teil der Modelle läuft in vertrauenswürdigen Ausführungsumgebungen (Intel TDX), und ein optionaler Ende-zu-Ende-Verschlüsselungsmodus entschlüsselt Prompts nur innerhalb einer solchen Umgebung."
