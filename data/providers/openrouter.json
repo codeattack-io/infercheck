@@ -27,7 +27,7 @@
       "trainsOnCustomerData": false,
       "optOutAvailable": false,
       "retentionPolicy": "OpenRouter does not store prompts or completions by default, but keeps request metadata such as token counts and latency. Optional input/output logging keeps data for at least 3 months, files uploaded through the Files API are kept until deleted, and content flagged as potential child sexual abuse material may be retained for review and reporting. Upstream providers apply their own retention; customers can restrict routing to zero-data-retention endpoints.",
-      "details": "OpenRouter does not train on prompts; letting it use them for product improvement in exchange for a 1% discount is off by default, and it samples a small number of prompts for anonymous topic categorization. According to its FAQ, providers that log or may train on inputs, or whose policy is unconfirmed, are not used unless the customer enables them in the privacy settings; customers can additionally enforce zero-data-retention routing or limit providers. Upstream model providers process data under their own terms; OpenRouter tracks their data policies but does not guarantee their compliance."
+      "details": "OpenRouter does not train on prompts; letting it use them for product improvement in exchange for a 1% discount is off by default, and it samples a small number of prompts for anonymous topic categorization. The account privacy settings have separate switches for paid and free endpoints that may train on inputs; according to the FAQ, such providers, and those whose policy is unconfirmed, are not used unless the customer switches this on. A per-request data-collection filter, zero-data-retention routing and provider restrictions narrow routing further. Upstream model providers process data under their own terms; OpenRouter tracks their data policies but does not guarantee their compliance."
     },
     "subProcessors": {
       "disclosed": true,
@@ -56,6 +56,7 @@
     "https://openrouter.ai/business/eu",
     "https://openrouter.ai/docs/guides/privacy/data-collection",
     "https://openrouter.ai/docs/guides/privacy/provider-logging",
+    "https://openrouter.ai/docs/guides/routing/provider-selection",
     "https://openrouter.ai/docs/guides/features/zdr",
     "https://openrouter.ai/docs/guides/features/input-output-logging",
     "https://openrouter.ai/docs/faq",
@@ -71,7 +72,7 @@
       },
       "dataUsage": {
         "retentionPolicy": "OpenRouter speichert Prompts und Antworten standardmäßig nicht, behält aber Metadaten wie Token-Anzahl und Latenz. Die optionale Protokollierung von Ein- und Ausgaben bewahrt Daten mindestens 3 Monate auf, über die Files API hochgeladene Dateien bleiben bis zur Löschung gespeichert, und als möglicher Kindesmissbrauch markierte Inhalte können zur Prüfung und Meldung aufbewahrt werden. Upstream-Anbieter wenden eigene Aufbewahrungsfristen an; Kunden können das Routing auf Endpunkte ohne Datenspeicherung beschränken.",
-        "details": "OpenRouter trainiert nicht mit Prompts; die Nutzung zur Produktverbesserung gegen 1 % Rabatt ist standardmäßig deaktiviert, und eine kleine Stichprobe von Prompts wird anonym nach Themen kategorisiert. Laut FAQ werden Anbieter, die Eingaben protokollieren oder damit trainieren könnten oder deren Richtlinie nicht bestätigt ist, nur genutzt, wenn der Kunde sie in den Datenschutzeinstellungen freigibt; zusätzlich lassen sich Routing ohne Datenspeicherung erzwingen und Anbieter einschränken. Die Upstream-Modellanbieter verarbeiten Daten nach ihren eigenen Bedingungen; OpenRouter erfasst deren Datenrichtlinien, garantiert aber nicht deren Einhaltung."
+        "details": "OpenRouter trainiert nicht mit Prompts; die Nutzung zur Produktverbesserung gegen 1 % Rabatt ist standardmäßig deaktiviert, und eine kleine Stichprobe von Prompts wird anonym nach Themen kategorisiert. Die Datenschutzeinstellungen des Kontos haben getrennte Schalter für kostenpflichtige und kostenlose Endpunkte, die mit Eingaben trainieren könnten; laut FAQ werden solche Anbieter und solche mit unbestätigter Richtlinie nur genutzt, wenn der Kunde diese Schalter aktiviert. Ein Filter für die Datenerfassung pro Anfrage, Routing ohne Datenspeicherung und Einschränkungen der Anbieter begrenzen das Routing zusätzlich. Die Upstream-Modellanbieter verarbeiten Daten nach ihren eigenen Bedingungen; OpenRouter erfasst deren Datenrichtlinien, garantiert aber nicht deren Einhaltung."
       }
     }
   }
