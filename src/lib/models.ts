@@ -33,7 +33,7 @@ export const MODELS_CACHE_TAG = "models";
  */
 async function getActiveModels(): Promise<ProviderModel[]> {
   "use cache: remote";
-  cacheLife("hours");
+  cacheLife("max");
   cacheTag(MODELS_CACHE_TAG);
 
   return db
@@ -57,7 +57,7 @@ async function getActiveModels(): Promise<ProviderModel[]> {
 /** Active models with the columns the home page table renders. */
 export async function getCatalogModels(): Promise<CatalogModel[]> {
   "use cache";
-  cacheLife("hours");
+  cacheLife("max");
   cacheTag(MODELS_CACHE_TAG);
 
   return byDisplayName((await getActiveModels()).map(toCatalogModel));
@@ -66,7 +66,7 @@ export async function getCatalogModels(): Promise<CatalogModel[]> {
 /** Active models of one provider, for /provider/[slug]. */
 export async function getModelsByProvider(providerSlug: string): Promise<ProviderModel[]> {
   "use cache";
-  cacheLife("hours");
+  cacheLife("max");
   cacheTag(MODELS_CACHE_TAG);
 
   return byDisplayName((await getActiveModels()).filter((row) => row.providerSlug === providerSlug));
@@ -75,7 +75,7 @@ export async function getModelsByProvider(providerSlug: string): Promise<Provide
 /** Active rows of one canonical model across all providers, ordered by provider slug, for /model/[id]. */
 export async function getModelOffers(canonicalModelId: string): Promise<CatalogModel[]> {
   "use cache";
-  cacheLife("hours");
+  cacheLife("max");
   cacheTag(MODELS_CACHE_TAG);
 
   return (await getActiveModels())
@@ -87,7 +87,7 @@ export async function getModelOffers(canonicalModelId: string): Promise<CatalogM
 /** Distinct canonical ids of all active models. */
 export async function getCanonicalModelIds(): Promise<string[]> {
   "use cache";
-  cacheLife("hours");
+  cacheLife("max");
   cacheTag(MODELS_CACHE_TAG);
 
   const ids = new Set((await getActiveModels()).flatMap((row) => (row.canonicalModelId ? [row.canonicalModelId] : [])));
@@ -97,7 +97,7 @@ export async function getCanonicalModelIds(): Promise<string[]> {
 /** Number of active models per provider slug. */
 export async function getModelCountsByProvider(): Promise<Record<string, number>> {
   "use cache";
-  cacheLife("hours");
+  cacheLife("max");
   cacheTag(MODELS_CACHE_TAG);
 
   const counts: Record<string, number> = {};
