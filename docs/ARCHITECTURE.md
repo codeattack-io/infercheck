@@ -106,8 +106,12 @@ Providers served by their own adapter (Mistral, Scaleway, Bedrock, …) are deli
 
 ## Caching and freshness
 
-- Every read in `src/lib/models.ts` is a `"use cache"` function with `cacheLife("hours")` (revalidate after 1 hour, expire after 1 day) and `cacheTag("models")`.
-- The cron route marks tag `models` stale after a sync (`revalidateTag("models", "max")`); the next request regenerates the pages. `bun run sync:models` run from a shell does not invalidate the cache, so those changes appear after the `cacheLife` revalidation.
+- `getActiveModels` in `src/lib/models.ts` reads every active row in one query. It is a `"use cache: remote"` function (on Vercel: Runtime Cache, shared by all instances of a deployment) with `cacheLife("max")` and `cacheTag("models")`.
+- The exported reads (`getCatalogModels`, `getModelsByProvider`, `getModelOffers`, `getCanonicalModelIds`, `getModelCountsByProvider`) are `"use cache"` functions with the same profile and tag that filter, sort and count that result in memory. An unknown model id or provider slug therefore costs no query.
+- Pages and the sitemap inherit `max`: revalidate after 30 days, expire after 1 year. Model data changes reach them only through tag `models` or a new deployment.
+- The cron route marks tag `models` stale after a sync (`revalidateTag("models", "max")`). Each page is served stale once and regenerates in the background; the first regeneration refills the remote entry with one query, the rest read it from the cache.
+- `bun run sync:models` run from a shell does not invalidate the cache; its changes appear after the next cron run that revalidates, or the next deployment.
+- Remote cache entries are keyed by build, so the first renders after a deployment read the database once more.
 - `generateStaticParams` and the sitemap read the model table at build time, so `next build` needs a reachable database.
 - The home page ships the full model list to the browser. `ModelBrowser` and `ModelTable` search with Fuse.js, filter and sort on the client, and keep the state in the URL query string through the History API (`src/lib/url-state.ts`). Changing it does not request the server.
 
