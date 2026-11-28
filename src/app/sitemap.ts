@@ -6,10 +6,10 @@
 //   - /[locale]/model/[id]        — one per unique canonicalModelId in the DB
 
 import type { MetadataRoute } from "next";
-import { cacheLife } from "next/cache";
+import { cacheLife, cacheTag } from "next/cache";
 import { getAllProviders } from "@/lib/providers";
 import { routing } from "@/i18n/routing";
-import { getCanonicalModelIds } from "@/lib/models";
+import { getCanonicalModelIds, MODELS_CACHE_TAG } from "@/lib/models";
 
 const BASE_URL = "https://infercheck.eu";
 const LOCALES = routing.locales;
@@ -21,7 +21,8 @@ function alternates(path: string): Record<string, string> {
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   "use cache";
-  cacheLife("hours");
+  cacheLife("max");
+  cacheTag(MODELS_CACHE_TAG);
 
   const now = new Date().toISOString();
 
